@@ -12,5 +12,5 @@ footer { border-block-start: var(--line) solid var(--c-line); padding-block: var
 footer p { margin: 0; }
 
 /* results mode: home sections leave the layout, the H1 stays for assistive tech */
-vf-app[mode="results"] main > section { display: none; }
+vf-app[mode="results"] main > :is(section, vf-recent) { display: none; }
 vf-app[mode="results"] main > hgroup { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

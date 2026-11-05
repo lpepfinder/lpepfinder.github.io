@@ -32,7 +32,7 @@ const groupKeys = (group, o = lookup(defaultLanguage, group)) => Object.entries(
 export const clientStrings = (lang, groups = []) => Object.fromEntries([
   'searchTitle', 'searching', 'showingOf', 'emptyTitle', 'indexError',
   'conditionUsed', 'soldOut', 'lastInStock', ...FORMAT_IDS.map((id) => `formats.${id}`),
-  ...['watch', 'results', 'currency', ...groups].flatMap((g) => groupKeys(g)),
+  ...['watch', 'results', 'currency', 'grades', 'recent', ...groups].flatMap((g) => groupKeys(g)),
 ].map((k) => [k, lookup(lang, k) ?? lookup(defaultLanguage, k)]));
 
 const pluralRules = Object.fromEntries(languages.map((l) => [l, new Intl.PluralRules(l)]));

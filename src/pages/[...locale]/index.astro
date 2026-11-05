@@ -33,7 +33,15 @@ const ld = [{
     <h1>{t(lang, 'homeTitle')}</h1>
     <p>{t(lang, 'stats', vars)} · <time datetime={c.builtAt}>{t(lang, 'updated', { date: date(lang, c.builtAt) })}</time></p>
   </hgroup>
+  <vf-recent hidden>
+    <h2 id="recent-title">{t(lang, 'recent.title')}</h2>
+    <ul aria-labelledby="recent-title"></ul>
+    <button type="button" name="clear">{t(lang, 'recent.clear')}</button>
+  </vf-recent>
   <Results lang={lang} />
+  <script>
+    import '../../components/vf-recent.js';
+  </script>
   <script is:inline>
     /* before first paint: a ?q= URL shows the results layout at once, so the home sections never shift */
     if (new URLSearchParams(location.search).get('q')) {

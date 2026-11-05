@@ -1,5 +1,6 @@
 import { SearchClient } from '../lib/search/client.js';
 import { t } from './i18n.js';
+import { addRecent } from './recent.js';
 import './vf-results.js';
 
 /**
@@ -9,6 +10,12 @@ import './vf-results.js';
  */
 export class VfSearch extends HTMLElement {
   connectedCallback() {
+    // "/" focuses the search box (keyboards), unless the reader is typing somewhere
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || e.target.closest?.('input, textarea, select, [contenteditable]')) return;
+      e.preventDefault();
+      this.querySelector('input[name="q"]').focus();
+    });
     this.results = document.querySelector('vf-results');
     if (!this.results) return;
     this.client = new SearchClient(this.getAttribute('index') || '/search/');
@@ -52,6 +59,7 @@ export class VfSearch extends HTMLElement {
     }
     this.setAttribute('status', this.results.getAttribute('status'));
     if (submitted) { this.input.blur(); this.results.focusHeading(); }
+    if (this.ids?.length) addRecent(q);
     window.umami?.track?.('search', { q, results: this.ids?.length ?? -1 });
   }
 
