@@ -10,5 +10,13 @@
     { "id": "lp", "pattern": "\\blp\\b|\\b(vinyl|vinyle|vinilo|vinile|schallplatte)\\b|レコード" }
   ],
   "display": ["lp", "2lp", "12", "10", "7", "ep", "cd", "mc"],
+  "grades": [
+    {"id": "nm", "code": "NM", "codes": "(?<![\\w+-])(NM|M-)(?![\\w+])", "words": "\\b[Nn]ear[- ][Mm]int\\b"},
+    {"id": "m", "code": "M", "codes": "[(\\[]M[)\\]]|(?<!\\w)M/M(?!\\w)", "words": "\\b[Mm]int\\b"},
+    {"id": "vgp", "code": "VG+", "codes": "(?<!\\w)VG\\+", "words": "\\b[Vv]ery [Gg]ood [Pp]lus\\b"},
+    {"id": "vg", "code": "VG", "codes": "(?<!\\w)VG(?![\\w+])", "words": "\\b[Vv]ery [Gg]ood\\b"},
+    {"id": "gp", "code": "G+", "codes": "(?<![\\w+])G\\+", "words": "\\b[Gg]ood [Pp]lus\\b"},
+    {"id": "g", "code": "G", "codes": "[(\\[]G[)\\]]|(?<!\\w)G/G(?!\\w)", "words": "\\b[Gg]ood [Cc]ondition\\b"}
+  ],
   "used": "\\b(used|second[- ]?hand|pre-?owned|occasion|gebraucht|usato|usado|käytetty)\\b|中古"
 }

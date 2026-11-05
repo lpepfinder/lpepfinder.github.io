@@ -338,7 +338,11 @@
     "noneFiltered": "Keine der bisher geladenen Platten passt zu diesen Filtern.",
     "didYouMean": "Meinten Sie {query}?",
     "without": "Ohne „{word}“: {link}",
-    "atShop": "{price} im Laden"
+    "atShop": "{price} im Laden",
+    "shipsFrom": "Versand aus {country}",
+    "copyLink": "Link kopieren",
+    "shareLink": "Teilen",
+    "linkCopied": "Link kopiert."
   },
   "statusReason": {
     "dns": "Die Webadresse gibt es nicht mehr",
@@ -356,5 +360,17 @@
     "label": "Preise in",
     "shop": "Währung des Ladens",
     "rates": "Kurse vom {date}, EZB"
+  },
+  "grades": {
+    "m": "Neuwertig (mint)",
+    "nm": "Fast neuwertig",
+    "vgp": "Sehr gut plus",
+    "vg": "Sehr gut",
+    "gp": "Gut plus",
+    "g": "Gut"
+  },
+  "recent": {
+    "title": "Letzte Suchen",
+    "clear": "Letzte Suchen löschen"
   }
 }

@@ -5,7 +5,7 @@ vf-release > details { min-inline-size: 0; }
 vf-release > vf-watch { padding-block-start: var(--space-2); }
 
 vf-release summary {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(var(--price-col), fit-content(var(--price-max)));
+  display: grid; grid-template-columns: minmax(0, 1fr) fit-content(var(--price-max));
   grid-template-areas: "head price" "meta meta";
   gap: var(--space-1) var(--space-3); align-items: start;
   min-block-size: var(--tap); padding: var(--space-2) var(--space-1); border-radius: var(--radius);
@@ -13,7 +13,7 @@ vf-release summary {
 }
 vf-release summary::-webkit-details-marker { display: none; }
 vf-release summary > * { min-inline-size: 0; overflow-wrap: anywhere; }
-vf-release summary:has(> :is(img, vf-cover)) { grid-template-columns: var(--thumb-row) minmax(0, 1fr) minmax(var(--price-col), fit-content(var(--price-max))); grid-template-areas: "cover head price" "cover meta meta"; }
+vf-release summary:has(> :is(img, vf-cover)) { grid-template-columns: var(--thumb-row) minmax(0, 1fr) fit-content(var(--price-max)); grid-template-areas: "cover head price" "cover meta meta"; }
 vf-release summary:hover { background: var(--c-hover); }
 /* open/closed in a shape, not only a colour */
 vf-release summary > p::before { content: var(--disclosure); display: inline-block; inline-size: var(--space-4); }
@@ -25,7 +25,7 @@ vf-release h3 { grid-area: head; margin: 0; font-size: var(--size-0); line-heigh
 vf-release vf-artist { display: block; font-weight: normal; font-size: var(--size-s); color: var(--c-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 vf-release vf-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font-weight: var(--weight-bold); }
 /* a long "from" price wraps before it squeezes the title */
-vf-release summary > vf-price { grid-area: price; white-space: normal; }
+vf-release summary > vf-price { grid-area: price; white-space: normal; min-inline-size: var(--price-col); }
 vf-release summary > p { grid-area: meta; margin: 0; color: var(--c-muted); font-size: var(--size-s); }
 vf-release abbr { text-decoration: none; }
 /* sold out: less emphasis, same contrast, and the words "Sold out" in the meta line */
@@ -43,6 +43,7 @@ vf-offer > a::after { content: ""; position: absolute; inset: 0; }
 vf-offer > vf-price { grid-row: 1 / span 2; grid-column: 2; }
 vf-offer > p { grid-column: 1; margin: 0; color: var(--c-muted); font-size: var(--size-s); }
 vf-offer[condition="used"][stock="in"] > p { color: var(--c-used); }
+vf-origin[local="true"] { color: var(--c-fg); font-weight: var(--weight-semi); }
 vf-offer[stock="out"] > vf-price { color: var(--c-muted); font-weight: normal; }
 vf-offer:hover { background: var(--c-hover); }
 vf-offer:has(a:focus-visible) { outline: var(--focus-ring); outline-offset: calc(-1 * var(--focus-offset)); }

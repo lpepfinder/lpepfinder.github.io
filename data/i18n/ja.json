@@ -318,7 +318,11 @@
     "noneFiltered": "これまでに読み込んだレコードに、この条件に合うものはありません。",
     "didYouMean": "もしかして：{query}",
     "without": "「{word}」なし：{link}",
-    "atShop": "お店では{price}"
+    "atShop": "お店では{price}",
+    "shipsFrom": "{country}から発送",
+    "copyLink": "リンクをコピー",
+    "shareLink": "共有",
+    "linkCopied": "リンクをコピーしました。"
   },
   "statusReason": {
     "dns": "このウェブアドレスはもう存在しません",
@@ -336,5 +340,17 @@
     "label": "表示通貨",
     "shop": "お店の通貨",
     "rates": "{date}のレート（欧州中央銀行）"
+  },
+  "grades": {
+    "m": "ミント",
+    "nm": "ニアミント",
+    "vgp": "VG+（非常に良い）",
+    "vg": "VG（良い）",
+    "gp": "G+（並）",
+    "g": "G（難あり）"
+  },
+  "recent": {
+    "title": "最近の検索",
+    "clear": "最近の検索を消去"
   }
 }

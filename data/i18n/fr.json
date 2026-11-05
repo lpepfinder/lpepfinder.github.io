@@ -338,7 +338,11 @@
     "noneFiltered": "Aucun disque chargé pour l’instant ne correspond à ces filtres.",
     "didYouMean": "Vouliez-vous dire {query} ?",
     "without": "Sans « {word} » : {link}",
-    "atShop": "{price} chez le disquaire"
+    "atShop": "{price} chez le disquaire",
+    "shipsFrom": "Expédié de {country}",
+    "copyLink": "Copier le lien",
+    "shareLink": "Partager",
+    "linkCopied": "Lien copié."
   },
   "statusReason": {
     "dns": "L’adresse web n’existe plus",
@@ -356,5 +360,17 @@
     "label": "Prix en",
     "shop": "Devise du disquaire",
     "rates": "Taux du {date}, BCE"
+  },
+  "grades": {
+    "m": "Neuf (mint)",
+    "nm": "Quasi neuf",
+    "vgp": "Très bon plus",
+    "vg": "Très bon",
+    "gp": "Bon plus",
+    "g": "Bon"
+  },
+  "recent": {
+    "title": "Recherches récentes",
+    "clear": "Effacer les recherches récentes"
   }
 }

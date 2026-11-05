@@ -3,10 +3,22 @@ import { splitTitle } from '../lib/search/title.js';
 import { el, attrs } from './dom.js';
 import { cover } from './cover.js';
 import { price } from './price.js';
+import { region } from './viewer.js';
 import './vf-watch.js';
 
-const kind = (o) => [o.format && t(`formats.${o.format}`), o.used && t('conditionUsed')].filter(Boolean).join(' · ');
+/** "LP · Used · Near mint (NM)". */
+const kind = (o) => [o.format && t(`formats.${o.format}`), o.used && t('conditionUsed'),
+  o.grade && `${t(`grades.${o.grade.id}`)} (${o.grade.code})`].filter(Boolean).join(' · ');
 const country = (cc) => cc && el('abbr', { title: countryName(cc), textContent: cc });
+/** Regional indicator letters: "JP" → 🇯🇵. */
+const flag = (cc) => String.fromCodePoint(...[...cc.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65));
+
+/** <vf-origin local="true">🇯🇵 Ships from Japan</vf-origin>; local when it is the viewer's country. */
+function origin(cc) {
+  if (!cc) return null;
+  return attrs(el('vf-origin', {}, el('span', { ariaHidden: 'true', textContent: flag(cc) }), ' ', t('results.shipsFrom', { country: countryName(cc) })),
+    { country: cc, local: String(cc === region) });
+}
 
 /** "Sold out · last seen in stock <time>12 Oct</time>", with the date where the translation puts it. */
 function soldOut(o) {
@@ -33,12 +45,12 @@ function meta(v) {
     v.soldOut && (v.inStock ? tn('results.soldOutCount', v.soldOut) : t('soldOut')));
 }
 
-/** One copy: shop (the link), country, format and condition or "Sold out", price. */
+/** One copy: shop (the link), where it ships from, format and condition or "Sold out", price. */
 function offer(o, rates) {
   return el('li', {}, attrs(el('vf-offer', {},
     el('a', { href: o.url, rel: 'nofollow', textContent: o.shop.name }),
     price(o.price, o.currency, rates),
-    line(country(o.shop.country), o.available ? kind(o) : soldOut(o)),
+    line(origin(o.shop.country), o.available ? kind(o) : soldOut(o)),
   ), { stock: o.available ? 'in' : 'out', country: o.shop.country || null, format: o.format || null, condition: o.used ? 'used' : 'new' }));
 }
 

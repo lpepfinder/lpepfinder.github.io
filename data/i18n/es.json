@@ -338,7 +338,11 @@
     "noneFiltered": "Ningún disco cargado hasta ahora coincide con estos filtros.",
     "didYouMean": "¿Quisiste decir {query}?",
     "without": "Sin «{word}»: {link}",
-    "atShop": "{price} en la tienda"
+    "atShop": "{price} en la tienda",
+    "shipsFrom": "Se envía desde {country}",
+    "copyLink": "Copiar enlace",
+    "shareLink": "Compartir",
+    "linkCopied": "Enlace copiado."
   },
   "statusReason": {
     "dns": "La dirección web ya no existe",
@@ -356,5 +360,17 @@
     "label": "Precios en",
     "shop": "Moneda de la tienda",
     "rates": "Tipos del {date}, BCE"
+  },
+  "grades": {
+    "m": "Como nuevo (mint)",
+    "nm": "Casi nuevo",
+    "vgp": "Muy bueno plus",
+    "vg": "Muy bueno",
+    "gp": "Bueno plus",
+    "g": "Bueno"
+  },
+  "recent": {
+    "title": "Búsquedas recientes",
+    "clear": "Borrar búsquedas recientes"
   }
 }

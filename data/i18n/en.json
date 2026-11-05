@@ -338,7 +338,11 @@
     "noneFiltered": "No record loaded so far matches these filters.",
     "didYouMean": "Did you mean {query}?",
     "without": "Without “{word}”: {link}",
-    "atShop": "{price} at the shop"
+    "atShop": "{price} at the shop",
+    "shipsFrom": "Ships from {country}",
+    "copyLink": "Copy link",
+    "shareLink": "Share",
+    "linkCopied": "Link copied."
   },
   "statusReason": {
     "dns": "The web address no longer exists",
@@ -356,5 +360,17 @@
     "label": "Prices in",
     "shop": "Shop’s currency",
     "rates": "Rates of {date}, ECB"
+  },
+  "grades": {
+    "m": "Mint",
+    "nm": "Near mint",
+    "vgp": "Very good plus",
+    "vg": "Very good",
+    "gp": "Good plus",
+    "g": "Good"
+  },
+  "recent": {
+    "title": "Recent searches",
+    "clear": "Clear recent searches"
   }
 }
