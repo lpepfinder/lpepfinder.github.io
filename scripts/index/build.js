@@ -8,6 +8,7 @@ import { buildSearchIndex } from './search-index.js';
 import { buildSiteData } from './site-data.js';
 import { today } from '../ledger/day.js';
 import { updateLedger } from '../ledger/update.js';
+import { crawlDays } from '../ledger/crawl-days.js';
 import { ledgerDocs } from '../ledger/search-docs.js';
 import { writeWatchFiles } from '../ledger/watch-files.js';
 import { buildNewArrivals } from '../ledger/new-arrivals.js';
@@ -30,7 +31,7 @@ const catalog = await loadCatalog(productFiles);
 
 // the ledger dates the crawl by UTC day (LEDGER_DATE overrides it) and gives sold-out records their history
 const day = today();
-const { ledger, events } = await updateLedger({ docs: catalog.docs, shops: catalog.shops, day, dir: GENERATED, settings: config.ledger });
+const { ledger, events } = await updateLedger({ docs: catalog.docs, shops: catalog.shops, day, dir: GENERATED, settings: config.ledger, crawlDays: crawlDays(catalog.shopFiles) });
 const counts = events.reduce((a, e) => ({ ...a, [e[2]]: (a[e[2]] || 0) + 1 }), {});
 console.log('ledger', day, ledger.rows.size, 'offers, events:', counts);
 console.log('watchlist files', writeWatchFiles({ ledger, shops: catalog.shops, outDir: path.join(PUBLIC, 'w'), settings: config.ledger }));

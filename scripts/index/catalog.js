@@ -15,21 +15,23 @@ const formatRank = (title) => {
  * 1-4 chunks instead of one per result. Records in stock come first, sold-out
  * ones (available: false) after them, each part in title order.
  * Shop diversity is done by the client (src/lib/search/rank.js).
- * byShop keeps each shop's newest first.
+ * byShop keeps each shop's newest first; shopFiles lists the product files each shop's records came from.
  */
 export async function loadCatalog(productFiles) {
   const state = loadState();
   const shops = new Map(loadShops().map((s) => [s.id, { ...s, state: state[s.id] || {} }]));
   const byShop = new Map();
+  const shopFiles = new Map();
   for (const file of productFiles) {
     for await (const p of ndjsonReader(file)) {
       if (!shops.has(p.shop) || shops.get(p.shop).disabled || !p.title) continue;
-      if (!byShop.has(p.shop)) byShop.set(p.shop, []);
+      if (!byShop.has(p.shop)) { byShop.set(p.shop, []); shopFiles.set(p.shop, new Set()); }
+      shopFiles.get(p.shop).add(file);
       byShop.get(p.shop).push({ ...p, title: displayTitle(cleanTitle(p.title), p.vendor), available: p.available !== false });
     }
   }
   for (const list of byShop.values()) list.sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
-  return { docs: sortDocs([...byShop.values()].flat()), shops, byShop };
+  return { docs: sortDocs([...byShop.values()].flat()), shops, byShop, shopFiles };
 }
 
 /** Doc id order: in stock first, then sold out; each part in title order. */

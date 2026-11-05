@@ -11,10 +11,11 @@ export const BASE_FILE = 'ledger-prev.ndjson.gz';
 
 /**
  * Update the offer ledger in `dir` with today's catalog docs (display titles, see catalog.js).
+ * crawlDays: the day of each shop's crawl data (crawl-days.js), for the new-shop guard.
  * Sets offerKey and releaseKey on each doc. Running twice on one UTC day gives the same result:
  * the second run starts again from the ledger of the day before (BASE_FILE).
  */
-export async function updateLedger({ docs, shops, day, dir, settings }) {
+export async function updateLedger({ docs, shops, day, dir, settings, crawlDays }) {
   const current = path.join(dir, LEDGER_FILE);
   const previous = path.join(dir, BASE_FILE);
   const meta = await readMeta(current);
@@ -33,7 +34,7 @@ export async function updateLedger({ docs, shops, day, dir, settings }) {
       discogsRelease: d.discogsRelease || null,
     };
   });
-  const events = applyDay(ledger, offers, day, { settings, urlOf: (id, p) => productUrl(shops.get(id), p) });
+  const events = applyDay(ledger, offers, day, { settings, crawlDays, urlOf: (id, p) => productUrl(shops.get(id), p) });
   await writeLedger(current, ledger);
   return { ledger, events };
 }
