@@ -36,7 +36,15 @@ jobs:
       - run: npm run validate
       - name: Discover new shops
         if: inputs.discover || github.event_name == 'schedule'
-        run: if [ "${{ inputs.discover }}" = "true" ] || [ "$(date -u +%d)" = "01" ]; then npm run discover; fi
+        run: |
+          if [ "${{ inputs.discover }}" = "true" ] || [ "$(date -u +%d)" = "01" ]; then
+            npm run discover -- --write
+            npm run validate
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/shops
+            git diff --cached --quiet || { git commit -m "Add shops found by the monthly discovery"; git push; }
+          fi
       - run: npm run check
       # shop catalogs and Discogs inventories are different hosts: read both at the same time
       - name: Crawl shops and their Discogs inventories

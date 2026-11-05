@@ -6,6 +6,9 @@ import { files, SHOPS_DIR } from '../lib/paths.js';
 import { pool } from '../lib/pool.js';
 import { checkShop } from '../check/shop.js';
 import { osmCandidates } from './osm.js';
+import { countryCode } from '../lib/country.js';
+
+const regions = new Intl.DisplayNames(['en'], { type: 'region' });
 
 /**
  * Find new record shops (OpenStreetMap for now), check them like curated shops,
@@ -42,7 +45,8 @@ if (write) {
   for (const c of candidates) {
     const file = path.join(SHOPS_DIR, `${c.id}.json`);
     if (fs.existsSync(file)) continue;
-    const shop = { url: c.url, name: c.name, country: /^[A-Z]{2}$/.test(c.country || '') ? c.country : undefined, city: c.city, osm: c.osm, source: 'osm' };
+    const country = /^[A-Z]{2}$/.test(c.country || '') && countryCode(regions.of(c.country)) === c.country ? c.country : undefined;
+    const shop = { url: c.url, name: c.name, country, city: c.city, osm: c.osm, source: 'osm' };
     writeJson(file, shop, true);
   }
   console.log('written to data/shops/');

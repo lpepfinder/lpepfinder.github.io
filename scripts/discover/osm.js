@@ -12,7 +12,8 @@ export async function osmCandidates(retries = 2) {
 }
 
 async function query() {
-  const query = '[out:json][timeout:180];nwr["shop"="music"]["website"];out tags center;';
+  // shops store their site under website, contact:website or url
+  const query = '[out:json][timeout:180];(nwr["shop"="music"]["website"];nwr["shop"="music"]["contact:website"];nwr["shop"="music"]["url"];);out tags center;';
   const res = await fetch(OVERPASS, {
     method: 'POST',
     headers: { 'user-agent': config.crawl.userAgent, 'content-type': 'application/x-www-form-urlencoded' },
@@ -22,7 +23,7 @@ async function query() {
   if (!res.ok) throw new Error(`overpass_${res.status}`);
   const { elements = [] } = await res.json();
   return elements.map((e) => ({
-    url: e.tags.website,
+    url: e.tags.website || e.tags['contact:website'] || e.tags.url,
     name: e.tags.name,
     country: e.tags['addr:country'],
     city: e.tags['addr:city'],
