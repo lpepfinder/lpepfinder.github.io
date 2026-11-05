@@ -17,7 +17,7 @@
     "dev": "astro dev",
     "build": "npm run validate && npm run index && astro build",
     "preview": "astro preview",
-    "test": "node --test scripts/**/*.test.js",
+    "test": "node --test 'scripts/**/*.test.js'",
     "discogs": "node scripts/sources/discogs/index.js"
   },
   "dependencies": {
