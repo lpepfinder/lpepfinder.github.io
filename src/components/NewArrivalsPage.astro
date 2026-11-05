@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import RecordList from './RecordList.astro';
+import { t, number, countryName } from '../lib/i18n.js';
+import { newArrivals } from '../lib/new-arrivals.js';
+import { pageTitle, breadcrumbLd } from '../lib/seo.js';
+import { FORMAT_IDS } from '../lib/search/format.js';
+
+/**
+ * Body of the /new/ pages. scope: { key: "new" | "newCountry" | "newFormat", vars, href, records, count,
+ * crumb (name of the last breadcrumb, if not /new/ itself), feed (Atom URL, optional), country, format }.
+ */
+const { lang, scope } = Astro.props;
+const n = newArrivals();
+const vars = { days: number(lang, n.days), shops: number(lang, n.shops), count: number(lang, scope.count), ...scope.vars };
+const crumbs = [
+  { name: t(lang, 'breadcrumbHome'), href: '/' },
+  { name: t(lang, 'navNew'), href: '/new/' },
+  ...(scope.crumb ? [{ name: scope.crumb, href: scope.href }] : []),
+];
+const ld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: t(lang, `${scope.key}Title`, vars), inLanguage: lang }, breadcrumbLd(crumbs, Astro.site)];
+const feed = scope.feed && { href: scope.feed, title: t(lang, 'newFeed') };
+const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
+---
+<Base lang={lang} title={pageTitle(t(lang, `${scope.key}SeoTitle`, vars))} description={t(lang, `${scope.key}Description`, vars)} ld={ld} feed={feed} noindex={!scope.count}>
+  <Breadcrumbs lang={lang} items={crumbs} />
+  <hgroup>
+    <h1 id="new-title">{t(lang, `${scope.key}Title`, vars)}</h1>
+    <p>{scope.count ? t(lang, `${scope.key}Description`, vars) : t(lang, 'newEmpty', vars)}</p>
+  </hgroup>
+  {formats.length > 0 && (
+    <section>
+      <h2>{t(lang, 'newByFormat')}</h2>
+      <ul>
+        <li><a href="/new/" aria-current={scope.key === 'new' ? 'page' : undefined}>{t(lang, 'newAllFormats')}</a></li>
+        {formats.map((f) => <li><a href={`/new/format/${f}/`} aria-current={scope.format === f ? 'page' : undefined}>{t(lang, `formats.${f}`)}</a></li>)}
+      </ul>
+    </section>
+  )}
+  {scope.records.length > 0 && <RecordList lang={lang} records={scope.records} labelledby="new-title" />}
+  {scope.count > scope.records.length && <p>{t(lang, 'newShowing', { ...vars, shown: number(lang, scope.records.length) })}</p>}
+  {feed && <p><a href={feed.href} type="application/atom+xml">{feed.title}</a></p>}
+  {n.countryCodes.length > 0 && (
+    <section>
+      <h2>{t(lang, 'newByCountry')}</h2>
+      <ul>{n.countryCodes.map((cc) => (
+        <li><a href={`/new/${cc.toLowerCase()}/`} aria-current={scope.country === cc ? 'page' : undefined}>{countryName(lang, cc)} ({number(lang, n.countries[cc].count)})</a></li>
+      ))}</ul>
+    </section>
+  )}
+</Base>

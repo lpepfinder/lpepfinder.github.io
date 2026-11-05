@@ -1,6 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import RecordTable from '../../components/RecordTable.astro';
+import RecordList from '../../components/RecordList.astro';
+import config from '../../../data/config.json';
+import { newArrivals } from '../../lib/new-arrivals.js';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { t, defaultLanguage as lang, number, countryName, localPath } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
@@ -20,6 +23,8 @@ const vars = {
   records: number(lang, shop.records), shops: number(lang, Math.max(searchable - 1, 0)),
 };
 const key = shop.records ? 'shop' : 'shopListed';
+const fresh = newArrivals().shop(shop.id, config.newArrivals.shopItems);
+const feed = shop.records ? { href: `/feed/shop/${shop.id}.xml`, title: t(lang, 'feedShopTitle', { shop: shop.name }) } : undefined;
 const pageUrl = new URL(`/shop/${shop.id}/`, Astro.site).href;
 const crumbs = [
   { name: t(lang, 'breadcrumbHome'), href: '/' },
@@ -32,7 +37,7 @@ const ld = [{
   address: shop.country ? { '@type': 'PostalAddress', addressCountry: shop.country, addressLocality: shop.city || undefined } : undefined,
 }, breadcrumbLd(crumbs, Astro.site)];
 ---
-<Base lang={lang} title={pageTitle(t(lang, `${key}Title`, vars))} description={t(lang, `${key}Description`, vars)} ld={ld} noindex={!shop.records}>
+<Base lang={lang} title={pageTitle(t(lang, `${key}Title`, vars))} description={t(lang, `${key}Description`, vars)} ld={ld} feed={feed} noindex={!shop.records}>
   <Breadcrumbs lang={lang} items={crumbs} />
   <article>
     <h1>{shop.name}</h1>
@@ -42,6 +47,13 @@ const ld = [{
       {shop.records ? t(lang, 'shopRecords', { count: number(lang, shop.records) }) : t(lang, 'shopListedOnly')}
     </p>
     <p><a href={shop.url} rel="noopener">{t(lang, 'shopVisit')}: {new URL(shop.url).host}</a></p>
+    {fresh.count > 0 && (
+      <section>
+        <h2 id="shop-new">{t(lang, 'shopNewTitle', { count: number(lang, fresh.count) })}</h2>
+        <RecordList lang={lang} records={fresh.records} labelledby="shop-new" />
+      </section>
+    )}
+    {feed && <p><a href={feed.href} type="application/atom+xml">{t(lang, 'newFeed')}</a></p>}
     {shop.latest.length > 0 && <h2>{t(lang, 'shopLatest')}</h2>}
     {shop.latest.length > 0 && <RecordTable lang={lang} records={shop.latest} shopsById={c.shopsById} showShop={false} />}
   </article>

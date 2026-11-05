@@ -1,0 +1,11 @@
+---
+import NewArrivalsPage from '../../components/NewArrivalsPage.astro';
+import config from '../../../data/config.json';
+import { defaultLanguage as lang } from '../../lib/i18n.js';
+import { newArrivals } from '../../lib/new-arrivals.js';
+
+/** New arrivals at every shop, rolling: one URL, updated daily. Default language only, like shop pages. */
+const all = newArrivals().all(config.newArrivals.pageItems);
+const scope = { key: 'new', href: '/new/', feed: '/feed/new.xml', ...all };
+---
+<NewArrivalsPage lang={lang} scope={scope} />

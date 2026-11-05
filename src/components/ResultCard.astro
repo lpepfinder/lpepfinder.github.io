@@ -1,0 +1,33 @@
+---
+import { t, price, countryName, day } from '../lib/i18n.js';
+import { splitTitle } from '../lib/search/title.js';
+import { thumb } from '../lib/thumb.js';
+
+/**
+ * Server-rendered <vf-result> card, the same markup <vf-result> builds in the browser (styles in results.css).
+ * record: { title, price, currency, url, image, country, format, used, day }; shopName; index (eager images first).
+ */
+const { lang, record: r, shopName, index = 0 } = Astro.props;
+const { artist, title } = splitTitle(r.title);
+const src = thumb(r.image, { safe: true });
+const eager = index < 4;
+const kind = [r.format && t(lang, `formats.${r.format}`), r.used && t(lang, 'conditionUsed')].filter(Boolean).join(' · ');
+const [addedBefore, addedAfter = ''] = t(lang, 'addedOn', { date: '\u0000' }).split('\u0000');
+---
+<vf-result country={r.country || undefined} format={r.format || undefined} condition={r.used ? 'used' : 'new'} stock="in">
+  {src
+    ? <img src={src} alt="" width="56" height="56" decoding="async" referrerpolicy="no-referrer" loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'auto' : 'low'}>
+    : <vf-cover></vf-cover>}
+  <h3><a href={r.url} rel="nofollow">{artist && <vf-artist>{artist}</vf-artist>}{artist && ' '}<vf-title>{title}</vf-title></a></h3>
+  <vf-price><data value={r.price ?? ''}>{price(lang, r.price, r.currency)}</data></vf-price>
+  <dl>
+    {kind && <dt>{t(lang, 'resultFormat')}</dt>}
+    {kind && <dd>{kind}</dd>}
+    <dt>{t(lang, 'resultShop')}</dt>
+    <dd>{shopName}</dd>
+    {r.country && <dt>{t(lang, 'resultCountry')}</dt>}
+    {r.country && <dd><abbr title={countryName(lang, r.country)}>{r.country}</abbr></dd>}
+    {r.day && <dt>{t(lang, 'resultAdded')}</dt>}
+    {r.day && <dd>{addedBefore}<time datetime={r.day}>{day(lang, r.day)}</time>{addedAfter}</dd>}
+  </dl>
+</vf-result>

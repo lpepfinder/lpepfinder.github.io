@@ -2,11 +2,14 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import config from './data/config.json' with { type: 'json' };
 import { catalog } from './src/lib/catalog.js';
+import { newArrivals } from './src/lib/new-arrivals.js';
 
 const locales = Object.fromEntries(config.languages.map((l) => [l, l]));
 const c = catalog();
 // shop pages without records are noindex, keep them out of the sitemap too
 const noindex = new Set(c.visible.filter((s) => !s.records).map((s) => `/shop/${s.id}/`));
+// an empty /new/ page is noindex too (no new records this week)
+if (!newArrivals().total) noindex.add('/new/');
 // <lastmod>: the newest product update of a shop or artist page when shops report it, else the build date for hubs
 const lastmods = new Map([
   ...c.visible.filter((s) => s.lastmod).map((s) => [`/shop/${s.id}/`, s.lastmod]),
@@ -33,8 +36,8 @@ export default defineConfig({
       i18n: { defaultLocale: config.defaultLanguage, locales },
       filter: (page) => !/\/(status|404)\/?$/.test(page) && !noindex.has(new URL(page).pathname),
       serialize: withLastmod,
-      // sitemap-shops-0.xml, sitemap-artists-0.xml; hubs stay in sitemap-0.xml
-      chunks: { shops: only(/^\/shop\//), artists: only(/^\/artist\//) },
+      // sitemap-shops-0.xml, sitemap-artists-0.xml, sitemap-new-0.xml (rolling new-arrivals pages); hubs stay in sitemap-0.xml
+      chunks: { shops: only(/^\/shop\//), artists: only(/^\/artist\//), new: only(/^\/new\//) },
     }),
   ],
 });

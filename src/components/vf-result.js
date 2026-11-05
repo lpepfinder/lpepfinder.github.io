@@ -1,20 +1,12 @@
 import { t, formatPrice, formatDay, countryName } from './i18n.js';
 import { splitTitle } from '../lib/search/title.js';
 import { detectFormat } from '../lib/search/format.js';
+import { thumb, absolute } from '../lib/thumb.js';
 
 const EAGER = 4;
-const WP_SIZE = /-\d{3,4}x\d{3,4}(\.(?:jpe?g|png|webp))(\?|$)/i;
-
-/** Thumbnail at 2x the 56 px box: Shopify resizes on request, WordPress has a 150x150 size by default. */
-export function thumb(src) {
-  if (!src) return null;
-  const url = src.startsWith('//') ? 'https:' + src : src;
-  if (url.includes('cdn.shopify.com')) return url + (url.includes('?') ? '&' : '?') + 'width=112';
-  return url.replace(WP_SIZE, '-150x150$1$2');
-}
 
 function cover(image, index) {
-  const original = image && (image.startsWith('//') ? 'https:' + image : image);
+  const original = absolute(image);
   const src = thumb(image);
   if (!src) return el('vf-cover');
   const eager = index < EAGER;

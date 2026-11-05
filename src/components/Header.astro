@@ -7,6 +7,7 @@ import { t, localPath } from '../lib/i18n.js';
 const { lang, current } = Astro.props;
 const nav = [
   { href: localPath(lang, '/'), key: 'navSearch' },
+  { href: '/new/', key: 'navNew' },
   { href: localPath(lang, '/shops/'), key: 'navShops' },
   { href: '/artists/', key: 'navArtists' },
   { href: localPath(lang, '/about/'), key: 'navAbout' },
