@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { tokenize, shardKey, shardFile, artistOf, cleanShopName, displayTitle, decodeEntities } from './text.js';
+import { tokenize, shardKey, shardFile, artistOf, cleanShopName, displayTitle, decodeEntities, cleanTitle } from './text.js';
 
 test('tokenize folds accents, case and stopwords', () => {
   assert.deepEqual(tokenize('Björk – Homogenic (LP, Vinyl)'), ['bjork', 'homogenic']);
@@ -22,6 +22,7 @@ test('artistOf reads "Artist - Title" and vendor fields', () => {
 test('shop names and titles are cleaned for display', () => {
   assert.equal(cleanShopName('Amadeus Dischi &#8211; Musica dal 1986'), 'Amadeus Dischi');
   assert.equal(decodeEntities('Argy&#039;s'), "Argy's");
+  assert.equal(cleanTitle('Aphex Twin: <br>Cheetah EP [12&Prime;]'), 'Aphex Twin: Cheetah EP [12″]');
   assert.equal(displayTitle('Syro (New 3LP)', 'Aphex Twin'), 'Aphex Twin – Syro (New 3LP)');
   assert.equal(displayTitle('Drukqs', 'Warp Records'), 'Drukqs');
 });

@@ -21,10 +21,16 @@ export function artistOf(title, vendor) {
   return null;
 }
 
+const NAMED = { prime: '′', Prime: '″', ndash: '–', mdash: '—', hellip: '…', rsquo: '’', lsquo: '‘', rdquo: '”', ldquo: '“', times: '×' };
+
 export const decodeEntities = (s) => String(s || '')
   .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
   .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+  .replace(/&(prime|Prime|ndash|mdash|hellip|rsquo|lsquo|rdquo|ldquo|times);/g, (_, n) => NAMED[n])
   .replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;|&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ');
+
+/** Product title as shown: no HTML tags (some shops put <br> in names), entities decoded, spaces collapsed. */
+export const cleanTitle = (s) => decodeEntities(String(s || '').replace(/<[^>]{1,40}>/g, ' ')).replace(/\s+/g, ' ').trim();
 
 /** Shop name from a page title: decode entities, drop taglines after a separator. */
 export function cleanShopName(name) {

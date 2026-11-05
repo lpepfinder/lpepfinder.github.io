@@ -1,6 +1,6 @@
 import { ndjsonReader } from '../lib/json.js';
 import { loadShops, loadState } from '../lib/shops.js';
-import { displayTitle, normalize } from '../lib/text.js';
+import { displayTitle, cleanTitle, normalize } from '../lib/text.js';
 import { detectFormat } from '../../src/lib/search/format.js';
 
 // vinyl before CD and tape for the same title
@@ -25,7 +25,7 @@ export async function loadCatalog(productFiles) {
     for await (const p of ndjsonReader(file)) {
       if (!shops.has(p.shop) || shops.get(p.shop).disabled || !p.title) continue;
       if (!byShop.has(p.shop)) byShop.set(p.shop, []);
-      byShop.get(p.shop).push({ ...p, title: displayTitle(p.title, p.vendor), available: p.available !== false });
+      byShop.get(p.shop).push({ ...p, title: displayTitle(cleanTitle(p.title), p.vendor), available: p.available !== false });
     }
   }
   for (const list of byShop.values()) list.sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
