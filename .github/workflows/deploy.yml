@@ -30,7 +30,12 @@ jobs:
       - run: npm ci
       # no crawl data yet = no deploy, so the live site is never replaced by an empty one
       - name: Crawl data
-        run: gh release download data --pattern generated.tar.gz && tar xzf generated.tar.gz
+        run: |
+          gh release download data --pattern generated.tar.gz && tar xzf generated.tar.gz
+          # site crawler shards (only those of the current shard count)
+          for k in $(node -p "[...Array(require('./data/config.json').site.shards).keys()].join(' ')"); do
+            gh release download data --pattern "site-$k.tar.gz" --clobber && tar xzf "site-$k.tar.gz" || echo "no site-$k.tar.gz yet"
+          done
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
