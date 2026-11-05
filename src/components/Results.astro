@@ -1,0 +1,29 @@
+---
+import { t, localPath, number } from '../lib/i18n.js';
+import { catalog } from '../lib/catalog.js';
+
+/** Results region filled by <vf-search>: count heading, short live status, list, empty states. */
+const { lang } = Astro.props;
+const listed = catalog().visible.filter((s) => !s.records).length;
+const shops = localPath(lang, '/shops/');
+---
+<vf-results status="idle" aria-busy="false">
+  <vf-results-bar>
+    <h2 id="results-title" tabindex="-1"></h2>
+  </vf-results-bar>
+  <vf-filters hidden></vf-filters>
+  <output aria-live="polite" aria-atomic="true"></output>
+  <ol aria-labelledby="results-title"></ol>
+  <button type="button" name="more" hidden>{t(lang, 'loadMore')}</button>
+  <vf-empty reason="no-match">
+    <h2 tabindex="-1"></h2>
+    <ul>
+      <li>{t(lang, 'emptyFewerWords')}</li>
+      <li><a href={shops}>{t(lang, 'emptyListedShops', { count: number(lang, listed) })}</a></li>
+    </ul>
+  </vf-empty>
+  <vf-empty reason="index-error">
+    <h2 tabindex="-1">{t(lang, 'indexError')}</h2>
+    <p><button type="button" name="retry">{t(lang, 'retry')}</button> <a href={shops}>{t(lang, 'navShops')}</a></p>
+  </vf-empty>
+</vf-results>

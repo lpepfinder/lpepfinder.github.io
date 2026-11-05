@@ -14,7 +14,6 @@ const home = localPath(lang, '/');
   {examples.length > 0 && (
     <p>{t(lang, 'searchExamples', { examples: '' })}{examples.map((e, i) => <>{i > 0 && ', '}<a href={`${home}?q=${encodeURIComponent(e)}`}>{e}</a></>)}</p>
   )}
-  <output aria-live="polite"></output>
 </vf-search>
 <script>
   import './vf-search.js';

@@ -10,7 +10,7 @@ const { lang, records, shopsById } = Astro.props;
     <tbody>
       {records.map((r) => (
         <tr>
-          <td><a href={r.url} rel="nofollow noopener" target="_blank">{r.title}</a></td>
+          <td><a href={r.url} rel="nofollow">{r.title}</a></td>
           <td><data value={r.price ?? ''}>{price(lang, r.price, r.currency)}</data></td>
           <td><a href={`/shop/${r.shop}/`}>{shopsById.get(r.shop)?.name || r.shop}</a></td>
         </tr>

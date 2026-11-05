@@ -6,7 +6,12 @@ export class SearchClient {
     this.base = base;
     this.cache = new Map();
     this.ready = Promise.all([this.json('meta.json'), this.json('shops.json')])
-      .then(([meta, shops]) => { this.meta = meta; this.shops = shops; });
+      .then(([meta, shops]) => {
+        if (!meta || !shops) throw new Error('search index unavailable');
+        this.meta = meta;
+        this.shops = shops;
+      });
+    this.ready.catch(() => {});
   }
 
   json(file) {

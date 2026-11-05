@@ -8,7 +8,6 @@
   "searchButton": "検索",
   "searchExamples": "例：{examples}",
   "resultsCount": "「{query}」の在庫レコード {count} 件",
-  "noResults": "今週は「{query}」の在庫レコードがありません。語数を減らすか、後でもう一度お試しください。店舗は毎週更新されます。",
   "loadMore": "さらに表示",
   "stats": "在庫 {records} 枚 · {shops} 店舗 · {countries} か国",
   "updated": "{date} 更新",
@@ -101,5 +100,15 @@
     "アクセス解析：訪問数は Cookie を使わず個人データも収集しない Umami で計測しています。統計は公開されています。",
     "レコード店へのリンク先は各店舗のサイトで、それぞれのプライバシーポリシーが適用されます。",
     "お問い合わせ：概要ページの連絡先までご連絡ください。"
-  ]
+  ],
+  "searchTitle": "{query} のレコード在庫 · LP/EP Finder",
+  "searching": "検索中…",
+  "showingOf": "{total} 件中 {shown} 件を表示",
+  "emptyTitle": "「{query}」の在庫はありません",
+  "emptyFewerWords": "語数を減らすか短い語で、またはアーティスト名だけで試してください。",
+  "emptyListedShops": "ほかに {count} 店が掲載されていますが、まだ検索できません：一覧を見る",
+  "indexError": "現在、検索をご利用いただけません。",
+  "retry": "再試行",
+  "resultShop": "ショップ",
+  "resultCountry": "国"
 }

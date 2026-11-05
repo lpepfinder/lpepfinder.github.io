@@ -24,7 +24,9 @@ export const localeParams = () => languages.map((lang) => ({ params: { locale: l
 export const localPath = (lang, path) => (lang === defaultLanguage ? path : `/${lang}${path}`);
 
 /** Strings the browser components need. */
-export const clientStrings = (lang) => Object.fromEntries(['siteName', 'resultsCount', 'noResults', 'loadMore'].map((k) => [k, lookup(lang, k) ?? lookup(defaultLanguage, k)]));
+export const clientStrings = (lang) => Object.fromEntries([
+  'searchTitle', 'resultsCount', 'searching', 'showingOf', 'emptyTitle', 'indexError', 'resultShop', 'resultCountry',
+].map((k) => [k, lookup(lang, k) ?? lookup(defaultLanguage, k)]));
 
 const regionNames = Object.fromEntries(languages.map((l) => [l, new Intl.DisplayNames([l], { type: 'region' })]));
 export const countryName = (lang, code) => { try { return regionNames[lang].of(code); } catch { return code; } };

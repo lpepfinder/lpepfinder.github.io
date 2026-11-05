@@ -1,19 +1,23 @@
 import { SearchClient } from '../lib/search/client.js';
-import { t, formatNumber } from './i18n.js';
-import './vf-result.js';
+import { t } from './i18n.js';
+import './vf-results.js';
 
 /**
- * <vf-search> enhances a server-rendered GET form (works without JS as a link target).
- * Attributes reflect state for CSS: status="idle|loading|done|empty".
+ * <vf-search> enhances a server-rendered GET form. When the page has a
+ * <vf-results> region it runs the query in the browser; elsewhere the form
+ * simply submits to the home page.
  */
 export class VfSearch extends HTMLElement {
   connectedCallback() {
+    this.results = document.querySelector('vf-results');
+    if (!this.results) return;
     this.client = new SearchClient(this.getAttribute('index') || '/search/');
     this.form = this.querySelector('form');
-    this.input = this.querySelector('input[name="q"]');
-    this.output = this.querySelector('output') || this.appendChild(document.createElement('output'));
+    this.input = this.form.querySelector('input[name="q"]');
     this.per = Number(this.getAttribute('per-page')) || 30;
-    this.form.addEventListener('submit', (e) => { e.preventDefault(); this.run(this.input.value, true); });
+    this.form.addEventListener('submit', (e) => { e.preventDefault(); this.run(this.input.value, { push: true, submitted: true }); });
+    this.results.addEventListener('more', () => this.more(true));
+    this.results.addEventListener('retry', () => { this.client = new SearchClient(this.client.base); this.run(this.input.value, { submitted: true }); });
     window.addEventListener('popstate', () => this.fromUrl());
     this.fromUrl();
   }
@@ -21,48 +25,41 @@ export class VfSearch extends HTMLElement {
   fromUrl() {
     const q = new URLSearchParams(location.search).get('q') || '';
     this.input.value = q;
-    if (q) this.run(q, false); else this.setAttribute('status', 'idle');
+    this.run(q, {});
   }
 
-  async run(query, push) {
+  async run(query, { push = false, submitted = false }) {
     const q = query.trim();
     if (push) {
       const url = new URL(location.href);
       q ? url.searchParams.set('q', q) : url.searchParams.delete('q');
       history.pushState(null, '', url);
     }
-    if (!q) { this.output.replaceChildren(); this.setAttribute('status', 'idle'); return; }
-    document.title = `${q} · ${t('siteName')}`;
-    this.setAttribute('status', 'loading');
-    this.ids = await this.client.match(q);
-    this.shown = 0;
-    this.output.replaceChildren();
-    const summary = document.createElement('p');
-    summary.textContent = this.ids.length ? t('resultsCount', { count: formatNumber(this.ids.length), query: q }) : t('noResults', { query: q });
-    this.list = document.createElement('ol');
-    this.output.append(summary, this.list);
-    this.setAttribute('status', this.ids.length ? 'done' : 'empty');
-    await this.more();
-    window.umami?.track?.('search', { q, results: this.ids.length });
+    this.setAttribute('status', q ? 'loading' : 'idle');
+    if (!q) { this.results.idle(); return; }
+    document.title = t('searchTitle', { query: q });
+    this.results.loading();
+    try {
+      this.ids = await this.client.match(q);
+      this.shown = 0;
+      this.results.start(q, this.ids.length);
+      await this.more(false);
+    } catch (err) {
+      console.error(err);
+      this.results.error();
+    }
+    this.setAttribute('status', this.results.getAttribute('status'));
+    if (submitted) { this.input.blur(); this.results.focusHeading(); }
+    window.umami?.track?.('search', { q, results: this.ids?.length ?? -1 });
   }
 
-  async more() {
+  /** Next page of records; after "show more", focus the first new result. */
+  async more(focus) {
     const slice = this.ids.slice(this.shown, this.shown + this.per);
+    if (!slice.length) return;
     this.shown += slice.length;
-    const records = await this.client.records(slice);
-    for (const r of records) {
-      const li = document.createElement('li');
-      const el = document.createElement('vf-result');
-      el.record = r;
-      li.append(el);
-      this.list.append(li);
-    }
-    this.button?.remove();
-    if (this.shown < this.ids.length) {
-      this.button = Object.assign(document.createElement('button'), { type: 'button', textContent: t('loadMore') });
-      this.button.addEventListener('click', () => this.more());
-      this.output.append(this.button);
-    }
+    const first = this.results.append(await this.client.records(slice), this.shown);
+    if (focus) first?.focus();
   }
 }
 customElements.define('vf-search', VfSearch);

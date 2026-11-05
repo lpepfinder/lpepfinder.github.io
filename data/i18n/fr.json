@@ -8,7 +8,6 @@
   "searchButton": "Chercher",
   "searchExamples": "Essayez : {examples}",
   "resultsCount": "{count} disques en stock pour « {query} »",
-  "noResults": "Aucun disque en stock pour « {query} » cette semaine. Essayez moins de mots, ou revenez plus tard : les disquaires sont mis à jour chaque semaine.",
   "loadMore": "Voir plus de disques",
   "stats": "{records} disques en stock · {shops} disquaires · {countries} pays",
   "updated": "Mis à jour le {date}",
@@ -101,5 +100,15 @@
     "Mesure d'audience : nous comptons les visites avec Umami, sans cookies ni données personnelles. Les statistiques sont publiques.",
     "Les liens vers les disquaires mènent à leurs sites, qui ont leur propre politique de confidentialité.",
     "Questions : écrivez à l'adresse indiquée sur la page À propos."
-  ]
+  ],
+  "searchTitle": "{query} en vinyle en stock · LP/EP Finder",
+  "searching": "Recherche…",
+  "showingOf": "{shown} sur {total} affichés",
+  "emptyTitle": "Rien en stock pour « {query} »",
+  "emptyFewerWords": "Essayez moins de mots, des mots plus courts, ou seulement le nom de l'artiste.",
+  "emptyListedShops": "{count} autres disquaires sont répertoriés mais pas encore consultables : parcourez-les",
+  "indexError": "La recherche est indisponible pour le moment.",
+  "retry": "Réessayer",
+  "resultShop": "Disquaire",
+  "resultCountry": "Pays"
 }

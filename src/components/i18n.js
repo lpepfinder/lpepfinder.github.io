@@ -11,6 +11,9 @@ export function t(key, vars = {}) {
 
 export const formatNumber = (n) => new Intl.NumberFormat(lang).format(n);
 
+const regions = new Intl.DisplayNames([lang], { type: 'region' });
+export const countryName = (cc) => { try { return regions.of(cc); } catch { return cc; } };
+
 export function formatPrice(cents, currency) {
   if (cents == null) return '';
   if (!currency) return (cents / 100).toFixed(2);

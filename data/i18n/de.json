@@ -8,7 +8,6 @@
   "searchButton": "Suchen",
   "searchExamples": "Zum Beispiel: {examples}",
   "resultsCount": "{count} Platten auf Lager für „{query}“",
-  "noResults": "Diese Woche keine Platte auf Lager für „{query}“. Versuche weniger Wörter oder schau später wieder vorbei: Die Läden werden wöchentlich erfasst.",
   "loadMore": "Mehr Platten anzeigen",
   "stats": "{records} Platten auf Lager · {shops} Läden · {countries} Länder",
   "updated": "Aktualisiert am {date}",
@@ -101,5 +100,15 @@
     "Statistik: Wir zählen Besuche mit Umami, ohne Cookies und ohne personenbezogene Daten. Die Statistik ist öffentlich.",
     "Links zu Plattenläden führen auf deren Websites mit eigener Datenschutzerklärung.",
     "Fragen: an die Kontaktadresse auf der Seite „Über uns“."
-  ]
+  ],
+  "searchTitle": "{query} auf Vinyl vorrätig · LP/EP Finder",
+  "searching": "Suche läuft…",
+  "showingOf": "{shown} von {total} angezeigt",
+  "emptyTitle": "Nichts vorrätig für „{query}“",
+  "emptyFewerWords": "Versuche weniger oder kürzere Wörter, oder nur den Namen des Künstlers.",
+  "emptyListedShops": "{count} weitere Läden sind gelistet, aber noch nicht durchsuchbar: ansehen",
+  "indexError": "Die Suche ist gerade nicht verfügbar.",
+  "retry": "Erneut versuchen",
+  "resultShop": "Laden",
+  "resultCountry": "Land"
 }

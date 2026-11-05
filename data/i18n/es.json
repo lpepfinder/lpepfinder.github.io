@@ -8,7 +8,6 @@
   "searchButton": "Buscar",
   "searchExamples": "Prueba: {examples}",
   "resultsCount": "{count} discos en stock para «{query}»",
-  "noResults": "Ningún disco en stock para «{query}» esta semana. Prueba con menos palabras o vuelve más tarde: las tiendas se actualizan cada semana.",
   "loadMore": "Ver más discos",
   "stats": "{records} discos en stock · {shops} tiendas · {countries} países",
   "updated": "Actualizado el {date}",
@@ -101,5 +100,15 @@
     "Estadísticas: contamos las visitas con Umami, sin cookies ni datos personales. Las estadísticas son públicas.",
     "Los enlaces a las tiendas llevan a sus sitios, que tienen su propia política de privacidad.",
     "Preguntas: escribe a la dirección de contacto de la página Acerca de."
-  ]
+  ],
+  "searchTitle": "{query} en vinilo en stock · LP/EP Finder",
+  "searching": "Buscando…",
+  "showingOf": "Mostrando {shown} de {total}",
+  "emptyTitle": "Nada en stock para «{query}»",
+  "emptyFewerWords": "Prueba con menos palabras, más cortas, o solo el nombre del artista.",
+  "emptyListedShops": "Hay {count} tiendas más en la lista que aún no se pueden buscar: explóralas",
+  "indexError": "La búsqueda no está disponible en este momento.",
+  "retry": "Reintentar",
+  "resultShop": "Tienda",
+  "resultCountry": "País"
 }

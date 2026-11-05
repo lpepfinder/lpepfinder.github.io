@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SearchForm from '../../components/SearchForm.astro';
+import Results from '../../components/Results.astro';
 import CountryList from '../../components/CountryList.astro';
 import config from '../../../data/config.json';
 import { t, localeParams, localPath, number, date } from '../../lib/i18n.js';
@@ -22,6 +23,7 @@ const ld = [{
     <p>{t(lang, 'stats', vars)} · <time datetime={c.builtAt}>{t(lang, 'updated', { date: date(lang, c.builtAt) })}</time></p>
   </hgroup>
   <SearchForm lang={lang} examples={c.artists.slice(0, 3).map((a) => a.name)} />
+  <Results lang={lang} />
   <section>
     <h2>{t(lang, 'homeWhyTitle')}</h2>
     <ul>{t(lang, 'homeWhy').map((s) => <li>{s}</li>)}</ul>

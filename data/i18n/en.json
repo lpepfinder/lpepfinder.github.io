@@ -8,7 +8,6 @@
   "searchButton": "Search",
   "searchExamples": "Try: {examples}",
   "resultsCount": "{count} records in stock for “{query}”",
-  "noResults": "No record in stock for “{query}” this week. Try fewer words, or check back: shops are crawled weekly.",
   "loadMore": "Show more records",
   "stats": "{records} records in stock · {shops} shops · {countries} countries",
   "updated": "Updated {date}",
@@ -101,5 +100,15 @@
     "Analytics: we count visits with Umami, which uses no cookies and collects no personal data. The statistics are public.",
     "Links to record shops take you to their websites, which have their own privacy policies.",
     "Questions: write to the contact address on the About page."
-  ]
+  ],
+  "searchTitle": "{query} vinyl in stock · LP/EP Finder",
+  "searching": "Searching…",
+  "showingOf": "Showing {shown} of {total}",
+  "emptyTitle": "Nothing in stock for “{query}”",
+  "emptyFewerWords": "Try fewer or shorter words, or the artist name alone.",
+  "emptyListedShops": "{count} more shops are listed but not searchable yet: browse them",
+  "indexError": "Search is unavailable right now.",
+  "retry": "Try again",
+  "resultShop": "Shop",
+  "resultCountry": "Country"
 }
