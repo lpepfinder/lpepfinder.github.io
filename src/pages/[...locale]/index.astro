@@ -5,13 +5,14 @@ import CountryList from '../../components/CountryList.astro';
 import config from '../../../data/config.json';
 import { t, localeParams, localPath, number, date } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
+import { homeContent } from '../../lib/home.js';
 
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 const c = catalog();
 const vars = { records: number(lang, c.totalRecords), shops: number(lang, c.visible.length), countries: number(lang, c.countries.length) };
 const home = new URL(localPath(lang, '/'), Astro.site).href;
-const examples = c.artists.slice(0, 6).map((a) => a.name);
+const examples = homeContent(lang).try;
 const ld = [{
   '@context': 'https://schema.org', '@type': 'WebSite', name: config.name, alternateName: config.formerNames, url: home, inLanguage: lang,
   potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${home}?q={search_term_string}` }, 'query-input': 'required name=search_term_string' },

@@ -6,7 +6,7 @@ export function GET({ site }) {
   const url = (p) => new URL(p, site).href;
   return new Response(`# ${config.name}
 
-> Free search engine for vinyl records in stock at ${c.visible.length} independent record shops in ${c.countries.length} countries (${c.totalRecords} records, crawled weekly). Formerly ${config.formerNames.join(', ')}.
+> Free search engine for vinyl records in stock at ${c.visible.length} independent record shops in ${c.countries.length} countries (${c.totalRecords} records, crawled daily). Formerly ${config.formerNames.join(', ')}.
 
 - Search: ${url('/')}?q=ARTIST+TITLE
 - Record shops by country: ${url('/shops/')}

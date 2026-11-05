@@ -2,11 +2,10 @@
   "langName": "Français",
   "siteName": "LP/EP Finder",
   "tagline": "Trouvez n'importe quel vinyle chez les disquaires indépendants du monde entier",
-  "description": "Cherchez parmi {records} vinyles en stock chez {shops} disquaires indépendants dans {countries} pays. Une recherche, tous les disquaires, mise à jour chaque semaine.",
+  "description": "Cherchez parmi {records} vinyles en stock chez {shops} disquaires indépendants dans {countries} pays. Une recherche, tous les disquaires, mise à jour chaque jour.",
   "searchLabel": "Chercher des disques",
   "searchPlaceholder": "Artiste, album, label, référence…",
   "searchButton": "Chercher",
-  "searchExamples": "Essayez : {examples}",
   "resultsCount": "{count} disques en stock pour « {query} »",
   "loadMore": "Voir plus de disques",
   "stats": "{records} disques en stock · {shops} disquaires · {countries} pays",
@@ -22,7 +21,7 @@
   "homeWhy": [
     "Une seule recherche dans les catalogues en ligne des disquaires indépendants, pas des places de marché.",
     "Uniquement les disques en stock, avec le prix et un lien direct vers le disquaire.",
-    "Les disquaires sont vérifiés et parcourus chaque semaine, et les nouveaux sont ajoutés automatiquement."
+    "Les disquaires sont vérifiés et parcourus chaque jour, et les nouveaux sont ajoutés automatiquement."
   ],
   "homeCountriesTitle": "Disquaires par pays",
   "homeArtistsTitle": "Artistes populaires en stock",
@@ -43,10 +42,10 @@
   ],
   "artistTitle": "Vinyles de {artist} en stock",
   "artistDescription": "Comparez {count} vinyles de {artist} en stock chez {shops} disquaires indépendants, à partir de {price}.",
-  "artistIntro": "{count} disques de {artist} sont en stock chez {shops} disquaires cette semaine, du moins cher au plus cher.",
+  "artistIntro": "{count} disques de {artist} sont en stock chez {shops} disquaires aujourd'hui, du moins cher au plus cher.",
   "artistSearchAll": "Chercher tous les disques de {artist}",
   "artistsTitle": "Artistes",
-  "artistsIntro": "Artistes avec des disques en stock chez plusieurs disquaires cette semaine.",
+  "artistsIntro": "Artistes avec des disques en stock chez plusieurs disquaires aujourd'hui.",
   "tableColumns": [
     "Disque",
     "Prix",
@@ -55,7 +54,7 @@
   "aboutTitle": "À propos de LP/EP Finder",
   "aboutBody": [
     "LP/EP Finder est un moteur de recherche gratuit pour les vinyles vendus par les disquaires indépendants. Il existe depuis plus de dix ans et s'est appelé Vinyl Finder pendant un temps.",
-    "Chaque semaine, notre robot LPEPFinderBot lit les catalogues publics des disquaires, garde les disques en stock et construit un index de recherche. Chaque disque renvoie vers le disquaire : nous ne vendons rien et ne copions ni descriptions ni images.",
+    "Chaque jour, notre robot LPEPFinderBot lit les catalogues publics des disquaires, garde les disques en stock et construit un index de recherche. Chaque disque renvoie vers le disquaire : nous ne vendons rien et ne copions ni descriptions ni images.",
     "Disquaires : votre boutique est référencée gratuitement. Pour être retiré, bloquez LPEPFinderBot dans robots.txt ou contactez-nous ; pour être ajouté, utilisez la page « Ajouter un disquaire »."
   ],
   "aboutDataTitle": "Sources des données",
@@ -66,7 +65,7 @@
   "submitAction": "Proposer un disquaire sur GitHub",
   "submitEmail": "Ou envoyez-nous l'adresse du site par e-mail :",
   "statusTitle": "État des données",
-  "statusBody": "Chaque disquaire est vérifié chaque semaine : le site répond-il, robots.txt nous autorise-t-il, vend-il encore des disques, peut-on lire son catalogue.",
+  "statusBody": "Chaque disquaire est vérifié chaque jour : le site répond-il, robots.txt nous autorise-t-il, vend-il encore des disques, peut-on lire son catalogue.",
   "statusColumns": [
     "État",
     "Disquaires"
@@ -82,7 +81,7 @@
   },
   "footerNote": "Prix et stocks viennent de chaque disquaire et peuvent changer. Les liens mènent aux disquaires.",
   "notFoundTitle": "Page introuvable",
-  "notFoundBody": "Cette page n'existe pas. Cherchez plutôt un disque :",
+  "notFoundBody": "Cette page n'existe pas. Cherchez un disque avec le champ ci-dessus, ou repartez de l'accueil.",
   "adLabel": "Publicité",
   "statusChangesTitle": "Changements des 30 derniers jours",
   "statusDeadTitle": "Disquaires injoignables",
@@ -118,5 +117,9 @@
   "homeTitle": "Vinyles en stock chez les disquaires indépendants",
   "homeTryTitle": "Essayez",
   "homeAllShops": "Les {shops} disquaires dans {countries} pays",
-  "homeAllArtists": "Tous les artistes de A à Z"
+  "homeAllArtists": "Tous les artistes de A à Z",
+  "footerGithub": "Code source sur GitHub",
+  "footerAnalytics": "Statistiques de visite publiques",
+  "footerChat": "Discuter sur Matrix",
+  "footerEmail": "E-mail"
 }

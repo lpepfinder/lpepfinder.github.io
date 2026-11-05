@@ -2,11 +2,10 @@
   "langName": "Italiano",
   "siteName": "LP/EP Finder",
   "tagline": "Trova qualsiasi disco in vinile nei negozi di dischi indipendenti di tutto il mondo",
-  "description": "Cerca tra {records} vinili disponibili in {shops} negozi di dischi indipendenti in {countries} paesi. Una ricerca, tutti i negozi, aggiornata ogni settimana.",
+  "description": "Cerca tra {records} vinili disponibili in {shops} negozi di dischi indipendenti in {countries} paesi. Una ricerca, tutti i negozi, aggiornata ogni giorno.",
   "searchLabel": "Cerca dischi",
   "searchPlaceholder": "Artista, album, etichetta, numero di catalogo…",
   "searchButton": "Cerca",
-  "searchExamples": "Prova: {examples}",
   "resultsCount": "{count} dischi disponibili per «{query}»",
   "loadMore": "Mostra altri dischi",
   "stats": "{records} dischi disponibili · {shops} negozi · {countries} paesi",
@@ -22,7 +21,7 @@
   "homeWhy": [
     "Una sola ricerca nei cataloghi online dei negozi di dischi indipendenti, non nei marketplace.",
     "Solo dischi disponibili, con il prezzo e un link diretto al negozio.",
-    "I negozi vengono controllati e letti ogni settimana, e i nuovi vengono aggiunti automaticamente."
+    "I negozi vengono controllati e letti ogni giorno, e i nuovi vengono aggiunti automaticamente."
   ],
   "homeCountriesTitle": "Negozi di dischi per paese",
   "homeArtistsTitle": "Artisti popolari disponibili",
@@ -43,10 +42,10 @@
   ],
   "artistTitle": "Vinili di {artist} disponibili",
   "artistDescription": "Confronta {count} vinili di {artist} disponibili in {shops} negozi di dischi indipendenti, a partire da {price}.",
-  "artistIntro": "Questa settimana {count} dischi di {artist} sono disponibili in {shops} negozi, dal più economico.",
+  "artistIntro": "Oggi {count} dischi di {artist} sono disponibili in {shops} negozi, dal più economico.",
   "artistSearchAll": "Cerca tutti i dischi di {artist}",
   "artistsTitle": "Artisti",
-  "artistsIntro": "Artisti con dischi disponibili in più negozi questa settimana.",
+  "artistsIntro": "Artisti con dischi disponibili in più negozi oggi.",
   "tableColumns": [
     "Disco",
     "Prezzo",
@@ -55,7 +54,7 @@
   "aboutTitle": "Chi siamo",
   "aboutBody": [
     "LP/EP Finder è un motore di ricerca gratuito per i dischi in vinile venduti dai negozi indipendenti. Esiste da più di dieci anni e per un periodo si è chiamato Vinyl Finder.",
-    "Ogni settimana il nostro crawler, LPEPFinderBot, legge i cataloghi pubblici dei negozi, tiene i dischi disponibili e crea un indice di ricerca. Ogni disco rimanda al negozio: non vendiamo nulla e non copiamo descrizioni o immagini.",
+    "Ogni giorno il nostro crawler, LPEPFinderBot, legge i cataloghi pubblici dei negozi, tiene i dischi disponibili e crea un indice di ricerca. Ogni disco rimanda al negozio: non vendiamo nulla e non copiamo descrizioni o immagini.",
     "Negozi: siete in elenco gratuitamente. Per essere rimossi, bloccate LPEPFinderBot in robots.txt o scriveteci; per essere aggiunti, usate la pagina «Aggiungi un negozio»."
   ],
   "aboutDataTitle": "Fonti dei dati",
@@ -66,7 +65,7 @@
   "submitAction": "Proponi un negozio su GitHub",
   "submitEmail": "Oppure inviaci il sito del negozio via e-mail:",
   "statusTitle": "Stato dei dati",
-  "statusBody": "Ogni negozio viene controllato ogni settimana: il sito risponde, robots.txt lo consente, vende ancora dischi, il catalogo è leggibile.",
+  "statusBody": "Ogni negozio viene controllato ogni giorno: il sito risponde, robots.txt lo consente, vende ancora dischi, il catalogo è leggibile.",
   "statusColumns": [
     "Stato",
     "Negozi"
@@ -82,7 +81,7 @@
   },
   "footerNote": "Prezzi e disponibilità provengono dai negozi e possono cambiare. I link portano ai negozi.",
   "notFoundTitle": "Pagina non trovata",
-  "notFoundBody": "Questa pagina non esiste. Cerca invece un disco:",
+  "notFoundBody": "Questa pagina non esiste. Cerca un disco con il campo qui sopra, o riparti dalla home.",
   "adLabel": "Pubblicità",
   "statusChangesTitle": "Modifiche degli ultimi 30 giorni",
   "statusDeadTitle": "Negozi irraggiungibili",
@@ -118,5 +117,9 @@
   "homeTitle": "Vinili disponibili nei negozi di dischi indipendenti",
   "homeTryTitle": "Prova",
   "homeAllShops": "Tutti i {shops} negozi di dischi in {countries} paesi",
-  "homeAllArtists": "Tutti gli artisti dalla A alla Z"
+  "homeAllArtists": "Tutti gli artisti dalla A alla Z",
+  "footerGithub": "Codice sorgente su GitHub",
+  "footerAnalytics": "Statistiche di visita pubbliche",
+  "footerChat": "Chat su Matrix",
+  "footerEmail": "E-mail"
 }

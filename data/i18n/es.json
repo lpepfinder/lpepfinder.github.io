@@ -2,11 +2,10 @@
   "langName": "Español",
   "siteName": "LP/EP Finder",
   "tagline": "Encuentra cualquier disco de vinilo en tiendas de discos independientes de todo el mundo",
-  "description": "Busca entre {records} vinilos en stock en {shops} tiendas de discos independientes de {countries} países. Una búsqueda, todas las tiendas, actualizado cada semana.",
+  "description": "Busca entre {records} vinilos en stock en {shops} tiendas de discos independientes de {countries} países. Una búsqueda, todas las tiendas, actualizado cada día.",
   "searchLabel": "Buscar discos",
   "searchPlaceholder": "Artista, álbum, sello, número de catálogo…",
   "searchButton": "Buscar",
-  "searchExamples": "Prueba: {examples}",
   "resultsCount": "{count} discos en stock para «{query}»",
   "loadMore": "Ver más discos",
   "stats": "{records} discos en stock · {shops} tiendas · {countries} países",
@@ -22,7 +21,7 @@
   "homeWhy": [
     "Una sola búsqueda en los catálogos en línea de tiendas de discos independientes, no en marketplaces.",
     "Solo discos en stock, con el precio y un enlace directo a la tienda.",
-    "Las tiendas se revisan y recorren cada semana, y las nuevas se añaden automáticamente."
+    "Las tiendas se revisan y recorren cada día, y las nuevas se añaden automáticamente."
   ],
   "homeCountriesTitle": "Tiendas de discos por país",
   "homeArtistsTitle": "Artistas populares en stock",
@@ -43,10 +42,10 @@
   ],
   "artistTitle": "Vinilos de {artist} en stock",
   "artistDescription": "Compara {count} vinilos de {artist} en stock en {shops} tiendas de discos independientes, desde {price}.",
-  "artistIntro": "Esta semana hay {count} discos de {artist} en stock en {shops} tiendas, del más barato al más caro.",
+  "artistIntro": "Hoy hay {count} discos de {artist} en stock en {shops} tiendas, del más barato al más caro.",
   "artistSearchAll": "Buscar todos los discos de {artist}",
   "artistsTitle": "Artistas",
-  "artistsIntro": "Artistas con discos en stock en varias tiendas esta semana.",
+  "artistsIntro": "Artistas con discos en stock en varias tiendas hoy.",
   "tableColumns": [
     "Disco",
     "Precio",
@@ -55,7 +54,7 @@
   "aboutTitle": "Acerca de LP/EP Finder",
   "aboutBody": [
     "LP/EP Finder es un buscador gratuito de discos de vinilo vendidos por tiendas independientes. Existe desde hace más de diez años y durante un tiempo se llamó Vinyl Finder.",
-    "Cada semana nuestro rastreador, LPEPFinderBot, lee los catálogos públicos de las tiendas, conserva los discos en stock y crea un índice de búsqueda. Cada disco enlaza a la tienda: no vendemos nada ni copiamos descripciones o imágenes.",
+    "Cada día nuestro rastreador, LPEPFinderBot, lee los catálogos públicos de las tiendas, conserva los discos en stock y crea un índice de búsqueda. Cada disco enlaza a la tienda: no vendemos nada ni copiamos descripciones o imágenes.",
     "Tiendas: aparecéis gratis. Para salir, bloquead LPEPFinderBot en robots.txt o escribidnos; para entrar, usad la página «Añadir una tienda»."
   ],
   "aboutDataTitle": "Fuentes de datos",
@@ -66,7 +65,7 @@
   "submitAction": "Proponer una tienda en GitHub",
   "submitEmail": "O envíanos la web de la tienda por correo:",
   "statusTitle": "Estado de los datos",
-  "statusBody": "Cada tienda se revisa cada semana: si la web responde, si robots.txt lo permite, si sigue vendiendo discos y si su catálogo se puede leer.",
+  "statusBody": "Cada tienda se revisa cada día: si la web responde, si robots.txt lo permite, si sigue vendiendo discos y si su catálogo se puede leer.",
   "statusColumns": [
     "Estado",
     "Tiendas"
@@ -82,7 +81,7 @@
   },
   "footerNote": "Precios y stock vienen de cada tienda y pueden cambiar. Los enlaces llevan a las tiendas.",
   "notFoundTitle": "Página no encontrada",
-  "notFoundBody": "Esta página no existe. Busca un disco:",
+  "notFoundBody": "Esta página no existe. Busca un disco con el campo de arriba o vuelve a la página de inicio.",
   "adLabel": "Publicidad",
   "statusChangesTitle": "Cambios de los últimos 30 días",
   "statusDeadTitle": "Tiendas inaccesibles",
@@ -118,5 +117,9 @@
   "homeTitle": "Vinilos en stock en tiendas de discos independientes",
   "homeTryTitle": "Prueba",
   "homeAllShops": "Las {shops} tiendas de discos en {countries} países",
-  "homeAllArtists": "Todos los artistas de la A a la Z"
+  "homeAllArtists": "Todos los artistas de la A a la Z",
+  "footerGithub": "Código fuente en GitHub",
+  "footerAnalytics": "Estadísticas de visitas públicas",
+  "footerChat": "Chat en Matrix",
+  "footerEmail": "Correo"
 }

@@ -16,8 +16,8 @@ const { lang, path } = Astro.props;
     <ul>
       <li><a href={localPath(lang, '/privacy/')}>{t(lang, 'navPrivacy')}</a></li>
       <li><a href="/status/">{t(lang, 'navStatus')}</a></li>
-      <li><a href={config.repository}>GitHub</a></li>
-      <li><a href={config.analytics.publicDashboard}>Analytics</a></li>
+      <li><a href={config.repository}>{t(lang, 'footerGithub')}</a></li>
+      <li><a href={config.analytics.publicDashboard}>{t(lang, 'footerAnalytics')}</a></li>
     </ul>
   </nav>
 </footer>

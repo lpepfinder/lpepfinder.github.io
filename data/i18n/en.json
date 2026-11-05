@@ -2,11 +2,10 @@
   "langName": "English",
   "siteName": "LP/EP Finder",
   "tagline": "Find any vinyl record in independent record shops worldwide",
-  "description": "Search {records} vinyl records in stock at {shops} independent record shops in {countries} countries. One search, every shop, updated weekly.",
+  "description": "Search {records} vinyl records in stock at {shops} independent record shops in {countries} countries. One search, every shop, updated daily.",
   "searchLabel": "Search records",
   "searchPlaceholder": "Artist, album, label, catalog number…",
   "searchButton": "Search",
-  "searchExamples": "Try: {examples}",
   "resultsCount": "{count} records in stock for “{query}”",
   "loadMore": "Show more records",
   "stats": "{records} records in stock · {shops} shops · {countries} countries",
@@ -22,7 +21,7 @@
   "homeWhy": [
     "One search across the online catalogs of independent record shops, not marketplaces.",
     "Only records in stock, with the price and a direct link to the shop that sells it.",
-    "Shops are checked and crawled every week, and new shops are added automatically."
+    "Shops are checked and crawled every day, and new shops are added automatically."
   ],
   "homeCountriesTitle": "Record shops by country",
   "homeArtistsTitle": "Popular artists in stock",
@@ -43,10 +42,10 @@
   ],
   "artistTitle": "{artist} vinyl records in stock",
   "artistDescription": "Compare {count} {artist} vinyl records in stock at {shops} independent record shops, from {price}.",
-  "artistIntro": "{count} records by {artist} are in stock at {shops} shops this week, cheapest first.",
+  "artistIntro": "{count} records by {artist} are in stock at {shops} shops today, cheapest first.",
   "artistSearchAll": "Search every {artist} record",
   "artistsTitle": "Artists",
-  "artistsIntro": "Artists with records in stock at several shops this week.",
+  "artistsIntro": "Artists with records in stock at several shops today.",
   "tableColumns": [
     "Record",
     "Price",
@@ -55,7 +54,7 @@
   "aboutTitle": "About LP/EP Finder",
   "aboutBody": [
     "LP/EP Finder is a free search engine for vinyl records sold by independent record shops. It started more than ten years ago, and was called Vinyl Finder for a while.",
-    "Every week our crawler, LPEPFinderBot, reads the public product catalogs of record shops, keeps the records in stock, and builds a search index. We link to the shop for every record; we don't sell anything and don't copy product descriptions or images.",
+    "Every day our crawler, LPEPFinderBot, reads the public product catalogs of record shops, keeps the records in stock, and builds a search index. We link to the shop for every record; we don't sell anything and don't copy product descriptions or images.",
     "Shop owners: your shop is listed for free. To be removed, block LPEPFinderBot in robots.txt or contact us; to be added, use the form on the “Add a shop” page."
   ],
   "aboutDataTitle": "Data sources",
@@ -66,7 +65,7 @@
   "submitAction": "Suggest a shop on GitHub",
   "submitEmail": "Or email us the shop's website:",
   "statusTitle": "Data status",
-  "statusBody": "Every shop is checked weekly: is the site up, does robots.txt allow us, does it still sell records, can we read its catalog.",
+  "statusBody": "Every shop is checked daily: is the site up, does robots.txt allow us, does it still sell records, can we read its catalog.",
   "statusColumns": [
     "Status",
     "Shops"
@@ -82,7 +81,7 @@
   },
   "footerNote": "Prices and stock come from each shop and can change. Links go to the shops.",
   "notFoundTitle": "Page not found",
-  "notFoundBody": "This page doesn't exist. Search for a record instead:",
+  "notFoundBody": "This page doesn't exist. Search for a record with the box above, or start from the home page.",
   "adLabel": "Advertisement",
   "statusChangesTitle": "Changes in the last 30 days",
   "statusDeadTitle": "Unreachable shops",
@@ -118,5 +117,9 @@
   "homeTitle": "Vinyl in stock at independent record shops",
   "homeTryTitle": "Try",
   "homeAllShops": "All {shops} record shops in {countries} countries",
-  "homeAllArtists": "All artists A–Z"
+  "homeAllArtists": "All artists A–Z",
+  "footerGithub": "Source code on GitHub",
+  "footerAnalytics": "Public visit statistics",
+  "footerChat": "Chat on Matrix",
+  "footerEmail": "Email"
 }
