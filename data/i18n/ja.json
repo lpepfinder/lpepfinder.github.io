@@ -146,5 +146,67 @@
   },
   "soldOut": "売り切れ",
   "resultStock": "在庫",
-  "resultsCountSoldOut": "「{query}」のレコード {count} 件（売り切れ {soldOut} 件）"
+  "resultsCountSoldOut": "「{query}」のレコード {count} 件（売り切れ {soldOut} 件）",
+  "watch": {
+    "watch": "ウォッチ",
+    "notify": "入荷を通知",
+    "watchLabel": "{title} をウォッチ",
+    "notifyLabel": "{title} の入荷を通知",
+    "nav": "ウォッチリスト",
+    "navCount": {
+      "other": "ウォッチリスト、{count} 件の変化"
+    },
+    "firstWatch": "ウォッチしました。次に来たとき、変化がページ上部に表示されます。",
+    "installHint": "LP/EP Finder をホーム画面に追加すると、ブラウザがウォッチリストを保持します。iPhone では「共有」から「ホーム画面に追加」。",
+    "install": "ホーム画面に追加",
+    "close": "閉じる"
+  },
+  "watchPage": {
+    "title": "ウォッチリスト",
+    "seoTitle": "ウォッチリスト",
+    "description": "独立系レコード店でウォッチしているレコードと、前回の訪問からの変化。",
+    "intro": "ウォッチしたレコードは、このブラウザで1日1回チェックされます。アカウント不要、こちらには何も保存されません。",
+    "changesTitle": "前回の訪問からの変化",
+    "noChanges": "前回の訪問から変化はありません。",
+    "earlierTitle": "以前の変化",
+    "event": {
+      "new": "新しい在庫",
+      "restock": "再入荷",
+      "soldout": "売り切れ",
+      "price-down": "値下げ",
+      "gone": "掲載終了"
+    },
+    "listTitle": {
+      "other": "{count} 枚をウォッチ中"
+    },
+    "empty": "まだウォッチしているレコードはありません。検索結果の「ウォッチ」をタップするか、下で Discogs のウォントリストを読み込んでください。",
+    "stateIn": "在庫 {count} 件、{price} から",
+    "stateOut": {
+      "other": "売り切れ（{count} 店で確認）"
+    },
+    "stateNone": "まだどの店にも在庫がありません",
+    "remove": "削除",
+    "removeLabel": "{title} を削除",
+    "removed": "削除しました：{title}",
+    "unknownTitle": "レコード {key}",
+    "checking": "店舗を確認中… {done} / {total}",
+    "checked": "最新です。",
+    "backupTitle": "バックアップと共有",
+    "backupIntro": "ウォッチリストはこのブラウザにだけ保存されています。書き出してコピーを残すか、リンクで共有できます。",
+    "export": "書き出す（JSON）",
+    "import": "ファイルを読み込む",
+    "imported": {
+      "other": "{count} 枚を追加しました。"
+    },
+    "importError": "このファイルを読み込めませんでした。",
+    "share": "共有リンクをコピー",
+    "shareLabel": "共有リンク",
+    "shareCopied": "リンクをコピーしました。",
+    "shareHint": "リストはリンクの # 以降に含まれ、サーバーには送信されません。",
+    "sharedTitle": "共有されたウォッチリスト",
+    "sharedBody": {
+      "other": "このリンクには {count} 枚のレコードが含まれています。"
+    },
+    "sharedAdd": "自分のウォッチリストに追加"
+  }
 }

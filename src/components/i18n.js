@@ -19,3 +19,10 @@ export function formatPrice(cents, currency) {
   if (!currency) return (cents / 100).toFixed(2);
   try { return new Intl.NumberFormat(lang, { style: 'currency', currency }).format(cents / 100); } catch { return `${(cents / 100).toFixed(2)} ${currency}`; }
 }
+
+/** Plural strings are objects of Intl.PluralRules categories ({ one, other }); {count} is formatted. */
+const plurals = new Intl.PluralRules(lang);
+export function tn(key, count, vars = {}) {
+  const form = `${key}.${plurals.select(count)}`;
+  return t(form in strings ? form : `${key}.other`, { ...vars, count: formatNumber(count) });
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Browser watchlist",
+  "description": "The watchlist kept in localStorage under \"vf.watch.v1\" (src/lib/watch/store.js), and the Export file (same items). Nothing is stored on a server.",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "object",
+      "description": "Watched releases by release key (12 hex, src/lib/search/release-key.js)",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "t": { "type": "string", "description": "Title shown in the list" },
+          "a": { "type": "string", "description": "Day it was added, YYYY-MM-DD; events before it are ignored" },
+          "s": { "type": "array", "description": "Last known state [inStock, soldOut, minPriceCents, currency]" }
+        }
+      }
+    },
+    "last": { "type": "string", "description": "Newest data date (from /w/index.json) whose events were applied" },
+    "day": { "type": "string", "description": "UTC day of the last check (at most one per day)" },
+    "refreshed": { "type": "string", "description": "UTC day the watch page last loaded current states" },
+    "changes": { "type": "array", "description": "Unseen changes: event rows of /w/d/<date>.json plus their date" },
+    "past": { "type": "array", "description": "Seen changes, newest last, capped" },
+    "hinted": { "type": "integer", "description": "1 once the home-screen hint was shown" },
+    "persistAsked": { "type": "integer", "description": "1 once navigator.storage.persist() was requested" }
+  }
+}

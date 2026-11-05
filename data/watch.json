@@ -1,0 +1,5 @@
+{
+  "description": "Browser watchlist. Editable: when the home-screen hint shows, how long short messages stay.",
+  "installHintAfter": 3,
+  "toastSeconds": 12
+}

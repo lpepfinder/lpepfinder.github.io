@@ -12,11 +12,12 @@ import '../styles/global.css';
  *  path        language-neutral path when the page exists in every language ("/shops/"), else omit
  *  title, description, noindex, ld (JSON-LD objects)
  *  mode        "home" on the search home page (vf-search switches it to "results"), else "page"
+ *  strings     extra i18n groups the page's browser components need (e.g. ["discogs"])
  */
-const { lang = defaultLanguage, path, title, description, noindex = false, ld = [], mode = 'page' } = Astro.props;
+const { lang = defaultLanguage, path, title, description, noindex = false, ld = [], mode = 'page', strings: groups = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const abs = (p) => new URL(p, Astro.site).href;
-const strings = JSON.stringify(clientStrings(lang)).replace(/</g, '\\u003c');
+const strings = JSON.stringify(clientStrings(lang, groups)).replace(/</g, '\\u003c');
 ---
 <!doctype html>
 <html lang={lang}>
@@ -41,6 +42,8 @@ const strings = JSON.stringify(clientStrings(lang)).replace(/</g, '\\u003c');
   <meta name="twitter:card" content="summary_large_image">
   <meta name="google-site-verification" content={config.googleSiteVerification}>
   <link rel="icon" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
   <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title={config.name}>
   <Ads />
   <script is:inline defer src={config.analytics.umamiScript} data-website-id={config.analytics.umamiWebsiteId}></script>

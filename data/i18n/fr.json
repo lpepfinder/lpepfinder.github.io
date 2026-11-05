@@ -146,5 +146,72 @@
   },
   "soldOut": "Épuisé",
   "resultStock": "Stock",
-  "resultsCountSoldOut": "{count} disques pour « {query} » ({soldOut} épuisés)"
+  "resultsCountSoldOut": "{count} disques pour « {query} » ({soldOut} épuisés)",
+  "watch": {
+    "watch": "Suivre",
+    "notify": "M'avertir",
+    "watchLabel": "Suivre {title}",
+    "notifyLabel": "M'avertir pour {title}",
+    "nav": "Liste de suivi",
+    "navCount": {
+      "one": "Liste de suivi, {count} changement",
+      "other": "Liste de suivi, {count} changements"
+    },
+    "firstWatch": "Disque suivi. Les changements s'afficheront en haut de la page à votre retour.",
+    "installHint": "Ajoutez LP/EP Finder à votre écran d'accueil pour que votre navigateur conserve votre liste. Sur iPhone : Partager, puis Sur l'écran d'accueil.",
+    "install": "Ajouter à l'écran d'accueil",
+    "close": "Fermer"
+  },
+  "watchPage": {
+    "title": "Votre liste de suivi",
+    "seoTitle": "Liste de suivi",
+    "description": "Les disques que vous suivez chez les disquaires indépendants, et ce qui a changé depuis votre dernière visite.",
+    "intro": "Les disques suivis sont vérifiés une fois par jour, dans ce navigateur. Pas de compte, rien n'est conservé chez nous.",
+    "changesTitle": "Changements depuis votre dernière visite",
+    "noChanges": "Aucun changement depuis votre dernière visite.",
+    "earlierTitle": "Changements précédents",
+    "event": {
+      "new": "Nouvel exemplaire",
+      "restock": "De nouveau en stock",
+      "soldout": "Épuisé",
+      "price-down": "Prix en baisse",
+      "gone": "Retiré de la boutique"
+    },
+    "listTitle": {
+      "one": "{count} disque suivi",
+      "other": "{count} disques suivis"
+    },
+    "empty": "Vous ne suivez encore aucun disque. Touchez Suivre sur un résultat de recherche, ou importez votre wantlist Discogs ci-dessous.",
+    "stateIn": "{count} en stock, à partir de {price}",
+    "stateOut": {
+      "one": "Épuisé, vu chez {count} disquaire",
+      "other": "Épuisé, vu chez {count} disquaires"
+    },
+    "stateNone": "Pas encore en stock chez un disquaire",
+    "remove": "Retirer",
+    "removeLabel": "Retirer {title}",
+    "removed": "Retiré : {title}",
+    "unknownTitle": "Disque {key}",
+    "checking": "Vérification des disquaires… {done} / {total}",
+    "checked": "À jour.",
+    "backupTitle": "Sauvegarder et partager",
+    "backupIntro": "Votre liste n'existe que dans ce navigateur. Exportez-la pour en garder une copie, ou partagez-la par un lien.",
+    "export": "Exporter (JSON)",
+    "import": "Importer un fichier",
+    "imported": {
+      "one": "{count} disque ajouté.",
+      "other": "{count} disques ajoutés."
+    },
+    "importError": "Impossible de lire ce fichier.",
+    "share": "Copier le lien de partage",
+    "shareLabel": "Lien de partage",
+    "shareCopied": "Lien copié.",
+    "shareHint": "La liste est dans le lien, après le # : elle n'est jamais envoyée à notre serveur.",
+    "sharedTitle": "Liste partagée",
+    "sharedBody": {
+      "one": "Ce lien contient {count} disque.",
+      "other": "Ce lien contient {count} disques."
+    },
+    "sharedAdd": "Les ajouter à ma liste"
+  }
 }

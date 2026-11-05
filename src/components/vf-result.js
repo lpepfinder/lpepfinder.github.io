@@ -1,6 +1,8 @@
 import { t, formatPrice, countryName } from './i18n.js';
 import { splitTitle } from '../lib/search/title.js';
 import { detectFormat } from '../lib/search/format.js';
+import { releaseKey } from '../lib/search/release-key.js';
+import './vf-watch.js';
 
 const EAGER = 4;
 const WP_SIZE = /-\d{3,4}x\d{3,4}(\.(?:jpe?g|png|webp))(\?|$)/i;
@@ -30,8 +32,19 @@ const el = (tag, props = {}, ...children) => {
   return node;
 };
 
+/** Watch toggle for the release of a title ("Notify me" when sold out); null without a key. */
+function watchToggle(title, soldOut) {
+  const key = releaseKey(title);
+  if (!key) return null;
+  const watch = el('vf-watch');
+  watch.setAttribute('key', key);
+  watch.setAttribute('label', title);
+  watch.setAttribute('action', soldOut ? 'notify' : 'watch');
+  return watch;
+}
+
 /**
- * One record offered by one shop: a real link in a heading, meta in a <dl>.
+ * One record offered by one shop: a real link in a heading, meta in a <dl>, a watch toggle.
  * Attributes for CSS: country, format, condition, stock ("out" when sold out). Set `index` (position in the list) before `record`.
  */
 export class VfResult extends HTMLElement {
@@ -59,6 +72,7 @@ export class VfResult extends HTMLElement {
       el('h3', {}, link),
       el('vf-price', {}, el('data', { value: r.price ?? '', textContent: formatPrice(r.price, r.currency) })),
       meta,
+      ...[watchToggle(r.title, r.available === false)].filter(Boolean),
     );
   }
 }

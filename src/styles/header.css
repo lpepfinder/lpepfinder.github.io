@@ -1,7 +1,7 @@
-/* Sticky header: brand + menu on one row, search below; one row on wide screens. */
+/* Sticky header: brand, watchlist + menu on one row, search below; one row on wide screens. */
 header {
   position: sticky; inset-block-start: 0; z-index: 1;
-  display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "logo menu" "search search";
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "logo . watch menu" "search search search search";
   align-items: center; gap: var(--space-1) var(--space-4);
   padding: var(--space-1) var(--gutter) var(--space-2);
   background: var(--c-bg); border-block-end: var(--line) solid var(--c-line);
@@ -9,6 +9,7 @@ header {
 header > a[rel="home"] { grid-area: logo; display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: var(--tap); font-weight: var(--weight-bold); font-size: var(--size-1); color: inherit; text-decoration: none; }
 header > details { grid-area: menu; justify-self: end; position: relative; }
 header > vf-search { grid-area: search; }
+header > vf-watchlist { grid-area: watch; }
 
 header summary { gap: var(--space-2); padding-inline: var(--space-3); border-radius: var(--radius); list-style: none; cursor: pointer; font-weight: var(--weight-semi); }
 header summary::-webkit-details-marker { display: none; }
@@ -25,9 +26,10 @@ header vf-search button { inline-size: var(--tap); padding: 0; display: grid; pl
 vf-icon { display: inline-block; inline-size: var(--icon-size); block-size: var(--icon-size); background: currentColor; mask: var(--icon) center / contain no-repeat; }
 vf-icon[name="menu"] { --icon: var(--icon-menu); }
 vf-icon[name="search"] { --icon: var(--icon-search); }
+vf-icon[name="star"] { --icon: var(--icon-star); }
 
 @media (min-width: 48rem) {
-  header { grid-template-columns: auto minmax(0, 36rem) 1fr; grid-template-areas: "logo search menu"; padding-block: var(--space-2); }
+  header { grid-template-columns: auto minmax(0, 36rem) 1fr auto; grid-template-areas: "logo search menu watch"; padding-block: var(--space-2); }
 }
 @media (min-width: 64rem) {
   header summary { display: none; }

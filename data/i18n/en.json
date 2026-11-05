@@ -146,5 +146,72 @@
   },
   "soldOut": "Sold out",
   "resultStock": "Stock",
-  "resultsCountSoldOut": "{count} records for “{query}” ({soldOut} sold out)"
+  "resultsCountSoldOut": "{count} records for “{query}” ({soldOut} sold out)",
+  "watch": {
+    "watch": "Watch",
+    "notify": "Notify me",
+    "watchLabel": "Watch {title}",
+    "notifyLabel": "Notify me about {title}",
+    "nav": "Watchlist",
+    "navCount": {
+      "one": "Watchlist, 1 change",
+      "other": "Watchlist, {count} changes"
+    },
+    "firstWatch": "Watching. Changes show up at the top of the page when you come back.",
+    "installHint": "Add LP/EP Finder to your home screen so your browser keeps your watchlist. On iPhone: Share, then Add to Home Screen.",
+    "install": "Add to home screen",
+    "close": "Close"
+  },
+  "watchPage": {
+    "title": "Your watchlist",
+    "seoTitle": "Watchlist",
+    "description": "Records you watch at independent record shops, and what changed since your last visit.",
+    "intro": "Records you watch are checked once a day, in this browser. No account, nothing is stored on our side.",
+    "changesTitle": "Changes since your last visit",
+    "noChanges": "No changes since your last visit.",
+    "earlierTitle": "Earlier changes",
+    "event": {
+      "new": "New copy",
+      "restock": "Back in stock",
+      "soldout": "Sold out",
+      "price-down": "Price down",
+      "gone": "No longer listed"
+    },
+    "listTitle": {
+      "one": "Watching 1 record",
+      "other": "Watching {count} records"
+    },
+    "empty": "You're not watching any records yet. Tap Watch on a search result, or import your Discogs wantlist below.",
+    "stateIn": "{count} in stock, from {price}",
+    "stateOut": {
+      "one": "Sold out, seen at 1 shop",
+      "other": "Sold out, seen at {count} shops"
+    },
+    "stateNone": "Not in stock at any shop yet",
+    "remove": "Remove",
+    "removeLabel": "Remove {title}",
+    "removed": "Removed: {title}",
+    "unknownTitle": "Record {key}",
+    "checking": "Checking shops… {done} / {total}",
+    "checked": "Up to date.",
+    "backupTitle": "Back up and share",
+    "backupIntro": "Your watchlist lives only in this browser. Export it to keep a copy, or share it as a link.",
+    "export": "Export (JSON)",
+    "import": "Import a file",
+    "imported": {
+      "one": "1 record added.",
+      "other": "{count} records added."
+    },
+    "importError": "This file couldn't be read.",
+    "share": "Copy share link",
+    "shareLabel": "Share link",
+    "shareCopied": "Link copied.",
+    "shareHint": "The list is inside the link, after the #: it is never sent to our server.",
+    "sharedTitle": "Shared watchlist",
+    "sharedBody": {
+      "one": "This link holds 1 record.",
+      "other": "This link holds {count} records."
+    },
+    "sharedAdd": "Add them to my watchlist"
+  }
 }

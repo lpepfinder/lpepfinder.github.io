@@ -1,0 +1,40 @@
+/* /watch/ page: changes, watched records, backup and share, Discogs import. State in attributes. */
+:is(vf-watch-page, vf-watch-changes, vf-watch-items, vf-watch-backup, vf-watch-shared, vf-discogs-import, vf-discogs-results) { display: grid; gap: var(--space-2); align-content: start; }
+:is(vf-watch-shared, vf-progress, vf-discogs-results)[hidden] { display: none; }
+:is(vf-watch-page, vf-watch-backup, vf-watch-shared, vf-discogs-import) :is(h2, h3, p) { margin: 0; }
+:is(vf-watch-backup, vf-discogs-import) > h2, vf-watch-items > h2 { margin-block-start: var(--space-6); }
+:is(vf-watch-page, vf-watch-backup, vf-discogs-import) > output { color: var(--c-muted); font-size: var(--size-s); }
+:is(vf-watch-page, vf-watch-backup, vf-discogs-import) > output:empty { display: none; }
+:is(vf-watch-changes, vf-watch-items) ol, vf-discogs-results ul { list-style: none; margin: 0; padding: 0; display: grid; }
+vf-watch-shared { padding: var(--space-4); border-radius: var(--radius); background: var(--c-chip); justify-items: start; }
+
+/* empty states: the text shows only when the count is known to be 0 */
+vf-watch-changes:not([count="0"]) > p, vf-watch-items:not([count="0"]) > p { display: none; }
+vf-watch-changes:not([earlier]) > details, vf-watch-changes[earlier="0"] > details { display: none; }
+vf-watch-changes summary { min-block-size: var(--tap); display: flex; align-items: center; cursor: pointer; color: var(--c-muted); }
+vf-watch-items > progress { inline-size: 100%; }
+
+vf-change, vf-watch-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-1) var(--space-3); align-items: start; padding-block: var(--space-3); border-block-end: var(--line) solid var(--c-line); }
+vf-change > :not(vf-price), vf-watch-item > :not(button) { grid-column: 1; }
+vf-change > vf-price { grid-column: 2; grid-row: 1 / span 2; }
+vf-watch-item > button { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+:is(vf-change, vf-watch-item) h3 { font-size: var(--size-0); line-height: var(--leading-tight); overflow-wrap: anywhere; }
+:is(vf-change, vf-watch-item) p { color: var(--c-muted); font-size: var(--size-s); }
+vf-event { font-size: var(--size-xs); font-weight: var(--weight-bold); text-transform: uppercase; letter-spacing: var(--tracking-caps); color: var(--event-color, var(--c-muted)); }
+vf-change[event="new"] { --event-color: var(--c-event-new); }
+vf-change[event="restock"] { --event-color: var(--c-event-restock); }
+vf-change[event="price-down"] { --event-color: var(--c-event-price-down); }
+vf-change[event="soldout"] { --event-color: var(--c-event-soldout); }
+vf-change[event="gone"] { --event-color: var(--c-event-gone); }
+vf-change[seen="true"] :is(h3, vf-price) { font-weight: normal; }
+vf-watch-item[stock="in"] p { color: var(--c-fg); font-weight: var(--weight-semi); }
+
+/* secondary buttons and file pickers styled as buttons (the input stays focusable) */
+:is(vf-watch-item, vf-watch-backup) button, label:has(> input[type="file"]) { background: var(--c-chip); color: var(--c-fg); }
+label:has(> input[type="file"]) { display: inline-flex; align-items: center; min-block-size: var(--tap); padding: var(--space-2) var(--space-4); border-radius: var(--radius); font-weight: var(--weight-semi); cursor: pointer; justify-self: start; }
+label:has(> input[type="file"]:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+label > input[type="file"] { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
+vf-watch-backup menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+vf-watch-backup > p, vf-discogs-import > p { color: var(--c-muted); font-size: var(--size-s); }
+vf-watch-backup > p:has(input) { display: grid; gap: var(--space-1); }
+vf-watch-backup > p[hidden] { display: none; }

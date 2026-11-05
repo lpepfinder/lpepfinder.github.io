@@ -146,5 +146,72 @@
   },
   "soldOut": "Esaurito",
   "resultStock": "Disponibilità",
-  "resultsCountSoldOut": "{count} dischi per «{query}» ({soldOut} esauriti)"
+  "resultsCountSoldOut": "{count} dischi per «{query}» ({soldOut} esauriti)",
+  "watch": {
+    "watch": "Segui",
+    "notify": "Avvisami",
+    "watchLabel": "Segui {title}",
+    "notifyLabel": "Avvisami per {title}",
+    "nav": "Lista dei seguiti",
+    "navCount": {
+      "one": "Lista dei seguiti, 1 novità",
+      "other": "Lista dei seguiti, {count} novità"
+    },
+    "firstWatch": "Lo segui. Le novità appariranno in cima alla pagina quando torni.",
+    "installHint": "Aggiungi LP/EP Finder alla schermata Home così il browser conserva la tua lista. Su iPhone: Condividi, poi Aggiungi alla schermata Home.",
+    "install": "Aggiungi alla schermata Home",
+    "close": "Chiudi"
+  },
+  "watchPage": {
+    "title": "I dischi che segui",
+    "seoTitle": "Lista dei seguiti",
+    "description": "I dischi che segui nei negozi di dischi indipendenti e cosa è cambiato dalla tua ultima visita.",
+    "intro": "I dischi che segui vengono controllati una volta al giorno, in questo browser. Nessun account, non salviamo nulla.",
+    "changesTitle": "Novità dalla tua ultima visita",
+    "noChanges": "Nessuna novità dalla tua ultima visita.",
+    "earlierTitle": "Novità precedenti",
+    "event": {
+      "new": "Nuova copia",
+      "restock": "Di nuovo disponibile",
+      "soldout": "Esaurito",
+      "price-down": "Prezzo ribassato",
+      "gone": "Non più in negozio"
+    },
+    "listTitle": {
+      "one": "Segui 1 disco",
+      "other": "Segui {count} dischi"
+    },
+    "empty": "Non segui ancora nessun disco. Tocca Segui su un risultato di ricerca, o importa qui sotto la tua wantlist Discogs.",
+    "stateIn": "{count} disponibili, da {price}",
+    "stateOut": {
+      "one": "Esaurito, visto in 1 negozio",
+      "other": "Esaurito, visto in {count} negozi"
+    },
+    "stateNone": "Non ancora disponibile in nessun negozio",
+    "remove": "Rimuovi",
+    "removeLabel": "Rimuovi {title}",
+    "removed": "Rimosso: {title}",
+    "unknownTitle": "Disco {key}",
+    "checking": "Controllo dei negozi… {done} / {total}",
+    "checked": "Aggiornato.",
+    "backupTitle": "Backup e condivisione",
+    "backupIntro": "La tua lista esiste solo in questo browser. Esportala per tenerne una copia o condividila con un link.",
+    "export": "Esporta (JSON)",
+    "import": "Importa un file",
+    "imported": {
+      "one": "1 disco aggiunto.",
+      "other": "{count} dischi aggiunti."
+    },
+    "importError": "Impossibile leggere questo file.",
+    "share": "Copia il link di condivisione",
+    "shareLabel": "Link di condivisione",
+    "shareCopied": "Link copiato.",
+    "shareHint": "La lista è dentro il link, dopo il #: non viene mai inviata al nostro server.",
+    "sharedTitle": "Lista condivisa",
+    "sharedBody": {
+      "one": "Questo link contiene 1 disco.",
+      "other": "Questo link contiene {count} dischi."
+    },
+    "sharedAdd": "Aggiungili alla mia lista"
+  }
 }

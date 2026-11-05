@@ -146,5 +146,72 @@
   },
   "soldOut": "Ausverkauft",
   "resultStock": "Bestand",
-  "resultsCountSoldOut": "{count} Platten für „{query}“ ({soldOut} ausverkauft)"
+  "resultsCountSoldOut": "{count} Platten für „{query}“ ({soldOut} ausverkauft)",
+  "watch": {
+    "watch": "Merken",
+    "notify": "Benachrichtigen",
+    "watchLabel": "{title} merken",
+    "notifyLabel": "Bei {title} benachrichtigen",
+    "nav": "Merkliste",
+    "navCount": {
+      "one": "Merkliste, 1 Änderung",
+      "other": "Merkliste, {count} Änderungen"
+    },
+    "firstWatch": "Gemerkt. Änderungen erscheinen oben auf der Seite, wenn du wiederkommst.",
+    "installHint": "Füge LP/EP Finder zum Home-Bildschirm hinzu, damit dein Browser die Merkliste behält. Auf dem iPhone: Teilen, dann Zum Home-Bildschirm.",
+    "install": "Zum Home-Bildschirm",
+    "close": "Schließen"
+  },
+  "watchPage": {
+    "title": "Deine Merkliste",
+    "seoTitle": "Merkliste",
+    "description": "Platten, die du bei unabhängigen Plattenläden beobachtest, und was sich seit deinem letzten Besuch geändert hat.",
+    "intro": "Gemerkte Platten werden einmal täglich in diesem Browser geprüft. Kein Konto, bei uns wird nichts gespeichert.",
+    "changesTitle": "Änderungen seit deinem letzten Besuch",
+    "noChanges": "Keine Änderungen seit deinem letzten Besuch.",
+    "earlierTitle": "Frühere Änderungen",
+    "event": {
+      "new": "Neues Exemplar",
+      "restock": "Wieder auf Lager",
+      "soldout": "Ausverkauft",
+      "price-down": "Preis gesenkt",
+      "gone": "Nicht mehr gelistet"
+    },
+    "listTitle": {
+      "one": "1 Platte gemerkt",
+      "other": "{count} Platten gemerkt"
+    },
+    "empty": "Du hast noch keine Platten gemerkt. Tippe bei einem Suchergebnis auf Merken oder importiere unten deine Discogs-Wantlist.",
+    "stateIn": "{count} auf Lager, ab {price}",
+    "stateOut": {
+      "one": "Ausverkauft, in 1 Laden gesehen",
+      "other": "Ausverkauft, in {count} Läden gesehen"
+    },
+    "stateNone": "Noch in keinem Laden auf Lager",
+    "remove": "Entfernen",
+    "removeLabel": "{title} entfernen",
+    "removed": "Entfernt: {title}",
+    "unknownTitle": "Platte {key}",
+    "checking": "Läden werden geprüft… {done} / {total}",
+    "checked": "Aktuell.",
+    "backupTitle": "Sichern und teilen",
+    "backupIntro": "Deine Merkliste gibt es nur in diesem Browser. Exportiere sie als Kopie oder teile sie als Link.",
+    "export": "Exportieren (JSON)",
+    "import": "Datei importieren",
+    "imported": {
+      "one": "1 Platte hinzugefügt.",
+      "other": "{count} Platten hinzugefügt."
+    },
+    "importError": "Diese Datei kann nicht gelesen werden.",
+    "share": "Link zum Teilen kopieren",
+    "shareLabel": "Link zum Teilen",
+    "shareCopied": "Link kopiert.",
+    "shareHint": "Die Liste steckt im Link, nach dem #: Sie wird nie an unseren Server gesendet.",
+    "sharedTitle": "Geteilte Merkliste",
+    "sharedBody": {
+      "one": "Dieser Link enthält 1 Platte.",
+      "other": "Dieser Link enthält {count} Platten."
+    },
+    "sharedAdd": "Zu meiner Merkliste hinzufügen"
+  }
 }
