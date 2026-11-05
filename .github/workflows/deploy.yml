@@ -19,8 +19,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # write: the build updates the offer ledger in the "data" release
+    permissions:
+      contents: write
     env:
       GH_TOKEN: ${{ github.token }}
+      # the offer ledger holds millions of rows in memory next to the catalog
+      NODE_OPTIONS: --max-old-space-size=6144
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -36,7 +41,20 @@ jobs:
           for k in $(node -p "[...Array(require('./data/config.json').site.shards).keys()].join(' ')"); do
             gh release download data --pattern "site-$k.tar.gz" --clobber && tar xzf "site-$k.tar.gz" || echo "no site-$k.tar.gz yet"
           done
+      # offer ledger: today's state and the one before it (a second build on the same day starts from that)
+      - name: Offer ledger
+        run: gh release download data --pattern "ledger*.ndjson.gz" --dir generated --clobber || echo "no ledger yet: starting one"
       - run: npm run build
+      - name: Save the offer ledger
+        run: |
+          files=generated/ledger.ndjson.gz
+          if [ -f generated/ledger-prev.ndjson.gz ]; then files="$files generated/ledger-prev.ndjson.gz"; fi
+          gh release upload data $files --clobber
+      # GitHub Pages sites may be 1 GB: stop at 900 MB so a growth spike never takes the site down
+      - name: Size budget
+        run: |
+          du -sm --apparent-size dist dist/search dist/w dist/new dist/feed 2>/dev/null || true
+          test "$(du -sm --apparent-size dist | cut -f1)" -le 900
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

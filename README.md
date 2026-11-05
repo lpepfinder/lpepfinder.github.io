@@ -22,7 +22,14 @@ data/shops/*.json ──▶ Refresh (daily)      ──▶ "data" release ──
    Results: `generated/shops-state.json`, shown on `/status/`.
 4. **Crawl** (`npm run crawl`): reads public catalogs (Shopify `products.json`, WooCommerce Store API),
    keeps in-stock records, one request at a time per shop. Output: `generated/products.ndjson.gz`.
-5. **Build** (`npm run build`): writes a static, sharded search index to `public/search/` and builds the
+5. **Offer ledger** (part of `npm run index`, code in `scripts/ledger/`): one row per offer (shop + product path)
+   with first/last seen, last in stock, price, lowest price in 90 days and status `in | out | gone`. Each UTC day
+   (`LEDGER_DATE=YYYY-MM-DD` overrides it) is diffed against the day before into events: `new`, `restock`,
+   `soldout`, `price-down`, `gone`. A shop's first two crawls emit no `new`. Deploy keeps
+   `generated/ledger.ndjson.gz` and `ledger-prev.ndjson.gz` (the day before, for a second build on the same day)
+   in the `data` release. Outputs: `public/w/` (watchlist data: `now/<abc>.json`, `d/<day>.json` for 14 days,
+   `index.json`) and `generated/new-arrivals.json` for `/new/` pages and `/feed/*.xml` Atom feeds.
+6. **Build** (`npm run build`): writes a static, sharded search index to `public/search/` and builds the
    Astro site (search, shops by country, shop pages, artist pages, sitemap) into `dist/`.
 
 Search runs in the browser: `<vf-search>` downloads only the index shards for the words you type.

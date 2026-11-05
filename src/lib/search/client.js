@@ -78,10 +78,10 @@ export class SearchClient {
     const rows = await this.rows(ids);
     return rows.map((row) => {
       if (!row) return null;
-      const [shopIdx, title, price, path, image, currency, soldOut] = row;
+      const [shopIdx, title, price, path, image, currency, soldOut, lastInStock] = row;
       const [shopId, shopName, origin, country, shopCurrency] = this.shops[shopIdx];
       return {
-        title, price, image: image || null, available: soldOut !== 1,
+        title, price, image: image || null, available: soldOut !== 1, lastInStock: lastInStock || null,
         url: path.startsWith('http') ? path : origin + path,
         currency: currency || shopCurrency,
         shop: { id: shopId, name: shopName, country },

@@ -74,6 +74,20 @@
     "docsPerChunk": 64,
     "maxPrefixExpansions": 64
   },
+  "ledger": {
+    "eventDays": 14,
+    "newShopCrawls": 2,
+    "lowPriceDays": 90,
+    "goneSearchDays": 90,
+    "goneKeepDays": 365
+  },
+  "newArrivals": {
+    "days": 7,
+    "pageItems": 120,
+    "homeItems": 6,
+    "shopItems": 24,
+    "feedItems": 50
+  },
   "discogs": {
     "maxMinutes": 40,
     "maxPagesPerSeller": 300,

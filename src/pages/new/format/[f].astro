@@ -1,0 +1,18 @@
+---
+import NewArrivalsPage from '../../../components/NewArrivalsPage.astro';
+import config from '../../../../data/config.json';
+import { t, defaultLanguage as lang } from '../../../lib/i18n.js';
+import { newArrivals } from '../../../lib/new-arrivals.js';
+
+/** New arrivals of one format from data/facets.json (formats with new records this week). */
+export function getStaticPaths() {
+  return newArrivals().formatIds.map((f) => ({ params: { f }, props: { f } }));
+}
+const { f } = Astro.props;
+const name = t(lang, `formats.${f}`);
+const scope = {
+  key: 'newFormat', vars: { format: name }, crumb: name, format: f, href: `/new/format/${f}/`,
+  ...newArrivals().format(f, config.newArrivals.pageItems),
+};
+---
+<NewArrivalsPage lang={lang} scope={scope} />

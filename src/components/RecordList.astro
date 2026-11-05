@@ -1,0 +1,13 @@
+---
+import ResultCard from './ResultCard.astro';
+import { catalog } from '../lib/catalog.js';
+
+/** A static list of record cards (new arrivals); `labelledby` is the id of its heading. */
+const { lang, records, labelledby } = Astro.props;
+const shops = catalog().shopsById;
+---
+<vf-record-list count={records.length}>
+  <ol aria-labelledby={labelledby}>
+    {records.map((r, i) => <li><ResultCard lang={lang} record={r} shopName={shops.get(r.shop)?.name || r.shop} index={i} /></li>)}
+  </ol>
+</vf-record-list>

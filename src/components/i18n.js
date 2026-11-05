@@ -11,6 +11,9 @@ export function t(key, vars = {}) {
 
 export const formatNumber = (n) => new Intl.NumberFormat(lang).format(n);
 
+/** "YYYY-MM-DD" (a UTC day) as a short local date. */
+export const formatDay = (day) => new Intl.DateTimeFormat(lang, { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${day}T00:00:00Z`));
+
 const regions = new Intl.DisplayNames([lang], { type: 'region' });
 export const countryName = (cc) => { try { return regions.of(cc); } catch { return cc; } };
 

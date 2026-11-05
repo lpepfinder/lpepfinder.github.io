@@ -1,20 +1,12 @@
-import { t, formatPrice, countryName } from './i18n.js';
+import { t, formatPrice, formatDay, countryName } from './i18n.js';
 import { splitTitle } from '../lib/search/title.js';
 import { detectFormat } from '../lib/search/format.js';
+import { thumb, absolute } from '../lib/thumb.js';
 
 const EAGER = 4;
-const WP_SIZE = /-\d{3,4}x\d{3,4}(\.(?:jpe?g|png|webp))(\?|$)/i;
-
-/** Thumbnail at 2x the 56 px box: Shopify resizes on request, WordPress has a 150x150 size by default. */
-export function thumb(src) {
-  if (!src) return null;
-  const url = src.startsWith('//') ? 'https:' + src : src;
-  if (url.includes('cdn.shopify.com')) return url + (url.includes('?') ? '&' : '?') + 'width=112';
-  return url.replace(WP_SIZE, '-150x150$1$2');
-}
 
 function cover(image, index) {
-  const original = image && (image.startsWith('//') ? 'https:' + image : image);
+  const original = absolute(image);
   const src = thumb(image);
   if (!src) return el('vf-cover');
   const eager = index < EAGER;
@@ -22,6 +14,13 @@ function cover(image, index) {
   // resized variant missing on this shop: fall back to the original once
   if (src !== original) img.addEventListener('error', () => { img.src = original; }, { once: true });
   return img;
+}
+
+/** " · last seen in stock <time>12 Oct 2026</time>", with the date where the translation puts it. */
+function lastSeen(day) {
+  if (!day) return [];
+  const [before, after = ''] = t('lastInStock', { date: '\u0000' }).split('\u0000');
+  return [` · ${before}`, el('time', { dateTime: day, textContent: formatDay(day) }), after];
 }
 
 const el = (tag, props = {}, ...children) => {
@@ -53,7 +52,7 @@ export class VfResult extends HTMLElement {
     const kind = [format && t(`formats.${format}`), used && t('conditionUsed')].filter(Boolean).join(' · ');
     if (kind) meta.prepend(el('dt', { textContent: t('resultFormat') }), el('dd', { textContent: kind }));
     if (cc) meta.append(el('dt', { textContent: t('resultCountry') }), el('dd', {}, el('abbr', { title: countryName(cc), textContent: cc })));
-    if (r.available === false) meta.prepend(el('dt', { textContent: t('resultStock') }), el('dd', { textContent: t('soldOut') }));
+    if (r.available === false) meta.prepend(el('dt', { textContent: t('resultStock') }), el('dd', {}, t('soldOut'), ...lastSeen(r.lastInStock)));
     this.replaceChildren(
       cover(r.image, this.index),
       el('h3', {}, link),

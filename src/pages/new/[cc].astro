@@ -1,0 +1,19 @@
+---
+import NewArrivalsPage from '../../components/NewArrivalsPage.astro';
+import config from '../../../data/config.json';
+import { defaultLanguage as lang, countryName } from '../../lib/i18n.js';
+import { newArrivals } from '../../lib/new-arrivals.js';
+
+/** New arrivals at the shops of one country (countries with new records this week). */
+export function getStaticPaths() {
+  return newArrivals().countryCodes.map((cc) => ({ params: { cc: cc.toLowerCase() }, props: { cc } }));
+}
+const { cc } = Astro.props;
+const name = countryName(lang, cc);
+const scope = {
+  key: 'newCountry', vars: { country: name }, crumb: name, country: cc,
+  href: `/new/${cc.toLowerCase()}/`, feed: `/feed/country/${cc.toLowerCase()}.xml`,
+  ...newArrivals().country(cc, config.newArrivals.pageItems),
+};
+---
+<NewArrivalsPage lang={lang} scope={scope} />

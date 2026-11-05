@@ -2,6 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import Results from '../../components/Results.astro';
 import CountryList from '../../components/CountryList.astro';
+import RecordList from '../../components/RecordList.astro';
+import { newArrivals } from '../../lib/new-arrivals.js';
 import config from '../../../data/config.json';
 import { t, localeParams, localPath, number, date } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
@@ -18,6 +20,7 @@ const vars = {
 };
 const home = new URL(localPath(lang, '/'), Astro.site).href;
 const examples = homeContent(lang).try;
+const fresh = newArrivals().all(config.newArrivals.homeItems);
 const ld = [{
   '@context': 'https://schema.org', '@type': 'WebSite', name: config.name, alternateName: config.formerNames, url: home, inLanguage: lang,
   potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${home}?q={search_term_string}` }, 'query-input': 'required name=search_term_string' },
@@ -42,6 +45,13 @@ const ld = [{
     <section>
       <h2>{t(lang, 'homeTryTitle')}</h2>
       <ul>{examples.map((e) => <li><a href={`${localPath(lang, '/')}?q=${encodeURIComponent(e)}`}>{e}</a></li>)}</ul>
+    </section>
+  )}
+  {fresh.count > 0 && (
+    <section>
+      <h2 id="home-new">{t(lang, 'homeNewTitle')}</h2>
+      <RecordList lang={lang} records={fresh.records} labelledby="home-new" />
+      <p><a href="/new/">{t(lang, 'homeNewAll', { count: number(lang, fresh.count) })}</a></p>
     </section>
   )}
   <section>

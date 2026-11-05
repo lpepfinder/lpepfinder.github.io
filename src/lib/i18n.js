@@ -27,13 +27,15 @@ export const localPath = (lang, path) => (lang === defaultLanguage ? path : `/${
 /** Strings the browser components need. */
 export const clientStrings = (lang) => Object.fromEntries([
   'searchTitle', 'resultsCount', 'searching', 'showingOf', 'emptyTitle', 'indexError', 'resultShop', 'resultCountry',
-  'resultFormat', 'conditionUsed', 'resultsCountSoldOut', 'resultStock', 'soldOut', ...FORMAT_IDS.map((id) => `formats.${id}`),
+  'resultFormat', 'conditionUsed', 'resultsCountSoldOut', 'resultStock', 'soldOut', 'lastInStock', ...FORMAT_IDS.map((id) => `formats.${id}`),
 ].map((k) => [k, lookup(lang, k) ?? lookup(defaultLanguage, k)]));
 
 const regionNames = Object.fromEntries(languages.map((l) => [l, new Intl.DisplayNames([l], { type: 'region' })]));
 export const countryName = (lang, code) => { try { return regionNames[lang].of(code); } catch { return code; } };
 export const number = (lang, n) => new Intl.NumberFormat(lang).format(n);
 export const date = (lang, iso) => new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(new Date(iso));
+/** A "YYYY-MM-DD" UTC day, short. */
+export const day = (lang, d) => new Intl.DateTimeFormat(lang, { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${d}T00:00:00Z`));
 export function price(lang, cents, currency) {
   if (cents == null) return '';
   try { return new Intl.NumberFormat(lang, { style: 'currency', currency: currency || 'EUR' }).format(cents / 100); }
