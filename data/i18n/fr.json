@@ -131,5 +131,17 @@
   "shopsSeoTitle": "Disquaires indépendants par pays",
   "artistsSeoTitle": "Artistes avec des vinyles en stock de A à Z",
   "navBreadcrumb": "Fil d'Ariane",
-  "breadcrumbHome": "Accueil"
+  "breadcrumbHome": "Accueil",
+  "resultFormat": "Format",
+  "conditionUsed": "Occasion",
+  "formats": {
+    "lp": "LP",
+    "2lp": "2LP+",
+    "12": "Maxi 12\"",
+    "10": "10\"",
+    "7": "45 tours 7\"",
+    "ep": "EP",
+    "cd": "CD",
+    "mc": "Cassette"
+  }
 }

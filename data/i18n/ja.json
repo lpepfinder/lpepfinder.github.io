@@ -131,5 +131,17 @@
   "shopsSeoTitle": "国別のインディペンデントのレコード店",
   "artistsSeoTitle": "レコード在庫のあるアーティスト A–Z",
   "navBreadcrumb": "パンくずリスト",
-  "breadcrumbHome": "ホーム"
+  "breadcrumbHome": "ホーム",
+  "resultFormat": "フォーマット",
+  "conditionUsed": "中古",
+  "formats": {
+    "lp": "LP",
+    "2lp": "2LP以上",
+    "12": "12インチ",
+    "10": "10インチ",
+    "7": "7インチ",
+    "ep": "EP",
+    "cd": "CD",
+    "mc": "カセット"
+  }
 }

@@ -28,6 +28,7 @@ vf-result dt { position: absolute; inline-size: 1px; block-size: 1px; overflow: 
 vf-result dd { margin: 0; }
 vf-result dd + dt + dd::before { content: "· "; }
 vf-result abbr { text-decoration: none; }
+vf-result[condition="used"] dd:first-of-type { color: var(--c-used); }
 vf-result:has(a:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 vf-result a:focus-visible { outline: none; }
 

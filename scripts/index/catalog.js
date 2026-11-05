@@ -1,10 +1,19 @@
 import { ndjsonReader } from '../lib/json.js';
 import { loadShops, loadState } from '../lib/shops.js';
-import { displayTitle } from '../lib/text.js';
+import { displayTitle, normalize } from '../lib/text.js';
+import { detectFormat } from '../../src/lib/search/format.js';
+
+// vinyl before CD and tape for the same title
+const formatRank = (title) => {
+  const f = detectFormat(title).format;
+  return f === 'cd' || f === 'mc' ? 2 : f ? 0 : 1;
+};
 
 /**
- * Load crawled products and order them for ranking:
- * shops interleaved round-robin (no shop floods the top), newest first within a shop.
+ * Load crawled products and give them doc ids in title order ("Artist – Title"
+ * first), so one artist's records share a few d/ chunks and a query loads
+ * 1-4 chunks instead of one per result. Shop diversity is done by the client
+ * (src/lib/search/rank.js). byShop keeps each shop's newest first.
  */
 export async function loadCatalog(productFiles) {
   const state = loadState();
@@ -18,10 +27,9 @@ export async function loadCatalog(productFiles) {
     }
   }
   for (const list of byShop.values()) list.sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
-  const queues = [...byShop.values()].sort((a, b) => b.length - a.length);
-  const docs = [];
-  for (let i = 0; queues.some((q) => i < q.length); i++) {
-    for (const q of queues) if (i < q.length) docs.push(q[i]);
-  }
+  const docs = [...byShop.values()].flat()
+    .map((d) => ({ d, key: normalize(d.title), rank: formatRank(d.title) }))
+    .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : a.rank - b.rank || a.d.shop.localeCompare(b.d.shop) || (a.d.price ?? 0) - (b.d.price ?? 0)))
+    .map((x) => x.d);
   return { docs, shops, byShop };
 }

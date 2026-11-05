@@ -41,7 +41,7 @@ export class VfSearch extends HTMLElement {
     document.title = t('searchTitle', { query: q });
     this.results.loading();
     try {
-      this.ids = await this.client.match(q);
+      this.ids = await this.client.rank(await this.client.match(q), q, this.per);
       this.shown = 0;
       this.results.start(q, this.ids.length);
       await this.more(false);

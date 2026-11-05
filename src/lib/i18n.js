@@ -5,6 +5,7 @@ import de from '../../data/i18n/de.json' with { type: 'json' };
 import es from '../../data/i18n/es.json' with { type: 'json' };
 import it from '../../data/i18n/it.json' with { type: 'json' };
 import ja from '../../data/i18n/ja.json' with { type: 'json' };
+import { FORMAT_IDS } from './search/format.js';
 
 const dict = { en, fr, de, es, it, ja };
 export const languages = config.languages;
@@ -26,6 +27,7 @@ export const localPath = (lang, path) => (lang === defaultLanguage ? path : `/${
 /** Strings the browser components need. */
 export const clientStrings = (lang) => Object.fromEntries([
   'searchTitle', 'resultsCount', 'searching', 'showingOf', 'emptyTitle', 'indexError', 'resultShop', 'resultCountry',
+  'resultFormat', 'conditionUsed', ...FORMAT_IDS.map((id) => `formats.${id}`),
 ].map((k) => [k, lookup(lang, k) ?? lookup(defaultLanguage, k)]));
 
 const regionNames = Object.fromEntries(languages.map((l) => [l, new Intl.DisplayNames([l], { type: 'region' })]));

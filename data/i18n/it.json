@@ -131,5 +131,17 @@
   "shopsSeoTitle": "Negozi di dischi indipendenti per paese",
   "artistsSeoTitle": "Artisti con vinili disponibili dalla A alla Z",
   "navBreadcrumb": "Percorso di navigazione",
-  "breadcrumbHome": "Home"
+  "breadcrumbHome": "Home",
+  "resultFormat": "Formato",
+  "conditionUsed": "Usato",
+  "formats": {
+    "lp": "LP",
+    "2lp": "2LP+",
+    "12": "12\"",
+    "10": "10\"",
+    "7": "7\"",
+    "ep": "EP",
+    "cd": "CD",
+    "mc": "Cassetta"
+  }
 }

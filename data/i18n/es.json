@@ -131,5 +131,17 @@
   "shopsSeoTitle": "Tiendas de discos independientes por país",
   "artistsSeoTitle": "Artistas con vinilos en stock de la A a la Z",
   "navBreadcrumb": "Ruta de navegación",
-  "breadcrumbHome": "Inicio"
+  "breadcrumbHome": "Inicio",
+  "resultFormat": "Formato",
+  "conditionUsed": "Usado",
+  "formats": {
+    "lp": "LP",
+    "2lp": "2LP+",
+    "12": "Maxi 12\"",
+    "10": "10\"",
+    "7": "Single 7\"",
+    "ep": "EP",
+    "cd": "CD",
+    "mc": "Casete"
+  }
 }

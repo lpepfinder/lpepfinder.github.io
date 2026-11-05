@@ -131,5 +131,17 @@
   "shopsSeoTitle": "Unabhängige Plattenläden nach Land",
   "artistsSeoTitle": "Künstler mit Vinyl auf Lager von A bis Z",
   "navBreadcrumb": "Brotkrümelnavigation",
-  "breadcrumbHome": "Startseite"
+  "breadcrumbHome": "Startseite",
+  "resultFormat": "Format",
+  "conditionUsed": "Gebraucht",
+  "formats": {
+    "lp": "LP",
+    "2lp": "2LP+",
+    "12": "12\"",
+    "10": "10\"",
+    "7": "7\"",
+    "ep": "EP",
+    "cd": "CD",
+    "mc": "Kassette"
+  }
 }

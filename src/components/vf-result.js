@@ -1,5 +1,6 @@
 import { t, formatPrice, countryName } from './i18n.js';
 import { splitTitle } from '../lib/search/title.js';
+import { detectFormat } from '../lib/search/format.js';
 
 const EAGER = 4;
 const WP_SIZE = /-\d{3,4}x\d{3,4}(\.(?:jpe?g|png|webp))(\?|$)/i;
@@ -31,7 +32,7 @@ const el = (tag, props = {}, ...children) => {
 
 /**
  * One record offered by one shop: a real link in a heading, meta in a <dl>.
- * Attributes for CSS: country. Set `index` (position in the list) before `record`.
+ * Attributes for CSS: country, format, condition. Set `index` (position in the list) before `record`.
  */
 export class VfResult extends HTMLElement {
   index = 0;
@@ -39,12 +40,17 @@ export class VfResult extends HTMLElement {
   set record(r) {
     const { artist, title } = splitTitle(r.title);
     const cc = r.shop.country || '';
+    const { format, used } = detectFormat(r.title);
     if (cc) this.setAttribute('country', cc);
+    if (format) this.setAttribute('format', format);
+    this.setAttribute('condition', used ? 'used' : 'new');
     const link = el('a', { href: r.url, rel: 'nofollow' });
     if (artist) link.append(el('vf-artist', { textContent: artist }), ' ');
     link.append(el('vf-title', { textContent: title }));
     const meta = el('dl', {},
       el('dt', { textContent: t('resultShop') }), el('dd', { textContent: r.shop.name }));
+    const kind = [format && t(`formats.${format}`), used && t('conditionUsed')].filter(Boolean).join(' · ');
+    if (kind) meta.prepend(el('dt', { textContent: t('resultFormat') }), el('dd', { textContent: kind }));
     if (cc) meta.append(el('dt', { textContent: t('resultCountry') }), el('dd', {}, el('abbr', { title: countryName(cc), textContent: cc })));
     this.replaceChildren(
       cover(r.image, this.index),
