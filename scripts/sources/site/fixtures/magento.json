@@ -1,0 +1,4 @@
+{"data":{"products":{"total_count":2,"page_info":{"total_pages":1},"items":[
+  {"name":"Dreamboat Annie","url_key":"dreamboat-annie-0602547857811","url_suffix":".html","canonical_url":"dreamboat-annie-0602547857811.html","stock_status":"IN_STOCK","small_image":{"url":"https://www.pickuprecords.it/media/a.jpeg"},"price_range":{"minimum_price":{"final_price":{"value":23.9,"currency":"EUR"}}}},
+  {"name":"Circé","url_key":"circe-3770011431915","url_suffix":".html","canonical_url":null,"stock_status":"OUT_OF_STOCK","small_image":{"url":"https://www.pickuprecords.it/media/b.jpeg"},"price_range":{"minimum_price":{"final_price":{"value":24.9,"currency":"EUR"}}}}
+]}}}
