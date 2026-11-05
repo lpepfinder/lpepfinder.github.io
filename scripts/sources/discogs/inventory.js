@@ -35,6 +35,8 @@ export const toRecord = (l) => ({
   path: l.uri,
   image: l.release?.thumbnail || null,
   condition: l.condition || null,
+  // exact match key for the offer ledger and the Discogs wantlist import
+  discogsRelease: l.release?.id || null,
   updated: l.posted || null,
 });
 
