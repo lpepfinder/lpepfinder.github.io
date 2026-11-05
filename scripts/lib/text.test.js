@@ -25,4 +25,6 @@ test('shop names and titles are cleaned for display', () => {
   assert.equal(cleanTitle('Aphex Twin: <br>Cheetah EP [12&Prime;]'), 'Aphex Twin: Cheetah EP [12″]');
   assert.equal(displayTitle('Syro (New 3LP)', 'Aphex Twin'), 'Aphex Twin – Syro (New 3LP)');
   assert.equal(displayTitle('Drukqs', 'Warp Records'), 'Drukqs');
+  assert.equal(displayTitle('Miles Davis- Kind of Blue (CD)', 'Alliance - BT'), 'Miles Davis- Kind of Blue (CD)');
+  assert.equal(displayTitle('DAVIS, MILES "Kind of Blue" LP', 'Alliance'), 'DAVIS, MILES "Kind of Blue" LP');
 });

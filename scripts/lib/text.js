@@ -44,7 +44,10 @@ const LABELISH = /records|recordings|music|label|distribution|distro|ltd|inc|gmb
 /** Title as shown: prefix the artist when a shop puts it only in the vendor field. */
 export function displayTitle(title, vendor) {
   const v = String(vendor || '').trim();
-  if (!v || v.length < 2 || LABELISH.test(v) || /^[A-Z0-9&]{2,4}$/.test(v)) return title;
-  if (/\s[-–—:]\s/.test(title) || title.toLowerCase().includes(v.toLowerCase())) return title;
+  // a vendor with its own separator ("Alliance - BT") is a distributor code, not an artist
+  if (!v || v.length < 2 || LABELISH.test(v) || /^[A-Z0-9&]{2,4}$/.test(v) || /[-–—:/]/.test(v)) return title;
+  // the title already names an artist ("Davis- Kind of Blue" counts too)
+  // or quotes the album ('DAVIS, MILES "Kind of Blue"')
+  if (/\S\s*[-–—:]\s+\S|\S\s+[-–—:]\s*\S|["“”«]/.test(title) || title.toLowerCase().includes(v.toLowerCase())) return title;
   return `${v} – ${title}`;
 }
