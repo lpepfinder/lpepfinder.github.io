@@ -81,24 +81,33 @@
     }
   },
   "site": {
-    "maxMinutes": 300,
+    "shards": 8,
+    "maxMinutes": 290,
     "concurrency": 8,
     "delayMs": 1000,
     "timeoutMs": 20000,
     "maxBytes": 4000000,
     "pagesPerDay": 300,
     "maxMinutesPerShop": 30,
+    "maxUrls": 30000,
+    "maxDepth": 8,
+    "productLaneShare": 0.7,
+    "sitemapFiles": 3,
+    "sitemapDays": 3,
+    "revisit": {
+      "listingDays": 2,
+      "deepListingDays": 7,
+      "productDays": 14,
+      "otherDays": 30,
+      "goneDays": 60
+    },
+    "recordMaxAgeDays": 45,
     "minProductRatio": 0.1,
     "evaluateAfterPages": 300,
     "reevaluateDays": 30,
     "reprobeDays": 30,
-    "maxFrontier": 20000,
-    "maxDepth": 8,
-    "sitemapFiles": 3,
-    "productLaneShare": 0.7,
-    "recordMaxAgeDays": 60,
     "maxRetryAfterSeconds": 120,
-    "checkpointMinutes": 30,
+    "checkpointMinutes": 20,
     "magentoPageSize": 100,
     "sitemapPlatforms": [
       "wix",
@@ -109,9 +118,17 @@
       "bigcommerce",
       "square",
       "shopware",
-      "shopify",
       "magento",
       "ecwid"
-    ]
+    ],
+    "commonCrawl": {
+      "enabled": true,
+      "latest": 3,
+      "crawls": [],
+      "refreshDays": 30,
+      "maxBlocksPerShop": 30,
+      "delayMs": 300,
+      "maxMinutes": 60
+    }
   }
 }

@@ -35,3 +35,15 @@ export function skipEmpty(st, ctx) {
   if (Object.values(st.seen).some((s) => !s.t) || recordCount(st) > 0) return;
   skip(st, ctx, 'no_records');
 }
+
+/**
+ * Common Crawl URLs can be years old. When most of the first ones fail (site rebuilt,
+ * new URL scheme), drop the shop's remaining untried ones instead of fetching 404s.
+ */
+export function checkSeeds(st, ok) {
+  const c = (st.ccSeen ||= { tried: 0, ok: 0 });
+  c.tried++;
+  if (ok) c.ok++;
+  if (c.tried !== 20 || c.ok / c.tried >= 0.3) return;
+  for (const [url, s] of Object.entries(st.seen)) if (s.s === 'cc' && !s.t) delete st.seen[url];
+}

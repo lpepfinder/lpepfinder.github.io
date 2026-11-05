@@ -4,7 +4,7 @@ import { links, canonical, isProductUrl, priority } from './links.js';
 import { createQueue } from './frontier.js';
 import { toRecord } from './record.js';
 import { addUrl, putRecord, markPage, recordCount } from './store.js';
-import { checkYield, countPage, skipEmpty } from './yield.js';
+import { checkYield, countPage, skipEmpty, checkSeeds } from './yield.js';
 import { revisitDays, productDays } from './schedule.js';
 
 const DAY = 864e5;
@@ -28,8 +28,8 @@ export async function crawlPages(ctx, { follow = true, seed }) {
   const queue = createQueue({ isProduct, share: site.productLaneShare });
   const enqueue = (url) => {
     const s = st.seen[url];
-    // new product pages before re-checks of known ones
-    queue.push(url, priority(url, s.d ?? 1) + (s.k === 'p' ? 10 : 0));
+    // new product pages before re-checks of known ones; Common Crawl URLs after the shop's own
+    queue.push(url, priority(url, s.d ?? 1) + (s.k === 'p' ? 10 : 0) + (s.s === 'cc' && !s.t ? 2 : 0));
   };
   for (const [url, s] of Object.entries(st.seen)) if ((s.n || 0) <= now && ctx.allowed(url)) enqueue(url);
   const discover = (url, depth) => {
@@ -51,6 +51,7 @@ export async function crawlPages(ctx, { follow = true, seed }) {
     // validators only for record pages: listings are always read again, for their links
     const res = await ctx.get(url, prev.r ? { etag: prev.e, lastModified: prev.l } : {});
     if (!res) break;
+    if (prev.s === 'cc' && !prev.t) checkSeeds(st, res.ok);
     if (res.status === 304) { Object.assign(prev, { t: ctx.now, n: revisitDays(pDays) }); continue; }
     if (!res.ok) {
       markPage(st, url, ctx.now, revisitDays(res.status === 404 || res.status === 410 ? site.revisit.goneDays : site.revisit.otherDays), 'x');
