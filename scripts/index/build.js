@@ -10,8 +10,12 @@ import { today } from '../ledger/day.js';
 import { updateLedger } from '../ledger/update.js';
 import { ledgerDocs } from '../ledger/search-docs.js';
 import { writeWatchFiles } from '../ledger/watch-files.js';
+import { buildNewArrivals } from '../ledger/new-arrivals.js';
 
-/** Crawl output -> offer ledger, watchlist files in public/w, static search index in public/search and data for the page builder. */
+/**
+ * Crawl output -> offer ledger, watchlist files in public/w, static search index in public/search,
+ * and data for the page builder (site-data.json, new-arrivals.json).
+ */
 const outDir = path.join(PUBLIC, 'search');
 fs.rmSync(outDir, { recursive: true, force: true });
 if (!fs.existsSync(files.products)) {
@@ -30,6 +34,9 @@ const { ledger, events } = await updateLedger({ docs: catalog.docs, shops: catal
 const counts = events.reduce((a, e) => ({ ...a, [e[2]]: (a[e[2]] || 0) + 1 }), {});
 console.log('ledger', day, ledger.rows.size, 'offers, events:', counts);
 console.log('watchlist files', writeWatchFiles({ ledger, shops: catalog.shops, outDir: path.join(PUBLIC, 'w'), settings: config.ledger }));
+const arrivals = buildNewArrivals({ ledger, docs: catalog.docs, shops: catalog.shops, settings: config.newArrivals });
+writeJson(path.join(GENERATED, 'new-arrivals.json'), arrivals);
+console.log('new arrivals', arrivals.total, 'at', arrivals.shops, 'shops');
 const docs = sortDocs([...catalog.docs, ...ledgerDocs(ledger, catalog.docs, catalog.shops, config.ledger)]);
 
 const meta = buildSearchIndex({ ...catalog, docs, outDir, docsPerChunk: config.search.docsPerChunk });

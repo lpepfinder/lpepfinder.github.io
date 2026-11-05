@@ -81,6 +81,13 @@
     "goneSearchDays": 90,
     "goneKeepDays": 365
   },
+  "newArrivals": {
+    "days": 7,
+    "pageItems": 120,
+    "homeItems": 6,
+    "shopItems": 24,
+    "feedItems": 50
+  },
   "discogs": {
     "maxMinutes": 40,
     "maxPagesPerSeller": 300,
