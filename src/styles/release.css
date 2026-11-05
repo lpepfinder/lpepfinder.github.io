@@ -5,14 +5,15 @@ vf-release > details { min-inline-size: 0; }
 vf-release > vf-watch { padding-block-start: var(--space-2); }
 
 vf-release summary {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(var(--price-col), auto);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(var(--price-col), fit-content(var(--price-max)));
   grid-template-areas: "head price" "meta meta";
   gap: var(--space-1) var(--space-3); align-items: start;
   min-block-size: var(--tap); padding: var(--space-2) var(--space-1); border-radius: var(--radius);
   list-style: none; cursor: pointer;
 }
 vf-release summary::-webkit-details-marker { display: none; }
-vf-release summary:has(> :is(img, vf-cover)) { grid-template-columns: var(--thumb-row) minmax(0, 1fr) minmax(var(--price-col), auto); grid-template-areas: "cover head price" "cover meta meta"; }
+vf-release summary > * { min-inline-size: 0; overflow-wrap: anywhere; }
+vf-release summary:has(> :is(img, vf-cover)) { grid-template-columns: var(--thumb-row) minmax(0, 1fr) minmax(var(--price-col), fit-content(var(--price-max))); grid-template-areas: "cover head price" "cover meta meta"; }
 vf-release summary:hover { background: var(--c-hover); }
 /* open/closed in a shape, not only a colour */
 vf-release summary > p::before { content: var(--disclosure); display: inline-block; inline-size: var(--space-4); }
@@ -23,7 +24,8 @@ vf-release summary > vf-cover { background: var(--c-skeleton) var(--thumb-fallba
 vf-release h3 { grid-area: head; margin: 0; font-size: var(--size-0); line-height: var(--leading-tight); overflow-wrap: anywhere; }
 vf-release vf-artist { display: block; font-weight: normal; font-size: var(--size-s); color: var(--c-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 vf-release vf-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font-weight: var(--weight-bold); }
-vf-release summary > vf-price { grid-area: price; }
+/* a long "from" price wraps before it squeezes the title */
+vf-release summary > vf-price { grid-area: price; white-space: normal; }
 vf-release summary > p { grid-area: meta; margin: 0; color: var(--c-muted); font-size: var(--size-s); }
 vf-release abbr { text-decoration: none; }
 /* sold out: less emphasis, same contrast, and the words "Sold out" in the meta line */
