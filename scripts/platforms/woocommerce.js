@@ -35,6 +35,7 @@ export async function* crawl(shop, { maxPages, delayMs, inStockOnly, deadline, s
       const raw = Number(p.prices?.price);
       let url; try { url = new URL(p.permalink); } catch { continue; }
       yield {
+        available: p.is_in_stock !== false,
         title: decodeEntities(p.name).trim(),
         vendor: null,
         type: p.categories?.[0]?.name || null,

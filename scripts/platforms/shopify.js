@@ -24,9 +24,12 @@ export async function probe(origin) {
   };
 }
 
-function toRecord(p, inStockOnly) {
-  const prices = (p.variants || []).filter((v) => v.available || !inStockOnly).map((v) => parseFloat(v.price)).filter((n) => n > 0);
+function toRecord(p) {
+  const available = !!p.variants?.some((v) => v.available);
+  // price of the cheapest variant on sale, or of any variant when sold out
+  const prices = (p.variants || []).filter((v) => v.available || !available).map((v) => parseFloat(v.price)).filter((n) => n > 0);
   return {
+    available,
     title: decodeEntities(p.title).trim(),
     vendor: p.vendor || null,
     type: p.product_type || null,
@@ -56,7 +59,7 @@ async function* list(url, opts, seen, budget, firstIsFatal) {
       seen.add(p.handle);
       if (inStockOnly && !p.variants?.some((v) => v.available)) continue;
       if (!keepProduct(p.title, text(p), strict)) continue;
-      yield toRecord(p, inStockOnly);
+      yield toRecord(p);
     }
     if (products.length < PAGE_SIZE) return false;
     await sleep(delayMs);
