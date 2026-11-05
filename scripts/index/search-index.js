@@ -30,7 +30,7 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
   const postings = new Map();
   for (let i = 0; i < docs.length; i++) {
     const d = docs[i];
-    for (const t of tokenize(`${d.title} ${d.vendor || ''}`)) {
+    for (const t of tokenize(`${d.title} ${d.vendor || ''} ${d.extra || ''}`)) {
       let list = postings.get(t);
       if (!list) postings.set(t, (list = []));
       list.push(i);
@@ -47,9 +47,10 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
 
   const maxDf = Math.max(1000, docs.length * maxDocFrequency);
   const shards = new Map();
-  let dropped = 0;
+  // words in more than 20% of records carry no meaning; the client skips them in queries
+  const common = [];
   for (const [token, ids] of postings) {
-    if (ids.length > maxDf) { dropped++; continue; }
+    if (ids.length > maxDf) { common.push(token); continue; }
     const key = shardFile(shardKey(token));
     if (!shards.has(key)) shards.set(key, {});
     let prev = 0;
@@ -59,7 +60,7 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
 
   // docs are sorted in stock first: ids from soldOutFrom on are sold out
   const soldOutFrom = docs.findIndex((d) => d.available === false);
-  const meta = { docs: docs.length, soldOutFrom: soldOutFrom < 0 ? docs.length : soldOutFrom, shops: shopRows.length, docsPerChunk, tokens: postings.size - dropped, shards: shards.size, builtAt: new Date().toISOString() };
+  const meta = { docs: docs.length, soldOutFrom: soldOutFrom < 0 ? docs.length : soldOutFrom, shops: shopRows.length, docsPerChunk, tokens: postings.size - common.length, common, shards: shards.size, builtAt: new Date().toISOString() };
   writeStatic(path.join(outDir, 'meta.json'), JSON.stringify(meta));
   return meta;
 }

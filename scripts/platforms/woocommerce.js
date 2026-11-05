@@ -44,6 +44,7 @@ export async function* crawl(shop, { maxPages, delayMs, inStockOnly, deadline, s
         path: url.host.replace(/^www\./, '') === new URL(origin).host.replace(/^www\./, '') ? url.pathname : url.href,
         image: (p.images?.[0]?.thumbnail || p.images?.[0]?.src || '').replace(/^https?:/, '') || null,
         updated: null,
+        extra: [p.sku, ...(p.tags || []).map((t) => t.name)].filter(Boolean).join(' ').slice(0, 200) || null,
       };
     }
     if (res.data.length < PAGE_SIZE) return;

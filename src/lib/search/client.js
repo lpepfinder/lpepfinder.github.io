@@ -35,7 +35,9 @@ export class SearchClient {
   /** All matching doc ids, in rank order. */
   async match(query) {
     await this.ready;
-    const tokens = tokenize(query);
+    // words too common to be indexed ("records", "vinyl") don't narrow the search: skip them
+    const common = new Set(this.meta.common || []);
+    const tokens = tokenize(query).filter((t, _, all) => !common.has(t) || all.every((x) => common.has(x)));
     if (!tokens.length) return [];
     const lists = await Promise.all(tokens.map((t, i) => this.postings(t, i === tokens.length - 1)));
     return intersect(lists);

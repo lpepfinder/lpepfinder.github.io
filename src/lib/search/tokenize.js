@@ -4,7 +4,7 @@
  */
 export const STOPWORDS = new Set([
   'the', 'and', 'of', 'a', 'an', 'in', 'on', 'to', 'for', 'by', 'with',
-  'lp', 'vinyl', 'record', 'records', 'new', 'used', 'sealed',
+  'lp', 'vinyl', 'new', 'used', 'sealed',
   'le', 'la', 'les', 'de', 'des', 'du', 'et', 'der', 'die', 'das', 'und', 'el', 'los', 'il', 'di',
 ]);
 
@@ -16,12 +16,19 @@ export const normalize = (s) => String(s || '')
   .replace(/[^\p{L}\p{N}]+/gu, ' ')
   .trim();
 
-/** Unique tokens of 2+ characters, stopwords removed. */
+/**
+ * Unique tokens of 2+ characters, stopwords removed. Catalog numbers written
+ * with a space or dash ("UR-001", "AX 001") also give the joined form ("ur001").
+ */
 export function tokenize(s) {
   const out = new Set();
-  for (const t of normalize(s).split(' ')) {
+  const words = normalize(s).split(' ');
+  words.forEach((t, i) => {
     if (t.length >= 2 && !STOPWORDS.has(t)) out.add(t);
-  }
+    const next = words[i + 1];
+    if (next && /^\p{L}{1,6}$/u.test(t) && /^\d{1,6}$/.test(next)) out.add(t + next);
+    if (/^\p{L}{1,6}\d{1,6}$/u.test(t)) out.add(t);
+  });
   return [...out];
 }
 
