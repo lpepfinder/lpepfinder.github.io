@@ -337,7 +337,8 @@
     "covers": "Afficher les pochettes",
     "noneFiltered": "Aucun disque chargé pour l’instant ne correspond à ces filtres.",
     "didYouMean": "Vouliez-vous dire {query} ?",
-    "without": "Sans « {word} » : {link}"
+    "without": "Sans « {word} » : {link}",
+    "atShop": "{price} chez le disquaire"
   },
   "statusReason": {
     "dns": "L’adresse web n’existe plus",
@@ -350,5 +351,10 @@
     "serverError": "Le site a une erreur de serveur",
     "parked": "Le domaine est parqué ou à vendre",
     "unreachable": "Le site est injoignable"
+  },
+  "currency": {
+    "label": "Prix en",
+    "shop": "Devise du disquaire",
+    "rates": "Taux du {date}, BCE"
   }
 }

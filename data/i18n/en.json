@@ -337,7 +337,8 @@
     "covers": "Show covers",
     "noneFiltered": "No record loaded so far matches these filters.",
     "didYouMean": "Did you mean {query}?",
-    "without": "Without “{word}”: {link}"
+    "without": "Without “{word}”: {link}",
+    "atShop": "{price} at the shop"
   },
   "statusReason": {
     "dns": "The web address no longer exists",
@@ -350,5 +351,10 @@
     "serverError": "The site has a server error",
     "parked": "The domain is parked or for sale",
     "unreachable": "The site cannot be reached"
+  },
+  "currency": {
+    "label": "Prices in",
+    "shop": "Shop’s currency",
+    "rates": "Rates of {date}, ECB"
   }
 }

@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import WatchBackup from '../../components/WatchBackup.astro';
+import CurrencySelect from '../../components/CurrencySelect.astro';
 import { t, localeParams, localPath } from '../../lib/i18n.js';
 import { pageTitle } from '../../lib/seo.js';
 
@@ -21,6 +22,7 @@ const views = [['changes', 'viewChanges'], ['now', 'viewNow'], ['all', 'viewAll'
   </vf-watch-shared>
   <vf-watch-page status="idle" view="changes" search={localPath(lang, '/')}>
     <vf-watch-summary hidden></vf-watch-summary>
+    <CurrencySelect lang={lang} id="currency-watch" />
     <vf-progress hidden>
       <label for="watch-progress"></label>
       <progress id="watch-progress"></progress>

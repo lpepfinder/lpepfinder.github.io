@@ -337,7 +337,8 @@
     "covers": "Mostra le copertine",
     "noneFiltered": "Nessun disco caricato finora corrisponde a questi filtri.",
     "didYouMean": "Forse cercavi {query}?",
-    "without": "Senza «{word}»: {link}"
+    "without": "Senza «{word}»: {link}",
+    "atShop": "{price} in negozio"
   },
   "statusReason": {
     "dns": "L’indirizzo web non esiste più",
@@ -350,5 +351,10 @@
     "serverError": "Il sito ha un errore del server",
     "parked": "Il dominio è parcheggiato o in vendita",
     "unreachable": "Il sito non è raggiungibile"
+  },
+  "currency": {
+    "label": "Prezzi in",
+    "shop": "Valuta del negozio",
+    "rates": "Cambi del {date}, BCE"
   }
 }

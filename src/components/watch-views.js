@@ -1,7 +1,8 @@
-import { t, tn, formatDay, formatPrice, countryName } from './i18n.js';
+import { t, tn, formatDay, countryName } from './i18n.js';
 import { region } from './viewer.js';
 import { el, attrs } from './dom.js';
 import { change } from './watch-render.js';
+import { price } from './price.js';
 
 /**
  * The Changes and Available now views of the watch page, as DOM.
@@ -9,14 +10,14 @@ import { change } from './watch-render.js';
  */
 
 /** Changes grouped by day, newest first: a <section> with an H3 per day; unseen changes are not marked seen. */
-export function changesByDay({ changes, past }, shops) {
+export function changesByDay({ changes, past }, shops, rates) {
   const rows = [...changes.map((c) => [c, false]), ...past.map((c) => [c, true])]
     .sort((a, b) => (b[0][8] || '').localeCompare(a[0][8] || ''));
   const days = new Map();
   for (const [c, seen] of rows) {
     const d = (c[8] || '').slice(0, 10);
     if (!days.has(d)) days.set(d, []);
-    days.get(d).push(change(c, shops, seen, 'h4'));
+    days.get(d).push(change(c, shops, seen, 'h4', rates));
   }
   return [...days].map(([d, items]) => el('section', {},
     el('h3', {}, el('time', { dateTime: d, textContent: d ? formatDay(d) : '' })),
@@ -47,7 +48,7 @@ export function byShop(items, rows, shopIds, shops) {
 const collator = new Intl.Collator(undefined, { sensitivity: 'base', numeric: true });
 
 /** One shop: a <details> whose records are drawn the first time it opens (long lists stay cheap). */
-export function shopGroup(g, search) {
+export function shopGroup(g, search, rates) {
   const where = [g.shop.name, g.shop.country && countryName(g.shop.country)].filter(Boolean).join(' · ');
   const list = el('ul');
   const details = el('details', {},
@@ -59,7 +60,7 @@ export function shopGroup(g, search) {
     const sorted = [...g.records].sort((a, b) => collator.compare(a.title, b.title));
     list.append(...sorted.map((r) => el('li', {},
       el('a', { href: `${search}?q=${encodeURIComponent(r.title)}`, textContent: r.title }),
-      r.price != null ? el('vf-price', {}, el('data', { value: r.price, textContent: formatPrice(r.price, g.shop.currency) })) : null)));
+      r.price != null ? price(r.price, g.shop.currency, rates) : null)));
   });
   return attrs(el('vf-watch-shop', {}, details), { country: g.shop.country || null, count: g.records.length });
 }

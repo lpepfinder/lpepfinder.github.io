@@ -317,7 +317,8 @@
     "covers": "ジャケットを表示",
     "noneFiltered": "これまでに読み込んだレコードに、この条件に合うものはありません。",
     "didYouMean": "もしかして：{query}",
-    "without": "「{word}」なし：{link}"
+    "without": "「{word}」なし：{link}",
+    "atShop": "お店では{price}"
   },
   "statusReason": {
     "dns": "このウェブアドレスはもう存在しません",
@@ -330,5 +331,10 @@
     "serverError": "サイトでサーバーエラーが起きています",
     "parked": "ドメインが駐車中か売りに出ています",
     "unreachable": "サイトにアクセスできません"
+  },
+  "currency": {
+    "label": "表示通貨",
+    "shop": "お店の通貨",
+    "rates": "{date}のレート（欧州中央銀行）"
   }
 }

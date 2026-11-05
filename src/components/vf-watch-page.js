@@ -4,6 +4,7 @@ import { state } from '../lib/watch/diff.js';
 import * as data from '../lib/watch/data.js';
 import { changesByDay, byShop, shopGroup } from './watch-views.js';
 import { t, tn, formatNumber, formatDay } from './i18n.js';
+import { rates, CURRENCY_EVENT } from './viewer.js';
 import './vf-watch-all.js';
 
 const MAX_PAST = 100;
@@ -26,6 +27,7 @@ export class VfWatchPage extends HTMLElement {
     this.views.all.setAttribute('search', this.search);
     this.shops = new Map();
     this.rows = {};
+    this.rates = {};
     this.shopIds = [];
     this.querySelector('nav').addEventListener('click', (e) => {
       const a = e.target.closest('a[href]');
@@ -36,6 +38,7 @@ export class VfWatchPage extends HTMLElement {
     });
     addEventListener('popstate', () => this.show(false));
     addEventListener(data.PROGRESS, (e) => this.step(e.detail));
+    addEventListener(CURRENCY_EVENT, () => { this.renderChanges(); this.renderNow(); });
     const leave = () => this.markSeen();
     addEventListener('pagehide', leave);
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') leave(); });
@@ -78,7 +81,8 @@ export class VfWatchPage extends HTMLElement {
     this.setAttribute('status', 'checking');
     if (due()) await check().catch(() => {});
     const keys = Object.keys(load().items);
-    const [rows, shopIds] = await Promise.all([keys.length ? data.now(keys) : {}, data.shops(), this.loadShops()]);
+    const [rows, shopIds, table] = await Promise.all([keys.length ? data.now(keys) : {}, data.shops(), rates(), this.loadShops()]);
+    this.rates = table;
     this.rows = rows;
     this.shopIds = shopIds;
     const { refreshed, items } = load();
@@ -122,14 +126,14 @@ export class VfWatchPage extends HTMLElement {
   renderChanges() {
     const list = load();
     const box = this.views.changes;
-    box.querySelector('vf-watch-days').replaceChildren(...changesByDay(list, this.shops));
+    box.querySelector('vf-watch-days').replaceChildren(...changesByDay(list, this.shops, this.rates));
     box.setAttribute('count', list.changes.length + list.past.length);
   }
 
   renderNow() {
     const groups = byShop(load().items, this.rows, this.shopIds, this.shops);
     const box = this.views.now;
-    box.querySelector('vf-watch-shops').replaceChildren(...groups.map((g) => shopGroup(g, this.search)));
+    box.querySelector('vf-watch-shops').replaceChildren(...groups.map((g) => shopGroup(g, this.search, this.rates)));
     box.setAttribute('count', groups.length);
   }
 

@@ -337,7 +337,8 @@
     "covers": "Cover zeigen",
     "noneFiltered": "Keine der bisher geladenen Platten passt zu diesen Filtern.",
     "didYouMean": "Meinten Sie {query}?",
-    "without": "Ohne „{word}“: {link}"
+    "without": "Ohne „{word}“: {link}",
+    "atShop": "{price} im Laden"
   },
   "statusReason": {
     "dns": "Die Webadresse gibt es nicht mehr",
@@ -350,5 +351,10 @@
     "serverError": "Die Seite hat einen Serverfehler",
     "parked": "Die Domain ist geparkt oder zu verkaufen",
     "unreachable": "Die Seite ist nicht erreichbar"
+  },
+  "currency": {
+    "label": "Preise in",
+    "shop": "Währung des Ladens",
+    "rates": "Kurse vom {date}, EZB"
   }
 }

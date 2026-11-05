@@ -1,6 +1,7 @@
 ---
 import config from '../../data/config.json';
 import { t, languages, localPath } from '../lib/i18n.js';
+import CurrencySelect from './CurrencySelect.astro';
 
 /** Site links (shops, artists, about: mostly for browsing and search engines), languages, meta links. */
 const { lang, path } = Astro.props;
@@ -16,6 +17,7 @@ const site = [
     <ul>{site.map((n) => <li><a href={n.href}>{t(lang, n.key)}</a></li>)}</ul>
   </nav>
   <p>{t(lang, 'footerNote')}</p>
+  <CurrencySelect lang={lang} id="currency-footer" />
   <nav aria-label={t(lang, 'navLanguage')}>
     <ul>{languages.map((l) => (
       <li><a href={localPath(l, path || '/')} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{t(l, 'langName')}</a></li>

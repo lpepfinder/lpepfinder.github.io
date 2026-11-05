@@ -1,5 +1,6 @@
 {
-  "description": "The viewer's currency from the region of their browser language (src/lib/currency.js). Countries using the euro, then other regions by ISO 3166 code. Regions not listed get no approximate price.",
+  "description": "The viewer's currency from the region of their browser language (src/lib/currency.js). Countries using the euro, then other regions by ISO 3166 code. The choices are the options of the Prices in menu; a viewer whose region currency is not among them starts with the shops' own prices.",
+  "choices": ["EUR", "USD", "GBP", "JPY", "CAD", "AUD", "CHF", "SEK", "NOK", "DKK", "PLN"],
   "euro": ["AT", "BE", "HR", "CY", "EE", "FI", "FR", "DE", "GR", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PT", "SK", "SI", "ES", "AD", "MC", "SM", "VA", "ME", "XK", "BG"],
   "regions": {
     "GB": "GBP", "IM": "GBP", "JE": "GBP", "GG": "GBP",

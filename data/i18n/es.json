@@ -337,7 +337,8 @@
     "covers": "Mostrar portadas",
     "noneFiltered": "Ningún disco cargado hasta ahora coincide con estos filtros.",
     "didYouMean": "¿Quisiste decir {query}?",
-    "without": "Sin «{word}»: {link}"
+    "without": "Sin «{word}»: {link}",
+    "atShop": "{price} en la tienda"
   },
   "statusReason": {
     "dns": "La dirección web ya no existe",
@@ -350,5 +351,10 @@
     "serverError": "El sitio tiene un error de servidor",
     "parked": "El dominio está aparcado o en venta",
     "unreachable": "No se puede acceder al sitio"
+  },
+  "currency": {
+    "label": "Precios en",
+    "shop": "Moneda de la tienda",
+    "rates": "Tipos del {date}, BCE"
   }
 }

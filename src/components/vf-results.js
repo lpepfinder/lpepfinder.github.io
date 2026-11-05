@@ -1,6 +1,6 @@
 import { t, tn, formatNumber } from './i18n.js';
 import { addToGroups, groupView, orderGroups, totals } from '../lib/search/group.js';
-import { region, rates, comparable } from './viewer.js';
+import { region, rates, comparable, CURRENCY_EVENT } from './viewer.js';
 import { el } from './dom.js';
 import './vf-filters.js';
 import './vf-release.js';
@@ -24,6 +24,7 @@ export class VfResults extends HTMLElement {
     this.groups = new Map();
     this.moreButton.addEventListener('click', () => this.dispatchEvent(new Event('more')));
     this.querySelector('button[name="retry"]')?.addEventListener('click', () => this.dispatchEvent(new Event('retry')));
+    addEventListener(CURRENCY_EVENT, () => { if (this.groups.size) this.render(true); });
     this.filters.addEventListener('filters', () => {
       this.render(true);
       this.live.textContent = this.countLine.textContent;

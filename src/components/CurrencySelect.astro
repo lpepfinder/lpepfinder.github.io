@@ -1,0 +1,19 @@
+---
+import { t } from '../lib/i18n.js';
+import table from '../../data/currencies.json';
+
+/** "Prices in" menu (<vf-currency>), filled in by vf-currency.js; `id` must be unique on the page. */
+const { lang, id } = Astro.props;
+const names = new Intl.DisplayNames([lang], { type: 'currency' });
+---
+<vf-currency>
+  <label for={id}>{t(lang, 'currency.label')}</label>
+  <select id={id}>
+    {table.choices.map((code) => <option value={code}>{code} · {names.of(code)}</option>)}
+    <option value="shop">{t(lang, 'currency.shop')}</option>
+  </select>
+  <small></small>
+</vf-currency>
+<script>
+  import './vf-currency.js';
+</script>

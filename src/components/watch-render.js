@@ -1,19 +1,20 @@
 import { t, tn, lang, formatPrice, formatNumber } from './i18n.js';
 import { el, attrs } from './dom.js';
+import { price as priceTag } from './price.js';
 
 /** DOM for the watch page: one change (<vf-change>), one watched record (<vf-watch-item>). */
 const day = new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'short' });
 const link = (href, text, rel) => (href ? el('a', { href, rel, textContent: text }) : text);
 
-/** A change row [key, offerKey, event, priceCents, currency, title, url, shopId, date]; shops: id → { name, country }; heading: its tag. */
-export function change(row, shops, seen, heading = 'h3') {
+/** A change row [key, offerKey, event, priceCents, currency, title, url, shopId, date]; shops: id → { name, country }; heading: its tag; rates for the Prices in currency. */
+export function change(row, shops, seen, heading = 'h3', rates = {}) {
   const [, , event, price, currency, title, url, shopId, date] = row;
   const shop = shops.get(shopId);
   const where = [shop?.name || shopId, shop?.country].filter(Boolean).join(' · ');
   return el('li', {}, attrs(el('vf-change', {},
     el('vf-event', { textContent: t(`watchPage.event.${event}`) }),
     el(heading, {}, link(url, title, 'nofollow')),
-    price != null ? el('vf-price', {}, el('data', { value: price, textContent: formatPrice(price, currency) })) : null,
+    price != null ? priceTag(price, currency, rates) : null,
     el('p', {}, where && `${where} · `, el('time', { dateTime: date, textContent: day.format(new Date(date)) })),
   ), { event, seen: String(seen) }));
 }
