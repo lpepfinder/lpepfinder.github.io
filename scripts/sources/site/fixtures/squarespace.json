@@ -1,0 +1,23 @@
+{
+  "pagination": { "nextPage": true, "nextPageOffset": 205, "nextPageUrl": "/shop?offset=205", "pageSize": 200 },
+  "items": [
+    {
+      "title": "Olivia Dean | The Art Of Loving",
+      "fullUrl": "/shop/p/olivia-dean-the-art-of-loving",
+      "assetUrl": "https://images.squarespace-cdn.com/od.jpg",
+      "structuredContent": { "_type": "StoreItem" },
+      "variants": [
+        { "price": 3200, "priceMoney": { "currency": "GBP", "value": "32.00" }, "onSale": false, "salePriceMoney": { "currency": "GBP", "value": "0.00" }, "unlimited": false, "qtyInStock": 2 }
+      ]
+    },
+    {
+      "title": "Fela Kuti - Zombie LP",
+      "fullUrl": "/shop/p/fela-kuti-zombie",
+      "assetUrl": "https://images.squarespace-cdn.com/fk.jpg",
+      "variants": [
+        { "price": 2600, "priceMoney": { "currency": "GBP", "value": "26.00" }, "onSale": true, "salePriceMoney": { "currency": "GBP", "value": "20.00" }, "unlimited": false, "qtyInStock": 0 }
+      ]
+    },
+    { "title": "About us", "fullUrl": "/about" }
+  ]
+}

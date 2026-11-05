@@ -1,0 +1,4 @@
+[
+  { "name": "Sun Ra - Lanquidity", "url": "/product/sun-ra-lanquidity", "status": "active", "price": 30.0, "images": [{ "url": "https://assets.bigcartel.com/sr.jpg" }], "options": [{ "name": "Default", "price": 30.0, "sold_out": false }] },
+  { "name": "Alice Coltrane - Ptah", "url": "/product/alice-coltrane-ptah", "status": "sold-out", "price": 28.0, "images": [], "options": [{ "name": "Default", "price": 28.0, "sold_out": true }] }
+]

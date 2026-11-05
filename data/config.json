@@ -58,7 +58,7 @@
   },
   "products": {
     "include": "vinyl|\\blp\\b|\\d?lp\\b|\\bep\\b|12\\s?(\"|”|inch|in\\b)|10\\s?(\"|”|inch)|7\\s?(\"|”|inch)|\\bsingle\\b|album|schallplatte|disque|vinile|vinilo|vinyle|レコード|record|\\bcds?\\b|cassette|\\bk7\\b|\\bcd\\b|compact disc|maxi",
-    "exclude": "t-?shirt|hoodie|sweatshirt|tote|\\bmug\\b|gift card|geschenkgutschein|carte cadeau|poster|slipmat|turntable|stylus|cartridge|needle|record cleaner|cleaning|inner sleeves?|outer sleeves?|storage|crate|\\bcap\\b|beanie|sticker|button|badge|book\\b|magazine|dvd|blu-?ray|vhs",
+    "exclude": "t-?shirt|hoodie|sweatshirt|tote|\\bmug\\b|gift card|gift ?(voucher|certificate)|geschenkgutschein|carte cadeau|poster|slipmat|turntable|stylus|cartridge|needle|record cleaner|cleaning|inner sleeves?|outer sleeves?|storage|crate|\\bcap\\b|beanie|sticker|button|badge|book\\b|magazine|dvd|blu-?ray|vhs",
     "minShopMusicRatio": 0.05,
     "strictBelowRatio": 0.5
   },
@@ -81,6 +81,57 @@
     "requestsPerMinute": {
       "anonymous": 24,
       "token": 55
+    }
+  },
+  "site": {
+    "shards": 8,
+    "maxMinutes": 290,
+    "concurrency": 8,
+    "delayMs": 1000,
+    "timeoutMs": 20000,
+    "maxBytes": 4000000,
+    "pagesPerDay": 300,
+    "maxMinutesPerShop": 30,
+    "maxUrls": 30000,
+    "maxDepth": 8,
+    "productLaneShare": 0.7,
+    "sitemapFiles": 3,
+    "sitemapDays": 3,
+    "revisit": {
+      "listingDays": 2,
+      "deepListingDays": 7,
+      "productDays": 14,
+      "otherDays": 30,
+      "goneDays": 60
+    },
+    "recordMaxAgeDays": 45,
+    "minProductRatio": 0.1,
+    "evaluateAfterPages": 300,
+    "reevaluateDays": 30,
+    "reprobeDays": 30,
+    "maxRetryAfterSeconds": 120,
+    "checkpointMinutes": 20,
+    "magentoPageSize": 100,
+    "sitemapPlatforms": [
+      "wix",
+      "woocommerce",
+      "wordpress",
+      "prestashop",
+      "opencart",
+      "bigcommerce",
+      "square",
+      "shopware",
+      "magento",
+      "ecwid"
+    ],
+    "commonCrawl": {
+      "enabled": true,
+      "latest": 3,
+      "crawls": [],
+      "refreshDays": 30,
+      "maxBlocksPerShop": 30,
+      "delayMs": 300,
+      "maxMinutes": 60
     }
   }
 }

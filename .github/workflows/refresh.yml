@@ -1,5 +1,7 @@
 # Daily: check every shop, crawl catalogs (and find new shops on the 1st of the month),
 # keep the result in the "data" release, then deploy the site.
+# Next to it, the site crawler reads shops without a catalog API, in shards (data/config.json
+# site.shards). Each shard keeps its own release asset site-<k>.tar.gz, so no job overwrites another's.
 name: Refresh
 
 on:
@@ -63,8 +65,52 @@ jobs:
           gh release view data > /dev/null 2>&1 || gh release create data --title "Crawl data" --notes "Latest output of the Refresh workflow, used by Deploy."
           gh release upload data generated.tar.gz --clobber
 
+  site-plan:
+    runs-on: ubuntu-latest
+    outputs:
+      shards: ${{ steps.plan.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        run: echo "shards=$(node -p "JSON.stringify([...Array(require('./data/config.json').site.shards).keys()])")" >> "$GITHUB_OUTPUT"
+
+  site:
+    needs: site-plan
+    runs-on: ubuntu-latest
+    # the crawler stops itself at site.maxMinutes (290) and saves its state; this is the safety net
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.site-plan.outputs.shards) }}
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SITE_SHARD: ${{ matrix.shard }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # shop states from yesterday's check, and this shard's own crawl state
+      - name: Previous data
+        run: |
+          gh release download data --pattern generated.tar.gz && tar xzf generated.tar.gz || echo "no previous crawl data"
+          gh release download data --pattern "site-$SITE_SHARD.tar.gz" && tar xzf "site-$SITE_SHARD.tar.gz" || echo "no previous site data"
+      - run: npm run site
+      - name: Publish site data
+        run: |
+          tar czf "site-$SITE_SHARD.tar.gz" generated/site-$SITE_SHARD-*.json* "generated/products-site-$SITE_SHARD.ndjson.gz"
+          gh release view data > /dev/null 2>&1 || gh release create data --title "Crawl data" --notes "Latest output of the Refresh workflow, used by Deploy." || true
+          gh release upload data "site-$SITE_SHARD.tar.gz" --clobber
+
   deploy:
-    needs: refresh
+    needs: [refresh, site]
+    # a failed site shard keeps yesterday's asset: deploy whenever the shop crawl succeeded
+    if: always() && needs.refresh.result == 'success'
     uses: ./.github/workflows/deploy.yml
     permissions:
       contents: read
