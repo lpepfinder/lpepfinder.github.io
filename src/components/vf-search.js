@@ -36,6 +36,7 @@ export class VfSearch extends HTMLElement {
       history.pushState(null, '', url);
     }
     this.setAttribute('status', q ? 'loading' : 'idle');
+    document.querySelector('vf-app')?.setAttribute('mode', q ? 'results' : 'home');
     if (!q) { this.results.idle(); return; }
     document.title = t('searchTitle', { query: q });
     this.results.loading();

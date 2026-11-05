@@ -1,19 +1,15 @@
 ---
 import { t, localPath } from '../lib/i18n.js';
 
-/** Server-rendered GET search form; <vf-search> runs the query in the browser. */
-const { lang, examples = [] } = Astro.props;
-const home = localPath(lang, '/');
+/** Server-rendered GET search form, in the header of every page; <vf-search> runs the query in the browser. */
+const { lang } = Astro.props;
 ---
-<vf-search per-page="30">
-  <form role="search" action={home} method="get">
+<vf-search per-page="30" status="idle">
+  <form id="search" role="search" action={localPath(lang, '/')} method="get">
     <label for="q">{t(lang, 'searchLabel')}</label>
-    <input id="q" name="q" type="search" placeholder={t(lang, 'searchPlaceholder')} autocomplete="off" enterkeyhint="search" required>
-    <button type="submit">{t(lang, 'searchButton')}</button>
+    <input id="q" name="q" type="search" placeholder={t(lang, 'searchPlaceholder')} autocomplete="off" spellcheck="false" enterkeyhint="search" required>
+    <button type="submit" aria-label={t(lang, 'searchButton')}><vf-icon name="search"></vf-icon></button>
   </form>
-  {examples.length > 0 && (
-    <p>{t(lang, 'searchExamples', { examples: '' })}{examples.map((e, i) => <>{i > 0 && ', '}<a href={`${home}?q=${encodeURIComponent(e)}`}>{e}</a></>)}</p>
-  )}
 </vf-search>
 <script>
   import './vf-search.js';

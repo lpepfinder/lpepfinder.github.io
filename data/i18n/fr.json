@@ -113,5 +113,10 @@
   "resultCountry": "Pays",
   "skipToContent": "Aller au contenu",
   "navPrimary": "Principale",
-  "navMeta": "Informations sur le site"
+  "navMeta": "Informations sur le site",
+  "navMenu": "Menu",
+  "homeTitle": "Vinyles en stock chez les disquaires indépendants",
+  "homeTryTitle": "Essayez",
+  "homeAllShops": "Les {shops} disquaires dans {countries} pays",
+  "homeAllArtists": "Tous les artistes de A à Z"
 }

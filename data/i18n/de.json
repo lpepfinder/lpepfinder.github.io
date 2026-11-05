@@ -113,5 +113,10 @@
   "resultCountry": "Land",
   "skipToContent": "Zum Inhalt springen",
   "navPrimary": "Hauptnavigation",
-  "navMeta": "Informationen zur Website"
+  "navMeta": "Informationen zur Website",
+  "navMenu": "Menü",
+  "homeTitle": "Vinyl vorrätig in unabhängigen Plattenläden",
+  "homeTryTitle": "Probier mal",
+  "homeAllShops": "Alle {shops} Plattenläden in {countries} Ländern",
+  "homeAllArtists": "Alle Künstler von A bis Z"
 }

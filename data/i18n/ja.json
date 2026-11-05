@@ -113,5 +113,10 @@
   "resultCountry": "国",
   "skipToContent": "本文へスキップ",
   "navPrimary": "メイン",
-  "navMeta": "サイト情報"
+  "navMeta": "サイト情報",
+  "navMenu": "メニュー",
+  "homeTitle": "インディペンデントのレコード店にあるレコード在庫",
+  "homeTryTitle": "例えば",
+  "homeAllShops": "{countries} か国の全 {shops} 店のレコード店",
+  "homeAllArtists": "アーティスト一覧（A–Z）"
 }

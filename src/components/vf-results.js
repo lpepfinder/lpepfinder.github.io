@@ -30,6 +30,8 @@ export class VfResults extends HTMLElement {
   }
 
   loading() {
+    this.list.replaceChildren();
+    this.moreButton.hidden = true;
     this.live.textContent = t('searching');
     this.status = 'loading';
   }

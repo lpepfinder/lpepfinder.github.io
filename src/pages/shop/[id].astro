@@ -28,6 +28,6 @@ const ld = [{
     </p>
     <p><a href={shop.url} rel="noopener">{t(lang, 'shopVisit')}: {new URL(shop.url).host}</a></p>
     {shop.latest.length > 0 && <h2>{t(lang, 'shopLatest')}</h2>}
-    {shop.latest.length > 0 && <RecordTable lang={lang} records={shop.latest} shopsById={c.shopsById} />}
+    {shop.latest.length > 0 && <RecordTable lang={lang} records={shop.latest} shopsById={c.shopsById} showShop={false} />}
   </article>
 </Base>

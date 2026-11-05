@@ -113,5 +113,10 @@
   "resultCountry": "Country",
   "skipToContent": "Skip to content",
   "navPrimary": "Main",
-  "navMeta": "Site information"
+  "navMeta": "Site information",
+  "navMenu": "Menu",
+  "homeTitle": "Vinyl in stock at independent record shops",
+  "homeTryTitle": "Try",
+  "homeAllShops": "All {shops} record shops in {countries} countries",
+  "homeAllArtists": "All artists A–Z"
 }

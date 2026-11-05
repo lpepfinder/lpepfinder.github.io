@@ -113,5 +113,10 @@
   "resultCountry": "País",
   "skipToContent": "Saltar al contenido",
   "navPrimary": "Principal",
-  "navMeta": "Información del sitio"
+  "navMeta": "Información del sitio",
+  "navMenu": "Menú",
+  "homeTitle": "Vinilos en stock en tiendas de discos independientes",
+  "homeTryTitle": "Prueba",
+  "homeAllShops": "Las {shops} tiendas de discos en {countries} países",
+  "homeAllArtists": "Todos los artistas de la A a la Z"
 }

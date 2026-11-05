@@ -1,0 +1,23 @@
+---
+import config from '../../data/config.json';
+import { t, languages, localPath } from '../lib/i18n.js';
+
+/** Disclaimer, language switcher and site links. */
+const { lang, path } = Astro.props;
+---
+<footer>
+  <p>{t(lang, 'footerNote')}</p>
+  <nav aria-label={t(lang, 'navLanguage')}>
+    <ul>{languages.map((l) => (
+      <li><a href={localPath(l, path || '/')} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{t(l, 'langName')}</a></li>
+    ))}</ul>
+  </nav>
+  <nav aria-label={t(lang, 'navMeta')}>
+    <ul>
+      <li><a href={localPath(lang, '/privacy/')}>{t(lang, 'navPrivacy')}</a></li>
+      <li><a href="/status/">{t(lang, 'navStatus')}</a></li>
+      <li><a href={config.repository}>GitHub</a></li>
+      <li><a href={config.analytics.publicDashboard}>Analytics</a></li>
+    </ul>
+  </nav>
+</footer>

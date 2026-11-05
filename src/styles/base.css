@@ -2,7 +2,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-padding-block-start: calc(var(--header-h) + var(--space-4)); }
 body { margin: 0; background: var(--c-bg); color: var(--c-fg); font: var(--size-0)/var(--leading) var(--font-body); }
-body > *, main > * { min-inline-size: 0; }
+main > * { min-inline-size: 0; }
 a { color: var(--c-link); }
 :focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 h1 { font-size: var(--size-3); line-height: var(--leading-tight); margin: 0; text-wrap: balance; }

@@ -2,6 +2,8 @@
 import config from '../../data/config.json';
 import { t, languages, defaultLanguage, localPath, clientStrings } from '../lib/i18n.js';
 import Ads from '../components/Ads.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 /**
@@ -9,17 +11,11 @@ import '../styles/global.css';
  *  lang        page language
  *  path        language-neutral path when the page exists in every language ("/shops/"), else omit
  *  title, description, noindex, ld (JSON-LD objects)
+ *  mode        "home" on the search home page (vf-search switches it to "results"), else "page"
  */
-const { lang = defaultLanguage, path, title, description, noindex = false, ld = [] } = Astro.props;
+const { lang = defaultLanguage, path, title, description, noindex = false, ld = [], mode = 'page' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const abs = (p) => new URL(p, Astro.site).href;
-const nav = [
-  { href: localPath(lang, '/'), key: 'navSearch' },
-  { href: localPath(lang, '/shops/'), key: 'navShops' },
-  { href: '/artists/', key: 'navArtists' },
-  { href: localPath(lang, '/about/'), key: 'navAbout' },
-  { href: localPath(lang, '/submit/'), key: 'navSubmit' },
-];
 const strings = JSON.stringify(clientStrings(lang)).replace(/</g, '\\u003c');
 ---
 <!doctype html>
@@ -49,30 +45,12 @@ const strings = JSON.stringify(clientStrings(lang)).replace(/</g, '\\u003c');
 </head>
 <body>
   <a href="#main">{t(lang, 'skipToContent')}</a>
-  <header>
-    <a href={localPath(lang, '/')} rel="home"><img src="/favicon.png" alt="" width="32" height="32"> {config.name}</a>
-    <nav aria-label={t(lang, 'navPrimary')}>
-      <ul>{nav.map((n) => <li><a href={n.href} aria-current={n.href === Astro.url.pathname ? 'page' : undefined}>{t(lang, n.key)}</a></li>)}</ul>
-    </nav>
-  </header>
-  <main id="main" tabindex="-1">
-    <slot />
-  </main>
-  <footer>
-    <p>{t(lang, 'footerNote')}</p>
-    <nav aria-label={t(lang, 'navLanguage')}>
-      <ul>{languages.map((l) => (
-        <li><a href={localPath(l, path || '/')} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{t(l, 'langName')}</a></li>
-      ))}</ul>
-    </nav>
-    <nav aria-label={t(lang, 'navMeta')}>
-      <ul>
-        <li><a href={localPath(lang, '/privacy/')}>{t(lang, 'navPrivacy')}</a></li>
-        <li><a href="/status/">{t(lang, 'navStatus')}</a></li>
-        <li><a href={config.repository}>GitHub</a></li>
-        <li><a href={config.analytics.publicDashboard}>Analytics</a></li>
-      </ul>
-    </nav>
-  </footer>
+  <vf-app mode={mode}>
+    <Header lang={lang} current={Astro.url.pathname} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer lang={lang} path={path} />
+  </vf-app>
 </body>
 </html>

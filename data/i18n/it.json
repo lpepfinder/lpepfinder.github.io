@@ -113,5 +113,10 @@
   "resultCountry": "Paese",
   "skipToContent": "Vai al contenuto",
   "navPrimary": "Principale",
-  "navMeta": "Informazioni sul sito"
+  "navMeta": "Informazioni sul sito",
+  "navMenu": "Menu",
+  "homeTitle": "Vinili disponibili nei negozi di dischi indipendenti",
+  "homeTryTitle": "Prova",
+  "homeAllShops": "Tutti i {shops} negozi di dischi in {countries} paesi",
+  "homeAllArtists": "Tutti gli artisti dalla A alla Z"
 }
