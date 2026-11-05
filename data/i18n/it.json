@@ -62,7 +62,6 @@
   "submitTitle": "Aggiungi un negozio di dischi",
   "submitBody": "Qualsiasi negozio online che vende dischi può essere aggiunto. I negozi su Shopify o WooCommerce hanno tutto il catalogo consultabile; gli altri sono elencati con un link.",
   "submitAction": "Proponi un negozio su GitHub",
-  "submitEmail": "Oppure inviaci il sito del negozio via e-mail:",
   "statusTitle": "Stato dei dati",
   "statusBody": "Ogni negozio viene controllato ogni giorno: il sito risponde, robots.txt lo consente, vende ancora dischi, il catalogo è leggibile.",
   "statusColumns": [
@@ -97,7 +96,7 @@
     "Pubblicità: questo sito mostra annunci di Google AdSense. Google e i suoi partner usano cookie per mostrare annunci in base alle tue visite a questo e ad altri siti. Puoi disattivare gli annunci personalizzati nelle impostazioni degli annunci di Google (adssettings.google.com). Nello Spazio economico europeo, nel Regno Unito e in Svizzera viene chiesto prima il consenso.",
     "Statistiche: contiamo le visite con Umami, senza cookie né dati personali. Le statistiche sono pubbliche.",
     "I link ai negozi portano ai loro siti, che hanno una propria informativa sulla privacy.",
-    "Domande: scrivi all'indirizzo indicato nella pagina Chi siamo."
+    "Domande, correzioni o richieste di rimozione: apri una issue su GitHub."
   ],
   "searchTitle": "{query} in vinile disponibile · LP/EP Finder",
   "searching": "Ricerca in corso…",
@@ -119,8 +118,6 @@
   "homeAllArtists": "Tutti gli artisti dalla A alla Z",
   "footerGithub": "Codice sorgente su GitHub",
   "footerAnalytics": "Statistiche di visita pubbliche",
-  "footerChat": "Chat su Matrix",
-  "footerEmail": "E-mail",
   "homeSeoTitle": "Vinili disponibili nei negozi indipendenti",
   "artistSeoTitle": "{artist} in vinile: {count} offerte da {price}",
   "artistSeoTitleNoPrice": "{artist} in vinile: {count} offerte",
@@ -208,7 +205,7 @@
       "one": "Segui 1 disco",
       "other": "Segui {count} dischi"
     },
-    "empty": "Non segui ancora nessun disco. Tocca Segui su un risultato di ricerca, o importa qui sotto la tua wantlist Discogs.",
+    "empty": "Non segui ancora nessun disco. Tocca Segui su un risultato di ricerca.",
     "stateIn": "{count} disponibili, da {price}",
     "stateOut": {
       "one": "Esaurito, visto in 1 negozio",
@@ -241,36 +238,6 @@
     },
     "sharedAdd": "Aggiungili alla mia lista"
   },
-  "discogs": {
-    "title": "Importa la tua wantlist Discogs",
-    "privacy": "Leggiamo la tua wantlist pubblica nel tuo browser. Non salviamo nulla.",
-    "username": "Nome utente Discogs",
-    "check": "Controlla la wantlist",
-    "or": "oppure",
-    "csv": "Scegli un'esportazione CSV di Discogs",
-    "csvHint": "Su Discogs: Wantlist, poi Esporta.",
-    "includeOther": "Includi CD e cassette",
-    "reading": "Lettura della wantlist… {done} / {total}",
-    "matching": "Controllo dei negozi indipendenti… {done} / {total}",
-    "summary": "{inStock} dei tuoi {total} want sono ora disponibili nei negozi indipendenti, {soldOut} sono stati visti ed esauriti.",
-    "private": "Questa wantlist è privata. Esportala in CSV da Discogs e scegli il file qui.",
-    "notFound": "Nessun utente Discogs con questo nome.",
-    "rateLimited": "Discogs ci chiede di rallentare. Si riprende tra un minuto…",
-    "error": "Discogs non è raggiungibile al momento. Riprova o usa un'esportazione CSV.",
-    "csvError": "Questo file non sembra un'esportazione della wantlist Discogs.",
-    "empty": "Nessun vinile trovato nella wantlist.",
-    "inStockTitle": "Disponibili ora",
-    "soldOutTitle": "Visti, esauriti",
-    "watchAll": {
-      "one": "Segui questo want",
-      "other": "Segui tutti i {count} want"
-    },
-    "watchedAll": {
-      "one": "1 want aggiunto alla tua lista.",
-      "other": "{count} want aggiunti alla tua lista."
-    },
-    "attribution": "Dati della wantlist da Discogs"
-  },
   "navApp": "Principale",
   "navSite": "Esplora",
   "tabSearch": "Cerca",
@@ -278,5 +245,6 @@
   "tabWatch": "Seguiti",
   "aboutSuggestTitle": "Manca un negozio di dischi?",
   "aboutSuggest": "Segnalacelo: lo verifichiamo automaticamente e lo aggiungiamo entro un giorno.",
-  "aboutSuggestAction": "Proponi un negozio"
+  "aboutSuggestAction": "Proponi un negozio",
+  "contactGithub": "Contattaci su GitHub"
 }

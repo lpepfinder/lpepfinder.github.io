@@ -62,7 +62,6 @@
   "submitTitle": "レコード店を追加",
   "submitBody": "レコードを販売しているオンラインストアなら掲載できます。Shopify または WooCommerce の店舗はカタログ全体を検索でき、それ以外はリンク付きで掲載されます。",
   "submitAction": "GitHub で店舗を提案",
-  "submitEmail": "または店舗のサイトをメールでお知らせください：",
   "statusTitle": "データの状態",
   "statusBody": "すべての店舗を毎日チェックしています：サイトに接続できるか、robots.txt で許可されているか、まだレコードを販売しているか、カタログを読み込めるか。",
   "statusColumns": [
@@ -97,7 +96,7 @@
     "広告：このサイトは Google AdSense の広告を表示します。Google とそのパートナーは Cookie を使い、このサイトや他のサイトへの訪問に基づいて広告を表示します。パーソナライズ広告は Google の広告設定（adssettings.google.com）で無効にできます。欧州経済領域・英国・スイスからの訪問者には事前に同意を求めます。",
     "アクセス解析：訪問数は Cookie を使わず個人データも収集しない Umami で計測しています。統計は公開されています。",
     "レコード店へのリンク先は各店舗のサイトで、それぞれのプライバシーポリシーが適用されます。",
-    "お問い合わせ：概要ページの連絡先までご連絡ください。"
+    "ご質問・修正・掲載削除の依頼は GitHub の Issue でどうぞ。"
   ],
   "searchTitle": "{query} のレコード在庫 · LP/EP Finder",
   "searching": "検索中…",
@@ -119,8 +118,6 @@
   "homeAllArtists": "アーティスト一覧（A–Z）",
   "footerGithub": "GitHub のソースコード",
   "footerAnalytics": "公開アクセス統計",
-  "footerChat": "Matrix でチャット",
-  "footerEmail": "メール",
   "homeSeoTitle": "インディペンデントのレコード店の在庫レコード",
   "artistSeoTitle": "{artist} のレコード在庫：{count}件、{price}から",
   "artistSeoTitleNoPrice": "{artist} のレコード在庫：{count}件",
@@ -206,7 +203,7 @@
     "listTitle": {
       "other": "{count} 枚をウォッチ中"
     },
-    "empty": "まだウォッチしているレコードはありません。検索結果の「ウォッチ」をタップするか、下で Discogs のウォントリストを読み込んでください。",
+    "empty": "まだウォッチしているレコードはありません。検索結果の「ウォッチ」をタップしてください。",
     "stateIn": "在庫 {count} 件、{price} から",
     "stateOut": {
       "other": "売り切れ（{count} 店で確認）"
@@ -236,34 +233,6 @@
     },
     "sharedAdd": "自分のウォッチリストに追加"
   },
-  "discogs": {
-    "title": "Discogs のウォントリストを読み込む",
-    "privacy": "公開ウォントリストをお使いのブラウザで読み込みます。こちらには何も保存されません。",
-    "username": "Discogs のユーザー名",
-    "check": "ウォントリストを確認",
-    "or": "または",
-    "csv": "Discogs の CSV エクスポートを選択",
-    "csvHint": "Discogs で「ウォントリスト」から「エクスポート」。",
-    "includeOther": "CD とカセットも含める",
-    "reading": "ウォントリストを読み込み中… {done} / {total}",
-    "matching": "独立系レコード店を確認中… {done} / {total}",
-    "summary": "ウォント {total} 枚のうち {inStock} 枚が今、独立系レコード店に在庫あり。{soldOut} 枚は確認済みで売り切れです。",
-    "private": "このウォントリストは非公開です。Discogs から CSV で書き出し、ここでファイルを選んでください。",
-    "notFound": "この名前の Discogs ユーザーは見つかりません。",
-    "rateLimited": "Discogs からペースを落とすよう求められました。1分後に再開します…",
-    "error": "現在 Discogs に接続できません。もう一度試すか、CSV エクスポートを使ってください。",
-    "csvError": "このファイルは Discogs のウォントリストのエクスポートではないようです。",
-    "empty": "レコード（アナログ）のウォントが見つかりません。",
-    "inStockTitle": "在庫あり",
-    "soldOutTitle": "確認済み・売り切れ",
-    "watchAll": {
-      "other": "{count} 枚すべてをウォッチ"
-    },
-    "watchedAll": {
-      "other": "{count} 枚をウォッチリストに追加しました。"
-    },
-    "attribution": "ウォントリストのデータ提供：Discogs"
-  },
   "navApp": "メイン",
   "navSite": "探す",
   "tabSearch": "検索",
@@ -271,5 +240,6 @@
   "tabWatch": "ウォッチ",
   "aboutSuggestTitle": "載っていないレコード店がありますか？",
   "aboutSuggest": "お知らせください。自動で確認し、1日以内に追加します。",
-  "aboutSuggestAction": "レコード店を提案"
+  "aboutSuggestAction": "レコード店を提案",
+  "contactGithub": "GitHub でお問い合わせ"
 }

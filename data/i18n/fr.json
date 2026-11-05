@@ -62,7 +62,6 @@
   "submitTitle": "Ajouter un disquaire",
   "submitBody": "Toute boutique en ligne qui vend des disques peut être référencée. Les boutiques Shopify ou WooCommerce ont tout leur catalogue consultable ; les autres sont référencées avec un lien.",
   "submitAction": "Proposer un disquaire sur GitHub",
-  "submitEmail": "Ou envoyez-nous l'adresse du site par e-mail :",
   "statusTitle": "État des données",
   "statusBody": "Chaque disquaire est vérifié chaque jour : le site répond-il, robots.txt nous autorise-t-il, vend-il encore des disques, peut-on lire son catalogue.",
   "statusColumns": [
@@ -97,7 +96,7 @@
     "Publicité : ce site affiche des annonces Google AdSense. Google et ses partenaires utilisent des cookies pour afficher des annonces selon vos visites sur ce site et d'autres. Vous pouvez désactiver les annonces personnalisées dans les paramètres des annonces de Google (adssettings.google.com). Dans l'Espace économique européen, au Royaume-Uni et en Suisse, votre consentement est demandé au préalable.",
     "Mesure d'audience : nous comptons les visites avec Umami, sans cookies ni données personnelles. Les statistiques sont publiques.",
     "Les liens vers les disquaires mènent à leurs sites, qui ont leur propre politique de confidentialité.",
-    "Questions : écrivez à l'adresse indiquée sur la page À propos."
+    "Questions, corrections ou demandes de retrait : ouvrez un ticket sur GitHub."
   ],
   "searchTitle": "{query} en vinyle en stock · LP/EP Finder",
   "searching": "Recherche…",
@@ -119,8 +118,6 @@
   "homeAllArtists": "Tous les artistes de A à Z",
   "footerGithub": "Code source sur GitHub",
   "footerAnalytics": "Statistiques de visite publiques",
-  "footerChat": "Discuter sur Matrix",
-  "footerEmail": "E-mail",
   "homeSeoTitle": "Vinyles en stock chez les disquaires indépendants",
   "artistSeoTitle": "{artist} en vinyle : {count} offres dès {price}",
   "artistSeoTitleNoPrice": "{artist} en vinyle : {count} offres",
@@ -208,7 +205,7 @@
       "one": "{count} disque suivi",
       "other": "{count} disques suivis"
     },
-    "empty": "Vous ne suivez encore aucun disque. Touchez Suivre sur un résultat de recherche, ou importez votre wantlist Discogs ci-dessous.",
+    "empty": "Vous ne suivez encore aucun disque. Touchez Suivre sur un résultat de recherche pour le suivre.",
     "stateIn": "{count} en stock, à partir de {price}",
     "stateOut": {
       "one": "Épuisé, vu chez {count} disquaire",
@@ -241,36 +238,6 @@
     },
     "sharedAdd": "Les ajouter à ma liste"
   },
-  "discogs": {
-    "title": "Importer votre wantlist Discogs",
-    "privacy": "Nous lisons votre wantlist publique dans votre navigateur. Rien n'est conservé chez nous.",
-    "username": "Nom d'utilisateur Discogs",
-    "check": "Vérifier la wantlist",
-    "or": "ou",
-    "csv": "Choisir un export CSV Discogs",
-    "csvHint": "Sur Discogs : Wantlist, puis Exporter.",
-    "includeOther": "Inclure CD et cassettes",
-    "reading": "Lecture de la wantlist… {done} / {total}",
-    "matching": "Recherche chez les disquaires… {done} / {total}",
-    "summary": "{inStock} de vos {total} wants sont en stock chez des disquaires indépendants, {soldOut} ont été vus puis épuisés.",
-    "private": "Cette wantlist est privée. Exportez-la en CSV depuis Discogs et choisissez le fichier ici.",
-    "notFound": "Aucun utilisateur Discogs avec ce nom.",
-    "rateLimited": "Discogs nous demande de ralentir. Reprise dans une minute…",
-    "error": "Discogs est injoignable pour le moment. Réessayez, ou utilisez un export CSV.",
-    "csvError": "Ce fichier ne ressemble pas à un export de wantlist Discogs.",
-    "empty": "Aucun vinyle trouvé dans la wantlist.",
-    "inStockTitle": "En stock",
-    "soldOutTitle": "Vus, épuisés",
-    "watchAll": {
-      "one": "Suivre ce want",
-      "other": "Suivre les {count} wants"
-    },
-    "watchedAll": {
-      "one": "{count} want ajouté à votre liste.",
-      "other": "{count} wants ajoutés à votre liste."
-    },
-    "attribution": "Données de wantlist fournies par Discogs"
-  },
   "navApp": "Principal",
   "navSite": "Explorer",
   "tabSearch": "Recherche",
@@ -278,5 +245,6 @@
   "tabWatch": "Suivis",
   "aboutSuggestTitle": "Il manque un disquaire ?",
   "aboutSuggest": "Signalez-le : nous le vérifions automatiquement et l'ajoutons en un jour.",
-  "aboutSuggestAction": "Proposer un disquaire"
+  "aboutSuggestAction": "Proposer un disquaire",
+  "contactGithub": "Nous contacter sur GitHub"
 }

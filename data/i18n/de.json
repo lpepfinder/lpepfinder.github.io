@@ -62,7 +62,6 @@
   "submitTitle": "Plattenladen hinzufügen",
   "submitBody": "Jeder Onlineshop, der Platten verkauft, kann gelistet werden. Bei Shopify- oder WooCommerce-Shops ist der ganze Katalog durchsuchbar, andere werden mit Link gelistet.",
   "submitAction": "Laden auf GitHub vorschlagen",
-  "submitEmail": "Oder schick uns die Website per E-Mail:",
   "statusTitle": "Datenstatus",
   "statusBody": "Jeder Laden wird täglich geprüft: Ist die Seite erreichbar, erlaubt robots.txt den Zugriff, verkauft er noch Platten, ist der Katalog lesbar.",
   "statusColumns": [
@@ -97,7 +96,7 @@
     "Werbung: Diese Seite zeigt Anzeigen von Google AdSense. Google und seine Partner verwenden Cookies, um Anzeigen auf Grundlage deiner Besuche auf dieser und anderen Websites zu zeigen. Personalisierte Werbung kannst du in den Google-Anzeigeneinstellungen (adssettings.google.com) abschalten. Besucher aus dem EWR, dem Vereinigten Königreich und der Schweiz werden vorher um Einwilligung gebeten.",
     "Statistik: Wir zählen Besuche mit Umami, ohne Cookies und ohne personenbezogene Daten. Die Statistik ist öffentlich.",
     "Links zu Plattenläden führen auf deren Websites mit eigener Datenschutzerklärung.",
-    "Fragen: an die Kontaktadresse auf der Seite „Über uns“."
+    "Fragen, Korrekturen oder Löschwünsche: Eröffne ein Issue auf GitHub."
   ],
   "searchTitle": "{query} auf Vinyl vorrätig · LP/EP Finder",
   "searching": "Suche läuft…",
@@ -119,8 +118,6 @@
   "homeAllArtists": "Alle Künstler von A bis Z",
   "footerGithub": "Quellcode auf GitHub",
   "footerAnalytics": "Öffentliche Besuchsstatistik",
-  "footerChat": "Chat auf Matrix",
-  "footerEmail": "E-Mail",
   "homeSeoTitle": "Schallplatten vorrätig in unabhängigen Läden",
   "artistSeoTitle": "{artist} auf Vinyl: {count} Angebote ab {price}",
   "artistSeoTitleNoPrice": "{artist} auf Vinyl: {count} Angebote",
@@ -208,7 +205,7 @@
       "one": "1 Platte gemerkt",
       "other": "{count} Platten gemerkt"
     },
-    "empty": "Du hast noch keine Platten gemerkt. Tippe bei einem Suchergebnis auf Merken oder importiere unten deine Discogs-Wantlist.",
+    "empty": "Du hast noch keine Platten gemerkt. Tippe bei einem Suchergebnis auf Merken.",
     "stateIn": "{count} auf Lager, ab {price}",
     "stateOut": {
       "one": "Ausverkauft, in 1 Laden gesehen",
@@ -241,36 +238,6 @@
     },
     "sharedAdd": "Zu meiner Merkliste hinzufügen"
   },
-  "discogs": {
-    "title": "Discogs-Wantlist importieren",
-    "privacy": "Wir lesen deine öffentliche Wantlist in deinem Browser. Bei uns wird nichts gespeichert.",
-    "username": "Discogs-Benutzername",
-    "check": "Wantlist prüfen",
-    "or": "oder",
-    "csv": "Discogs-CSV-Export wählen",
-    "csvHint": "Auf Discogs: Wantlist, dann Exportieren.",
-    "includeOther": "CDs und Kassetten einbeziehen",
-    "reading": "Wantlist wird gelesen… {done} / {total}",
-    "matching": "Unabhängige Läden werden geprüft… {done} / {total}",
-    "summary": "{inStock} von {total} Wants sind gerade bei unabhängigen Läden auf Lager, {soldOut} wurden gesehen und sind ausverkauft.",
-    "private": "Diese Wantlist ist privat. Exportiere sie auf Discogs als CSV und wähle die Datei hier aus.",
-    "notFound": "Kein Discogs-Benutzer mit diesem Namen.",
-    "rateLimited": "Discogs bittet um eine Pause. Es geht in einer Minute weiter…",
-    "error": "Discogs ist gerade nicht erreichbar. Versuche es erneut oder nutze einen CSV-Export.",
-    "csvError": "Diese Datei sieht nicht wie ein Discogs-Wantlist-Export aus.",
-    "empty": "Keine Vinyl-Wants gefunden.",
-    "inStockTitle": "Jetzt auf Lager",
-    "soldOutTitle": "Gesehen, ausverkauft",
-    "watchAll": {
-      "one": "Diesen Want merken",
-      "other": "Alle {count} Wants merken"
-    },
-    "watchedAll": {
-      "one": "1 Want zur Merkliste hinzugefügt.",
-      "other": "{count} Wants zur Merkliste hinzugefügt."
-    },
-    "attribution": "Wantlist-Daten von Discogs"
-  },
   "navApp": "Haupt",
   "navSite": "Entdecken",
   "tabSearch": "Suche",
@@ -278,5 +245,6 @@
   "tabWatch": "Merkliste",
   "aboutSuggestTitle": "Ein Plattenladen fehlt?",
   "aboutSuggest": "Sag uns Bescheid: Wir prüfen ihn automatisch und nehmen ihn innerhalb eines Tages auf.",
-  "aboutSuggestAction": "Plattenladen vorschlagen"
+  "aboutSuggestAction": "Plattenladen vorschlagen",
+  "contactGithub": "Kontakt über GitHub"
 }

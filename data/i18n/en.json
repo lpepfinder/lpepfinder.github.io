@@ -62,7 +62,6 @@
   "submitTitle": "Add a record shop",
   "submitBody": "Any shop with an online store selling records can be listed. Shops on Shopify or WooCommerce get their full catalog searchable; others are listed with a link.",
   "submitAction": "Suggest a shop on GitHub",
-  "submitEmail": "Or email us the shop's website:",
   "statusTitle": "Data status",
   "statusBody": "Every shop is checked daily: is the site up, does robots.txt allow us, does it still sell records, can we read its catalog.",
   "statusColumns": [
@@ -97,7 +96,7 @@
     "Advertising: this site shows ads from Google AdSense. Google and its partners use cookies to show ads based on your visits to this and other websites. You can turn off personalised ads in Google's Ads Settings (adssettings.google.com). Visitors in the European Economic Area, the UK and Switzerland are asked for consent first.",
     "Analytics: we count visits with Umami, which uses no cookies and collects no personal data. The statistics are public.",
     "Links to record shops take you to their websites, which have their own privacy policies.",
-    "Questions: write to the contact address on the About page."
+    "Questions, corrections or removal requests: open an issue on GitHub."
   ],
   "searchTitle": "{query} vinyl in stock · LP/EP Finder",
   "searching": "Searching…",
@@ -119,8 +118,6 @@
   "homeAllArtists": "All artists A–Z",
   "footerGithub": "Source code on GitHub",
   "footerAnalytics": "Public visit statistics",
-  "footerChat": "Chat on Matrix",
-  "footerEmail": "Email",
   "homeSeoTitle": "Vinyl records in stock at independent shops",
   "artistSeoTitle": "{artist} vinyl in stock: {count} offers from {price}",
   "artistSeoTitleNoPrice": "{artist} vinyl in stock: {count} offers",
@@ -208,7 +205,7 @@
       "one": "Watching 1 record",
       "other": "Watching {count} records"
     },
-    "empty": "You're not watching any records yet. Tap Watch on a search result, or import your Discogs wantlist below.",
+    "empty": "You're not watching any records yet. Tap Watch on a search result to follow it.",
     "stateIn": "{count} in stock, from {price}",
     "stateOut": {
       "one": "Sold out, seen at 1 shop",
@@ -241,36 +238,6 @@
     },
     "sharedAdd": "Add them to my watchlist"
   },
-  "discogs": {
-    "title": "Import your Discogs wantlist",
-    "privacy": "We read your public wantlist in your browser. Nothing is stored on our side.",
-    "username": "Discogs username",
-    "check": "Check wantlist",
-    "or": "or",
-    "csv": "Choose a Discogs CSV export",
-    "csvHint": "On Discogs: Wantlist, then Export.",
-    "includeOther": "Include CD and cassette",
-    "reading": "Reading wantlist… {done} / {total}",
-    "matching": "Checking indie shops… {done} / {total}",
-    "summary": "{inStock} of {total} wants are in stock at independent shops now, {soldOut} were seen and sold out.",
-    "private": "This wantlist is private. Export it as CSV from Discogs and choose the file here.",
-    "notFound": "No Discogs user with this name.",
-    "rateLimited": "Discogs asks us to slow down. Continuing in a minute…",
-    "error": "Discogs can't be reached right now. Try again, or use a CSV export.",
-    "csvError": "This file doesn't look like a Discogs wantlist export.",
-    "empty": "No vinyl wants found.",
-    "inStockTitle": "In stock now",
-    "soldOutTitle": "Seen, sold out",
-    "watchAll": {
-      "one": "Watch this want",
-      "other": "Watch all {count} wants"
-    },
-    "watchedAll": {
-      "one": "1 want added to your watchlist.",
-      "other": "{count} wants added to your watchlist."
-    },
-    "attribution": "Wantlist data from Discogs"
-  },
   "navApp": "Main",
   "navSite": "Explore",
   "tabSearch": "Search",
@@ -278,5 +245,6 @@
   "tabWatch": "Watchlist",
   "aboutSuggestTitle": "A record shop is missing?",
   "aboutSuggest": "Tell us about it: we check it automatically and add it within a day.",
-  "aboutSuggestAction": "Suggest a record shop"
+  "aboutSuggestAction": "Suggest a record shop",
+  "contactGithub": "Contact us on GitHub"
 }

@@ -5,7 +5,6 @@ export const GET = ({ site }) => new Response(`<?xml version="1.0" encoding="UTF
   <ShortName>${config.name}</ShortName>
   <Description>Search vinyl records in stock at independent record shops</Description>
   <Tags>vinyl record LP EP shop search</Tags>
-  <Contact>${config.contactEmail}</Contact>
   <Url type="text/html" template="${new URL('/', site).href}?q={searchTerms}"/>
   <Image height="64" width="64" type="image/png">${new URL('/favicon.png', site).href}</Image>
   <Query role="example" searchTerms="Joy Division"/>

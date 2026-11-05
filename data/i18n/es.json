@@ -62,7 +62,6 @@
   "submitTitle": "Añadir una tienda de discos",
   "submitBody": "Cualquier tienda en línea que venda discos puede aparecer. Las tiendas en Shopify o WooCommerce tienen todo su catálogo buscable; las demás aparecen con un enlace.",
   "submitAction": "Proponer una tienda en GitHub",
-  "submitEmail": "O envíanos la web de la tienda por correo:",
   "statusTitle": "Estado de los datos",
   "statusBody": "Cada tienda se revisa cada día: si la web responde, si robots.txt lo permite, si sigue vendiendo discos y si su catálogo se puede leer.",
   "statusColumns": [
@@ -97,7 +96,7 @@
     "Publicidad: este sitio muestra anuncios de Google AdSense. Google y sus socios usan cookies para mostrar anuncios según tus visitas a este y otros sitios. Puedes desactivar los anuncios personalizados en la configuración de anuncios de Google (adssettings.google.com). En el Espacio Económico Europeo, el Reino Unido y Suiza se pide antes tu consentimiento.",
     "Estadísticas: contamos las visitas con Umami, sin cookies ni datos personales. Las estadísticas son públicas.",
     "Los enlaces a las tiendas llevan a sus sitios, que tienen su propia política de privacidad.",
-    "Preguntas: escribe a la dirección de contacto de la página Acerca de."
+    "Preguntas, correcciones o solicitudes de retirada: abre un issue en GitHub."
   ],
   "searchTitle": "{query} en vinilo en stock · LP/EP Finder",
   "searching": "Buscando…",
@@ -119,8 +118,6 @@
   "homeAllArtists": "Todos los artistas de la A a la Z",
   "footerGithub": "Código fuente en GitHub",
   "footerAnalytics": "Estadísticas de visitas públicas",
-  "footerChat": "Chat en Matrix",
-  "footerEmail": "Correo",
   "homeSeoTitle": "Vinilos en stock en tiendas independientes",
   "artistSeoTitle": "{artist} en vinilo: {count} ofertas desde {price}",
   "artistSeoTitleNoPrice": "{artist} en vinilo: {count} ofertas",
@@ -208,7 +205,7 @@
       "one": "Siguiendo 1 disco",
       "other": "Siguiendo {count} discos"
     },
-    "empty": "Aún no sigues ningún disco. Toca Seguir en un resultado de búsqueda o importa abajo tu wantlist de Discogs.",
+    "empty": "Todavía no sigues ningún disco. Toca Seguir en un resultado de búsqueda.",
     "stateIn": "{count} en stock, desde {price}",
     "stateOut": {
       "one": "Agotado, visto en 1 tienda",
@@ -241,36 +238,6 @@
     },
     "sharedAdd": "Añadirlos a mi lista"
   },
-  "discogs": {
-    "title": "Importa tu wantlist de Discogs",
-    "privacy": "Leemos tu wantlist pública en tu navegador. No guardamos nada.",
-    "username": "Usuario de Discogs",
-    "check": "Comprobar wantlist",
-    "or": "o",
-    "csv": "Elegir una exportación CSV de Discogs",
-    "csvHint": "En Discogs: Wantlist y luego Exportar.",
-    "includeOther": "Incluir CD y casete",
-    "reading": "Leyendo la wantlist… {done} / {total}",
-    "matching": "Buscando en tiendas independientes… {done} / {total}",
-    "summary": "{inStock} de {total} wants están ahora en stock en tiendas independientes, {soldOut} se vieron y se agotaron.",
-    "private": "Esta wantlist es privada. Expórtala en CSV desde Discogs y elige el archivo aquí.",
-    "notFound": "No hay ningún usuario de Discogs con ese nombre.",
-    "rateLimited": "Discogs nos pide ir más despacio. Seguimos en un minuto…",
-    "error": "Discogs no responde ahora mismo. Inténtalo de nuevo o usa una exportación CSV.",
-    "csvError": "Este archivo no parece una exportación de wantlist de Discogs.",
-    "empty": "No se encontraron vinilos en la wantlist.",
-    "inStockTitle": "En stock ahora",
-    "soldOutTitle": "Vistos, agotados",
-    "watchAll": {
-      "one": "Seguir este want",
-      "other": "Seguir los {count} wants"
-    },
-    "watchedAll": {
-      "one": "1 want añadido a tu lista.",
-      "other": "{count} wants añadidos a tu lista."
-    },
-    "attribution": "Datos de wantlist de Discogs"
-  },
   "navApp": "Principal",
   "navSite": "Explorar",
   "tabSearch": "Buscar",
@@ -278,5 +245,6 @@
   "tabWatch": "Seguidos",
   "aboutSuggestTitle": "¿Falta una tienda de discos?",
   "aboutSuggest": "Avísanos: la comprobamos automáticamente y la añadimos en un día.",
-  "aboutSuggestAction": "Proponer una tienda"
+  "aboutSuggestAction": "Proponer una tienda",
+  "contactGithub": "Contacto en GitHub"
 }
