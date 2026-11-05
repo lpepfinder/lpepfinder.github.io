@@ -50,6 +50,11 @@ jobs:
           files=generated/ledger.ndjson.gz
           if [ -f generated/ledger-prev.ndjson.gz ]; then files="$files generated/ledger-prev.ndjson.gz"; fi
           gh release upload data $files --clobber
+      # GitHub Pages sites may be 1 GB: stop at 900 MB so a growth spike never takes the site down
+      - name: Size budget
+        run: |
+          du -sm --apparent-size dist dist/search dist/w dist/new dist/feed 2>/dev/null || true
+          test "$(du -sm --apparent-size dist | cut -f1)" -le 900
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
