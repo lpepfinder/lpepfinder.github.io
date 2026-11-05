@@ -48,6 +48,8 @@ export function add(records) {
       list.items[key] = { t: title || '', a: today(), ...(url ? { u: url } : {}), ...(offer ? { o: offer } : {}), ...(state ? { s: state } : {}) };
       added++;
     }
+    // records added since the watch page was last opened: the tab shows "+n"
+    if (added) list.fresh = (list.fresh || 0) + added;
   });
   return added;
 }

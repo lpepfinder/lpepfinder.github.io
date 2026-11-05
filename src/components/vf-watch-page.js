@@ -39,6 +39,7 @@ export class VfWatchPage extends HTMLElement {
     const leave = () => this.markSeen();
     addEventListener('pagehide', leave);
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') leave(); });
+    if (load().fresh) update((list) => { list.fresh = 0; });
     this.show(false);
     this.views.all.refresh();
     this.renderChanges();

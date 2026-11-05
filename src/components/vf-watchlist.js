@@ -4,7 +4,7 @@ import { tn, t } from './i18n.js';
 
 /**
  * <vf-watchlist> in the header of every page: the link to /watch/ with the number of
- * unseen changes (<vf-watch-count count="2">, hidden at 0). Runs the daily check, at most
+ * unseen changes (<vf-watch-count count="2">, hidden at 0), or of records just added. Runs the daily check, at most
  * once a day and only with a non-empty list. status="checking|done".
  */
 export class VfWatchlist extends HTMLElement {
@@ -22,11 +22,15 @@ export class VfWatchlist extends HTMLElement {
 
   disconnectedCallback() { removeEventListener(EVENT, this.render); }
 
+  /** Unseen changes; without any, the records added since the last visit as "+2" (kind="added"). */
   render() {
-    const n = load().changes.length;
-    this.count.setAttribute('count', n);
-    this.count.textContent = n || '';
-    this.link.setAttribute('aria-label', n ? tn('watch.navCount', n) : t('watch.nav'));
+    const list = load();
+    const n = list.changes.length;
+    const added = n ? 0 : list.fresh || 0;
+    this.count.setAttribute('count', n || added);
+    this.count.setAttribute('kind', added ? 'added' : 'changes');
+    this.count.textContent = n || (added ? `+${added}` : '');
+    this.link.setAttribute('aria-label', n ? tn('watch.navCount', n) : added ? tn('watch.navAdded', added) : t('watch.nav'));
   }
 }
 customElements.define('vf-watchlist', VfWatchlist);

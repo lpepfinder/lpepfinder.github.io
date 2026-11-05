@@ -23,6 +23,7 @@
     "refreshed": { "type": "string", "description": "UTC day the watch page last loaded current states" },
     "changes": { "type": "array", "description": "Unseen changes: event rows of /w/d/<date>.json plus their date" },
     "past": { "type": "array", "description": "Seen changes, newest last, capped" },
+    "fresh": { "type": "integer", "description": "Records added since the watch page was last opened (the tab shows +n)" },
     "hinted": { "type": "integer", "description": "1 once the home-screen hint was shown" },
     "persistAsked": { "type": "integer", "description": "1 once navigator.storage.persist() was requested" }
   }
