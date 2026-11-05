@@ -155,5 +155,8 @@
     "backgroundColor": "#f7f6f2",
     "icon": "/favicon.png",
     "iconSize": "192x192"
+  },
+  "rates": {
+    "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
   }
 }
