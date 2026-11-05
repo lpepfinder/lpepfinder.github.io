@@ -9,10 +9,16 @@ const record = (shop, d) => ({
 /** Newest product update among records, for the sitemap <lastmod> (null when shops don't say). */
 const lastmod = (records) => records.reduce((max, r) => (r.updated && r.updated > (max || '') ? r.updated : max), null);
 
-/** Aggregates for static SEO pages: per-shop stats and artist pages comparing shops. */
+const inStock = (d) => d.available !== false;
+
+/**
+ * Aggregates for static SEO pages: per-shop stats and artist pages comparing
+ * shops. Records in stock only: sold-out ones are searchable but not listed here.
+ */
 export function buildSiteData({ docs, shops, byShop, seo }) {
   const artists = new Map();
   for (const d of docs) {
+    if (!inStock(d)) continue;
     const name = artistOf(d.title, d.vendor);
     const slug = name && slugify(name);
     if (!slug || slug.length < 2) continue;
@@ -41,9 +47,10 @@ export function buildSiteData({ docs, shops, byShop, seo }) {
     });
 
   const shopStats = {};
-  for (const [id, list] of byShop) {
+  for (const [id, all] of byShop) {
     const shop = shops.get(id);
+    const list = all.filter(inStock);
     shopStats[id] = { records: list.length, lastmod: lastmod(list), latest: list.slice(0, seo.shopLatestRecords).map((d) => record(shop, d)) };
   }
-  return { builtAt: new Date().toISOString(), totalRecords: docs.length, shopStats, artists: artistPages };
+  return { builtAt: new Date().toISOString(), totalRecords: docs.filter(inStock).length, shopStats, artists: artistPages };
 }
