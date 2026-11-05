@@ -1,14 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import zlib from 'node:zlib';
 import { tokenize, shardKey, shardFile, cleanShopName } from '../lib/text.js';
 
-/** Write a file plus a .gz twin, which GitLab Pages serves to gzip-capable browsers. */
+/** Write a static file. No .gz twin: GitHub Pages compresses responses itself. */
 export function writeStatic(file, content) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  const buf = Buffer.from(content);
-  fs.writeFileSync(file, buf);
-  if (buf.length > 512) fs.writeFileSync(file + '.gz', zlib.gzipSync(buf, { level: 9 }));
+  fs.writeFileSync(file, content);
 }
 
 /**
