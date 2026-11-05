@@ -33,8 +33,11 @@ export const decodeEntities = (s) => String(s || '')
 export const cleanTitle = (s) => decodeEntities(String(s || '').replace(/<[^>]{1,40}>/g, ' ')).replace(/\s+/g, ' ').trim();
 
 /** Shop name from a page title: decode entities, drop taglines after a separator. */
+const GENERIC_NAME = /^(home|homepage|shop|store|online ?shop|welcome|index|startseite|accueil|inicio|boutique|tienda|negozio|record store|records?)$/i;
+
 export function cleanShopName(name) {
   const decoded = decodeEntities(name).replace(/\s+/g, ' ').trim();
+  if (GENERIC_NAME.test(decoded)) return '';
   const first = decoded.split(/\s+[–—|·•:]\s+|\s+-\s+/)[0].trim();
   return first.length >= 3 ? first : decoded;
 }

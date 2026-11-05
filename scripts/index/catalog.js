@@ -27,7 +27,9 @@ export async function loadCatalog(productFiles) {
       if (!shops.has(p.shop) || shops.get(p.shop).disabled || !p.title) continue;
       if (!byShop.has(p.shop)) { byShop.set(p.shop, []); shopFiles.set(p.shop, new Set()); }
       shopFiles.get(p.shop).add(file);
-      byShop.get(p.shop).push({ ...p, title: displayTitle(cleanTitle(p.title), p.vendor), available: p.available !== false });
+      // a price without a known currency is misleading: show none
+      const price = p.currency || shops.get(p.shop).state.currency ? p.price : null;
+      byShop.get(p.shop).push({ ...p, price, title: displayTitle(cleanTitle(p.title), p.vendor), available: p.available !== false });
     }
   }
   for (const list of byShop.values()) list.sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
