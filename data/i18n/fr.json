@@ -132,11 +132,11 @@
   "resultFormat": "Format",
   "conditionUsed": "Occasion",
   "formats": {
+    "7": "45 tours 7\"",
+    "10": "10\"",
+    "12": "Maxi 12\"",
     "lp": "LP",
     "2lp": "2LP+",
-    "12": "Maxi 12\"",
-    "10": "10\"",
-    "7": "45 tours 7\"",
     "ep": "EP",
     "cd": "CD",
     "mc": "Cassette"
@@ -236,7 +236,40 @@
       "one": "Ce lien contient {count} disque.",
       "other": "Ce lien contient {count} disques."
     },
-    "sharedAdd": "Les ajouter à ma liste"
+    "sharedAdd": "Les ajouter à ma liste",
+    "summaryWatched": {
+      "one": "1 suivi",
+      "other": "{count} suivis"
+    },
+    "summaryAvailable": {
+      "one": "1 disponible maintenant chez {shops}",
+      "other": "{count} disponibles maintenant chez {shops}"
+    },
+    "summaryChanges": {
+      "one": "1 changement depuis le {date}",
+      "other": "{count} changements depuis le {date}"
+    },
+    "views": "Vues de la liste",
+    "viewChanges": "Changements",
+    "viewNow": "Disponibles",
+    "viewAll": "Tous",
+    "changesHeading": "Changements récents",
+    "nowHeading": "Disponibles maintenant, par disquaire",
+    "allHeading": "Tous les disques suivis",
+    "noChangesAll": "Aucun changement pour l’instant. Ils s’affichent ici quand un disque suivi revient en stock, est épuisé ou baisse de prix.",
+    "noneAvailable": "Aucun de vos disques n’est en stock en ce moment.",
+    "visitShop": "Aller chez {shop}",
+    "findLabel": "Chercher dans votre liste",
+    "findPlaceholder": "Artiste ou titre",
+    "jumpLabel": "Aller à une lettre",
+    "jumpOther": "#",
+    "showMore": {
+      "one": "Afficher 1 de plus",
+      "other": "Afficher {count} de plus"
+    },
+    "showing": "{shown} sur {total} affichés",
+    "noMatch": "Aucun disque suivi ne correspond à « {query} ».",
+    "emptyList": "Vous ne suivez encore aucun disque. Touchez Suivre sur un résultat de recherche, ou importez un fichier de liste ci-dessous."
   },
   "navApp": "Principal",
   "navSite": "Explorer",
@@ -246,5 +279,36 @@
   "aboutSuggestTitle": "Il manque un disquaire ?",
   "aboutSuggest": "Signalez-le : nous le vérifions automatiquement et l'ajoutons en un jour.",
   "aboutSuggestAction": "Proposer un disquaire",
-  "contactGithub": "Nous contacter sur GitHub"
+  "contactGithub": "Nous contacter sur GitHub",
+  "results": {
+    "heading": "Résultats pour « {query} »",
+    "records": {
+      "one": "1 disque",
+      "other": "{count} disques"
+    },
+    "copies": {
+      "one": "1 exemplaire",
+      "other": "{count} exemplaires"
+    },
+    "shops": {
+      "one": "1 disquaire",
+      "other": "{count} disquaires"
+    },
+    "countLine": "{records} · {copies} chez {shops}",
+    "countPartial": "{line} (sur {total} trouvés)",
+    "from": "dès {price}",
+    "approx": "≈ {price}",
+    "soldOutCount": {
+      "one": "1 épuisé",
+      "other": "{count} épuisés"
+    },
+    "offersLabel": "Disquaires qui vendent {title}",
+    "filtersLabel": "Filtrer les résultats",
+    "inStock": "En stock uniquement",
+    "near": "Mon pays d’abord",
+    "nearCountry": "{country} d’abord",
+    "formatLabel": "Format",
+    "covers": "Afficher les pochettes",
+    "noneFiltered": "Aucun disque chargé pour l’instant ne correspond à ces filtres."
+  }
 }

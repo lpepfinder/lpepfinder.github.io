@@ -9,5 +9,6 @@
     { "id": "ep", "pattern": "\\bep\\b" },
     { "id": "lp", "pattern": "\\blp\\b|\\b(vinyl|vinyle|vinilo|vinile|schallplatte)\\b|レコード" }
   ],
+  "display": ["lp", "2lp", "12", "10", "7", "ep", "cd", "mc"],
   "used": "\\b(used|second[- ]?hand|pre-?owned|occasion|gebraucht|usato|usado|käytetty)\\b|中古"
 }

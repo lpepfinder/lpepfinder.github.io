@@ -54,12 +54,12 @@ export class VfSearch extends HTMLElement {
     window.umami?.track?.('search', { q, results: this.ids?.length ?? -1 });
   }
 
-  /** Next page of records; after "show more", focus the first new result. */
+  /** Next page of records (regrouped by release); after "show more", focus the first new row. */
   async more(focus) {
     const slice = this.ids.slice(this.shown, this.shown + this.per);
     if (!slice.length) return;
     this.shown += slice.length;
-    const first = this.results.append(await this.client.records(slice), this.shown);
+    const first = await this.results.append(await this.client.records(slice), this.shown);
     if (focus) first?.focus();
   }
 }

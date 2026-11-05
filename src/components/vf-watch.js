@@ -15,7 +15,7 @@ export class VfWatch extends HTMLElement {
       const label = this.getAttribute('label') || '';
       this.button = Object.assign(document.createElement('button'), { type: 'button' });
       this.button.setAttribute('aria-label', t(`watch.${action}Label`, { title: label }));
-      this.button.append(document.createElement('vf-icon'), ` ${t(`watch.${action}`)}`);
+      this.button.append(document.createElement('vf-icon'), Object.assign(document.createElement('span'), { textContent: t(`watch.${action}`) }));
       this.button.firstChild.setAttribute('name', 'star');
       this.button.addEventListener('click', () => this.toggle());
       this.append(this.button);

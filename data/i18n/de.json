@@ -132,11 +132,11 @@
   "resultFormat": "Format",
   "conditionUsed": "Gebraucht",
   "formats": {
+    "7": "7\"",
+    "10": "10\"",
+    "12": "12\"",
     "lp": "LP",
     "2lp": "2LP+",
-    "12": "12\"",
-    "10": "10\"",
-    "7": "7\"",
     "ep": "EP",
     "cd": "CD",
     "mc": "Kassette"
@@ -236,7 +236,40 @@
       "one": "Dieser Link enthält 1 Platte.",
       "other": "Dieser Link enthält {count} Platten."
     },
-    "sharedAdd": "Zu meiner Merkliste hinzufügen"
+    "sharedAdd": "Zu meiner Merkliste hinzufügen",
+    "summaryWatched": {
+      "one": "1 gemerkt",
+      "other": "{count} gemerkt"
+    },
+    "summaryAvailable": {
+      "one": "1 jetzt erhältlich in {shops}",
+      "other": "{count} jetzt erhältlich in {shops}"
+    },
+    "summaryChanges": {
+      "one": "1 Änderung seit {date}",
+      "other": "{count} Änderungen seit {date}"
+    },
+    "views": "Ansichten der Merkliste",
+    "viewChanges": "Änderungen",
+    "viewNow": "Erhältlich",
+    "viewAll": "Alle",
+    "changesHeading": "Letzte Änderungen",
+    "nowHeading": "Jetzt erhältlich, nach Laden",
+    "allHeading": "Alle gemerkten Platten",
+    "noChangesAll": "Noch keine Änderungen. Sie erscheinen hier, wenn eine gemerkte Platte wieder vorrätig, ausverkauft oder günstiger ist.",
+    "noneAvailable": "Gerade ist keine Ihrer Platten vorrätig.",
+    "visitShop": "Zu {shop}",
+    "findLabel": "In der Merkliste suchen",
+    "findPlaceholder": "Künstler oder Titel",
+    "jumpLabel": "Zu einem Buchstaben springen",
+    "jumpOther": "#",
+    "showMore": {
+      "one": "1 weitere zeigen",
+      "other": "{count} weitere zeigen"
+    },
+    "showing": "{shown} von {total} angezeigt",
+    "noMatch": "Keine gemerkte Platte passt zu „{query}“.",
+    "emptyList": "Sie merken sich noch keine Platten. Tippen Sie bei einem Suchergebnis auf Merken oder importieren Sie unten eine Merklisten-Datei."
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",
@@ -246,5 +279,36 @@
   "aboutSuggestTitle": "Ein Plattenladen fehlt?",
   "aboutSuggest": "Sag uns Bescheid: Wir prüfen ihn automatisch und nehmen ihn innerhalb eines Tages auf.",
   "aboutSuggestAction": "Plattenladen vorschlagen",
-  "contactGithub": "Kontakt über GitHub"
+  "contactGithub": "Kontakt über GitHub",
+  "results": {
+    "heading": "Ergebnisse für „{query}“",
+    "records": {
+      "one": "1 Platte",
+      "other": "{count} Platten"
+    },
+    "copies": {
+      "one": "1 Exemplar",
+      "other": "{count} Exemplare"
+    },
+    "shops": {
+      "one": "1 Laden",
+      "other": "{count} Läden"
+    },
+    "countLine": "{records} · {copies} in {shops}",
+    "countPartial": "{line} (von {total} gefundenen)",
+    "from": "ab {price}",
+    "approx": "≈ {price}",
+    "soldOutCount": {
+      "one": "1 ausverkauft",
+      "other": "{count} ausverkauft"
+    },
+    "offersLabel": "Läden mit {title}",
+    "filtersLabel": "Ergebnisse filtern",
+    "inStock": "Nur vorrätige",
+    "near": "Mein Land zuerst",
+    "nearCountry": "{country} zuerst",
+    "formatLabel": "Format",
+    "covers": "Cover zeigen",
+    "noneFiltered": "Keine der bisher geladenen Platten passt zu diesen Filtern."
+  }
 }

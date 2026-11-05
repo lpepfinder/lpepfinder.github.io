@@ -1,6 +1,6 @@
-/* <vf-results> region and <vf-result> cards; state in the status attribute. */
+/* <vf-results> region (rows in release.css) and the <vf-result> cards of static lists; state in the status attribute. */
 vf-results { display: grid; gap: var(--space-2); }
-vf-results[status="idle"], vf-results > vf-empty, vf-results > vf-filters[hidden] { display: none; }
+vf-results[status="idle"], vf-results > vf-empty { display: none; }
 vf-results[status="empty"] > vf-empty[reason="no-match"], vf-results[status="error"] > vf-empty[reason="index-error"] { display: block; }
 vf-results:is([status="empty"], [status="error"]) > :is(vf-results-bar, ol) { display: none; }
 vf-results h2 { margin: 0; font-size: var(--size-1); }
@@ -38,5 +38,5 @@ vf-result:has(a:focus-visible) { outline: var(--focus-ring); outline-offset: var
 vf-result a:focus-visible { outline: none; }
 
 @media (min-width: 40rem) {
-  :is(vf-results, vf-record-list) ol { grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); column-gap: var(--space-6); }
+  vf-record-list ol { grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); column-gap: var(--space-6); }
 }

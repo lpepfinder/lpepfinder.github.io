@@ -132,11 +132,11 @@
   "resultFormat": "Format",
   "conditionUsed": "Used",
   "formats": {
+    "7": "7\"",
+    "10": "10\"",
+    "12": "12\"",
     "lp": "LP",
     "2lp": "2LP+",
-    "12": "12\"",
-    "10": "10\"",
-    "7": "7\"",
     "ep": "EP",
     "cd": "CD",
     "mc": "Cassette"
@@ -236,7 +236,40 @@
       "one": "This link holds 1 record.",
       "other": "This link holds {count} records."
     },
-    "sharedAdd": "Add them to my watchlist"
+    "sharedAdd": "Add them to my watchlist",
+    "summaryWatched": {
+      "one": "1 watched",
+      "other": "{count} watched"
+    },
+    "summaryAvailable": {
+      "one": "1 available now at {shops}",
+      "other": "{count} available now at {shops}"
+    },
+    "summaryChanges": {
+      "one": "1 change since {date}",
+      "other": "{count} changes since {date}"
+    },
+    "views": "Watchlist views",
+    "viewChanges": "Changes",
+    "viewNow": "Available now",
+    "viewAll": "All",
+    "changesHeading": "Recent changes",
+    "nowHeading": "Available now, by shop",
+    "allHeading": "All watched records",
+    "noChangesAll": "No changes yet. They show up here when a watched record comes back in stock, sells out or gets cheaper.",
+    "noneAvailable": "None of your records is in stock right now.",
+    "visitShop": "Visit {shop}",
+    "findLabel": "Find in your watchlist",
+    "findPlaceholder": "Artist or title",
+    "jumpLabel": "Jump to a letter",
+    "jumpOther": "#",
+    "showMore": {
+      "one": "Show 1 more",
+      "other": "Show {count} more"
+    },
+    "showing": "Showing {shown} of {total}",
+    "noMatch": "No watched record matches “{query}”.",
+    "emptyList": "You're not watching any records yet. Tap Watch on a search result, or import a watchlist file below."
   },
   "navApp": "Main",
   "navSite": "Explore",
@@ -246,5 +279,36 @@
   "aboutSuggestTitle": "A record shop is missing?",
   "aboutSuggest": "Tell us about it: we check it automatically and add it within a day.",
   "aboutSuggestAction": "Suggest a record shop",
-  "contactGithub": "Contact us on GitHub"
+  "contactGithub": "Contact us on GitHub",
+  "results": {
+    "heading": "Results for “{query}”",
+    "records": {
+      "one": "1 record",
+      "other": "{count} records"
+    },
+    "copies": {
+      "one": "1 copy",
+      "other": "{count} copies"
+    },
+    "shops": {
+      "one": "1 shop",
+      "other": "{count} shops"
+    },
+    "countLine": "{records} · {copies} at {shops}",
+    "countPartial": "{line} (out of {total} found)",
+    "from": "from {price}",
+    "approx": "≈ {price}",
+    "soldOutCount": {
+      "one": "1 sold out",
+      "other": "{count} sold out"
+    },
+    "offersLabel": "Shops selling {title}",
+    "filtersLabel": "Filter results",
+    "inStock": "In stock only",
+    "near": "My country first",
+    "nearCountry": "{country} first",
+    "formatLabel": "Format",
+    "covers": "Show covers",
+    "noneFiltered": "No record loaded so far matches these filters."
+  }
 }

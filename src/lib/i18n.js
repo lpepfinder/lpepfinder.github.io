@@ -30,9 +30,9 @@ const groupKeys = (group, o = lookup(defaultLanguage, group)) => Object.entries(
 
 /** Strings the browser components need; `groups` adds whole groups for one page (e.g. "watchPage"). */
 export const clientStrings = (lang, groups = []) => Object.fromEntries([
-  'searchTitle', 'resultsCount', 'searching', 'showingOf', 'emptyTitle', 'indexError', 'resultShop', 'resultCountry',
-  'resultFormat', 'conditionUsed', 'resultsCountSoldOut', 'resultStock', 'soldOut', 'lastInStock', ...FORMAT_IDS.map((id) => `formats.${id}`),
-  ...['watch', ...groups].flatMap((g) => groupKeys(g)),
+  'searchTitle', 'searching', 'showingOf', 'emptyTitle', 'indexError',
+  'conditionUsed', 'soldOut', 'lastInStock', ...FORMAT_IDS.map((id) => `formats.${id}`),
+  ...['watch', 'results', ...groups].flatMap((g) => groupKeys(g)),
 ].map((k) => [k, lookup(lang, k) ?? lookup(defaultLanguage, k)]));
 
 const regionNames = Object.fromEntries(languages.map((l) => [l, new Intl.DisplayNames([l], { type: 'region' })]));

@@ -132,11 +132,11 @@
   "resultFormat": "Formato",
   "conditionUsed": "Usato",
   "formats": {
+    "7": "7\"",
+    "10": "10\"",
+    "12": "12\"",
     "lp": "LP",
     "2lp": "2LP+",
-    "12": "12\"",
-    "10": "10\"",
-    "7": "7\"",
     "ep": "EP",
     "cd": "CD",
     "mc": "Cassetta"
@@ -236,7 +236,40 @@
       "one": "Questo link contiene 1 disco.",
       "other": "Questo link contiene {count} dischi."
     },
-    "sharedAdd": "Aggiungili alla mia lista"
+    "sharedAdd": "Aggiungili alla mia lista",
+    "summaryWatched": {
+      "one": "1 seguito",
+      "other": "{count} seguiti"
+    },
+    "summaryAvailable": {
+      "one": "1 disponibile ora in {shops}",
+      "other": "{count} disponibili ora in {shops}"
+    },
+    "summaryChanges": {
+      "one": "1 cambiamento dal {date}",
+      "other": "{count} cambiamenti dal {date}"
+    },
+    "views": "Viste della lista",
+    "viewChanges": "Cambiamenti",
+    "viewNow": "Disponibili",
+    "viewAll": "Tutti",
+    "changesHeading": "Cambiamenti recenti",
+    "nowHeading": "Disponibili ora, per negozio",
+    "allHeading": "Tutti i dischi seguiti",
+    "noChangesAll": "Ancora nessun cambiamento. Compaiono qui quando un disco seguito torna disponibile, si esaurisce o cala di prezzo.",
+    "noneAvailable": "Nessuno dei tuoi dischi è disponibile in questo momento.",
+    "visitShop": "Vai a {shop}",
+    "findLabel": "Cerca nella tua lista",
+    "findPlaceholder": "Artista o titolo",
+    "jumpLabel": "Vai a una lettera",
+    "jumpOther": "#",
+    "showMore": {
+      "one": "Mostra 1 altro",
+      "other": "Mostra altri {count}"
+    },
+    "showing": "{shown} di {total} mostrati",
+    "noMatch": "Nessun disco seguito corrisponde a «{query}».",
+    "emptyList": "Non segui ancora nessun disco. Tocca Segui su un risultato di ricerca, o importa un file di lista qui sotto."
   },
   "navApp": "Principale",
   "navSite": "Esplora",
@@ -246,5 +279,36 @@
   "aboutSuggestTitle": "Manca un negozio di dischi?",
   "aboutSuggest": "Segnalacelo: lo verifichiamo automaticamente e lo aggiungiamo entro un giorno.",
   "aboutSuggestAction": "Proponi un negozio",
-  "contactGithub": "Contattaci su GitHub"
+  "contactGithub": "Contattaci su GitHub",
+  "results": {
+    "heading": "Risultati per «{query}»",
+    "records": {
+      "one": "1 disco",
+      "other": "{count} dischi"
+    },
+    "copies": {
+      "one": "1 copia",
+      "other": "{count} copie"
+    },
+    "shops": {
+      "one": "1 negozio",
+      "other": "{count} negozi"
+    },
+    "countLine": "{records} · {copies} in {shops}",
+    "countPartial": "{line} (su {total} trovate)",
+    "from": "da {price}",
+    "approx": "≈ {price}",
+    "soldOutCount": {
+      "one": "1 esaurita",
+      "other": "{count} esaurite"
+    },
+    "offersLabel": "Negozi che vendono {title}",
+    "filtersLabel": "Filtra i risultati",
+    "inStock": "Solo disponibili",
+    "near": "Prima il mio paese",
+    "nearCountry": "Prima {country}",
+    "formatLabel": "Formato",
+    "covers": "Mostra le copertine",
+    "noneFiltered": "Nessun disco caricato finora corrisponde a questi filtri."
+  }
 }
