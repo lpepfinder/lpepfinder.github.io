@@ -11,7 +11,8 @@ addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installProm
 
 const standalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 
-export function toast(text, action) {
+/** text; action: [label, fn] for a button; link: { href, label } to go somewhere. */
+export function toast(text, action, link) {
   let box = document.querySelector('vf-toast');
   if (!box) {
     box = document.createElement('vf-toast');
@@ -25,7 +26,9 @@ export function toast(text, action) {
     li.append(b);
     return li;
   };
-  box.querySelector('menu').replaceChildren(...(action ? [button(...action)] : []), button(t('watch.close')));
+  const go = link && Object.assign(document.createElement('li'), {});
+  if (go) go.append(Object.assign(document.createElement('a'), { href: link.href, textContent: link.label }));
+  box.querySelector('menu').replaceChildren(...(go ? [go] : []), ...(action ? [button(...action)] : []), button(t('watch.close')));
   // set the text after insertion, so screen readers announce it
   requestAnimationFrame(() => { box.querySelector('p').textContent = text; });
   // it goes away by itself, unless the reader is using it
@@ -46,6 +49,6 @@ export function afterWatch() {
   } else if (n === 1 || !load().persistAsked) {
     update((list) => { list.persistAsked = 1; });
     navigator.storage?.persist?.().catch(() => {});
-    toast(t('watch.firstWatch'));
+    toast(t('watch.firstWatch'), null, { href: document.querySelector('vf-watchlist a')?.href || '/watch/', label: t('watch.open') });
   }
 }

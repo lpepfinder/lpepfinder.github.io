@@ -1,0 +1,35 @@
+/* <vf-filters>: toggles and format chips above the results; checked chips keep their visible check mark. */
+vf-filters { display: grid; gap: var(--space-2); }
+vf-results:not([status="done"]) > :is(vf-filters, vf-note) { display: none; }
+vf-filters fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; }
+vf-filters legend { float: inline-start; margin-inline-end: var(--space-1); color: var(--c-muted); font-size: var(--size-s); }
+vf-filters :is(fieldset, label)[hidden], vf-note[hidden] { display: none; }
+vf-filters label {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  min-block-size: var(--tap); padding-inline: var(--space-3);
+  border: var(--line) solid var(--c-line); border-radius: var(--radius-pill);
+  background: var(--c-chip); color: var(--c-fg); font-size: var(--size-s); cursor: pointer;
+}
+vf-filters label:has(:checked) { background: var(--c-chip-on); color: var(--c-chip-on-fg); border-color: var(--c-chip-on); }
+vf-filters label:has(:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+vf-filters input { inline-size: var(--icon-size); block-size: var(--icon-size); margin: 0; accent-color: var(--c-accent); }
+vf-filters data { color: inherit; font-size: var(--size-xs); }
+vf-results-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-1) var(--space-2); align-items: center; }
+vf-results-bar > :is(h2, p) { grid-column: 1 / -1; }
+vf-results-bar > button { background: var(--c-chip); color: var(--c-fg); font-size: var(--size-s); }
+vf-results-bar p { margin: 0; color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
+vf-results-bar p:empty { display: none; }
+vf-note p { margin: 0; color: var(--c-muted); }
+/* the live status is for screen readers once results show: the count line or the empty heading says the same */
+vf-results:is([status="done"], [status="empty"]) > output { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* phones: one scrolling row per group of toggles */
+@media (max-width: 40rem) {
+  vf-filters fieldset { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; padding-block: var(--focus-offset); padding-inline: var(--space-1); }
+  vf-filters legend { flex: none; }
+  vf-filters label { flex: none; }
+}
+
+@media (forced-colors: active) {
+  vf-filters label { border-color: CanvasText; }
+}

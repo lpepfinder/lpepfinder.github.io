@@ -7,7 +7,7 @@ const { lang } = Astro.props;
 <vf-search per-page="30" status="idle">
   <form id="search" role="search" action={localPath(lang, '/')} method="get">
     <label for="q">{t(lang, 'searchLabel')}</label>
-    <input id="q" name="q" type="search" placeholder={t(lang, 'searchPlaceholder')} autocomplete="off" spellcheck="false" enterkeyhint="search" required>
+    <input id="q" name="q" type="search" placeholder={t(lang, 'searchPlaceholder')} autocomplete="off" spellcheck="false" enterkeyhint="search" aria-keyshortcuts="/" required>
     <button type="submit" aria-label={t(lang, 'searchButton')}><vf-icon name="search"></vf-icon></button>
   </form>
 </vf-search>

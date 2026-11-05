@@ -2,6 +2,9 @@
   "description": "Browser watchlist and Discogs wantlist import. Editable: limits and the format rules that decide what counts as vinyl.",
   "installHintAfter": 3,
   "toastSeconds": 12,
+  "nowConcurrency": 8,
+  "nowSaveEvery": 250,
+  "pageSize": 100,
   "discogs": {
     "api": "https://api.discogs.com",
     "perPage": 250,

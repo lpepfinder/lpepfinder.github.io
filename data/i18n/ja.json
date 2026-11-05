@@ -3,7 +3,7 @@
   "siteName": "LP/EP Finder",
   "description": "{countries}か国、{searchable}のインディペンデントのレコード店にある在庫{recordsShort}枚を検索。毎日更新、各店舗へ直接リンク。",
   "searchLabel": "レコードを検索",
-  "searchPlaceholder": "アーティスト、アルバム、レーベル、品番…",
+  "searchPlaceholder": "アーティスト、アルバム、レーベル…",
   "searchButton": "検索",
   "resultsCount": "「{query}」の在庫レコード {count} 件",
   "loadMore": "さらに表示",
@@ -27,10 +27,16 @@
   "shopsTitle": "独立系レコード店",
   "shopsIntro": "{countries}か国、オンラインストアのある{shops}のレコード店。",
   "countryTitle": "{country}のレコード店",
-  "countryDescription": "{country}のインディペンデントのレコード店{shops}店、在庫レコード{records}枚を検索できます。毎日更新。",
-  "shopTitle": "{shop}{city}：在庫レコード{records}枚",
+  "countryDescription": {
+    "other": "{country}のインディペンデントのレコード店{shops}店、在庫レコード{records}枚を検索できます。毎日更新。"
+  },
+  "shopTitle": {
+    "other": "{shop}{city}：在庫レコード{records}枚"
+  },
   "shopDescription": "{shop}{place}：在庫レコード{records}枚。ほかの{shops}のインディペンデント店とまとめてカタログを検索できます。",
-  "shopRecords": "在庫 {count} 枚",
+  "shopRecords": {
+    "other": "在庫 {count} 枚"
+  },
   "shopVisit": "ショップを見る",
   "shopLatest": "最新のレコード",
   "shopListedOnly": "この店舗は掲載されていますが、カタログはまだ検索できません。",
@@ -75,7 +81,8 @@
     "not-music": "レコードの販売なし",
     "moved": "ドメイン移転・乗っ取り",
     "dead": "サイトに接続不可",
-    "duplicate": "他の店舗と重複"
+    "duplicate": "他の店舗と重複",
+    "unchecked": "未確認"
   },
   "footerNote": "価格と在庫は各店舗の情報で、変わることがあります。リンク先は各店舗です。",
   "notFoundTitle": "ページが見つかりません",
@@ -124,7 +131,9 @@
   "artistDescriptionNoPrice": "{artist}のレコード{count}枚が{shops}のインディペンデント店で在庫あり。LP、12インチ、7インチ。毎日更新。",
   "shopListedTitle": "{shop}{city}：インディペンデントのレコード店",
   "shopListedDescription": "{shop}{place}はインディペンデントのレコード店です。オンラインストアをご覧ください。",
-  "countrySeoTitle": "{country}のレコード店：インディペンデント{shops}店",
+  "countrySeoTitle": {
+    "other": "{country}のレコード店：インディペンデント{shops}店"
+  },
   "shopsSeoTitle": "国別のインディペンデントのレコード店",
   "artistsSeoTitle": "レコード在庫のあるアーティスト A–Z",
   "navBreadcrumb": "パンくずリスト",
@@ -132,11 +141,11 @@
   "resultFormat": "フォーマット",
   "conditionUsed": "中古",
   "formats": {
+    "7": "7インチ",
+    "10": "10インチ",
+    "12": "12インチ",
     "lp": "LP",
     "2lp": "2LP以上",
-    "12": "12インチ",
-    "10": "10インチ",
-    "7": "7インチ",
     "ep": "EP",
     "cd": "CD",
     "mc": "カセット"
@@ -163,7 +172,9 @@
   "newFeed": "フィードリーダーで購読（Atom）",
   "shopNewTitle": "今週の新着（{count}）",
   "homeNewTitle": "今週の新着",
-  "homeNewAll": "新着{count}枚をすべて見る",
+  "homeNewAll": {
+    "other": "新着{count}枚をすべて見る"
+  },
   "resultAdded": "入荷",
   "addedOn": "{date}入荷",
   "feedTitle": "新着 · LP/EP Finder",
@@ -180,10 +191,18 @@
     "navCount": {
       "other": "ウォッチリスト、{count} 件の変化"
     },
-    "firstWatch": "ウォッチしました。次に来たとき、変化がページ上部に表示されます。",
+    "firstWatch": "ウォッチリストに追加しました。変更とあわせて「ウォッチリスト」タブで確認できます。",
     "installHint": "LP/EP Finder をホーム画面に追加すると、ブラウザがウォッチリストを保持します。iPhone では「共有」から「ホーム画面に追加」。",
     "install": "ホーム画面に追加",
-    "close": "閉じる"
+    "close": "閉じる",
+    "watching": "ウォッチ中",
+    "open": "ウォッチリストを開く",
+    "changesShort": {
+      "other": "変更{count}件"
+    },
+    "addedShort": {
+      "other": "{count}件追加"
+    }
   },
   "watchPage": {
     "title": "ウォッチリスト",
@@ -231,7 +250,36 @@
     "sharedBody": {
       "other": "このリンクには {count} 枚のレコードが含まれています。"
     },
-    "sharedAdd": "自分のウォッチリストに追加"
+    "sharedAdd": "自分のウォッチリストに追加",
+    "summaryWatched": {
+      "other": "ウォッチ中{count}件"
+    },
+    "summaryAvailable": {
+      "other": "{shops}で{count}件が購入可能"
+    },
+    "summaryChanges": {
+      "other": "{date}以降の変更{count}件"
+    },
+    "views": "ウォッチリストの表示",
+    "viewChanges": "変更",
+    "viewNow": "購入可能",
+    "viewAll": "すべて",
+    "changesHeading": "最近の変更",
+    "nowHeading": "今買えるもの（お店別）",
+    "allHeading": "ウォッチ中のすべてのレコード",
+    "noChangesAll": "まだ変更はありません。ウォッチ中のレコードが再入荷、売り切れ、値下げになるとここに表示されます。",
+    "noneAvailable": "今、在庫のあるレコードはありません。",
+    "visitShop": "{shop}へ",
+    "findLabel": "ウォッチリスト内を検索",
+    "findPlaceholder": "アーティストまたはタイトル",
+    "jumpLabel": "頭文字へ移動",
+    "jumpOther": "#",
+    "showMore": {
+      "other": "さらに{count}件表示"
+    },
+    "showing": "{total}件中{shown}件を表示",
+    "noMatch": "「{query}」に一致するウォッチ中のレコードはありません。",
+    "emptyList": "まだレコードをウォッチしていません。検索結果の「ウォッチ」をタップするか、下からウォッチリストのファイルを読み込んでください。"
   },
   "navApp": "メイン",
   "navSite": "探す",
@@ -241,5 +289,68 @@
   "aboutSuggestTitle": "載っていないレコード店がありますか？",
   "aboutSuggest": "お知らせください。自動で確認し、1日以内に追加します。",
   "aboutSuggestAction": "レコード店を提案",
-  "contactGithub": "GitHub でお問い合わせ"
+  "contactGithub": "GitHub でお問い合わせ",
+  "results": {
+    "heading": "「{query}」の検索結果",
+    "records": {
+      "other": "{count}タイトル"
+    },
+    "copies": {
+      "other": "{count}点"
+    },
+    "shops": {
+      "other": "{count}店"
+    },
+    "countLine": "{records}・{shops}で{copies}",
+    "countPartial": "{line}（全{total}点中）",
+    "from": "{price}から",
+    "approx": "≈ {price}",
+    "soldOutCount": {
+      "other": "売り切れ{count}点"
+    },
+    "offersLabel": "{title}を扱うお店",
+    "filtersLabel": "結果を絞り込む",
+    "inStock": "在庫ありのみ",
+    "near": "自分の国を先に",
+    "nearCountry": "{country}を先に",
+    "formatLabel": "フォーマット",
+    "covers": "ジャケットを表示",
+    "noneFiltered": "これまでに読み込んだレコードに、この条件に合うものはありません。",
+    "didYouMean": "もしかして：{query}",
+    "without": "「{word}」なし：{link}",
+    "atShop": "お店では{price}",
+    "shipsFrom": "{country}から発送",
+    "copyLink": "リンクをコピー",
+    "shareLink": "共有",
+    "linkCopied": "リンクをコピーしました。"
+  },
+  "statusReason": {
+    "dns": "このウェブアドレスはもう存在しません",
+    "certificate": "セキュリティ証明書が無効か期限切れです",
+    "tls": "安全な接続ができません",
+    "timeout": "サイトが時間内に応答しません",
+    "refused": "サーバーが接続を拒否しています",
+    "notFound": "ページがなくなりました",
+    "forbidden": "サイトが訪問者を拒否しています",
+    "serverError": "サイトでサーバーエラーが起きています",
+    "parked": "ドメインが駐車中か売りに出ています",
+    "unreachable": "サイトにアクセスできません"
+  },
+  "currency": {
+    "label": "表示通貨",
+    "shop": "お店の通貨",
+    "rates": "{date}のレート（欧州中央銀行）"
+  },
+  "grades": {
+    "m": "ミント",
+    "nm": "ニアミント",
+    "vgp": "VG+（非常に良い）",
+    "vg": "VG（良い）",
+    "gp": "G+（並）",
+    "g": "G（難あり）"
+  },
+  "recent": {
+    "title": "最近の検索",
+    "clear": "最近の検索を消去"
+  }
 }

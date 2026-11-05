@@ -1,0 +1,15 @@
+{
+  "description": "Plain-language reasons for unreachable shops on /status/: the first rule whose pattern matches the check's error code wins; the text is i18n statusReason.<id>. The raw code stays in a tooltip.",
+  "rules": [
+    { "id": "dns", "pattern": "^(ENOTFOUND|EAI_AGAIN)$" },
+    { "id": "certificate", "pattern": "CERT|UNABLE_TO_|SELF_SIGNED" },
+    { "id": "tls", "pattern": "SSL|TLS" },
+    { "id": "timeout", "pattern": "TIMEOUT|TimeoutError|ETIMEDOUT" },
+    { "id": "refused", "pattern": "ECONNRESET|ECONNREFUSED|UND_ERR_SOCKET" },
+    { "id": "notFound", "pattern": "^http_(404|410)$" },
+    { "id": "forbidden", "pattern": "^http_(401|403|429)$" },
+    { "id": "serverError", "pattern": "^http_5\\d\\d$" },
+    { "id": "parked", "pattern": "^parked$" }
+  ],
+  "fallback": "unreachable"
+}

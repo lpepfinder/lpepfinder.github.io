@@ -3,7 +3,7 @@
   "siteName": "LP/EP Finder",
   "description": "Cerca tra {recordsShort} dischi disponibili in {searchable} negozi di dischi indipendenti in {countries} paesi. Aggiornato ogni giorno, link diretti al negozio.",
   "searchLabel": "Cerca dischi",
-  "searchPlaceholder": "Artista, album, etichetta, numero di catalogo…",
+  "searchPlaceholder": "Artista, album, etichetta…",
   "searchButton": "Cerca",
   "resultsCount": "{count} dischi disponibili per «{query}»",
   "loadMore": "Mostra altri dischi",
@@ -27,10 +27,19 @@
   "shopsTitle": "Negozi di dischi indipendenti",
   "shopsIntro": "{shops} negozi di dischi con un negozio online, in {countries} paesi.",
   "countryTitle": "Negozi di dischi in {country}",
-  "countryDescription": "{shops} negozi di dischi indipendenti in {country}, {records} vinili disponibili da cercare. Aggiornato ogni giorno.",
-  "shopTitle": "{shop}{city}: {records} dischi disponibili",
+  "countryDescription": {
+    "one": "1 negozio di dischi indipendente in {country}, {records} vinili disponibili da cercare. Aggiornato ogni giorno.",
+    "other": "{shops} negozi di dischi indipendenti in {country}, {records} vinili disponibili da cercare. Aggiornato ogni giorno."
+  },
+  "shopTitle": {
+    "one": "{shop}{city}: 1 disco disponibile",
+    "other": "{shop}{city}: {records} dischi disponibili"
+  },
   "shopDescription": "{shop}{place}: {records} vinili disponibili. Cerca nel suo catalogo insieme ad altri {shops} negozi indipendenti.",
-  "shopRecords": "{count} dischi disponibili",
+  "shopRecords": {
+    "one": "1 disco disponibile",
+    "other": "{count} dischi disponibili"
+  },
   "shopVisit": "Visita il negozio",
   "shopLatest": "Ultimi dischi",
   "shopListedOnly": "Questo negozio è in elenco, ma il suo catalogo non è ancora consultabile.",
@@ -75,7 +84,8 @@
     "not-music": "Non vende più dischi",
     "moved": "Dominio trasferito o occupato",
     "dead": "Sito irraggiungibile",
-    "duplicate": "Duplicato di un altro negozio"
+    "duplicate": "Duplicato di un altro negozio",
+    "unchecked": "Non ancora controllato"
   },
   "footerNote": "Prezzi e disponibilità provengono dai negozi e possono cambiare. I link portano ai negozi.",
   "notFoundTitle": "Pagina non trovata",
@@ -124,7 +134,10 @@
   "artistDescriptionNoPrice": "{count} dischi di {artist} disponibili in {shops} negozi indipendenti. LP, 12\", 7\"; aggiornato ogni giorno.",
   "shopListedTitle": "{shop}{city}: negozio di dischi indipendente",
   "shopListedDescription": "{shop}{place} è un negozio di dischi indipendente. Visita il suo negozio online.",
-  "countrySeoTitle": "Negozi di dischi in {country}: {shops} indipendenti",
+  "countrySeoTitle": {
+    "one": "Negozi di dischi in {country}: 1 indipendente",
+    "other": "Negozi di dischi in {country}: {shops} indipendenti"
+  },
   "shopsSeoTitle": "Negozi di dischi indipendenti per paese",
   "artistsSeoTitle": "Artisti con vinili disponibili dalla A alla Z",
   "navBreadcrumb": "Percorso di navigazione",
@@ -132,11 +145,11 @@
   "resultFormat": "Formato",
   "conditionUsed": "Usato",
   "formats": {
+    "7": "7\"",
+    "10": "10\"",
+    "12": "12\"",
     "lp": "LP",
     "2lp": "2LP+",
-    "12": "12\"",
-    "10": "10\"",
-    "7": "7\"",
     "ep": "EP",
     "cd": "CD",
     "mc": "Cassetta"
@@ -163,7 +176,10 @@
   "newFeed": "Segui in un lettore di feed (Atom)",
   "shopNewTitle": "Novità della settimana ({count})",
   "homeNewTitle": "Novità della settimana",
-  "homeNewAll": "Tutte le {count} novità",
+  "homeNewAll": {
+    "one": "Vedi la novità",
+    "other": "Tutte le {count} novità"
+  },
   "resultAdded": "Aggiunto",
   "addedOn": "nuovo il {date}",
   "feedTitle": "Novità · LP/EP Finder",
@@ -181,10 +197,20 @@
       "one": "Lista dei seguiti, 1 novità",
       "other": "Lista dei seguiti, {count} novità"
     },
-    "firstWatch": "Lo segui. Le novità appariranno in cima alla pagina quando torni.",
+    "firstWatch": "Aggiunto alla tua lista. Lo trovi, con le novità, nella scheda Lista.",
     "installHint": "Aggiungi LP/EP Finder alla schermata Home così il browser conserva la tua lista. Su iPhone: Condividi, poi Aggiungi alla schermata Home.",
     "install": "Aggiungi alla schermata Home",
-    "close": "Chiudi"
+    "close": "Chiudi",
+    "watching": "Seguito",
+    "open": "Apri la lista",
+    "changesShort": {
+      "one": "1 cambiamento",
+      "other": "{count} cambiamenti"
+    },
+    "addedShort": {
+      "one": "1 disco aggiunto",
+      "other": "{count} dischi aggiunti"
+    }
   },
   "watchPage": {
     "title": "I dischi che segui",
@@ -236,7 +262,40 @@
       "one": "Questo link contiene 1 disco.",
       "other": "Questo link contiene {count} dischi."
     },
-    "sharedAdd": "Aggiungili alla mia lista"
+    "sharedAdd": "Aggiungili alla mia lista",
+    "summaryWatched": {
+      "one": "1 seguito",
+      "other": "{count} seguiti"
+    },
+    "summaryAvailable": {
+      "one": "1 disponibile ora in {shops}",
+      "other": "{count} disponibili ora in {shops}"
+    },
+    "summaryChanges": {
+      "one": "1 cambiamento dal {date}",
+      "other": "{count} cambiamenti dal {date}"
+    },
+    "views": "Viste della lista",
+    "viewChanges": "Cambiamenti",
+    "viewNow": "Disponibili",
+    "viewAll": "Tutti",
+    "changesHeading": "Cambiamenti recenti",
+    "nowHeading": "Disponibili ora, per negozio",
+    "allHeading": "Tutti i dischi seguiti",
+    "noChangesAll": "Ancora nessun cambiamento. Compaiono qui quando un disco seguito torna disponibile, si esaurisce o cala di prezzo.",
+    "noneAvailable": "Nessuno dei tuoi dischi è disponibile in questo momento.",
+    "visitShop": "Vai a {shop}",
+    "findLabel": "Cerca nella tua lista",
+    "findPlaceholder": "Artista o titolo",
+    "jumpLabel": "Vai a una lettera",
+    "jumpOther": "#",
+    "showMore": {
+      "one": "Mostra 1 altro",
+      "other": "Mostra altri {count}"
+    },
+    "showing": "{shown} di {total} mostrati",
+    "noMatch": "Nessun disco seguito corrisponde a «{query}».",
+    "emptyList": "Non segui ancora nessun disco. Tocca Segui su un risultato di ricerca, o importa un file di lista qui sotto."
   },
   "navApp": "Principale",
   "navSite": "Esplora",
@@ -246,5 +305,72 @@
   "aboutSuggestTitle": "Manca un negozio di dischi?",
   "aboutSuggest": "Segnalacelo: lo verifichiamo automaticamente e lo aggiungiamo entro un giorno.",
   "aboutSuggestAction": "Proponi un negozio",
-  "contactGithub": "Contattaci su GitHub"
+  "contactGithub": "Contattaci su GitHub",
+  "results": {
+    "heading": "Risultati per «{query}»",
+    "records": {
+      "one": "1 disco",
+      "other": "{count} dischi"
+    },
+    "copies": {
+      "one": "1 copia",
+      "other": "{count} copie"
+    },
+    "shops": {
+      "one": "1 negozio",
+      "other": "{count} negozi"
+    },
+    "countLine": "{records} · {copies} in {shops}",
+    "countPartial": "{line} (su {total} trovate)",
+    "from": "da {price}",
+    "approx": "≈ {price}",
+    "soldOutCount": {
+      "one": "1 esaurita",
+      "other": "{count} esaurite"
+    },
+    "offersLabel": "Negozi che vendono {title}",
+    "filtersLabel": "Filtra i risultati",
+    "inStock": "Solo disponibili",
+    "near": "Prima il mio paese",
+    "nearCountry": "Prima {country}",
+    "formatLabel": "Formato",
+    "covers": "Mostra le copertine",
+    "noneFiltered": "Nessun disco caricato finora corrisponde a questi filtri.",
+    "didYouMean": "Forse cercavi {query}?",
+    "without": "Senza «{word}»: {link}",
+    "atShop": "{price} in negozio",
+    "shipsFrom": "Spedito da {country}",
+    "copyLink": "Copia link",
+    "shareLink": "Condividi",
+    "linkCopied": "Link copiato."
+  },
+  "statusReason": {
+    "dns": "L’indirizzo web non esiste più",
+    "certificate": "Il certificato di sicurezza non è valido o è scaduto",
+    "tls": "La connessione sicura non riesce",
+    "timeout": "Il sito non risponde in tempo",
+    "refused": "Il server rifiuta la connessione",
+    "notFound": "La pagina non esiste più",
+    "forbidden": "Il sito respinge i visitatori",
+    "serverError": "Il sito ha un errore del server",
+    "parked": "Il dominio è parcheggiato o in vendita",
+    "unreachable": "Il sito non è raggiungibile"
+  },
+  "currency": {
+    "label": "Prezzi in",
+    "shop": "Valuta del negozio",
+    "rates": "Cambi del {date}, BCE"
+  },
+  "grades": {
+    "m": "Perfetto (mint)",
+    "nm": "Quasi perfetto",
+    "vgp": "Molto buono plus",
+    "vg": "Molto buono",
+    "gp": "Buono plus",
+    "g": "Buono"
+  },
+  "recent": {
+    "title": "Ricerche recenti",
+    "clear": "Cancella le ricerche recenti"
+  }
 }

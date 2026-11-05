@@ -1,5 +1,6 @@
 import { SearchClient } from '../lib/search/client.js';
 import { t } from './i18n.js';
+import { addRecent } from './recent.js';
 import './vf-results.js';
 
 /**
@@ -9,6 +10,12 @@ import './vf-results.js';
  */
 export class VfSearch extends HTMLElement {
   connectedCallback() {
+    // "/" focuses the search box (keyboards), unless the reader is typing somewhere
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || e.target.closest?.('input, textarea, select, [contenteditable]')) return;
+      e.preventDefault();
+      this.querySelector('input[name="q"]').focus();
+    });
     this.results = document.querySelector('vf-results');
     if (!this.results) return;
     this.client = new SearchClient(this.getAttribute('index') || '/search/');
@@ -43,23 +50,25 @@ export class VfSearch extends HTMLElement {
     try {
       this.ids = await this.client.rank(await this.client.match(q), q, this.per);
       this.shown = 0;
-      this.results.start(q, this.ids.length, this.client.soldOut(this.ids));
-      await this.more(false);
+      this.results.start(q, this.ids.length);
+      if (this.ids.length) await this.more(false);
+      else this.results.suggest(await this.client.suggest(q).catch(() => ({})));
     } catch (err) {
       console.error(err);
       this.results.error();
     }
     this.setAttribute('status', this.results.getAttribute('status'));
     if (submitted) { this.input.blur(); this.results.focusHeading(); }
+    if (this.ids?.length) addRecent(q);
     window.umami?.track?.('search', { q, results: this.ids?.length ?? -1 });
   }
 
-  /** Next page of records; after "show more", focus the first new result. */
+  /** Next page of records (regrouped by release); after "show more", focus the first new row. */
   async more(focus) {
     const slice = this.ids.slice(this.shown, this.shown + this.per);
     if (!slice.length) return;
     this.shown += slice.length;
-    const first = this.results.append(await this.client.records(slice), this.shown);
+    const first = await this.results.append(await this.client.records(slice), this.shown);
     if (focus) first?.focus();
   }
 }

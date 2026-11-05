@@ -5,7 +5,7 @@ import CountryList from '../../components/CountryList.astro';
 import RecordList from '../../components/RecordList.astro';
 import { newArrivals } from '../../lib/new-arrivals.js';
 import config from '../../../data/config.json';
-import { t, localeParams, localPath, number, date } from '../../lib/i18n.js';
+import { t, tn, localeParams, localPath, number, date } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
 import { homeContent } from '../../lib/home.js';
 import { pageTitle } from '../../lib/seo.js';
@@ -33,7 +33,15 @@ const ld = [{
     <h1>{t(lang, 'homeTitle')}</h1>
     <p>{t(lang, 'stats', vars)} · <time datetime={c.builtAt}>{t(lang, 'updated', { date: date(lang, c.builtAt) })}</time></p>
   </hgroup>
+  <vf-recent hidden>
+    <h2 id="recent-title">{t(lang, 'recent.title')}</h2>
+    <ul aria-labelledby="recent-title"></ul>
+    <button type="button" name="clear">{t(lang, 'recent.clear')}</button>
+  </vf-recent>
   <Results lang={lang} />
+  <script>
+    import '../../components/vf-recent.js';
+  </script>
   <script is:inline>
     /* before first paint: a ?q= URL shows the results layout at once, so the home sections never shift */
     if (new URLSearchParams(location.search).get('q')) {
@@ -51,7 +59,7 @@ const ld = [{
     <section>
       <h2 id="home-new">{t(lang, 'homeNewTitle')}</h2>
       <RecordList lang={lang} records={fresh.records} labelledby="home-new" />
-      <p><a href="/new/">{t(lang, 'homeNewAll', { count: number(lang, fresh.count) })}</a></p>
+      <p><a href="/new/">{tn(lang, 'homeNewAll', fresh.count)}</a></p>
     </section>
   )}
   <section>

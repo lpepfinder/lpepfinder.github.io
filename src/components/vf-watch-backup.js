@@ -67,7 +67,8 @@ export class VfWatchShared extends HTMLElement {
       this.hidden = true;
       document.querySelector('vf-watch-page output').textContent = tn('watchPage.imported', n);
       if (n) { afterWatch(); refreshPage(); }
-      document.querySelector('vf-watch-items h2')?.focus();
+      document.querySelector('vf-watch-page')?.show?.(false);
+      document.querySelector('vf-watch-page > :not([hidden]) > h2')?.focus();
     });
   }
 }

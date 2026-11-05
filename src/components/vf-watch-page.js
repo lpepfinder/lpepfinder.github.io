@@ -1,38 +1,74 @@
-import { load, update, remove, today, EVENT } from '../lib/watch/store.js';
+import { load, update, today } from '../lib/watch/store.js';
 import { due, check } from '../lib/watch/check.js';
 import { state } from '../lib/watch/diff.js';
 import * as data from '../lib/watch/data.js';
-import { change, item, stock } from './watch-render.js';
-import { t, tn } from './i18n.js';
+import { changesByDay, byShop, shopGroup } from './watch-views.js';
+import { t, tn, formatNumber, formatDay } from './i18n.js';
+import { rates, CURRENCY_EVENT } from './viewer.js';
+import './vf-watch-all.js';
 
 const MAX_PAST = 100;
-const ORDER = { in: 0, out: 1, none: 2, unknown: 3 };
+const VIEWS = ['changes', 'now', 'all'];
 
 /**
- * <vf-watch-page status="idle|checking|done">: the changes since the last visit
- * (<vf-watch-changes count>) and the watched records (<vf-watch-items count>) with their
- * current state from the `now` shards. Changes are marked seen when the page is left.
+ * <vf-watch-page status="idle|checking|done" view="changes|now|all">: a summary line, then three
+ * views chosen by links (?view=…, aria-current="page"): changes by day (<vf-watch-changes>),
+ * records in stock now by shop (<vf-watch-now>), and every record (<vf-watch-all>).
+ * Current states come from the `now` shards, fetched once per data build with a progress bar.
+ * Changes are marked seen when the page is left.
  */
 export class VfWatchPage extends HTMLElement {
   connectedCallback() {
     this.live = this.querySelector(':scope > output');
-    this.changes = this.querySelector('vf-watch-changes');
-    this.items = this.querySelector('vf-watch-items');
-    this.progress = this.items.querySelector('progress');
+    this.summary = this.querySelector('vf-watch-summary');
+    this.progress = this.querySelector('vf-progress');
+    this.views = Object.fromEntries(VIEWS.map((v) => [v, this.querySelector(`vf-watch-${v}`)]));
     this.search = this.getAttribute('search') || '/';
+    this.views.all.setAttribute('search', this.search);
     this.shops = new Map();
-    this.renderItems = this.renderItems.bind(this);
-    addEventListener(EVENT, this.renderItems);
-    this.items.addEventListener('click', (e) => {
-      const button = e.target.closest('button[name="remove"]');
-      if (button) this.remove(button);
+    this.rows = {};
+    this.rates = {};
+    this.shopIds = [];
+    this.querySelector('nav').addEventListener('click', (e) => {
+      const a = e.target.closest('a[href]');
+      if (!a) return;
+      e.preventDefault();
+      history.pushState(null, '', a.href);
+      this.show(true);
     });
+    addEventListener('popstate', () => this.show(false));
+    addEventListener(data.PROGRESS, (e) => this.step(e.detail));
+    addEventListener(CURRENCY_EVENT, () => { this.renderChanges(); this.renderNow(); });
     const leave = () => this.markSeen();
     addEventListener('pagehide', leave);
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') leave(); });
-    this.renderItems();
+    if (load().fresh) update((list) => { list.fresh = 0; });
+    this.show(false);
+    this.views.all.refresh();
     this.renderChanges();
+    this.renderSummary();
     this.refresh();
+  }
+
+  /** The view in the URL; focus its heading when the reader picked it. */
+  show(focus) {
+    const view = new URLSearchParams(location.search).get('view');
+    const current = VIEWS.includes(view) ? view : VIEWS[0];
+    this.setAttribute('view', current);
+    for (const v of VIEWS) this.views[v].hidden = v !== current;
+    for (const a of this.querySelectorAll('nav a')) {
+      if (new URL(a.href).searchParams.get('view') === current) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    }
+    if (focus) this.views[current].querySelector('h2').focus();
+  }
+
+  step({ done, total }) {
+    this.progress.hidden = done >= total;
+    const bar = this.progress.querySelector('progress');
+    bar.max = total;
+    bar.value = done;
+    this.progress.querySelector('label').textContent = t('watchPage.checking', { done: formatNumber(done), total: formatNumber(total) });
   }
 
   /** Check and load current states; calls queue up (records may be added meanwhile). */
@@ -44,61 +80,61 @@ export class VfWatchPage extends HTMLElement {
   async run() {
     this.setAttribute('status', 'checking');
     if (due()) await check().catch(() => {});
-    const { items, refreshed } = load();
-    const all = Object.keys(items);
-    // once a day for all records, else only for records added without a state
-    const keys = new Set(refreshed === today() ? all.filter((k) => !items[k].s) : all);
-    if (keys.size) {
-      this.progress.hidden = false;
-      const found = await data.now([...keys], (done, total) => { this.progress.max = total; this.progress.value = done; });
+    const keys = Object.keys(load().items);
+    const [rows, shopIds, table] = await Promise.all([keys.length ? data.now(keys) : {}, data.shops(), rates(), this.loadShops()]);
+    this.rates = table;
+    this.rows = rows;
+    this.shopIds = shopIds;
+    const { refreshed, items } = load();
+    if (refreshed !== today() || keys.some((k) => !items[k].s)) {
       update((list) => {
-        for (const [key, it] of Object.entries(list.items)) {
-          if (!keys.has(key)) continue;
-          it.s = state(found[key]);
-        }
+        for (const [key, it] of Object.entries(list.items)) it.s = state(rows[key]);
         list.refreshed = today();
       });
-      this.progress.hidden = true;
     }
-    await this.loadShops();
+    this.progress.hidden = true;
     this.renderChanges();
+    this.renderNow();
+    this.views.all.refresh();
+    this.renderSummary();
     this.setAttribute('status', 'done');
-    if (all.length) this.live.textContent = t('watchPage.checked');
+    if (keys.length) this.live.textContent = t('watchPage.checked');
   }
 
-  /** Shop names and countries from the search index, for the change rows. */
+  /** Shop names, links and countries from the search index. */
   async loadShops() {
-    const list = load();
-    if (![...list.changes, ...list.past].some((c) => c[7])) return;
+    if (this.shops.size) return;
     const rows = await fetch('/search/shops.json').then((r) => (r.ok ? r.json() : [])).catch(() => []);
-    this.shops = new Map(rows.map(([id, name, , country]) => [id, { name, country }]));
+    this.shops = new Map(rows.map(([id, name, origin, country, currency]) => [id, { name, origin, country, currency }]));
+  }
+
+  /** "13,000 watched · 312 available now at 87 shops · 24 changes since 2 Nov". */
+  renderSummary() {
+    const { items, changes } = load();
+    const n = Object.keys(items).length;
+    const inStock = Object.entries(items).filter(([k, it]) => (this.rows[k] || it.s)?.[0] > 0).length;
+    const shops = new Set();
+    for (const row of Object.values(this.rows)) if (row[0] && row[4]) for (let i = 0; i < row[4].length; i += 2) shops.add(row[4][i]);
+    const since = changes.map((c) => c[8]).filter(Boolean).sort()[0];
+    const parts = [tn('watchPage.summaryWatched', n)];
+    if (n) parts.push(tn('watchPage.summaryAvailable', inStock, { shops: tn('results.shops', shops.size) }));
+    if (changes.length && since) parts.push(tn('watchPage.summaryChanges', changes.length, { date: formatDay(since.slice(0, 10)) }));
+    this.summary.textContent = parts.join(' · ');
+    this.summary.hidden = !n;
   }
 
   renderChanges() {
-    const { changes, past } = load();
-    const [now, earlier] = this.changes.querySelectorAll('ol');
-    now.replaceChildren(...[...changes].reverse().map((c) => change(c, this.shops, false)));
-    earlier.replaceChildren(...[...past].reverse().map((c) => change(c, this.shops, true)));
-    this.changes.setAttribute('count', changes.length);
-    this.changes.setAttribute('earlier', past.length);
+    const list = load();
+    const box = this.views.changes;
+    box.querySelector('vf-watch-days').replaceChildren(...changesByDay(list, this.shops, this.rates));
+    box.setAttribute('count', list.changes.length + list.past.length);
   }
 
-  renderItems() {
-    const entries = Object.entries(load().items)
-      .sort(([, a], [, b]) => ORDER[stock(a.s)] - ORDER[stock(b.s)] || (b.a || '').localeCompare(a.a || ''));
-    this.items.querySelector('ol').replaceChildren(...entries.map(([key, it]) => item(key, it, this.search)));
-    this.items.querySelector('h2').textContent = tn('watchPage.listTitle', entries.length);
-    this.items.setAttribute('count', entries.length);
-  }
-
-  remove(button) {
-    const li = button.closest('li');
-    const next = [...li.parentElement.children].indexOf(li);
-    const title = load().items[button.value]?.t || t('watchPage.unknownTitle', { key: button.value });
-    remove(button.value);
-    this.live.textContent = t('watchPage.removed', { title });
-    const buttons = this.items.querySelectorAll('button[name="remove"]');
-    (buttons[Math.min(next, buttons.length - 1)] || this.items.querySelector('h2')).focus();
+  renderNow() {
+    const groups = byShop(load().items, this.rows, this.shopIds, this.shops);
+    const box = this.views.now;
+    box.querySelector('vf-watch-shops').replaceChildren(...groups.map((g) => shopGroup(g, this.search, this.rates)));
+    box.setAttribute('count', groups.length);
   }
 
   markSeen() {

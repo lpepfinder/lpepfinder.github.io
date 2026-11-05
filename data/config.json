@@ -77,7 +77,8 @@
     "newShopCrawls": 2,
     "lowPriceDays": 90,
     "goneSearchDays": 90,
-    "goneKeepDays": 365
+    "goneKeepDays": 365,
+    "watchShops": 12
   },
   "newArrivals": {
     "days": 7,
@@ -144,5 +145,8 @@
     "backgroundColor": "#f7f6f2",
     "icon": "/favicon.png",
     "iconSize": "192x192"
+  },
+  "rates": {
+    "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
   }
 }

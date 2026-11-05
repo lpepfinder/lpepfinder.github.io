@@ -44,6 +44,14 @@
   --badge-size: 1.25rem;
   --layer-toast: 3;
   --tracking-caps: 0.04em;
+  --thumb-row: 2.75rem;
+  --price-col: 4.5rem;
+  --price-max: 34%;
+  --results-width: 52rem;
+  --tab-mark: 3px;
+  --offers-indent: var(--space-4);
+  --disclosure: "▸";
+  --disclosure-open: "▾";
 
   --c-bg: #f7f6f2;
   --c-surface: #ffffff;
@@ -61,6 +69,7 @@
   --c-price: var(--c-fg);
   --c-used: #7a4a00;
   --c-skeleton: #ecebe5;
+  --c-hover: #efeee8;
   --c-ok: var(--c-link);
   --c-bad: var(--c-accent);
   --c-watching: #8a5a00;
@@ -94,6 +103,7 @@
     --c-chip-on-fg: #111214;
     --c-used: #f0b45a;
     --c-skeleton: #222429;
+    --c-hover: #1f2024;
     --c-watching: #f0b45a;
     --c-event-restock: #6fd08c;
     --c-event-price-down: #6fd08c;

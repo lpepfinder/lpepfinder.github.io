@@ -5,8 +5,8 @@ import { t } from './i18n.js';
 /**
  * <vf-watch key="<releaseKey>" label="Artist – Title" action="watch|notify" url shop price currency>:
  * a toggle that watches a release, keeping the title, link, shop and price of the copy shown.
- * Renders its own button (no button without JavaScript, since the list lives in the browser). The visible text stays the same; aria-pressed and the
- * watching="true|false" attribute carry the state.
+ * Renders its own button (no button without JavaScript, since the list lives in the browser). It reads "Watch" or
+ * "Watching"; its name stays "Watch <title>" and aria-pressed plus the watching="true|false" attribute carry the state.
  */
 export class VfWatch extends HTMLElement {
   connectedCallback() {
@@ -15,7 +15,8 @@ export class VfWatch extends HTMLElement {
       const label = this.getAttribute('label') || '';
       this.button = Object.assign(document.createElement('button'), { type: 'button' });
       this.button.setAttribute('aria-label', t(`watch.${action}Label`, { title: label }));
-      this.button.append(document.createElement('vf-icon'), ` ${t(`watch.${action}`)}`);
+      this.word = t(`watch.${action}`);
+      this.button.append(document.createElement('vf-icon'), document.createElement('span'));
       this.button.firstChild.setAttribute('name', 'star');
       this.button.addEventListener('click', () => this.toggle());
       this.append(this.button);
@@ -31,6 +32,7 @@ export class VfWatch extends HTMLElement {
     const on = isWatched(this.getAttribute('key'));
     this.setAttribute('watching', String(on));
     this.button.setAttribute('aria-pressed', String(on));
+    this.button.querySelector('span').textContent = on ? t('watch.watching') : this.word;
   }
 
   toggle() {

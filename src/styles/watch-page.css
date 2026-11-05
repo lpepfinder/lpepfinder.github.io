@@ -1,24 +1,55 @@
-/* /watch/ page: changes, watched records, backup and share. State in attributes. */
-:is(vf-watch-page, vf-watch-changes, vf-watch-items, vf-watch-backup, vf-watch-shared) { display: grid; gap: var(--space-2); align-content: start; }
-:is(vf-watch-shared, vf-progress)[hidden] { display: none; }
-:is(vf-watch-page, vf-watch-backup, vf-watch-shared) :is(h2, h3, p) { margin: 0; }
-vf-watch-backup > h2, vf-watch-items > h2 { margin-block-start: var(--space-6); }
+/* /watch/ page: summary, views (changes, available now, all), backup and share. State in attributes. */
+:is(vf-watch-page, vf-watch-changes, vf-watch-now, vf-watch-all, vf-watch-backup, vf-watch-shared) { display: grid; gap: var(--space-2); align-content: start; }
+:is(vf-watch-shared, vf-progress, vf-watch-summary, vf-watch-changes, vf-watch-now, vf-watch-all)[hidden] { display: none; }
+:is(vf-watch-page, vf-watch-backup, vf-watch-shared) :is(h2, h3, h4, p) { margin: 0; }
+vf-watch-backup > h2 { margin-block-start: var(--space-6); }
 :is(vf-watch-page, vf-watch-backup) > output { color: var(--c-muted); font-size: var(--size-s); }
 :is(vf-watch-page, vf-watch-backup) > output:empty { display: none; }
-:is(vf-watch-changes, vf-watch-items) ol { list-style: none; margin: 0; padding: 0; display: grid; }
+vf-watch-page ol, vf-watch-shop ul { list-style: none; margin: 0; padding: 0; display: grid; }
 vf-watch-shared { padding: var(--space-4); border-radius: var(--radius); background: var(--c-chip); justify-items: start; }
+vf-watch-summary { display: block; font-weight: var(--weight-semi); font-variant-numeric: tabular-nums; }
+
+/* views: links that behave as tabs; the current one is bold and underlined, not only coloured */
+vf-watch-page > nav ul { display: flex; flex-wrap: wrap; gap: var(--space-1); border-block-end: var(--line) solid var(--c-line); }
+vf-watch-page > nav a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-3); color: var(--c-muted); text-decoration: none; border-block-end: var(--tab-mark) solid transparent; }
+vf-watch-page > nav a[aria-current="page"] { color: var(--c-fg); font-weight: var(--weight-semi); border-block-end-color: var(--c-accent); }
 
 /* empty states: the text shows only when the count is known to be 0 */
-vf-watch-changes:not([count="0"]) > p, vf-watch-items:not([count="0"]) > p { display: none; }
-vf-watch-changes:not([earlier]) > details, vf-watch-changes[earlier="0"] > details { display: none; }
-vf-watch-changes summary { min-block-size: var(--tap); display: flex; align-items: center; cursor: pointer; color: var(--c-muted); }
-vf-watch-items > progress { inline-size: 100%; }
+:is(vf-watch-changes, vf-watch-now, vf-watch-all):not([count="0"]) > p { display: none; }
+vf-watch-all[count="0"] > :is(search, nav, vf-watch-showing) { display: none; }
+vf-watch-days > section { display: grid; gap: var(--space-1); margin-block-start: var(--space-4); }
+vf-watch-days h3 { font-size: var(--size-s); color: var(--c-muted); font-weight: var(--weight-semi); }
+
+vf-progress { display: grid; gap: var(--space-1); font-size: var(--size-s); color: var(--c-muted); }
+vf-progress progress { inline-size: 100%; }
+
+/* available now: one <details> per shop */
+vf-watch-shops { display: grid; }
+vf-watch-shop { display: block; border-block-end: var(--line) solid var(--c-line); }
+vf-watch-shop summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 var(--space-3); min-block-size: var(--tap); padding-block: var(--space-2); cursor: pointer; }
+vf-watch-shop summary h3 { font-size: var(--size-0); display: inline; }
+vf-watch-shop summary span { color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
+vf-watch-shop details > p { padding-block-end: var(--space-2); }
+vf-watch-shop details > p a { display: inline-flex; align-items: center; min-block-size: var(--tap); font-weight: var(--weight-semi); }
+vf-watch-shop li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-3); align-items: center; min-block-size: var(--tap); border-block-start: var(--line) solid var(--c-line); }
+vf-watch-shop li a { overflow-wrap: anywhere; padding-block: var(--space-2); }
+
+/* all: search box, A–Z jump bar, pages */
+vf-watch-all > *, vf-watch-page > * { min-inline-size: 0; }
+vf-watch-all search { display: grid; gap: var(--space-1); }
+vf-watch-all search label { font-weight: var(--weight-semi); }
+vf-watch-all input[type="search"] { font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); min-inline-size: 0; padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
+vf-watch-all nav ul { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+vf-watch-all nav button { min-inline-size: var(--tap); padding-inline: var(--space-2); background: var(--c-chip); color: var(--c-fg); }
+vf-watch-showing { display: block; color: var(--c-muted); font-size: var(--size-s); }
+vf-watch-all > button { justify-self: center; }
+vf-watch-all > button[hidden] { display: none; }
 
 vf-change, vf-watch-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-1) var(--space-3); align-items: start; padding-block: var(--space-3); border-block-end: var(--line) solid var(--c-line); }
 vf-change > :not(vf-price), vf-watch-item > :not(button) { grid-column: 1; }
 vf-change > vf-price { grid-column: 2; grid-row: 1 / span 2; }
 vf-watch-item > button { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
-:is(vf-change, vf-watch-item) h3 { font-size: var(--size-0); line-height: var(--leading-tight); overflow-wrap: anywhere; }
+:is(vf-change, vf-watch-item) :is(h3, h4) { font-size: var(--size-0); line-height: var(--leading-tight); overflow-wrap: anywhere; }
 :is(vf-change, vf-watch-item) p { color: var(--c-muted); font-size: var(--size-s); }
 vf-event { font-size: var(--size-xs); font-weight: var(--weight-bold); text-transform: uppercase; letter-spacing: var(--tracking-caps); color: var(--event-color, var(--c-muted)); }
 vf-change[event="new"] { --event-color: var(--c-event-new); }
@@ -26,11 +57,11 @@ vf-change[event="restock"] { --event-color: var(--c-event-restock); }
 vf-change[event="price-down"] { --event-color: var(--c-event-price-down); }
 vf-change[event="soldout"] { --event-color: var(--c-event-soldout); }
 vf-change[event="gone"] { --event-color: var(--c-event-gone); }
-vf-change[seen="true"] :is(h3, vf-price) { font-weight: normal; }
+vf-change[seen="true"] :is(h4, vf-price) { font-weight: normal; }
 vf-watch-item[stock="in"] p { color: var(--c-fg); font-weight: var(--weight-semi); }
 
 /* secondary buttons and file pickers styled as buttons (the input stays focusable) */
-:is(vf-watch-item, vf-watch-backup) button, label:has(> input[type="file"]) { background: var(--c-chip); color: var(--c-fg); }
+:is(vf-watch-item, vf-watch-backup, vf-watch-all) button, label:has(> input[type="file"]) { background: var(--c-chip); color: var(--c-fg); }
 label:has(> input[type="file"]) { display: inline-flex; align-items: center; min-block-size: var(--tap); padding: var(--space-2) var(--space-4); border-radius: var(--radius); font-weight: var(--weight-semi); cursor: pointer; justify-self: start; }
 label:has(> input[type="file"]:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 label > input[type="file"] { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
@@ -38,6 +69,10 @@ vf-watch-backup menu { display: flex; flex-wrap: wrap; gap: var(--space-2); marg
 vf-watch-backup > p { color: var(--c-muted); font-size: var(--size-s); }
 vf-watch-backup > p:has(input) { display: grid; gap: var(--space-1); }
 vf-watch-backup > p[hidden] { display: none; }
+:is(vf-watch-backup) input[type="url"] { font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); min-inline-size: 0; padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
 
-vf-progress { display: grid; gap: var(--space-1); font-size: var(--size-s); color: var(--c-muted); }
-vf-progress progress { inline-size: 100%; }
+@media (max-width: 40rem) {
+  /* the jump bar is one scrolling row on phones */
+  vf-watch-all nav ul { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; padding-block: var(--focus-offset); }
+  vf-watch-all nav li { flex: none; }
+}

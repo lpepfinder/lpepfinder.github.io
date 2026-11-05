@@ -1,4 +1,4 @@
-/** Product images for 56 px record cards; shared by <vf-result> (browser) and ResultCard.astro (build). */
+/** Product images for 56 px record cards; shared by <vf-release> (browser, src/components/cover.js) and ResultCard.astro (build). */
 const WP_SIZE = /-\d{3,4}x\d{3,4}(\.(?:jpe?g|png|webp))(\?|$)/i;
 
 /** Protocol-relative URLs ("//host/x.jpg") made absolute. */

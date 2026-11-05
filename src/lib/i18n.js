@@ -30,10 +30,22 @@ const groupKeys = (group, o = lookup(defaultLanguage, group)) => Object.entries(
 
 /** Strings the browser components need; `groups` adds whole groups for one page (e.g. "watchPage"). */
 export const clientStrings = (lang, groups = []) => Object.fromEntries([
-  'searchTitle', 'resultsCount', 'searching', 'showingOf', 'emptyTitle', 'indexError', 'resultShop', 'resultCountry',
-  'resultFormat', 'conditionUsed', 'resultsCountSoldOut', 'resultStock', 'soldOut', 'lastInStock', ...FORMAT_IDS.map((id) => `formats.${id}`),
-  ...['watch', ...groups].flatMap((g) => groupKeys(g)),
+  'searchTitle', 'searching', 'showingOf', 'emptyTitle', 'indexError',
+  'conditionUsed', 'soldOut', 'lastInStock', ...FORMAT_IDS.map((id) => `formats.${id}`),
+  ...['watch', 'results', 'currency', 'grades', 'recent', ...groups].flatMap((g) => groupKeys(g)),
 ].map((k) => [k, lookup(lang, k) ?? lookup(defaultLanguage, k)]));
+
+const pluralRules = Object.fromEntries(languages.map((l) => [l, new Intl.PluralRules(l)]));
+/**
+ * A count sentence: plural strings are objects of Intl.PluralRules categories ({ one, other }),
+ * chosen by `count`; {count} is the formatted number unless `vars` sets it.
+ */
+export function tn(lang, key, count, vars = {}) {
+  const value = lookup(lang, key) ?? lookup(defaultLanguage, key);
+  const form = value && typeof value === 'object' ? value[pluralRules[lang].select(count)] ?? value.other : value;
+  const all = { count: number(lang, count), ...vars };
+  return String(form ?? key).replace(/\{(\w+)\}/g, (_, k) => all[k] ?? '');
+}
 
 const regionNames = Object.fromEntries(languages.map((l) => [l, new Intl.DisplayNames([l], { type: 'region' })]));
 export const countryName = (lang, code) => { try { return regionNames[lang].of(code); } catch { return code; } };

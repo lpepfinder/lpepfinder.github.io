@@ -1,7 +1,4 @@
-/* Watchlist on every page: header link with <vf-watch-count>, <vf-watch> toggles, <vf-toast>. */
-vf-watchlist a { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); min-inline-size: var(--tap); justify-content: center; padding-inline: var(--space-2); border-radius: var(--radius); color: inherit; font-weight: var(--weight-semi); text-decoration: none; }
-vf-watchlist a[aria-current] { background: var(--c-chip); }
-vf-watchlist a > span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* Watchlist on every page: <vf-watch-count> on the Watchlist tab (tab bar in header.css), <vf-watch> toggles, <vf-toast>. */
 vf-watch-count { min-inline-size: var(--badge-size); block-size: var(--badge-size); padding-inline: var(--space-1); display: inline-grid; place-items: center; border-radius: var(--radius-pill); background: var(--c-badge); color: var(--c-badge-fg); font-size: var(--size-xs); font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; }
 vf-watch-count[count="0"] { display: none; }
 
@@ -15,11 +12,9 @@ td > vf-watch { margin-block-start: var(--space-1); }
 
 vf-toast { position: fixed; z-index: var(--layer-toast); inset-inline: var(--gutter); inset-block-end: calc(var(--tabbar-h) + var(--space-3) + env(safe-area-inset-bottom)); max-inline-size: var(--toast-width); margin-inline: auto; display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); border-radius: var(--radius); background: var(--c-toast); color: var(--c-toast-fg); }
 vf-toast p { margin: 0; }
+vf-toast a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-3); color: inherit; font-weight: var(--weight-semi); }
 vf-toast menu { display: flex; flex-wrap: wrap; justify-content: end; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
 
-@media (min-width: 48rem) {
-  vf-watchlist a > span { position: static; inline-size: auto; block-size: auto; overflow: visible; clip-path: none; }
-}
 @media (forced-colors: active) {
   vf-watch-count, vf-toast { border: var(--line) solid CanvasText; }
 }

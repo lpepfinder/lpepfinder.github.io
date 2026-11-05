@@ -3,7 +3,7 @@
   "siteName": "LP/EP Finder",
   "description": "Cherchez parmi {recordsShort} disques en stock chez {searchable} disquaires indépendants dans {countries} pays. Mis à jour chaque jour, liens directs vers le disquaire.",
   "searchLabel": "Chercher des disques",
-  "searchPlaceholder": "Artiste, album, label, référence…",
+  "searchPlaceholder": "Artiste, album, label…",
   "searchButton": "Chercher",
   "resultsCount": "{count} disques en stock pour « {query} »",
   "loadMore": "Voir plus de disques",
@@ -27,10 +27,19 @@
   "shopsTitle": "Disquaires indépendants",
   "shopsIntro": "{shops} disquaires avec une boutique en ligne, dans {countries} pays.",
   "countryTitle": "Disquaires en {country}",
-  "countryDescription": "{shops} disquaires indépendants en {country}, {records} vinyles en stock à chercher. Mis à jour chaque jour.",
-  "shopTitle": "{shop}{city} : {records} disques en stock",
+  "countryDescription": {
+    "one": "1 disquaire indépendant en {country}, {records} vinyles en stock à chercher. Mis à jour chaque jour.",
+    "other": "{shops} disquaires indépendants en {country}, {records} vinyles en stock à chercher. Mis à jour chaque jour."
+  },
+  "shopTitle": {
+    "one": "{shop}{city} : 1 disque en stock",
+    "other": "{shop}{city} : {records} disques en stock"
+  },
   "shopDescription": "{shop}{place} : {records} vinyles en stock. Cherchez dans son catalogue et ceux de {shops} autres disquaires indépendants.",
-  "shopRecords": "{count} disques en stock",
+  "shopRecords": {
+    "one": "1 disque en stock",
+    "other": "{count} disques en stock"
+  },
   "shopVisit": "Visiter la boutique",
   "shopLatest": "Derniers disques",
   "shopListedOnly": "Ce disquaire est référencé, mais son catalogue n'est pas encore consultable.",
@@ -75,7 +84,8 @@
     "not-music": "Ne vend plus de disques",
     "moved": "Domaine déplacé ou repris",
     "dead": "Site injoignable",
-    "duplicate": "Doublon d’un autre disquaire"
+    "duplicate": "Doublon d’un autre disquaire",
+    "unchecked": "Pas encore vérifié"
   },
   "footerNote": "Prix et stocks viennent de chaque disquaire et peuvent changer. Les liens mènent aux disquaires.",
   "notFoundTitle": "Page introuvable",
@@ -124,7 +134,10 @@
   "artistDescriptionNoPrice": "{count} disques de {artist} en stock chez {shops} disquaires indépendants. LP, maxis, 45 tours ; mis à jour chaque jour.",
   "shopListedTitle": "{shop}{city} : disquaire indépendant",
   "shopListedDescription": "{shop}{place} est un disquaire indépendant. Visitez sa boutique en ligne.",
-  "countrySeoTitle": "Disquaires en {country} : {shops} boutiques indépendantes",
+  "countrySeoTitle": {
+    "one": "Disquaires en {country} : 1 boutique indépendante",
+    "other": "Disquaires en {country} : {shops} boutiques indépendantes"
+  },
   "shopsSeoTitle": "Disquaires indépendants par pays",
   "artistsSeoTitle": "Artistes avec des vinyles en stock de A à Z",
   "navBreadcrumb": "Fil d'Ariane",
@@ -132,11 +145,11 @@
   "resultFormat": "Format",
   "conditionUsed": "Occasion",
   "formats": {
+    "7": "45 tours 7\"",
+    "10": "10\"",
+    "12": "Maxi 12\"",
     "lp": "LP",
     "2lp": "2LP+",
-    "12": "Maxi 12\"",
-    "10": "10\"",
-    "7": "45 tours 7\"",
     "ep": "EP",
     "cd": "CD",
     "mc": "Cassette"
@@ -163,7 +176,10 @@
   "newFeed": "Suivre dans un lecteur de flux (Atom)",
   "shopNewTitle": "Nouveautés de la semaine ({count})",
   "homeNewTitle": "Nouveautés de la semaine",
-  "homeNewAll": "Les {count} nouveautés",
+  "homeNewAll": {
+    "one": "Voir la nouveauté",
+    "other": "Les {count} nouveautés"
+  },
   "resultAdded": "Ajouté",
   "addedOn": "nouveau le {date}",
   "feedTitle": "Nouveautés · LP/EP Finder",
@@ -181,10 +197,20 @@
       "one": "Liste de suivi, {count} changement",
       "other": "Liste de suivi, {count} changements"
     },
-    "firstWatch": "Disque suivi. Les changements s'afficheront en haut de la page à votre retour.",
+    "firstWatch": "Ajouté à votre liste. Retrouvez-le, et ce qui change, dans l’onglet Liste.",
     "installHint": "Ajoutez LP/EP Finder à votre écran d'accueil pour que votre navigateur conserve votre liste. Sur iPhone : Partager, puis Sur l'écran d'accueil.",
     "install": "Ajouter à l'écran d'accueil",
-    "close": "Fermer"
+    "close": "Fermer",
+    "watching": "Suivi",
+    "open": "Ouvrir la liste",
+    "changesShort": {
+      "one": "1 changement",
+      "other": "{count} changements"
+    },
+    "addedShort": {
+      "one": "1 disque ajouté",
+      "other": "{count} disques ajoutés"
+    }
   },
   "watchPage": {
     "title": "Votre liste de suivi",
@@ -236,7 +262,40 @@
       "one": "Ce lien contient {count} disque.",
       "other": "Ce lien contient {count} disques."
     },
-    "sharedAdd": "Les ajouter à ma liste"
+    "sharedAdd": "Les ajouter à ma liste",
+    "summaryWatched": {
+      "one": "1 suivi",
+      "other": "{count} suivis"
+    },
+    "summaryAvailable": {
+      "one": "1 disponible maintenant chez {shops}",
+      "other": "{count} disponibles maintenant chez {shops}"
+    },
+    "summaryChanges": {
+      "one": "1 changement depuis le {date}",
+      "other": "{count} changements depuis le {date}"
+    },
+    "views": "Vues de la liste",
+    "viewChanges": "Changements",
+    "viewNow": "Disponibles",
+    "viewAll": "Tous",
+    "changesHeading": "Changements récents",
+    "nowHeading": "Disponibles maintenant, par disquaire",
+    "allHeading": "Tous les disques suivis",
+    "noChangesAll": "Aucun changement pour l’instant. Ils s’affichent ici quand un disque suivi revient en stock, est épuisé ou baisse de prix.",
+    "noneAvailable": "Aucun de vos disques n’est en stock en ce moment.",
+    "visitShop": "Aller chez {shop}",
+    "findLabel": "Chercher dans votre liste",
+    "findPlaceholder": "Artiste ou titre",
+    "jumpLabel": "Aller à une lettre",
+    "jumpOther": "#",
+    "showMore": {
+      "one": "Afficher 1 de plus",
+      "other": "Afficher {count} de plus"
+    },
+    "showing": "{shown} sur {total} affichés",
+    "noMatch": "Aucun disque suivi ne correspond à « {query} ».",
+    "emptyList": "Vous ne suivez encore aucun disque. Touchez Suivre sur un résultat de recherche, ou importez un fichier de liste ci-dessous."
   },
   "navApp": "Principal",
   "navSite": "Explorer",
@@ -246,5 +305,72 @@
   "aboutSuggestTitle": "Il manque un disquaire ?",
   "aboutSuggest": "Signalez-le : nous le vérifions automatiquement et l'ajoutons en un jour.",
   "aboutSuggestAction": "Proposer un disquaire",
-  "contactGithub": "Nous contacter sur GitHub"
+  "contactGithub": "Nous contacter sur GitHub",
+  "results": {
+    "heading": "Résultats pour « {query} »",
+    "records": {
+      "one": "1 disque",
+      "other": "{count} disques"
+    },
+    "copies": {
+      "one": "1 exemplaire",
+      "other": "{count} exemplaires"
+    },
+    "shops": {
+      "one": "1 disquaire",
+      "other": "{count} disquaires"
+    },
+    "countLine": "{records} · {copies} chez {shops}",
+    "countPartial": "{line} (sur {total} trouvés)",
+    "from": "dès {price}",
+    "approx": "≈ {price}",
+    "soldOutCount": {
+      "one": "1 épuisé",
+      "other": "{count} épuisés"
+    },
+    "offersLabel": "Disquaires qui vendent {title}",
+    "filtersLabel": "Filtrer les résultats",
+    "inStock": "En stock uniquement",
+    "near": "Mon pays d’abord",
+    "nearCountry": "{country} d’abord",
+    "formatLabel": "Format",
+    "covers": "Afficher les pochettes",
+    "noneFiltered": "Aucun disque chargé pour l’instant ne correspond à ces filtres.",
+    "didYouMean": "Vouliez-vous dire {query} ?",
+    "without": "Sans « {word} » : {link}",
+    "atShop": "{price} chez le disquaire",
+    "shipsFrom": "Expédié de {country}",
+    "copyLink": "Copier le lien",
+    "shareLink": "Partager",
+    "linkCopied": "Lien copié."
+  },
+  "statusReason": {
+    "dns": "L’adresse web n’existe plus",
+    "certificate": "Son certificat de sécurité est invalide ou expiré",
+    "tls": "La connexion sécurisée échoue",
+    "timeout": "Le site ne répond pas à temps",
+    "refused": "Le serveur refuse la connexion",
+    "notFound": "La page n’existe plus",
+    "forbidden": "Le site refuse les visiteurs",
+    "serverError": "Le site a une erreur de serveur",
+    "parked": "Le domaine est parqué ou à vendre",
+    "unreachable": "Le site est injoignable"
+  },
+  "currency": {
+    "label": "Prix en",
+    "shop": "Devise du disquaire",
+    "rates": "Taux du {date}, BCE"
+  },
+  "grades": {
+    "m": "Neuf (mint)",
+    "nm": "Quasi neuf",
+    "vgp": "Très bon plus",
+    "vg": "Très bon",
+    "gp": "Bon plus",
+    "g": "Bon"
+  },
+  "recent": {
+    "title": "Recherches récentes",
+    "clear": "Effacer les recherches récentes"
+  }
 }

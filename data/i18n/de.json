@@ -3,7 +3,7 @@
   "siteName": "LP/EP Finder",
   "description": "Durchsuche {recordsShort} Platten auf Lager bei {searchable} unabhängigen Plattenläden in {countries} Ländern. Täglich aktualisiert, direkt zum Laden verlinkt.",
   "searchLabel": "Platten suchen",
-  "searchPlaceholder": "Künstler, Album, Label, Katalognummer…",
+  "searchPlaceholder": "Künstler, Album, Label…",
   "searchButton": "Suchen",
   "resultsCount": "{count} Platten auf Lager für „{query}“",
   "loadMore": "Mehr Platten anzeigen",
@@ -27,10 +27,19 @@
   "shopsTitle": "Unabhängige Plattenläden",
   "shopsIntro": "{shops} Plattenläden mit Onlineshop in {countries} Ländern.",
   "countryTitle": "Plattenläden in {country}",
-  "countryDescription": "{shops} unabhängige Plattenläden in {country}, {records} Schallplatten auf Lager zum Durchsuchen. Täglich aktualisiert.",
-  "shopTitle": "{shop}{city}: {records} Platten auf Lager",
+  "countryDescription": {
+    "one": "1 unabhängiger Plattenladen in {country}, {records} Schallplatten auf Lager zum Durchsuchen. Täglich aktualisiert.",
+    "other": "{shops} unabhängige Plattenläden in {country}, {records} Schallplatten auf Lager zum Durchsuchen. Täglich aktualisiert."
+  },
+  "shopTitle": {
+    "one": "{shop}{city}: 1 Platte auf Lager",
+    "other": "{shop}{city}: {records} Platten auf Lager"
+  },
   "shopDescription": "{shop}{place}: {records} Schallplatten auf Lager. Durchsuche den Katalog zusammen mit {shops} weiteren unabhängigen Läden.",
-  "shopRecords": "{count} Platten auf Lager",
+  "shopRecords": {
+    "one": "1 Platte auf Lager",
+    "other": "{count} Platten auf Lager"
+  },
   "shopVisit": "Zum Shop",
   "shopLatest": "Neueste Platten",
   "shopListedOnly": "Dieser Laden ist gelistet, sein Katalog ist aber noch nicht durchsuchbar.",
@@ -75,7 +84,8 @@
     "not-music": "Verkauft keine Platten mehr",
     "moved": "Domain umgezogen oder übernommen",
     "dead": "Seite nicht erreichbar",
-    "duplicate": "Duplikat eines anderen Ladens"
+    "duplicate": "Duplikat eines anderen Ladens",
+    "unchecked": "Noch nicht geprüft"
   },
   "footerNote": "Preise und Bestand stammen von den Läden und können sich ändern. Links führen zu den Läden.",
   "notFoundTitle": "Seite nicht gefunden",
@@ -124,7 +134,10 @@
   "artistDescriptionNoPrice": "{count} Platten von {artist} auf Lager bei {shops} unabhängigen Läden. LP, 12\", 7\"; täglich aktualisiert.",
   "shopListedTitle": "{shop}{city}: unabhängiger Plattenladen",
   "shopListedDescription": "{shop}{place} ist ein unabhängiger Plattenladen. Besuche den Onlineshop.",
-  "countrySeoTitle": "Plattenläden in {country}: {shops} unabhängige Läden",
+  "countrySeoTitle": {
+    "one": "Plattenläden in {country}: 1 unabhängiger Laden",
+    "other": "Plattenläden in {country}: {shops} unabhängige Läden"
+  },
   "shopsSeoTitle": "Unabhängige Plattenläden nach Land",
   "artistsSeoTitle": "Künstler mit Vinyl auf Lager von A bis Z",
   "navBreadcrumb": "Brotkrümelnavigation",
@@ -132,11 +145,11 @@
   "resultFormat": "Format",
   "conditionUsed": "Gebraucht",
   "formats": {
+    "7": "7\"",
+    "10": "10\"",
+    "12": "12\"",
     "lp": "LP",
     "2lp": "2LP+",
-    "12": "12\"",
-    "10": "10\"",
-    "7": "7\"",
     "ep": "EP",
     "cd": "CD",
     "mc": "Kassette"
@@ -163,7 +176,10 @@
   "newFeed": "Im Feedreader abonnieren (Atom)",
   "shopNewTitle": "Neu diese Woche ({count})",
   "homeNewTitle": "Neu diese Woche",
-  "homeNewAll": "Alle {count} Neuheiten",
+  "homeNewAll": {
+    "one": "Zur Neuheit",
+    "other": "Alle {count} Neuheiten"
+  },
   "resultAdded": "Neu seit",
   "addedOn": "neu am {date}",
   "feedTitle": "Neuheiten · LP/EP Finder",
@@ -181,10 +197,20 @@
       "one": "Merkliste, 1 Änderung",
       "other": "Merkliste, {count} Änderungen"
     },
-    "firstWatch": "Gemerkt. Änderungen erscheinen oben auf der Seite, wenn du wiederkommst.",
+    "firstWatch": "Zur Merkliste hinzugefügt. Sie und alle Änderungen findest du im Tab Merkliste.",
     "installHint": "Füge LP/EP Finder zum Home-Bildschirm hinzu, damit dein Browser die Merkliste behält. Auf dem iPhone: Teilen, dann Zum Home-Bildschirm.",
     "install": "Zum Home-Bildschirm",
-    "close": "Schließen"
+    "close": "Schließen",
+    "watching": "Gemerkt",
+    "open": "Merkliste öffnen",
+    "changesShort": {
+      "one": "1 Änderung",
+      "other": "{count} Änderungen"
+    },
+    "addedShort": {
+      "one": "1 Platte hinzugefügt",
+      "other": "{count} Platten hinzugefügt"
+    }
   },
   "watchPage": {
     "title": "Deine Merkliste",
@@ -236,7 +262,40 @@
       "one": "Dieser Link enthält 1 Platte.",
       "other": "Dieser Link enthält {count} Platten."
     },
-    "sharedAdd": "Zu meiner Merkliste hinzufügen"
+    "sharedAdd": "Zu meiner Merkliste hinzufügen",
+    "summaryWatched": {
+      "one": "1 gemerkt",
+      "other": "{count} gemerkt"
+    },
+    "summaryAvailable": {
+      "one": "1 jetzt erhältlich in {shops}",
+      "other": "{count} jetzt erhältlich in {shops}"
+    },
+    "summaryChanges": {
+      "one": "1 Änderung seit {date}",
+      "other": "{count} Änderungen seit {date}"
+    },
+    "views": "Ansichten der Merkliste",
+    "viewChanges": "Änderungen",
+    "viewNow": "Erhältlich",
+    "viewAll": "Alle",
+    "changesHeading": "Letzte Änderungen",
+    "nowHeading": "Jetzt erhältlich, nach Laden",
+    "allHeading": "Alle gemerkten Platten",
+    "noChangesAll": "Noch keine Änderungen. Sie erscheinen hier, wenn eine gemerkte Platte wieder vorrätig, ausverkauft oder günstiger ist.",
+    "noneAvailable": "Gerade ist keine Ihrer Platten vorrätig.",
+    "visitShop": "Zu {shop}",
+    "findLabel": "In der Merkliste suchen",
+    "findPlaceholder": "Künstler oder Titel",
+    "jumpLabel": "Zu einem Buchstaben springen",
+    "jumpOther": "#",
+    "showMore": {
+      "one": "1 weitere zeigen",
+      "other": "{count} weitere zeigen"
+    },
+    "showing": "{shown} von {total} angezeigt",
+    "noMatch": "Keine gemerkte Platte passt zu „{query}“.",
+    "emptyList": "Sie merken sich noch keine Platten. Tippen Sie bei einem Suchergebnis auf Merken oder importieren Sie unten eine Merklisten-Datei."
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",
@@ -246,5 +305,72 @@
   "aboutSuggestTitle": "Ein Plattenladen fehlt?",
   "aboutSuggest": "Sag uns Bescheid: Wir prüfen ihn automatisch und nehmen ihn innerhalb eines Tages auf.",
   "aboutSuggestAction": "Plattenladen vorschlagen",
-  "contactGithub": "Kontakt über GitHub"
+  "contactGithub": "Kontakt über GitHub",
+  "results": {
+    "heading": "Ergebnisse für „{query}“",
+    "records": {
+      "one": "1 Platte",
+      "other": "{count} Platten"
+    },
+    "copies": {
+      "one": "1 Exemplar",
+      "other": "{count} Exemplare"
+    },
+    "shops": {
+      "one": "1 Laden",
+      "other": "{count} Läden"
+    },
+    "countLine": "{records} · {copies} in {shops}",
+    "countPartial": "{line} (von {total} gefundenen)",
+    "from": "ab {price}",
+    "approx": "≈ {price}",
+    "soldOutCount": {
+      "one": "1 ausverkauft",
+      "other": "{count} ausverkauft"
+    },
+    "offersLabel": "Läden mit {title}",
+    "filtersLabel": "Ergebnisse filtern",
+    "inStock": "Nur vorrätige",
+    "near": "Mein Land zuerst",
+    "nearCountry": "{country} zuerst",
+    "formatLabel": "Format",
+    "covers": "Cover zeigen",
+    "noneFiltered": "Keine der bisher geladenen Platten passt zu diesen Filtern.",
+    "didYouMean": "Meinten Sie {query}?",
+    "without": "Ohne „{word}“: {link}",
+    "atShop": "{price} im Laden",
+    "shipsFrom": "Versand aus {country}",
+    "copyLink": "Link kopieren",
+    "shareLink": "Teilen",
+    "linkCopied": "Link kopiert."
+  },
+  "statusReason": {
+    "dns": "Die Webadresse gibt es nicht mehr",
+    "certificate": "Das Sicherheitszertifikat ist ungültig oder abgelaufen",
+    "tls": "Die sichere Verbindung schlägt fehl",
+    "timeout": "Die Seite antwortet nicht rechtzeitig",
+    "refused": "Der Server lehnt die Verbindung ab",
+    "notFound": "Die Seite gibt es nicht mehr",
+    "forbidden": "Die Seite weist Besucher ab",
+    "serverError": "Die Seite hat einen Serverfehler",
+    "parked": "Die Domain ist geparkt oder zu verkaufen",
+    "unreachable": "Die Seite ist nicht erreichbar"
+  },
+  "currency": {
+    "label": "Preise in",
+    "shop": "Währung des Ladens",
+    "rates": "Kurse vom {date}, EZB"
+  },
+  "grades": {
+    "m": "Neuwertig (mint)",
+    "nm": "Fast neuwertig",
+    "vgp": "Sehr gut plus",
+    "vg": "Sehr gut",
+    "gp": "Gut plus",
+    "g": "Gut"
+  },
+  "recent": {
+    "title": "Letzte Suchen",
+    "clear": "Letzte Suchen löschen"
+  }
 }

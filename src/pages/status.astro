@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import config from '../../data/config.json';
 import { t, defaultLanguage as lang, number, date } from '../lib/i18n.js';
 import { catalog } from '../lib/catalog.js';
+import reasons from '../../data/status-reasons.json';
 
 /** Data validity report: status counts, recent changes and unreachable shops, from the daily check. */
 const c = catalog();
@@ -14,6 +15,9 @@ const changes = c.shops
   .slice(0, 200);
 const dead = c.shops.filter((s) => s.status === 'dead').sort((a, b) => (b.deadSince || '').localeCompare(a.deadSince || ''));
 const day = (iso) => (iso ? date(lang, iso) : '');
+const rules = reasons.rules.map((r) => ({ ...r, re: new RegExp(r.pattern) }));
+/** Plain-language reason for a check error code (data/status-reasons.json). */
+const reason = (code) => t(lang, `statusReason.${rules.find((r) => r.re.test(String(code || '')))?.id || reasons.fallback}`);
 ---
 <Base lang={lang} title={`${t(lang, 'statusTitle')} · ${config.name}`} description={t(lang, 'statusBody')} noindex>
   <article>
@@ -41,7 +45,7 @@ const day = (iso) => (iso ? date(lang, iso) : '');
     <figure>
       <table>
         <thead><tr>{t(lang, 'statusShopColumns').map((col) => <th scope="col">{col}</th>)}</tr></thead>
-        <tbody>{dead.map((s) => <tr><td>{s.url ? new URL(s.url).host : s.id}</td><td><vf-status value="dead">{s.reason}</vf-status></td><td><time datetime={s.deadSince || ''}>{day(s.deadSince)}</time></td><td><time datetime={s.lastAliveAt || ''}>{day(s.lastAliveAt)}</time></td></tr>)}</tbody>
+        <tbody>{dead.map((s) => <tr><td>{s.url ? new URL(s.url).host : s.id}</td><td><vf-status value="dead" title={s.reason}>{reason(s.reason)}</vf-status></td><td><time datetime={s.deadSince || ''}>{day(s.deadSince)}</time></td><td><time datetime={s.lastAliveAt || ''}>{day(s.lastAliveAt)}</time></td></tr>)}</tbody>
       </table>
     </figure>
   </article>

@@ -1,0 +1,59 @@
+/* <vf-release>: one record across shops. A compact row (summary) opens with <details> into its copies (<vf-offer>). */
+vf-results { max-inline-size: var(--results-width); }
+vf-release { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 0 var(--space-1); border-block-end: var(--line) solid var(--c-line); }
+vf-release > details { min-inline-size: 0; }
+vf-release > vf-watch { padding-block-start: var(--space-2); }
+
+vf-release summary {
+  display: grid; grid-template-columns: minmax(0, 1fr) fit-content(var(--price-max));
+  grid-template-areas: "head price" "meta meta";
+  gap: var(--space-1) var(--space-3); align-items: start;
+  min-block-size: var(--tap); padding: var(--space-2) var(--space-1); border-radius: var(--radius);
+  list-style: none; cursor: pointer;
+}
+vf-release summary::-webkit-details-marker { display: none; }
+vf-release summary > * { min-inline-size: 0; overflow-wrap: anywhere; }
+vf-release summary:has(> :is(img, vf-cover)) { grid-template-columns: var(--thumb-row) minmax(0, 1fr) fit-content(var(--price-max)); grid-template-areas: "cover head price" "cover meta meta"; }
+vf-release summary:hover { background: var(--c-hover); }
+/* open/closed in a shape, not only a colour */
+vf-release summary > p::before { content: var(--disclosure); display: inline-block; inline-size: var(--space-4); }
+vf-release details[open] > summary > p::before { content: var(--disclosure-open); }
+
+vf-release summary > :is(img, vf-cover) { grid-area: cover; display: block; inline-size: var(--thumb-row); block-size: var(--thumb-row); object-fit: cover; border-radius: var(--radius); background: var(--c-skeleton); }
+vf-release summary > vf-cover { background: var(--c-skeleton) var(--thumb-fallback) center / 80% no-repeat; }
+vf-release h3 { grid-area: head; margin: 0; font-size: var(--size-0); line-height: var(--leading-tight); overflow-wrap: anywhere; }
+vf-release vf-artist { display: block; font-weight: normal; font-size: var(--size-s); color: var(--c-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+vf-release vf-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font-weight: var(--weight-bold); }
+/* a long "from" price wraps before it squeezes the title */
+vf-release summary > vf-price { grid-area: price; white-space: normal; min-inline-size: var(--price-col); }
+vf-release summary > p { grid-area: meta; margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-release abbr { text-decoration: none; }
+/* sold out: less emphasis, same contrast, and the words "Sold out" in the meta line */
+vf-release[stock="out"] summary :is(vf-title, vf-price) { color: var(--c-muted); font-weight: normal; }
+vf-release[stock="out"] summary > img { filter: var(--sold-out-filter); }
+
+vf-price { display: grid; justify-items: end; text-align: end; }
+vf-price small { font-size: var(--size-xs); font-weight: normal; color: var(--c-muted); }
+
+/* the copies */
+vf-release ul { list-style: none; margin: 0 0 var(--space-2); padding: 0; padding-inline-start: var(--offers-indent); }
+vf-offer { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 var(--space-3); align-items: start; min-block-size: var(--tap); padding: var(--space-2) var(--space-1); border-block-start: var(--line) solid var(--c-line); }
+vf-offer > a { font-weight: var(--weight-semi); overflow-wrap: anywhere; }
+vf-offer > a::after { content: ""; position: absolute; inset: 0; }
+vf-offer > vf-price { grid-row: 1 / span 2; grid-column: 2; }
+vf-offer > p { grid-column: 1; margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-offer[condition="used"][stock="in"] > p { color: var(--c-used); }
+vf-origin[local="true"] { color: var(--c-fg); font-weight: var(--weight-semi); }
+vf-offer[stock="out"] > vf-price { color: var(--c-muted); font-weight: normal; }
+vf-offer:hover { background: var(--c-hover); }
+vf-offer:has(a:focus-visible) { outline: var(--focus-ring); outline-offset: calc(-1 * var(--focus-offset)); }
+vf-offer a:focus-visible { outline: none; }
+
+/* the Watch toggle: the star alone on phones (its name stays in aria-label), with its word on wider screens */
+vf-release vf-watch button { inline-size: var(--tap); justify-content: center; padding-inline: 0; }
+vf-release vf-watch button > span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (min-width: 40rem) {
+  vf-release vf-watch button { inline-size: auto; padding-inline: var(--space-3); }
+  vf-release vf-watch button > span { position: static; inline-size: auto; block-size: auto; overflow: visible; clip-path: none; }
+}
