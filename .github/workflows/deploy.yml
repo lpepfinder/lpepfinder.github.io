@@ -43,7 +43,8 @@ jobs:
           done
       # offer ledger: today's state and the one before it (a second build on the same day starts from that)
       - name: Offer ledger
-        run: gh release download data --pattern "ledger*.ndjson.gz" --dir generated --clobber || echo "no ledger yet: starting one"
+        run: |
+          gh release download data --pattern "ledger*.ndjson.gz" --dir generated --clobber || echo "no ledger yet, starting one"
       - run: npm run build
       - name: Save the offer ledger
         run: |
