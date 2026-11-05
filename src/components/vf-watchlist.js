@@ -30,7 +30,10 @@ export class VfWatchlist extends HTMLElement {
     this.count.setAttribute('count', n || added);
     this.count.setAttribute('kind', added ? 'added' : 'changes');
     this.count.textContent = n || (added ? `+${added}` : '');
-    this.link.setAttribute('aria-label', n ? tn('watch.navCount', n) : added ? tn('watch.navAdded', added) : t('watch.nav'));
+    // the accessible name starts with the visible tab label
+    const label = this.link.querySelector('span')?.textContent || t('watch.nav');
+    if (n || added) this.link.setAttribute('aria-label', `${label}, ${n ? tn('watch.changesShort', n) : tn('watch.addedShort', added)}`);
+    else this.link.removeAttribute('aria-label');
   }
 }
 customElements.define('vf-watchlist', VfWatchlist);
