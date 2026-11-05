@@ -18,8 +18,8 @@ vf-results-bar { display: grid; gap: var(--space-1); }
 vf-results-bar p { margin: 0; color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
 vf-results-bar p:empty { display: none; }
 vf-note p { margin: 0; color: var(--c-muted); }
-/* the live status is for screen readers once results show: the count line says the same */
-vf-results[status="done"] > output { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* the live status is for screen readers once results show: the count line or the empty heading says the same */
+vf-results:is([status="done"], [status="empty"]) > output { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* phones: one scrolling row per group of toggles */
 @media (max-width: 40rem) {

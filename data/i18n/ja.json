@@ -3,7 +3,7 @@
   "siteName": "LP/EP Finder",
   "description": "{countries}か国、{searchable}のインディペンデントのレコード店にある在庫{recordsShort}枚を検索。毎日更新、各店舗へ直接リンク。",
   "searchLabel": "レコードを検索",
-  "searchPlaceholder": "アーティスト、アルバム、レーベル、品番…",
+  "searchPlaceholder": "アーティスト、アルバム、レーベル…",
   "searchButton": "検索",
   "resultsCount": "「{query}」の在庫レコード {count} 件",
   "loadMore": "さらに表示",
@@ -27,10 +27,16 @@
   "shopsTitle": "独立系レコード店",
   "shopsIntro": "{countries}か国、オンラインストアのある{shops}のレコード店。",
   "countryTitle": "{country}のレコード店",
-  "countryDescription": "{country}のインディペンデントのレコード店{shops}店、在庫レコード{records}枚を検索できます。毎日更新。",
-  "shopTitle": "{shop}{city}：在庫レコード{records}枚",
+  "countryDescription": {
+    "other": "{country}のインディペンデントのレコード店{shops}店、在庫レコード{records}枚を検索できます。毎日更新。"
+  },
+  "shopTitle": {
+    "other": "{shop}{city}：在庫レコード{records}枚"
+  },
   "shopDescription": "{shop}{place}：在庫レコード{records}枚。ほかの{shops}のインディペンデント店とまとめてカタログを検索できます。",
-  "shopRecords": "在庫 {count} 枚",
+  "shopRecords": {
+    "other": "在庫 {count} 枚"
+  },
   "shopVisit": "ショップを見る",
   "shopLatest": "最新のレコード",
   "shopListedOnly": "この店舗は掲載されていますが、カタログはまだ検索できません。",
@@ -75,7 +81,8 @@
     "not-music": "レコードの販売なし",
     "moved": "ドメイン移転・乗っ取り",
     "dead": "サイトに接続不可",
-    "duplicate": "他の店舗と重複"
+    "duplicate": "他の店舗と重複",
+    "unchecked": "未確認"
   },
   "footerNote": "価格と在庫は各店舗の情報で、変わることがあります。リンク先は各店舗です。",
   "notFoundTitle": "ページが見つかりません",
@@ -124,7 +131,9 @@
   "artistDescriptionNoPrice": "{artist}のレコード{count}枚が{shops}のインディペンデント店で在庫あり。LP、12インチ、7インチ。毎日更新。",
   "shopListedTitle": "{shop}{city}：インディペンデントのレコード店",
   "shopListedDescription": "{shop}{place}はインディペンデントのレコード店です。オンラインストアをご覧ください。",
-  "countrySeoTitle": "{country}のレコード店：インディペンデント{shops}店",
+  "countrySeoTitle": {
+    "other": "{country}のレコード店：インディペンデント{shops}店"
+  },
   "shopsSeoTitle": "国別のインディペンデントのレコード店",
   "artistsSeoTitle": "レコード在庫のあるアーティスト A–Z",
   "navBreadcrumb": "パンくずリスト",
@@ -163,7 +172,9 @@
   "newFeed": "フィードリーダーで購読（Atom）",
   "shopNewTitle": "今週の新着（{count}）",
   "homeNewTitle": "今週の新着",
-  "homeNewAll": "新着{count}枚をすべて見る",
+  "homeNewAll": {
+    "other": "新着{count}枚をすべて見る"
+  },
   "resultAdded": "入荷",
   "addedOn": "{date}入荷",
   "feedTitle": "新着 · LP/EP Finder",
@@ -180,10 +191,15 @@
     "navCount": {
       "other": "ウォッチリスト、{count} 件の変化"
     },
-    "firstWatch": "ウォッチしました。次に来たとき、変化がページ上部に表示されます。",
+    "firstWatch": "ウォッチリストに追加しました。変更とあわせて「ウォッチリスト」タブで確認できます。",
     "installHint": "LP/EP Finder をホーム画面に追加すると、ブラウザがウォッチリストを保持します。iPhone では「共有」から「ホーム画面に追加」。",
     "install": "ホーム画面に追加",
-    "close": "閉じる"
+    "close": "閉じる",
+    "watching": "ウォッチ中",
+    "open": "ウォッチリストを開く",
+    "navAdded": {
+      "other": "ウォッチリスト、{count}件追加"
+    }
   },
   "watchPage": {
     "title": "ウォッチリスト",
@@ -297,5 +313,17 @@
     "formatLabel": "フォーマット",
     "covers": "ジャケットを表示",
     "noneFiltered": "これまでに読み込んだレコードに、この条件に合うものはありません。"
+  },
+  "statusReason": {
+    "dns": "このウェブアドレスはもう存在しません",
+    "certificate": "セキュリティ証明書が無効か期限切れです",
+    "tls": "安全な接続ができません",
+    "timeout": "サイトが時間内に応答しません",
+    "refused": "サーバーが接続を拒否しています",
+    "notFound": "ページがなくなりました",
+    "forbidden": "サイトが訪問者を拒否しています",
+    "serverError": "サイトでサーバーエラーが起きています",
+    "parked": "ドメインが駐車中か売りに出ています",
+    "unreachable": "サイトにアクセスできません"
   }
 }

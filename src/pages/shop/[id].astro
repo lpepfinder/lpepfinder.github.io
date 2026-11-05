@@ -5,7 +5,7 @@ import RecordList from '../../components/RecordList.astro';
 import config from '../../../data/config.json';
 import { newArrivals } from '../../lib/new-arrivals.js';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import { t, defaultLanguage as lang, number, countryName, localPath } from '../../lib/i18n.js';
+import { t, tn, defaultLanguage as lang, number, countryName, localPath } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
 import { pageTitle, breadcrumbLd } from '../../lib/seo.js';
 
@@ -44,7 +44,7 @@ const ld = [{
     <p>
       {place && (shop.country ? <a href={localPath(lang, `/shops/${shop.country.toLowerCase()}/`)}>{place}</a> : place)}
       {place && ' · '}
-      {shop.records ? t(lang, 'shopRecords', { count: number(lang, shop.records) }) : t(lang, 'shopListedOnly')}
+      {shop.records ? tn(lang, 'shopRecords', shop.records) : t(lang, 'shopListedOnly')}
     </p>
     <p><a href={shop.url} rel="noopener">{t(lang, 'shopVisit')}: {new URL(shop.url).host}</a></p>
     {fresh.count > 0 && (

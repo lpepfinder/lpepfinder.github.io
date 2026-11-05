@@ -3,7 +3,7 @@
   "siteName": "LP/EP Finder",
   "description": "Search {recordsShort} records in stock at {searchable} independent record shops in {countries} countries. Updated daily, links straight to the shop.",
   "searchLabel": "Search records",
-  "searchPlaceholder": "Artist, album, label, catalog number…",
+  "searchPlaceholder": "Artist, album, label…",
   "searchButton": "Search",
   "resultsCount": "{count} records in stock for “{query}”",
   "loadMore": "Show more records",
@@ -27,10 +27,19 @@
   "shopsTitle": "Independent record shops",
   "shopsIntro": "{shops} record shops with an online store, in {countries} countries.",
   "countryTitle": "Record shops in {country}",
-  "countryDescription": "{shops} independent record shops in {country}, {records} vinyl records in stock to search. Updated daily.",
-  "shopTitle": "{shop}{city}: {records} records in stock",
+  "countryDescription": {
+    "one": "1 independent record shop in {country}, {records} vinyl records in stock to search. Updated daily.",
+    "other": "{shops} independent record shops in {country}, {records} vinyl records in stock to search. Updated daily."
+  },
+  "shopTitle": {
+    "one": "{shop}{city}: 1 record in stock",
+    "other": "{shop}{city}: {records} records in stock"
+  },
   "shopDescription": "{shop}{place}: {records} vinyl records in stock. Search their catalog with {shops} other independent shops.",
-  "shopRecords": "{count} records in stock",
+  "shopRecords": {
+    "one": "1 record in stock",
+    "other": "{count} records in stock"
+  },
   "shopVisit": "Visit the shop",
   "shopLatest": "Latest records",
   "shopListedOnly": "This shop is listed, but its catalog can't be searched yet.",
@@ -75,7 +84,8 @@
     "not-music": "No longer sells records",
     "moved": "Domain moved or taken over",
     "dead": "Site unreachable",
-    "duplicate": "Duplicate of another shop"
+    "duplicate": "Duplicate of another shop",
+    "unchecked": "Not checked yet"
   },
   "footerNote": "Prices and stock come from each shop and can change. Links go to the shops.",
   "notFoundTitle": "Page not found",
@@ -124,7 +134,10 @@
   "artistDescriptionNoPrice": "{count} {artist} records in stock at {shops} independent shops. LP, 12\", 7\"; updated daily.",
   "shopListedTitle": "{shop}{city}: independent record shop",
   "shopListedDescription": "{shop}{place} is an independent record shop. Visit their online store.",
-  "countrySeoTitle": "Record shops in {country}: {shops} independent stores",
+  "countrySeoTitle": {
+    "one": "Record shops in {country}: 1 independent store",
+    "other": "Record shops in {country}: {shops} independent stores"
+  },
   "shopsSeoTitle": "Independent record shops by country",
   "artistsSeoTitle": "Artists with vinyl in stock A–Z",
   "navBreadcrumb": "Breadcrumb",
@@ -163,7 +176,10 @@
   "newFeed": "Follow in a feed reader (Atom)",
   "shopNewTitle": "New this week ({count})",
   "homeNewTitle": "New this week",
-  "homeNewAll": "All {count} new arrivals",
+  "homeNewAll": {
+    "one": "See the new arrival",
+    "other": "All {count} new arrivals"
+  },
   "resultAdded": "Added",
   "addedOn": "new {date}",
   "feedTitle": "New arrivals · LP/EP Finder",
@@ -181,10 +197,16 @@
       "one": "Watchlist, 1 change",
       "other": "Watchlist, {count} changes"
     },
-    "firstWatch": "Watching. Changes show up at the top of the page when you come back.",
+    "firstWatch": "Added to your Watchlist. Find it, and what changes, in the Watchlist tab.",
     "installHint": "Add LP/EP Finder to your home screen so your browser keeps your watchlist. On iPhone: Share, then Add to Home Screen.",
     "install": "Add to home screen",
-    "close": "Close"
+    "close": "Close",
+    "watching": "Watching",
+    "open": "Open Watchlist",
+    "navAdded": {
+      "one": "Watchlist, 1 record added",
+      "other": "Watchlist, {count} records added"
+    }
   },
   "watchPage": {
     "title": "Your watchlist",
@@ -310,5 +332,17 @@
     "formatLabel": "Format",
     "covers": "Show covers",
     "noneFiltered": "No record loaded so far matches these filters."
+  },
+  "statusReason": {
+    "dns": "The web address no longer exists",
+    "certificate": "Its security certificate is invalid or expired",
+    "tls": "A secure connection fails",
+    "timeout": "The site does not answer in time",
+    "refused": "The server refuses the connection",
+    "notFound": "The page is gone",
+    "forbidden": "The site turns visitors away",
+    "serverError": "The site has a server error",
+    "parked": "The domain is parked or for sale",
+    "unreachable": "The site cannot be reached"
   }
 }

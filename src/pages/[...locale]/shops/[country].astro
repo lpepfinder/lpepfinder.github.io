@@ -1,7 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
-import { t, localeParams, localPath, number, countryName } from '../../../lib/i18n.js';
+import { t, tn, localeParams, localPath, number, countryName } from '../../../lib/i18n.js';
 import { pageTitle, breadcrumbLd } from '../../../lib/seo.js';
 import { catalog } from '../../../lib/catalog.js';
 
@@ -27,10 +27,10 @@ const ld = [{
   },
 }, breadcrumbLd(crumbs, Astro.site)];
 ---
-<Base lang={lang} path={`/shops/${country.code.toLowerCase()}/`} title={pageTitle(t(lang, 'countrySeoTitle', vars))} description={t(lang, 'countryDescription', vars)} ld={ld}>
+<Base lang={lang} path={`/shops/${country.code.toLowerCase()}/`} title={pageTitle(tn(lang, 'countrySeoTitle', country.shops.length, vars))} description={tn(lang, 'countryDescription', country.shops.length, vars)} ld={ld}>
   <Breadcrumbs lang={lang} items={crumbs} />
   <h1>{t(lang, 'countryTitle', vars)}</h1>
-  <p>{t(lang, 'countryDescription', vars)}</p>
+  <p>{tn(lang, 'countryDescription', country.shops.length, vars)}</p>
   <figure>
     <table>
       <thead><tr>{t(lang, 'shopColumns').map((col) => <th scope="col">{col}</th>)}</tr></thead>
