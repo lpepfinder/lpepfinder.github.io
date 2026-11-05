@@ -43,7 +43,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add data/shops
-            git diff --cached --quiet || { git commit -m "Add shops found by the monthly discovery"; git push; }
+            git diff --cached --quiet || { git commit -m "Add shops found by the monthly discovery"; git pull --rebase; git push; }
           fi
       - run: npm run check
       # shop catalogs and Discogs inventories are different hosts: read both at the same time
