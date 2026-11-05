@@ -208,5 +208,33 @@
       "other": "このリンクには {count} 枚のレコードが含まれています。"
     },
     "sharedAdd": "自分のウォッチリストに追加"
+  },
+  "discogs": {
+    "title": "Discogs のウォントリストを読み込む",
+    "privacy": "公開ウォントリストをお使いのブラウザで読み込みます。こちらには何も保存されません。",
+    "username": "Discogs のユーザー名",
+    "check": "ウォントリストを確認",
+    "or": "または",
+    "csv": "Discogs の CSV エクスポートを選択",
+    "csvHint": "Discogs で「ウォントリスト」から「エクスポート」。",
+    "includeOther": "CD とカセットも含める",
+    "reading": "ウォントリストを読み込み中… {done} / {total}",
+    "matching": "独立系レコード店を確認中… {done} / {total}",
+    "summary": "ウォント {total} 枚のうち {inStock} 枚が今、独立系レコード店に在庫あり。{soldOut} 枚は確認済みで売り切れです。",
+    "private": "このウォントリストは非公開です。Discogs から CSV で書き出し、ここでファイルを選んでください。",
+    "notFound": "この名前の Discogs ユーザーは見つかりません。",
+    "rateLimited": "Discogs からペースを落とすよう求められました。1分後に再開します…",
+    "error": "現在 Discogs に接続できません。もう一度試すか、CSV エクスポートを使ってください。",
+    "csvError": "このファイルは Discogs のウォントリストのエクスポートではないようです。",
+    "empty": "レコード（アナログ）のウォントが見つかりません。",
+    "inStockTitle": "在庫あり",
+    "soldOutTitle": "確認済み・売り切れ",
+    "watchAll": {
+      "other": "{count} 枚すべてをウォッチ"
+    },
+    "watchedAll": {
+      "other": "{count} 枚をウォッチリストに追加しました。"
+    },
+    "attribution": "ウォントリストのデータ提供：Discogs"
   }
 }

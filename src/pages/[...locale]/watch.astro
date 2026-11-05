@@ -1,14 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
 import WatchBackup from '../../components/WatchBackup.astro';
+import DiscogsImport from '../../components/DiscogsImport.astro';
 import { t, localeParams, localPath } from '../../lib/i18n.js';
 import { pageTitle } from '../../lib/seo.js';
 
-/** The watchlist: changes since the last visit, watched records, backup and share. */
+/** The watchlist: changes since the last visit, watched records, backup and share, Discogs import. */
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 ---
-<Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage']}>
+<Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'discogs']}>
   <hgroup>
     <h1>{t(lang, 'watchPage.title')}</h1>
     <p>{t(lang, 'watchPage.intro')}</p>
@@ -37,8 +38,10 @@ const { lang } = Astro.props;
     </vf-watch-items>
   </vf-watch-page>
   <WatchBackup lang={lang} />
+  <DiscogsImport lang={lang} />
 </Base>
 <script>
   import '../../components/vf-watch-page.js';
   import '../../components/vf-watch-backup.js';
+  import '../../components/vf-discogs-import.js';
 </script>

@@ -213,5 +213,35 @@
       "other": "Dieser Link enthält {count} Platten."
     },
     "sharedAdd": "Zu meiner Merkliste hinzufügen"
+  },
+  "discogs": {
+    "title": "Discogs-Wantlist importieren",
+    "privacy": "Wir lesen deine öffentliche Wantlist in deinem Browser. Bei uns wird nichts gespeichert.",
+    "username": "Discogs-Benutzername",
+    "check": "Wantlist prüfen",
+    "or": "oder",
+    "csv": "Discogs-CSV-Export wählen",
+    "csvHint": "Auf Discogs: Wantlist, dann Exportieren.",
+    "includeOther": "CDs und Kassetten einbeziehen",
+    "reading": "Wantlist wird gelesen… {done} / {total}",
+    "matching": "Unabhängige Läden werden geprüft… {done} / {total}",
+    "summary": "{inStock} von {total} Wants sind gerade bei unabhängigen Läden auf Lager, {soldOut} wurden gesehen und sind ausverkauft.",
+    "private": "Diese Wantlist ist privat. Exportiere sie auf Discogs als CSV und wähle die Datei hier aus.",
+    "notFound": "Kein Discogs-Benutzer mit diesem Namen.",
+    "rateLimited": "Discogs bittet um eine Pause. Es geht in einer Minute weiter…",
+    "error": "Discogs ist gerade nicht erreichbar. Versuche es erneut oder nutze einen CSV-Export.",
+    "csvError": "Diese Datei sieht nicht wie ein Discogs-Wantlist-Export aus.",
+    "empty": "Keine Vinyl-Wants gefunden.",
+    "inStockTitle": "Jetzt auf Lager",
+    "soldOutTitle": "Gesehen, ausverkauft",
+    "watchAll": {
+      "one": "Diesen Want merken",
+      "other": "Alle {count} Wants merken"
+    },
+    "watchedAll": {
+      "one": "1 Want zur Merkliste hinzugefügt.",
+      "other": "{count} Wants zur Merkliste hinzugefügt."
+    },
+    "attribution": "Wantlist-Daten von Discogs"
   }
 }

@@ -213,5 +213,35 @@
       "other": "This link holds {count} records."
     },
     "sharedAdd": "Add them to my watchlist"
+  },
+  "discogs": {
+    "title": "Import your Discogs wantlist",
+    "privacy": "We read your public wantlist in your browser. Nothing is stored on our side.",
+    "username": "Discogs username",
+    "check": "Check wantlist",
+    "or": "or",
+    "csv": "Choose a Discogs CSV export",
+    "csvHint": "On Discogs: Wantlist, then Export.",
+    "includeOther": "Include CD and cassette",
+    "reading": "Reading wantlist… {done} / {total}",
+    "matching": "Checking indie shops… {done} / {total}",
+    "summary": "{inStock} of {total} wants are in stock at independent shops now, {soldOut} were seen and sold out.",
+    "private": "This wantlist is private. Export it as CSV from Discogs and choose the file here.",
+    "notFound": "No Discogs user with this name.",
+    "rateLimited": "Discogs asks us to slow down. Continuing in a minute…",
+    "error": "Discogs can't be reached right now. Try again, or use a CSV export.",
+    "csvError": "This file doesn't look like a Discogs wantlist export.",
+    "empty": "No vinyl wants found.",
+    "inStockTitle": "In stock now",
+    "soldOutTitle": "Seen, sold out",
+    "watchAll": {
+      "one": "Watch this want",
+      "other": "Watch all {count} wants"
+    },
+    "watchedAll": {
+      "one": "1 want added to your watchlist.",
+      "other": "{count} wants added to your watchlist."
+    },
+    "attribution": "Wantlist data from Discogs"
   }
 }

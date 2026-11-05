@@ -213,5 +213,35 @@
       "other": "Questo link contiene {count} dischi."
     },
     "sharedAdd": "Aggiungili alla mia lista"
+  },
+  "discogs": {
+    "title": "Importa la tua wantlist Discogs",
+    "privacy": "Leggiamo la tua wantlist pubblica nel tuo browser. Non salviamo nulla.",
+    "username": "Nome utente Discogs",
+    "check": "Controlla la wantlist",
+    "or": "oppure",
+    "csv": "Scegli un'esportazione CSV di Discogs",
+    "csvHint": "Su Discogs: Wantlist, poi Esporta.",
+    "includeOther": "Includi CD e cassette",
+    "reading": "Lettura della wantlist… {done} / {total}",
+    "matching": "Controllo dei negozi indipendenti… {done} / {total}",
+    "summary": "{inStock} dei tuoi {total} want sono ora disponibili nei negozi indipendenti, {soldOut} sono stati visti ed esauriti.",
+    "private": "Questa wantlist è privata. Esportala in CSV da Discogs e scegli il file qui.",
+    "notFound": "Nessun utente Discogs con questo nome.",
+    "rateLimited": "Discogs ci chiede di rallentare. Si riprende tra un minuto…",
+    "error": "Discogs non è raggiungibile al momento. Riprova o usa un'esportazione CSV.",
+    "csvError": "Questo file non sembra un'esportazione della wantlist Discogs.",
+    "empty": "Nessun vinile trovato nella wantlist.",
+    "inStockTitle": "Disponibili ora",
+    "soldOutTitle": "Visti, esauriti",
+    "watchAll": {
+      "one": "Segui questo want",
+      "other": "Segui tutti i {count} want"
+    },
+    "watchedAll": {
+      "one": "1 want aggiunto alla tua lista.",
+      "other": "{count} want aggiunti alla tua lista."
+    },
+    "attribution": "Dati della wantlist da Discogs"
   }
 }
