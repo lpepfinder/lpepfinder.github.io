@@ -23,6 +23,10 @@ export class VfResults extends HTMLElement {
     this.empty = this.querySelector('vf-empty[reason="no-match"] h2');
     this.groups = new Map();
     this.moreButton.addEventListener('click', () => this.dispatchEvent(new Event('more')));
+    this.shareButton = this.querySelector('button[name="share"]');
+    this.native = !!navigator.share && matchMedia('(pointer: coarse)').matches;
+    if (this.native) this.shareButton.textContent = t('results.shareLink');
+    this.shareButton.addEventListener('click', () => this.share());
     this.querySelector('button[name="retry"]')?.addEventListener('click', () => this.dispatchEvent(new Event('retry')));
     addEventListener(CURRENCY_EVENT, () => { if (this.groups.size) this.render(true); });
     this.filters.addEventListener('filters', () => {
@@ -135,6 +139,15 @@ export class VfResults extends HTMLElement {
     ].filter(Boolean));
     box.hidden = !box.childElementCount;
     if (!box.hidden) this.live.textContent = [this.empty.textContent, ...[...box.children].map((p) => p.textContent)].join('. ');
+  }
+
+  /** Copy link (or the share sheet on phones) for this search, with its filters. */
+  async share() {
+    try {
+      if (this.native) return await navigator.share({ title: document.title, url: location.href });
+      await navigator.clipboard.writeText(location.href);
+      this.live.textContent = t('results.linkCopied');
+    } catch { /* dismissed or blocked: nothing to say */ }
   }
 
   error() {

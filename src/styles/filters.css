@@ -14,7 +14,9 @@ vf-filters label:has(:checked) { background: var(--c-chip-on); color: var(--c-ch
 vf-filters label:has(:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 vf-filters input { inline-size: var(--icon-size); block-size: var(--icon-size); margin: 0; accent-color: var(--c-accent); }
 vf-filters data { color: inherit; font-size: var(--size-xs); }
-vf-results-bar { display: grid; gap: var(--space-1); }
+vf-results-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-1) var(--space-2); align-items: center; }
+vf-results-bar > :is(h2, p) { grid-column: 1 / -1; }
+vf-results-bar > button { background: var(--c-chip); color: var(--c-fg); font-size: var(--size-s); }
 vf-results-bar p { margin: 0; color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
 vf-results-bar p:empty { display: none; }
 vf-note p { margin: 0; color: var(--c-muted); }
