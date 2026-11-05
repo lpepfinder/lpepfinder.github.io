@@ -59,6 +59,45 @@
       "type": "string",
       "pattern": "^[A-Za-z0-9._-]+$",
       "description": "Discogs seller account, when the shop sells its stock there (found automatically from the homepage otherwise)"
+    },
+    "crawl": {
+      "type": "object",
+      "description": "Overrides for the site crawler (npm run site), for shops without a catalog API",
+      "additionalProperties": false,
+      "properties": {
+        "skip": {
+          "type": "boolean",
+          "description": "Never crawl this shop's pages"
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "squarespace-json",
+            "bigcartel",
+            "magento-graphql",
+            "app-data",
+            "sitemap",
+            "generic"
+          ],
+          "description": "Use this reader instead of probing for one"
+        },
+        "pagesPerDay": {
+          "type": "integer",
+          "description": "Requests per day for this shop (default site.pagesPerDay)"
+        },
+        "delayMs": {
+          "type": "integer",
+          "description": "Minimum time between two requests (robots.txt crawl-delay wins when larger)"
+        },
+        "start": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^/"
+          },
+          "description": "Extra start paths, e.g. [\"/genres\", \"/labels\"]"
+        }
+      }
     }
   }
 }

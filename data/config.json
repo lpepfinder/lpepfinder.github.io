@@ -79,5 +79,39 @@
       "anonymous": 24,
       "token": 55
     }
+  },
+  "site": {
+    "maxMinutes": 300,
+    "concurrency": 8,
+    "delayMs": 1000,
+    "timeoutMs": 20000,
+    "maxBytes": 4000000,
+    "pagesPerDay": 300,
+    "maxMinutesPerShop": 30,
+    "minProductRatio": 0.1,
+    "evaluateAfterPages": 300,
+    "reevaluateDays": 30,
+    "reprobeDays": 30,
+    "maxFrontier": 20000,
+    "maxDepth": 8,
+    "sitemapFiles": 3,
+    "productLaneShare": 0.7,
+    "recordMaxAgeDays": 60,
+    "maxRetryAfterSeconds": 120,
+    "checkpointMinutes": 30,
+    "magentoPageSize": 100,
+    "sitemapPlatforms": [
+      "wix",
+      "woocommerce",
+      "wordpress",
+      "prestashop",
+      "opencart",
+      "bigcommerce",
+      "square",
+      "shopware",
+      "shopify",
+      "magento",
+      "ecwid"
+    ]
   }
 }

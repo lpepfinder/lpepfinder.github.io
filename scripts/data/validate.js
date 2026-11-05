@@ -17,6 +17,15 @@ function check(obj, sch, where) {
     if (!prop) { if (sch.additionalProperties === false) errors.push(`${where}: unknown field "${key}"`); continue; }
     if (prop.type === 'string' && typeof value !== 'string') errors.push(`${where}: "${key}" must be a string`);
     if (prop.type === 'boolean' && typeof value !== 'boolean') errors.push(`${where}: "${key}" must be true/false`);
+    if (prop.type === 'integer' && !Number.isInteger(value)) errors.push(`${where}: "${key}" must be a whole number`);
+    if (prop.type === 'object') {
+      if (!value || typeof value !== 'object' || Array.isArray(value)) errors.push(`${where}: "${key}" must be an object`);
+      else check(value, prop, `${where} ${key}`);
+    }
+    if (prop.type === 'array') {
+      if (!Array.isArray(value)) errors.push(`${where}: "${key}" must be a list`);
+      else value.forEach((v, i) => check({ [i]: v }, { properties: { [i]: prop.items } }, `${where} ${key}`));
+    }
     if (prop.pattern && typeof value === 'string' && !new RegExp(prop.pattern).test(value)) errors.push(`${where}: "${key}" does not match ${prop.pattern}`);
     if (prop.enum && !prop.enum.includes(value)) errors.push(`${where}: "${key}" must be one of ${prop.enum.join(', ')}`);
   }
