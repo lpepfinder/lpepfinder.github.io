@@ -3,27 +3,11 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { applyDay, emptyLedger } from './diff.js';
+import { emptyLedger } from './diff.js';
 import { addDays } from './day.js';
 import { offerKey } from './keys.js';
 import { updateLedger } from './update.js';
-
-const settings = { eventDays: 14, newShopCrawls: 2, lowPriceDays: 90, goneSearchDays: 90, goneKeepDays: 365 };
-const urlOf = (shop, p) => `https://${shop}${p}`;
-const offer = (shop, p, extra = {}) => ({
-  offerKey: offerKey(shop, p), releaseKey: 'abcdef123456', shop, path: p, title: `Artist – ${p}`,
-  price: 2000, currency: 'EUR', available: true, ...extra,
-});
-const run = (ledger, offers, day) => applyDay(ledger, offers, day, { settings, urlOf });
-const kinds = (events) => events.map((e) => `${e[2]}:${e[7]}${e[6].slice(-3)}`).sort();
-
-/** A ledger where shop "a.com" has had two crawls, so it is past the new-shop guard. */
-function settled(offers) {
-  const ledger = emptyLedger();
-  run(ledger, offers, '2026-11-01');
-  run(ledger, offers, '2026-11-02');
-  return ledger;
-}
+import { settings, offer, run, kinds, settled } from './fixtures.js';
 
 test('offerKey is 12 hex characters of shop and path', () => {
   assert.match(offerKey('a.com', '/x'), /^[0-9a-f]{12}$/);

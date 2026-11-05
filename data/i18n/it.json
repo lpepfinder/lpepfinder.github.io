@@ -146,5 +146,6 @@
   },
   "soldOut": "Esaurito",
   "resultStock": "Disponibilità",
-  "resultsCountSoldOut": "{count} dischi per «{query}» ({soldOut} esauriti)"
+  "resultsCountSoldOut": "{count} dischi per «{query}» ({soldOut} esauriti)",
+  "lastInStock": "visto disponibile l'ultima volta il {date}"
 }

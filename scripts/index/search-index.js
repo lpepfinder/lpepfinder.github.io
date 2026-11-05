@@ -11,8 +11,9 @@ export function writeStatic(file, content) {
 /**
  * Static inverted index:
  *   search/shops.json         [[id, name, origin, country, currency], ...]
- *   search/d/<n>.json         docs chunk: [[shop, title, priceCents, path, image, currency, soldOut?], ...]
- *                             (soldOut is 1 for sold-out records, left out when in stock)
+ *   search/d/<n>.json         docs chunk: [[shop, title, priceCents, path, image, currency, soldOut?, lastInStock?], ...]
+ *                             (soldOut is 1 for sold-out records, left out when in stock; lastInStock
+ *                             is the "YYYY-MM-DD" day a sold-out record was last seen in stock, when known)
  *   search/i/<shard>.json     { token: "base36 id deltas joined by ." }
  *   search/meta.json          counts and settings the browser needs
  */
@@ -39,7 +40,7 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
     const rows = docs.slice(c * docsPerChunk, (c + 1) * docsPerChunk)
       .map((d) => {
         const row = [shopIndex.get(d.shop), d.title, d.price, d.path, d.image || 0, d.currency !== shopRows[shopIndex.get(d.shop)][4] ? d.currency : 0];
-        return d.available === false ? [...row, 1] : row;
+        return d.available === false ? [...row, 1, ...(d.lastInStock ? [d.lastInStock] : [])] : row;
       });
     writeStatic(path.join(outDir, 'd', `${c}.json`), JSON.stringify(rows));
   }

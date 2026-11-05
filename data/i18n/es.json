@@ -146,5 +146,6 @@
   },
   "soldOut": "Agotado",
   "resultStock": "Stock",
-  "resultsCountSoldOut": "{count} discos para «{query}» ({soldOut} agotados)"
+  "resultsCountSoldOut": "{count} discos para «{query}» ({soldOut} agotados)",
+  "lastInStock": "visto en stock por última vez el {date}"
 }

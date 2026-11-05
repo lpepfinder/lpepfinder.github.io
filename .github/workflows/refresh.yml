@@ -123,7 +123,8 @@ jobs:
     # a failed job keeps yesterday's data asset: deploy in any case, so one bad job never holds the site back
     if: ${{ !cancelled() }}
     uses: ./.github/workflows/deploy.yml
+    # write: Deploy saves the offer ledger in the "data" release
     permissions:
-      contents: read
+      contents: write
       pages: write
       id-token: write

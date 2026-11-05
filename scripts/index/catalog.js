@@ -29,9 +29,13 @@ export async function loadCatalog(productFiles) {
     }
   }
   for (const list of byShop.values()) list.sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
-  const docs = [...byShop.values()].flat()
+  return { docs: sortDocs([...byShop.values()].flat()), shops, byShop };
+}
+
+/** Doc id order: in stock first, then sold out; each part in title order. */
+export function sortDocs(docs) {
+  return docs
     .map((d) => ({ d, key: normalize(d.title), rank: formatRank(d.title) }))
     .sort((a, b) => (b.d.available - a.d.available) || (a.key < b.key ? -1 : a.key > b.key ? 1 : a.rank - b.rank || a.d.shop.localeCompare(b.d.shop) || (a.d.price ?? 0) - (b.d.price ?? 0)))
     .map((x) => x.d);
-  return { docs, shops, byShop };
 }

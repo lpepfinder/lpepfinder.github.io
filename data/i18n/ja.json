@@ -146,5 +146,6 @@
   },
   "soldOut": "売り切れ",
   "resultStock": "在庫",
-  "resultsCountSoldOut": "「{query}」のレコード {count} 件（売り切れ {soldOut} 件）"
+  "resultsCountSoldOut": "「{query}」のレコード {count} 件（売り切れ {soldOut} 件）",
+  "lastInStock": "最終在庫確認 {date}"
 }

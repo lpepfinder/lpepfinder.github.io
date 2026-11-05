@@ -146,5 +146,6 @@
   },
   "soldOut": "Ausverkauft",
   "resultStock": "Bestand",
-  "resultsCountSoldOut": "{count} Platten für „{query}“ ({soldOut} ausverkauft)"
+  "resultsCountSoldOut": "{count} Platten für „{query}“ ({soldOut} ausverkauft)",
+  "lastInStock": "zuletzt vorrätig am {date}"
 }

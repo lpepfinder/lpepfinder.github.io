@@ -1,4 +1,4 @@
-import { t, formatPrice, countryName } from './i18n.js';
+import { t, formatPrice, formatDay, countryName } from './i18n.js';
 import { splitTitle } from '../lib/search/title.js';
 import { detectFormat } from '../lib/search/format.js';
 
@@ -22,6 +22,13 @@ function cover(image, index) {
   // resized variant missing on this shop: fall back to the original once
   if (src !== original) img.addEventListener('error', () => { img.src = original; }, { once: true });
   return img;
+}
+
+/** " · last seen in stock <time>12 Oct 2026</time>", with the date where the translation puts it. */
+function lastSeen(day) {
+  if (!day) return [];
+  const [before, after = ''] = t('lastInStock', { date: '\u0000' }).split('\u0000');
+  return [` · ${before}`, el('time', { dateTime: day, textContent: formatDay(day) }), after];
 }
 
 const el = (tag, props = {}, ...children) => {
@@ -53,7 +60,7 @@ export class VfResult extends HTMLElement {
     const kind = [format && t(`formats.${format}`), used && t('conditionUsed')].filter(Boolean).join(' · ');
     if (kind) meta.prepend(el('dt', { textContent: t('resultFormat') }), el('dd', { textContent: kind }));
     if (cc) meta.append(el('dt', { textContent: t('resultCountry') }), el('dd', {}, el('abbr', { title: countryName(cc), textContent: cc })));
-    if (r.available === false) meta.prepend(el('dt', { textContent: t('resultStock') }), el('dd', { textContent: t('soldOut') }));
+    if (r.available === false) meta.prepend(el('dt', { textContent: t('resultStock') }), el('dd', {}, t('soldOut'), ...lastSeen(r.lastInStock)));
     this.replaceChildren(
       cover(r.image, this.index),
       el('h3', {}, link),

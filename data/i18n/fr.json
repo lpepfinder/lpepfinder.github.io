@@ -146,5 +146,6 @@
   },
   "soldOut": "Épuisé",
   "resultStock": "Stock",
-  "resultsCountSoldOut": "{count} disques pour « {query} » ({soldOut} épuisés)"
+  "resultsCountSoldOut": "{count} disques pour « {query} » ({soldOut} épuisés)",
+  "lastInStock": "vu en stock pour la dernière fois le {date}"
 }

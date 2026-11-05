@@ -146,5 +146,6 @@
   },
   "soldOut": "Sold out",
   "resultStock": "Stock",
-  "resultsCountSoldOut": "{count} records for “{query}” ({soldOut} sold out)"
+  "resultsCountSoldOut": "{count} records for “{query}” ({soldOut} sold out)",
+  "lastInStock": "last seen in stock {date}"
 }
