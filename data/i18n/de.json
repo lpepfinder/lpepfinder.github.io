@@ -92,5 +92,14 @@
     "Status",
     "Seit",
     "Zuletzt erreichbar"
+  ],
+  "navPrivacy": "Datenschutz",
+  "privacyTitle": "Datenschutzerklärung",
+  "privacyBody": [
+    "LP/EP Finder verlangt kein Konto und speichert keine personenbezogenen Daten auf Servern. Suchen laufen in deinem Browser.",
+    "Werbung: Diese Seite zeigt Anzeigen von Google AdSense. Google und seine Partner verwenden Cookies, um Anzeigen auf Grundlage deiner Besuche auf dieser und anderen Websites zu zeigen. Personalisierte Werbung kannst du in den Google-Anzeigeneinstellungen (adssettings.google.com) abschalten. Besucher aus dem EWR, dem Vereinigten Königreich und der Schweiz werden vorher um Einwilligung gebeten.",
+    "Statistik: Wir zählen Besuche mit Umami, ohne Cookies und ohne personenbezogene Daten. Die Statistik ist öffentlich.",
+    "Links zu Plattenläden führen auf deren Websites mit eigener Datenschutzerklärung.",
+    "Fragen: an die Kontaktadresse auf der Seite „Über uns“."
   ]
 }

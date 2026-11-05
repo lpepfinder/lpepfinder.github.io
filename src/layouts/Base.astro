@@ -65,6 +65,7 @@ const strings = JSON.stringify(clientStrings(lang)).replace(/</g, '\\u003c');
     </nav>
     <nav>
       <ul>
+        <li><a href={localPath(lang, '/privacy/')}>{t(lang, 'navPrivacy')}</a></li>
         <li><a href="/status/">{t(lang, 'navStatus')}</a></li>
         <li><a href={config.repository}>GitHub</a></li>
         <li><a href={config.analytics.publicDashboard}>Analytics</a></li>

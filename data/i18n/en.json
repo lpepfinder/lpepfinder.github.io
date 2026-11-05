@@ -92,5 +92,14 @@
     "Status",
     "Since",
     "Last seen alive"
+  ],
+  "navPrivacy": "Privacy",
+  "privacyTitle": "Privacy policy",
+  "privacyBody": [
+    "LP/EP Finder does not ask for an account and does not store personal data on its servers. Searches run in your browser.",
+    "Advertising: this site shows ads from Google AdSense. Google and its partners use cookies to show ads based on your visits to this and other websites. You can turn off personalised ads in Google's Ads Settings (adssettings.google.com). Visitors in the European Economic Area, the UK and Switzerland are asked for consent first.",
+    "Analytics: we count visits with Umami, which uses no cookies and collects no personal data. The statistics are public.",
+    "Links to record shops take you to their websites, which have their own privacy policies.",
+    "Questions: write to the contact address on the About page."
   ]
 }

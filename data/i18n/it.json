@@ -92,5 +92,14 @@
     "Stato",
     "Da",
     "Ultima volta attivo"
+  ],
+  "navPrivacy": "Privacy",
+  "privacyTitle": "Informativa sulla privacy",
+  "privacyBody": [
+    "LP/EP Finder non richiede un account e non conserva dati personali sui suoi server. Le ricerche avvengono nel tuo browser.",
+    "Pubblicità: questo sito mostra annunci di Google AdSense. Google e i suoi partner usano cookie per mostrare annunci in base alle tue visite a questo e ad altri siti. Puoi disattivare gli annunci personalizzati nelle impostazioni degli annunci di Google (adssettings.google.com). Nello Spazio economico europeo, nel Regno Unito e in Svizzera viene chiesto prima il consenso.",
+    "Statistiche: contiamo le visite con Umami, senza cookie né dati personali. Le statistiche sono pubbliche.",
+    "I link ai negozi portano ai loro siti, che hanno una propria informativa sulla privacy.",
+    "Domande: scrivi all'indirizzo indicato nella pagina Chi siamo."
   ]
 }
