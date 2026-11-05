@@ -1,0 +1,51 @@
+# A shop suggested through the "Add a record shop" issue form is checked and added
+# automatically, then the issue is answered and closed. No maintainer needed.
+name: Shop submission
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: submission
+  cancel-in-progress: false
+
+jobs:
+  add:
+    if: contains(github.event.issue.labels.*.name, 'new shop')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE: ${{ github.event.issue.number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # the issue text is passed as data in an env var, never interpolated into the script
+      - id: check
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        shell: bash
+        run: |
+          set +e
+          node scripts/submit/index.js
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+      - name: Add the shop
+        if: steps.check.outputs.code == '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/shops
+          git commit -m "Add shop suggested in #$ISSUE"
+          git push
+      - name: Answer the issue
+        if: always() && steps.check.outputs.code != ''
+        run: |
+          gh issue comment "$ISSUE" --body-file generated/submission-reply.md
+          if [ "${{ steps.check.outputs.code }}" = "0" ]; then gh issue close "$ISSUE" --reason completed; fi

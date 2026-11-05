@@ -18,7 +18,8 @@
     "build": "npm run validate && npm run index && astro build",
     "preview": "astro preview",
     "test": "node --test scripts/**/*.test.js",
-    "discogs": "node scripts/sources/discogs/index.js"
+    "discogs": "node scripts/sources/discogs/index.js",
+    "submit": "node scripts/submit/index.js"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
