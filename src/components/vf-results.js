@@ -138,7 +138,7 @@ export class VfResults extends HTMLElement {
       without && sentence(t('results.without', { word: without.word, link: '\u0000' }), el('a', { href: href(without.query), textContent: tn('results.copies', without.count) })),
     ].filter(Boolean));
     box.hidden = !box.childElementCount;
-    if (!box.hidden) this.live.textContent = [this.empty.textContent, ...[...box.children].map((p) => p.textContent)].join('. ');
+    if (!box.hidden) this.live.textContent = [`${this.empty.textContent}.`, ...[...box.children].map((p) => p.textContent)].join(' ');
   }
 
   /** Copy link (or the share sheet on phones) for this search, with its filters. */
