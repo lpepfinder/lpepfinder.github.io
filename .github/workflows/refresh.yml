@@ -59,6 +59,15 @@ jobs:
           npm run discogs 2>&1 | sed -u 's/^/[discogs] /' & discogs=$!
           wait $shops; a=$?; wait $discogs; b=$?
           exit $((a | b))
+      # weekly numbers in git; the commit also keeps the schedule alive (GitHub stops it after 60 idle days)
+      - name: Weekly stats
+        if: github.event_name == 'schedule'
+        run: |
+          npm run stats
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/stats
+          git diff --cached --quiet || { git commit -m "Weekly data stats"; git pull --rebase; git push; }
       - name: Publish crawl data
         run: |
           tar czf generated.tar.gz generated

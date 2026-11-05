@@ -20,7 +20,8 @@
     "test": "node --test 'scripts/**/*.test.js'",
     "discogs": "node scripts/sources/discogs/index.js",
     "submit": "node scripts/submit/index.js",
-    "site": "node scripts/sources/site/index.js"
+    "site": "node scripts/sources/site/index.js",
+    "stats": "node scripts/stats/index.js"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
