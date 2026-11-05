@@ -13,7 +13,7 @@ vf-watch[watching="true"] vf-icon { --icon: var(--icon-star-on); }
 vf-result > vf-watch { grid-area: watch; position: relative; z-index: 1; justify-self: end; }
 td > vf-watch { margin-block-start: var(--space-1); }
 
-vf-toast { position: fixed; z-index: var(--layer-toast); inset-inline: var(--gutter); inset-block-end: max(var(--space-4), env(safe-area-inset-bottom)); max-inline-size: var(--toast-width); margin-inline: auto; display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); border-radius: var(--radius); background: var(--c-toast); color: var(--c-toast-fg); }
+vf-toast { position: fixed; z-index: var(--layer-toast); inset-inline: var(--gutter); inset-block-end: calc(var(--tabbar-h) + var(--space-3) + env(safe-area-inset-bottom)); max-inline-size: var(--toast-width); margin-inline: auto; display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); border-radius: var(--radius); background: var(--c-toast); color: var(--c-toast-fg); }
 vf-toast p { margin: 0; }
 vf-toast menu { display: flex; flex-wrap: wrap; justify-content: end; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
 
@@ -23,3 +23,4 @@ vf-toast menu { display: flex; flex-wrap: wrap; justify-content: end; gap: var(-
 @media (forced-colors: active) {
   vf-watch-count, vf-toast { border: var(--line) solid CanvasText; }
 }
+@media (min-width: 48rem) { vf-toast { inset-block-end: max(var(--space-4), env(safe-area-inset-bottom)); } }

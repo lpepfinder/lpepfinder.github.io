@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import config from '../../../data/config.json';
-import { t, localeParams } from '../../lib/i18n.js';
+import { t, localeParams, localPath } from '../../lib/i18n.js';
 
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
@@ -13,6 +13,8 @@ const ld = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: t(la
     {t(lang, 'aboutBody').map((p) => <p>{p}</p>)}
     <h2>{t(lang, 'aboutDataTitle')}</h2>
     <p>{t(lang, 'aboutData')}</p>
+    <h2>{t(lang, 'aboutSuggestTitle')}</h2>
+    <p>{t(lang, 'aboutSuggest')} <a href={localPath(lang, '/submit/')}>{t(lang, 'aboutSuggestAction')}</a></p>
     <h2>{t(lang, 'aboutContactTitle')}</h2>
     <ul>
       <li>{t(lang, 'footerEmail')}: <a href={`mailto:${config.contactEmail}`}>{config.contactEmail}</a></li>

@@ -2,10 +2,19 @@
 import config from '../../data/config.json';
 import { t, languages, localPath } from '../lib/i18n.js';
 
-/** Disclaimer, language switcher and site links. */
+/** Site links (shops, artists, about: mostly for browsing and search engines), languages, meta links. */
 const { lang, path } = Astro.props;
+const site = [
+  { href: localPath(lang, '/shops/'), key: 'navShops' },
+  { href: '/artists/', key: 'navArtists' },
+  { href: '/new/', key: 'navNew' },
+  { href: localPath(lang, '/about/'), key: 'navAbout' },
+];
 ---
 <footer>
+  <nav aria-label={t(lang, 'navSite')}>
+    <ul>{site.map((n) => <li><a href={n.href}>{t(lang, n.key)}</a></li>)}</ul>
+  </nav>
   <p>{t(lang, 'footerNote')}</p>
   <nav aria-label={t(lang, 'navLanguage')}>
     <ul>{languages.map((l) => (

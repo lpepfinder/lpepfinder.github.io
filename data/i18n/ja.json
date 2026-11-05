@@ -263,5 +263,13 @@
       "other": "{count} 枚をウォッチリストに追加しました。"
     },
     "attribution": "ウォントリストのデータ提供：Discogs"
-  }
+  },
+  "navApp": "メイン",
+  "navSite": "探す",
+  "tabSearch": "検索",
+  "tabNew": "新着",
+  "tabWatch": "ウォッチ",
+  "aboutSuggestTitle": "載っていないレコード店がありますか？",
+  "aboutSuggest": "お知らせください。自動で確認し、1日以内に追加します。",
+  "aboutSuggestAction": "レコード店を提案"
 }

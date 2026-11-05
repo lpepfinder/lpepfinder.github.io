@@ -270,5 +270,13 @@
       "other": "{count} wants ajoutés à votre liste."
     },
     "attribution": "Données de wantlist fournies par Discogs"
-  }
+  },
+  "navApp": "Principal",
+  "navSite": "Explorer",
+  "tabSearch": "Recherche",
+  "tabNew": "Nouveautés",
+  "tabWatch": "Suivis",
+  "aboutSuggestTitle": "Il manque un disquaire ?",
+  "aboutSuggest": "Signalez-le : nous le vérifions automatiquement et l'ajoutons en un jour.",
+  "aboutSuggestAction": "Proposer un disquaire"
 }

@@ -270,5 +270,13 @@
       "other": "{count} Wants zur Merkliste hinzugefügt."
     },
     "attribution": "Wantlist-Daten von Discogs"
-  }
+  },
+  "navApp": "Haupt",
+  "navSite": "Entdecken",
+  "tabSearch": "Suche",
+  "tabNew": "Neu",
+  "tabWatch": "Merkliste",
+  "aboutSuggestTitle": "Ein Plattenladen fehlt?",
+  "aboutSuggest": "Sag uns Bescheid: Wir prüfen ihn automatisch und nehmen ihn innerhalb eines Tages auf.",
+  "aboutSuggestAction": "Plattenladen vorschlagen"
 }

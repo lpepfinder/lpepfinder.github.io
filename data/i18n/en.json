@@ -270,5 +270,13 @@
       "other": "{count} wants added to your watchlist."
     },
     "attribution": "Wantlist data from Discogs"
-  }
+  },
+  "navApp": "Main",
+  "navSite": "Explore",
+  "tabSearch": "Search",
+  "tabNew": "New",
+  "tabWatch": "Watchlist",
+  "aboutSuggestTitle": "A record shop is missing?",
+  "aboutSuggest": "Tell us about it: we check it automatically and add it within a day.",
+  "aboutSuggestAction": "Suggest a record shop"
 }

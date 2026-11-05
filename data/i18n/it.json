@@ -270,5 +270,13 @@
       "other": "{count} want aggiunti alla tua lista."
     },
     "attribution": "Dati della wantlist da Discogs"
-  }
+  },
+  "navApp": "Principale",
+  "navSite": "Esplora",
+  "tabSearch": "Cerca",
+  "tabNew": "Novità",
+  "tabWatch": "Seguiti",
+  "aboutSuggestTitle": "Manca un negozio di dischi?",
+  "aboutSuggest": "Segnalacelo: lo verifichiamo automaticamente e lo aggiungiamo entro un giorno.",
+  "aboutSuggestAction": "Proponi un negozio"
 }

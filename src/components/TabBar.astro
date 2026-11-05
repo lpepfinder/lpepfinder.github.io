@@ -1,0 +1,21 @@
+---
+import { t, localPath } from '../lib/i18n.js';
+
+/** The three things people use: search, new arrivals, their watchlist (with its change count). */
+const { lang, current } = Astro.props;
+const search = localPath(lang, '/');
+const watch = localPath(lang, '/watch/');
+const here = (href) => (href === current ? 'page' : undefined);
+---
+<nav aria-label={t(lang, 'navApp')}>
+  <vf-tabbar>
+    <a href={search} aria-current={here(search)}><vf-icon name="search"></vf-icon><span>{t(lang, 'tabSearch')}</span></a>
+    <a href="/new/" aria-current={here('/new/')}><vf-icon name="record"></vf-icon><span>{t(lang, 'tabNew')}</span></a>
+    <vf-watchlist>
+      <a href={watch} aria-current={here(watch)}><vf-icon name="star"></vf-icon><span>{t(lang, 'tabWatch')}</span> <vf-watch-count count="0"></vf-watch-count></a>
+    </vf-watchlist>
+  </vf-tabbar>
+</nav>
+<script>
+  import './vf-watchlist.js';
+</script>

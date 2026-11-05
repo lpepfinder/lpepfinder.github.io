@@ -1,33 +1,14 @@
 ---
 import config from '../../data/config.json';
 import SearchForm from './SearchForm.astro';
-import { t, localPath } from '../lib/i18n.js';
+import TabBar from './TabBar.astro';
+import { localPath } from '../lib/i18n.js';
 
-/** Brand, watchlist link, primary nav in a native <details> menu (inline on wide screens), search form. */
+/** App header: brand and search. The app's tabs (search, new, watchlist) sit at the bottom on phones, in the header on wide screens. */
 const { lang, current } = Astro.props;
-const nav = [
-  { href: localPath(lang, '/'), key: 'navSearch' },
-  { href: '/new/', key: 'navNew' },
-  { href: localPath(lang, '/shops/'), key: 'navShops' },
-  { href: '/artists/', key: 'navArtists' },
-  { href: localPath(lang, '/about/'), key: 'navAbout' },
-  { href: localPath(lang, '/submit/'), key: 'navSubmit' },
-];
-const watch = localPath(lang, '/watch/');
 ---
 <header>
   <a href={localPath(lang, '/')} rel="home"><img src="/favicon.png" alt="" width="28" height="28"> <span>{config.name}</span></a>
-  <vf-watchlist>
-    <a href={watch} aria-current={watch === current ? 'page' : undefined}><vf-icon name="star"></vf-icon> <span>{t(lang, 'watch.nav')}</span> <vf-watch-count count="0"></vf-watch-count></a>
-  </vf-watchlist>
-  <details>
-    <summary><vf-icon name="menu"></vf-icon> {t(lang, 'navMenu')}</summary>
-    <nav aria-label={t(lang, 'navPrimary')}>
-      <ul>{nav.map((n) => <li><a href={n.href} aria-current={n.href === current ? 'page' : undefined}>{t(lang, n.key)}</a></li>)}</ul>
-    </nav>
-  </details>
   <SearchForm lang={lang} />
+  <TabBar lang={lang} current={current} />
 </header>
-<script>
-  import './vf-watchlist.js';
-</script>
