@@ -1,0 +1,58 @@
+name: Add a record shop
+description: Suggest an independent record shop with an online store
+title: "Add shop: "
+labels: ["new shop"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Independent shops selling records online can be listed. The daily check reads the catalog
+        automatically when the shop runs on Shopify, WooCommerce or sells its stock on Discogs.
+  - type: input
+    id: url
+    attributes:
+      label: Website
+      description: The shop's own website, not a Facebook or Instagram page.
+      placeholder: https://example-records.com
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Shop name
+      placeholder: Example Records
+    validations:
+      required: true
+  - type: input
+    id: city
+    attributes:
+      label: City
+      placeholder: Berlin
+  - type: input
+    id: country
+    attributes:
+      label: Country
+      description: Country name or two-letter code.
+      placeholder: Germany (DE)
+    validations:
+      required: true
+  - type: input
+    id: discogs
+    attributes:
+      label: Discogs seller name
+      description: If the shop sells its stock on Discogs, its seller name from discogs.com/seller/NAME.
+      placeholder: examplerecords
+  - type: dropdown
+    id: relation
+    attributes:
+      label: You are
+      options:
+        - A customer
+        - The shop owner or staff
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Genres, second-hand or new, physical store address...
