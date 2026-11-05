@@ -12,7 +12,7 @@ const KEY = 'abcdef123456';
 test('now: the cheapest offer in stock, counts of in stock and sold out', () => {
   const offers = [offer('a.com', '/1', { price: 3000 }), offer('b.com', '/1', { price: 1800 }), offer('c.com', '/1', { available: false, price: 900 })];
   const ledger = settled(offers);
-  assert.deepEqual(summarize(ledger, shops, settings).get(KEY), [2, 1, 1800, 'EUR']);
+  assert.deepEqual(summarize(ledger, shops, settings).get(KEY), [2, 1, 1800, 'EUR', [['b.com', 1800], ['a.com', 3000]]]);
 });
 
 test('now: without stock, the sold-out offer seen last', () => {
@@ -30,6 +30,9 @@ test('watch files: shards, daily events and index', () => {
     writeWatchFiles({ ledger, shops, outDir: dir, settings });
     const read = (f) => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
     assert.deepEqual(Object.keys(read('now/abc.json')), [KEY]);
+    // shops in stock as [shopIndex, price] pairs into shops.json
+    assert.deepEqual(read('now/abc.json')[KEY].slice(4), [[0, 2000]]);
+    assert.deepEqual(read('shops.json'), ['a.com']);
     assert.deepEqual(read('index.json').dates, ['2026-11-01', '2026-11-02', '2026-11-03']);
     // events without a release key are left out
     assert.deepEqual(read('d/2026-11-03.json').map((e) => e[2]), ['new']);

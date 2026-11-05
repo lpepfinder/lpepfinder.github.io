@@ -79,7 +79,8 @@
     "newShopCrawls": 2,
     "lowPriceDays": 90,
     "goneSearchDays": 90,
-    "goneKeepDays": 365
+    "goneKeepDays": 365,
+    "watchShops": 12
   },
   "newArrivals": {
     "days": 7,
