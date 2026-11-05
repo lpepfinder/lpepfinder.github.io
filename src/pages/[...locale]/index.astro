@@ -1,39 +1,63 @@
 ---
 import Base from '../../layouts/Base.astro';
-import SearchForm from '../../components/SearchForm.astro';
+import Results from '../../components/Results.astro';
 import CountryList from '../../components/CountryList.astro';
 import config from '../../../data/config.json';
 import { t, localeParams, localPath, number, date } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
+import { homeContent } from '../../lib/home.js';
+import { pageTitle } from '../../lib/seo.js';
 
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 const c = catalog();
-const vars = { records: number(lang, c.totalRecords), shops: number(lang, c.visible.length), countries: number(lang, c.countries.length) };
+const vars = {
+  records: number(lang, c.totalRecords), shops: number(lang, c.visible.length), countries: number(lang, c.countries.length),
+  searchable: number(lang, c.visible.filter((s) => s.records).length),
+  recordsShort: new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 2 }).format(c.totalRecords),
+};
 const home = new URL(localPath(lang, '/'), Astro.site).href;
+const examples = homeContent(lang).try;
 const ld = [{
   '@context': 'https://schema.org', '@type': 'WebSite', name: config.name, alternateName: config.formerNames, url: home, inLanguage: lang,
   potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${home}?q={search_term_string}` }, 'query-input': 'required name=search_term_string' },
+}, {
+  '@context': 'https://schema.org', '@type': 'Organization', name: config.name, url: config.baseUrl, logo: new URL('/favicon.png', Astro.site).href,
 }];
 ---
-<Base lang={lang} path="/" title={`${config.name}: ${t(lang, 'tagline')}`} description={t(lang, 'description', vars)} ld={ld}>
+<Base lang={lang} path="/" mode="home" title={pageTitle(t(lang, 'homeSeoTitle'))} description={t(lang, 'description', vars)} ld={ld}>
   <hgroup>
-    <h1>{t(lang, 'tagline')}</h1>
+    <h1>{t(lang, 'homeTitle')}</h1>
     <p>{t(lang, 'stats', vars)} · <time datetime={c.builtAt}>{t(lang, 'updated', { date: date(lang, c.builtAt) })}</time></p>
   </hgroup>
-  <SearchForm lang={lang} examples={c.artists.slice(0, 3).map((a) => a.name)} />
-  <section>
-    <h2>{t(lang, 'homeWhyTitle')}</h2>
-    <ul>{t(lang, 'homeWhy').map((s) => <li>{s}</li>)}</ul>
-  </section>
+  <Results lang={lang} />
+  <script is:inline>
+    /* before first paint: a ?q= URL shows the results layout at once, so the home sections never shift */
+    if (new URLSearchParams(location.search).get('q')) {
+      document.querySelector('vf-app').setAttribute('mode', 'results');
+      document.querySelector('vf-results').setAttribute('status', 'loading');
+    }
+  </script>
+  {examples.length > 0 && (
+    <section>
+      <h2>{t(lang, 'homeTryTitle')}</h2>
+      <ul>{examples.map((e) => <li><a href={`${localPath(lang, '/')}?q=${encodeURIComponent(e)}`}>{e}</a></li>)}</ul>
+    </section>
+  )}
   <section>
     <h2>{t(lang, 'homeCountriesTitle')}</h2>
-    <CountryList lang={lang} countries={c.countries.slice(0, 40)} />
+    <CountryList lang={lang} countries={c.countries.slice(0, 12)} />
+    <p><a href={localPath(lang, '/shops/')}>{t(lang, 'homeAllShops', vars)}</a></p>
   </section>
   {c.artists.length > 0 && (
     <section>
       <h2>{t(lang, 'homeArtistsTitle')}</h2>
-      <ul>{c.artists.slice(0, 60).map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a></li>)}</ul>
+      <ul>{c.artists.slice(0, 24).map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a></li>)}</ul>
+      <p><a href="/artists/">{t(lang, 'homeAllArtists')}</a></p>
     </section>
   )}
+  <section>
+    <h2>{t(lang, 'homeWhyTitle')}</h2>
+    <ol>{t(lang, 'homeWhy').map((s) => <li>{s}</li>)}</ol>
+  </section>
 </Base>

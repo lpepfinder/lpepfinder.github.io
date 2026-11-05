@@ -1,12 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
-import config from '../../data/config.json';
+import { pageTitle } from '../lib/seo.js';
 import { t, defaultLanguage as lang, number } from '../lib/i18n.js';
 import { catalog } from '../lib/catalog.js';
 
 const artists = [...catalog().artists].sort((a, b) => a.name.localeCompare(b.name, lang));
 ---
-<Base lang={lang} title={`${t(lang, 'artistsTitle')} · ${config.name}`} description={t(lang, 'artistsIntro')}>
+<Base lang={lang} title={pageTitle(t(lang, 'artistsSeoTitle'))} description={t(lang, 'artistsIntro')}>
   <h1>{t(lang, 'artistsTitle')}</h1>
   <p>{t(lang, 'artistsIntro')}</p>
   <ul>{artists.map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a> <data value={a.records.length}>{number(lang, a.records.length)}</data></li>)}</ul>

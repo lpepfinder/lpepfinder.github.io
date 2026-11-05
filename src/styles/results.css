@@ -1,0 +1,41 @@
+/* <vf-results> region and <vf-result> cards; state in the status attribute. */
+vf-results { display: grid; gap: var(--space-2); }
+vf-results[status="idle"], vf-results > vf-empty, vf-results > vf-filters[hidden] { display: none; }
+vf-results[status="empty"] > vf-empty[reason="no-match"], vf-results[status="error"] > vf-empty[reason="index-error"] { display: block; }
+vf-results:is([status="empty"], [status="error"]) > :is(vf-results-bar, ol) { display: none; }
+vf-results h2 { margin: 0; font-size: var(--size-1); }
+vf-results > output { color: var(--c-muted); font-size: var(--size-s); }
+vf-results ol { list-style: none; margin: 0; padding: 0; display: grid; }
+vf-results > button { justify-self: center; }
+/* no layout shift while loading: a fixed-height skeleton, and room for a full page of results */
+vf-results:is([status="loading"], [status="done"]) { min-block-size: 100dvh; align-content: start; }
+vf-results[status="loading"] > ol { min-block-size: calc(var(--card-h) * 6); background: repeating-linear-gradient(to bottom, var(--c-skeleton) 0 calc(var(--card-h) - var(--space-3)), transparent 0 var(--card-h)); border-radius: var(--radius); }
+vf-results h2:empty { display: none; }
+
+vf-result { position: relative; display: grid; grid-template-columns: var(--thumb) minmax(0, 1fr) auto; grid-template-areas: "img head price" "img meta meta"; gap: var(--space-1) var(--space-3); align-items: start; min-block-size: var(--card-h); padding-block: var(--space-3); border-block-end: var(--line) solid var(--c-line); }
+vf-result > :is(img, vf-cover) { grid-area: img; display: block; inline-size: var(--thumb); block-size: var(--thumb); object-fit: cover; border-radius: var(--radius); background: var(--c-skeleton); }
+vf-result > vf-cover { background: var(--c-skeleton) var(--thumb-fallback) center / 80% no-repeat; }
+vf-result h3 { grid-area: head; margin: 0; font-size: var(--size-0); line-height: var(--leading-tight); overflow-wrap: anywhere; }
+vf-result h3 a { color: inherit; text-decoration: none; }
+vf-result h3 a::after { content: ""; position: absolute; inset: 0; }
+vf-result h3 a:hover vf-title { color: var(--c-link); text-decoration: underline; }
+vf-result vf-artist { display: block; font-weight: normal; font-size: var(--size-s); color: var(--c-muted); }
+vf-result vf-title { display: block; font-weight: var(--weight-semi); }
+vf-price { grid-area: price; font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--c-price); }
+vf-price data { color: inherit; }
+vf-result dl { grid-area: meta; display: flex; flex-wrap: wrap; gap: 0 var(--space-2); margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-result dt { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+vf-result dd { margin: 0; }
+vf-result dd + dt + dd::before { content: "· "; }
+vf-result abbr { text-decoration: none; }
+vf-result[condition="used"]:not([stock="out"]) dd:first-of-type { color: var(--c-used); }
+/* sold out: less emphasis, same contrast */
+vf-result[stock="out"] :is(vf-title, vf-price) { color: var(--c-muted); font-weight: normal; }
+vf-result[stock="out"] img { filter: var(--sold-out-filter); }
+vf-result[stock="out"] dd:first-of-type { font-weight: var(--weight-semi); }
+vf-result:has(a:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+vf-result a:focus-visible { outline: none; }
+
+@media (min-width: 40rem) {
+  vf-results ol { grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); column-gap: var(--space-6); }
+}

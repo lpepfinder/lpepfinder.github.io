@@ -1,9 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import RecordTable from '../../components/RecordTable.astro';
-import config from '../../../data/config.json';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { t, defaultLanguage as lang, number, price } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
+import { pageTitle, truncate, breadcrumbLd } from '../../lib/seo.js';
 
 /** Records by one artist in stock across shops, cheapest first: the comparison is the page's value. */
 export function getStaticPaths() {
@@ -16,21 +17,37 @@ const vars = {
   artist: artist.name, count: number(lang, artist.records.length), shops: number(lang, artist.shopCount),
   price: cheapest ? price(lang, cheapest.price, cheapest.currency) : '',
 };
+const title = t(lang, cheapest ? 'artistSeoTitle' : 'artistSeoTitleNoPrice', { ...vars, artist: truncate(artist.name) });
+const crumbs = [
+  { name: t(lang, 'breadcrumbHome'), href: '/' },
+  { name: t(lang, 'artistsTitle'), href: '/artists/' },
+  { name: artist.name, href: `/artist/${artist.slug}/` },
+];
+const shopUrl = (id) => new URL(`/shop/${id}/`, Astro.site).href;
+// Product items only when they carry a valid Offer (price and currency)
+const offers = artist.records.filter((r) => r.price != null && r.currency).slice(0, 50);
 const ld = [{
-  '@context': 'https://schema.org', '@type': 'ItemList', name: t(lang, 'artistTitle', vars),
-  itemListElement: artist.records.slice(0, 50).map((r, i) => ({
-    '@type': 'ListItem', position: i + 1,
-    item: {
-      '@type': 'Product', name: r.title,
-      offers: r.price != null ? {
-        '@type': 'Offer', url: r.url, price: (r.price / 100).toFixed(2), priceCurrency: r.currency || undefined,
-        availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: c.shopsById.get(r.shop)?.name || r.shop },
-      } : undefined,
-    },
-  })),
-}];
+  '@context': 'https://schema.org', '@type': 'CollectionPage', name: t(lang, 'artistTitle', vars),
+  about: { '@type': 'MusicGroup', name: artist.name },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: offers.map((r, i) => ({
+      '@type': 'ListItem', position: i + 1,
+      item: {
+        '@type': 'Product', name: r.title, category: 'Vinyl record',
+        ...(r.image ? { image: r.image.startsWith('//') ? `https:${r.image}` : r.image } : {}),
+        offers: {
+          '@type': 'Offer', url: r.url, price: (r.price / 100).toFixed(2), priceCurrency: r.currency,
+          availability: 'https://schema.org/InStock',
+          seller: { '@type': 'Organization', name: c.shopsById.get(r.shop)?.name || r.shop, url: shopUrl(r.shop) },
+        },
+      },
+    })),
+  },
+}, breadcrumbLd(crumbs, Astro.site)];
 ---
-<Base lang={lang} title={`${t(lang, 'artistTitle', vars)} · ${config.name}`} description={t(lang, 'artistDescription', vars)} ld={ld}>
+<Base lang={lang} title={pageTitle(title)} description={t(lang, cheapest ? 'artistDescription' : 'artistDescriptionNoPrice', vars)} ld={ld}>
+  <Breadcrumbs lang={lang} items={crumbs} />
   <h1>{t(lang, 'artistTitle', vars)}</h1>
   <p>{t(lang, 'artistIntro', vars)}</p>
   <p><a href={`/?q=${encodeURIComponent(artist.name)}`}>{t(lang, 'artistSearchAll', vars)}</a></p>

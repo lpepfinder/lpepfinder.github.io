@@ -1,20 +1,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import zlib from 'node:zlib';
 import { tokenize, shardKey, shardFile, cleanShopName } from '../lib/text.js';
 
-/** Write a file plus a .gz twin, which GitLab Pages serves to gzip-capable browsers. */
+/** Write a static file. No .gz twin: GitHub Pages compresses responses itself. */
 export function writeStatic(file, content) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  const buf = Buffer.from(content);
-  fs.writeFileSync(file, buf);
-  if (buf.length > 512) fs.writeFileSync(file + '.gz', zlib.gzipSync(buf, { level: 9 }));
+  fs.writeFileSync(file, content);
 }
 
 /**
  * Static inverted index:
  *   search/shops.json         [[id, name, origin, country, currency], ...]
- *   search/d/<n>.json         docs chunk: [[shop, title, priceCents, path, image], ...]
+ *   search/d/<n>.json         docs chunk: [[shop, title, priceCents, path, image, currency, soldOut?], ...]
+ *                             (soldOut is 1 for sold-out records, left out when in stock)
  *   search/i/<shard>.json     { token: "base36 id deltas joined by ." }
  *   search/meta.json          counts and settings the browser needs
  */
@@ -39,7 +37,10 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
   }
   for (let c = 0; c * docsPerChunk < docs.length; c++) {
     const rows = docs.slice(c * docsPerChunk, (c + 1) * docsPerChunk)
-      .map((d) => [shopIndex.get(d.shop), d.title, d.price, d.path, d.image || 0, d.currency !== shopRows[shopIndex.get(d.shop)][4] ? d.currency : 0]);
+      .map((d) => {
+        const row = [shopIndex.get(d.shop), d.title, d.price, d.path, d.image || 0, d.currency !== shopRows[shopIndex.get(d.shop)][4] ? d.currency : 0];
+        return d.available === false ? [...row, 1] : row;
+      });
     writeStatic(path.join(outDir, 'd', `${c}.json`), JSON.stringify(rows));
   }
 
@@ -55,7 +56,9 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
   }
   for (const [key, obj] of shards) writeStatic(path.join(outDir, 'i', `${key}.json`), JSON.stringify(obj));
 
-  const meta = { docs: docs.length, shops: shopRows.length, docsPerChunk, tokens: postings.size - dropped, shards: shards.size, builtAt: new Date().toISOString() };
+  // docs are sorted in stock first: ids from soldOutFrom on are sold out
+  const soldOutFrom = docs.findIndex((d) => d.available === false);
+  const meta = { docs: docs.length, soldOutFrom: soldOutFrom < 0 ? docs.length : soldOutFrom, shops: shopRows.length, docsPerChunk, tokens: postings.size - dropped, shards: shards.size, builtAt: new Date().toISOString() };
   writeStatic(path.join(outDir, 'meta.json'), JSON.stringify(meta));
   return meta;
 }

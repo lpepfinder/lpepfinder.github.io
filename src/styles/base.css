@@ -1,0 +1,28 @@
+/* Elements: reset, type, links, focus, targets, tables. */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-block-start: calc(var(--header-h) + var(--space-4)); }
+body { margin: 0; background: var(--c-bg); color: var(--c-fg); font: var(--size-0)/var(--leading) var(--font-body); }
+main > * { min-inline-size: 0; }
+a { color: var(--c-link); }
+:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+h1 { font-size: var(--size-3); line-height: var(--leading-tight); margin: 0; text-wrap: balance; }
+h2 { font-size: var(--size-2); line-height: var(--leading-tight); margin: var(--space-6) 0 var(--space-2); text-wrap: balance; }
+img { max-inline-size: 100%; block-size: auto; }
+data { font-variant-numeric: tabular-nums; color: var(--c-muted); }
+
+/* skip link: first element of the body, visible on focus */
+body > a[href="#main"] { position: absolute; inset-inline-start: var(--space-2); inset-block-start: var(--space-2); z-index: 2; padding: var(--space-2) var(--space-4); background: var(--c-surface); translate: 0 -200%; }
+body > a[href="#main"]:focus { translate: none; }
+main:focus { outline: none; }
+
+button { font: inherit; font-weight: var(--weight-semi); min-block-size: var(--tap); padding: var(--space-2) var(--space-4); border: 0; border-radius: var(--radius); background: var(--c-accent); color: var(--c-accent-fg); cursor: pointer; }
+nav a, footer a, summary { display: inline-flex; align-items: center; min-block-size: var(--tap); }
+
+figure { margin: 0; overflow-x: auto; }
+table { inline-size: 100%; border-collapse: collapse; font-size: var(--size-s); }
+th, td { text-align: start; padding: var(--space-2); border-block-end: var(--line) solid var(--c-line); vertical-align: top; overflow-wrap: anywhere; }
+th { color: var(--c-muted); font-weight: var(--weight-semi); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

@@ -19,6 +19,9 @@
   "repository": "https://github.com/lpepfinder/lpepfinder.github.io",
   "chat": "https://matrix.to/#/#vinyl-finder:matrix.org",
   "ads": {
+    "enabled": true,
+    "lazy": true,
+    "delayMs": 4000,
     "adsenseClient": "ca-pub-7578240828852744"
   },
   "analytics": {

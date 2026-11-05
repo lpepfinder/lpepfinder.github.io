@@ -1,0 +1,13 @@
+{
+  "formats": [
+    { "id": "mc", "pattern": "\\b(cassettes?|tapes?|k7|mc)\\b|カセット" },
+    { "id": "cd", "pattern": "\\b(\\d\\s?x\\s?)?cds?\\b|\\bcompact disc\\b" },
+    { "id": "2lp", "pattern": "\\b[2-9]\\s?(x\\s?)?lps?\\b|\\b(double|triple|doppio|doble)\\s(lp|vinyl|vinile|vinilo|album)\\b" },
+    { "id": "12", "pattern": "\\b12\\s?(\"|”|''|″|inch|in\\b|zoll)|\\bmaxi\\b" },
+    { "id": "10", "pattern": "\\b10\\s?(\"|”|''|″|inch|in\\b|zoll)" },
+    { "id": "7", "pattern": "\\b7\\s?(\"|”|''|″|inch|in\\b|zoll)" },
+    { "id": "ep", "pattern": "\\bep\\b" },
+    { "id": "lp", "pattern": "\\blp\\b|\\b(vinyl|vinyle|vinilo|vinile|schallplatte)\\b|レコード" }
+  ],
+  "used": "\\b(used|second[- ]?hand|pre-?owned|occasion|gebraucht|usato|usado|käytetty)\\b|中古"
+}

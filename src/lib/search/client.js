@@ -1,4 +1,5 @@
-import { tokenize, shardKey, shardFile } from './tokenize.js';
+import { tokenize, normalize, shardKey, shardFile } from './tokenize.js';
+import { pickWindow, diversify } from './rank.js';
 
 /** Browser side of the static index built by src/index/search-index.js. */
 export class SearchClient {
@@ -6,7 +7,12 @@ export class SearchClient {
     this.base = base;
     this.cache = new Map();
     this.ready = Promise.all([this.json('meta.json'), this.json('shops.json')])
-      .then(([meta, shops]) => { this.meta = meta; this.shops = shops; });
+      .then(([meta, shops]) => {
+        if (!meta || !shops) throw new Error('search index unavailable');
+        this.meta = meta;
+        this.shops = shops;
+      });
+    this.ready.catch(() => {});
   }
 
   json(file) {
@@ -35,18 +41,47 @@ export class SearchClient {
     return intersect(lists);
   }
 
-  /** Records for a slice of matched ids. */
-  async records(ids) {
+  /**
+   * Rank order for matched ids: the densest chunks (an artist's records are
+   * neighbours) are loaded and diversified by shop; the rest follow in id order.
+   * Sold-out records (ids from meta.soldOutFrom on) always come last.
+   */
+  async rank(ids, query, per = 30) {
+    await this.ready;
+    const isOut = (id) => id >= (this.meta.soldOutFrom ?? Infinity);
+    const inStock = ids.filter((id) => !isOut(id));
+    const window = pickWindow(inStock.length ? inStock : ids, this.meta.docsPerChunk, { min: per });
+    const rows = await this.rows(window);
+    const docs = window.map((id, i) => rows[i] && { id, shop: rows[i][0], title: rows[i][1], soldOut: isOut(id) }).filter(Boolean);
+    const top = diversify(docs, normalize(query), normalize);
+    const seen = new Set(top);
+    const order = [...top, ...ids.filter((id) => !seen.has(id))];
+    return [...order.filter((id) => !isOut(id)), ...order.filter(isOut)];
+  }
+
+  /** Raw d/ rows for ids (null when missing). */
+  async rows(ids) {
     const per = this.meta.docsPerChunk;
     const chunks = [...new Set(ids.map((id) => Math.floor(id / per)))];
     const loaded = new Map(await Promise.all(chunks.map(async (c) => [c, await this.json(`d/${c}.json`)])));
-    return ids.map((id) => {
-      const row = loaded.get(Math.floor(id / per))?.[id % per];
+    return ids.map((id) => loaded.get(Math.floor(id / per))?.[id % per] || null);
+  }
+
+  /** How many matched ids are sold out (ids from meta.soldOutFrom on). */
+  soldOut(ids) {
+    const from = this.meta.soldOutFrom ?? Infinity;
+    return ids.reduce((n, id) => n + (id >= from), 0);
+  }
+
+  /** Records for a slice of matched ids. */
+  async records(ids) {
+    const rows = await this.rows(ids);
+    return rows.map((row) => {
       if (!row) return null;
-      const [shopIdx, title, price, path, image, currency] = row;
+      const [shopIdx, title, price, path, image, currency, soldOut] = row;
       const [shopId, shopName, origin, country, shopCurrency] = this.shops[shopIdx];
       return {
-        title, price, image: image || null,
+        title, price, image: image || null, available: soldOut !== 1,
         url: path.startsWith('http') ? path : origin + path,
         currency: currency || shopCurrency,
         shop: { id: shopId, name: shopName, country },
