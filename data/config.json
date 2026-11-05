@@ -48,7 +48,7 @@
       "shopify": 100,
       "woocommerce": 2000
     },
-    "inStockOnly": true,
+    "inStockOnly": false,
     "retryPassConcurrency": 1,
     "botNames": [
       "lpepfinderbot",
@@ -110,7 +110,7 @@
     "reevaluateDays": 30,
     "reprobeDays": 30,
     "maxRetryAfterSeconds": 120,
-    "checkpointMinutes": 20,
+    "checkpointMinutes": 15,
     "magentoPageSize": 100,
     "sitemapPlatforms": [
       "wix",
