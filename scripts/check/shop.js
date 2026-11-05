@@ -17,6 +17,11 @@ const baseName = (host) => (host || '').replace(/^(www|shop|store)\./, '').split
 export async function checkShop(shop, previous = {}) {
   const state = { checkedAt: new Date().toISOString(), fails: 0 };
   const home = await get(shop.url);
+  // the site answers but refuses bots (Cloudflare and similar): alive, just not readable by us
+  if ([401, 403, 429, 503].includes(home.status)) {
+    await home.body?.cancel?.();
+    return { ...state, url: new URL(home.url || shop.url).origin, status: 'listed', reason: `bot_protection_${home.status}`, platform: previous.platform || null, name: previous.name || null };
+  }
   if (!home.ok) {
     const fails = (previous.fails || 0) + 1;
     // a single failure keeps the previous good state, to ride out blips
