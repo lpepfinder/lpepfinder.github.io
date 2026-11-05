@@ -4,12 +4,18 @@ import { decodeEntities, displayTitle } from '../lib/text.js';
 import { keepProduct, musicRatio } from './filter.js';
 
 const PAGE_SIZE = 250;
+
+/**
+ * Shopify prices follow the visitor's market (a US runner gets USD from a Japanese shop).
+ * The localization cookie pins the shop's home country, so prices come in its own currency.
+ */
+const market = (country) => (/^[A-Z]{2}$/.test(country || '') ? { headers: { cookie: `localization=${country}` } } : {});
 const text = (p) => [p.title, p.product_type, p.vendor, ...(Array.isArray(p.tags) ? p.tags : [p.tags])].join(' ');
 
 /** Shop metadata and a catalog sample. */
 export async function probe(origin) {
   const meta = await getJson(`${origin}/meta.json`);
-  const sample = await getJson(`${origin}/products.json?limit=100`);
+  const sample = await getJson(`${origin}/products.json?limit=100`, market(meta.data?.country));
   if (!sample.ok) return { ok: false, reason: `products_json_${sample.status || sample.error}` };
   const products = sample.data.products || [];
   return {
@@ -35,6 +41,8 @@ function toRecord(p) {
     type: p.product_type || null,
     price: prices.length ? Math.round(Math.min(...prices) * 100) : null,
     path: `/products/${p.handle}`,
+    // catalog numbers and tags: searchable, not shown
+    extra: [...new Set([...(p.variants || []).map((v) => v.sku), ...(Array.isArray(p.tags) ? p.tags : [])].filter(Boolean))].join(' ').slice(0, 200) || null,
     image: p.images?.[0]?.src?.replace(/^https?:/, '') || null,
     updated: p.updated_at || p.published_at || null,
   };
@@ -45,10 +53,11 @@ function toRecord(p) {
  * platform limit (25k products per list) rather than at the end of the list.
  */
 async function* list(url, opts, seen, budget, firstIsFatal) {
+  const pin = market(opts.country);
   const { maxPages, delayMs, inStockOnly, deadline, strict } = opts;
   for (let page = 1; page <= maxPages; page++) {
     if (Date.now() > deadline || budget.left-- <= 0) return false;
-    const res = await getJson(`${url}?limit=${PAGE_SIZE}&page=${page}`, { retries: 4 });
+    const res = await getJson(`${url}?limit=${PAGE_SIZE}&page=${page}`, { retries: 4, ...pin });
     if (!res.ok) {
       if (page === 1 && firstIsFatal) throw new Error(`products_json_${res.status || res.error}`);
       return page > maxPages - 1 || res.status === 400; // Shopify answers 400 past the limit
@@ -74,7 +83,7 @@ export async function* crawl(shop, opts) {
   const capped = yield* list(`${shop.url}/products.json`, opts, seen, budget, true);
   if (!capped) return;
   for (let page = 1; page <= 40 && budget.left > 0 && Date.now() < opts.deadline; page++) {
-    const res = await getJson(`${shop.url}/collections.json?limit=250&page=${page}`, { retries: 4 });
+    const res = await getJson(`${shop.url}/collections.json?limit=250&page=${page}`, { retries: 4, ...market(opts.country) });
     const collections = res.ok ? res.data.collections || [] : [];
     budget.left--;
     for (const c of collections.sort((a, b) => (b.products_count || 0) - (a.products_count || 0))) {

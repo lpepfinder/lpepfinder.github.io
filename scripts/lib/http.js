@@ -7,13 +7,13 @@ const { userAgent, timeoutMs } = config.crawl;
  * Polite GET: identifies the bot, times out, retries on 429/503 honouring Retry-After.
  * Returns { ok, status, url, headers, text(), json() } or { ok:false, error }.
  */
-export async function get(url, { accept = '*/*', retries = 2, redirect = 'follow' } = {}) {
+export async function get(url, { accept = '*/*', retries = 2, redirect = 'follow', headers = {} } = {}) {
   for (let attempt = 0; ; attempt++) {
     let res;
     try {
       res = await fetch(url, {
         redirect,
-        headers: { 'user-agent': userAgent, accept },
+        headers: { 'user-agent': userAgent, accept, ...headers },
         signal: AbortSignal.timeout(timeoutMs),
       });
     } catch (e) {

@@ -28,6 +28,7 @@ async function crawlShop(shop) {
       const opts = {
         maxPages: c.maxPages[platform],
         maxRequests: c.maxRequestsPerShop,
+        country: shop.state.country || shop.country || null,
         delayMs: Math.max(c.delayMs[platform] ?? 500, (crawlDelay || 0) * 1000),
         inStockOnly: c.inStockOnly,
         deadline: t0 + c.maxMinutesPerShop * 60_000,
