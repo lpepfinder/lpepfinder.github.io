@@ -143,5 +143,8 @@
     "ep": "EP",
     "cd": "CD",
     "mc": "カセット"
-  }
+  },
+  "soldOut": "売り切れ",
+  "resultStock": "在庫",
+  "resultsCountSoldOut": "「{query}」のレコード {count} 件（売り切れ {soldOut} 件）"
 }

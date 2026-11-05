@@ -27,7 +27,7 @@ export const localPath = (lang, path) => (lang === defaultLanguage ? path : `/${
 /** Strings the browser components need. */
 export const clientStrings = (lang) => Object.fromEntries([
   'searchTitle', 'resultsCount', 'searching', 'showingOf', 'emptyTitle', 'indexError', 'resultShop', 'resultCountry',
-  'resultFormat', 'conditionUsed', ...FORMAT_IDS.map((id) => `formats.${id}`),
+  'resultFormat', 'conditionUsed', 'resultsCountSoldOut', 'resultStock', 'soldOut', ...FORMAT_IDS.map((id) => `formats.${id}`),
 ].map((k) => [k, lookup(lang, k) ?? lookup(defaultLanguage, k)]));
 
 const regionNames = Object.fromEntries(languages.map((l) => [l, new Intl.DisplayNames([l], { type: 'region' })]));

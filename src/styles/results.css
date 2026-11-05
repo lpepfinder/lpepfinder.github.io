@@ -28,7 +28,11 @@ vf-result dt { position: absolute; inline-size: 1px; block-size: 1px; overflow: 
 vf-result dd { margin: 0; }
 vf-result dd + dt + dd::before { content: "· "; }
 vf-result abbr { text-decoration: none; }
-vf-result[condition="used"] dd:first-of-type { color: var(--c-used); }
+vf-result[condition="used"]:not([stock="out"]) dd:first-of-type { color: var(--c-used); }
+/* sold out: less emphasis, same contrast */
+vf-result[stock="out"] :is(vf-title, vf-price) { color: var(--c-muted); font-weight: normal; }
+vf-result[stock="out"] img { filter: var(--sold-out-filter); }
+vf-result[stock="out"] dd:first-of-type { font-weight: var(--weight-semi); }
 vf-result:has(a:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 vf-result a:focus-visible { outline: none; }
 

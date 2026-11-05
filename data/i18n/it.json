@@ -143,5 +143,8 @@
     "ep": "EP",
     "cd": "CD",
     "mc": "Cassetta"
-  }
+  },
+  "soldOut": "Esaurito",
+  "resultStock": "Disponibilità",
+  "resultsCountSoldOut": "{count} dischi per «{query}» ({soldOut} esauriti)"
 }

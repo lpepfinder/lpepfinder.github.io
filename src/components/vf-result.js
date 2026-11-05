@@ -32,7 +32,7 @@ const el = (tag, props = {}, ...children) => {
 
 /**
  * One record offered by one shop: a real link in a heading, meta in a <dl>.
- * Attributes for CSS: country, format, condition. Set `index` (position in the list) before `record`.
+ * Attributes for CSS: country, format, condition, stock ("out" when sold out). Set `index` (position in the list) before `record`.
  */
 export class VfResult extends HTMLElement {
   index = 0;
@@ -44,6 +44,7 @@ export class VfResult extends HTMLElement {
     if (cc) this.setAttribute('country', cc);
     if (format) this.setAttribute('format', format);
     this.setAttribute('condition', used ? 'used' : 'new');
+    if (r.available === false) this.setAttribute('stock', 'out');
     const link = el('a', { href: r.url, rel: 'nofollow' });
     if (artist) link.append(el('vf-artist', { textContent: artist }), ' ');
     link.append(el('vf-title', { textContent: title }));
@@ -52,6 +53,7 @@ export class VfResult extends HTMLElement {
     const kind = [format && t(`formats.${format}`), used && t('conditionUsed')].filter(Boolean).join(' · ');
     if (kind) meta.prepend(el('dt', { textContent: t('resultFormat') }), el('dd', { textContent: kind }));
     if (cc) meta.append(el('dt', { textContent: t('resultCountry') }), el('dd', {}, el('abbr', { title: countryName(cc), textContent: cc })));
+    if (r.available === false) meta.prepend(el('dt', { textContent: t('resultStock') }), el('dd', { textContent: t('soldOut') }));
     this.replaceChildren(
       cover(r.image, this.index),
       el('h3', {}, link),

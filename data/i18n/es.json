@@ -143,5 +143,8 @@
     "ep": "EP",
     "cd": "CD",
     "mc": "Casete"
-  }
+  },
+  "soldOut": "Agotado",
+  "resultStock": "Stock",
+  "resultsCountSoldOut": "{count} discos para «{query}» ({soldOut} agotados)"
 }

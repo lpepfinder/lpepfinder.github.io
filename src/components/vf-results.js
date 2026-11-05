@@ -37,10 +37,11 @@ export class VfResults extends HTMLElement {
   }
 
   /** New result set: count heading, empty list. */
-  start(query, total) {
+  start(query, total, soldOut = 0) {
     this.total = total;
     this.list.replaceChildren();
-    this.heading.textContent = t('resultsCount', { count: formatNumber(total), query });
+    const vars = { count: formatNumber(total), soldOut: formatNumber(soldOut), query };
+    this.heading.textContent = t(soldOut ? 'resultsCountSoldOut' : 'resultsCount', vars);
     this.empty.textContent = t('emptyTitle', { query });
     this.live.textContent = total ? '' : this.empty.textContent;
     this.status = total ? 'done' : 'empty';
