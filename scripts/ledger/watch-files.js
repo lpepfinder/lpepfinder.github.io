@@ -1,12 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { addDays } from './day.js';
-import { productUrl } from './keys.js';
 
 /**
  * Static files for the browser watchlist (public/w/):
- *   now/<first 3 hex of releaseKey>.json  { releaseKey: [inStockCount, soldOutCount, minPriceCents, currency, title, url] }
- *                                         the cheapest offer in stock, else the sold-out one seen last
+ *   now/<first 3 hex of releaseKey>.json  { releaseKey: [inStockCount, soldOutCount, minPriceCents, currency] }
+ *                                         price of the cheapest offer in stock, else of the sold-out one seen last
+ *                                         (no title or url: the browser keeps those when a record is watched)
  *   d/<YYYY-MM-DD>.json                   [[releaseKey, offerKey, event, priceCents, currency, title, url, shopId], ...]
  *   index.json                            { dates: ["YYYY-MM-DD", ...] oldest first, builtAt }
  * An offer is in stock when the last crawl listed it as available; sold out when it is out of stock,
@@ -33,7 +33,7 @@ export function summarize(ledger, shops, { goneSearchDays }) {
   }
   const now = new Map();
   for (const [key, r] of byRelease) {
-    now.set(key, [r.in, r.out, r.pick.price ?? null, r.pick.currency || null, r.pick.title, productUrl(shops.get(r.pick.shop), r.pick.path)]);
+    now.set(key, [r.in, r.out, r.pick.price ?? null, r.pick.currency || null]);
   }
   return now;
 }

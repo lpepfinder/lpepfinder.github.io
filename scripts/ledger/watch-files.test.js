@@ -12,14 +12,14 @@ const KEY = 'abcdef123456';
 test('now: the cheapest offer in stock, counts of in stock and sold out', () => {
   const offers = [offer('a.com', '/1', { price: 3000 }), offer('b.com', '/1', { price: 1800 }), offer('c.com', '/1', { available: false, price: 900 })];
   const ledger = settled(offers);
-  assert.deepEqual(summarize(ledger, shops, settings).get(KEY), [2, 1, 1800, 'EUR', 'Artist – /1', 'https://b.com/1']);
+  assert.deepEqual(summarize(ledger, shops, settings).get(KEY), [2, 1, 1800, 'EUR']);
 });
 
 test('now: without stock, the sold-out offer seen last', () => {
   const ledger = settled([offer('a.com', '/1', { price: 3000 }), offer('b.com', '/1', { price: 1800 })]);
   run(ledger, [offer('a.com', '/1', { available: false, price: 3000 })], '2026-11-03');
   // b.com is not crawled today: its offer is not counted as in stock
-  assert.deepEqual(summarize(ledger, shops, settings).get(KEY), [0, 2, 3000, 'EUR', 'Artist – /1', 'https://a.com/1']);
+  assert.deepEqual(summarize(ledger, shops, settings).get(KEY), [0, 2, 3000, 'EUR']);
 });
 
 test('watch files: shards, daily events and index', () => {
