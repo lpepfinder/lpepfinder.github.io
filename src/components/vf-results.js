@@ -48,8 +48,10 @@ export class VfResults extends HTMLElement {
 
   /** Append one page of records; returns the first new link. */
   append(records, shown) {
-    const items = records.map((r) => {
+    const offset = this.list.children.length;
+    const items = records.map((r, i) => {
       const result = document.createElement('vf-result');
+      result.index = offset + i;
       result.record = r;
       const li = document.createElement('li');
       li.append(result);

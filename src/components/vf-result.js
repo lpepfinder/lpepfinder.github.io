@@ -1,11 +1,27 @@
 import { t, formatPrice, countryName } from './i18n.js';
 import { splitTitle } from '../lib/search/title.js';
 
-const thumb = (src) => {
+const EAGER = 4;
+const WP_SIZE = /-\d{3,4}x\d{3,4}(\.(?:jpe?g|png|webp))(\?|$)/i;
+
+/** Thumbnail at 2x the 56 px box: Shopify resizes on request, WordPress has a 150x150 size by default. */
+export function thumb(src) {
   if (!src) return null;
   const url = src.startsWith('//') ? 'https:' + src : src;
-  return url.includes('cdn.shopify.com') ? url + (url.includes('?') ? '&' : '?') + 'width=160' : url;
-};
+  if (url.includes('cdn.shopify.com')) return url + (url.includes('?') ? '&' : '?') + 'width=112';
+  return url.replace(WP_SIZE, '-150x150$1$2');
+}
+
+function cover(image, index) {
+  const original = image && (image.startsWith('//') ? 'https:' + image : image);
+  const src = thumb(image);
+  if (!src) return el('vf-cover');
+  const eager = index < EAGER;
+  const img = el('img', { src, alt: '', decoding: 'async', width: 56, height: 56, referrerPolicy: 'no-referrer', loading: eager ? 'eager' : 'lazy', fetchPriority: eager ? 'auto' : 'low' });
+  // resized variant missing on this shop: fall back to the original once
+  if (src !== original) img.addEventListener('error', () => { img.src = original; }, { once: true });
+  return img;
+}
 
 const el = (tag, props = {}, ...children) => {
   const node = Object.assign(document.createElement(tag), props);
@@ -15,9 +31,11 @@ const el = (tag, props = {}, ...children) => {
 
 /**
  * One record offered by one shop: a real link in a heading, meta in a <dl>.
- * Attributes for CSS: country.
+ * Attributes for CSS: country. Set `index` (position in the list) before `record`.
  */
 export class VfResult extends HTMLElement {
+  index = 0;
+
   set record(r) {
     const { artist, title } = splitTitle(r.title);
     const cc = r.shop.country || '';
@@ -25,12 +43,11 @@ export class VfResult extends HTMLElement {
     const link = el('a', { href: r.url, rel: 'nofollow' });
     if (artist) link.append(el('vf-artist', { textContent: artist }), ' ');
     link.append(el('vf-title', { textContent: title }));
-    const src = thumb(r.image);
     const meta = el('dl', {},
       el('dt', { textContent: t('resultShop') }), el('dd', { textContent: r.shop.name }));
     if (cc) meta.append(el('dt', { textContent: t('resultCountry') }), el('dd', {}, el('abbr', { title: countryName(cc), textContent: cc })));
     this.replaceChildren(
-      ...(src ? [el('img', { src, alt: '', loading: 'lazy', decoding: 'async', width: 56, height: 56 })] : []),
+      cover(r.image, this.index),
       el('h3', {}, link),
       el('vf-price', {}, el('data', { value: r.price ?? '', textContent: formatPrice(r.price, r.currency) })),
       meta,
