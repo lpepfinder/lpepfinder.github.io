@@ -47,6 +47,7 @@
   --thumb-row: 2.75rem;
   --price-col: 4.5rem;
   --results-width: 52rem;
+  --tab-mark: 3px;
   --offers-indent: var(--space-4);
   --disclosure: "▸";
   --disclosure-open: "▾";

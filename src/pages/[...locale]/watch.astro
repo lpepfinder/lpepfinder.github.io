@@ -4,9 +4,10 @@ import WatchBackup from '../../components/WatchBackup.astro';
 import { t, localeParams, localPath } from '../../lib/i18n.js';
 import { pageTitle } from '../../lib/seo.js';
 
-/** The watchlist: changes since the last visit, watched records, backup and share. */
+/** The watchlist: a summary, three views (changes, available now by shop, all A–Z), backup and share. */
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
+const views = [['changes', 'viewChanges'], ['now', 'viewNow'], ['all', 'viewAll']];
 ---
 <Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage']}>
   <hgroup>
@@ -18,23 +19,40 @@ const { lang } = Astro.props;
     <p></p>
     <button type="button" name="add-shared">{t(lang, 'watchPage.sharedAdd')}</button>
   </vf-watch-shared>
-  <vf-watch-page status="idle" search={localPath(lang, '/')}>
+  <vf-watch-page status="idle" view="changes" search={localPath(lang, '/')}>
+    <vf-watch-summary hidden></vf-watch-summary>
+    <vf-progress hidden>
+      <label for="watch-progress"></label>
+      <progress id="watch-progress"></progress>
+    </vf-progress>
     <output aria-live="polite"></output>
+    <nav aria-label={t(lang, 'watchPage.views')}>
+      <ul>
+        {views.map(([view, label], i) => <li><a href={`?view=${view}`} aria-current={i === 0 ? 'page' : undefined}>{t(lang, `watchPage.${label}`)}</a></li>)}
+      </ul>
+    </nav>
     <vf-watch-changes count="">
-      <h2>{t(lang, 'watchPage.changesTitle')}</h2>
-      <p>{t(lang, 'watchPage.noChanges')}</p>
-      <ol></ol>
-      <details>
-        <summary>{t(lang, 'watchPage.earlierTitle')}</summary>
-        <ol></ol>
-      </details>
+      <h2 tabindex="-1">{t(lang, 'watchPage.changesHeading')}</h2>
+      <p>{t(lang, 'watchPage.noChangesAll')}</p>
+      <vf-watch-days></vf-watch-days>
     </vf-watch-changes>
-    <vf-watch-items count="">
-      <h2 id="watch-items" tabindex="-1"></h2>
-      <p>{t(lang, 'watchPage.empty')}</p>
-      <progress hidden aria-labelledby="watch-items"></progress>
-      <ol></ol>
-    </vf-watch-items>
+    <vf-watch-now count="" hidden>
+      <h2 tabindex="-1">{t(lang, 'watchPage.nowHeading')}</h2>
+      <p>{t(lang, 'watchPage.noneAvailable')}</p>
+      <vf-watch-shops></vf-watch-shops>
+    </vf-watch-now>
+    <vf-watch-all count="" hidden>
+      <h2 id="watch-all" tabindex="-1">{t(lang, 'watchPage.allHeading')}</h2>
+      <p>{t(lang, 'watchPage.emptyList')}</p>
+      <search>
+        <label for="watch-find">{t(lang, 'watchPage.findLabel')}</label>
+        <input id="watch-find" type="search" placeholder={t(lang, 'watchPage.findPlaceholder')} autocomplete="off" spellcheck="false">
+      </search>
+      <nav aria-label={t(lang, 'watchPage.jumpLabel')}><ul></ul></nav>
+      <ol aria-labelledby="watch-all"></ol>
+      <vf-watch-showing></vf-watch-showing>
+      <button type="button" name="more" hidden></button>
+    </vf-watch-all>
   </vf-watch-page>
   <WatchBackup lang={lang} />
 </Base>

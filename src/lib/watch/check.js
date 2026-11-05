@@ -7,11 +7,15 @@ const MAX_CHANGES = 200;
 /** At most once a UTC day, and only with a non-empty list. */
 export const due = (list = load()) => list.day !== today() && Object.keys(list.items).length > 0;
 
+let running = null;
+/** One check at a time per page: the header and the watch page share it. */
+export const check = () => (running ??= run().finally(() => { running = null; }));
+
 /**
  * Read the daily event files since the last check (or `now` shards for new items and
  * after a long absence), store the changes, and return the list.
  */
-export async function check() {
+async function run() {
   const idx = await data.index();
   if (!idx?.dates) return load();
   const dates = [...idx.dates].sort();
