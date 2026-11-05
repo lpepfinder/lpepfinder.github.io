@@ -55,7 +55,7 @@
   },
   "products": {
     "include": "vinyl|\\blp\\b|\\d?lp\\b|\\bep\\b|12\\s?(\"|”|inch|in\\b)|10\\s?(\"|”|inch)|7\\s?(\"|”|inch)|\\bsingle\\b|album|schallplatte|disque|vinile|vinilo|vinyle|レコード|record|\\bcds?\\b|cassette|\\bk7\\b|\\bcd\\b|compact disc|maxi",
-    "exclude": "t-?shirt|hoodie|sweatshirt|tote|\\bmug\\b|gift card|geschenkgutschein|carte cadeau|poster|slipmat|turntable|stylus|cartridge|needle|record cleaner|cleaning|inner sleeves?|outer sleeves?|storage|crate|\\bcap\\b|beanie|sticker|button|badge|book\\b|magazine|dvd|blu-?ray|vhs",
+    "exclude": "t-?shirt|hoodie|sweatshirt|tote|\\bmug\\b|gift card|gift ?(voucher|certificate)|geschenkgutschein|carte cadeau|poster|slipmat|turntable|stylus|cartridge|needle|record cleaner|cleaning|inner sleeves?|outer sleeves?|storage|crate|\\bcap\\b|beanie|sticker|button|badge|book\\b|magazine|dvd|blu-?ray|vhs",
     "minShopMusicRatio": 0.05,
     "strictBelowRatio": 0.5
   },
