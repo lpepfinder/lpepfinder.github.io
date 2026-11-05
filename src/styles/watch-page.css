@@ -35,6 +35,7 @@ vf-watch-shop li { display: grid; grid-template-columns: minmax(0, 1fr) auto; ga
 vf-watch-shop li a { overflow-wrap: anywhere; padding-block: var(--space-2); }
 
 /* all: search box, A–Z jump bar, pages */
+vf-watch-all > *, vf-watch-page > * { min-inline-size: 0; }
 vf-watch-all search { display: grid; gap: var(--space-1); }
 vf-watch-all search label { font-weight: var(--weight-semi); }
 vf-watch-all input[type="search"] { font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); min-inline-size: 0; padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
