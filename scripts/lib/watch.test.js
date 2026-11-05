@@ -31,12 +31,13 @@ test('events: only watched keys, only after their start day, with the date', () 
 });
 
 test('state changes after a long absence', () => {
-  const now = (n, min) => [n, 1, min, 'EUR', 'T', 'U'];
-  assert.equal(fromState(K1, [0, 1, null, null], now(2, 900), 'd')[2], 'restock');
-  assert.equal(fromState(K1, [2, 0, 900, 'EUR'], now(0, null), 'd')[2], 'soldout');
-  assert.equal(fromState(K1, [2, 0, 900, 'EUR'], now(2, 800), 'd')[2], 'price-down');
-  assert.equal(fromState(K1, [2, 0, 900, 'EUR'], now(2, 900), 'd'), null);
-  assert.equal(fromState(K1, undefined, now(2, 900), 'd'), null);
+  const now = (n, min) => [n, 1, min, 'EUR'];
+  const was = (s) => ({ t: 'Melvins – X', u: 'https://shop/x', s });
+  assert.deepEqual(fromState(K1, was([0, 1, null, null]), now(2, 900), 'd'), [K1, null, 'restock', 900, 'EUR', 'Melvins – X', 'https://shop/x', null, 'd']);
+  assert.equal(fromState(K1, was([2, 0, 900, 'EUR']), now(0, null), 'd')[2], 'soldout');
+  assert.equal(fromState(K1, was([2, 0, 900, 'EUR']), now(2, 800), 'd')[2], 'price-down');
+  assert.equal(fromState(K1, was([2, 0, 900, 'EUR']), now(2, 900), 'd'), null);
+  assert.equal(fromState(K1, { t: 'new' }, now(2, 900), 'd'), null);
   assert.deepEqual(state(undefined), [0, 0, null, null]);
 });
 
@@ -46,7 +47,7 @@ test('share links round-trip release keys', () => {
   assert.deepEqual(decodeKeys(enc), [K1, K2]);
   assert.deepEqual(keysFromHash(`#w=${enc}`), [K1, K2]);
   assert.deepEqual(keysFromHash('#x=1'), []);
-  assert.deepEqual(parseExport(JSON.stringify({ items: { [K1]: { t: 'A' }, bad: {} } })), [{ key: K1, title: 'A', state: undefined }]);
+  assert.deepEqual(parseExport(JSON.stringify({ items: { [K1]: { t: 'A', u: 'https://s/a' }, bad: {} } })), [{ key: K1, title: 'A', url: 'https://s/a', offer: undefined, state: undefined }]);
 });
 
 test('discogs wants become release keys like shop titles', () => {

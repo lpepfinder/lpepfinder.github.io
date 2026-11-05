@@ -27,5 +27,5 @@ export const keysFromHash = (hash) => decodeKeys(new URLSearchParams(String(hash
 export function parseExport(text) {
   const data = JSON.parse(text);
   const items = Array.isArray(data) ? Object.fromEntries(data.map((k) => [k, {}])) : data?.items || {};
-  return Object.entries(items).filter(([k]) => HEX.test(k)).map(([key, v]) => ({ key, title: v?.t || '', state: v?.s }));
+  return Object.entries(items).filter(([k]) => HEX.test(k)).map(([key, v]) => ({ key, title: v?.t || '', url: v?.u, offer: v?.o, state: v?.s }));
 }

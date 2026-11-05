@@ -121,7 +121,8 @@ export class VfDiscogsImport extends HTMLElement {
 
   render(inStock, soldOut) {
     const [a, b] = this.results.querySelectorAll('ul');
-    const row = (w) => el('li', {}, el('a', { href: w.now[5], rel: 'nofollow', textContent: w.now[4] || w.title }),
+    const search = this.getAttribute('search') || '/';
+    const row = (w) => el('li', {}, el('a', { href: `${search}?q=${encodeURIComponent(w.title.replace(' – ', ' '))}`, textContent: w.title }),
       w.now[0] ? ` · ${formatPrice(w.now[2], w.now[3])}` : '');
     a.replaceChildren(...inStock.map(row));
     b.replaceChildren(...soldOut.map(row));

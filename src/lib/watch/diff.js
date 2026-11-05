@@ -1,7 +1,7 @@
 /**
  * Changes for watched releases, from the data files built daily:
  *   /w/d/<date>.json  [[releaseKey, offerKey, event, priceCents, currency, title, url, shopId], …]
- *   /w/now/<xxx>.json { releaseKey: [inStock, soldOut, minCents, currency, title, url] }
+ *   /w/now/<xxx>.json { releaseKey: [inStock, soldOut, minCents, currency] }
  * A change is an event row with its date appended.
  */
 
@@ -32,10 +32,12 @@ export function plan(items, last, dates) {
 export const fromEvents = (rows, date, events) =>
   (rows || []).filter((r) => events.has(r[0]) && date > events.get(r[0])).map((r) => [...r.slice(0, 8), date]);
 
-/** One change per release from two states (after a long absence). */
-export function fromState(key, old, now, date) {
+/** One change per release from its stored item and the current state (after a long absence). */
+export function fromState(key, item, now, date) {
+  const old = item?.s;
   if (!old || !now) return null;
-  const [inStock, , min, currency, title, url] = now;
+  const [inStock, , min, currency] = now;
+  const title = item.t || '', url = item.u || null;
   const event = !old[0] && inStock ? 'restock'
     : old[0] && !inStock ? 'soldout'
     : inStock && min != null && old[2] != null && min < old[2] ? 'price-down' : null;

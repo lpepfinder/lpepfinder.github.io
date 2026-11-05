@@ -32,14 +32,13 @@ const el = (tag, props = {}, ...children) => {
   return node;
 };
 
-/** Watch toggle for the release of a title ("Notify me" when sold out); null without a key. */
-function watchToggle(title, soldOut) {
-  const key = releaseKey(title);
+/** Watch toggle for the release of a record ("Notify me" when sold out); null without a key. */
+function watchToggle(r) {
+  const key = releaseKey(r.title);
   if (!key) return null;
   const watch = el('vf-watch');
-  watch.setAttribute('key', key);
-  watch.setAttribute('label', title);
-  watch.setAttribute('action', soldOut ? 'notify' : 'watch');
+  const values = { key, label: r.title, action: r.available === false ? 'notify' : 'watch', url: r.url, shop: r.shop.name, price: r.price, currency: r.currency };
+  for (const [k, v] of Object.entries(values)) if (v != null) watch.setAttribute(k, v);
   return watch;
 }
 
@@ -72,7 +71,7 @@ export class VfResult extends HTMLElement {
       el('h3', {}, link),
       el('vf-price', {}, el('data', { value: r.price ?? '', textContent: formatPrice(r.price, r.currency) })),
       meta,
-      ...[watchToggle(r.title, r.available === false)].filter(Boolean),
+      ...[watchToggle(r)].filter(Boolean),
     );
   }
 }

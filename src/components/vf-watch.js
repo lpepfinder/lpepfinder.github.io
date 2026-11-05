@@ -3,9 +3,9 @@ import { afterWatch } from './vf-toast.js';
 import { t } from './i18n.js';
 
 /**
- * <vf-watch key="<releaseKey>" label="Artist – Title" action="watch|notify">: a toggle that
- * watches a release. Renders its own button (no button without JavaScript, since the list
- * lives in the browser). The visible text stays the same; aria-pressed and the
+ * <vf-watch key="<releaseKey>" label="Artist – Title" action="watch|notify" url shop price currency>:
+ * a toggle that watches a release, keeping the title, link, shop and price of the copy shown.
+ * Renders its own button (no button without JavaScript, since the list lives in the browser). The visible text stays the same; aria-pressed and the
  * watching="true|false" attribute carry the state.
  */
 export class VfWatch extends HTMLElement {
@@ -36,7 +36,14 @@ export class VfWatch extends HTMLElement {
   toggle() {
     const key = this.getAttribute('key');
     if (isWatched(key)) remove(key);
-    else if (add([{ key, title: this.getAttribute('label') }])) afterWatch();
+    else if (add([this.record()])) afterWatch();
+  }
+
+  /** What the card showed: the `now` shards only carry counts. */
+  record() {
+    const a = (name) => this.getAttribute(name) || null;
+    const price = a('price') == null ? null : Number(a('price'));
+    return { key: a('key'), title: a('label'), url: a('url'), offer: [price, a('currency'), a('shop')] };
   }
 }
 customElements.define('vf-watch', VfWatch);

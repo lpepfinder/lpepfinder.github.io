@@ -36,7 +36,15 @@ function stateText(s) {
   return kind === 'none' ? t('watchPage.stateNone') : '';
 }
 
-/** A watched release: title linking to a search for it, its state, a Remove button (value = key). */
+/** The copy that was watched: shop (linking to it) and the price then. */
+function watched(it) {
+  const [price, currency, shop] = it.o || [];
+  const label = shop || (it.u && new URL(it.u).host);
+  if (!label) return null;
+  return el('p', {}, link(it.u, label, 'nofollow'), price != null ? ` · ${formatPrice(price, currency)}` : '');
+}
+
+/** A watched release: title linking to a search for every copy, its state, the copy watched, a Remove button (value = key). */
 export function item(key, it, search) {
   const title = it.t || t('watchPage.unknownTitle', { key });
   const remove = el('button', { type: 'button', name: 'remove', value: key, textContent: t('watchPage.remove') });
@@ -44,6 +52,7 @@ export function item(key, it, search) {
   return el('li', {}, attrs(el('vf-watch-item', {},
     el('h3', {}, link(it.t && `${search}?q=${encodeURIComponent(it.t)}`, title)),
     el('p', { textContent: stateText(it.s) }),
+    watched(it),
     remove,
   ), { stock: stock(it.s) }));
 }

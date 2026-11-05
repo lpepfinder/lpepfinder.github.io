@@ -1,10 +1,10 @@
 ---
-import { t } from '../lib/i18n.js';
+import { t, localPath } from '../lib/i18n.js';
 
 /** Discogs wantlist import (by username, or a CSV export when the list is private); vf-discogs-import.js. */
 const { lang } = Astro.props;
 ---
-<vf-discogs-import step="user">
+<vf-discogs-import step="user" search={localPath(lang, '/')}>
   <h2>{t(lang, 'discogs.title')}</h2>
   <p>{t(lang, 'discogs.privacy')}</p>
   <form>

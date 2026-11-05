@@ -28,11 +28,16 @@ export async function check() {
       const item = list.items[key];
       if (!item) continue;
       if (!p.events.has(key)) {
-        const change = fromState(key, item.s, shards[key], date);
+        const change = fromState(key, item, shards[key], date);
         if (change) changes.push(change);
       }
       item.s = state(shards[key]);
-      if (!item.t && shards[key]) item.t = shards[key][4];
+    }
+    // events carry title and url: fill items that came without them (share links)
+    for (const c of changes) {
+      const item = list.items[c[0]];
+      if (item && !item.t) item.t = c[5];
+      if (item && !item.u) item.u = c[6];
     }
     list.changes = [...list.changes, ...changes.filter((c) => list.items[c[0]])].slice(-MAX_CHANGES);
     list.last = date;

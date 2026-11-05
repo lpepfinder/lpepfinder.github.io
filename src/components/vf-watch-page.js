@@ -55,7 +55,6 @@ export class VfWatchPage extends HTMLElement {
         for (const [key, it] of Object.entries(list.items)) {
           if (!keys.has(key)) continue;
           it.s = state(found[key]);
-          if (!it.t && found[key]) it.t = found[key][4];
         }
         list.refreshed = today();
       });
@@ -95,7 +94,7 @@ export class VfWatchPage extends HTMLElement {
   remove(button) {
     const li = button.closest('li');
     const next = [...li.parentElement.children].indexOf(li);
-    const title = load().items[button.value]?.t || '';
+    const title = load().items[button.value]?.t || t('watchPage.unknownTitle', { key: button.value });
     remove(button.value);
     this.live.textContent = t('watchPage.removed', { title });
     const buttons = this.items.querySelectorAll('button[name="remove"]');

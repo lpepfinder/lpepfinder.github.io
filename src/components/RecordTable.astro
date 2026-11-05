@@ -17,7 +17,7 @@ const columns = t(lang, 'tableColumns').slice(0, showShop ? 3 : 2);
         const key = releaseKey(r.title);
         return (
           <tr>
-            <td><a href={r.url} rel="nofollow">{r.title}</a>{key && <vf-watch key={key} label={r.title} action={r.available === false ? 'notify' : 'watch'}></vf-watch>}</td>
+            <td><a href={r.url} rel="nofollow">{r.title}</a>{key && <vf-watch key={key} label={r.title} action={r.available === false ? 'notify' : 'watch'} url={r.url} shop={shopsById.get(r.shop)?.name || r.shop} price={r.price ?? undefined} currency={r.currency || undefined}></vf-watch>}</td>
             <td><data value={r.price ?? ''}>{price(lang, r.price, r.currency)}</data></td>
             {showShop && <td><a href={`/shop/${r.shop}/`}>{shopsById.get(r.shop)?.name || r.shop}</a></td>}
           </tr>
