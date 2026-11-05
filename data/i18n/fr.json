@@ -203,9 +203,13 @@
     "close": "Fermer",
     "watching": "Suivi",
     "open": "Ouvrir la liste",
-    "navAdded": {
-      "one": "Liste, 1 disque ajouté",
-      "other": "Liste, {count} disques ajoutés"
+    "changesShort": {
+      "one": "1 changement",
+      "other": "{count} changements"
+    },
+    "addedShort": {
+      "one": "1 disque ajouté",
+      "other": "{count} disques ajoutés"
     }
   },
   "watchPage": {
@@ -331,7 +335,9 @@
     "nearCountry": "{country} d’abord",
     "formatLabel": "Format",
     "covers": "Afficher les pochettes",
-    "noneFiltered": "Aucun disque chargé pour l’instant ne correspond à ces filtres."
+    "noneFiltered": "Aucun disque chargé pour l’instant ne correspond à ces filtres.",
+    "didYouMean": "Vouliez-vous dire {query} ?",
+    "without": "Sans « {word} » : {link}"
   },
   "statusReason": {
     "dns": "L’adresse web n’existe plus",

@@ -203,9 +203,13 @@
     "close": "Close",
     "watching": "Watching",
     "open": "Open Watchlist",
-    "navAdded": {
-      "one": "Watchlist, 1 record added",
-      "other": "Watchlist, {count} records added"
+    "changesShort": {
+      "one": "1 change",
+      "other": "{count} changes"
+    },
+    "addedShort": {
+      "one": "1 record added",
+      "other": "{count} records added"
     }
   },
   "watchPage": {
@@ -331,7 +335,9 @@
     "nearCountry": "{country} first",
     "formatLabel": "Format",
     "covers": "Show covers",
-    "noneFiltered": "No record loaded so far matches these filters."
+    "noneFiltered": "No record loaded so far matches these filters.",
+    "didYouMean": "Did you mean {query}?",
+    "without": "Without “{word}”: {link}"
   },
   "statusReason": {
     "dns": "The web address no longer exists",

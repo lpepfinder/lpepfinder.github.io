@@ -203,9 +203,13 @@
     "close": "Cerrar",
     "watching": "Siguiendo",
     "open": "Abrir la lista",
-    "navAdded": {
-      "one": "Lista, 1 disco añadido",
-      "other": "Lista, {count} discos añadidos"
+    "changesShort": {
+      "one": "1 cambio",
+      "other": "{count} cambios"
+    },
+    "addedShort": {
+      "one": "1 disco añadido",
+      "other": "{count} discos añadidos"
     }
   },
   "watchPage": {
@@ -331,7 +335,9 @@
     "nearCountry": "{country} primero",
     "formatLabel": "Formato",
     "covers": "Mostrar portadas",
-    "noneFiltered": "Ningún disco cargado hasta ahora coincide con estos filtros."
+    "noneFiltered": "Ningún disco cargado hasta ahora coincide con estos filtros.",
+    "didYouMean": "¿Quisiste decir {query}?",
+    "without": "Sin «{word}»: {link}"
   },
   "statusReason": {
     "dns": "La dirección web ya no existe",

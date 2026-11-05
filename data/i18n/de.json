@@ -203,9 +203,13 @@
     "close": "Schließen",
     "watching": "Gemerkt",
     "open": "Merkliste öffnen",
-    "navAdded": {
-      "one": "Merkliste, 1 Platte hinzugefügt",
-      "other": "Merkliste, {count} Platten hinzugefügt"
+    "changesShort": {
+      "one": "1 Änderung",
+      "other": "{count} Änderungen"
+    },
+    "addedShort": {
+      "one": "1 Platte hinzugefügt",
+      "other": "{count} Platten hinzugefügt"
     }
   },
   "watchPage": {
@@ -331,7 +335,9 @@
     "nearCountry": "{country} zuerst",
     "formatLabel": "Format",
     "covers": "Cover zeigen",
-    "noneFiltered": "Keine der bisher geladenen Platten passt zu diesen Filtern."
+    "noneFiltered": "Keine der bisher geladenen Platten passt zu diesen Filtern.",
+    "didYouMean": "Meinten Sie {query}?",
+    "without": "Ohne „{word}“: {link}"
   },
   "statusReason": {
     "dns": "Die Webadresse gibt es nicht mehr",

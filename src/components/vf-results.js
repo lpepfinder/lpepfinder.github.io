@@ -54,6 +54,7 @@ export class VfResults extends HTMLElement {
     this.shown = 0;
     this.groups = new Map();
     this.list.replaceChildren();
+    this.querySelector('vf-suggest').hidden = true;
     this.heading.textContent = t('results.heading', { query });
     this.empty.textContent = t('emptyTitle', { query });
     this.live.textContent = total ? '' : this.empty.textContent;
@@ -113,6 +114,26 @@ export class VfResults extends HTMLElement {
     const line = t('results.countLine', { records: tn('results.records', n.records), copies: tn('results.copies', n.copies), shops: tn('results.shops', n.shops) });
     this.countLine.textContent = this.shown < this.total ? t('results.countPartial', { line, total: formatNumber(this.total) }) : line;
     this.note.hidden = views.length > 0;
+  }
+
+  /** On an empty result: "Did you mean <a>tatsuro yamashita</a>?" and "Without “x”: <a>12 copies</a>". */
+  suggest({ spelling, without }) {
+    const box = this.querySelector('vf-suggest');
+    const href = (q) => {
+      const url = new URL(location.href);
+      url.searchParams.set('q', q);
+      return url.pathname + url.search;
+    };
+    const sentence = (text, link) => {
+      const [before, after = ''] = text.split('\u0000');
+      return el('p', {}, before, link, after);
+    };
+    box.replaceChildren(...[
+      spelling && sentence(t('results.didYouMean', { query: '\u0000' }), el('a', { href: href(spelling), textContent: spelling })),
+      without && sentence(t('results.without', { word: without.word, link: '\u0000' }), el('a', { href: href(without.query), textContent: tn('results.copies', without.count) })),
+    ].filter(Boolean));
+    box.hidden = !box.childElementCount;
+    if (!box.hidden) this.live.textContent = [this.empty.textContent, ...[...box.children].map((p) => p.textContent)].join('. ');
   }
 
   error() {

@@ -203,9 +203,13 @@
     "close": "Chiudi",
     "watching": "Seguito",
     "open": "Apri la lista",
-    "navAdded": {
-      "one": "Lista, 1 disco aggiunto",
-      "other": "Lista, {count} dischi aggiunti"
+    "changesShort": {
+      "one": "1 cambiamento",
+      "other": "{count} cambiamenti"
+    },
+    "addedShort": {
+      "one": "1 disco aggiunto",
+      "other": "{count} dischi aggiunti"
     }
   },
   "watchPage": {
@@ -331,7 +335,9 @@
     "nearCountry": "Prima {country}",
     "formatLabel": "Formato",
     "covers": "Mostra le copertine",
-    "noneFiltered": "Nessun disco caricato finora corrisponde a questi filtri."
+    "noneFiltered": "Nessun disco caricato finora corrisponde a questi filtri.",
+    "didYouMean": "Forse cercavi {query}?",
+    "without": "Senza «{word}»: {link}"
   },
   "statusReason": {
     "dns": "L’indirizzo web non esiste più",

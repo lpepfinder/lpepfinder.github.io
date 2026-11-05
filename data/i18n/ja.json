@@ -197,8 +197,11 @@
     "close": "閉じる",
     "watching": "ウォッチ中",
     "open": "ウォッチリストを開く",
-    "navAdded": {
-      "other": "ウォッチリスト、{count}件追加"
+    "changesShort": {
+      "other": "変更{count}件"
+    },
+    "addedShort": {
+      "other": "{count}件追加"
     }
   },
   "watchPage": {
@@ -312,7 +315,9 @@
     "nearCountry": "{country}を先に",
     "formatLabel": "フォーマット",
     "covers": "ジャケットを表示",
-    "noneFiltered": "これまでに読み込んだレコードに、この条件に合うものはありません。"
+    "noneFiltered": "これまでに読み込んだレコードに、この条件に合うものはありません。",
+    "didYouMean": "もしかして：{query}",
+    "without": "「{word}」なし：{link}"
   },
   "statusReason": {
     "dns": "このウェブアドレスはもう存在しません",

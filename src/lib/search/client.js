@@ -1,5 +1,6 @@
 import { tokenize, normalize, shardKey, shardFile } from './tokenize.js';
 import { pickWindow, diversify } from './rank.js';
+import { closest } from './suggest.js';
 
 /** Browser side of the static index built by src/index/search-index.js. */
 export class SearchClient {
@@ -57,6 +58,31 @@ export class SearchClient {
     const seen = new Set(top);
     const order = [...top, ...ids.filter((id) => !seen.has(id))];
     return [...order.filter((id) => !isOut(id)), ...order.filter(isOut)];
+  }
+
+  /**
+   * For a query that found nothing: { spelling } with each unknown word replaced by the closest
+   * known one of its shard, when that finds records; { without: { word, query, count } } for
+   * the word whose removal finds the most. Uses only shard files already in the cache or one per word.
+   */
+  async suggest(query) {
+    const tokens = tokenize(query);
+    const out = {};
+    const fixed = await Promise.all(tokens.map(async (t, i) => {
+      if ((await this.postings(t, i === tokens.length - 1)).length) return t;
+      return closest(t, (await this.json(`i/${shardFile(shardKey(t))}.json`)) || {}) || t;
+    }));
+    const spelling = fixed.join(' ');
+    if (spelling !== tokens.join(' ') && (await this.match(spelling)).length) out.spelling = spelling;
+    if (tokens.length > 1) {
+      const tries = await Promise.all(tokens.map(async (word) => {
+        const rest = tokens.filter((t) => t !== word).join(' ');
+        return { word, query: rest, count: (await this.match(rest)).length };
+      }));
+      const best = tries.sort((a, b) => b.count - a.count)[0];
+      if (best.count) out.without = best;
+    }
+    return out;
   }
 
   /** Raw d/ rows for ids (null when missing). */

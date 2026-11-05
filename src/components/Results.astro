@@ -36,6 +36,7 @@ const shops = localPath(lang, '/shops/');
   <button type="button" name="more" hidden>{t(lang, 'loadMore')}</button>
   <vf-empty reason="no-match">
     <h2 tabindex="-1"></h2>
+    <vf-suggest hidden></vf-suggest>
     <ul>
       <li>{t(lang, 'emptyFewerWords')}</li>
       <li><a href={shops}>{t(lang, 'emptyListedShops', { count: number(lang, listed) })}</a></li>

@@ -43,8 +43,9 @@ export class VfSearch extends HTMLElement {
     try {
       this.ids = await this.client.rank(await this.client.match(q), q, this.per);
       this.shown = 0;
-      this.results.start(q, this.ids.length, this.client.soldOut(this.ids));
-      await this.more(false);
+      this.results.start(q, this.ids.length);
+      if (this.ids.length) await this.more(false);
+      else this.results.suggest(await this.client.suggest(q).catch(() => ({})));
     } catch (err) {
       console.error(err);
       this.results.error();
