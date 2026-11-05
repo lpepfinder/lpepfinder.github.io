@@ -338,7 +338,7 @@
     "noneFiltered": "No record loaded so far matches these filters.",
     "didYouMean": "Did you mean {query}?",
     "without": "Without “{word}”: {link}",
-    "atShop": "{price} at the shop",
+    "atShop": "{price} at shop",
     "shipsFrom": "Ships from {country}",
     "copyLink": "Copy link",
     "shareLink": "Share",

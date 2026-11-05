@@ -31,7 +31,7 @@ vf-watch-shop summary h3 { font-size: var(--size-0); display: inline; }
 vf-watch-shop summary span { color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
 vf-watch-shop details > p { padding-block-end: var(--space-2); }
 vf-watch-shop details > p a { display: inline-flex; align-items: center; min-block-size: var(--tap); font-weight: var(--weight-semi); }
-vf-watch-shop li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-3); align-items: center; min-block-size: var(--tap); border-block-start: var(--line) solid var(--c-line); }
+vf-watch-shop li { display: flex; justify-content: space-between; gap: var(--space-3); align-items: center; min-block-size: var(--tap); border-block-start: var(--line) solid var(--c-line); }
 vf-watch-shop li a { overflow-wrap: anywhere; padding-block: var(--space-2); }
 
 /* all: search box, A–Z jump bar, pages */

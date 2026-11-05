@@ -25,7 +25,7 @@ vf-release h3 { grid-area: head; margin: 0; font-size: var(--size-0); line-heigh
 vf-release vf-artist { display: block; font-weight: normal; font-size: var(--size-s); color: var(--c-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 vf-release vf-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font-weight: var(--weight-bold); }
 /* a long "from" price wraps before it squeezes the title */
-vf-release summary > vf-price { grid-area: price; white-space: normal; min-inline-size: var(--price-col); }
+vf-release summary > vf-price { grid-area: price; min-inline-size: var(--price-col); }
 vf-release summary > p { grid-area: meta; margin: 0; color: var(--c-muted); font-size: var(--size-s); }
 vf-release abbr { text-decoration: none; }
 /* sold out: less emphasis, same contrast, and the words "Sold out" in the meta line */
@@ -33,6 +33,7 @@ vf-release[stock="out"] summary :is(vf-title, vf-price) { color: var(--c-muted);
 vf-release[stock="out"] summary > img { filter: var(--sold-out-filter); }
 
 vf-price { display: grid; justify-items: end; text-align: end; }
+vf-price, vf-price small { white-space: nowrap; }
 vf-price small { font-size: var(--size-xs); font-weight: normal; color: var(--c-muted); }
 
 /* the copies */

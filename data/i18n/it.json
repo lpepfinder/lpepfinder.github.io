@@ -338,7 +338,7 @@
     "noneFiltered": "Nessun disco caricato finora corrisponde a questi filtri.",
     "didYouMean": "Forse cercavi {query}?",
     "without": "Senza «{word}»: {link}",
-    "atShop": "{price} in negozio",
+    "atShop": "{price} al negozio",
     "shipsFrom": "Spedito da {country}",
     "copyLink": "Copia link",
     "shareLink": "Condividi",

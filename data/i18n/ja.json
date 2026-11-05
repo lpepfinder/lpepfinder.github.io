@@ -318,7 +318,7 @@
     "noneFiltered": "これまでに読み込んだレコードに、この条件に合うものはありません。",
     "didYouMean": "もしかして：{query}",
     "without": "「{word}」なし：{link}",
-    "atShop": "お店では{price}",
+    "atShop": "店頭 {price}",
     "shipsFrom": "{country}から発送",
     "copyLink": "リンクをコピー",
     "shareLink": "共有",

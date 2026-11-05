@@ -26,3 +26,6 @@ th { color: var(--c-muted); font-weight: var(--weight-semi); }
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* headings that receive focus from script (after a search or view switch) don't get a ring: only keyboard targets do */
+[tabindex="-1"]:focus { outline: none; }
