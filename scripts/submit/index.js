@@ -39,7 +39,6 @@ writeJson(path.join(SHOPS_DIR, `${finalId}.json`), {
   name: fields['Shop name'] || undefined,
   country,
   city: fields.City || undefined,
-  discogsSeller: /^[A-Za-z0-9._-]+$/.test(fields['Discogs seller name'] || '') ? fields['Discogs seller name'] : undefined,
   source: 'submission',
 }, true);
 const how = state.status === 'ok' ? `its ${state.platform} catalog will be searchable after the next daily update` : 'it is listed with a link; its catalog is read when we can';

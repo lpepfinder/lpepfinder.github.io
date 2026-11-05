@@ -11,6 +11,5 @@ const { lang } = Astro.props;
     <h1>{t(lang, 'submitTitle')}</h1>
     <p>{t(lang, 'submitBody')}</p>
     <p><a href={`${config.repository}/issues/new?template=shop.yml`}>{t(lang, 'submitAction')}</a></p>
-    <p>{t(lang, 'submitEmail')} <a href={`mailto:${config.contactEmail}`}>{config.contactEmail}</a></p>
   </article>
 </Base>

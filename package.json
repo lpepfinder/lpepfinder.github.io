@@ -18,7 +18,6 @@
     "build": "npm run validate && npm run rates && npm run index && astro build",
     "preview": "astro preview",
     "test": "node --test 'scripts/**/*.test.js'",
-    "discogs": "node scripts/sources/discogs/index.js",
     "submit": "node scripts/submit/index.js",
     "site": "node scripts/sources/site/index.js",
     "stats": "node scripts/stats/index.js",

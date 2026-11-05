@@ -19,7 +19,7 @@ const utcDay = (t) => new Date(t).toISOString().slice(0, 10);
 
 /**
  * UTC day of each shop's crawl data: the report's finishedAt, else the file's modification time
- * (Discogs; tar keeps it through the data release). Shops that failed and only carry over
+ * (tar keeps it through the data release). Shops that failed and only carry over
  * yesterday's records get null: their data is not a new crawl.
  * shopFiles: Map shopId -> Set of product files the shop's records came from.
  */

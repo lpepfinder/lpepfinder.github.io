@@ -1,11 +1,11 @@
-/* /watch/ page: changes, watched records, backup and share, Discogs import. State in attributes. */
-:is(vf-watch-page, vf-watch-changes, vf-watch-items, vf-watch-backup, vf-watch-shared, vf-discogs-import, vf-discogs-results) { display: grid; gap: var(--space-2); align-content: start; }
-:is(vf-watch-shared, vf-progress, vf-discogs-results)[hidden] { display: none; }
-:is(vf-watch-page, vf-watch-backup, vf-watch-shared, vf-discogs-import) :is(h2, h3, p) { margin: 0; }
-:is(vf-watch-backup, vf-discogs-import) > h2, vf-watch-items > h2 { margin-block-start: var(--space-6); }
-:is(vf-watch-page, vf-watch-backup, vf-discogs-import) > output { color: var(--c-muted); font-size: var(--size-s); }
-:is(vf-watch-page, vf-watch-backup, vf-discogs-import) > output:empty { display: none; }
-:is(vf-watch-changes, vf-watch-items) ol, vf-discogs-results ul { list-style: none; margin: 0; padding: 0; display: grid; }
+/* /watch/ page: changes, watched records, backup and share. State in attributes. */
+:is(vf-watch-page, vf-watch-changes, vf-watch-items, vf-watch-backup, vf-watch-shared) { display: grid; gap: var(--space-2); align-content: start; }
+:is(vf-watch-shared, vf-progress)[hidden] { display: none; }
+:is(vf-watch-page, vf-watch-backup, vf-watch-shared) :is(h2, h3, p) { margin: 0; }
+vf-watch-backup > h2, vf-watch-items > h2 { margin-block-start: var(--space-6); }
+:is(vf-watch-page, vf-watch-backup) > output { color: var(--c-muted); font-size: var(--size-s); }
+:is(vf-watch-page, vf-watch-backup) > output:empty { display: none; }
+:is(vf-watch-changes, vf-watch-items) ol { list-style: none; margin: 0; padding: 0; display: grid; }
 vf-watch-shared { padding: var(--space-4); border-radius: var(--radius); background: var(--c-chip); justify-items: start; }
 
 /* empty states: the text shows only when the count is known to be 0 */
@@ -35,20 +35,9 @@ label:has(> input[type="file"]) { display: inline-flex; align-items: center; min
 label:has(> input[type="file"]:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 label > input[type="file"] { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
 vf-watch-backup menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
-vf-watch-backup > p, vf-discogs-import > p { color: var(--c-muted); font-size: var(--size-s); }
+vf-watch-backup > p { color: var(--c-muted); font-size: var(--size-s); }
 vf-watch-backup > p:has(input) { display: grid; gap: var(--space-1); }
 vf-watch-backup > p[hidden] { display: none; }
 
-vf-discogs-import form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-2); }
-vf-discogs-import form > label:first-child { grid-column: 1 / -1; font-weight: var(--weight-semi); }
-vf-discogs-import form > label:has(input[type="checkbox"]) { grid-column: 1 / -1; display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--tap); }
-:is(vf-discogs-import, vf-watch-backup) input:is(:not([type]), [type="url"]) { font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); min-inline-size: 0; padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
-vf-discogs-import input[type="checkbox"] { inline-size: var(--icon-size); block-size: var(--icon-size); accent-color: var(--c-accent); }
-vf-discogs-import:not([step="private"]) > vf-discogs-note { display: none; }
-vf-discogs-note { display: block; padding: var(--space-3); border-radius: var(--radius); background: var(--c-chip); }
 vf-progress { display: grid; gap: var(--space-1); font-size: var(--size-s); color: var(--c-muted); }
 vf-progress progress { inline-size: 100%; }
-vf-discogs-import > output { color: var(--c-fg); font-weight: var(--weight-semi); font-size: var(--size-0); }
-vf-discogs-results li { padding-block: var(--space-2); border-block-end: var(--line) solid var(--c-line); overflow-wrap: anywhere; }
-vf-discogs-results[in-stock="0"] > :is(h3, ul):nth-of-type(1), vf-discogs-results[sold-out="0"] > :is(h3, ul):nth-of-type(2) { display: none; }
-vf-discogs-results > button { justify-self: start; margin-block-start: var(--space-2); }

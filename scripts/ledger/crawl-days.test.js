@@ -30,12 +30,12 @@ test('crawl days come from the run reports, failed shops get none, other files t
     const file = (name) => { const f = path.join(dir, name); fs.writeFileSync(f, ''); return f; };
     const crawl = file('products.ndjson.gz');
     const site = file('products-site-2.ndjson.gz');
-    const discogs = file('products-discogs.ndjson.gz');
-    fs.utimesSync(discogs, new Date('2026-10-30T12:00:00Z'), new Date('2026-10-30T12:00:00Z'));
+    const extra = file('products-extra.ndjson.gz');
+    fs.utimesSync(extra, new Date('2026-10-30T12:00:00Z'), new Date('2026-10-30T12:00:00Z'));
     fs.writeFileSync(path.join(dir, 'crawl-report.json'), JSON.stringify({ finishedAt: '2026-11-05T04:10:00Z', shops: { 'a.com': { count: 3 }, 'b.com': { count: 0, error: 'HTTP 500', carried: 9 } } }));
     fs.writeFileSync(path.join(dir, 'site-2-report.json'), JSON.stringify({ finishedAt: '2026-11-04T23:59:00Z', shops: {} }));
     const days = crawlDays(new Map([
-      ['a.com', new Set([crawl])], ['b.com', new Set([crawl])], ['c.com', new Set([site])], ['d.com', new Set([discogs, site])],
+      ['a.com', new Set([crawl])], ['b.com', new Set([crawl])], ['c.com', new Set([site])], ['d.com', new Set([extra, site])],
     ]));
     assert.deepEqual(Object.fromEntries(days), { 'a.com': '2026-11-05', 'b.com': null, 'c.com': '2026-11-04', 'd.com': '2026-11-04' });
   } finally {

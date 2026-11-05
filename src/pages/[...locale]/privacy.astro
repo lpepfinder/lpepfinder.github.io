@@ -10,6 +10,6 @@ const { lang } = Astro.props;
   <article>
     <h1>{t(lang, 'privacyTitle')}</h1>
     {t(lang, 'privacyBody').map((p) => <p>{p}</p>)}
-    <p><a href={`mailto:${config.contactEmail}`}>{config.contactEmail}</a></p>
+    <p><a href={`${config.repository}/issues`}>{t(lang, 'contactGithub')}</a></p>
   </article>
 </Base>

@@ -31,7 +31,6 @@ export async function updateLedger({ docs, shops, day, dir, settings, crawlDays 
     return {
       offerKey: d.offerKey, releaseKey: d.releaseKey, shop: d.shop, path: d.path, title: d.title,
       price: d.price, currency: d.currency || shops.get(d.shop)?.state.currency || null, available: d.available !== false,
-      discogsRelease: d.discogsRelease || null,
     };
   });
   const events = applyDay(ledger, offers, day, { settings, crawlDays, urlOf: (id, p) => productUrl(shops.get(id), p) });

@@ -10,7 +10,7 @@
       "additionalProperties": {
         "type": "object",
         "properties": {
-          "t": { "type": "string", "description": "Title shown in the list (from the card watched, the Discogs want, or an event)" },
+          "t": { "type": "string", "description": "Title shown in the list (from the card watched, or an event)" },
           "u": { "type": "string", "description": "Link to the copy that was watched, or from an event" },
           "o": { "type": "array", "description": "The copy that was watched: [priceCents, currency, shop name]" },
           "a": { "type": "string", "description": "Day it was added, YYYY-MM-DD; events before it are ignored" },
