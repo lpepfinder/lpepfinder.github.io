@@ -12,8 +12,10 @@ const formatRank = (title) => {
 /**
  * Load crawled products and give them doc ids in title order ("Artist – Title"
  * first), so one artist's records share a few d/ chunks and a query loads
- * 1-4 chunks instead of one per result. Shop diversity is done by the client
- * (src/lib/search/rank.js). byShop keeps each shop's newest first.
+ * 1-4 chunks instead of one per result. Records in stock come first, sold-out
+ * ones (available: false) after them, each part in title order.
+ * Shop diversity is done by the client (src/lib/search/rank.js).
+ * byShop keeps each shop's newest first.
  */
 export async function loadCatalog(productFiles) {
   const state = loadState();
@@ -23,13 +25,13 @@ export async function loadCatalog(productFiles) {
     for await (const p of ndjsonReader(file)) {
       if (!shops.has(p.shop) || shops.get(p.shop).disabled || !p.title) continue;
       if (!byShop.has(p.shop)) byShop.set(p.shop, []);
-      byShop.get(p.shop).push({ ...p, title: displayTitle(p.title, p.vendor) });
+      byShop.get(p.shop).push({ ...p, title: displayTitle(p.title, p.vendor), available: p.available !== false });
     }
   }
   for (const list of byShop.values()) list.sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
   const docs = [...byShop.values()].flat()
     .map((d) => ({ d, key: normalize(d.title), rank: formatRank(d.title) }))
-    .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : a.rank - b.rank || a.d.shop.localeCompare(b.d.shop) || (a.d.price ?? 0) - (b.d.price ?? 0)))
+    .sort((a, b) => (b.d.available - a.d.available) || (a.key < b.key ? -1 : a.key > b.key ? 1 : a.rank - b.rank || a.d.shop.localeCompare(b.d.shop) || (a.d.price ?? 0) - (b.d.price ?? 0)))
     .map((x) => x.d);
   return { docs, shops, byShop };
 }

@@ -44,15 +44,19 @@ export class SearchClient {
   /**
    * Rank order for matched ids: the densest chunks (an artist's records are
    * neighbours) are loaded and diversified by shop; the rest follow in id order.
+   * Sold-out records (ids from meta.soldOutFrom on) always come last.
    */
   async rank(ids, query, per = 30) {
     await this.ready;
-    const window = pickWindow(ids, this.meta.docsPerChunk, { min: per });
+    const isOut = (id) => id >= (this.meta.soldOutFrom ?? Infinity);
+    const inStock = ids.filter((id) => !isOut(id));
+    const window = pickWindow(inStock.length ? inStock : ids, this.meta.docsPerChunk, { min: per });
     const rows = await this.rows(window);
-    const docs = window.map((id, i) => rows[i] && { id, shop: rows[i][0], title: rows[i][1] }).filter(Boolean);
+    const docs = window.map((id, i) => rows[i] && { id, shop: rows[i][0], title: rows[i][1], soldOut: isOut(id) }).filter(Boolean);
     const top = diversify(docs, normalize(query), normalize);
     const seen = new Set(top);
-    return [...top, ...ids.filter((id) => !seen.has(id))];
+    const order = [...top, ...ids.filter((id) => !seen.has(id))];
+    return [...order.filter((id) => !isOut(id)), ...order.filter(isOut)];
   }
 
   /** Raw d/ rows for ids (null when missing). */
@@ -63,15 +67,21 @@ export class SearchClient {
     return ids.map((id) => loaded.get(Math.floor(id / per))?.[id % per] || null);
   }
 
+  /** How many matched ids are sold out (ids from meta.soldOutFrom on). */
+  soldOut(ids) {
+    const from = this.meta.soldOutFrom ?? Infinity;
+    return ids.reduce((n, id) => n + (id >= from), 0);
+  }
+
   /** Records for a slice of matched ids. */
   async records(ids) {
     const rows = await this.rows(ids);
     return rows.map((row) => {
       if (!row) return null;
-      const [shopIdx, title, price, path, image, currency] = row;
+      const [shopIdx, title, price, path, image, currency, soldOut] = row;
       const [shopId, shopName, origin, country, shopCurrency] = this.shops[shopIdx];
       return {
-        title, price, image: image || null,
+        title, price, image: image || null, available: soldOut !== 1,
         url: path.startsWith('http') ? path : origin + path,
         currency: currency || shopCurrency,
         shop: { id: shopId, name: shopName, country },

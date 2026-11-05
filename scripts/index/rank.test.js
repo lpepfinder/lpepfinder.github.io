@@ -22,6 +22,15 @@ test('diversify puts query-prefixed titles first and lets shops take turns', () 
   assert.deepEqual(diversify(docs, normalize('miles davis'), normalize), [2, 4, 3, 1]);
 });
 
+test('diversify puts sold-out records after every record in stock', () => {
+  const docs = [
+    { id: 1, shop: 0, title: 'Kraftwerk – Autobahn', soldOut: true },
+    { id: 2, shop: 1, title: 'Neu! – Neu!' },
+    { id: 3, shop: 1, title: 'Kraftwerk – Computerwelt' },
+  ];
+  assert.deepEqual(diversify(docs, normalize('kraftwerk'), normalize), [3, 2, 1]);
+});
+
 test('detectFormat reads common title conventions', () => {
   assert.equal(detectFormat('Aphex Twin – Selected Ambient Works Volume II [3xCD]').format, 'cd');
   assert.equal(detectFormat('Phil Collins – Testify [2xLP]').format, '2lp');

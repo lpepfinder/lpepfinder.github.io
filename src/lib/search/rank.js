@@ -21,13 +21,13 @@ export function pickWindow(ids, docsPerChunk, { min = 30, maxIds = 200, maxChunk
 }
 
 /**
- * Order loaded docs: titles that start with the query first, then the rest;
- * inside each group shops take turns, so no single shop floods the top.
- * docs: [{ id, shop, title }] in id order; prefix: normalized query.
+ * Order loaded docs: in stock before sold out; then titles that start with the
+ * query before the rest; inside each group shops take turns, so no single shop
+ * floods the top. docs: [{ id, shop, title, soldOut }] in id order; prefix: normalized query.
  */
 export function diversify(docs, prefix, normalize) {
-  const groups = [[], []];
-  for (const d of docs) groups[prefix && normalize(d.title).startsWith(prefix) ? 0 : 1].push(d);
+  const groups = [[], [], [], []];
+  for (const d of docs) groups[(d.soldOut ? 2 : 0) + (prefix && normalize(d.title).startsWith(prefix) ? 0 : 1)].push(d);
   return groups.flatMap(roundRobin).map((d) => d.id);
 }
 
