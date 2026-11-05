@@ -42,6 +42,8 @@
         "cse",
         "discogs",
         "osm",
+        "rsd",
+        "wikidata",
         "submission",
         "manual"
       ]
