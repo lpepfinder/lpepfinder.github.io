@@ -25,7 +25,6 @@ const newRow = (o, day) => ({
   firstSeen: day, lastSeen: day, lastInStock: o.available ? day : null,
   price: o.price ?? null, currency: o.currency || null, lowPrice90: o.price ?? null,
   status: o.available ? 'in' : 'out',
-  ...(o.discogsRelease ? { discogsRelease: o.discogsRelease } : {}),
 });
 
 /**
@@ -37,7 +36,7 @@ const newRow = (o, day) => ({
  *   price-down in stock both days, cheaper today (same currency)
  *   gone       listing missing from a shop that was crawled today
  * Shops without any record today (not crawled, failed) keep their rows as they are.
- * offers: [{ offerKey, releaseKey, shop, path, title, price, currency, available, discogsRelease }]
+ * offers: [{ offerKey, releaseKey, shop, path, title, price, currency, available }]
  * urlOf(shopId, path): product URL for events.
  * crawlDays: Map shopId -> UTC day of the shop's crawl data (null: not freshly crawled, e.g. records carried
  * over after a failure). Shops missing from it count as crawled on `day`.
@@ -69,7 +68,6 @@ export function applyDay(ledger, offers, day, { settings, urlOf, crawlDays = new
     const was = row.status;
     const before = { price: row.price, currency: row.currency };
     Object.assign(row, { title: o.title, releaseKey: o.releaseKey, path: o.path, lastSeen: day, status: o.available ? 'in' : 'out' });
-    if (o.discogsRelease) row.discogsRelease = o.discogsRelease;
     if (o.available) row.lastInStock = day;
     trackPrice(row, o.price ?? null, o.currency || null, day, settings.lowPriceDays);
     if (o.available && was !== 'in') emit(row, 'restock');

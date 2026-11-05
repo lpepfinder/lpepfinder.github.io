@@ -48,17 +48,7 @@ jobs:
             git diff --cached --quiet || { git commit -m "Add shops found by the monthly discovery"; git pull --rebase; git push; }
           fi
       - run: npm run check
-      # shop catalogs and Discogs inventories are different hosts: read both at the same time
-      - name: Crawl shops and their Discogs inventories
-        shell: bash
-        env:
-          DISCOGS_TOKEN: ${{ secrets.DISCOGS_TOKEN }}
-        run: |
-          set -o pipefail
-          npm run crawl 2>&1 | sed -u 's/^/[shops] /' & shops=$!
-          npm run discogs 2>&1 | sed -u 's/^/[discogs] /' & discogs=$!
-          wait $shops; a=$?; wait $discogs; b=$?
-          exit $((a | b))
+      - run: npm run crawl
       # weekly numbers in git; the commit also keeps the schedule alive (GitHub stops it after 60 idle days)
       - name: Weekly stats
         if: github.event_name == 'schedule'

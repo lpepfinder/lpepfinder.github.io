@@ -13,7 +13,7 @@ import '../styles/global.css';
  *  title, description, noindex, ld (JSON-LD objects)
  *  feed        { href, title } of the page's Atom feed, for feed readers
  *  mode        "home" on the search home page (vf-search switches it to "results"), else "page"
- *  strings     extra i18n groups the page's browser components need (e.g. ["discogs"])
+ *  strings     extra i18n groups the page's browser components need (e.g. ["watchPage"])
  */
 const { lang = defaultLanguage, path, title, description, noindex = false, ld = [], mode = 'page', feed, strings: groups = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;

@@ -25,7 +25,7 @@ if (!fs.existsSync(files.products)) {
   fs.writeFileSync(files.products, (await import('node:zlib')).gzipSync(''));
 }
 const t0 = Date.now();
-// shop catalogs (products.ndjson.gz) plus other sources (products-discogs.ndjson.gz)
+// shop catalogs (products.ndjson.gz) plus other sources (products-site-<k>.ndjson.gz)
 const productFiles = fs.readdirSync(GENERATED).filter((f) => /^products.*\.ndjson\.gz$/.test(f)).map((f) => path.join(GENERATED, f));
 const catalog = await loadCatalog(productFiles);
 

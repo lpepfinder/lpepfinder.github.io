@@ -43,7 +43,6 @@ export async function checkShop(shop, previous = {}) {
   state.crawlDelay = robots.crawlDelay;
   state.platform = detectPlatform(html, home.headers);
   state.name = pageTitle(html);
-  state.discogsSeller = shop.discogsSeller || html.match(/discogs\.com\/(?:[a-z]{2}\/)?(?:seller|user)\/([A-Za-z0-9._-]+)/)?.[1] || null;
 
   const adapter = adapters[state.platform];
   if (adapter) {

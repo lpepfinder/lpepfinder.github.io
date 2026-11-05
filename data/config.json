@@ -15,9 +15,7 @@
     "ja"
   ],
   "defaultLanguage": "en",
-  "contactEmail": "vinylfindergitlab@duck.com",
   "repository": "https://github.com/lpepfinder/lpepfinder.github.io",
-  "chat": "https://matrix.to/#/#vinyl-finder:matrix.org",
   "ads": {
     "enabled": true,
     "lazy": true,
@@ -87,15 +85,6 @@
     "homeItems": 6,
     "shopItems": 24,
     "feedItems": 50
-  },
-  "discogs": {
-    "maxMinutes": 40,
-    "maxPagesPerSeller": 300,
-    "refreshDays": 7,
-    "requestsPerMinute": {
-      "anonymous": 24,
-      "token": 55
-    }
   },
   "site": {
     "shards": 8,

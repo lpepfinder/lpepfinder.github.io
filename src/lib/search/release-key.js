@@ -1,7 +1,7 @@
 /**
  * Same record, same key, across shops: "Miles Davis – Kind Of Blue (LP, 180g)" and
  * "MILES DAVIS - KIND OF BLUE" both become one 12-hex key. Shared by the indexer
- * (Node) and the browser (watchlist, Discogs import), like tokenize.js.
+ * (Node) and the browser (watchlist), like tokenize.js.
  * Rules live in data/release-key.json.
  */
 import rules from '../../../data/release-key.json' with { type: 'json' };

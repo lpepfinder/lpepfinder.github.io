@@ -55,11 +55,6 @@
     "note": {
       "type": "string"
     },
-    "discogsSeller": {
-      "type": "string",
-      "pattern": "^[A-Za-z0-9._-]+$",
-      "description": "Discogs seller account, when the shop sells its stock there (found automatically from the homepage otherwise)"
-    },
     "crawl": {
       "type": "object",
       "description": "Overrides for the site crawler (npm run site), for shops without a catalog API",

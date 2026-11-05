@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Thanks! Independent shops selling records online can be listed. The daily check reads the catalog
-        automatically when the shop runs on Shopify, WooCommerce or sells its stock on Discogs.
+        automatically from the shop's website.
   - type: input
     id: url
     attributes:
@@ -36,12 +36,6 @@ body:
       placeholder: Germany (DE)
     validations:
       required: true
-  - type: input
-    id: discogs
-    attributes:
-      label: Discogs seller name
-      description: If the shop sells its stock on Discogs, its seller name from discogs.com/seller/NAME.
-      placeholder: examplerecords
   - type: dropdown
     id: relation
     attributes:

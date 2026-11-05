@@ -28,7 +28,7 @@ export const localPath = (lang, path) => (lang === defaultLanguage ? path : `/${
 const groupKeys = (group, o = lookup(defaultLanguage, group)) => Object.entries(o || {})
   .flatMap(([k, v]) => (v && typeof v === 'object' && !Array.isArray(v) ? groupKeys(`${group}.${k}`, v) : [`${group}.${k}`]));
 
-/** Strings the browser components need; `groups` adds whole groups for one page (e.g. "discogs"). */
+/** Strings the browser components need; `groups` adds whole groups for one page (e.g. "watchPage"). */
 export const clientStrings = (lang, groups = []) => Object.fromEntries([
   'searchTitle', 'resultsCount', 'searching', 'showingOf', 'emptyTitle', 'indexError', 'resultShop', 'resultCountry',
   'resultFormat', 'conditionUsed', 'resultsCountSoldOut', 'resultStock', 'soldOut', 'lastInStock', ...FORMAT_IDS.map((id) => `formats.${id}`),
