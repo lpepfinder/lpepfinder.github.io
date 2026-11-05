@@ -1,0 +1,13 @@
+{
+  "description": "The viewer's currency from the region of their browser language (src/lib/currency.js). Countries using the euro, then other regions by ISO 3166 code. Regions not listed get no approximate price.",
+  "euro": ["AT", "BE", "HR", "CY", "EE", "FI", "FR", "DE", "GR", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PT", "SK", "SI", "ES", "AD", "MC", "SM", "VA", "ME", "XK", "BG"],
+  "regions": {
+    "GB": "GBP", "IM": "GBP", "JE": "GBP", "GG": "GBP",
+    "US": "USD", "PR": "USD", "EC": "USD", "SV": "USD", "PA": "USD",
+    "JP": "JPY", "CH": "CHF", "LI": "CHF", "SE": "SEK", "NO": "NOK", "DK": "DKK", "IS": "ISK",
+    "PL": "PLN", "CZ": "CZK", "HU": "HUF", "RO": "RON", "TR": "TRY",
+    "CA": "CAD", "AU": "AUD", "NZ": "NZD", "BR": "BRL", "MX": "MXN",
+    "CN": "CNY", "HK": "HKD", "KR": "KRW", "SG": "SGD", "TH": "THB", "MY": "MYR", "PH": "PHP", "ID": "IDR", "IN": "INR",
+    "IL": "ILS", "ZA": "ZAR"
+  }
+}
