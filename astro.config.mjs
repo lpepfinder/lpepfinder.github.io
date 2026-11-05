@@ -34,7 +34,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: config.defaultLanguage, locales },
-      filter: (page) => !/\/(status|404)\/?$/.test(page) && !noindex.has(new URL(page).pathname),
+      filter: (page) => !/\/(status|404|watch)\/?$/.test(page) && !noindex.has(new URL(page).pathname),
       serialize: withLastmod,
       // sitemap-shops-0.xml, sitemap-artists-0.xml, sitemap-new-0.xml (rolling new-arrivals pages); hubs stay in sitemap-0.xml
       chunks: { shops: only(/^\/shop\//), artists: only(/^\/artist\//), new: only(/^\/new\//) },

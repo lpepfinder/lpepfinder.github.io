@@ -147,5 +147,13 @@
       "delayMs": 300,
       "maxMinutes": 60
     }
+  },
+  "manifest": {
+    "shortName": "LP/EP Finder",
+    "display": "standalone",
+    "themeColor": "#b3261e",
+    "backgroundColor": "#f7f6f2",
+    "icon": "/favicon.png",
+    "iconSize": "192x192"
   }
 }

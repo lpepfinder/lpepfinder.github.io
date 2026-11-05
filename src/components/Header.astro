@@ -3,7 +3,7 @@ import config from '../../data/config.json';
 import SearchForm from './SearchForm.astro';
 import { t, localPath } from '../lib/i18n.js';
 
-/** Brand, primary nav in a native <details> menu (inline on wide screens), search form. */
+/** Brand, watchlist link, primary nav in a native <details> menu (inline on wide screens), search form. */
 const { lang, current } = Astro.props;
 const nav = [
   { href: localPath(lang, '/'), key: 'navSearch' },
@@ -13,9 +13,13 @@ const nav = [
   { href: localPath(lang, '/about/'), key: 'navAbout' },
   { href: localPath(lang, '/submit/'), key: 'navSubmit' },
 ];
+const watch = localPath(lang, '/watch/');
 ---
 <header>
   <a href={localPath(lang, '/')} rel="home"><img src="/favicon.png" alt="" width="28" height="28"> <span>{config.name}</span></a>
+  <vf-watchlist>
+    <a href={watch} aria-current={watch === current ? 'page' : undefined}><vf-icon name="star"></vf-icon> <span>{t(lang, 'watch.nav')}</span> <vf-watch-count count="0"></vf-watch-count></a>
+  </vf-watchlist>
   <details>
     <summary><vf-icon name="menu"></vf-icon> {t(lang, 'navMenu')}</summary>
     <nav aria-label={t(lang, 'navPrimary')}>
@@ -24,3 +28,6 @@ const nav = [
   </details>
   <SearchForm lang={lang} />
 </header>
+<script>
+  import './vf-watchlist.js';
+</script>

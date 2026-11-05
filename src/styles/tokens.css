@@ -36,6 +36,12 @@
   --thumb-fallback: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56' fill='none' stroke='%238a8c93'%3E%3Ccircle cx='28' cy='28' r='20'/%3E%3Ccircle cx='28' cy='28' r='13' stroke-dasharray='2 3'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3C/svg%3E");
   --icon-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z'/%3E%3C/svg%3E");
   --icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z'/%3E%3C/svg%3E");
+  --icon-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z'/%3E%3C/svg%3E");
+  --icon-star-on: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z'/%3E%3C/svg%3E");
+  --toast-width: 32rem;
+  --badge-size: 1.25rem;
+  --layer-toast: 3;
+  --tracking-caps: 0.04em;
 
   --c-bg: #f7f6f2;
   --c-surface: #ffffff;
@@ -55,6 +61,16 @@
   --c-skeleton: #ecebe5;
   --c-ok: var(--c-link);
   --c-bad: var(--c-accent);
+  --c-watching: #8a5a00;
+  --c-event-new: var(--c-link);
+  --c-event-restock: #1d6b34;
+  --c-event-price-down: #1d6b34;
+  --c-event-soldout: var(--c-muted);
+  --c-event-gone: var(--c-muted);
+  --c-badge: var(--c-accent);
+  --c-badge-fg: var(--c-accent-fg);
+  --c-toast: var(--c-chip-on);
+  --c-toast-fg: var(--c-chip-on-fg);
 }
 @media (min-width: 48rem) {
   :root { --header-h: 4rem; }
@@ -76,5 +92,8 @@
     --c-chip-on-fg: #111214;
     --c-used: #f0b45a;
     --c-skeleton: #222429;
+    --c-watching: #f0b45a;
+    --c-event-restock: #6fd08c;
+    --c-event-price-down: #6fd08c;
   }
 }

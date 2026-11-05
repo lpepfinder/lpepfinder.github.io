@@ -1,0 +1,15 @@
+{
+  "description": "Browser watchlist and Discogs wantlist import. Editable: limits and the format rules that decide what counts as vinyl.",
+  "installHintAfter": 3,
+  "toastSeconds": 12,
+  "discogs": {
+    "api": "https://api.discogs.com",
+    "perPage": 250,
+    "requestsPerMinute": 20,
+    "rateLimitWaitSeconds": 60,
+    "vinylFormats": ["Vinyl", "Lathe Cut", "Flexi-disc", "Acetate", "Shellac"],
+    "csvVinyl": "\\b(LP|EP|Vinyl|Lathe|Flexi|Acetate|Shellac|Single|Maxi)\\b|\\d+\"",
+    "csvNotVinyl": "^\\s*(CD|CDr|Cass|File|DVD|Blu-ray|MiniDisc|8-Track)",
+    "variousArtists": ["Various", "Various Artists"]
+  }
+}

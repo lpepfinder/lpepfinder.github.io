@@ -2,6 +2,8 @@ import { t, formatPrice, formatDay, countryName } from './i18n.js';
 import { splitTitle } from '../lib/search/title.js';
 import { detectFormat } from '../lib/search/format.js';
 import { thumb, absolute } from '../lib/thumb.js';
+import { releaseKey } from '../lib/search/release-key.js';
+import './vf-watch.js';
 
 const EAGER = 4;
 
@@ -29,8 +31,18 @@ const el = (tag, props = {}, ...children) => {
   return node;
 };
 
+/** Watch toggle for the release of a record ("Notify me" when sold out); null without a key. */
+function watchToggle(r) {
+  const key = releaseKey(r.title);
+  if (!key) return null;
+  const watch = el('vf-watch');
+  const values = { key, label: r.title, action: r.available === false ? 'notify' : 'watch', url: r.url, shop: r.shop.name, price: r.price, currency: r.currency };
+  for (const [k, v] of Object.entries(values)) if (v != null) watch.setAttribute(k, v);
+  return watch;
+}
+
 /**
- * One record offered by one shop: a real link in a heading, meta in a <dl>.
+ * One record offered by one shop: a real link in a heading, meta in a <dl>, a watch toggle.
  * Attributes for CSS: country, format, condition, stock ("out" when sold out). Set `index` (position in the list) before `record`.
  */
 export class VfResult extends HTMLElement {
@@ -58,6 +70,7 @@ export class VfResult extends HTMLElement {
       el('h3', {}, link),
       el('vf-price', {}, el('data', { value: r.price ?? '', textContent: formatPrice(r.price, r.currency) })),
       meta,
+      ...[watchToggle(r)].filter(Boolean),
     );
   }
 }

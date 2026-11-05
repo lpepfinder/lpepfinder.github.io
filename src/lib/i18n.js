@@ -24,10 +24,15 @@ export const localeParams = () => languages.map((lang) => ({ params: { locale: l
 
 export const localPath = (lang, path) => (lang === defaultLanguage ? path : `/${lang}${path}`);
 
-/** Strings the browser components need. */
-export const clientStrings = (lang) => Object.fromEntries([
+/** Dotted keys of a string group ("watch" → "watch.watch", "watch.notify", …). */
+const groupKeys = (group, o = lookup(defaultLanguage, group)) => Object.entries(o || {})
+  .flatMap(([k, v]) => (v && typeof v === 'object' && !Array.isArray(v) ? groupKeys(`${group}.${k}`, v) : [`${group}.${k}`]));
+
+/** Strings the browser components need; `groups` adds whole groups for one page (e.g. "discogs"). */
+export const clientStrings = (lang, groups = []) => Object.fromEntries([
   'searchTitle', 'resultsCount', 'searching', 'showingOf', 'emptyTitle', 'indexError', 'resultShop', 'resultCountry',
   'resultFormat', 'conditionUsed', 'resultsCountSoldOut', 'resultStock', 'soldOut', 'lastInStock', ...FORMAT_IDS.map((id) => `formats.${id}`),
+  ...['watch', ...groups].flatMap((g) => groupKeys(g)),
 ].map((k) => [k, lookup(lang, k) ?? lookup(defaultLanguage, k)]));
 
 const regionNames = Object.fromEntries(languages.map((l) => [l, new Intl.DisplayNames([l], { type: 'region' })]));

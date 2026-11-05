@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import WatchBackup from '../../components/WatchBackup.astro';
+import DiscogsImport from '../../components/DiscogsImport.astro';
+import { t, localeParams, localPath } from '../../lib/i18n.js';
+import { pageTitle } from '../../lib/seo.js';
+
+/** The watchlist: changes since the last visit, watched records, backup and share, Discogs import. */
+export const getStaticPaths = localeParams;
+const { lang } = Astro.props;
+---
+<Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'discogs']}>
+  <hgroup>
+    <h1>{t(lang, 'watchPage.title')}</h1>
+    <p>{t(lang, 'watchPage.intro')}</p>
+  </hgroup>
+  <vf-watch-shared hidden>
+    <h2>{t(lang, 'watchPage.sharedTitle')}</h2>
+    <p></p>
+    <button type="button" name="add-shared">{t(lang, 'watchPage.sharedAdd')}</button>
+  </vf-watch-shared>
+  <vf-watch-page status="idle" search={localPath(lang, '/')}>
+    <output aria-live="polite"></output>
+    <vf-watch-changes count="">
+      <h2>{t(lang, 'watchPage.changesTitle')}</h2>
+      <p>{t(lang, 'watchPage.noChanges')}</p>
+      <ol></ol>
+      <details>
+        <summary>{t(lang, 'watchPage.earlierTitle')}</summary>
+        <ol></ol>
+      </details>
+    </vf-watch-changes>
+    <vf-watch-items count="">
+      <h2 id="watch-items" tabindex="-1"></h2>
+      <p>{t(lang, 'watchPage.empty')}</p>
+      <progress hidden aria-labelledby="watch-items"></progress>
+      <ol></ol>
+    </vf-watch-items>
+  </vf-watch-page>
+  <WatchBackup lang={lang} />
+  <DiscogsImport lang={lang} />
+</Base>
+<script>
+  import '../../components/vf-watch-page.js';
+  import '../../components/vf-watch-backup.js';
+  import '../../components/vf-discogs-import.js';
+</script>

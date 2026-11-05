@@ -1,7 +1,11 @@
 ---
 import { t, price } from '../lib/i18n.js';
+import { releaseKey } from '../lib/search/release-key.js';
 
-/** Records with price and shop (unless showShop is false); each row links out to the shop's product page. */
+/**
+ * Records with price and shop (unless showShop is false); each row links out to the shop's
+ * product page and has a watch toggle for the release (rendered by vf-watch in the browser).
+ */
 const { lang, records, shopsById, showShop = true } = Astro.props;
 const columns = t(lang, 'tableColumns').slice(0, showShop ? 3 : 2);
 ---
@@ -9,13 +13,19 @@ const columns = t(lang, 'tableColumns').slice(0, showShop ? 3 : 2);
   <table>
     <thead><tr>{columns.map((c) => <th scope="col">{c}</th>)}</tr></thead>
     <tbody>
-      {records.map((r) => (
-        <tr>
-          <td><a href={r.url} rel="nofollow">{r.title}</a></td>
-          <td><data value={r.price ?? ''}>{price(lang, r.price, r.currency)}</data></td>
-          {showShop && <td><a href={`/shop/${r.shop}/`}>{shopsById.get(r.shop)?.name || r.shop}</a></td>}
-        </tr>
-      ))}
+      {records.map((r) => {
+        const key = releaseKey(r.title);
+        return (
+          <tr>
+            <td><a href={r.url} rel="nofollow">{r.title}</a>{key && <vf-watch key={key} label={r.title} action={r.available === false ? 'notify' : 'watch'} url={r.url} shop={shopsById.get(r.shop)?.name || r.shop} price={r.price ?? undefined} currency={r.currency || undefined}></vf-watch>}</td>
+            <td><data value={r.price ?? ''}>{price(lang, r.price, r.currency)}</data></td>
+            {showShop && <td><a href={`/shop/${r.shop}/`}>{shopsById.get(r.shop)?.name || r.shop}</a></td>}
+          </tr>
+        );
+      })}
     </tbody>
   </table>
 </figure>
+<script>
+  import './vf-watch.js';
+</script>
