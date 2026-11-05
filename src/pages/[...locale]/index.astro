@@ -6,19 +6,26 @@ import config from '../../../data/config.json';
 import { t, localeParams, localPath, number, date } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
 import { homeContent } from '../../lib/home.js';
+import { pageTitle } from '../../lib/seo.js';
 
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 const c = catalog();
-const vars = { records: number(lang, c.totalRecords), shops: number(lang, c.visible.length), countries: number(lang, c.countries.length) };
+const vars = {
+  records: number(lang, c.totalRecords), shops: number(lang, c.visible.length), countries: number(lang, c.countries.length),
+  searchable: number(lang, c.visible.filter((s) => s.records).length),
+  recordsShort: new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 2 }).format(c.totalRecords),
+};
 const home = new URL(localPath(lang, '/'), Astro.site).href;
 const examples = homeContent(lang).try;
 const ld = [{
   '@context': 'https://schema.org', '@type': 'WebSite', name: config.name, alternateName: config.formerNames, url: home, inLanguage: lang,
   potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${home}?q={search_term_string}` }, 'query-input': 'required name=search_term_string' },
+}, {
+  '@context': 'https://schema.org', '@type': 'Organization', name: config.name, url: config.baseUrl, logo: new URL('/favicon.png', Astro.site).href,
 }];
 ---
-<Base lang={lang} path="/" mode="home" title={`${config.name}: ${t(lang, 'tagline')}`} description={t(lang, 'description', vars)} ld={ld}>
+<Base lang={lang} path="/" mode="home" title={pageTitle(t(lang, 'homeSeoTitle'))} description={t(lang, 'description', vars)} ld={ld}>
   <hgroup>
     <h1>{t(lang, 'homeTitle')}</h1>
     <p>{t(lang, 'stats', vars)} · <time datetime={c.builtAt}>{t(lang, 'updated', { date: date(lang, c.builtAt) })}</time></p>

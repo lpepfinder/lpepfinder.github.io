@@ -27,6 +27,7 @@ export function catalog() {
       lastAliveAt: st.lastAliveAt || null,
       history: st.history || [],
       records: stats.records,
+      lastmod: stats.lastmod || null,
       latest: stats.latest,
     };
   });

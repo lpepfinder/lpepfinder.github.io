@@ -1,0 +1,13 @@
+---
+import { t } from '../lib/i18n.js';
+
+/** Visible breadcrumb trail; the last item is the current page. Pair with breadcrumbLd() for JSON-LD. */
+const { lang, items } = Astro.props;
+---
+<nav aria-label={t(lang, 'navBreadcrumb')}>
+  <ol>
+    {items.map((item, i) => (
+      <li>{i < items.length - 1 ? <a href={item.href}>{item.name}</a> : <span aria-current="page">{item.name}</span>}</li>
+    ))}
+  </ol>
+</nav>

@@ -5,6 +5,10 @@ main > section:has(> ul > li > a) ul { list-style: none; padding: 0; display: fl
 main > section:has(> ul > li > a) li > a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); color: var(--c-fg); text-decoration: none; }
 main > section:has(> ul > li > a) li > a:hover { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
 
+main > nav ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); font-size: var(--size-s); color: var(--c-muted); }
+main > nav li + li::before { content: var(--breadcrumb-separator); margin-inline-end: var(--space-2); }
+main > nav a { min-block-size: var(--tap); }
+
 vf-status[value="ok"] { color: var(--c-ok); font-weight: var(--weight-semi); }
 vf-status[value="dead"], vf-status[value="moved"] { color: var(--c-bad); }
 

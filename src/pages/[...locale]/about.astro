@@ -5,7 +5,7 @@ import { t, localeParams } from '../../lib/i18n.js';
 
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
-const ld = [{ '@context': 'https://schema.org', '@type': 'Organization', name: config.name, alternateName: config.formerNames, url: config.baseUrl, email: config.contactEmail, logo: `${config.baseUrl}/favicon.png` }];
+const ld = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: t(lang, 'aboutTitle'), inLanguage: lang }, { '@context': 'https://schema.org', '@type': 'Organization', name: config.name, alternateName: config.formerNames, url: config.baseUrl, email: config.contactEmail, logo: `${config.baseUrl}/favicon.png` }];
 ---
 <Base lang={lang} path="/about/" title={t(lang, 'aboutTitle')} description={t(lang, 'aboutBody')[0]} ld={ld}>
   <article>
