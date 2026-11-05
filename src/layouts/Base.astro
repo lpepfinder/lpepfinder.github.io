@@ -48,13 +48,14 @@ const strings = JSON.stringify(clientStrings(lang)).replace(/</g, '\\u003c');
   {ld.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data).replace(/</g, '\\u003c')}></script>)}
 </head>
 <body>
+  <a href="#main">{t(lang, 'skipToContent')}</a>
   <header>
     <a href={localPath(lang, '/')} rel="home"><img src="/favicon.png" alt="" width="32" height="32"> {config.name}</a>
-    <nav>
+    <nav aria-label={t(lang, 'navPrimary')}>
       <ul>{nav.map((n) => <li><a href={n.href} aria-current={n.href === Astro.url.pathname ? 'page' : undefined}>{t(lang, n.key)}</a></li>)}</ul>
     </nav>
   </header>
-  <main>
+  <main id="main" tabindex="-1">
     <slot />
   </main>
   <footer>
@@ -64,7 +65,7 @@ const strings = JSON.stringify(clientStrings(lang)).replace(/</g, '\\u003c');
         <li><a href={localPath(l, path || '/')} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{t(l, 'langName')}</a></li>
       ))}</ul>
     </nav>
-    <nav>
+    <nav aria-label={t(lang, 'navMeta')}>
       <ul>
         <li><a href={localPath(lang, '/privacy/')}>{t(lang, 'navPrivacy')}</a></li>
         <li><a href="/status/">{t(lang, 'navStatus')}</a></li>

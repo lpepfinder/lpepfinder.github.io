@@ -110,5 +110,8 @@
   "indexError": "La búsqueda no está disponible en este momento.",
   "retry": "Reintentar",
   "resultShop": "Tienda",
-  "resultCountry": "País"
+  "resultCountry": "País",
+  "skipToContent": "Saltar al contenido",
+  "navPrimary": "Principal",
+  "navMeta": "Información del sitio"
 }

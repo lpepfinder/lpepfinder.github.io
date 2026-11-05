@@ -110,5 +110,8 @@
   "indexError": "La recherche est indisponible pour le moment.",
   "retry": "Réessayer",
   "resultShop": "Disquaire",
-  "resultCountry": "Pays"
+  "resultCountry": "Pays",
+  "skipToContent": "Aller au contenu",
+  "navPrimary": "Principale",
+  "navMeta": "Informations sur le site"
 }

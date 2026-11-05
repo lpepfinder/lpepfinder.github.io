@@ -1,0 +1,13 @@
+/* Page content: home sections, link lists, status table values. */
+hgroup p { color: var(--c-muted); margin: var(--space-2) 0 0; }
+main > section ul, article > ul { padding-inline-start: var(--space-6); }
+main > section:has(> ul > li > a) ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+main > section:has(> ul > li > a) li > a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); color: var(--c-fg); text-decoration: none; }
+main > section:has(> ul > li > a) li > a:hover { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
+
+vf-status[value="ok"] { color: var(--c-ok); font-weight: var(--weight-semi); }
+vf-status[value="dead"], vf-status[value="moved"] { color: var(--c-bad); }
+
+@media (forced-colors: active) {
+  main > section:has(> ul > li > a) li > a { border: var(--line) solid CanvasText; }
+}

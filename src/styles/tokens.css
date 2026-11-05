@@ -1,0 +1,71 @@
+/* Design tokens: every size, colour and icon used by the styles. */
+:root {
+  color-scheme: light dark;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Hiragino Sans", sans-serif;
+  --size-xs: 0.8125rem;
+  --size-s: 0.875rem;
+  --size-0: 1rem;
+  --size-1: 1.125rem;
+  --size-2: clamp(1.25rem, 1.1rem + 0.8vw, 1.5rem);
+  --size-3: clamp(1.5rem, 1.2rem + 1.6vw, 2.25rem);
+  --weight-bold: 700;
+  --weight-semi: 600;
+  --leading: 1.5;
+  --leading-tight: 1.2;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --gutter: max(var(--space-4), env(safe-area-inset-left));
+  --radius: 0.5rem;
+  --radius-pill: 999px;
+  --line: 1px;
+  --tap: 2.75rem;
+  --thumb: 3.5rem;
+  --card-h: 5.5rem;
+  --header-h: 3.5rem;
+  --width: 72rem;
+  --focus-ring: 3px solid var(--c-focus);
+  --focus-offset: 2px;
+  --dim: 0.5;
+
+  --c-bg: #f7f6f2;
+  --c-surface: #ffffff;
+  --c-fg: #15161a;
+  --c-muted: #565961;
+  --c-line: #e3e2dc;
+  --c-border: #8a8c93;
+  --c-accent: #b3261e;
+  --c-accent-fg: #ffffff;
+  --c-link: #1a4fb4;
+  --c-focus: #1a4fb4;
+  --c-chip: #efeee8;
+  --c-chip-on: #15161a;
+  --c-chip-on-fg: #ffffff;
+  --c-price: var(--c-fg);
+  --c-used: #7a4a00;
+  --c-skeleton: #ecebe5;
+  --c-ok: var(--c-link);
+  --c-bad: var(--c-accent);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #111214;
+    --c-surface: #1a1b1e;
+    --c-fg: #ecebe6;
+    --c-muted: #a6a7ab;
+    --c-line: #2a2c31;
+    --c-border: #6e7078;
+    --c-accent: #ef6f5f;
+    --c-accent-fg: #111214;
+    --c-link: #8fb3ff;
+    --c-focus: #8fb3ff;
+    --c-chip: #24262a;
+    --c-chip-on: #ecebe6;
+    --c-chip-on-fg: #111214;
+    --c-used: #f0b45a;
+    --c-skeleton: #222429;
+  }
+}

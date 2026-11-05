@@ -110,5 +110,8 @@
   "indexError": "現在、検索をご利用いただけません。",
   "retry": "再試行",
   "resultShop": "ショップ",
-  "resultCountry": "国"
+  "resultCountry": "国",
+  "skipToContent": "本文へスキップ",
+  "navPrimary": "メイン",
+  "navMeta": "サイト情報"
 }

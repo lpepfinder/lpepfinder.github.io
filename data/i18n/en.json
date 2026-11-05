@@ -110,5 +110,8 @@
   "indexError": "Search is unavailable right now.",
   "retry": "Try again",
   "resultShop": "Shop",
-  "resultCountry": "Country"
+  "resultCountry": "Country",
+  "skipToContent": "Skip to content",
+  "navPrimary": "Main",
+  "navMeta": "Site information"
 }
