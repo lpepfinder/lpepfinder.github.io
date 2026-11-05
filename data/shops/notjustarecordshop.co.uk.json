@@ -3,5 +3,6 @@
   "name": "Not Just A Record Shop",
   "city": "Eastbourne",
   "osm": "way/1041753344",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

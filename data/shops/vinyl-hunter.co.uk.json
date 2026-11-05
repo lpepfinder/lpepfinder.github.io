@@ -3,5 +3,6 @@
   "name": "Vinyl Hunter",
   "city": "Bury St Edmunds",
   "osm": "node/6375847737",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

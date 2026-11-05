@@ -3,5 +3,6 @@
   "name": "MG Records",
   "city": "Budapest",
   "osm": "node/12310277960",
-  "source": "osm"
+  "source": "osm",
+  "country": "HU"
 }

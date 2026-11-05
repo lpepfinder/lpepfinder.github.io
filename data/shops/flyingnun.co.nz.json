@@ -3,5 +3,6 @@
   "name": "Flying Nun Records",
   "city": "Te Aro, Wellington",
   "osm": "node/6033546080",
-  "source": "osm"
+  "source": "osm",
+  "country": "NZ"
 }

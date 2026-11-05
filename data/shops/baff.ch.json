@@ -3,5 +3,6 @@
   "name": "Baff Music",
   "city": "Spiez",
   "osm": "node/3814717990",
-  "source": "osm"
+  "source": "osm",
+  "country": "CH"
 }

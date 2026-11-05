@@ -2,5 +2,6 @@
   "url": "http://www.sechzig.de",
   "name": "Mono Records + CDs",
   "osm": "node/8665533227",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

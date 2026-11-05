@@ -2,5 +2,6 @@
   "url": "https://justfortherecord.co.nz",
   "name": "Just For The Record",
   "osm": "node/5662310779",
-  "source": "osm"
+  "source": "osm",
+  "country": "NZ"
 }

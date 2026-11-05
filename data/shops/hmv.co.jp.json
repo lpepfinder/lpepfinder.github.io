@@ -3,5 +3,6 @@
   "name": "HMV record shop",
   "city": "渋谷区",
   "osm": "node/4780140623",
-  "source": "osm"
+  "source": "osm",
+  "country": "JP"
 }

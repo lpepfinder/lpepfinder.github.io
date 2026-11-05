@@ -2,5 +2,6 @@
   "url": "https://www.heartlandrecords.com.au",
   "name": "Heartland Records",
   "osm": "way/844223125",
-  "source": "osm"
+  "source": "osm",
+  "country": "AU"
 }

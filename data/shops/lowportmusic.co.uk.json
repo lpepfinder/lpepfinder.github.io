@@ -2,5 +2,6 @@
   "url": "https://lowportmusic.co.uk",
   "name": "Lowport Music",
   "osm": "node/12666435575",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

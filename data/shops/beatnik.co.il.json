@@ -3,5 +3,6 @@
   "name": "Beatnik Record Store",
   "city": "תל אביב-יפו",
   "osm": "node/13137786453",
-  "source": "osm"
+  "source": "osm",
+  "country": "IL"
 }

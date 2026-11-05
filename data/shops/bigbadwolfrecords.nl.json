@@ -3,5 +3,6 @@
   "name": "Big Bad Wolf Records",
   "city": "Leeuwarden",
   "osm": "node/3066731234",
-  "source": "osm"
+  "source": "osm",
+  "country": "NL"
 }

@@ -3,5 +3,6 @@
   "name": "Vinyl Store",
   "city": "Bra",
   "osm": "node/12735238127",
-  "source": "osm"
+  "source": "osm",
+  "country": "IT"
 }

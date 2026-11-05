@@ -3,5 +3,6 @@
   "name": "Vinyl Fixx",
   "city": "Leeds",
   "osm": "node/14344760101",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

@@ -2,5 +2,6 @@
   "url": "http://www.vinylbox.ru",
   "name": "Vinylbox",
   "osm": "node/8142187922",
-  "source": "osm"
+  "source": "osm",
+  "country": "RU"
 }

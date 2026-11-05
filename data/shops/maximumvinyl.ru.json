@@ -3,5 +3,6 @@
   "name": "Maximum Vinyl",
   "city": "Москва",
   "osm": "node/11781202725",
-  "source": "osm"
+  "source": "osm",
+  "country": "RU"
 }

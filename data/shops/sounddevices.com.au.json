@@ -2,5 +2,6 @@
   "url": "https://sounddevices.com.au",
   "name": "Sound Devices",
   "osm": "node/12203598366",
-  "source": "osm"
+  "source": "osm",
+  "country": "AU"
 }

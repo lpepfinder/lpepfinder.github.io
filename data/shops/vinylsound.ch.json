@@ -2,5 +2,6 @@
   "url": "https://vinylsound.ch",
   "name": "Vinyl Sound",
   "osm": "node/14075085320",
-  "source": "osm"
+  "source": "osm",
+  "country": "CH"
 }

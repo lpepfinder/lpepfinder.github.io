@@ -3,5 +3,6 @@
   "name": "Noisebringer Records Store",
   "city": "Bad Tölz",
   "osm": "node/13858629919",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

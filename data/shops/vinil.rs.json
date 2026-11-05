@@ -2,5 +2,6 @@
   "url": "https://www.vinil.rs",
   "name": "Vinil",
   "osm": "node/11251520975",
-  "source": "osm"
+  "source": "osm",
+  "country": "RS"
 }

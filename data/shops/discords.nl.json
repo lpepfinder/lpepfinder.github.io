@@ -3,5 +3,6 @@
   "name": "Discords.nl",
   "city": "Nijmegen",
   "osm": "node/3130002713",
-  "source": "osm"
+  "source": "osm",
+  "country": "NL"
 }

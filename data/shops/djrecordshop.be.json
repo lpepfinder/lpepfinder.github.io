@@ -3,5 +3,6 @@
   "name": "DJ Record Shop",
   "city": "Péronnes-lez-Binche",
   "osm": "node/11914004844",
-  "source": "osm"
+  "source": "osm",
+  "country": "BE"
 }

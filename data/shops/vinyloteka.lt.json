@@ -3,5 +3,6 @@
   "name": "Vinyloteka",
   "city": "Vilnius",
   "osm": "node/12891876891",
-  "source": "osm"
+  "source": "osm",
+  "country": "LT"
 }

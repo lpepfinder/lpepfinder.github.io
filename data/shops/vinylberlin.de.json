@@ -3,5 +3,6 @@
   "name": "Vinylberlin",
   "city": "Berlin",
   "osm": "node/7982452774",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

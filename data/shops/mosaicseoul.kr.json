@@ -1,5 +1,6 @@
 {
   "url": "https://mosaicseoul.kr",
   "discogs": "https://www.discogs.com/record-stores/store/mosaic_seoul/",
-  "source": "discogs"
+  "source": "discogs",
+  "country": "KR"
 }

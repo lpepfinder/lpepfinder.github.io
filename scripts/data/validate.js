@@ -6,6 +6,9 @@ import { config } from '../lib/config.js';
 /** Validate the curated data against data/schemas (dependency-free subset of JSON Schema). */
 const schema = JSON.parse(fs.readFileSync(path.join(SHOPS_DIR, '../schemas/shop.schema.json'), 'utf8'));
 const errors = [];
+const regions = new Intl.DisplayNames(['en'], { type: 'region' });
+// real, current ISO 3166-1 codes only (FX, YU... are not)
+const isCountry = (c) => !['FX', 'YU', 'CS', 'SU', 'ZZ', 'EU'].includes(c) && regions.of(c) !== c;
 
 function check(obj, sch, where) {
   for (const key of sch.required || []) if (obj[key] == null) errors.push(`${where}: missing "${key}"`);
@@ -24,6 +27,7 @@ for (const f of files) {
   let shop;
   try { shop = JSON.parse(fs.readFileSync(path.join(SHOPS_DIR, f), 'utf8')); } catch (e) { errors.push(`${f}: invalid JSON`); continue; }
   check(shop, schema, f);
+  if (shop.country && !isCountry(shop.country)) errors.push(`${f}: "${shop.country}" is not a country code`);
   try {
     const host = new URL(shop.url).hostname.replace(/^www\./, '');
     if (host !== f.slice(0, -5)) errors.push(`${f}: file name must be the url host "${host}.json"`);

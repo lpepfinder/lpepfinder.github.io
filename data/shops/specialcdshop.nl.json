@@ -3,5 +3,6 @@
   "name": "Special CD Shop",
   "city": "Breda",
   "osm": "node/2739202434",
-  "source": "osm"
+  "source": "osm",
+  "country": "NL"
 }

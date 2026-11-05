@@ -3,5 +3,6 @@
   "name": "Born Bad Records",
   "city": "Paris",
   "osm": "node/4784240721",
-  "source": "osm"
+  "source": "osm",
+  "country": "FR"
 }

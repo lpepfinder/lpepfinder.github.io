@@ -3,5 +3,6 @@
   "name": "Stardust Records",
   "city": "Vantaa",
   "osm": "node/11702015915",
-  "source": "osm"
+  "source": "osm",
+  "country": "FI"
 }

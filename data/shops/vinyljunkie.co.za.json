@@ -2,5 +2,6 @@
   "url": "https://vinyljunkie.co.za",
   "name": "Vinyl Junkie",
   "osm": "node/14068550482",
-  "source": "osm"
+  "source": "osm",
+  "country": "ZA"
 }

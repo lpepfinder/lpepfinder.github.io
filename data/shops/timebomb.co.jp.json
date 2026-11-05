@@ -3,5 +3,6 @@
   "name": "Time Bomb Records",
   "city": "大阪市",
   "osm": "node/11741477300",
-  "source": "osm"
+  "source": "osm",
+  "country": "JP"
 }

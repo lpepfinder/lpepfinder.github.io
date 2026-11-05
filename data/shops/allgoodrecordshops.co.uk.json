@@ -2,5 +2,6 @@
   "url": "https://www.allgoodrecordshops.co.uk",
   "name": "Astro Vinyl",
   "osm": "way/377768961",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

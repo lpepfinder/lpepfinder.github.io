@@ -2,5 +2,6 @@
   "url": "https://www.echobeat-records.de",
   "name": "Echobeat Records",
   "osm": "node/2798948826",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

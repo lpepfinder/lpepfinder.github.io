@@ -2,5 +2,6 @@
   "url": "https://www.far-landrecords.co.uk",
   "name": "Far Land Records Ltd",
   "osm": "node/14052102801",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

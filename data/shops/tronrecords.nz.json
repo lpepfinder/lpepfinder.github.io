@@ -2,5 +2,6 @@
   "url": "https://tronrecords.nz",
   "name": "Tron Records",
   "osm": "node/11919003469",
-  "source": "osm"
+  "source": "osm",
+  "country": "NZ"
 }

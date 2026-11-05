@@ -3,5 +3,6 @@
   "name": "Good Mood Records",
   "city": "Köln",
   "osm": "node/7934703544",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

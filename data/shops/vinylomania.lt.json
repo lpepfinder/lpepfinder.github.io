@@ -3,5 +3,6 @@
   "name": "VinyloMania",
   "city": "Vilnius",
   "osm": "node/12995555642",
-  "source": "osm"
+  "source": "osm",
+  "country": "LT"
 }

@@ -2,5 +2,6 @@
   "url": "https://wahwahrecords.com.au",
   "name": "Wah Wah Records",
   "osm": "way/389455413",
-  "source": "osm"
+  "source": "osm",
+  "country": "AU"
 }

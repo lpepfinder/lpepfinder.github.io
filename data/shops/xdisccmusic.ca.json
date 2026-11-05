@@ -3,5 +3,6 @@
   "name": "X-Disc-C Music",
   "city": "Kitchener",
   "osm": "node/10979861636",
-  "source": "osm"
+  "source": "osm",
+  "country": "CA"
 }

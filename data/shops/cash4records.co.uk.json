@@ -3,5 +3,6 @@
   "name": "The Little Record Shop",
   "city": "London",
   "osm": "node/12385102514",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

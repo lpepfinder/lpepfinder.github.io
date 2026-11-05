@@ -2,5 +2,6 @@
   "url": "https://www.goldminerecords.com.au",
   "name": "Goldmine Records",
   "osm": "node/632244266",
-  "source": "osm"
+  "source": "osm",
+  "country": "AU"
 }

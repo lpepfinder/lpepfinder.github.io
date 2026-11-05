@@ -2,5 +2,6 @@
   "url": "https://skiptonsoundbar.co.uk",
   "name": "Sound Bar",
   "osm": "node/13105491794",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

@@ -3,5 +3,6 @@
   "name": "The Record Shed",
   "city": "Durham",
   "osm": "node/8022491811",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

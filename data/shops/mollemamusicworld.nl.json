@@ -3,5 +3,6 @@
   "name": "Mollema Music World",
   "city": "Franeker",
   "osm": "node/3063303022",
-  "source": "osm"
+  "source": "osm",
+  "country": "NL"
 }

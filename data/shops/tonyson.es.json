@@ -2,5 +2,6 @@
   "url": "https://www.tonyson.es",
   "name": "Ton y Son",
   "osm": "node/2022858003",
-  "source": "osm"
+  "source": "osm",
+  "country": "ES"
 }

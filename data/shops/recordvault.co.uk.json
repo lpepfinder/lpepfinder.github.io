@@ -2,5 +2,6 @@
   "url": "https://www.recordvault.co.uk",
   "name": "Record Vault at Redlands",
   "osm": "way/1277626326",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

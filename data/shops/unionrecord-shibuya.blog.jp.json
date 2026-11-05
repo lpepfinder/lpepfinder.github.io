@@ -2,5 +2,6 @@
   "url": "https://unionrecord-shibuya.blog.jp",
   "name": "Union Record Shibuya Parco",
   "osm": "node/11764192916",
-  "source": "osm"
+  "source": "osm",
+  "country": "JP"
 }

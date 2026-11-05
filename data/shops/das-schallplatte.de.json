@@ -2,5 +2,6 @@
   "url": "http://www.das-schallplatte.de",
   "name": "Lost & Found Schallplatten",
   "osm": "node/556665412",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

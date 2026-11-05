@@ -2,5 +2,6 @@
   "url": "https://www.rerun.com.au",
   "name": "Rerun Records & Photography",
   "osm": "node/12094828216",
-  "source": "osm"
+  "source": "osm",
+  "country": "AU"
 }

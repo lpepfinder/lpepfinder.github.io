@@ -3,5 +3,6 @@
   "name": "Ratzer Records Plattencafe",
   "city": "Stuttgart",
   "osm": "node/3868603364",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

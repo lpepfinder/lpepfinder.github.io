@@ -3,5 +3,6 @@
   "name": "Rooster Records",
   "city": "Exeter",
   "osm": "node/2520812509",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

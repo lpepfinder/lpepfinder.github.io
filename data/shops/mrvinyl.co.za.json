@@ -2,5 +2,6 @@
   "url": "https://mrvinyl.co.za",
   "name": "Mr Vinyl",
   "osm": "node/13394579701",
-  "source": "osm"
+  "source": "osm",
+  "country": "ZA"
 }

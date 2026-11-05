@@ -3,5 +3,6 @@
   "name": "Friendly Records",
   "city": "Bristol",
   "osm": "way/363047210",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

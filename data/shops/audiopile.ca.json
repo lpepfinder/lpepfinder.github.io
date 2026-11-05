@@ -2,5 +2,6 @@
   "url": "https://audiopile.ca",
   "name": "Audiopile Records",
   "osm": "node/11090665489",
-  "source": "osm"
+  "source": "osm",
+  "country": "CA"
 }

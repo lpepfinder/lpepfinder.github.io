@@ -2,5 +2,6 @@
   "url": "https://mygeneration.be",
   "name": "Pop-up MyGeneration",
   "osm": "node/5615287669",
-  "source": "osm"
+  "source": "osm",
+  "country": "BE"
 }

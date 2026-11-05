@@ -3,5 +3,6 @@
   "name": "Vinyl Guru",
   "city": "Newcastle upon Tyne",
   "osm": "way/1292881683",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

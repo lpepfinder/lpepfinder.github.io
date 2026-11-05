@@ -2,5 +2,6 @@
   "url": "http://mintrecords.dk",
   "name": "Mint Records",
   "osm": "node/5731624884",
-  "source": "osm"
+  "source": "osm",
+  "country": "DK"
 }

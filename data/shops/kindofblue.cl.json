@@ -3,5 +3,6 @@
   "name": "Kind of Blue",
   "city": "Santiago",
   "osm": "node/3371043993",
-  "source": "osm"
+  "source": "osm",
+  "country": "CL"
 }

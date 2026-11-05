@@ -2,5 +2,6 @@
   "url": "https://www.musikhauskarami.de",
   "name": "Musikhaus Karami",
   "osm": "node/10221437173",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

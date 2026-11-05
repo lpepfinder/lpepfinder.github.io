@@ -3,5 +3,6 @@
   "name": "Slow Progress Records & Coffee",
   "city": "Edinburgh",
   "osm": "node/11537193343",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

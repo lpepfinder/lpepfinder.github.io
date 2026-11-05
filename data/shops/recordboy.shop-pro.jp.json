@@ -2,5 +2,6 @@
   "url": "http://recordboy.shop-pro.jp",
   "name": "Record Boy",
   "osm": "node/10600588875",
-  "source": "osm"
+  "source": "osm",
+  "country": "JP"
 }

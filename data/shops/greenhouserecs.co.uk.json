@@ -3,5 +3,6 @@
   "name": "Greenhouse Records",
   "city": "Edinburgh",
   "osm": "node/3388787804",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

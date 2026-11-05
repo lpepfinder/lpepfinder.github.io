@@ -3,5 +3,6 @@
   "name": "Mythos Records",
   "city": "Frankfurt am Main",
   "osm": "node/6408736590",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

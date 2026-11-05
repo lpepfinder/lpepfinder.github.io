@@ -3,5 +3,6 @@
   "name": "WWRecords",
   "city": "Wageningen",
   "osm": "node/3013391328",
-  "source": "osm"
+  "source": "osm",
+  "country": "NL"
 }

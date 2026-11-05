@@ -3,5 +3,6 @@
   "name": "Cargo Records",
   "city": "Wuppertal",
   "osm": "node/11380196180",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

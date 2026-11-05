@@ -2,5 +2,6 @@
   "url": "https://www.musoscorner.com.au",
   "name": "Musos Corner",
   "osm": "way/367047236",
-  "source": "osm"
+  "source": "osm",
+  "country": "AU"
 }

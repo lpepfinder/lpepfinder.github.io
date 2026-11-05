@@ -3,5 +3,6 @@
   "name": "Puce Rock",
   "city": "Trois-Rivières",
   "osm": "node/9324925186",
-  "source": "osm"
+  "source": "osm",
+  "country": "CA"
 }

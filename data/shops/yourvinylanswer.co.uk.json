@@ -3,5 +3,6 @@
   "name": "Your Vinyl Answer",
   "city": "Sudbury",
   "osm": "node/12650555861",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

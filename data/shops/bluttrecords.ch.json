@@ -3,5 +3,6 @@
   "name": "Blutt Records",
   "city": "Zürich",
   "osm": "node/11921093725",
-  "source": "osm"
+  "source": "osm",
+  "country": "CH"
 }

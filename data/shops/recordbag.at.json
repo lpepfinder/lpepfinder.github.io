@@ -2,5 +2,6 @@
   "url": "http://www.recordbag.at",
   "name": "Recordbag",
   "osm": "node/10697410957",
-  "source": "osm"
+  "source": "osm",
+  "country": "AT"
 }

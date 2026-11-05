@@ -3,5 +3,6 @@
   "name": "Clevedon Music Shop",
   "city": "Clevedon",
   "osm": "way/669946640",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

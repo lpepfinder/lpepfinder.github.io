@@ -2,5 +2,6 @@
   "url": "http://www.rootdownrecords.jp",
   "name": "Root Down Records",
   "osm": "node/11860327314",
-  "source": "osm"
+  "source": "osm",
+  "country": "JP"
 }

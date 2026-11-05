@@ -2,5 +2,6 @@
   "url": "https://www.vinylcafe.rs",
   "name": "Vinyl Cafe",
   "osm": "node/12385216396",
-  "source": "osm"
+  "source": "osm",
+  "country": "RS"
 }

@@ -2,5 +2,6 @@
   "url": "https://carnivalrecords.co.uk",
   "name": "Carnival Records",
   "osm": "node/3325938412",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

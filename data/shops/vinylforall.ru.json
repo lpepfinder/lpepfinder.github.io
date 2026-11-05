@@ -2,5 +2,6 @@
   "url": "http://www.vinylforall.ru",
   "name": "VinylForAll",
   "osm": "node/2283447470",
-  "source": "osm"
+  "source": "osm",
+  "country": "RU"
 }

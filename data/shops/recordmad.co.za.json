@@ -3,5 +3,6 @@
   "name": "Recordmad",
   "city": "Linden",
   "osm": "node/14191904964",
-  "source": "osm"
+  "source": "osm",
+  "country": "ZA"
 }

@@ -3,5 +3,6 @@
   "name": "MusicRecords",
   "city": "Plzeň",
   "osm": "node/11560174153",
-  "source": "osm"
+  "source": "osm",
+  "country": "CZ"
 }

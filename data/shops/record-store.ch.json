@@ -2,5 +2,6 @@
   "url": "https://www.record-store.ch",
   "name": "MusikLaden Record Store",
   "osm": "node/11749597820",
-  "source": "osm"
+  "source": "osm",
+  "country": "CH"
 }

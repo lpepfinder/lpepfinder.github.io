@@ -3,5 +3,6 @@
   "name": "No Remorse Records",
   "city": "Αθήνα",
   "osm": "node/11531339592",
-  "source": "osm"
+  "source": "osm",
+  "country": "GR"
 }

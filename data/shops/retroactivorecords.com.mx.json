@@ -3,5 +3,6 @@
   "name": "Retroactivo Records",
   "city": "Ciudad de México",
   "osm": "node/8349722064",
-  "source": "osm"
+  "source": "osm",
+  "country": "MX"
 }

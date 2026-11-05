@@ -2,5 +2,6 @@
   "url": "https://boaviagemdiscos.com.br",
   "name": "Boa Viagem Discos",
   "osm": "node/12509742705",
-  "source": "osm"
+  "source": "osm",
+  "country": "BR"
 }

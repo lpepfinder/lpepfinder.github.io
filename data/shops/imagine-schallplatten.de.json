@@ -3,5 +3,6 @@
   "name": "Imagine Schallplatten",
   "city": "Oberursel (Taunus)",
   "osm": "node/13726944577",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

@@ -3,5 +3,6 @@
   "name": "Out of Time Records",
   "city": "Norwich",
   "osm": "node/11205116833",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

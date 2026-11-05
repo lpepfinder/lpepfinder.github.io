@@ -3,5 +3,6 @@
   "name": "Tower Records",
   "city": "Dublin",
   "osm": "node/3571451493",
-  "source": "osm"
+  "source": "osm",
+  "country": "IE"
 }

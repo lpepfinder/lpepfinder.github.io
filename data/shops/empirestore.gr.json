@@ -3,5 +3,6 @@
   "name": "Empire Vinyl-CD-DVD",
   "city": "Θεσσαλονίκη",
   "osm": "node/13041587217",
-  "source": "osm"
+  "source": "osm",
+  "country": "GR"
 }

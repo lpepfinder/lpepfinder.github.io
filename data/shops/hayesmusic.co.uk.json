@@ -2,5 +2,6 @@
   "url": "https://www.hayesmusic.co.uk",
   "name": "Hayes Music",
   "osm": "way/908484374",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

@@ -3,5 +3,6 @@
   "name": "Dnr vinyl",
   "city": "Croydon",
   "osm": "node/4556228891",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

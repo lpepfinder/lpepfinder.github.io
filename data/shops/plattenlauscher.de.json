@@ -2,5 +2,6 @@
   "url": "http://www.plattenlauscher.de",
   "name": "Plattenlauscher",
   "osm": "node/4331325120",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

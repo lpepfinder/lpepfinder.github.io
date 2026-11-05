@@ -3,5 +3,6 @@
   "name": "Golden Discs",
   "city": "Galway",
   "osm": "node/1742796282",
-  "source": "osm"
+  "source": "osm",
+  "country": "IE"
 }

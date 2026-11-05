@@ -3,5 +3,6 @@
   "name": "Stone Rock Records",
   "city": "Colchester",
   "osm": "node/4639540977",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

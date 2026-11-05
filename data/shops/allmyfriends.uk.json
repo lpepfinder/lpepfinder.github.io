@@ -3,5 +3,6 @@
   "name": "All My Friends Record Shop",
   "city": "London",
   "osm": "node/13624103501",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

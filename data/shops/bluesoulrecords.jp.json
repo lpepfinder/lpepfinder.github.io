@@ -2,5 +2,6 @@
   "url": "https://www.bluesoulrecords.jp",
   "name": "Bluesoul records",
   "osm": "node/11741477297",
-  "source": "osm"
+  "source": "osm",
+  "country": "JP"
 }

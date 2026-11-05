@@ -2,5 +2,6 @@
   "url": "https://www.opus2galway.ie",
   "name": "Opus II",
   "osm": "node/1469613268",
-  "source": "osm"
+  "source": "osm",
+  "country": "IE"
 }

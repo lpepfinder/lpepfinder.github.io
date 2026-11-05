@@ -2,5 +2,6 @@
   "url": "https://vinyles61.fr",
   "name": "Vinyles 61",
   "osm": "node/13104025888",
-  "source": "osm"
+  "source": "osm",
+  "country": "FR"
 }

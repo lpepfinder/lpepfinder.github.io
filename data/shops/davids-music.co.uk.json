@@ -2,5 +2,6 @@
   "url": "https://davids-music.co.uk",
   "name": "David's Music",
   "osm": "way/294043554",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

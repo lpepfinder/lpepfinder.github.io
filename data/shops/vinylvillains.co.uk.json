@@ -3,5 +3,6 @@
   "name": "Vinyl Villains",
   "city": "Edinburgh",
   "osm": "node/3402048920",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

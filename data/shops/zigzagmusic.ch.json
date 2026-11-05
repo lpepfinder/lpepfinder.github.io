@@ -3,5 +3,6 @@
   "name": "ZIG ZAG records",
   "city": "Thun",
   "osm": "node/8343125788",
-  "source": "osm"
+  "source": "osm",
+  "country": "CH"
 }

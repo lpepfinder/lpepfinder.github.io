@@ -1,5 +1,6 @@
 {
   "url": "https://recordcorner.co.uk",
   "discogs": "https://www.discogs.com/record-stores/store/recordcorneruk-guildford/",
-  "source": "discogs"
+  "source": "discogs",
+  "country": "GB"
 }

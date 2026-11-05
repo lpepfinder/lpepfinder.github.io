@@ -3,5 +3,6 @@
   "name": "Groove Records",
   "city": "Breda",
   "osm": "node/2739202437",
-  "source": "osm"
+  "source": "osm",
+  "country": "NL"
 }

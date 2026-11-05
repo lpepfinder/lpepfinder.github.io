@@ -2,5 +2,6 @@
   "url": "https://www.mpiremusic.co.za",
   "name": "M-PIRE Music",
   "osm": "node/9910168529",
-  "source": "osm"
+  "source": "osm",
+  "country": "ZA"
 }

@@ -3,5 +3,6 @@
   "name": "Strawberry Fields Recordstore",
   "city": "Leipzig",
   "osm": "node/2212819293",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

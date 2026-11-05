@@ -3,5 +3,6 @@
   "name": "Hot Wax Records",
   "city": "Calgary",
   "osm": "node/12801214961",
-  "source": "osm"
+  "source": "osm",
+  "country": "CA"
 }

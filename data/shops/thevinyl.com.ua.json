@@ -2,5 +2,6 @@
   "url": "https://thevinyl.com.ua",
   "name": "The Vinyl",
   "osm": "node/4876781444",
-  "source": "osm"
+  "source": "osm",
+  "country": "UA"
 }

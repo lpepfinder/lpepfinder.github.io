@@ -3,5 +3,6 @@
   "name": "Satisfaction Recordshop",
   "city": "Heerlen",
   "osm": "node/11378073572",
-  "source": "osm"
+  "source": "osm",
+  "country": "NL"
 }

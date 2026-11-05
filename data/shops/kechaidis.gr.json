@@ -2,5 +2,6 @@
   "url": "https://kechaidis.gr",
   "name": "Κεχαΐδης Α.Ε. Μουσική Ήχος Φωτισμός",
   "osm": "node/13598336224",
-  "source": "osm"
+  "source": "osm",
+  "country": "GR"
 }

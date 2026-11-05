@@ -3,5 +3,6 @@
   "name": "Upside Down Records",
   "city": "London",
   "osm": "node/13355840372",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

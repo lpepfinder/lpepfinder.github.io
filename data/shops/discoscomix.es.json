@@ -2,5 +2,6 @@
   "url": "https://www.discoscomix.es",
   "name": "Discos Comix",
   "osm": "node/12468687104",
-  "source": "osm"
+  "source": "osm",
+  "country": "ES"
 }

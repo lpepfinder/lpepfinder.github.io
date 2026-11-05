@@ -3,5 +3,6 @@
   "name": "DrumStore",
   "city": "Gdynia",
   "osm": "node/3015898313",
-  "source": "osm"
+  "source": "osm",
+  "country": "PL"
 }

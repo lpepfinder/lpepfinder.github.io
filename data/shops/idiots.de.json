@@ -3,5 +3,6 @@
   "name": "Idiots Records",
   "city": "Dortmund",
   "osm": "node/4021927916",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

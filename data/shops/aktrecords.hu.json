@@ -2,5 +2,6 @@
   "url": "https://aktrecords.hu",
   "name": "akt records",
   "osm": "node/6442626010",
-  "source": "osm"
+  "source": "osm",
+  "country": "HU"
 }

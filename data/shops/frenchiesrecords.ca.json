@@ -2,5 +2,6 @@
   "url": "https://www.frenchiesrecords.ca",
   "name": "Frenchie's Records & Coffee",
   "osm": "node/14251167801",
-  "source": "osm"
+  "source": "osm",
+  "country": "CA"
 }

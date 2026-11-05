@@ -2,5 +2,6 @@
   "url": "https://www.monochrom-records.de",
   "name": "Monochrom Records",
   "osm": "node/7101764722",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

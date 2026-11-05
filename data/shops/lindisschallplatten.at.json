@@ -2,5 +2,6 @@
   "url": "http://www.lindisschallplatten.at",
   "name": "Lindi’s Schallplattenladen",
   "osm": "node/10262577918",
-  "source": "osm"
+  "source": "osm",
+  "country": "AT"
 }

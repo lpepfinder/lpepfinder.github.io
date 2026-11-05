@@ -3,5 +3,6 @@
   "name": "mushimushirecords",
   "city": "Nottingham",
   "osm": "node/2275813392",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

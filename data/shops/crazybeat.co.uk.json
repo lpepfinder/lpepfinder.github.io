@@ -3,5 +3,6 @@
   "name": "Crazy Beat Records",
   "city": "Upminster",
   "osm": "way/316313870",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

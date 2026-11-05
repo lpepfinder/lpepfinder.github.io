@@ -2,5 +2,6 @@
   "url": "https://holyshitrecords.de",
   "name": "Holy’s Hit Records",
   "osm": "node/14100681101",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

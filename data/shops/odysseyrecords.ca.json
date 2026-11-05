@@ -3,5 +3,6 @@
   "name": "Odyssey Records",
   "city": "London",
   "osm": "node/14181939820",
-  "source": "osm"
+  "source": "osm",
+  "country": "CA"
 }

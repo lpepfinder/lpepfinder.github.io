@@ -2,5 +2,6 @@
   "url": "https://www.shakeitupmusic.com.au",
   "name": "Shake It Up Music",
   "osm": "way/791211751",
-  "source": "osm"
+  "source": "osm",
+  "country": "AU"
 }

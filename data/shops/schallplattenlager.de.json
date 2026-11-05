@@ -3,5 +3,6 @@
   "name": "Schallplattenlager",
   "city": "Lübeck",
   "osm": "node/9886670008",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

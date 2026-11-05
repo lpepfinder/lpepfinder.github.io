@@ -2,5 +2,6 @@
   "url": "https://lighthouserecords.jp",
   "name": "Lighthouse Records",
   "osm": "node/11764192919",
-  "source": "osm"
+  "source": "osm",
+  "country": "JP"
 }

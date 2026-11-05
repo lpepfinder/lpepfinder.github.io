@@ -3,5 +3,6 @@
   "name": "Relevant Records",
   "city": "Cambridge",
   "osm": "node/3543219062",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

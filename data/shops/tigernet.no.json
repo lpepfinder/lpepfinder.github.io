@@ -2,5 +2,6 @@
   "url": "https://tigernet.no",
   "name": "Tiger Records",
   "osm": "node/4736654462",
-  "source": "osm"
+  "source": "osm",
+  "country": "NO"
 }

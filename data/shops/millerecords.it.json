@@ -2,5 +2,6 @@
   "url": "https://www.millerecords.it",
   "name": "Millerecords",
   "osm": "node/12987293502",
-  "source": "osm"
+  "source": "osm",
+  "country": "IT"
 }

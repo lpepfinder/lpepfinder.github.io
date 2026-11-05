@@ -3,5 +3,6 @@
   "name": "Vinilo Studija",
   "city": "Vilnius",
   "osm": "node/4467105492",
-  "source": "osm"
+  "source": "osm",
+  "country": "LT"
 }

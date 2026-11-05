@@ -3,5 +3,6 @@
   "name": "Velvet Music",
   "city": "Leiden",
   "osm": "node/2405697889",
-  "source": "osm"
+  "source": "osm",
+  "country": "NL"
 }

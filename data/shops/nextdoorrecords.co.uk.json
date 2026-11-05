@@ -3,5 +3,6 @@
   "name": "Next Door Records Two",
   "city": "London",
   "osm": "node/5442663591",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

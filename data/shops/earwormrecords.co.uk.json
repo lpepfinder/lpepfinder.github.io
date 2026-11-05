@@ -3,5 +3,6 @@
   "name": "Earworm Records",
   "city": "York",
   "osm": "node/5863821732",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

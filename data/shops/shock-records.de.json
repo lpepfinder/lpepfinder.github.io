@@ -3,5 +3,6 @@
   "name": "Shock Records & Coffee",
   "city": "Osnabrück",
   "osm": "node/1014350249",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

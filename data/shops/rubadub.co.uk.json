@@ -3,5 +3,6 @@
   "name": "Rubadub",
   "city": "Glasgow",
   "osm": "node/1612222904",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

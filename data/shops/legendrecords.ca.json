@@ -2,5 +2,6 @@
   "url": "https://www.legendrecords.ca",
   "name": "Legend Records",
   "osm": "node/13113052314",
-  "source": "osm"
+  "source": "osm",
+  "country": "CA"
 }

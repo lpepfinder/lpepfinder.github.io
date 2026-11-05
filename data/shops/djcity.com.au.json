@@ -2,5 +2,6 @@
   "url": "https://djcity.com.au",
   "name": "DJ City",
   "osm": "node/14295578627",
-  "source": "osm"
+  "source": "osm",
+  "country": "AU"
 }

@@ -1,6 +1,6 @@
 import { getJson } from '../lib/http.js';
 import { sleep } from '../lib/pool.js';
-import { decodeEntities } from '../lib/text.js';
+import { decodeEntities, displayTitle } from '../lib/text.js';
 import { keepProduct, musicRatio } from './filter.js';
 
 const PAGE_SIZE = 250;
@@ -18,7 +18,8 @@ export async function probe(origin) {
     city: meta.data?.city || null,
     country: meta.data?.country || null,
     currency: meta.data?.currency || null,
-    musicRatio: musicRatio(products.map((p) => [p.title, text(p)])),
+    // shops often put the artist in `vendor` and only the album in `title`
+    musicRatio: musicRatio(products.map((p) => [displayTitle(p.title, p.vendor), text(p)])),
     sampleSize: products.length,
   };
 }

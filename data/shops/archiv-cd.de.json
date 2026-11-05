@@ -2,5 +2,6 @@
   "url": "http://www.archiv-cd.de",
   "name": "Archiv",
   "osm": "node/3465793754",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

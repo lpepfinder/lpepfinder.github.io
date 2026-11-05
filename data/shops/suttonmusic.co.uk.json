@@ -2,5 +2,6 @@
   "url": "https://suttonmusic.co.uk",
   "name": "Sutton Music Centre",
   "osm": "node/266739707",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

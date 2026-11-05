@@ -3,5 +3,6 @@
   "name": "Musikhaus Dinter",
   "city": "Oldenburg",
   "osm": "way/410581847",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

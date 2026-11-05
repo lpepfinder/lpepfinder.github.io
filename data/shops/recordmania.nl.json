@@ -3,5 +3,6 @@
   "name": "Record Mania",
   "city": "Amsterdam",
   "osm": "node/2506045988",
-  "source": "osm"
+  "source": "osm",
+  "country": "NL"
 }

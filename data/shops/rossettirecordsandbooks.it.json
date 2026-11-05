@@ -3,5 +3,6 @@
   "name": "Rosseti recordsandbooks",
   "city": "Milano",
   "osm": "node/5376871421",
-  "source": "osm"
+  "source": "osm",
+  "country": "IT"
 }

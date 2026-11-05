@@ -2,5 +2,6 @@
   "url": "http://logo-records.de",
   "name": "Logo Records",
   "osm": "node/7289162249",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

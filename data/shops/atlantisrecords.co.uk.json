@@ -3,5 +3,6 @@
   "name": "Atlantis Records",
   "city": "London",
   "osm": "way/399281246",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

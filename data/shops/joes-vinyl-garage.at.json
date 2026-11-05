@@ -2,5 +2,6 @@
   "url": "https://joes-vinyl-garage.at",
   "name": "Joe's Vinyl Garage",
   "osm": "node/13752857702",
-  "source": "osm"
+  "source": "osm",
+  "country": "AT"
 }

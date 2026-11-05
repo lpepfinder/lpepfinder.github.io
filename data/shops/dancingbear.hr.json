@@ -3,5 +3,6 @@
   "name": "Dancing Bear",
   "city": "Zagreb",
   "osm": "node/8354659145",
-  "source": "osm"
+  "source": "osm",
+  "country": "HR"
 }

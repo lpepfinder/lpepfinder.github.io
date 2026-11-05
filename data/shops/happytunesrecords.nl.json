@@ -3,5 +3,6 @@
   "name": "Happy Tunes Records",
   "city": "Gorinchem",
   "osm": "node/2791448691",
-  "source": "osm"
+  "source": "osm",
+  "country": "NL"
 }

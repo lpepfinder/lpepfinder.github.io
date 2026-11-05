@@ -2,5 +2,6 @@
   "url": "https://recordsale.de",
   "name": "recordsale.de",
   "osm": "node/13734245465",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

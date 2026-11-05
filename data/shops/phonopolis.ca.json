@@ -2,5 +2,6 @@
   "url": "https://phonopolis.ca",
   "name": "Phonopolis",
   "osm": "node/2434008344",
-  "source": "osm"
+  "source": "osm",
+  "country": "CA"
 }

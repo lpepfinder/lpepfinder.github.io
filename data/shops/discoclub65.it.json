@@ -2,5 +2,6 @@
   "url": "http://www.discoclub65.it",
   "name": "Disco Club",
   "osm": "node/4589224909",
-  "source": "osm"
+  "source": "osm",
+  "country": "IT"
 }

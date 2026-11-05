@@ -2,5 +2,6 @@
   "url": "https://www.bigstarrecords.fr",
   "name": "Big Star Records",
   "osm": "node/7072977041",
-  "source": "osm"
+  "source": "osm",
+  "country": "FR"
 }

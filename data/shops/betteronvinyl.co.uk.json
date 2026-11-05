@@ -2,5 +2,6 @@
   "url": "https://www.betteronvinyl.co.uk",
   "name": "Better on Vinyl",
   "osm": "node/8041950689",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

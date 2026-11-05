@@ -2,5 +2,6 @@
   "url": "https://derplattenladen-freiburg.de",
   "name": "Der Plattenladen",
   "osm": "node/1013389722",
-  "source": "osm"
+  "source": "osm",
+  "country": "DE"
 }

@@ -2,5 +2,6 @@
   "url": "https://www.musikversorgung.at",
   "name": "Musikversorgung Steiner",
   "osm": "node/14016768801",
-  "source": "osm"
+  "source": "osm",
+  "country": "AT"
 }

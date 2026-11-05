@@ -2,5 +2,6 @@
   "url": "http://mcrblogs.co.uk",
   "name": "Planet rock records",
   "osm": "node/5371180721",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }

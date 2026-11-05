@@ -2,5 +2,6 @@
   "url": "https://digvinyl.co.uk",
   "name": "Dig Vinyl",
   "osm": "node/4515387444",
-  "source": "osm"
+  "source": "osm",
+  "country": "GB"
 }
