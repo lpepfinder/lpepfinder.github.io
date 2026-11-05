@@ -1,6 +1,7 @@
 ---
 import config from '../../data/config.json';
 import { t, languages, defaultLanguage, localPath, clientStrings } from '../lib/i18n.js';
+import Ads from '../components/Ads.astro';
 import '../styles/global.css';
 
 /**
@@ -41,7 +42,7 @@ const strings = JSON.stringify(clientStrings(lang)).replace(/</g, '\\u003c');
   <meta name="google-site-verification" content={config.googleSiteVerification}>
   <link rel="icon" href="/favicon.png">
   <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title={config.name}>
-  <script is:inline async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${config.ads.adsenseClient}`} crossorigin="anonymous"></script>
+  <Ads />
   <script is:inline defer src={config.analytics.umamiScript} data-website-id={config.analytics.umamiWebsiteId}></script>
   <script is:inline type="application/json" data-i18n set:html={strings}></script>
   {ld.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data).replace(/</g, '\\u003c')}></script>)}
