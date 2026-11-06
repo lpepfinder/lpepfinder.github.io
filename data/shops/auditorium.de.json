@@ -2,5 +2,7 @@
   "url": "https://www.auditorium.de",
   "name": "Auditorium Münster",
   "country": "DE",
-  "source": "rsd"
+  "source": "rsd",
+  "disabled": true,
+  "note": "Not a record shop (furniture, instruments or hi-fi); found by the quality gate, 2026-11-06."
 }

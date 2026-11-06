@@ -3,5 +3,7 @@
   "country": "US",
   "address": "3003 Babcock Boulevard Pittsburgh",
   "discogs": "https://www.discogs.com/record-stores/store/musictomyear1/",
-  "source": "discogs"
+  "source": "discogs",
+  "disabled": true,
+  "note": "Not a record shop (furniture, instruments or hi-fi); found by the quality gate, 2026-11-06."
 }

@@ -3,5 +3,7 @@
   "country": "US",
   "address": "1044 Water Street Port Townsend",
   "discogs": "https://www.discogs.com/record-stores/store/quimpersoundrecords/",
-  "source": "discogs"
+  "source": "discogs",
+  "disabled": true,
+  "note": "Not a record shop (furniture, instruments or hi-fi); found by the quality gate, 2026-11-06."
 }
