@@ -1,8 +1,9 @@
-/* <vf-filters>: toggles and format chips above the results; checked chips keep their visible check mark. */
-vf-filters { display: grid; gap: var(--space-2); }
-vf-results:not([status="done"]) > :is(vf-filters, vf-note) { display: none; }
+/* <vf-filters> in the filters sheet (sheet.css): sections of toggles and format chips; checked chips keep their check mark.
+   The Filters buttons: in the results bar (tablets, desktop), a floating pill on phones; none beside the docked rail. */
+vf-filters { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); gap: var(--space-4) var(--space-6); padding-block: var(--space-4); align-content: start; }
+vf-results:not([status="done"]) vf-note { display: none; }
 vf-filters fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; }
-vf-filters legend { float: inline-start; margin-inline-end: var(--space-1); color: var(--c-muted); font-size: var(--size-s); }
+vf-filters legend { inline-size: 100%; margin-block-end: var(--space-2); padding: 0; color: var(--c-muted); font-size: var(--size-s); font-weight: var(--weight-semi); }
 vf-filters :is(fieldset, label)[hidden], vf-note[hidden] { display: none; }
 vf-filters label {
   display: inline-flex; align-items: center; gap: var(--space-2);
@@ -14,20 +15,40 @@ vf-filters label:has(:checked) { background: var(--c-chip-on); color: var(--c-ch
 vf-filters label:has(:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 vf-filters input { inline-size: var(--icon-size); block-size: var(--icon-size); margin: 0; accent-color: var(--c-accent); }
 vf-filters data { color: inherit; font-size: var(--size-xs); }
-vf-results-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-1) var(--space-2); align-items: center; }
-vf-results-bar > :is(h2, p) { grid-column: 1 / -1; }
-vf-results-bar > button { background: var(--c-chip); color: var(--c-fg); font-size: var(--size-s); }
-vf-results-bar p { margin: 0; color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
+/* the currency menu: its legend names it */
+vf-filters vf-currency { inline-size: 100%; }
+vf-filters vf-currency label { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+vf-filters vf-currency select { flex: 1 1 auto; }
+
+/* the docked rail (from 90rem): one column, sticky */
+vf-sheet[name="filters"][docked] vf-filters { grid-template-columns: minmax(0, 1fr); padding-block: var(--space-2); }
+vf-sheet[name="filters"][docked] > dialog > :is(header, footer) { padding-inline: 0; border: 0; }
+vf-sheet[name="filters"][docked] > dialog > :not(header, footer) { padding-inline: 0; }
+vf-sheet[name="filters"][docked] footer > button[value="close"] { display: none; }
+
+vf-results-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-1) var(--space-3); align-items: center; }
+vf-results-bar > h2 { grid-column: 1; }
+vf-results-bar > p { grid-column: 1; margin: 0; color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
+vf-results-bar > button { grid-column: 2; grid-row: 1 / span 2; font-size: var(--size-s); }
 vf-results-bar p:empty { display: none; }
 vf-note p { margin: 0; color: var(--c-muted); }
 /* the live status is for screen readers once results show: the count line or the empty heading says the same */
 vf-results:is([status="done"], [status="empty"]) > output { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-/* phones: one scrolling row per group of toggles */
+/* phones: the Filters pill floats in the thumb zone, above the tab bar */
+vf-results-actions { position: fixed; inset-inline: 0; inset-block-end: calc(var(--tabbar-h) + var(--space-3) + env(safe-area-inset-bottom)); z-index: var(--layer-header); display: flex; justify-content: center; pointer-events: none; transition: translate var(--duration) var(--ease); }
+vf-results-actions > button { pointer-events: auto; border-radius: var(--radius-pill); box-shadow: var(--shadow-float); }
+vf-results:not([status="done"]) > vf-results-actions { display: none; }
 @media (max-width: 40rem) {
-  vf-filters fieldset { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; padding-block: var(--focus-offset); padding-inline: var(--space-1); }
-  vf-filters legend { flex: none; }
-  vf-filters label { flex: none; }
+  vf-results-bar > button { display: none; }
+  /* room under the last row for the pill */
+  vf-split > section { padding-block-end: calc(var(--tap) + var(--space-6)); }
+}
+@media (min-width: 40rem) {
+  vf-results-actions { display: none; }
+}
+@media (min-width: 90rem) {
+  vf-results-bar > button[name="filters"] { display: none; }
 }
 
 @media (forced-colors: active) {

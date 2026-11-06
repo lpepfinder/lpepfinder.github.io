@@ -32,10 +32,10 @@ const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
   {formats.length > 0 && (
     <section>
       <h2>{t(lang, 'newByFormat')}</h2>
-      <ul>
+      <vf-chips><ul>
         <li><a href="/new/" aria-current={scope.key === 'new' ? 'page' : undefined}>{t(lang, 'newAllFormats')}</a></li>
         {formats.map((f) => <li><a href={`/new/format/${f}/`} aria-current={scope.format === f ? 'page' : undefined}>{t(lang, `formats.${f}`)}</a></li>)}
-      </ul>
+      </ul></vf-chips>
     </section>
   )}
   {scope.records.length > 0 && <RecordList lang={lang} records={scope.records} labelledby="new-title" />}
@@ -44,9 +44,9 @@ const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
   {n.countryCodes.length > 0 && (
     <section>
       <h2>{t(lang, 'newByCountry')}</h2>
-      <ul>{n.countryCodes.map((cc) => (
+      <vf-chips><ul>{n.countryCodes.map((cc) => (
         <li><a href={`/new/${cc.toLowerCase()}/`} aria-current={scope.country === cc ? 'page' : undefined}>{countryName(lang, cc)} ({number(lang, n.countries[cc].count)})</a></li>
-      ))}</ul>
+      ))}</ul></vf-chips>
     </section>
   )}
 </Base>

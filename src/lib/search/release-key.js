@@ -22,7 +22,7 @@ export function releaseWords(title) {
 }
 
 /** FNV-1a, 48 bits, as 12 hex characters. */
-function hash48(s) {
+export function hash48(s) {
   let h = 0xcbf29ce484222325n;
   for (const c of new TextEncoder().encode(s)) h = BigInt.asUintN(64, (h ^ BigInt(c)) * 0x100000001b3n);
   return (h & 0xffffffffffffn).toString(16).padStart(12, '0');

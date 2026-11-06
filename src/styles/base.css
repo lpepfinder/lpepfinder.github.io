@@ -15,7 +15,14 @@ body > a[href="#main"] { position: absolute; inset-inline-start: var(--space-2);
 body > a[href="#main"]:focus { translate: none; }
 main:focus { outline: none; }
 
+/* buttons: primary (accent: the search action only), kind="strong" (neutral fill: a sheet's main action), kind="secondary" (surface, outline), kind="text" (a quiet word) */
 button { font: inherit; font-weight: var(--weight-semi); min-block-size: var(--tap); padding: var(--space-2) var(--space-4); border: 0; border-radius: var(--radius); background: var(--c-accent); color: var(--c-accent-fg); cursor: pointer; }
+button[kind="secondary"] { background: var(--c-surface); color: var(--c-fg); box-shadow: inset 0 0 0 var(--line) var(--c-border); }
+button[kind="secondary"]:hover { background: var(--c-hover); }
+button[kind="strong"] { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
+button[kind="text"] { background: none; color: var(--c-link); padding-inline: var(--space-2); font-weight: normal; text-decoration: underline; text-underline-offset: var(--underline-offset); }
+button[kind="text"]:hover { color: var(--c-fg); }
+@media (forced-colors: active) { button[kind] { border: var(--line) solid ButtonText; } }
 nav a, footer a, summary { display: inline-flex; align-items: center; min-block-size: var(--tap); }
 
 figure { margin: 0; overflow-x: auto; }

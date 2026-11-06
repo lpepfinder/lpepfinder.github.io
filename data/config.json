@@ -87,6 +87,7 @@
     "days": 7,
     "pageItems": 120,
     "homeItems": 6,
+    "stripItems": 16,
     "shopItems": 24,
     "feedItems": 50
   },

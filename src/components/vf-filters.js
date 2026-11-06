@@ -2,7 +2,7 @@ import { t, formatNumber, countryName } from './i18n.js';
 import { region, coversOn, setCovers } from './viewer.js';
 
 /**
- * <vf-filters>: toggles above the results, real controls of the search form (form="search"),
+ * <vf-filters>: toggles in the filters sheet, real controls of the search form (form="search"),
  * mirrored in the URL so a link shares them: stock=in, near=0 (on by default), format=lp (repeatable).
  * "Show covers" is a per-browser preference (localStorage), not part of the URL.
  * Fires "filters" when a toggle changes; `value` is { inStock, near, formats, covers }.
@@ -19,6 +19,7 @@ export class VfFilters extends HTMLElement {
     this.fromUrl();
     addEventListener('popstate', () => this.fromUrl());
     this.addEventListener('change', (e) => {
+      if (e.target.closest('vf-currency')) return;
       if (e.target === this.covers) setCovers(this.covers.checked);
       else this.toUrl();
       this.dispatchEvent(new Event('filters', { bubbles: true }));
@@ -49,6 +50,11 @@ export class VfFilters extends HTMLElement {
       covers: this.covers.checked,
       formats: new Set(this.formats.filter((f) => f.checked).map((f) => f.value)),
     };
+  }
+
+  /** How many filters differ from the defaults (the count on the Filters buttons). */
+  get active() {
+    return Number(this.stock.checked) + Number(!!region && !this.near.checked) + this.formats.filter((f) => f.checked).length;
   }
 
   /** Format chips: shown when loaded copies have the format (or it is selected), with their count. */

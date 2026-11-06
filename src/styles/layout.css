@@ -1,7 +1,10 @@
 /* Page frame: <vf-app> with header, main, footer; mode="home|results|page". */
 vf-app { display: grid; grid-template-rows: auto 1fr auto; min-block-size: 100dvh; }
 vf-app > * { min-inline-size: 0; }
-vf-app > :is(main, footer) { inline-size: 100%; max-inline-size: var(--width); margin-inline: auto; padding-inline: var(--gutter); }
+vf-app > :is(main, footer) { inline-size: 100%; max-inline-size: var(--width-wide); margin-inline: auto; padding-inline: var(--gutter); }
+/* lists use the full width, prose doesn't */
+vf-app[layout="prose"] > :is(main, footer) { max-inline-size: var(--width); }
+main > :is(p, hgroup), main > article > p, hgroup p, footer > p { max-inline-size: var(--measure); }
 
 main { display: grid; gap: var(--space-4); align-content: start; padding-block: var(--space-4) var(--space-8); }
 

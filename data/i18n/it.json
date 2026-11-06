@@ -295,7 +295,8 @@
     },
     "showing": "{shown} di {total} mostrati",
     "noMatch": "Nessun disco seguito corrisponde a «{query}».",
-    "emptyList": "Non segui ancora nessun disco. Tocca Segui su un risultato di ricerca, o importa un file di lista qui sotto."
+    "emptyList": "Non segui ancora nessun disco. Tocca Segui su un risultato di ricerca, o importa un file di lista qui sotto.",
+    "backShops": "Negozi"
   },
   "navApp": "Principale",
   "navSite": "Esplora",
@@ -342,7 +343,18 @@
     "shipsFrom": "Spedito da {country}",
     "copyLink": "Copia link",
     "shareLink": "Condividi",
-    "linkCopied": "Link copiato."
+    "linkCopied": "Link copiato.",
+    "inStockCount": {
+      "one": "1 disponibile",
+      "other": "{count} disponibili"
+    },
+    "filters": "Filtri",
+    "showLabel": "Mostra",
+    "displayLabel": "Visualizzazione",
+    "showRecords": {
+      "one": "Mostra 1 disco",
+      "other": "Mostra {count} dischi"
+    }
   },
   "statusReason": {
     "dns": "L’indirizzo web non esiste più",
@@ -371,7 +383,9 @@
   },
   "recent": {
     "title": "Ricerche recenti",
-    "clear": "Cancella le ricerche recenti"
+    "clear": "Cancella le ricerche recenti",
+    "clearShort": "Cancella",
+    "remove": "Rimuovi «{query}» dalle ricerche recenti"
   },
   "citiesNav": "Città",
   "cityUnknown": "Altri luoghi",
@@ -381,6 +395,40 @@
     "other": "{count} dischi"
   },
   "lettersNav": "Vai alla lettera",
+  "sheet": {
+    "close": "Chiudi"
+  },
+  "detail": {
+    "back": "Risultati",
+    "empty": "Scegli un disco per confrontarne le copie.",
+    "missing": "Quel disco non è più nei risultati.",
+    "price": "Prezzo",
+    "priceRange": "{low} – {high}",
+    "condition": "Condizione",
+    "conditionNew": "Nuovo",
+    "conditionUsed": "Usato",
+    "conditionMixed": "Nuovo e usato",
+    "conditionRange": "{best} – {worst}",
+    "shops": "Negozi",
+    "shopsInStock": "{shops} · {inStock}",
+    "cheapest": "Il più economico: {shop} · {price}",
+    "inStock": "Disponibile",
+    "soldOut": "Esaurito",
+    "showAll": {
+      "one": "Mostra la copia",
+      "other": "Mostra tutte le {count} copie"
+    },
+    "checked": "Prezzi controllati il {date}",
+    "shopInfo": "Informazioni su {shop}",
+    "share": "Condividi",
+    "searchArtist": "Cerca tutto di {artist}",
+    "backList": "Tutti i dischi"
+  },
+  "homeLatestTitle": "Ultimi arrivi nei negozi",
+  "homeStrip": {
+    "prev": "Dischi precedenti",
+    "next": "Altri dischi"
+  },
   "zone": {
     "eu": "Unione europea",
     "uk": "Regno Unito",

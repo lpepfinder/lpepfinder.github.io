@@ -295,7 +295,8 @@
     },
     "showing": "Showing {shown} of {total}",
     "noMatch": "No watched record matches “{query}”.",
-    "emptyList": "You're not watching any records yet. Tap Watch on a search result, or import a watchlist file below."
+    "emptyList": "You're not watching any records yet. Tap Watch on a search result, or import a watchlist file below.",
+    "backShops": "Shops"
   },
   "navApp": "Main",
   "navSite": "Explore",
@@ -342,7 +343,18 @@
     "shipsFrom": "Ships from {country}",
     "copyLink": "Copy link",
     "shareLink": "Share",
-    "linkCopied": "Link copied."
+    "linkCopied": "Link copied.",
+    "inStockCount": {
+      "one": "1 in stock",
+      "other": "{count} in stock"
+    },
+    "filters": "Filters",
+    "showLabel": "Show",
+    "displayLabel": "Display",
+    "showRecords": {
+      "one": "Show 1 record",
+      "other": "Show {count} records"
+    }
   },
   "statusReason": {
     "dns": "The web address no longer exists",
@@ -371,7 +383,9 @@
   },
   "recent": {
     "title": "Recent searches",
-    "clear": "Clear recent searches"
+    "clear": "Clear recent searches",
+    "clearShort": "Clear",
+    "remove": "Remove “{query}” from recent searches"
   },
   "citiesNav": "Cities",
   "cityUnknown": "Other places",
@@ -381,6 +395,40 @@
     "other": "{count} records"
   },
   "lettersNav": "Jump to letter",
+  "sheet": {
+    "close": "Close"
+  },
+  "detail": {
+    "back": "Results",
+    "empty": "Pick a record to compare its copies.",
+    "missing": "That record is no longer in the results.",
+    "price": "Price",
+    "priceRange": "{low} – {high}",
+    "condition": "Condition",
+    "conditionNew": "New",
+    "conditionUsed": "Used",
+    "conditionMixed": "New & used",
+    "conditionRange": "{best} – {worst}",
+    "shops": "Shops",
+    "shopsInStock": "{shops} · {inStock}",
+    "cheapest": "Cheapest: {shop} · {price}",
+    "inStock": "In stock",
+    "soldOut": "Sold out",
+    "showAll": {
+      "one": "Show the copy",
+      "other": "Show all {count} copies"
+    },
+    "checked": "Prices checked {date}",
+    "shopInfo": "About {shop}",
+    "share": "Share",
+    "searchArtist": "Search all {artist}",
+    "backList": "All records"
+  },
+  "homeLatestTitle": "Latest in the shops",
+  "homeStrip": {
+    "prev": "Previous records",
+    "next": "More records"
+  },
   "zone": {
     "eu": "European Union",
     "uk": "United Kingdom",

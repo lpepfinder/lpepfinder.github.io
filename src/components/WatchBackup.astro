@@ -8,9 +8,9 @@ const { lang } = Astro.props;
   <h2>{t(lang, 'watchPage.backupTitle')}</h2>
   <p>{t(lang, 'watchPage.backupIntro')}</p>
   <menu>
-    <li><button type="button" name="export">{t(lang, 'watchPage.export')}</button></li>
+    <li><button type="button" name="export" kind="secondary">{t(lang, 'watchPage.export')}</button></li>
     <li><label>{t(lang, 'watchPage.import')} <input type="file" name="import" accept=".json,application/json"></label></li>
-    <li><button type="button" name="share">{t(lang, 'watchPage.share')}</button></li>
+    <li><button type="button" name="share" kind="secondary">{t(lang, 'watchPage.share')}</button></li>
   </menu>
   <p hidden><label for="watch-share-url">{t(lang, 'watchPage.shareLabel')}</label> <input id="watch-share-url" type="url" readonly></p>
   <p>{t(lang, 'watchPage.shareHint')}</p>

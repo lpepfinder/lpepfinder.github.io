@@ -1,28 +1,55 @@
 /* Page content: home sections, link lists, status table values. */
 hgroup p { color: var(--c-muted); margin: var(--space-2) 0 0; }
 main > section > ol, article > ul { padding-inline-start: var(--space-6); }
-/* link lists in home sections are chips */
-main > section > ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
-main > section > ul > li > a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); color: var(--c-fg); text-decoration: none; }
-main > section > ul > li > a:is(:hover, [aria-current]) { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
+
+/* <vf-chips>: link lists that wrap as chips (home, new arrivals) */
+vf-chips > ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+/* compact (--chip-h) on a neutral surface; the hit area still reaches --tap through an invisible extension */
+vf-chips a { position: relative; display: inline-flex; align-items: center; min-block-size: var(--chip-h); padding-inline: var(--space-3); border: var(--line) solid var(--c-line); border-radius: var(--radius-pill); background: var(--c-chip-surface); color: var(--c-fg); font-size: var(--size-s); text-decoration: none; }
+vf-chips a::before { content: ""; position: absolute; inset: calc((var(--chip-h) - var(--tap)) / 2) 0; }
+vf-chips a:hover { border-color: var(--c-border); }
+vf-chips a[aria-current] { background: var(--c-chip-on); color: var(--c-chip-on-fg); border-color: var(--c-chip-on); }
+
+/* <vf-grid>: directory lists (countries, cities, shops, artists) in columns */
+vf-grid > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); gap: 0 var(--space-6); }
+vf-grid li { break-inside: avoid; }
+vf-grid li > a { display: inline-flex; align-items: center; min-block-size: var(--tap); }
 
 main > nav ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); font-size: var(--size-s); color: var(--c-muted); }
-main > nav li + li::before { content: var(--breadcrumb-separator); margin-inline-end: var(--space-2); }
+main > nav:not([sticky]) li + li::before { content: var(--breadcrumb-separator); margin-inline-end: var(--space-2); }
 main > nav a { min-block-size: var(--tap); }
 
 vf-status[value="ok"] { color: var(--c-ok); font-weight: var(--weight-semi); }
 vf-status[value="dead"], vf-status[value="moved"] { color: var(--c-bad); }
 
 @media (forced-colors: active) {
-  main > section > ul > li > a { border: var(--line) solid CanvasText; }
+  vf-chips a { border: var(--line) solid CanvasText; }
 }
 
-/* country page: shops grouped by city; artists grouped by letter */
-main > nav ul { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); }
-main > nav a { display: inline-flex; align-items: center; min-block-size: var(--tap); }
-main > section > h2 data { color: var(--c-muted); font-size: var(--size-s); font-weight: normal; }
+/* jump bars (cities, letters): chips; sticky under the header; one scrolling row on phones */
+main > nav[sticky] ul { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-2); }
+main > nav[sticky] a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); color: var(--c-fg); text-decoration: none; font-size: var(--size-s); }
+main > nav[sticky="always"] { position: sticky; inset-block-start: var(--header-h); z-index: 1; background: var(--c-bg); padding-block: var(--space-1); }
+@media (max-width: 40rem) {
+  main > nav[sticky] { position: sticky; inset-block-start: var(--header-h); z-index: 1; background: var(--c-bg); padding-block: var(--space-1); }
+  main > nav[sticky] ul { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scroll-snap-type: x proximity; padding-block: var(--focus-offset); }
+  main > nav[sticky] li { flex: none; scroll-snap-align: start; }
+}
+
+/* columns that read down: cities (cards of shops) on the country page, artists of a letter */
+vf-grid[flow="columns"] { display: block; columns: var(--grid-min); column-gap: var(--space-6); }
+vf-grid[flow="columns"] > ul { display: block; columns: var(--grid-min); column-gap: var(--space-6); }
+vf-grid[flow="columns"] > section { padding-block-end: var(--space-4); }
+vf-grid[flow="columns"] > section > h2 { break-after: avoid; }
+vf-grid[flow="columns"] > section > h2 { margin-block-start: 0; font-size: var(--size-1); }
+vf-grid[flow="columns"] > section > ul { list-style: none; margin: 0; padding: 0; }
+:is(vf-grid, main > section) h2 data, vf-grid li > data { color: var(--c-muted); font-size: var(--size-s); font-weight: normal; }
+vf-grid li > data::before { content: var(--count-separator); }
 main > section > ul { list-style: none; margin: 0; padding: 0; display: grid; }
-vf-shop-card { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0 var(--space-3); min-block-size: var(--tap); border-block-end: var(--line) solid var(--c-line); }
+
+/* a shop: name, then its count right after it (not at the far edge) */
+vf-shop-card { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); min-block-size: var(--tap); border-block-end: var(--line) solid var(--c-line); }
 vf-shop-card a { font-weight: var(--weight-semi); }
 vf-shop-card span { color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
+vf-shop-card span::before { content: var(--count-separator); }
 vf-shop-card[searchable="false"] a { font-weight: normal; }

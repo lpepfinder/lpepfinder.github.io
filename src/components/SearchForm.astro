@@ -4,7 +4,7 @@ import { t, localPath } from '../lib/i18n.js';
 /** Server-rendered GET search form, in the header of every page; <vf-search> runs the query in the browser. */
 const { lang } = Astro.props;
 ---
-<vf-search per-page="30" status="idle">
+<vf-search per-page="30" releases-per-page="24" status="idle">
   <form id="search" role="search" action={localPath(lang, '/')} method="get">
     <label for="q">{t(lang, 'searchLabel')}</label>
     <input id="q" name="q" type="search" placeholder={t(lang, 'searchPlaceholder')} autocomplete="off" spellcheck="false" enterkeyhint="search" aria-keyshortcuts="/" required>

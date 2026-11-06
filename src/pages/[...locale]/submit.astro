@@ -6,7 +6,7 @@ import { t, localeParams } from '../../lib/i18n.js';
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 ---
-<Base lang={lang} path="/submit/" title={`${t(lang, 'submitTitle')} · ${config.name}`} description={t(lang, 'submitBody')}>
+<Base layout="prose" lang={lang} path="/submit/" title={`${t(lang, 'submitTitle')} · ${config.name}`} description={t(lang, 'submitBody')}>
   <article>
     <h1>{t(lang, 'submitTitle')}</h1>
     <p>{t(lang, 'submitBody')}</p>

@@ -12,13 +12,13 @@ const letters = groupBy(catalog().artists, (a) => letterOf(a.name),
 <Base lang={lang} title={pageTitle(t(lang, 'artistsSeoTitle'))} description={t(lang, 'artistsIntro')}>
   <h1>{t(lang, 'artistsTitle')}</h1>
   <p>{t(lang, 'artistsIntro')}</p>
-  <nav aria-label={t(lang, 'lettersNav')}>
+  <nav aria-label={t(lang, 'lettersNav')} sticky="always">
     <ul>{letters.map(([l]) => <li><a href={`#letter-${l === '#' ? 'other' : l}`}>{l}</a></li>)}</ul>
   </nav>
   {letters.map(([l, artists]) => (
     <section id={`letter-${l === '#' ? 'other' : l}`}>
       <h2>{l}</h2>
-      <ul>{artists.map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a> <data value={a.records.length}>{number(lang, a.records.length)}</data></li>)}</ul>
+      <vf-grid flow="columns"><ul>{artists.map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a> <data value={a.records.length}>{number(lang, a.records.length)}</data></li>)}</ul></vf-grid>
     </section>
   ))}
 </Base>

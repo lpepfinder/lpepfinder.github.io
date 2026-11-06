@@ -4,7 +4,7 @@ vf-watch-count[count="0"] { display: none; }
 
 /* toggle: same text, the star fills when watching */
 vf-watch { display: block; }
-vf-watch button, vf-toast button { display: inline-flex; align-items: center; gap: var(--space-1); background: var(--c-chip); color: var(--c-fg); font-size: var(--size-s); padding-inline: var(--space-3); }
+vf-watch button, vf-toast button { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--size-s); padding-inline: var(--space-3); }
 vf-watch[watching="true"] button { color: var(--c-watching); }
 vf-watch[watching="true"] vf-icon { --icon: var(--icon-star-on); }
 vf-result > vf-watch { grid-area: watch; position: relative; z-index: 1; justify-self: end; }

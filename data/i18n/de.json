@@ -295,7 +295,8 @@
     },
     "showing": "{shown} von {total} angezeigt",
     "noMatch": "Keine gemerkte Platte passt zu „{query}“.",
-    "emptyList": "Sie merken sich noch keine Platten. Tippen Sie bei einem Suchergebnis auf Merken oder importieren Sie unten eine Merklisten-Datei."
+    "emptyList": "Sie merken sich noch keine Platten. Tippen Sie bei einem Suchergebnis auf Merken oder importieren Sie unten eine Merklisten-Datei.",
+    "backShops": "Läden"
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",
@@ -342,7 +343,18 @@
     "shipsFrom": "Versand aus {country}",
     "copyLink": "Link kopieren",
     "shareLink": "Teilen",
-    "linkCopied": "Link kopiert."
+    "linkCopied": "Link kopiert.",
+    "inStockCount": {
+      "one": "1 auf Lager",
+      "other": "{count} auf Lager"
+    },
+    "filters": "Filter",
+    "showLabel": "Anzeigen",
+    "displayLabel": "Darstellung",
+    "showRecords": {
+      "one": "1 Platte zeigen",
+      "other": "{count} Platten zeigen"
+    }
   },
   "statusReason": {
     "dns": "Die Webadresse gibt es nicht mehr",
@@ -371,7 +383,9 @@
   },
   "recent": {
     "title": "Letzte Suchen",
-    "clear": "Letzte Suchen löschen"
+    "clear": "Letzte Suchen löschen",
+    "clearShort": "Löschen",
+    "remove": "„{query}“ aus den letzten Suchen entfernen"
   },
   "citiesNav": "Städte",
   "cityUnknown": "Weitere Orte",
@@ -381,6 +395,40 @@
     "other": "{count} Platten"
   },
   "lettersNav": "Zum Buchstaben",
+  "sheet": {
+    "close": "Schließen"
+  },
+  "detail": {
+    "back": "Ergebnisse",
+    "empty": "Wähle eine Platte, um ihre Exemplare zu vergleichen.",
+    "missing": "Diese Platte ist nicht mehr in den Ergebnissen.",
+    "price": "Preis",
+    "priceRange": "{low} – {high}",
+    "condition": "Zustand",
+    "conditionNew": "Neu",
+    "conditionUsed": "Gebraucht",
+    "conditionMixed": "Neu und gebraucht",
+    "conditionRange": "{best} – {worst}",
+    "shops": "Läden",
+    "shopsInStock": "{shops} · {inStock}",
+    "cheapest": "Am günstigsten: {shop} · {price}",
+    "inStock": "Auf Lager",
+    "soldOut": "Ausverkauft",
+    "showAll": {
+      "one": "Das Exemplar zeigen",
+      "other": "Alle {count} Exemplare zeigen"
+    },
+    "checked": "Preise geprüft am {date}",
+    "shopInfo": "Über {shop}",
+    "share": "Teilen",
+    "searchArtist": "Alles von {artist} suchen",
+    "backList": "Alle Platten"
+  },
+  "homeLatestTitle": "Neu in den Läden",
+  "homeStrip": {
+    "prev": "Vorherige Platten",
+    "next": "Weitere Platten"
+  },
   "zone": {
     "eu": "Europäische Union",
     "uk": "Vereinigtes Königreich",

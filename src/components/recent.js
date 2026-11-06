@@ -14,3 +14,4 @@ function save(list) {
 
 export const addRecent = (q) => save([q, ...recent().filter((x) => x.toLowerCase() !== q.toLowerCase())].slice(0, MAX));
 export const clearRecent = () => save([]);
+export const removeRecent = (q) => save(recent().filter((x) => x !== q));

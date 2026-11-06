@@ -1,0 +1,27 @@
+---
+import { localPath, countryName, number, tn } from '../lib/i18n.js';
+
+/**
+ * Country tiles (flag, name, shop count) of the home page, in a grid. All countries are listed;
+ * the first `shown` are visible, and vf-countries.js moves the viewer's own country first (local="true").
+ */
+const { lang, countries, shown = 12 } = Astro.props;
+const flag = (cc) => String.fromCodePoint(...[...cc.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65));
+---
+<vf-countries shown={shown}>
+  <ul>
+    {countries.map((c, i) => (
+      <li hidden={i >= shown}><vf-country-tile code={c.code} local="false">
+        <a href={localPath(lang, `/shops/${c.code.toLowerCase()}/`)}>
+          <span aria-hidden="true">{flag(c.code)}</span>
+          <vf-name>{countryName(lang, c.code)}</vf-name>
+          <data value={c.shops.length}>{tn(lang, 'results.shops', c.shops.length)}</data>
+        </a>
+      </vf-country-tile>
+      </li>
+    ))}
+  </ul>
+</vf-countries>
+<script>
+  import './vf-countries.js';
+</script>

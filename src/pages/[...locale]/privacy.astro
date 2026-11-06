@@ -6,7 +6,7 @@ import { t, localeParams } from '../../lib/i18n.js';
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 ---
-<Base lang={lang} path="/privacy/" title={`${t(lang, 'privacyTitle')} · ${config.name}`} description={t(lang, 'privacyBody')[0]}>
+<Base layout="prose" lang={lang} path="/privacy/" title={`${t(lang, 'privacyTitle')} · ${config.name}`} description={t(lang, 'privacyBody')[0]}>
   <article>
     <h1>{t(lang, 'privacyTitle')}</h1>
     {t(lang, 'privacyBody').map((p) => <p>{p}</p>)}

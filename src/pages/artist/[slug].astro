@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import RecordTable from '../../components/RecordTable.astro';
+import ReleaseList from '../../components/ReleaseList.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { t, defaultLanguage as lang, number, price } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
@@ -48,8 +48,8 @@ const ld = [{
 ---
 <Base lang={lang} title={pageTitle(title)} description={t(lang, cheapest ? 'artistDescription' : 'artistDescriptionNoPrice', vars)} ld={ld}>
   <Breadcrumbs lang={lang} items={crumbs} />
-  <h1>{t(lang, 'artistTitle', vars)}</h1>
+  <h1 id="artist-title">{t(lang, 'artistTitle', vars)}</h1>
   <p>{t(lang, 'artistIntro', vars)}</p>
   <p><a href={`/?q=${encodeURIComponent(artist.name)}`}>{t(lang, 'artistSearchAll', vars)}</a></p>
-  <RecordTable lang={lang} records={artist.records} shopsById={c.shopsById} />
+  <ReleaseList lang={lang} records={artist.records} shopsById={c.shopsById} labelledby="artist-title" checked={c.builtAt} />
 </Base>

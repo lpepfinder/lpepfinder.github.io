@@ -5,9 +5,13 @@
 @import "./header.css";
 @import "./search.css";
 @import "./results.css";
+@import "./split.css";
 @import "./filters.css";
 @import "./release.css";
+@import "./detail.css";
 @import "./currency.css";
+@import "./sheet.css";
 @import "./pages.css";
+@import "./home.css";
 @import "./watch.css";
 @import "./watch-page.css";
