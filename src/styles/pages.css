@@ -120,3 +120,11 @@ vf-shortcuts ul a:hover span { text-decoration: underline; }
 kbd { display: inline-block; min-inline-size: 1.6em; padding: 0 var(--space-1); border: var(--line) solid var(--c-border); border-block-end-width: 2px; border-radius: var(--radius); background: var(--c-bg); font: inherit; font-size: var(--size-s); text-align: center; }
 /* touch screens have no keyboard shortcuts to show */
 @media (pointer: coarse) { vf-shortcuts { display: none; } }
+
+/* a shop on Bluesky: the butterfly in Bluesky blue; "verified" when the shop's domain is its handle */
+vf-icon[name="bluesky"] { color: var(--c-bluesky); }
+vf-shop-card vf-icon[name="bluesky"] { --icon-size: 1em; margin-inline-start: var(--space-1); vertical-align: -0.1em; }
+vf-bluesky { display: block; color: var(--c-muted); font-size: var(--size-s); }
+vf-bluesky[verified="true"] { color: var(--c-ok); }
+vf-bluesky[verified="true"]::before { content: "✓ "; }
+article > menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }

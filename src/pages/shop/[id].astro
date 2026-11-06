@@ -31,8 +31,9 @@ const crumbs = [
   ...(shop.country ? [{ name: country, href: `/shops/${shop.country.toLowerCase()}/` }] : []),
   { name: shop.name, href: `/shop/${shop.id}/` },
 ];
+const bluesky = shop.bluesky && `https://bsky.app/profile/${shop.bluesky.handle}`;
 const ld = [{
-  '@context': 'https://schema.org', '@type': 'RecordStore', '@id': `${pageUrl}#store`, name: shop.name, url: shop.url, sameAs: [shop.url],
+  '@context': 'https://schema.org', '@type': 'RecordStore', '@id': `${pageUrl}#store`, name: shop.name, url: shop.url, sameAs: [shop.url, bluesky].filter(Boolean),
   address: shop.country ? { '@type': 'PostalAddress', addressCountry: shop.country, addressLocality: shop.city || undefined } : undefined,
 }, breadcrumbLd(crumbs, Astro.site)];
 ---
@@ -45,7 +46,11 @@ const ld = [{
       {place && ' · '}
       {shop.records ? tn(lang, 'shopRecords', shop.records) : t(lang, 'shopListedOnly')}
     </p>
-    <p><a href={shop.url} rel="noopener" kind="strong"><span>{t(lang, 'shopVisit')}: {new URL(shop.url).host}</span><vf-icon name="external"></vf-icon></a></p>
+    <menu>
+      <li><a href={shop.url} rel="noopener" kind="strong"><span>{t(lang, 'shopVisit')}: {new URL(shop.url).host}</span><vf-icon name="external"></vf-icon></a></li>
+      {bluesky && <li><a href={bluesky} rel="me noopener" kind="secondary"><vf-icon name="bluesky"></vf-icon><span>@{shop.bluesky.handle}</span></a></li>}
+    </menu>
+    {bluesky && <vf-bluesky verified={String(!!shop.bluesky.verified)}>{t(lang, shop.bluesky.verified ? 'shopBlueskyVerified' : 'shopBlueskyLinked', { domain: new URL(shop.url).hostname.replace(/^www\./, '') })}</vf-bluesky>}
     {fresh.count > 0 && (
       <section>
         <h2 id="shop-new">{t(lang, 'shopNewTitle', { count: number(lang, fresh.count) })}</h2>

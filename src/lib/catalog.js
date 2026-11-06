@@ -29,6 +29,8 @@ export function catalog() {
       records: stats.records,
       lastmod: stats.lastmod || null,
       latest: stats.latest,
+      // { handle, did, verified } from the daily check, else as set in data/shops (scripts/check/bluesky.js)
+      bluesky: st.bluesky || s.bluesky || null,
     };
   });
   const unchecked = !Object.keys(state).length;

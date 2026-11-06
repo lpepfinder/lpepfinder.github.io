@@ -543,5 +543,8 @@
     "close": "パネルやダイアログを閉じる",
     "help": "このショートカット一覧",
     "goTitle": "移動"
-  }
+  },
+  "shopBlueskyVerified": "確認済み：ショップのドメイン {domain} が Bluesky のハンドルです。",
+  "shopBlueskyLinked": "ショップのサイトからリンクされています。",
+  "shopOnBluesky": "Bluesky"
 }

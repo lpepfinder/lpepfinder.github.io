@@ -573,5 +573,8 @@
     "close": "Fermer un panneau ou une fenêtre",
     "help": "Ces raccourcis",
     "goTitle": "Aller à"
-  }
+  },
+  "shopBlueskyVerified": "Vérifié : le domaine de la boutique, {domain}, est son identifiant Bluesky.",
+  "shopBlueskyLinked": "Lien depuis le site de la boutique.",
+  "shopOnBluesky": "Sur Bluesky"
 }

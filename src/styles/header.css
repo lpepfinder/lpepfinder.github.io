@@ -84,6 +84,7 @@ vf-icon[name="chevron-down"] { --icon: var(--icon-chevron-down); }
 vf-icon[name="home"] { --icon: var(--icon-home); }
 vf-icon[name="expand"] { --icon: var(--icon-expand); }
 vf-icon[name="book"] { --icon: var(--icon-book); }
+vf-icon[name="bluesky"] { --icon: var(--icon-bluesky); }
 [dir="rtl"] vf-icon:is([name="prev"], [name="next"]) { scale: -1 1; }
 
 /* phones with results: one compact row (the logo's name stays its accessible name), tucked away while reading down */

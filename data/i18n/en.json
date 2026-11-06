@@ -573,5 +573,8 @@
     "close": "Close a panel or dialog",
     "help": "These shortcuts",
     "goTitle": "Go to"
-  }
+  },
+  "shopBlueskyVerified": "Verified: the shop's own domain {domain} is its Bluesky handle.",
+  "shopBlueskyLinked": "Linked from the shop's website.",
+  "shopOnBluesky": "On Bluesky"
 }

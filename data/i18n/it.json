@@ -573,5 +573,8 @@
     "close": "Chiudi un pannello o una finestra",
     "help": "Queste scorciatoie",
     "goTitle": "Vai a"
-  }
+  },
+  "shopBlueskyVerified": "Verificato: il dominio del negozio, {domain}, è il suo handle Bluesky.",
+  "shopBlueskyLinked": "Collegato dal sito del negozio.",
+  "shopOnBluesky": "Su Bluesky"
 }

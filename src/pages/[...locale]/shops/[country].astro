@@ -50,7 +50,7 @@ const ld = [{
         {shops.map((s) => (
           <li>
             <vf-shop-card searchable={s.records > 0 ? 'true' : 'false'}>
-              <a href={`/shop/${s.id}/`}>{s.name}</a>
+              <a href={`/shop/${s.id}/`}>{s.name}{s.bluesky && <vf-icon name="bluesky" role="img" aria-label={t(lang, 'shopOnBluesky')} verified={String(!!s.bluesky.verified)}></vf-icon>}</a>
               <span>{s.records > 0 ? tn(lang, 'shopRecordsShort', s.records) : t(lang, 'shopListedShort')}</span>
             </vf-shop-card>
           </li>

@@ -22,3 +22,12 @@ Once a day, slowly (one request at a time, pauses between pages), our crawler `L
 
 - **Wrong name, country or city?** Open an [issue](https://github.com/lpepfinder/lpepfinder.github.io/issues), or edit `data/shops/<your-domain>.json` in a pull request.
 - **Opt out**: block `LPEPFinderBot` in your `robots.txt`, or ask in an issue: the shop is removed at the next daily update.
+
+## Bluesky
+
+Shop pages link the shop's [Bluesky](https://bsky.app) account, found in the daily check:
+
+- **Verified ✓** when the shop's own domain is its handle (`@hardwax.com`): only the domain's owner can set that up, so the account is provably the shop's. To get it, set your website's domain as your handle in Bluesky's settings (Account → Handle → "I have my own domain").
+- **Linked** when the shop's homepage links a profile (`bsky.app/profile/…`): shown as the shop's claim.
+
+A domain handle is also how a shop could one day edit its own listing here, without an account on our side.
