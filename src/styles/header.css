@@ -38,6 +38,7 @@ vf-icon[name="menu"] { --icon: var(--icon-menu); }
 vf-icon[name="search"] { --icon: var(--icon-search); }
 vf-icon[name="star"] { --icon: var(--icon-star); }
 vf-icon[name="record"] { --icon: var(--icon-record); }
+vf-icon[name="close"] { --icon: var(--icon-close); }
 
 @media (min-width: 48rem) {
   header { grid-template-columns: auto minmax(0, 36rem) 1fr auto; grid-template-areas: "logo search . tabs"; padding-block: var(--space-2); }

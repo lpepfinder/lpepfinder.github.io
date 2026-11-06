@@ -380,5 +380,8 @@
     "one": "1 disque",
     "other": "{count} disques"
   },
-  "lettersNav": "Aller à la lettre"
+  "lettersNav": "Aller à la lettre",
+  "sheet": {
+    "close": "Fermer"
+  }
 }

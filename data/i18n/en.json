@@ -380,5 +380,8 @@
     "one": "1 record",
     "other": "{count} records"
   },
-  "lettersNav": "Jump to letter"
+  "lettersNav": "Jump to letter",
+  "sheet": {
+    "close": "Close"
+  }
 }

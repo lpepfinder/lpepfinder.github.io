@@ -359,5 +359,8 @@
   "shopRecordsShort": {
     "other": "{count} 枚"
   },
-  "lettersNav": "頭文字へ移動"
+  "lettersNav": "頭文字へ移動",
+  "sheet": {
+    "close": "閉じる"
+  }
 }

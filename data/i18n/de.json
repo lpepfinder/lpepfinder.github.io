@@ -380,5 +380,8 @@
     "one": "1 Platte",
     "other": "{count} Platten"
   },
-  "lettersNav": "Zum Buchstaben"
+  "lettersNav": "Zum Buchstaben",
+  "sheet": {
+    "close": "Schließen"
+  }
 }

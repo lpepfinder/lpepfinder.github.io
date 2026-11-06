@@ -380,5 +380,8 @@
     "one": "1 disco",
     "other": "{count} discos"
   },
-  "lettersNav": "Ir a la letra"
+  "lettersNav": "Ir a la letra",
+  "sheet": {
+    "close": "Cerrar"
+  }
 }
