@@ -18,6 +18,12 @@ export function trackPrice(row, price, currency, day, days) {
   trimPriceLog(row, day, days);
 }
 
+/** Forget the price of a row: today's price was found wrong (scripts/quality), so the old one is not trusted either. */
+export function clearPrice(row) {
+  Object.assign(row, { price: null, lowPrice90: null });
+  delete row.priceLog;
+}
+
 /** Drop prices that ended before the window; the entry in effect at its start stays. */
 export function trimPriceLog(row, day, days) {
   if (!row.priceLog) { row.lowPrice90 = row.price; return; }

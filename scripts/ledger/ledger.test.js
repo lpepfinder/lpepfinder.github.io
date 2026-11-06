@@ -71,6 +71,17 @@ test('lowPrice90 forgets prices older than 90 days', () => {
   assert.equal(row.priceLog, undefined);
 });
 
+test('a price the quality gate removed is forgotten, and the next good price starts afresh', () => {
+  const ledger = settled([offer('a.com', '/r1', { price: 1900, currency: 'JPY' })]);
+  const events = run(ledger, [offer('a.com', '/r1', { price: null, currency: 'JPY', priceFlag: 'shop-price-low' })], '2026-11-03');
+  assert.deepEqual(events, []);
+  const row = ledger.rows.get(offerKey('a.com', '/r1'));
+  assert.deepEqual([row.price, row.lowPrice90, row.priceLog], [null, null, undefined]);
+  // the shop now labels its prices right: no price drop, no old low price
+  assert.deepEqual(run(ledger, [offer('a.com', '/r1', { price: 1700, currency: 'USD' })], '2026-11-04'), []);
+  assert.deepEqual([row.price, row.currency, row.lowPrice90], [1700, 'USD', 1700]);
+});
+
 test('gone rows are dropped from the ledger a year after they were last seen', () => {
   const ledger = settled([offer('a.com', '/r1'), offer('a.com', '/r2')]);
   run(ledger, [offer('a.com', '/r1')], '2026-11-03');
