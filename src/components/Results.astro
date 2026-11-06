@@ -21,11 +21,11 @@ const shops = localPath(lang, '/shops/');
   <vf-results-bar>
     <h2 id="results-title" tabindex="-1"></h2>
     <p></p>
-    <button type="button" name="filters" kind="secondary">{t(lang, 'results.filters')}</button>
+    <button type="button" name="filters" kind="secondary"><vf-icon name="filter"></vf-icon><span>{t(lang, 'results.filters')}</span></button>
   </vf-results-bar>
   <ol aria-labelledby="results-title"></ol>
   <vf-note reason="filtered" hidden><p>{t(lang, 'results.noneFiltered')}</p></vf-note>
-  <button type="button" name="more" kind="secondary" hidden>{t(lang, 'loadMore')}</button>
+  <button type="button" name="more" kind="secondary" hidden><vf-icon name="chevron-down"></vf-icon><span>{t(lang, 'loadMore')}</span></button>
   <AdSlot lang={lang} place="results" template />
   </section>
   <Sheet lang={lang} name="release" mode="adaptive" dock="(min-width: 64rem)" labelledby="detail-title" back={t(lang, 'detail.back')}>
@@ -33,7 +33,7 @@ const shops = localPath(lang, '/shops/');
     <AdSlot lang={lang} place="detail" />
   </Sheet>
   </vf-split>
-  <vf-results-actions><button type="button" name="filters" kind="strong">{t(lang, 'results.filters')}</button></vf-results-actions>
+  <vf-results-actions><button type="button" name="filters" kind="strong"><vf-icon name="filter"></vf-icon><span>{t(lang, 'results.filters')}</span></button></vf-results-actions>
   <output aria-live="polite" aria-atomic="true"></output>
   <vf-empty reason="no-match">
     <h2 tabindex="-1"></h2>

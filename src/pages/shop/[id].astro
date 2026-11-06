@@ -52,7 +52,7 @@ const ld = [{
         <RecordList lang={lang} records={fresh.records} labelledby="shop-new" showShop={false} />
       </section>
     )}
-    {feed && <p><a href={feed.href} type="application/atom+xml">{t(lang, 'newFeed')}</a></p>}
+    {feed && <p><a href={feed.href} type="application/atom+xml"><vf-icon name="rss"></vf-icon>{t(lang, 'newFeed')}</a></p>}
     {shop.latest.length > 0 && <h2 id="shop-latest">{t(lang, 'shopLatest')}</h2>}
     {shop.latest.length > 0 && <RecordList lang={lang} records={shop.latest} labelledby="shop-latest" showShop={false} />}
   </article>

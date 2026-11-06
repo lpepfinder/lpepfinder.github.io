@@ -1,10 +1,13 @@
 ---
 import { localPath, countryName, number } from '../lib/i18n.js';
 
+/** Countries as directory rows: flag, name, number of shops. */
+const flag = (cc) => String.fromCodePoint(...[...cc.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65));
+
 const { lang, countries } = Astro.props;
 ---
 <vf-grid><ul>
   {countries.map((c) => (
-    <li><a href={localPath(lang, `/shops/${c.code.toLowerCase()}/`)}>{countryName(lang, c.code)}</a> <data value={c.shops.length}>{number(lang, c.shops.length)}</data></li>
+    <li><a href={localPath(lang, `/shops/${c.code.toLowerCase()}/`)}><span aria-hidden="true">{flag(c.code)}</span> {countryName(lang, c.code)}</a> <data value={c.shops.length}>{number(lang, c.shops.length)}</data></li>
   ))}
 </ul></vf-grid>

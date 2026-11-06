@@ -67,7 +67,7 @@ const ld = [{
   {c.artists.length > 0 && (
     <section aria-labelledby="home-artists">
       <h2 id="home-artists">{t(lang, 'homeArtistsTitle')}</h2>
-      <vf-grid flow="columns" density="dense"><ul>{c.artists.slice(0, 40).map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a></li>)}</ul></vf-grid>
+      <vf-chips><ul>{c.artists.slice(0, 24).map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a></li>)}</ul></vf-chips>
       <p><a href="/artists/">{t(lang, 'homeAllArtists')}</a></p>
     </section>
   )}

@@ -49,7 +49,7 @@ const crateIcons = { mine: 'star', new: 'sparkle', restock: 'refresh', drop: 'tr
       </form>
       <ol></ol>
       <vf-dig-status aria-live="polite"></vf-dig-status>
-      <button type="button" name="more" kind="secondary" hidden>{t(lang, 'dig.more')}</button>
+      <button type="button" name="more" kind="secondary" hidden><vf-icon name="chevron-down"></vf-icon><span>{t(lang, 'dig.more')}</span></button>
     </vf-dig>
   )}
   {formats.length > 0 && (
@@ -63,7 +63,7 @@ const crateIcons = { mine: 'star', new: 'sparkle', restock: 'refresh', drop: 'tr
   )}
   {scope.records.length > 0 && <RecordList lang={lang} records={scope.records} labelledby="new-title" />}
   {scope.count > scope.records.length && <p>{t(lang, 'newShowing', { ...vars, shown: number(lang, scope.records.length) })}</p>}
-  {feed && <p><a href={feed.href} type="application/atom+xml">{feed.title}</a></p>}
+  {feed && <p><a href={feed.href} type="application/atom+xml"><vf-icon name="rss"></vf-icon>{feed.title}</a></p>}
   {n.countryCodes.length > 0 && (
     <section>
       <h2>{t(lang, 'newByCountry')}</h2>

@@ -50,6 +50,6 @@ const ld = [{
   <Breadcrumbs lang={lang} items={crumbs} />
   <h1 id="artist-title">{t(lang, 'artistTitle', vars)}</h1>
   <p>{t(lang, 'artistIntro', vars)}</p>
-  <p><a href={`/?q=${encodeURIComponent(artist.name)}`}>{t(lang, 'artistSearchAll', vars)}</a></p>
+  <p><a href={`/?q=${encodeURIComponent(artist.name)}`} kind="secondary"><vf-icon name="search"></vf-icon>{t(lang, 'artistSearchAll', vars)}</a></p>
   <ReleaseList lang={lang} records={artist.records} shopsById={c.shopsById} labelledby="artist-title" checked={c.builtAt} />
 </Base>

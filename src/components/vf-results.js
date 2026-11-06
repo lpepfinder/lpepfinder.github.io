@@ -155,8 +155,8 @@ export class VfResults extends HTMLElement {
   labelFilters(records) {
     const active = this.filters.active;
     const [bar, pill] = this.filterButtons;
-    bar.textContent = [t('results.filters'), active && formatNumber(active)].filter(Boolean).join(' · ');
-    pill.textContent = [t('results.filters'), active && formatNumber(active), currency()].filter(Boolean).join(' · ');
+    bar.querySelector('span').textContent = [t('results.filters'), active && formatNumber(active)].filter(Boolean).join(' · ');
+    pill.querySelector('span').textContent = [t('results.filters'), active && formatNumber(active), currency()].filter(Boolean).join(' · ');
     this.showButton.textContent = tn('results.showRecords', records);
   }
 

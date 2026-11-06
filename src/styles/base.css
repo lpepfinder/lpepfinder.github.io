@@ -24,6 +24,10 @@ button[kind="text"] { background: none; color: var(--c-link); padding-inline: va
 button[kind="text"]:hover { color: var(--c-fg); }
 /* buttons and button-like links with an icon: icon then words, one gap */
 :is(button, a)[kind]:has(> vf-icon) { display: inline-flex; align-items: center; gap: var(--space-2); }
+/* a plain link led by an icon (feeds) */
+main a:not([kind]):has(> vf-icon) { display: inline-flex; align-items: center; gap: var(--space-2); }
+/* button rows (404) */
+main menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
 /* a link that acts like a button (Visit the shop): same shapes as kind="strong" and "secondary" */
 a[kind] { display: inline-flex; align-items: center; min-block-size: var(--tap); padding: var(--space-2) var(--space-4); border-radius: var(--radius); font-weight: var(--weight-semi); text-decoration: none; }
 a[kind="strong"] { background: var(--c-chip-on); color: var(--c-chip-on-fg); }

@@ -10,6 +10,6 @@ const { lang } = Astro.props;
   <article>
     <h1>{t(lang, 'submitTitle')}</h1>
     <p>{t(lang, 'submitBody')}</p>
-    <p><a href={`${config.repository}/issues/new?template=shop.yml`}>{t(lang, 'submitAction')}</a></p>
+    <p><a href={`${config.repository}/issues/new?template=shop.yml`} kind="strong"><vf-icon name="plus"></vf-icon>{t(lang, 'submitAction')}</a></p>
   </article>
 </Base>
