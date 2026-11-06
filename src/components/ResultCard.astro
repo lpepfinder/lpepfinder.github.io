@@ -5,7 +5,7 @@ import { thumb } from '../lib/thumb.js';
 
 /**
  * Server-rendered <vf-result> card, the same markup <vf-result> builds in the browser (styles in results.css).
- * record: { title, price, currency, url, image, country, format, used, day }; shopName; index (eager images first).
+ * record: { title, price, currency, url, image, country, format, used, day }; shopName (none on the shop's own page); index (eager images first).
  */
 const { lang, record: r, shopName, index = 0 } = Astro.props;
 const { artist, title } = splitTitle(r.title);
@@ -23,8 +23,8 @@ const [addedBefore, addedAfter = ''] = t(lang, 'addedOn', { date: '\u0000' }).sp
   <dl>
     {kind && <dt>{t(lang, 'resultFormat')}</dt>}
     {kind && <dd>{kind}</dd>}
-    <dt>{t(lang, 'resultShop')}</dt>
-    <dd>{shopName}</dd>
+    {shopName && <dt>{t(lang, 'resultShop')}</dt>}
+    {shopName && <dd>{shopName}</dd>}
     {r.country && <dt>{t(lang, 'resultCountry')}</dt>}
     {r.country && <dd><abbr title={countryName(lang, r.country)}>{r.country}</abbr></dd>}
     {r.day && <dt>{t(lang, 'resultAdded')}</dt>}

@@ -54,11 +54,6 @@
   "artistSearchAll": "Chercher tous les disques de {artist}",
   "artistsTitle": "Artistes",
   "artistsIntro": "Artistes avec des disques en stock chez plusieurs disquaires aujourd'hui.",
-  "tableColumns": [
-    "Disque",
-    "Prix",
-    "Disquaire"
-  ],
   "aboutTitle": "À propos de LP/EP Finder",
   "aboutBody": [
     "LP/EP Finder est un moteur de recherche gratuit pour les vinyles vendus par les disquaires indépendants. Il existe depuis plus de dix ans et s'est appelé Vinyl Finder pendant un temps.",

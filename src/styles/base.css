@@ -22,6 +22,10 @@ button[kind="secondary"]:hover { background: var(--c-hover); }
 button[kind="strong"] { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
 button[kind="text"] { background: none; color: var(--c-link); padding-inline: var(--space-2); font-weight: normal; text-decoration: underline; text-underline-offset: var(--underline-offset); }
 button[kind="text"]:hover { color: var(--c-fg); }
+/* a link that acts like a button (Visit the shop): same shapes as kind="strong" and "secondary" */
+a[kind] { display: inline-flex; align-items: center; min-block-size: var(--tap); padding: var(--space-2) var(--space-4); border-radius: var(--radius); font-weight: var(--weight-semi); text-decoration: none; }
+a[kind="strong"] { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
+a[kind="secondary"] { background: var(--c-surface); color: var(--c-fg); box-shadow: inset 0 0 0 var(--line) var(--c-border); }
 @media (forced-colors: active) { button[kind] { border: var(--line) solid ButtonText; } }
 nav a, footer a, summary { display: inline-flex; align-items: center; min-block-size: var(--tap); }
 

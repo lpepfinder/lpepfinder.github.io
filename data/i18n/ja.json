@@ -51,11 +51,6 @@
   "artistSearchAll": "{artist} のレコードをすべて検索",
   "artistsTitle": "アーティスト",
   "artistsIntro": "現在、複数の店舗で在庫のあるアーティスト。",
-  "tableColumns": [
-    "レコード",
-    "価格",
-    "店舗"
-  ],
   "aboutTitle": "LP/EP Finder について",
   "aboutBody": [
     "LP/EP Finder は、独立系レコード店が販売するレコードを探せる無料の検索エンジンです。10年以上前から続いており、一時期は Vinyl Finder という名前でした。",

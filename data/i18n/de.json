@@ -54,11 +54,6 @@
   "artistSearchAll": "Alle Platten von {artist} suchen",
   "artistsTitle": "Künstler",
   "artistsIntro": "Künstler, deren Platten heute bei mehreren Läden auf Lager sind.",
-  "tableColumns": [
-    "Platte",
-    "Preis",
-    "Laden"
-  ],
   "aboutTitle": "Über LP/EP Finder",
   "aboutBody": [
     "LP/EP Finder ist eine kostenlose Suchmaschine für Schallplatten aus unabhängigen Plattenläden. Es gibt sie seit über zehn Jahren, eine Zeit lang hieß sie Vinyl Finder.",

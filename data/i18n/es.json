@@ -54,11 +54,6 @@
   "artistSearchAll": "Buscar todos los discos de {artist}",
   "artistsTitle": "Artistas",
   "artistsIntro": "Artistas con discos en stock en varias tiendas hoy.",
-  "tableColumns": [
-    "Disco",
-    "Precio",
-    "Tienda"
-  ],
   "aboutTitle": "Acerca de LP/EP Finder",
   "aboutBody": [
     "LP/EP Finder es un buscador gratuito de discos de vinilo vendidos por tiendas independientes. Existe desde hace más de diez años y durante un tiempo se llamó Vinyl Finder.",

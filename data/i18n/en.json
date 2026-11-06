@@ -54,11 +54,6 @@
   "artistSearchAll": "Search every {artist} record",
   "artistsTitle": "Artists",
   "artistsIntro": "Artists with records in stock at several shops today.",
-  "tableColumns": [
-    "Record",
-    "Price",
-    "Shop"
-  ],
   "aboutTitle": "About LP/EP Finder",
   "aboutBody": [
     "LP/EP Finder is a free search engine for vinyl records sold by independent record shops. It started more than ten years ago, and was called Vinyl Finder for a while.",
