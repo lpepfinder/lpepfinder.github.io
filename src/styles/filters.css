@@ -1,6 +1,6 @@
 /* <vf-filters>: toggles and format chips above the results; checked chips keep their visible check mark. */
 vf-filters { display: grid; gap: var(--space-2); }
-vf-results:not([status="done"]) > :is(vf-filters, vf-note) { display: none; }
+vf-results:not([status="done"]) :is(vf-filters, vf-note) { display: none; }
 vf-filters fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; }
 vf-filters legend { float: inline-start; margin-inline-end: var(--space-1); color: var(--c-muted); font-size: var(--size-s); }
 vf-filters :is(fieldset, label)[hidden], vf-note[hidden] { display: none; }

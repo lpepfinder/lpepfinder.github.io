@@ -53,5 +53,10 @@ vf-price small { font-size: var(--size-xs); font-weight: normal; color: var(--c-
   vf-release vf-name > vf-title { flex: 1 1 0; }
   vf-release vf-meta abbr { display: inline; }
   vf-release vf-meta { min-inline-size: 0; overflow: hidden; }
-  vf-release vf-meta > span:first-child { max-inline-size: none; flex: 0 1 auto; }
+  vf-release vf-meta > span { flex: none; }
+  vf-release vf-meta > span:first-child { flex: 0 1 auto; }
+  vf-release vf-meta > span:nth-child(3) { display: none; }
+}
+@media (min-width: 90rem) {
+  vf-release vf-meta > span:nth-child(3) { display: inline-block; }
 }

@@ -4,6 +4,7 @@ import { catalog } from '../lib/catalog.js';
 import facets from '../../data/facets.json';
 import CurrencySelect from './CurrencySelect.astro';
 import Sheet from './Sheet.astro';
+import AdSlot from './AdSlot.astro';
 
 /**
  * Results region filled by <vf-search>: heading and count line, filters (controls of the search
@@ -14,6 +15,8 @@ const listed = catalog().visible.filter((s) => !s.records).length;
 const shops = localPath(lang, '/shops/');
 ---
 <vf-results status="idle" aria-busy="false" covers="on">
+  <vf-split>
+  <section aria-labelledby="results-title">
   <vf-results-bar>
     <h2 id="results-title" tabindex="-1"></h2>
     <p></p>
@@ -34,13 +37,17 @@ const shops = localPath(lang, '/shops/');
       ))}
     </fieldset>
   </vf-filters>
-  <output aria-live="polite" aria-atomic="true"></output>
   <ol aria-labelledby="results-title"></ol>
   <vf-note reason="filtered" hidden><p>{t(lang, 'results.noneFiltered')}</p></vf-note>
   <button type="button" name="more" kind="secondary" hidden>{t(lang, 'loadMore')}</button>
-  <Sheet lang={lang} name="release" mode="adaptive" labelledby="detail-title" back={t(lang, 'detail.back')}>
+  <AdSlot lang={lang} place="results" template />
+  </section>
+  <Sheet lang={lang} name="release" mode="adaptive" dock="(min-width: 64rem)" labelledby="detail-title" back={t(lang, 'detail.back')}>
     <vf-detail status="empty"></vf-detail>
+    <AdSlot lang={lang} place="detail" />
   </Sheet>
+  </vf-split>
+  <output aria-live="polite" aria-atomic="true"></output>
   <vf-empty reason="no-match">
     <h2 tabindex="-1"></h2>
     <vf-suggest hidden></vf-suggest>

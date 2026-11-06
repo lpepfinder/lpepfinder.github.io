@@ -32,9 +32,18 @@ export class VfSheet extends HTMLElement {
   /** Show it: in place when docked, else as a modal. */
   open() {
     if (this.dialog.open) return;
-    if (this.docked) this.dialog.show();
+    if (this.docked) this.showInPlace();
     else this.dialog.showModal();
     this.setAttribute('open', '');
+  }
+
+  /** show() moves the focus into the dialog: a docked pane is part of the page, so the focus stays where it was. */
+  showInPlace() {
+    const keep = document.activeElement;
+    this.dialog.show();
+    if (document.activeElement === keep) return;
+    if (keep && keep !== document.body) keep.focus({ preventScroll: true });
+    else document.activeElement?.blur();
   }
 
   close() {

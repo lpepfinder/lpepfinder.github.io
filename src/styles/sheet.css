@@ -19,7 +19,7 @@ vf-sheet > dialog:modal { animation: vf-sheet-in var(--duration) var(--ease); }
 
 /* docked: non-modal, static in its grid area, no close button */
 vf-sheet[docked] { display: block; min-inline-size: 0; }
-vf-sheet[docked] > dialog { position: static; inline-size: auto; block-size: auto; max-block-size: none; border-radius: 0; background: none; animation: none; }
+vf-sheet[docked] > dialog[open] { position: static; inline-size: auto; block-size: auto; max-block-size: none; border-radius: 0; background: none; animation: none; }
 vf-sheet[docked] > dialog > header > button[value="close"] { display: none; }
 vf-sheet[docked] > dialog > :not(header, footer) { overflow: visible; }
 

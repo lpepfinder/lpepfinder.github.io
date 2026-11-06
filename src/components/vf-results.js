@@ -1,9 +1,10 @@
 import { t, tn, formatNumber } from './i18n.js';
 import { addToGroups, groupView, orderGroups, totals } from '../lib/search/group.js';
 import { region, rates, comparable, CURRENCY_EVENT } from './viewer.js';
-import { el } from './dom.js';
+import { el, attrs } from './dom.js';
 import './vf-filters.js';
 import './vf-release.js';
+import './vf-ad.js';
 import { ReleaseDetail } from './release-detail.js';
 import { selectKey } from './release-parts.js';
 
@@ -24,6 +25,8 @@ export class VfResults extends HTMLElement {
     this.moreButton = this.querySelector('button[name="more"]');
     this.empty = this.querySelector('vf-empty[reason="no-match"] h2');
     this.groups = new Map();
+    this.ad = this.querySelector('template[data-ad="results"]');
+    this.adEvery = Number(this.getAttribute('ad-every')) || 24;
     this.details = new ReleaseDetail(this);
     this.moreButton.addEventListener('click', () => this.dispatchEvent(new Event('more')));
     this.shareButton = this.querySelector('button[name="share"]');
@@ -118,10 +121,21 @@ export class VfResults extends HTMLElement {
     });
     if (full) this.list.replaceChildren(...ordered.map((v) => el('li', {}, v.group.row)));
     else this.list.append(...fresh.map((row) => el('li', {}, row)));
+    this.placeAds();
     this.filters.counts(byFormat);
     this.count(views);
     this.details.draw();
     return full ? null : (fresh[0] || touched[0])?.querySelector(':scope > a');
+  }
+
+  /** With an ad unit configured: one fixed-height <vf-ad> after every `ad-every` rows (a page). */
+  placeAds() {
+    if (!this.ad) return;
+    const rows = [...this.list.children].filter((li) => !li.hasAttribute('role'));
+    for (let i = this.adEvery - 1; i < rows.length - 1; i += this.adEvery) {
+      if (rows[i].nextElementSibling?.hasAttribute('role')) continue;
+      rows[i].after(attrs(el('li', {}, this.ad.content.cloneNode(true)), { role: 'none' }));
+    }
   }
 
   /** "312 records · 1,204 copies at 87 shops", and how many were found in all while more can be loaded. */
