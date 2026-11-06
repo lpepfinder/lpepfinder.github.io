@@ -22,7 +22,8 @@
     "site": "node scripts/sources/site/index.js",
     "stats": "node scripts/stats/index.js",
     "rates": "node scripts/rates/index.js",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "health": "node scripts/health/index.js"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
