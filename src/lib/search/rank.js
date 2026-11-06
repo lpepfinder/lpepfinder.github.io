@@ -21,13 +21,18 @@ export function pickWindow(ids, docsPerChunk, { min = 30, maxIds = 200, maxChunk
 }
 
 /**
- * Order loaded docs: in stock before sold out; then titles that start with the
- * query before the rest; inside each group shops take turns, so no single shop
- * floods the top. docs: [{ id, shop, title, soldOut }] in id order; prefix: normalized query.
+ * Order loaded docs, best match first: in stock before sold out; inside each, titles
+ * that start with the query, then titles containing the exact phrase, then the
+ * rest (all words, any order). Inside each tier shops take turns, so no single
+ * shop floods the top. docs: [{ id, shop, title, soldOut }] in id order; phrase: normalized query.
  */
-export function diversify(docs, prefix, normalize) {
-  const groups = [[], [], [], []];
-  for (const d of docs) groups[(d.soldOut ? 2 : 0) + (prefix && normalize(d.title).startsWith(prefix) ? 0 : 1)].push(d);
+export function diversify(docs, phrase, normalize) {
+  const groups = [[], [], [], [], [], []];
+  for (const d of docs) {
+    const t = normalize(d.title);
+    const match = !phrase ? 2 : t.startsWith(phrase) ? 0 : t.includes(phrase) ? 1 : 2;
+    groups[(d.soldOut ? 3 : 0) + match].push(d);
+  }
   return groups.flatMap(roundRobin).map((d) => d.id);
 }
 

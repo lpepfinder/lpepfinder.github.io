@@ -2,16 +2,19 @@
 import Base from '../../../layouts/Base.astro';
 import CountryList from '../../../components/CountryList.astro';
 import { pageTitle } from '../../../lib/seo.js';
-import { t, localeParams, number } from '../../../lib/i18n.js';
+import { t, localeParams, number, countryName } from '../../../lib/i18n.js';
+import { byName } from '../../../lib/sort.js';
 import { catalog } from '../../../lib/catalog.js';
 
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 const c = catalog();
+// people look for their country by name: A–Z in the page's language
+const countries = [...c.countries].sort(byName(lang, (x) => countryName(lang, x.code)));
 const vars = { shops: number(lang, c.visible.length), countries: number(lang, c.countries.length) };
 ---
 <Base lang={lang} path="/shops/" title={pageTitle(t(lang, 'shopsSeoTitle'))} description={t(lang, 'shopsIntro', vars)}>
   <h1>{t(lang, 'shopsTitle')}</h1>
   <p>{t(lang, 'shopsIntro', vars)}</p>
-  <CountryList lang={lang} countries={c.countries} />
+  <CountryList lang={lang} countries={countries} />
 </Base>

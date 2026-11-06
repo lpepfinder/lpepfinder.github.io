@@ -3,11 +3,22 @@ import Base from '../layouts/Base.astro';
 import { pageTitle } from '../lib/seo.js';
 import { t, defaultLanguage as lang, number } from '../lib/i18n.js';
 import { catalog } from '../lib/catalog.js';
+import { byName, letterOf, groupBy } from '../lib/sort.js';
 
-const artists = [...catalog().artists].sort((a, b) => a.name.localeCompare(b.name, lang));
+// A–Z ignoring "The", "A", "Les"…; "#" (digits, other scripts) last
+const letters = groupBy(catalog().artists, (a) => letterOf(a.name),
+  (a, b) => (a === '#') - (b === '#') || a.localeCompare(b), byName(lang, (a) => a.name));
 ---
 <Base lang={lang} title={pageTitle(t(lang, 'artistsSeoTitle'))} description={t(lang, 'artistsIntro')}>
   <h1>{t(lang, 'artistsTitle')}</h1>
   <p>{t(lang, 'artistsIntro')}</p>
-  <ul>{artists.map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a> <data value={a.records.length}>{number(lang, a.records.length)}</data></li>)}</ul>
+  <nav aria-label={t(lang, 'lettersNav')}>
+    <ul>{letters.map(([l]) => <li><a href={`#letter-${l === '#' ? 'other' : l}`}>{l}</a></li>)}</ul>
+  </nav>
+  {letters.map(([l, artists]) => (
+    <section id={`letter-${l === '#' ? 'other' : l}`}>
+      <h2>{l}</h2>
+      <ul>{artists.map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a> <data value={a.records.length}>{number(lang, a.records.length)}</data></li>)}</ul>
+    </section>
+  ))}
 </Base>

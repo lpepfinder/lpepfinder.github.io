@@ -372,5 +372,13 @@
   "recent": {
     "title": "Letzte Suchen",
     "clear": "Letzte Suchen löschen"
-  }
+  },
+  "citiesNav": "Städte",
+  "cityUnknown": "Weitere Orte",
+  "shopListedShort": "gelistet, noch nicht durchsuchbar",
+  "shopRecordsShort": {
+    "one": "1 Platte",
+    "other": "{count} Platten"
+  },
+  "lettersNav": "Zum Buchstaben"
 }

@@ -372,5 +372,13 @@
   "recent": {
     "title": "Recent searches",
     "clear": "Clear recent searches"
-  }
+  },
+  "citiesNav": "Cities",
+  "cityUnknown": "Other places",
+  "shopListedShort": "listed, not searchable yet",
+  "shopRecordsShort": {
+    "one": "1 record",
+    "other": "{count} records"
+  },
+  "lettersNav": "Jump to letter"
 }

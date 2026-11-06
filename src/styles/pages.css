@@ -16,3 +16,13 @@ vf-status[value="dead"], vf-status[value="moved"] { color: var(--c-bad); }
 @media (forced-colors: active) {
   main > section > ul > li > a { border: var(--line) solid CanvasText; }
 }
+
+/* country page: shops grouped by city; artists grouped by letter */
+main > nav ul { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); }
+main > nav a { display: inline-flex; align-items: center; min-block-size: var(--tap); }
+main > section > h2 data { color: var(--c-muted); font-size: var(--size-s); font-weight: normal; }
+main > section > ul { list-style: none; margin: 0; padding: 0; display: grid; }
+vf-shop-card { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0 var(--space-3); min-block-size: var(--tap); border-block-end: var(--line) solid var(--c-line); }
+vf-shop-card a { font-weight: var(--weight-semi); }
+vf-shop-card span { color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
+vf-shop-card[searchable="false"] a { font-weight: normal; }

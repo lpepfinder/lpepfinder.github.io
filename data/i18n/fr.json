@@ -372,5 +372,13 @@
   "recent": {
     "title": "Recherches récentes",
     "clear": "Effacer les recherches récentes"
-  }
+  },
+  "citiesNav": "Villes",
+  "cityUnknown": "Autres lieux",
+  "shopListedShort": "référencé, pas encore consultable",
+  "shopRecordsShort": {
+    "one": "1 disque",
+    "other": "{count} disques"
+  },
+  "lettersNav": "Aller à la lettre"
 }

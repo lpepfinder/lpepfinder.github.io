@@ -42,3 +42,12 @@ test('detectFormat reads common title conventions', () => {
   assert.equal(detectFormat('Can – Tago Mago (LP, used)').used, true);
   assert.equal(detectFormat('Can – Tago Mago (LP)').used, false);
 });
+
+test('diversify ranks the exact phrase above words in any order', () => {
+  const normalize = (s) => s.toLowerCase();
+  const docs = [
+    { id: 1, shop: 'a', title: 'Blue Kind of Nights' },
+    { id: 2, shop: 'b', title: 'Miles Davis - Kind of Blue' },
+  ];
+  assert.deepEqual(diversify(docs, 'kind of blue', normalize), [2, 1]);
+});

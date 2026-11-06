@@ -4,6 +4,7 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import { t, tn, localeParams, localPath, number, countryName } from '../../../lib/i18n.js';
 import { pageTitle, breadcrumbLd } from '../../../lib/seo.js';
 import { catalog } from '../../../lib/catalog.js';
+import { byName, groupBy } from '../../../lib/sort.js';
 
 export function getStaticPaths() {
   return localeParams().flatMap(({ params, props }) => catalog().countries.map((country) => ({
@@ -14,6 +15,10 @@ export function getStaticPaths() {
 const { lang, country } = Astro.props;
 const name = countryName(lang, country.code);
 const vars = { country: name, shops: number(lang, country.shops.length), records: number(lang, country.records) };
+// grouped by city, cities and shops A–Z; shops without a city come last
+const NONE = '';
+const cities = groupBy(country.shops, (s) => s.city?.trim() || NONE,
+  (a, b) => (a === NONE) - (b === NONE) || byName(lang)(a, b), byName(lang, (s) => s.name));
 const crumbs = [
   { name: t(lang, 'breadcrumbHome'), href: localPath(lang, '/') },
   { name: t(lang, 'navShops'), href: localPath(lang, '/shops/') },
@@ -31,18 +36,24 @@ const ld = [{
   <Breadcrumbs lang={lang} items={crumbs} />
   <h1>{t(lang, 'countryTitle', vars)}</h1>
   <p>{tn(lang, 'countryDescription', country.shops.length, vars)}</p>
-  <figure>
-    <table>
-      <thead><tr>{t(lang, 'shopColumns').map((col) => <th scope="col">{col}</th>)}</tr></thead>
-      <tbody>
-        {country.shops.map((s) => (
-          <tr>
-            <td><a href={`/shop/${s.id}/`}>{s.name}</a></td>
-            <td>{s.city}</td>
-            <td><data value={s.records}>{s.records ? number(lang, s.records) : ''}</data></td>
-          </tr>
+  {cities.length > 1 && (
+    <nav aria-label={t(lang, 'citiesNav')}>
+      <ul>{cities.map(([city], i) => <li><a href={`#city-${i}`}>{city || t(lang, 'cityUnknown')}</a></li>)}</ul>
+    </nav>
+  )}
+  {cities.map(([city, shops], i) => (
+    <section id={`city-${i}`}>
+      <h2>{city || t(lang, 'cityUnknown')} <data value={shops.length}>{number(lang, shops.length)}</data></h2>
+      <ul>
+        {shops.map((s) => (
+          <li>
+            <vf-shop-card searchable={s.records > 0 ? 'true' : 'false'}>
+              <a href={`/shop/${s.id}/`}>{s.name}</a>
+              <span>{s.records > 0 ? tn(lang, 'shopRecordsShort', s.records) : t(lang, 'shopListedShort')}</span>
+            </vf-shop-card>
+          </li>
         ))}
-      </tbody>
-    </table>
-  </figure>
+      </ul>
+    </section>
+  ))}
 </Base>

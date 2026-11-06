@@ -352,5 +352,12 @@
   "recent": {
     "title": "最近の検索",
     "clear": "最近の検索を消去"
-  }
+  },
+  "citiesNav": "都市",
+  "cityUnknown": "その他の地域",
+  "shopListedShort": "掲載のみ（検索未対応）",
+  "shopRecordsShort": {
+    "other": "{count} 枚"
+  },
+  "lettersNav": "頭文字へ移動"
 }
