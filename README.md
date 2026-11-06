@@ -1,7 +1,7 @@
 # LP/EP Finder
 
 Search engine for vinyl records in stock at independent record shops worldwide:
-https://lpepfinder.github.io (also known as Vinyl Finder, vinyl-finder.gitlab.io).
+https://lpepfinder.com (also lpepfinder.github.io; formerly Vinyl Finder, vinyl-finder.gitlab.io).
 
 Everything runs on free GitHub Actions and GitHub Pages: no server, no database, no paid service.
 
@@ -14,7 +14,7 @@ data/shops/*.json ──▶ Refresh (daily)      ──▶ "data" release ──
 
 ## Docs
 
-The docs are in [`docs/`](docs/index.md), and on the site at https://lpepfinder.github.io/docs/:
+The docs are in [`docs/`](docs/index.md), and on the site at https://lpepfinder.com/docs/:
 
 - For people using the site: [searching](docs/searching.md), [Dig](docs/dig.md), [your watchlist](docs/watchlist.md), [for record shops](docs/for-shops.md).
 - For contributors: [how it works](docs/how-it-works.md), [data formats](docs/data-formats.md), [offer ledger](docs/ledger.md), [development](docs/development.md), [CI](docs/ci.md), [editing data](docs/editing-data.md).

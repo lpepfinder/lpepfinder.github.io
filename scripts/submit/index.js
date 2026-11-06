@@ -26,7 +26,7 @@ try { url = new URL(/^https?:\/\//.test(fields.Website) ? fields.Website : `http
 const id = hostOf(url);
 if (/facebook|instagram|linktr|bandcamp\.com$|discogs\.com|ebay\.|etsy\.com/.test(id)) reply(`${id} is not a shop's own website. We list independent shops with their own online store.`, 2);
 const file = path.join(SHOPS_DIR, `${id}.json`);
-if (fs.existsSync(file)) reply(`${id} is already listed: https://lpepfinder.github.io/shop/${id}/`, 2);
+if (fs.existsSync(file)) reply(`${id} is already listed: https://lpepfinder.com/shop/${id}/`, 2);
 
 const state = await checkShop({ id, url });
 if (!['ok', 'listed'].includes(state.status)) {
@@ -42,4 +42,4 @@ writeJson(path.join(SHOPS_DIR, `${finalId}.json`), {
   source: 'submission',
 }, true);
 const how = state.status === 'ok' ? `its ${state.platform} catalog will be searchable after the next daily update` : 'it is listed with a link; its catalog is read when we can';
-reply(`Thanks! ${fields['Shop name'] || finalId} is added: ${how}. Page: https://lpepfinder.github.io/shop/${finalId}/`, 0);
+reply(`Thanks! ${fields['Shop name'] || finalId} is added: ${how}. Page: https://lpepfinder.com/shop/${finalId}/`, 0);

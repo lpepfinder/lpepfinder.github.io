@@ -1,7 +1,7 @@
 {
   "name": "LP/EP Finder",
   "tagline": "vinyl",
-  "baseUrl": "https://lpepfinder.github.io",
+  "baseUrl": "https://lpepfinder.com",
   "formerNames": [
     "Vinyl Finder",
     "lpepfinder"
@@ -29,7 +29,7 @@
   },
   "googleSiteVerification": "aukgbRTrzBy5qk-pjUQ6R8RRhjZ8RY5eRT2Jazp4-nk",
   "crawl": {
-    "userAgent": "LPEPFinderBot/2.0 (+https://lpepfinder.github.io/about/)",
+    "userAgent": "LPEPFinderBot/2.0 (+https://lpepfinder.com/about/)",
     "timeoutMs": 20000,
     "concurrency": 24,
     "platformConcurrency": {
