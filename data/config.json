@@ -118,6 +118,7 @@
     "evaluateAfterPages": 300,
     "reevaluateDays": 30,
     "reprobeDays": 30,
+    "readersVersion": 2,
     "maxRetryAfterSeconds": 120,
     "checkpointMinutes": 15,
     "magentoPageSize": 100,

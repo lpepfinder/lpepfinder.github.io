@@ -47,3 +47,17 @@ export function checkSeeds(st, ok) {
   if (c.tried !== 20 || c.ok / c.tried >= 0.3) return;
   for (const [url, s] of Object.entries(st.seen)) if (s.s === 'cc' && !s.t) delete st.seen[url];
 }
+
+/**
+ * New readers (a bump of `readersVersion`): shops parked for having no records, and shops
+ * without records, get one fresh probe on their next run. Their known pages keep their
+ * due dates, so a shop that still has nothing is parked again after a handful of requests.
+ */
+export function reevaluate(st) {
+  if (st.readersVersion === site.readersVersion) return false;
+  st.readersVersion = site.readersVersion;
+  if (recordCount(st) > 0) return false;
+  if (st.skipReason) { st.skipUntil = null; st.skipReason = null; }
+  st.probedAt = null;
+  return true;
+}
