@@ -1,5 +1,4 @@
 /* <vf-release>: one record across shops. A compact row (summary) opens with <details> into its copies (<vf-offer>). */
-vf-results { max-inline-size: var(--results-width); }
 vf-release { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 0 var(--space-1); border-block-end: var(--line) solid var(--c-line); }
 vf-release > details { min-inline-size: 0; }
 vf-release > vf-watch { padding-block-start: var(--space-2); }

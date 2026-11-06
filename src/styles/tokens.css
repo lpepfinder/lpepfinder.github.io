@@ -27,6 +27,28 @@
   --card-h: 5.5rem;
   --header-h: 6.75rem;
   --width: 72rem;
+  /*
+   * Breakpoints (media queries can't read custom properties, so they are constants):
+   * phone < 40rem · tablet 40–64rem · desktop ≥ 64rem (list + detail) · large ≥ 90rem (filter rail too).
+   */
+  --width-wide: 120rem;
+  --measure: 68ch;
+  --row-h: 3.5rem;
+  --cover-row: 2.5rem;
+  --cover-detail: 7.5rem;
+  --rail-w: 15rem;
+  --list-min: 24rem;
+  --detail-min: 26rem;
+  --header-compact-h: 3.25rem;
+  --sheet-max: 85dvh;
+  --sheet-radius: var(--radius) var(--radius) 0 0;
+  --sheet-side: min(28rem, 60vw);
+  --layer-header: 2;
+  --layer-sheet: 4;
+  --c-scrim: rgb(0 0 0 / 0.45);
+  --c-selected: var(--c-chip);
+  --duration: 160ms;
+  --ease: cubic-bezier(.2, .8, .2, 1);
   --focus-ring: 3px solid var(--c-focus);
   --focus-offset: 2px;
   --dim: 0.5;
@@ -47,7 +69,6 @@
   --thumb-row: 2.75rem;
   --price-col: 7.5rem;
   --price-max: 34%;
-  --results-width: 52rem;
   --tab-mark: 3px;
   --grid-min: 16rem;
   --offers-indent: var(--space-4);
@@ -108,5 +129,6 @@
     --c-watching: #f0b45a;
     --c-event-restock: #6fd08c;
     --c-event-price-down: #6fd08c;
+    --c-scrim: rgb(0 0 0 / 0.6);
   }
 }

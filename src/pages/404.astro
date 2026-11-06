@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { t, defaultLanguage as lang } from '../lib/i18n.js';
 ---
-<Base lang={lang} title={t(lang, 'notFoundTitle')} description={t(lang, 'notFoundBody')} noindex>
+<Base layout="prose" lang={lang} title={t(lang, 'notFoundTitle')} description={t(lang, 'notFoundBody')} noindex>
   <h1>{t(lang, 'notFoundTitle')}</h1>
   <p>{t(lang, 'notFoundBody')}</p>
   <p><a href="/">{t(lang, 'navSearch')}</a></p>

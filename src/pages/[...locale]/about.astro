@@ -7,7 +7,7 @@ export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 const ld = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: t(lang, 'aboutTitle'), inLanguage: lang }, { '@context': 'https://schema.org', '@type': 'Organization', name: config.name, alternateName: config.formerNames, url: config.baseUrl, logo: `${config.baseUrl}/favicon.png` }];
 ---
-<Base lang={lang} path="/about/" title={t(lang, 'aboutTitle')} description={t(lang, 'aboutBody')[0]} ld={ld}>
+<Base layout="prose" lang={lang} path="/about/" title={t(lang, 'aboutTitle')} description={t(lang, 'aboutBody')[0]} ld={ld}>
   <article>
     <h1>{t(lang, 'aboutTitle')}</h1>
     {t(lang, 'aboutBody').map((p) => <p>{p}</p>)}
