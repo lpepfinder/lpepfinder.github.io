@@ -514,7 +514,9 @@
     "shopInfo": "Über {shop}",
     "share": "Teilen",
     "searchArtist": "Alles von {artist} suchen",
-    "backList": "Alle Platten"
+    "backList": "Alle Platten",
+    "goTo": "Zu {shop}",
+    "goToPrice": "Zu {shop} · {price}"
   },
   "homeLatestTitle": "Neu in den Läden",
   "homeStrip": {

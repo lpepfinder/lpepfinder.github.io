@@ -484,7 +484,9 @@
     "shopInfo": "{shop}について",
     "share": "共有",
     "searchArtist": "{artist}をすべて検索",
-    "backList": "すべてのレコード"
+    "backList": "すべてのレコード",
+    "goTo": "{shop} へ",
+    "goToPrice": "{shop} へ · {price}"
   },
   "homeLatestTitle": "ショップの最新入荷",
   "homeStrip": {

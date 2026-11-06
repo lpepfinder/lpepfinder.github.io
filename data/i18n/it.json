@@ -514,7 +514,9 @@
     "shopInfo": "Informazioni su {shop}",
     "share": "Condividi",
     "searchArtist": "Cerca tutto di {artist}",
-    "backList": "Tutti i dischi"
+    "backList": "Tutti i dischi",
+    "goTo": "Vai da {shop}",
+    "goToPrice": "Vai da {shop} · {price}"
   },
   "homeLatestTitle": "Ultimi arrivi nei negozi",
   "homeStrip": {

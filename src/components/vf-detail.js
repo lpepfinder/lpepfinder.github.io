@@ -11,6 +11,13 @@ const FIRST = 8;
 const money = (o, rates) => price(o.price, o.currency, rates).querySelector('data')?.textContent || '';
 const day = (iso) => new Intl.DateTimeFormat(document.documentElement.lang || 'en', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(iso));
 
+/** The main action: "Cheapest: shop · price" among several copies, "Go to shop · price" for one, "Go to shop" without a price. */
+function goLabel(o, copies, rates) {
+  const amount = o.price != null ? money(o, rates) : '';
+  if (!amount) return t('detail.goTo', { shop: o.shop.name });
+  return t(copies > 1 ? 'detail.cheapest' : 'detail.goToPrice', { shop: o.shop.name, price: amount });
+}
+
 /** "New & used · NM – VG+". */
 function condition(offers) {
   const c = conditionRange(offers);
@@ -61,7 +68,7 @@ export class VfDetail extends HTMLElement {
       el('menu', {},
         el('li', {}, watch(group, v)),
         el('li', {}, attrs(el('button', { type: 'button', name: 'share' }, attrs(el('vf-icon'), { name: 'share' }), el('span', { textContent: t('detail.share') })), { kind: 'secondary' })),
-        cheapest && el('li', {}, el('a', { href: cheapest.url, rel: 'nofollow', textContent: t('detail.cheapest', { shop: cheapest.shop.name, price: money(cheapest, rates) }) }))),
+        cheapest && el('li', {}, el('a', { href: cheapest.url, rel: 'nofollow', textContent: goLabel(cheapest, inStock.length, rates) }))),
       inStock.length && el('section', {},
         el('h3', {}, t('detail.inStock'), ' ', el('data', { value: inStock.length, textContent: formatNumber(inStock.length) })),
         el('ul', {}, ...shown.map((o) => offer(o, rates))),
