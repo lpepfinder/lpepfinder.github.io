@@ -4,15 +4,13 @@ import { interleave } from './new-arrivals.js';
 import { detectFormat } from '../../src/lib/search/format.js';
 
 export const CRATES = ['new', 'restock', 'drop'];
-/** Listings shops use to test their checkout. */
-const TEST = /\btest ?(product|item|listing)\b|^\(?test\)?$|\(testproduct\)|\btestproduct\b/i;
 
 /**
  * The Dig crates for the browser (public/dig.json), records still in stock today:
  *   new      new arrivals (new-arrivals.js: the ledger's new events and the shops' own dates)
  *   restock  back in stock in the last `days` days (ledger events)
  *   drop     cheaper by at least `dropMin` and at most `dropMax` after a recent drop (wasPrice of the ledger), biggest
- *            drop first; a bigger "drop" is a pricing error (2,299 → 16.99), and test listings are left out
+ *            drop first; a bigger "drop" is a pricing error (2,299 → 16.99); test listings never get here (scripts/quality)
  * Each crate newest first with shops taking turns, at most `perCrate` records:
  *   { day, builtAt, shops: [[id, name, country, shipsTo]], items: [[crate, day, title, cents, currency, url, image,
  *     shopIndex, format, wasCents]] } (format: "" when unknown, wasCents: 0 unless a drop)
@@ -50,7 +48,7 @@ export function buildDig({ ledger, docs, shops, arrivals, settings }) {
     }
   }
   const drops = [...inStock.values()]
-    .filter((d) => d.wasPrice && d.price > 0 && !TEST.test(d.title))
+    .filter((d) => d.wasPrice && d.price > 0)
     .filter((d) => { const off = (d.wasPrice - d.price) / d.wasPrice; return off >= dropMin && off <= dropMax; })
     .sort((a, b) => (b.wasPrice - b.price) / b.wasPrice - (a.wasPrice - a.price) / a.wasPrice)
     // one "day" for all: shops take turns, the biggest drops of each shop first
