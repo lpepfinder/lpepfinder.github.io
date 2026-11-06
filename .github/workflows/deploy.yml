@@ -69,3 +69,6 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          # a large site (search index + watchlist files) can take GitHub Pages over 10 min to publish
+          timeout: 1800000
