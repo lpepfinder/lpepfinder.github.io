@@ -520,5 +520,11 @@
     "empty": "Rien dans ce bac avec ces filtres.",
     "title": "Fouiller",
     "intro": "Nouveautés des boutiques, retours en stock et baisses de prix de la semaine. Touchez une pochette pour aller à la boutique."
-  }
+  },
+  "tabMore": "Plus",
+  "moreTitle": "Plus",
+  "moreSettings": "Réglages",
+  "moreBrowse": "Parcourir",
+  "moreShop": "Votre disquaire",
+  "moreAbout": "À propos"
 }

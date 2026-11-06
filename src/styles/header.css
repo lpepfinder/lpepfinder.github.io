@@ -21,7 +21,7 @@ header > nav {
   padding-block-end: env(safe-area-inset-bottom);
   background: var(--c-surface); border-block-start: var(--line) solid var(--c-line);
 }
-vf-tabbar, vf-tabbar > vf-watchlist { display: grid; grid-template-columns: repeat(3, 1fr); }
+vf-tabbar, vf-tabbar > vf-watchlist { display: grid; grid-template-columns: repeat(4, 1fr); }
 vf-tabbar > vf-watchlist { display: contents; }
 vf-tabbar a {
   display: grid; justify-items: center; align-content: center; gap: 2px; position: relative;

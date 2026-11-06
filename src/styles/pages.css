@@ -53,3 +53,20 @@ vf-shop-card a { font-weight: var(--weight-semi); }
 vf-shop-card span { color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
 vf-shop-card span::before { content: var(--count-separator); }
 vf-shop-card[searchable="false"] a { font-weight: normal; }
+
+/* <vf-more>: the More tab, settings and links as an app screen */
+vf-more { display: grid; gap: var(--space-6); max-inline-size: var(--width); }
+vf-more h1 { margin: 0; }
+vf-more section { display: grid; gap: var(--space-2); }
+vf-more h2 { margin: 0; font-size: var(--size-s); font-weight: var(--weight-semi); color: var(--c-muted); text-transform: uppercase; letter-spacing: var(--tracking-caps); }
+vf-more h3 { margin: var(--space-2) 0 0; font-size: var(--size-0); }
+vf-more ul { list-style: none; margin: 0; padding: 0; display: grid; border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); }
+vf-more li + li { border-block-start: var(--line) solid var(--c-line); }
+vf-more ul a { display: flex; align-items: center; min-block-size: var(--row-h); padding-inline: var(--space-4); color: inherit; text-decoration: none; }
+vf-more ul a:hover { background: var(--c-hover); }
+vf-more ul a[aria-current="true"] { font-weight: var(--weight-semi); color: var(--c-accent); }
+vf-more nav ul { grid-template-columns: repeat(auto-fill, minmax(var(--lang-min), 1fr)); }
+vf-more nav li + li { border-block-start: 0; }
+vf-more > p { color: var(--c-muted); font-size: var(--size-s); }
+/* phones: the More tab has all of the footer; only the browse links stay at the end of pages */
+@media (max-width: 64rem) { vf-app > footer > :not(nav:first-child) { display: none; } }

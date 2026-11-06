@@ -520,5 +520,11 @@
     "empty": "Nothing in this crate with these filters.",
     "title": "Dig",
     "intro": "New in the shops, back in stock and cheaper this week. Tap a cover to go to the shop."
-  }
+  },
+  "tabMore": "More",
+  "moreTitle": "More",
+  "moreSettings": "Settings",
+  "moreBrowse": "Browse",
+  "moreShop": "Your record shop",
+  "moreAbout": "About"
 }

@@ -520,5 +520,11 @@
     "empty": "Nichts in dieser Kiste mit diesen Filtern.",
     "title": "Diggen",
     "intro": "Neu in den Shops, wieder da und günstiger diese Woche. Tippe auf ein Cover, um zum Shop zu gehen."
-  }
+  },
+  "tabMore": "Mehr",
+  "moreTitle": "Mehr",
+  "moreSettings": "Einstellungen",
+  "moreBrowse": "Stöbern",
+  "moreShop": "Dein Plattenladen",
+  "moreAbout": "Über"
 }

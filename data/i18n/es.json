@@ -520,5 +520,11 @@
     "empty": "Nada en esta caja con estos filtros.",
     "title": "Rebuscar",
     "intro": "Novedades de las tiendas, de vuelta en stock y más baratos esta semana. Toca una portada para ir a la tienda."
-  }
+  },
+  "tabMore": "Más",
+  "moreTitle": "Más",
+  "moreSettings": "Ajustes",
+  "moreBrowse": "Explorar",
+  "moreShop": "Tu tienda de discos",
+  "moreAbout": "Acerca de"
 }

@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import CurrencySelect from '../../components/CurrencySelect.astro';
+import config from '../../../data/config.json';
+import { t, languages, localeParams, localPath } from '../../lib/i18n.js';
+import { pageTitle } from '../../lib/seo.js';
+
+/**
+ * The More tab: what the footer holds on a website, as an app screen. Browse (shops, artists),
+ * settings (prices in, language), a shop to add, and about (privacy, data status, source).
+ */
+export const getStaticPaths = localeParams;
+const { lang } = Astro.props;
+const groups = [
+  { title: 'moreBrowse', links: [
+    { href: localPath(lang, '/shops/'), key: 'navShops' },
+    { href: '/artists/', key: 'navArtists' },
+    { href: '/new/', key: 'tabNew' },
+  ] },
+  { title: 'moreShop', links: [
+    { href: localPath(lang, '/submit/'), key: 'aboutSuggestAction' },
+  ] },
+  { title: 'moreAbout', links: [
+    { href: localPath(lang, '/about/'), key: 'navAbout' },
+    { href: localPath(lang, '/privacy/'), key: 'navPrivacy' },
+    { href: '/status/', key: 'navStatus' },
+    { href: config.repository, key: 'footerGithub' },
+    { href: `${config.repository}/issues`, key: 'contactGithub' },
+    { href: config.analytics.publicDashboard, key: 'footerAnalytics' },
+  ] },
+];
+---
+<Base lang={lang} path="/more/" title={pageTitle(t(lang, 'moreTitle'))} description={t(lang, 'footerNote')} noindex>
+  <vf-more>
+    <h1>{t(lang, 'moreTitle')}</h1>
+    <section>
+      <h2>{t(lang, 'moreSettings')}</h2>
+      <CurrencySelect lang={lang} id="currency-more" />
+      <nav aria-label={t(lang, 'navLanguage')}>
+        <h3>{t(lang, 'navLanguage')}</h3>
+        <ul>{languages.map((l) => (
+          <li><a href={localPath(l, '/more/')} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{t(l, 'langName')}</a></li>
+        ))}</ul>
+      </nav>
+    </section>
+    {groups.map((g) => (
+      <section>
+        <h2>{t(lang, g.title)}</h2>
+        <ul>{g.links.map((n) => <li><a href={n.href}>{t(lang, n.key)}</a></li>)}</ul>
+      </section>
+    ))}
+    <p>{t(lang, 'footerNote')}</p>
+  </vf-more>
+</Base>

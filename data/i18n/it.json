@@ -520,5 +520,11 @@
     "empty": "Niente in questa cassa con questi filtri.",
     "title": "Scava",
     "intro": "Novità nei negozi, di nuovo disponibili e più economici questa settimana. Tocca una copertina per andare al negozio."
-  }
+  },
+  "tabMore": "Altro",
+  "moreTitle": "Altro",
+  "moreSettings": "Impostazioni",
+  "moreBrowse": "Esplora",
+  "moreShop": "Il tuo negozio di dischi",
+  "moreAbout": "Informazioni"
 }
