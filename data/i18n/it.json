@@ -346,6 +346,13 @@
     "inStockCount": {
       "one": "1 disponibile",
       "other": "{count} disponibili"
+    },
+    "filters": "Filtri",
+    "showLabel": "Mostra",
+    "displayLabel": "Visualizzazione",
+    "showRecords": {
+      "one": "Mostra 1 disco",
+      "other": "Mostra {count} dischi"
     }
   },
   "statusReason": {

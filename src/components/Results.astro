@@ -1,14 +1,14 @@
 ---
 import { t, localPath, number } from '../lib/i18n.js';
 import { catalog } from '../lib/catalog.js';
-import facets from '../../data/facets.json';
-import CurrencySelect from './CurrencySelect.astro';
+import FiltersSheet from './FiltersSheet.astro';
 import Sheet from './Sheet.astro';
 import AdSlot from './AdSlot.astro';
 
 /**
- * Results region filled by <vf-search>: heading and count line, filters (controls of the search
- * form, so the URL shares them), short live status, the list of releases, empty states.
+ * Results region filled by <vf-search>, a <vf-split>: the filters (a sheet, the left rail from 90rem),
+ * the list (heading, count line, releases) and the release detail (a sheet, the right pane from 64rem);
+ * a floating Filters button on phones; a short live status; empty states.
  */
 const { lang } = Astro.props;
 const listed = catalog().visible.filter((s) => !s.records).length;
@@ -16,27 +16,13 @@ const shops = localPath(lang, '/shops/');
 ---
 <vf-results status="idle" aria-busy="false" covers="on">
   <vf-split>
+  <FiltersSheet lang={lang} />
   <section aria-labelledby="results-title">
   <vf-results-bar>
     <h2 id="results-title" tabindex="-1"></h2>
     <p></p>
-    <CurrencySelect lang={lang} id="currency-results" />
-    <button type="button" name="share" kind="secondary">{t(lang, 'results.copyLink')}</button>
+    <button type="button" name="filters" kind="secondary">{t(lang, 'results.filters')}</button>
   </vf-results-bar>
-  <vf-filters>
-    <fieldset name="show">
-      <legend>{t(lang, 'results.filtersLabel')}</legend>
-      <label><input type="checkbox" name="stock" value="in" form="search"> {t(lang, 'results.inStock')}</label>
-      <label><input type="checkbox" name="near" value="1" form="search" checked> <span>{t(lang, 'results.near')}</span></label>
-      <label><input type="checkbox" name="covers" role="switch" checked> {t(lang, 'results.covers')}</label>
-    </fieldset>
-    <fieldset name="format" hidden>
-      <legend>{t(lang, 'results.formatLabel')}</legend>
-      {facets.display.map((id) => (
-        <label hidden><input type="checkbox" name="format" value={id} form="search"> {t(lang, `formats.${id}`)} <data value="0"></data></label>
-      ))}
-    </fieldset>
-  </vf-filters>
   <ol aria-labelledby="results-title"></ol>
   <vf-note reason="filtered" hidden><p>{t(lang, 'results.noneFiltered')}</p></vf-note>
   <button type="button" name="more" kind="secondary" hidden>{t(lang, 'loadMore')}</button>
@@ -47,6 +33,7 @@ const shops = localPath(lang, '/shops/');
     <AdSlot lang={lang} place="detail" />
   </Sheet>
   </vf-split>
+  <vf-results-actions><button type="button" name="filters" kind="strong">{t(lang, 'results.filters')}</button></vf-results-actions>
   <output aria-live="polite" aria-atomic="true"></output>
   <vf-empty reason="no-match">
     <h2 tabindex="-1"></h2>

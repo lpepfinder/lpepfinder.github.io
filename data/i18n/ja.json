@@ -325,6 +325,12 @@
     "linkCopied": "リンクをコピーしました。",
     "inStockCount": {
       "other": "在庫{count}件"
+    },
+    "filters": "絞り込み",
+    "showLabel": "表示",
+    "displayLabel": "表示設定",
+    "showRecords": {
+      "other": "{count}タイトルを表示"
     }
   },
   "statusReason": {

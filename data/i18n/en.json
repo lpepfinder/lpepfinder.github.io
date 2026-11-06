@@ -346,6 +346,13 @@
     "inStockCount": {
       "one": "1 in stock",
       "other": "{count} in stock"
+    },
+    "filters": "Filters",
+    "showLabel": "Show",
+    "displayLabel": "Display",
+    "showRecords": {
+      "one": "Show 1 record",
+      "other": "Show {count} records"
     }
   },
   "statusReason": {

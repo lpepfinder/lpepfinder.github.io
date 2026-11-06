@@ -346,6 +346,13 @@
     "inStockCount": {
       "one": "1 auf Lager",
       "other": "{count} auf Lager"
+    },
+    "filters": "Filter",
+    "showLabel": "Anzeigen",
+    "displayLabel": "Darstellung",
+    "showRecords": {
+      "one": "1 Platte zeigen",
+      "other": "{count} Platten zeigen"
     }
   },
   "statusReason": {

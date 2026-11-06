@@ -346,6 +346,13 @@
     "inStockCount": {
       "one": "1 en stock",
       "other": "{count} en stock"
+    },
+    "filters": "Filtros",
+    "showLabel": "Mostrar",
+    "displayLabel": "Visualización",
+    "showRecords": {
+      "one": "Ver 1 disco",
+      "other": "Ver {count} discos"
     }
   },
   "statusReason": {
