@@ -78,6 +78,11 @@ vf-change[seen="true"] :is(h4, vf-price) { font-weight: normal; }
 vf-watch-item[stock="in"] p { color: var(--c-fg); font-weight: var(--weight-semi); }
 /* the copy watched (shop, price then) is detail: not on the phone row */
 @media (max-width: 64rem) { vf-watch-item > p:nth-of-type(2) { display: none; } }
+@media (min-width: 64rem) {
+  /* one line: title · state · the copy watched · Remove */
+  vf-watch-item { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto; }
+  vf-watch-item > :is(h3, p, button) { grid-column: auto; grid-row: auto; }
+}
 vf-watch-item > :is(h3, p) { margin: 0; }
 
 /* file pickers styled as secondary buttons (the input stays focusable) */
