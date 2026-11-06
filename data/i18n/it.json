@@ -418,6 +418,7 @@
     "checked": "Prezzi controllati il {date}",
     "shopInfo": "Informazioni su {shop}",
     "share": "Condividi",
-    "searchArtist": "Cerca tutto di {artist}"
+    "searchArtist": "Cerca tutto di {artist}",
+    "backList": "Tutti i dischi"
   }
 }

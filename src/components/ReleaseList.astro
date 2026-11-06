@@ -1,0 +1,57 @@
+---
+import { t, tn, price } from '../lib/i18n.js';
+import { splitTitle } from '../lib/search/title.js';
+import { thumb } from '../lib/thumb.js';
+import { releaseGroups, clientRecord } from '../lib/release-groups.js';
+import Sheet from './Sheet.astro';
+
+/**
+ * Records of a static page grouped by release, as the search shows them: compact <vf-release> rows
+ * (built here, the same markup vf-release.js builds) linking to ?r=<key>, and the release detail
+ * (a sheet; the right pane from 64rem) drawn in the browser by <vf-release-list> from the embedded records.
+ * Props: lang, records (catalog records), shopsById, labelledby (id of the list's heading), checked (ISO date of the prices).
+ */
+const { lang, records, shopsById, labelledby, checked } = Astro.props;
+const all = records.map((r) => clientRecord(r, shopsById));
+const groups = releaseGroups(all);
+const data = JSON.stringify(all).replace(/</g, '\\u003c');
+const formats = (g) => g.formats.map((f) => t(lang, `formats.${f}`)).join(' / ');
+---
+<vf-release-list covers="on" checked={checked}>
+  <vf-split>
+    <section aria-labelledby={labelledby}>
+      <ol aria-labelledby={labelledby}>
+        {groups.map((g, i) => {
+          const { artist, title } = splitTitle(g.cheapest.title);
+          const src = thumb(g.offers.find((o) => o.image)?.image, { safe: true });
+          const main = price(lang, g.cheapest.price, g.cheapest.currency);
+          return (
+            <li><vf-release release={g.key} stock={g.inStock ? 'in' : 'out'} offers={g.offers.length} local="false">
+              <a href={`?r=${g.key}`}>
+                {src
+                  ? <img src={src} alt="" width="40" height="40" decoding="async" referrerpolicy="no-referrer" loading={i < 6 ? 'eager' : 'lazy'}>
+                  : <vf-cover></vf-cover>}
+                <vf-name>{artist && <vf-artist>{artist}</vf-artist>}{artist && <span> – </span>}<vf-title>{title}</vf-title></vf-name>
+                <vf-meta>
+                  <span>{g.offers.length === 1 ? g.cheapest.shop.name : tn(lang, 'results.shops', g.shops)}</span>
+                  <span>{tn(lang, 'results.inStockCount', g.inStock)}</span>
+                  {g.formats.length > 0 && <span>{formats(g)}</span>}
+                </vf-meta>
+                <vf-price><data value={g.cheapest.price ?? ''}>{g.offers.length > 1 ? t(lang, 'results.from', { price: main }) : main}</data></vf-price>
+              </a>
+              {g.group.watchKey && <vf-watch key={g.group.watchKey} label={g.cheapest.title} action="watch" url={g.cheapest.url} shop={g.cheapest.shop.name} price={g.cheapest.price ?? undefined} currency={g.cheapest.currency || undefined}></vf-watch>}
+            </vf-release></li>
+          );
+        })}
+      </ol>
+    </section>
+    <Sheet lang={lang} name="release" mode="adaptive" dock="(min-width: 64rem)" labelledby="detail-title" back={t(lang, 'detail.backList')}>
+      <vf-detail status="empty"></vf-detail>
+    </Sheet>
+  </vf-split>
+  <output aria-live="polite"></output>
+  <script is:inline type="application/json" data-records set:html={data}></script>
+</vf-release-list>
+<script>
+  import './vf-release-list.js';
+</script>

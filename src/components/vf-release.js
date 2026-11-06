@@ -41,8 +41,8 @@ function rowPrice(v, rates) {
 export class VfRelease extends HTMLElement {
   set view({ group, view: v, rates, covers, index }) {
     if (!this.link) {
-      this.link = el('a');
-      this.append(this.link);
+      // a server-rendered row (artist pages) is redrawn in place
+      this.link = this.querySelector(':scope > a') || this.appendChild(el('a'));
     }
     const key = selectKey(group);
     const { artist, title } = splitTitle(group.offers[0].title);

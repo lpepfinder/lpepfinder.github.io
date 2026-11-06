@@ -418,6 +418,7 @@
     "checked": "Prices checked {date}",
     "shopInfo": "About {shop}",
     "share": "Share",
-    "searchArtist": "Search all {artist}"
+    "searchArtist": "Search all {artist}",
+    "backList": "All records"
   }
 }

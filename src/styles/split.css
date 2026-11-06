@@ -19,6 +19,6 @@ li[role="none"]:has(> vf-ad) { list-style: none; }
   vf-split > vf-sheet[docked] > dialog { display: grid; }
 }
 @media (min-width: 90rem) {
-  vf-split { grid-template-columns: var(--rail-w) minmax(var(--list-min), 1.4fr) minmax(var(--detail-min), 1fr); }
+  vf-split:has(> vf-sheet[name="filters"]) { grid-template-columns: var(--rail-w) minmax(var(--list-min), 1.4fr) minmax(var(--detail-min), 1fr); }
   vf-split > vf-sheet[name="filters"][docked] { position: sticky; inset-block-start: calc(var(--header-h) + var(--space-2)); max-block-size: calc(100dvh - var(--header-h) - var(--space-4)); overflow: auto; }
 }

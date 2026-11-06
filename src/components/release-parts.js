@@ -2,13 +2,10 @@ import { t, formatDay, countryName } from './i18n.js';
 import { el, attrs } from './dom.js';
 import { price } from './price.js';
 import { region } from './viewer.js';
-import { hash48 } from '../lib/search/release-key.js';
+export { selectKey } from '../lib/search/select-key.js';
 import './vf-watch.js';
 
 /** Pieces shared by the release row (<vf-release>) and the release detail (<vf-detail>). */
-
-/** The ?r= key of a group: its release key, or "u" + a hash of the URL of a single copy without one. */
-export const selectKey = (group) => group.watchKey || `u${hash48(group.offers[0].url)}`;
 
 /** "LP · Used · Near mint (NM)". */
 export const kind = (o) => [o.format && t(`formats.${o.format}`), o.used && t('conditionUsed'),

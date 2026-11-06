@@ -6,7 +6,7 @@ vf-results:not([status="loading"], [status="done"]) > vf-split { display: none; 
 vf-results h2 { margin: 0; font-size: var(--size-1); }
 vf-results > output { color: var(--c-muted); font-size: var(--size-s); }
 /* <vf-record-list>: the same cards, rendered at build time (new arrivals) */
-:is(vf-results, vf-record-list) ol { list-style: none; margin: 0; padding: 0; display: grid; }
+:is(vf-results, vf-record-list, vf-release-list) ol { list-style: none; margin: 0; padding: 0; display: grid; }
 vf-split > section > button { justify-self: center; }
 /* no layout shift while loading: a fixed-height skeleton, and room for a full page of results */
 vf-results:is([status="loading"], [status="done"]) { min-block-size: 100dvh; align-content: start; }

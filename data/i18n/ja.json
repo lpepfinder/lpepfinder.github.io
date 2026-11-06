@@ -394,6 +394,7 @@
     "checked": "{date}に価格を確認",
     "shopInfo": "{shop}について",
     "share": "共有",
-    "searchArtist": "{artist}をすべて検索"
+    "searchArtist": "{artist}をすべて検索",
+    "backList": "すべてのレコード"
   }
 }
