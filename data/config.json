@@ -81,7 +81,8 @@
     "goneSearchDays": 90,
     "goneKeepDays": 365,
     "watchShops": 12,
-    "priceDropDays": 14
+    "priceDropDays": 14,
+    "maxDrop": 0.7
   },
   "newArrivals": {
     "days": 7,

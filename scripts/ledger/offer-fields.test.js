@@ -71,3 +71,11 @@ test('rows store the shop image prefix and the Shopify products path once', () =
   const soldOut = docRow({ shop: 's', title: 'T', price: 900, path: '/products/abc', image: '//cdn.shopify.com/s/files/1/0001/x.jpg', available: false }, 0, shopRows);
   assert.equal(soldOut[4], 0); // no cover for sold-out rows
 });
+
+test('a "drop" of more than maxDrop is a pricing error: no wasPrice', async () => {
+  const { offerFields } = await import('./offer-fields.js');
+  const row = { firstSeen: '2026-11-01', price: 1699, currency: 'GBP', priceLog: [['2026-11-01', 229900], ['2026-11-05', 1699]] };
+  assert.equal(offerFields(row, { price: 1699 }, 'GBP', '2026-11-06', { maxDrop: 0.7 }).wasPrice, null);
+  const real = { ...row, priceLog: [['2026-11-01', 2500], ['2026-11-05', 1699]] };
+  assert.equal(offerFields(real, { price: 1699 }, 'GBP', '2026-11-06', { maxDrop: 0.7 }).wasPrice, 2500);
+});
