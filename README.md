@@ -96,7 +96,8 @@ mocked with records taken from the build. Once: `npx playwright install chromium
   month discover new shops. It starts from the previous crawl data, so a shop that fails keeps its records,
   publishes `generated/` as the `generated.tar.gz` asset of the `data` release, then runs Deploy.
 - **Deploy** (`.github/workflows/deploy.yml`) runs on every push to `main`: downloads the latest crawl data,
-  builds and publishes to GitHub Pages. Without crawl data it stops, so the live site is never emptied.
+  builds, runs the end-to-end tests and publishes to GitHub Pages. Without crawl data, or when a test fails, it
+  stops, so the live site keeps the previous build (the Playwright report is attached to the failed run).
 - Run either by hand from the Actions tab (Refresh has a "discover" option).
 
 ## Layout
