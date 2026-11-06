@@ -342,7 +342,11 @@
     "shipsFrom": "Ships from {country}",
     "copyLink": "Copy link",
     "shareLink": "Share",
-    "linkCopied": "Link copied."
+    "linkCopied": "Link copied.",
+    "inStockCount": {
+      "one": "1 in stock",
+      "other": "{count} in stock"
+    }
   },
   "statusReason": {
     "dns": "The web address no longer exists",
@@ -383,5 +387,30 @@
   "lettersNav": "Jump to letter",
   "sheet": {
     "close": "Close"
+  },
+  "detail": {
+    "back": "Results",
+    "empty": "Pick a record to compare its copies.",
+    "missing": "That record is no longer in the results.",
+    "price": "Price",
+    "priceRange": "{low} – {high}",
+    "condition": "Condition",
+    "conditionNew": "New",
+    "conditionUsed": "Used",
+    "conditionMixed": "New & used",
+    "conditionRange": "{best} – {worst}",
+    "shops": "Shops",
+    "shopsInStock": "{shops} · {inStock}",
+    "cheapest": "Cheapest: {shop} · {price}",
+    "inStock": "In stock",
+    "soldOut": "Sold out",
+    "showAll": {
+      "one": "Show the copy",
+      "other": "Show all {count} copies"
+    },
+    "checked": "Prices checked {date}",
+    "shopInfo": "About {shop}",
+    "share": "Share",
+    "searchArtist": "Search all {artist}"
   }
 }

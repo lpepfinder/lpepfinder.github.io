@@ -11,7 +11,9 @@ vf-sheet > dialog > header > button[value="close"] { inline-size: var(--tap); pa
 vf-sheet > dialog > :not(header, footer) { overflow: auto; overscroll-behavior: contain; padding-inline: var(--gutter); min-block-size: 0; }
 vf-sheet[mode="bottom"] > dialog { inset: auto 0 0; inline-size: 100%; max-block-size: var(--sheet-max); border-radius: var(--sheet-radius); }
 vf-sheet[mode="side"] > dialog { inset: 0 0 0 auto; block-size: 100dvh; inline-size: var(--sheet-side); }
-vf-sheet[mode="full"] > dialog { inset: 0; inline-size: 100%; block-size: 100dvh; }
+vf-sheet:is([mode="full"], [mode="adaptive"]) > dialog { inset: 0; inline-size: 100%; block-size: 100dvh; }
+vf-sheet > dialog > header > button[back] { inline-size: auto; padding-inline: var(--space-2); margin-inline: calc(-1 * var(--space-2)) auto; display: inline-flex; color: var(--c-fg); text-decoration: none; }
+vf-sheet > dialog > header > button[back]::before { content: var(--back-mark); margin-inline-end: var(--space-1); }
 vf-sheet > dialog:modal { animation: vf-sheet-in var(--duration) var(--ease); }
 @keyframes vf-sheet-in { from { translate: 0 var(--space-8); opacity: 0; } }
 
@@ -21,8 +23,15 @@ vf-sheet[docked] > dialog { position: static; inline-size: auto; block-size: aut
 vf-sheet[docked] > dialog > header > button[value="close"] { display: none; }
 vf-sheet[docked] > dialog > :not(header, footer) { overflow: visible; }
 
+vf-sheet[docked] > dialog > header:not(:has(h2)) { display: none; }
+
+/* adaptive (the release detail): full screen on phones; on tablets a bottom sheet in portrait, a side sheet in landscape */
 @media (min-width: 40rem) {
   vf-sheet[mode="bottom"] > dialog { margin-inline: auto; max-inline-size: var(--sheet-wide); }
+  vf-sheet[mode="adaptive"] > dialog { inset: auto 0 0; block-size: auto; max-block-size: var(--sheet-max); border-radius: var(--sheet-radius); }
+}
+@media (min-width: 40rem) and (orientation: landscape) {
+  vf-sheet[mode="adaptive"] > dialog { inset: 0 0 0 auto; block-size: 100dvh; max-block-size: none; inline-size: var(--sheet-side); border-radius: 0; }
 }
 @media (forced-colors: active) {
   vf-sheet > dialog { border: var(--line) solid CanvasText; }

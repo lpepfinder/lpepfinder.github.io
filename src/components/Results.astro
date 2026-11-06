@@ -3,6 +3,7 @@ import { t, localPath, number } from '../lib/i18n.js';
 import { catalog } from '../lib/catalog.js';
 import facets from '../../data/facets.json';
 import CurrencySelect from './CurrencySelect.astro';
+import Sheet from './Sheet.astro';
 
 /**
  * Results region filled by <vf-search>: heading and count line, filters (controls of the search
@@ -37,6 +38,9 @@ const shops = localPath(lang, '/shops/');
   <ol aria-labelledby="results-title"></ol>
   <vf-note reason="filtered" hidden><p>{t(lang, 'results.noneFiltered')}</p></vf-note>
   <button type="button" name="more" kind="secondary" hidden>{t(lang, 'loadMore')}</button>
+  <Sheet lang={lang} name="release" mode="adaptive" labelledby="detail-title" back={t(lang, 'detail.back')}>
+    <vf-detail status="empty"></vf-detail>
+  </Sheet>
   <vf-empty reason="no-match">
     <h2 tabindex="-1"></h2>
     <vf-suggest hidden></vf-suggest>

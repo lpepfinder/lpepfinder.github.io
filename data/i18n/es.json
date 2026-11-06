@@ -342,7 +342,11 @@
     "shipsFrom": "Se envía desde {country}",
     "copyLink": "Copiar enlace",
     "shareLink": "Compartir",
-    "linkCopied": "Enlace copiado."
+    "linkCopied": "Enlace copiado.",
+    "inStockCount": {
+      "one": "1 en stock",
+      "other": "{count} en stock"
+    }
   },
   "statusReason": {
     "dns": "La dirección web ya no existe",
@@ -383,5 +387,30 @@
   "lettersNav": "Ir a la letra",
   "sheet": {
     "close": "Cerrar"
+  },
+  "detail": {
+    "back": "Resultados",
+    "empty": "Elige un disco para comparar sus copias.",
+    "missing": "Ese disco ya no está en los resultados.",
+    "price": "Precio",
+    "priceRange": "{low} – {high}",
+    "condition": "Estado",
+    "conditionNew": "Nuevo",
+    "conditionUsed": "Usado",
+    "conditionMixed": "Nuevo y usado",
+    "conditionRange": "{best} – {worst}",
+    "shops": "Tiendas",
+    "shopsInStock": "{shops} · {inStock}",
+    "cheapest": "Más barato: {shop} · {price}",
+    "inStock": "En stock",
+    "soldOut": "Agotado",
+    "showAll": {
+      "one": "Mostrar la copia",
+      "other": "Mostrar las {count} copias"
+    },
+    "checked": "Precios comprobados el {date}",
+    "shopInfo": "Acerca de {shop}",
+    "share": "Compartir",
+    "searchArtist": "Buscar todo de {artist}"
   }
 }

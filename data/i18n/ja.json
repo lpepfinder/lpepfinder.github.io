@@ -322,7 +322,10 @@
     "shipsFrom": "{country}から発送",
     "copyLink": "リンクをコピー",
     "shareLink": "共有",
-    "linkCopied": "リンクをコピーしました。"
+    "linkCopied": "リンクをコピーしました。",
+    "inStockCount": {
+      "other": "在庫{count}件"
+    }
   },
   "statusReason": {
     "dns": "このウェブアドレスはもう存在しません",
@@ -362,5 +365,29 @@
   "lettersNav": "頭文字へ移動",
   "sheet": {
     "close": "閉じる"
+  },
+  "detail": {
+    "back": "検索結果",
+    "empty": "レコードを選ぶと、各ショップの在庫を比較できます。",
+    "missing": "そのレコードは検索結果にもうありません。",
+    "price": "価格",
+    "priceRange": "{low}〜{high}",
+    "condition": "状態",
+    "conditionNew": "新品",
+    "conditionUsed": "中古",
+    "conditionMixed": "新品・中古",
+    "conditionRange": "{best}〜{worst}",
+    "shops": "ショップ",
+    "shopsInStock": "{shops}・{inStock}",
+    "cheapest": "最安：{shop}・{price}",
+    "inStock": "在庫あり",
+    "soldOut": "売り切れ",
+    "showAll": {
+      "other": "{count}件すべて表示"
+    },
+    "checked": "{date}に価格を確認",
+    "shopInfo": "{shop}について",
+    "share": "共有",
+    "searchArtist": "{artist}をすべて検索"
   }
 }

@@ -4,6 +4,8 @@ import { region, rates, comparable, CURRENCY_EVENT } from './viewer.js';
 import { el } from './dom.js';
 import './vf-filters.js';
 import './vf-release.js';
+import { ReleaseDetail } from './release-detail.js';
+import { selectKey } from './release-parts.js';
 
 /**
  * <vf-results> renders search results, grouped by release, into its server-rendered markup.
@@ -22,6 +24,7 @@ export class VfResults extends HTMLElement {
     this.moreButton = this.querySelector('button[name="more"]');
     this.empty = this.querySelector('vf-empty[reason="no-match"] h2');
     this.groups = new Map();
+    this.details = new ReleaseDetail(this);
     this.moreButton.addEventListener('click', () => this.dispatchEvent(new Event('more')));
     this.shareButton = this.querySelector('button[name="share"]');
     this.native = !!navigator.share && matchMedia('(pointer: coarse)').matches;
@@ -59,12 +62,16 @@ export class VfResults extends HTMLElement {
     this.shown = 0;
     this.groups = new Map();
     this.list.replaceChildren();
+    this.details.reset();
     this.querySelector('vf-suggest').hidden = true;
     this.heading.textContent = t('results.heading', { query });
     this.empty.textContent = t('emptyTitle', { query });
     this.live.textContent = total ? '' : this.empty.textContent;
     this.status = total ? 'done' : 'empty';
   }
+
+  /** A link with ?r=: open its release once loaded (more: load the next page, hasMore: () => bool). */
+  restore(more, hasMore) { return this.details.restore(more, hasMore); }
 
   /** Add one page of records: new releases are appended, known ones grow in place. Returns the first new row. */
   async append(records, shown) {
@@ -102,7 +109,10 @@ export class VfResults extends HTMLElement {
     const touched = [];
     ordered.forEach((v, index) => {
       if (!full && !changed.has(v.group)) return;
-      if (!v.group.row) v.group.row = el('vf-release');
+      if (!v.group.row) {
+        v.group.row = el('vf-release');
+        this.details.add(selectKey(v.group), v.group);
+      }
       v.group.row.view = { group: v.group, view: v, rates: this.rates, covers: filters.covers, index };
       (v.group.row.isConnected ? touched : fresh).push(v.group.row);
     });
@@ -110,7 +120,8 @@ export class VfResults extends HTMLElement {
     else this.list.append(...fresh.map((row) => el('li', {}, row)));
     this.filters.counts(byFormat);
     this.count(views);
-    return full ? null : (fresh[0] || touched[0])?.querySelector('summary');
+    this.details.draw();
+    return full ? null : (fresh[0] || touched[0])?.querySelector(':scope > a');
   }
 
   /** "312 records · 1,204 copies at 87 shops", and how many were found in all while more can be loaded. */

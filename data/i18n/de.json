@@ -342,7 +342,11 @@
     "shipsFrom": "Versand aus {country}",
     "copyLink": "Link kopieren",
     "shareLink": "Teilen",
-    "linkCopied": "Link kopiert."
+    "linkCopied": "Link kopiert.",
+    "inStockCount": {
+      "one": "1 auf Lager",
+      "other": "{count} auf Lager"
+    }
   },
   "statusReason": {
     "dns": "Die Webadresse gibt es nicht mehr",
@@ -383,5 +387,30 @@
   "lettersNav": "Zum Buchstaben",
   "sheet": {
     "close": "Schließen"
+  },
+  "detail": {
+    "back": "Ergebnisse",
+    "empty": "Wähle eine Platte, um ihre Exemplare zu vergleichen.",
+    "missing": "Diese Platte ist nicht mehr in den Ergebnissen.",
+    "price": "Preis",
+    "priceRange": "{low} – {high}",
+    "condition": "Zustand",
+    "conditionNew": "Neu",
+    "conditionUsed": "Gebraucht",
+    "conditionMixed": "Neu und gebraucht",
+    "conditionRange": "{best} – {worst}",
+    "shops": "Läden",
+    "shopsInStock": "{shops} · {inStock}",
+    "cheapest": "Am günstigsten: {shop} · {price}",
+    "inStock": "Auf Lager",
+    "soldOut": "Ausverkauft",
+    "showAll": {
+      "one": "Das Exemplar zeigen",
+      "other": "Alle {count} Exemplare zeigen"
+    },
+    "checked": "Preise geprüft am {date}",
+    "shopInfo": "Über {shop}",
+    "share": "Teilen",
+    "searchArtist": "Alles von {artist} suchen"
   }
 }

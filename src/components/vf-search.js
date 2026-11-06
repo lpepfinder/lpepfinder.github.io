@@ -29,7 +29,10 @@ export class VfSearch extends HTMLElement {
     this.form.addEventListener('submit', (e) => { e.preventDefault(); this.run(this.input.value, { push: true, submitted: true }); });
     this.results.addEventListener('more', () => this.more(true));
     this.results.addEventListener('retry', () => { this.client = new SearchClient(this.client.base); this.run(this.input.value, { submitted: true }); });
-    window.addEventListener('popstate', () => this.fromUrl());
+    // back/forward: search again only when the query changed (not for ?r= of a release)
+    window.addEventListener('popstate', () => {
+      if ((new URLSearchParams(location.search).get('q') || '').trim() !== this.query) this.fromUrl();
+    });
     this.fromUrl();
   }
 
@@ -41,9 +44,11 @@ export class VfSearch extends HTMLElement {
 
   async run(query, { push = false, submitted = false }) {
     const q = query.trim();
+    this.query = q;
     if (push) {
       const url = new URL(location.href);
       q ? url.searchParams.set('q', q) : url.searchParams.delete('q');
+      url.searchParams.delete('r');
       history.pushState(null, '', url);
     }
     this.setAttribute('status', q ? 'loading' : 'idle');
@@ -54,8 +59,12 @@ export class VfSearch extends HTMLElement {
     try {
       this.ids = await this.client.rank(await this.client.match(q), q, this.per);
       this.shown = 0;
+      this.results.checked = this.client.meta?.builtAt;
       this.results.start(q, this.ids.length);
-      if (this.ids.length) await this.more(false);
+      if (this.ids.length) {
+        await this.more(false);
+        await this.results.restore(() => this.more(false), () => this.shown < this.ids.length);
+      }
       else this.results.suggest(await this.client.suggest(q).catch(() => ({})));
     } catch (err) {
       console.error(err);

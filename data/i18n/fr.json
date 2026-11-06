@@ -342,7 +342,11 @@
     "shipsFrom": "Expédié de {country}",
     "copyLink": "Copier le lien",
     "shareLink": "Partager",
-    "linkCopied": "Lien copié."
+    "linkCopied": "Lien copié.",
+    "inStockCount": {
+      "one": "1 en stock",
+      "other": "{count} en stock"
+    }
   },
   "statusReason": {
     "dns": "L’adresse web n’existe plus",
@@ -383,5 +387,30 @@
   "lettersNav": "Aller à la lettre",
   "sheet": {
     "close": "Fermer"
+  },
+  "detail": {
+    "back": "Résultats",
+    "empty": "Choisissez un disque pour comparer ses exemplaires.",
+    "missing": "Ce disque n’est plus dans les résultats.",
+    "price": "Prix",
+    "priceRange": "{low} – {high}",
+    "condition": "État",
+    "conditionNew": "Neuf",
+    "conditionUsed": "Occasion",
+    "conditionMixed": "Neuf et occasion",
+    "conditionRange": "{best} – {worst}",
+    "shops": "Boutiques",
+    "shopsInStock": "{shops} · {inStock}",
+    "cheapest": "Le moins cher : {shop} · {price}",
+    "inStock": "En stock",
+    "soldOut": "Épuisé",
+    "showAll": {
+      "one": "Afficher l’exemplaire",
+      "other": "Afficher les {count} exemplaires"
+    },
+    "checked": "Prix vérifiés le {date}",
+    "shopInfo": "À propos de {shop}",
+    "share": "Partager",
+    "searchArtist": "Chercher tout {artist}"
   }
 }

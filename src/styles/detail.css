@@ -1,0 +1,64 @@
+/* <vf-detail>: one release compared across shops, in the release sheet (or the docked pane); <vf-offer>: one copy. */
+vf-detail { display: grid; grid-template-columns: var(--cover-detail) minmax(0, 1fr); gap: var(--space-3) var(--space-4); align-content: start; align-items: start; padding-block: var(--space-4); }
+vf-detail > :not(img, vf-cover, hgroup) { grid-column: 1 / -1; }
+vf-detail > :is(img, vf-cover) { display: block; inline-size: var(--cover-detail); block-size: var(--cover-detail); border-radius: var(--radius); object-fit: cover; background: var(--c-skeleton) var(--thumb-fallback) center / 80% no-repeat; }
+vf-detail:not(:has(> :is(img, vf-cover))) > hgroup { grid-column: 1 / -1; }
+vf-detail hgroup { align-self: end; }
+vf-detail h2 { margin: 0; font-size: var(--size-2); overflow-wrap: anywhere; }
+vf-detail hgroup p { margin: var(--space-1) 0 0; }
+vf-detail[status="empty"] { grid-template-columns: minmax(0, 1fr); color: var(--c-muted); }
+vf-detail > p { margin: 0; }
+vf-detail dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-1) var(--space-3); margin: 0; font-size: var(--size-s); }
+vf-detail dt { color: var(--c-muted); }
+vf-detail dd { margin: 0; }
+vf-detail dd > vf-price { display: inline; color: var(--c-price); }
+vf-detail dd > vf-price small { display: none; }
+
+/* actions: Watch, Share, the cheapest copy (the strong link out); a bar at the bottom of the full-screen sheet */
+vf-detail > menu { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+vf-detail > menu > li:last-child:has(> a) { flex: 1 1 auto; }
+vf-detail > menu a { display: flex; align-items: center; justify-content: center; min-block-size: var(--tap); padding-inline: var(--space-4); border-radius: var(--radius); background: var(--c-chip-on); color: var(--c-chip-on-fg); font-weight: var(--weight-semi); text-decoration: none; text-align: center; }
+vf-sheet:not([docked]) vf-detail > menu {
+  position: sticky; inset-block-end: 0; z-index: 1; order: 99;
+  margin-inline: calc(-1 * var(--gutter)); padding: var(--space-2) var(--gutter) calc(var(--space-2) + env(safe-area-inset-bottom));
+  background: var(--c-surface); border-block-start: var(--line) solid var(--c-line);
+}
+vf-sheet:not([docked]) vf-detail { padding-block-end: 0; }
+
+vf-detail h3 { margin: 0 0 var(--space-1); font-size: var(--size-0); }
+vf-detail h3 > data, vf-detail summary > data { font-weight: normal; }
+vf-detail ul { list-style: none; margin: 0; padding: 0; }
+vf-detail section > button { margin-block-start: var(--space-2); }
+vf-detail summary { font-weight: var(--weight-semi); cursor: pointer; }
+vf-detail > footer { display: grid; gap: var(--space-1); color: var(--c-muted); font-size: var(--size-s); }
+vf-detail > footer p { margin: 0; }
+vf-detail > footer a { display: inline-flex; align-items: center; min-block-size: var(--tap); }
+vf-detail[status="loading"] { opacity: var(--dim); }
+
+/* one copy: shop (the link out) · ships from · format and condition · price · about the shop */
+vf-offer {
+  position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto var(--tap);
+  grid-template-areas: "shop shop price info" "origin meta price info" "notes notes notes info";
+  gap: 0 var(--space-3); align-items: center; min-block-size: var(--tap);
+  padding-block: var(--space-2); border-block-start: var(--line) solid var(--c-line);
+}
+vf-offer > a[rel] { grid-area: shop; font-weight: var(--weight-semi); overflow-wrap: anywhere; }
+vf-offer > a[rel]::after { content: ""; position: absolute; inset: 0 var(--tap) 0 0; }
+vf-offer > vf-origin { grid-area: origin; margin-inline-end: var(--space-2); font-size: var(--size-s); color: var(--c-muted); white-space: nowrap; }
+vf-offer > p { grid-area: meta; margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-offer:not(:has(> vf-origin)) > p { grid-column: 1 / 3; }
+vf-offer > vf-price { grid-area: price; }
+vf-offer > vf-offer-notes { grid-area: notes; font-size: var(--size-xs); color: var(--c-muted); }
+vf-offer > vf-offer-notes:empty { display: none; }
+vf-offer > a:last-child { grid-area: info; position: relative; z-index: 1; display: grid; place-items: center; inline-size: var(--tap); block-size: var(--tap); color: var(--c-muted); }
+vf-offer[condition="used"][stock="in"] > p { color: var(--c-used); }
+vf-offer[stock="out"] > vf-price { color: var(--c-muted); font-weight: normal; }
+vf-offer:hover { background: var(--c-hover); }
+vf-offer:has(a[rel]:focus-visible) { outline: var(--focus-ring); outline-offset: calc(-1 * var(--focus-offset)); }
+vf-offer a[rel]:focus-visible { outline: none; }
+vf-origin abbr { text-decoration: none; }
+vf-origin[local="true"] { color: var(--c-fg); font-weight: var(--weight-semi); }
+
+@media (min-width: 64rem) {
+  vf-offer { grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1.2fr) auto var(--tap); grid-template-areas: "shop origin meta price info" "notes notes notes notes info"; }
+}

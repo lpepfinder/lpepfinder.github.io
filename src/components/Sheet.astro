@@ -4,17 +4,19 @@ import { t } from '../lib/i18n.js';
 /**
  * <vf-sheet>: a native <dialog> as a bottom, side or full-screen sheet, docked in place while `dock` matches.
  * Props: lang, name, mode ("bottom" | "side" | "full"), dock (media query, optional), title (heading text;
- * omit it and fill the "header" slot instead), labelledby (id of the heading when there is no title).
+ * omit it and fill the "header" slot instead), labelledby (id of the heading when there is no title),
+ * back (label of a "‹ Back" close button at the start, instead of the ✕ at the end).
  * Slots: default (content), "header" (replaces the title), "footer".
  */
-const { lang, name, mode = 'bottom', dock, title, labelledby } = Astro.props;
+const { lang, name, mode = 'bottom', dock, title, labelledby, back } = Astro.props;
 const titleId = `${name}-sheet-title`;
 ---
 <vf-sheet name={name} mode={mode} dock={dock}>
   <dialog aria-labelledby={title ? titleId : labelledby} closedby="any">
     <header>
-      {Astro.slots.has('header') ? <slot name="header" /> : <h2 id={titleId}>{title}</h2>}
-      <button type="button" value="close" kind="text" aria-label={t(lang, 'sheet.close')}><vf-icon name="close"></vf-icon></button>
+      {back && <button type="button" value="close" kind="text" back>{back}</button>}
+      {Astro.slots.has('header') ? <slot name="header" /> : title && <h2 id={titleId}>{title}</h2>}
+      {!back && <button type="button" value="close" kind="text" aria-label={t(lang, 'sheet.close')}><vf-icon name="close"></vf-icon></button>}
     </header>
     <slot />
     {Astro.slots.has('footer') && <footer><slot name="footer" /></footer>}
