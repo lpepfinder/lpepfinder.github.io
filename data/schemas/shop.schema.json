@@ -25,6 +25,14 @@
     "city": {
       "type": "string"
     },
+    "shipsTo": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^([A-Z]{2}|\\*)$"
+      },
+      "description": "Countries the shop ships to (ISO 3166-1 alpha-2, \"*\" for worldwide). Overrides what the check reads from Shopify"
+    },
     "address": {
       "type": "string"
     },
