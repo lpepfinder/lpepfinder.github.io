@@ -1,13 +1,14 @@
 import { site } from '../settings.js';
 import * as squarespace from './squarespace-json.js';
 import * as bigcartel from './bigcartel.js';
+import * as squareOnline from './square-online.js';
 import * as magento from './magento-graphql.js';
 import * as appData from './app-data.js';
 import * as sitemap from './sitemap.js';
 import * as generic from './generic.js';
 
 /** Readers, platform-specific fast paths first; the generic crawler always applies. */
-export const methods = [squarespace, bigcartel, magento, appData, sitemap, generic];
+export const methods = [squarespace, bigcartel, squareOnline, magento, appData, sitemap, generic];
 const byName = Object.fromEntries(methods.map((m) => [m.name, m]));
 
 const DAY = 864e5;

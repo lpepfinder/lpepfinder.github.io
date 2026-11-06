@@ -4,9 +4,11 @@ import fs from 'node:fs';
 import { squarespaceRecords } from './squarespace-json.js';
 import { bigcartelRecords } from './bigcartel.js';
 import { magentoRecords } from './magento-graphql.js';
+import { squareStore, squareOnlineRecords } from './square-online.js';
 import { toRecord } from '../record.js';
 
-const fixture = (f) => JSON.parse(fs.readFileSync(new URL(`../fixtures/${f}`, import.meta.url), 'utf8'));
+const raw = (f) => fs.readFileSync(new URL(`../fixtures/${f}`, import.meta.url), 'utf8');
+const fixture = (f) => JSON.parse(raw(f));
 
 test('Squarespace ?format=json collection: variants, sale price, stock', () => {
   const rows = squarespaceRecords(fixture('squarespace.json'), 'https://far-landrecords.co.uk');
@@ -36,4 +38,17 @@ test('Magento GraphQL products: canonical URL, final price, stock status', () =>
   });
   assert.equal(rows[1].url, 'https://www.pickuprecords.it/circe-3770011431915.html');
   assert.equal(rows[1].p.inStock, false);
+});
+
+test('Square Online: store ids from the bootstrap state, products from the storefront API', () => {
+  assert.deepEqual(squareStore(raw('square-online-home.html')), { user: '142849116', site: '710483256870885698', currency: 'GBP' });
+  assert.equal(squareStore('<html><script>window.__BOOTSTRAP_STATE__ = {broken};</script></html>'), null);
+  const rows = squareOnlineRecords(fixture('square-online.json'), 'https://www.thelpcafe.com', 'GBP');
+  assert.equal(rows.length, 2, 'the event ticket is left out');
+  assert.deepEqual(rows[0], {
+    url: 'https://www.thelpcafe.com/product/hey-colossus-radio-static-high/100',
+    p: { title: 'Hey Colossus - Radio Static High', price: 18, currency: 'GBP', inStock: true, image: 'https://142849116.cdn6.editmysite.com/uploads/1/4/2/8/142849116/EY2XCC2H6M5UKF55PSHO5EKN.jpeg' },
+  });
+  assert.equal(rows[1].url, 'https://www.thelpcafe.com/product/grateful-dead-wake-of-the-flood/QUDJOG4B63OH5FYJXEEH4XY5');
+  assert.deepEqual([rows[1].p.title, rows[1].p.price, rows[1].p.inStock, rows[1].p.image], ['Grateful Dead & Friends - Wake Of The Flood LP', 24.5, false, null]);
 });

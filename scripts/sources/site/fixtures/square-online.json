@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "id": "F2T6FLMJGZQ5SM5OCAOUWRMQ",
+      "visibility": "visible",
+      "name": "Hey Colossus - Radio Static High",
+      "product_type": "physical",
+      "badges": { "out_of_stock": false, "low_stock": false, "on_sale": false },
+      "site_link": "product/hey-colossus-radio-static-high/100",
+      "absolute_site_link": "https://www.thelpcafe.com/product/hey-colossus-radio-static-high/100",
+      "inventory": { "total": 1, "all_variations_sold_out": false },
+      "price": { "low": 18, "high": 18, "regular_low": 18, "low_formatted": "£18.00" },
+      "thumbnail": { "data": { "absolute_url": "https://142849116.cdn6.editmysite.com/uploads/1/4/2/8/142849116/EY2XCC2H6M5UKF55PSHO5EKN.jpeg" } }
+    },
+    {
+      "id": "QUDJOG4B63OH5FYJXEEH4XY5",
+      "visibility": "visible",
+      "name": "Grateful Dead &amp; Friends - Wake Of The Flood LP",
+      "product_type": "physical",
+      "badges": { "out_of_stock": true, "low_stock": false, "on_sale": true },
+      "site_link": "product/grateful-dead-wake-of-the-flood/QUDJOG4B63OH5FYJXEEH4XY5",
+      "absolute_site_link": null,
+      "inventory": { "total": 0, "all_variations_sold_out": true },
+      "price": { "low": 24.5, "high": 30, "regular_low": 30, "low_formatted": "£24.50" },
+      "thumbnail": null
+    },
+    {
+      "id": "EVT1",
+      "visibility": "visible",
+      "name": "In-store gig ticket",
+      "product_type": "event",
+      "badges": { "out_of_stock": false },
+      "site_link": "product/in-store-gig-ticket/EVT1",
+      "absolute_site_link": "https://www.thelpcafe.com/product/in-store-gig-ticket/EVT1",
+      "inventory": { "total": 20, "all_variations_sold_out": false },
+      "price": { "low": 5 }
+    }
+  ],
+  "meta": { "pagination": { "total": 3, "count": 3, "per_page": 200, "current_page": 1, "total_pages": 1 } }
+}

@@ -121,6 +121,7 @@
     "maxRetryAfterSeconds": 120,
     "checkpointMinutes": 15,
     "magentoPageSize": 100,
+    "squareOnlinePageSize": 200,
     "sitemapPlatforms": [
       "wix",
       "woocommerce",
