@@ -100,7 +100,8 @@ vf-icon[name="bluesky"] { --icon: var(--icon-bluesky); }
 @media (min-width: 48rem) {
   header { grid-template-columns: auto minmax(var(--search-min), 36rem) 1fr auto; grid-template-areas: "logo search . tabs"; padding-block: var(--space-2); }
   header > nav { grid-area: tabs; position: static; padding: 0; background: none; border: 0; }
-  vf-tabbar { gap: var(--space-2); }
+  vf-tabbar, vf-tabbar > vf-watchlist { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: max-content; }
+  vf-tabbar { gap: var(--space-1); }
   vf-tabbar a { grid-auto-flow: column; gap: var(--space-2); min-block-size: var(--tap); padding-inline: var(--space-3); font-size: var(--size-s); border-radius: var(--radius); }
   vf-tabbar a[aria-current="page"] { background: var(--c-chip); }
   vf-tabbar vf-icon { --icon-size: var(--icon-size-nav); }
