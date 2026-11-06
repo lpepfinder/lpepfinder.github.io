@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { SHOPS_DIR, I18N_DIR } from '../lib/paths.js';
 import { config } from '../lib/config.js';
+import { checkRegions } from './regions.js';
 
 /** Validate the curated data against data/schemas (dependency-free subset of JSON Schema). */
 const schema = JSON.parse(fs.readFileSync(path.join(SHOPS_DIR, '../schemas/shop.schema.json'), 'utf8'));
@@ -42,6 +43,8 @@ for (const f of files) {
     if (host !== f.slice(0, -5)) errors.push(`${f}: file name must be the url host "${host}.json"`);
   } catch { /* reported by pattern */ }
 }
+
+errors.push(...checkRegions(JSON.parse(fs.readFileSync(path.join(SHOPS_DIR, '../regions.json'), 'utf8')), isCountry));
 
 const en = JSON.parse(fs.readFileSync(path.join(I18N_DIR, `${config.defaultLanguage}.json`), 'utf8'));
 for (const lang of config.languages) {

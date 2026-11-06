@@ -1,0 +1,49 @@
+{
+  "zones": [
+    {
+      "id": "eu",
+      "label": "zone.eu",
+      "countries": ["AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK"]
+    },
+    {
+      "id": "uk",
+      "label": "zone.uk",
+      "countries": ["GB", "IM"]
+    },
+    {
+      "id": "ch",
+      "label": "zone.ch",
+      "countries": ["CH", "LI"]
+    },
+    {
+      "id": "no",
+      "label": "zone.no",
+      "countries": ["NO"]
+    },
+    {
+      "id": "us",
+      "label": "zone.us",
+      "countries": ["US", "PR"]
+    },
+    {
+      "id": "ca",
+      "label": "zone.ca",
+      "countries": ["CA"]
+    },
+    {
+      "id": "jp",
+      "label": "zone.jp",
+      "countries": ["JP"]
+    },
+    {
+      "id": "au",
+      "label": "zone.au",
+      "countries": ["AU"]
+    },
+    {
+      "id": "nz",
+      "label": "zone.nz",
+      "countries": ["NZ"]
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import { getJson } from '../lib/http.js';
 import { sleep } from '../lib/pool.js';
 import { decodeEntities, displayTitle } from '../lib/text.js';
 import { keepProduct, musicRatio } from './filter.js';
+import { shipsTo } from './ships-to.js';
 
 const PAGE_SIZE = 250;
 
@@ -24,6 +25,8 @@ export async function probe(origin) {
     city: meta.data?.city || null,
     country: meta.data?.country || null,
     currency: meta.data?.currency || null,
+    // countries the shop ships to ([] when unknown), see ships-to.js
+    shipsTo: shipsTo(meta.data?.ships_to_countries),
     // shops often put the artist in `vendor` and only the album in `title`
     musicRatio: musicRatio(products.map((p) => [displayTitle(p.title, p.vendor), text(p)])),
     sampleSize: products.length,

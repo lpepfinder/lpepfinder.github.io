@@ -1,11 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { files, GENERATED, PUBLIC } from '../lib/paths.js';
+import { files, DATA, GENERATED, PUBLIC } from '../lib/paths.js';
 import { config } from '../lib/config.js';
-import { writeJson } from '../lib/json.js';
+import { readJson, writeJson } from '../lib/json.js';
 import { loadCatalog, sortDocs } from './catalog.js';
-import { buildSearchIndex } from './search-index.js';
-import { buildSiteData } from './site-data.js';
+import { buildSearchIndex, writeStatic } from './search-index.js';
+import { buildSiteData, artistList } from './site-data.js';
 import { today } from '../ledger/day.js';
 import { updateLedger } from '../ledger/update.js';
 import { crawlDays } from '../ledger/crawl-days.js';
@@ -40,7 +40,12 @@ writeJson(path.join(GENERATED, 'new-arrivals.json'), arrivals);
 console.log('new arrivals', arrivals.total, 'at', arrivals.shops, 'shops');
 const docs = sortDocs([...catalog.docs, ...ledgerDocs(ledger, catalog.docs, catalog.shops, config.ledger)]);
 
-const meta = buildSearchIndex({ ...catalog, docs, outDir, docsPerChunk: config.search.docsPerChunk });
+// each shop's last successful crawl day, kept by the ledger across runs
+const lastCrawl = Object.fromEntries(Object.entries(ledger.meta.shops).map(([id, s]) => [id, s.lastCrawl]));
+const meta = buildSearchIndex({ ...catalog, docs, outDir, docsPerChunk: config.search.docsPerChunk, lastCrawl });
+// customs zones (CMS-editable) for the browser: same zone or import
+writeJson(path.join(PUBLIC, 'regions.json'), readJson(path.join(DATA, 'regions.json')));
 const siteData = buildSiteData({ ...catalog, seo: config.seo });
 writeJson(path.join(GENERATED, 'site-data.json'), siteData);
+writeStatic(path.join(outDir, 'artists.json'), JSON.stringify(artistList(siteData.artists, config.search.maxArtists)));
 console.log('index built in', Math.round((Date.now() - t0) / 1000), 's', meta, 'artist pages:', siteData.artists.length);
