@@ -5,6 +5,7 @@ import { canonical, isProductUrl, links } from './links.js';
 import { surtPrefix, parseClusterIndex, blocksFor, productUrls } from './commoncrawl.js';
 import { shardOf } from './targets.js';
 import { outputRecord } from './record.js';
+import { isBotWall } from './fetcher.js';
 
 test('sitemaps: url entries with lastmod, and indexes', () => {
   const s = parseSitemap('<urlset><url><loc>https://x.com/product-page/a?x=1&amp;y=2</loc><lastmod>2026-10-01</lastmod></url><url><loc><![CDATA[https://x.com/b]]></loc></url></urlset>');
@@ -51,4 +52,11 @@ test('output records: same-host paths, other hosts as full URLs, availability ke
   const line = outputRecord('oye-records.com', 'https://oye-records.com', 'https://www.oye-records.com/releases/a-b?x=1', entry);
   assert.deepEqual(line, { shop: 'oye-records.com', title: 'A - B', vendor: null, type: 'LP', price: 1999, currency: 'EUR', path: '/releases/a-b?x=1', image: null, available: false, updated: '2026-11-01T00:00:00.000Z' });
   assert.equal(outputRecord('x.com', 'https://x.com', 'https://shop.y.com/p/1', entry).path, 'https://shop.y.com/p/1');
+});
+
+test('bot walls: AWS WAF 202 challenge page, but not an ordinary 202', () => {
+  const page = '<html><head><script>window.awsWafCookieDomainList = [];\nwindow.gokuProps = {"key":"AQID"};</script></head></html>';
+  assert.equal(isBotWall({ status: 202, text: page }), true);
+  assert.equal(isBotWall({ status: 202, text: '<html><body>Accepted</body></html>' }), false);
+  assert.equal(isBotWall({ status: 200, text: '<p>products</p>' }), false);
 });

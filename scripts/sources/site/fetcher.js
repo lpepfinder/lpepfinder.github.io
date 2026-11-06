@@ -66,7 +66,11 @@ export function retryAfterSeconds(value) {
 
 const CHALLENGE = /challenge-platform|cf-chl|cf_chl|captcha|just a moment\.\.\.|attention required|access denied|ddos-guard|sucuri website firewall|perimeterx|datadome/i;
 
-/** A bot wall (Cloudflare challenge and similar). We never try to get past one. */
+// AWS WAF answers 202 with a JavaScript challenge page instead of the site
+const AWS_WAF = /awsWafCookieDomainList|gokuProps/;
+
+/** A bot wall (Cloudflare challenge, AWS WAF and similar). We never try to get past one. */
 export const isBotWall = (res) =>
   res.headers?.get?.('cf-mitigated') === 'challenge' ||
+  (res.status === 202 && AWS_WAF.test((res.text || '').slice(0, 20000))) ||
   ([401, 403, 503].includes(res.status) && CHALLENGE.test((res.text || '').slice(0, 20000)));
