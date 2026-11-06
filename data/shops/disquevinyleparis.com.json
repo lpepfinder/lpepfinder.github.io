@@ -3,5 +3,7 @@
   "name": "All Access",
   "country": "FR",
   "city": "Paris",
-  "source": "rsd"
+  "source": "rsd",
+  "disabled": true,
+  "note": "Domain no longer a record shop (taken over by an unrelated site), 2026-11-06."
 }

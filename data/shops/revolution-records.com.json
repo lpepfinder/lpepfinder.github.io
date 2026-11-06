@@ -3,5 +3,7 @@
   "country": "GB",
   "address": "1-3 Middle Row",
   "discogs": "https://www.discogs.com/record-stores/store/revolutionrecords1/",
-  "source": "discogs"
+  "source": "discogs",
+  "disabled": true,
+  "note": "Domain no longer a record shop (taken over by an unrelated site), 2026-11-06."
 }

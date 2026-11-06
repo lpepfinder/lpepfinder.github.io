@@ -3,5 +3,7 @@
   "name": "Vinyl Zone",
   "city": "Taranto",
   "osm": "node/11339294053",
-  "source": "osm"
+  "source": "osm",
+  "disabled": true,
+  "note": "Domain no longer a record shop (taken over by an unrelated site), 2026-11-06."
 }
