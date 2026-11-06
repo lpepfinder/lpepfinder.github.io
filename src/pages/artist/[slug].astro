@@ -46,7 +46,7 @@ const ld = [{
   },
 }, breadcrumbLd(crumbs, Astro.site)];
 ---
-<Base lang={lang} title={pageTitle(title)} description={t(lang, cheapest ? 'artistDescription' : 'artistDescriptionNoPrice', vars)} ld={ld}>
+<Base lang={lang} title={pageTitle(title)} description={t(lang, cheapest ? 'artistDescription' : 'artistDescriptionNoPrice', vars)} ld={ld} data={`/artist/${artist.slug}.json`}>
   <Breadcrumbs lang={lang} items={crumbs} />
   <h1 id="artist-title">{t(lang, 'artistTitle', vars)}</h1>
   <p>{t(lang, 'artistIntro', vars)}</p>

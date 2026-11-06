@@ -13,7 +13,7 @@ const c = catalog();
 const countries = [...c.countries].sort(byName(lang, (x) => countryName(lang, x.code)));
 const vars = { shops: number(lang, c.visible.length), countries: number(lang, c.countries.length) };
 ---
-<Base lang={lang} path="/shops/" title={pageTitle(t(lang, 'shopsSeoTitle'))} description={t(lang, 'shopsIntro', vars)}>
+<Base lang={lang} path="/shops/" title={pageTitle(t(lang, 'shopsSeoTitle'))} description={t(lang, 'shopsIntro', vars)} data="/api/shops.json">
   <h1>{t(lang, 'shopsTitle')}</h1>
   <p>{t(lang, 'shopsIntro', vars)}</p>
   <vf-near hidden>

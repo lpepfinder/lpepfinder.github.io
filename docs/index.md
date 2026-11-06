@@ -12,6 +12,7 @@ LP/EP Finder searches the catalogs of independent record shops: millions of reco
 - [Dig](dig.md): what's new in the shops, back in stock or cheaper this week.
 - [Your watchlist](watchlist.md): bring your Discogs wantlist, see which records shops have now.
 - [For record shops](for-shops.md): get listed, update your listing, or opt out.
+- [For robots and agents](agents.md): the same data as JSON.
 
 ## How it's made
 
