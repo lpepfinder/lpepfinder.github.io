@@ -23,7 +23,7 @@ const ld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name:
 const feed = scope.feed && { href: scope.feed, title: t(lang, 'newFeed') };
 const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
 // the Dig crates (vf-dig.js) on /new/ itself; the server-rendered list below stays for search engines and without scripts
-const crates = ['new', 'restock', 'drop'];
+const crates = ['mine', 'new', 'restock', 'drop'];
 ---
 <Base lang={lang} title={pageTitle(t(lang, `${scope.key}SeoTitle`, vars))} description={t(lang, `${scope.key}Description`, vars)} ld={ld} feed={feed} noindex={!scope.count} strings={['dig']}>
   <Breadcrumbs lang={lang} items={crumbs} />

@@ -85,7 +85,19 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
           <button type="button" name="more" kind="secondary" hidden></button>
         </vf-watch-hits>
         <Sheet lang={lang} name="watch-record" mode="adaptive" dock="(min-width: 64rem)" labelledby="detail-title" back={t(lang, 'watchPage.backRecords')}>
+          <vf-watch-record>
+          <vf-watch-controls hidden>
+            <form>
+              <label>{t(lang, 'watchPage.maxPrice')} <input type="text" name="max" inputmode="decimal" size="5" autocomplete="off"> <vf-currency-code>EUR</vf-currency-code></label>
+              <button type="submit" kind="secondary">{t(lang, 'watchPage.maxSave')}</button>
+            </form>
+            <menu>
+              <li><button type="button" name="bought" kind="strong">{t(lang, 'watchPage.bought')}</button></li>
+              <li><button type="button" name="remove" kind="text">{t(lang, 'watchPage.remove')}</button></li>
+            </menu>
+          </vf-watch-controls>
           <vf-detail></vf-detail>
+          </vf-watch-record>
         </Sheet>
       </vf-split>
     </vf-watch-available>

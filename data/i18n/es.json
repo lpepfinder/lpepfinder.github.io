@@ -359,7 +359,14 @@
     "summaryStock": {
       "one": "{available} de 1 disco en stock en {shops}",
       "other": "{available} de {count} discos en stock en {shops}"
-    }
+    },
+    "maxPrice": "Precio máximo",
+    "maxSave": "Guardar",
+    "bought": "Lo compré",
+    "boughtDone": "Comprado: {title}. Fuera de tu lista.",
+    "maxSet": "Precio máximo {price}: se ocultan las copias más caras.",
+    "maxCleared": "Sin precio máximo.",
+    "undo": "Deshacer"
   },
   "navApp": "Principal",
   "navSite": "Explorar",
@@ -510,7 +517,8 @@
     "crate": {
       "new": "Novedades",
       "restock": "De vuelta en stock",
-      "drop": "Bajadas de precio"
+      "drop": "Bajadas de precio",
+      "mine": "Tus discos"
     },
     "ships": "Envía a mi país",
     "customs": "Sin aduanas",
@@ -518,7 +526,8 @@
     "more": "Más discos",
     "empty": "Nada en esta caja con estos filtros.",
     "title": "Rebuscar",
-    "intro": "Novedades de las tiendas, de vuelta en stock y más baratos esta semana. Toca una portada para ir a la tienda."
+    "intro": "Novedades de las tiendas, de vuelta en stock y más baratos esta semana. Toca una portada para ir a la tienda.",
+    "emptyMine": "Ninguno de tus discos seguidos es nuevo, ha vuelto o está más barato esta semana."
   },
   "tabMore": "Más",
   "moreTitle": "Más",

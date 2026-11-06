@@ -1,7 +1,11 @@
 import { SearchClient } from '../lib/search/client.js';
 import { addToGroups, groupView } from '../lib/search/group.js';
-import { load } from '../lib/watch/store.js';
-import { selected, select, unselect } from './selection.js';
+import { load, update, remove } from '../lib/watch/store.js';
+import { currency } from './viewer.js';
+import { convert } from '../lib/currency.js';
+import { formatPrice } from './i18n.js';
+import { toast } from './vf-toast.js';
+import { selected, select, unselect, forget } from './selection.js';
 import { comparable, region } from './viewer.js';
 import { t } from './i18n.js';
 import { el } from './dom.js';
@@ -59,6 +63,10 @@ export class WatchRecordPane {
     this.sheet.addEventListener('dismiss', () => unselect(PARAM));
     this.sheet.addEventListener('dock', () => this.fromUrl());
     this.detail.addEventListener('share', () => this.share());
+    this.controls = this.sheet.querySelector('vf-watch-controls');
+    this.controls.querySelector('form').addEventListener('submit', (e) => { e.preventDefault(); this.setMax(); });
+    this.controls.querySelector('button[name="bought"]').addEventListener('click', () => this.drop('watchPage.boughtDone'));
+    this.controls.querySelector('button[name="remove"]').addEventListener('click', () => this.drop('watchPage.removed'));
     addEventListener('popstate', () => this.fromUrl());
   }
 
@@ -81,6 +89,7 @@ export class WatchRecordPane {
   async draw(key, it) {
     if (this.current === key) return;
     this.current = key;
+    this.showControls(it);
     this.detail.setAttribute('status', 'loading');
     this.detail.replaceChildren(el('p', { textContent: t('watchPage.loadingCopies') }));
     const group = await lookup(key, it).catch(() => null);
@@ -96,6 +105,46 @@ export class WatchRecordPane {
     const value = (o) => comparable(o.price, o.currency, this.page.rates);
     const view = groupView(group, {}, { country: region, near: false, value });
     this.detail.view = { group, view, rates: this.page.rates, value, search: this.page.search };
+  }
+
+  /** Max price and Bought/Remove for the record shown; the max is typed in the "Prices in" currency, kept in euro cents (it.m). */
+  showControls(it) {
+    this.controls.hidden = !it?.t;
+    const cur = currency() || 'EUR';
+    this.controls.querySelector('vf-currency-code').textContent = cur;
+    const field = this.controls.querySelector('input[name="max"]');
+    const value = it?.m == null ? null : cur === 'EUR' ? it.m : convert(it.m, 'EUR', cur, this.page.rates);
+    field.value = value == null ? '' : String(Math.round(value) / 100);
+  }
+
+  setMax() {
+    const key = this.current;
+    const n = parseFloat(this.controls.querySelector('input[name="max"]').value.replace(',', '.'));
+    const cur = currency() || 'EUR';
+    const cents = n > 0 ? Math.round(n * 100) : null;
+    const eur = cents == null ? null : cur === 'EUR' ? cents : convert(cents, cur, 'EUR', this.page.rates) ?? cents;
+    update((list) => { const it = list.items[key]; if (!it) return; if (eur == null) delete it.m; else it.m = eur; });
+    toast(eur == null ? t('watchPage.maxCleared') : t('watchPage.maxSet', { price: formatPrice(cents, cur) }));
+    this.page.renderHits();
+  }
+
+  /** Bought or removed: off the list (Undo in the toast puts it back), the pane closes, the list redraws. */
+  drop(message) {
+    const key = this.current;
+    const item = load().items[key];
+    const title = item?.t || key;
+    remove(key);
+    this.current = null;
+    toast(t(message, { title }), [t('watchPage.undo'), () => {
+      update((list) => { list.items[key] = item; });
+      this.page.refresh();
+    }]);
+    // drop ?record= without a history step: Back must not leave the page
+    forget(PARAM);
+    if (!this.sheet.docked) this.sheet.closeQuietly();
+    this.page.renderHits();
+    this.page.views.all.refresh();
+    this.page.renderSummary();
   }
 
   searchHref(key, it) { return `${this.page.search}?q=${encodeURIComponent(it.t || '')}&r=${key}`; }

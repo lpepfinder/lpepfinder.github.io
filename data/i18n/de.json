@@ -359,7 +359,14 @@
     "summaryStock": {
       "one": "{available} von 1 Platte auf Lager bei {shops}",
       "other": "{available} von {count} Platten auf Lager bei {shops}"
-    }
+    },
+    "maxPrice": "Höchstpreis",
+    "maxSave": "Speichern",
+    "bought": "Gekauft",
+    "boughtDone": "Gekauft: {title}. Von deiner Liste entfernt.",
+    "maxSet": "Höchstpreis {price}: teurere Exemplare werden ausgeblendet.",
+    "maxCleared": "Kein Höchstpreis.",
+    "undo": "Rückgängig"
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",
@@ -510,7 +517,8 @@
     "crate": {
       "new": "Neu",
       "restock": "Wieder da",
-      "drop": "Preissenkungen"
+      "drop": "Preissenkungen",
+      "mine": "Deine Platten"
     },
     "ships": "Liefert zu mir",
     "customs": "Ohne Zoll",
@@ -518,7 +526,8 @@
     "more": "Mehr Platten",
     "empty": "Nichts in dieser Kiste mit diesen Filtern.",
     "title": "Diggen",
-    "intro": "Neu in den Shops, wieder da und günstiger diese Woche. Tippe auf ein Cover, um zum Shop zu gehen."
+    "intro": "Neu in den Shops, wieder da und günstiger diese Woche. Tippe auf ein Cover, um zum Shop zu gehen.",
+    "emptyMine": "Keine deiner beobachteten Platten ist diese Woche neu, wieder da oder günstiger."
   },
   "tabMore": "Mehr",
   "moreTitle": "Mehr",

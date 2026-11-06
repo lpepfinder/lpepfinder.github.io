@@ -5,8 +5,10 @@ import { t, formatNumber, formatPrice } from './i18n.js';
 import { rates, region, toViewer, currency, CURRENCY_EVENT } from './viewer.js';
 import { flag } from './release-parts.js';
 import { el, attrs } from './dom.js';
+import { load } from '../lib/watch/store.js';
+import { releaseKey } from '../lib/search/release-key.js';
 
-const CRATES = ['new', 'restock', 'drop'];
+const CRATES = ['mine', 'new', 'restock', 'drop'];
 const PAGE = 48;
 const KEY = 'vf.dig';
 const read = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
@@ -19,7 +21,8 @@ const daysBetween = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / 864e5
  * new in the shops, back in stock, price drops (public/dig.json, scripts/ledger/dig.js). Chips filter by
  * format and by where the shop is (ships to me, no customs). Each cover links to the record at its shop.
  * The crate is in the URL (?crate=), the filters are kept in this browser. Until the file loads, the
- * server-rendered new arrivals stay shown.
+ * server-rendered new arrivals stay shown. "Your records" (crate=mine) gathers the watched records of all
+ * three crates, by release key (the record's own and those its catalog number found); it shows only with a watchlist.
  */
 export class VfDig extends HTMLElement {
   async connectedCallback() {
@@ -60,6 +63,10 @@ export class VfDig extends HTMLElement {
       this.rates = table;
       const zones = regions?.zones || [];
       this.reach = data.shops.map(([, , country, shipsTo]) => reach({ country, shipsTo }, region, zones));
+      const items = load().items;
+      this.watched = new Set([...Object.keys(items), ...Object.values(items).flatMap((it) => it.x || [])]);
+      this.toggleAttribute('watching', this.watched.size > 0);
+      for (const it of data.items) it.key = releaseKey(it[2]);
       this.setAttribute('status', 'ready');
       this.render();
     } catch {
@@ -69,13 +76,14 @@ export class VfDig extends HTMLElement {
 
   get crate() {
     const c = new URLSearchParams(location.search).get('crate');
+    if (c === 'mine' && !this.watched?.size) return 'new';
     return CRATES.includes(c) ? c : 'new';
   }
 
   /** Items of the crate under the filters. */
   pick(crate) {
     const f = this.form.elements;
-    return this.data.items.filter((it) => it[0] === crate
+    return this.data.items.filter((it) => (crate === 'mine' ? this.watched.has(it.key) : it[0] === crate)
       && (!f.format.value || it[8] === f.format.value)
       && (!f.ships.checked || this.reach[it[7]] !== 'no')
       && (!f.customs.checked || noCustoms(this.reach[it[7]])));
@@ -97,7 +105,7 @@ export class VfDig extends HTMLElement {
     const cards = items.slice(from, this.limit).map((it, i) => this.card(it, from + i));
     if (append) this.grid.append(...cards); else this.grid.replaceChildren(...cards);
     this.more.hidden = items.length <= this.limit;
-    this.status.textContent = items.length ? '' : t('dig.empty');
+    this.status.textContent = items.length ? '' : t(crate === 'mine' ? 'dig.emptyMine' : 'dig.empty');
     if (append) cards[0]?.querySelector('a')?.focus();
   }
 

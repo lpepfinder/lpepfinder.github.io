@@ -6,6 +6,9 @@ main:has(vf-dig[status="ready"]) > :is(vf-record-list, section), main:has(vf-dig
 /* crates: tabs with counts, one line */
 vf-dig > nav ul { display: flex; gap: var(--space-1); margin: 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: none; border-block-end: var(--line) solid var(--c-line); }
 vf-dig > nav li { flex: none; }
+/* "Your records" only with a watchlist */
+vf-dig:not([watching]) > nav li:has(a[crate="mine"]) { display: none; }
+vf-dig > nav a[crate="mine"] data:not(:empty) { color: var(--c-accent); font-weight: var(--weight-bold); }
 vf-dig > nav a { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); padding-inline: var(--space-3); color: var(--c-muted); text-decoration: none; border-block-end: var(--tab-mark) solid transparent; white-space: nowrap; }
 vf-dig > nav a[aria-current="page"] { color: var(--c-fg); font-weight: var(--weight-semi); border-block-end-color: var(--c-accent); }
 vf-dig > nav data { font-size: var(--size-xs); }

@@ -359,7 +359,14 @@
     "summaryStock": {
       "one": "{available} of 1 record in stock at {shops}",
       "other": "{available} of {count} records in stock at {shops}"
-    }
+    },
+    "maxPrice": "Max price",
+    "maxSave": "Save",
+    "bought": "Bought it",
+    "boughtDone": "Bought: {title}. Off your list.",
+    "maxSet": "Max price {price}: copies above it are hidden.",
+    "maxCleared": "No max price.",
+    "undo": "Undo"
   },
   "navApp": "Main",
   "navSite": "Explore",
@@ -510,7 +517,8 @@
     "crate": {
       "new": "New",
       "restock": "Back in stock",
-      "drop": "Price drops"
+      "drop": "Price drops",
+      "mine": "Your records"
     },
     "ships": "Ships to me",
     "customs": "No customs",
@@ -518,7 +526,8 @@
     "more": "More records",
     "empty": "Nothing in this crate with these filters.",
     "title": "Dig",
-    "intro": "New in the shops, back in stock and cheaper this week. Tap a cover to go to the shop."
+    "intro": "New in the shops, back in stock and cheaper this week. Tap a cover to go to the shop.",
+    "emptyMine": "None of your watched records is new, back or cheaper this week."
   },
   "tabMore": "More",
   "moreTitle": "More",
