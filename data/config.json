@@ -41,7 +41,7 @@
       "woocommerce": 400
     },
     "maxCrawlDelaySeconds": 10,
-    "maxMinutesPerShop": 100,
+    "maxMinutesPerShop": 60,
     "maxPages": {
       "shopify": 100,
       "woocommerce": 2000
@@ -52,7 +52,8 @@
       "lpepfinderbot",
       "vinylfinderbot"
     ],
-    "maxRequestsPerShop": 2500
+    "maxRequestsPerShop": 600,
+    "maxTotalMinutes": 200
   },
   "products": {
     "include": "vinyl|\\blp\\b|\\d?lp\\b|\\bep\\b|12\\s?(\"|”|inch|in\\b)|10\\s?(\"|”|inch)|7\\s?(\"|”|inch)|\\bsingle\\b|album|schallplatte|disque|vinile|vinilo|vinyle|レコード|record|\\bcds?\\b|cassette|\\bk7\\b|\\bcd\\b|compact disc|maxi",
