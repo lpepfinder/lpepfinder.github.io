@@ -1,7 +1,7 @@
 /**
  * A collector's Discogs wantlist, read in the browser: from the public API by username
  * (the wantlist must be public), or from the CSV file Discogs exports. Only the wantlist is read;
- * nothing is sent anywhere else. A want: { id, artist, title, catno, rating }.
+ * nothing is sent anywhere else. A want: { id, artist, title, catno, rating, thumb } (thumb: cover image, API only).
  */
 import config from '../../../data/watch.json' with { type: 'json' };
 
@@ -23,7 +23,7 @@ export function fromApi(w) {
   const b = w.basic_information || {};
   return {
     id: b.id || w.id, artist: artistsOf(b.artists), title: b.title || '',
-    catno: b.labels?.[0]?.catno || '', rating: w.rating || 0,
+    catno: b.labels?.[0]?.catno || '', rating: w.rating || 0, thumb: b.thumb || '',
   };
 }
 

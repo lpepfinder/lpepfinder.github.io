@@ -280,7 +280,7 @@
     "emptyList": "まだレコードをウォッチしていません。上でDiscogsのウォントリストを読み込むか、検索結果の「ウォッチ」をタップしてください。",
     "backShops": "ショップ一覧",
     "viewAvailable": "在庫あり",
-    "viewShops": "ショップ別",
+    "viewShops": "ショップ",
     "availableHeading": "いま在庫のあるレコード",
     "shopsHeading": "あなたのレコードがあるショップ",
     "sortLabel": "並べ替え",
@@ -292,8 +292,8 @@
       "rating": "あなたの評価",
       "title": "A–Z"
     },
-    "filterShips": "自分の国に発送しないショップを隠す",
-    "filterCustoms": "関税なし（同じ国または関税圏）",
+    "filterShips": "自分の国へ発送",
+    "filterCustoms": "関税なし",
     "filterMax": "上限",
     "badgeNew": "新着",
     "badgeOnly": "残り1枚",
@@ -330,7 +330,20 @@
       "private": "{user}のウォントリストは非公開です。Discogsで公開するか、CSVエクスポートをアップロードしてください。",
       "network": "Discogsに接続できません。1分後にもう一度お試しください。"
     },
-    "csvError": "DiscogsのCSVエクスポートではありません（ArtistとTitleの列が必要です）。"
+    "csvError": "DiscogsのCSVエクスポートではありません（ArtistとTitleの列が必要です）。",
+    "newSection": "前回の訪問以降の新着",
+    "restSection": "在庫あり",
+    "startTitle": "Discogsのウォントリストを持ち込む",
+    "startOr": "または検索で任意のレコードの☆ウォッチをタップ。",
+    "discogsButton": "Discogsから読み込む",
+    "discogsSynced": "Discogs · {user}",
+    "loadingCopies": "在庫を読み込み中…",
+    "copiesMissing": "今日の検索インデックスにこのレコードの在庫はありません。検索してショップの今の在庫を確認してください。",
+    "searchIt": "検索する",
+    "backRecords": "レコード",
+    "summaryStock": {
+      "other": "{count}件中{available}件が{shops}で在庫あり"
+    }
   },
   "navApp": "メイン",
   "navSite": "探す",

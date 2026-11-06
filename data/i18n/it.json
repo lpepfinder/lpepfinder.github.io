@@ -296,7 +296,7 @@
     "emptyList": "Non segui ancora nessun disco. Importa qui sopra la tua wantlist di Discogs, o tocca Segui su un risultato di ricerca.",
     "backShops": "Negozi",
     "viewAvailable": "Disponibili",
-    "viewShops": "Per negozio",
+    "viewShops": "Negozi",
     "availableHeading": "I tuoi dischi disponibili ora",
     "shopsHeading": "Negozi con i tuoi dischi",
     "sortLabel": "Ordina",
@@ -308,8 +308,8 @@
       "rating": "Il tuo voto",
       "title": "A–Z"
     },
-    "filterShips": "Nascondi i negozi che non spediscono da me",
-    "filterCustoms": "Senza dogana (stesso paese o zona doganale)",
+    "filterShips": "Spedisce da me",
+    "filterCustoms": "Senza dogana",
     "filterMax": "Fino a",
     "badgeNew": "Nuovo",
     "badgeOnly": "Unica copia",
@@ -351,7 +351,21 @@
       "private": "La wantlist di {user} è privata. Rendila pubblica su Discogs o carica la sua esportazione CSV.",
       "network": "Impossibile raggiungere Discogs. Riprova tra un minuto."
     },
-    "csvError": "Questo non è un'esportazione CSV di Discogs (servono le colonne Artist e Title)."
+    "csvError": "Questo non è un'esportazione CSV di Discogs (servono le colonne Artist e Title).",
+    "newSection": "Nuovi dalla tua ultima visita",
+    "restSection": "Disponibili",
+    "startTitle": "Porta la tua wantlist di Discogs",
+    "startOr": "Oppure tocca ☆ Segui su qualsiasi disco nella ricerca.",
+    "discogsButton": "Importa da Discogs",
+    "discogsSynced": "Discogs · {user}",
+    "loadingCopies": "Caricamento delle copie…",
+    "copiesMissing": "Le sue copie non sono nell'indice di ricerca di oggi. Cercalo per vedere cosa hanno ora i negozi.",
+    "searchIt": "Cercalo",
+    "backRecords": "Dischi",
+    "summaryStock": {
+      "one": "{available} di 1 disco disponibili in {shops}",
+      "other": "{available} di {count} dischi disponibili in {shops}"
+    }
   },
   "navApp": "Principale",
   "navSite": "Esplora",

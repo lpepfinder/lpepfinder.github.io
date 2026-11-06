@@ -1,4 +1,4 @@
-import { add, update, load } from '../lib/watch/store.js';
+import { add, update } from '../lib/watch/store.js';
 import { fetchWantlist, fromCsv, DiscogsError } from '../lib/watch/discogs.js';
 import { wantRecords } from '../lib/watch/wants.js';
 import { afterWatch } from './vf-toast.js';
@@ -13,17 +13,15 @@ const page = () => document.querySelector('vf-watch-page');
  * <vf-watch-import status="idle|loading|done|error">: a Discogs wantlist into the watchlist, by
  * username (public wantlist, read page by page, usable while it loads) or from the CSV export.
  * Importing the same username again syncs: wants removed on Discogs leave the watchlist.
- * Open by default while the watchlist is empty.
+ * Fires "vf-watch-imported" on window when a username was imported (the page labels its Discogs button).
  */
 export class VfWatchImport extends HTMLElement {
   connectedCallback() {
-    this.details = this.querySelector('details');
     this.form = this.querySelector('form');
     this.user = this.form.elements.user;
     this.live = this.querySelector('output');
     this.progress = this.querySelector('vf-progress');
     this.user.value = read();
-    if (!Object.keys(load().items).length) this.details.open = true;
     this.form.addEventListener('submit', (e) => { e.preventDefault(); this.fromDiscogs(); });
     this.querySelector('input[name="csv"]').addEventListener('change', (e) => this.fromFile(e.target));
   }
@@ -58,6 +56,7 @@ export class VfWatchImport extends HTMLElement {
         for (const [key, it] of Object.entries(list.items)) if (it.w && !ids.has(it.w)) { delete list.items[key]; removed++; }
       });
       remember(user);
+      dispatchEvent(new Event('vf-watch-imported'));
       this.setAttribute('status', 'done');
       this.live.textContent = [tn('watchPage.discogsDone', ids.size, { user }), tn('watchPage.imported', added), removed ? tn('watchPage.discogsRemoved', removed) : null].filter(Boolean).join(' ');
     } catch (e) {

@@ -3,7 +3,7 @@
  * - by release key of "Artist – Title" (the key every shop listing gets, release-key.js)
  * - by catalog number (cat/ files, catno.js), kept only when the listing starts with a word of the want,
  *   so "UR-001" of another label doesn't match.
- * A want's item: { t, a, w: Discogs release id, c: catalog number (matching form), r: rating 0-5 }.
+ * A want's item: { t, a, w: Discogs release id, c: catalog number (matching form), r: rating 0-5, i: cover thumbnail }.
  * Merged rows: one `now` entry per item, over its own key and the keys its catalog number found.
  */
 import { releaseKey, hash48 } from '../search/release-key.js';
@@ -16,7 +16,7 @@ export function wantRecords(wants) {
   return wants.map((w) => {
     const title = wantTitle(w);
     const key = releaseKey(title) || hash48(`discogs:${w.id || title}`);
-    const fields = { ...(w.id ? { w: w.id } : {}), ...(normCatno(w.catno) ? { c: normCatno(w.catno) } : {}), ...(w.rating ? { r: w.rating } : {}) };
+    const fields = { ...(w.id ? { w: w.id } : {}), ...(normCatno(w.catno) ? { c: normCatno(w.catno) } : {}), ...(w.rating ? { r: w.rating } : {}), ...(w.thumb ? { i: w.thumb } : {}) };
     return { key, title, fields };
   });
 }

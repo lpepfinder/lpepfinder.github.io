@@ -1,4 +1,4 @@
-/* /watch/ page: Discogs import, summary, filters, views (available, by shop, changes, all), backup and share. State in attributes. */
+/* /watch/ page: start screen (empty list), header, tabs with counts, filter chips, views (in stock, shops, activity, all). State in attributes. */
 :is(vf-watch-page, vf-watch-available, vf-watch-changes, vf-watch-now, vf-watch-all, vf-watch-backup, vf-watch-shared) { display: grid; gap: var(--space-2); align-content: start; }
 :is(vf-watch-shared, vf-progress, vf-watch-summary, vf-watch-available, vf-watch-changes, vf-watch-now, vf-watch-all)[hidden] { display: none; }
 :is(vf-watch-page, vf-watch-backup, vf-watch-shared) :is(h2, h3, h4, p) { margin: 0; }
@@ -7,10 +7,7 @@ vf-watch-backup > h2 { margin-block-start: var(--space-6); }
 :is(vf-watch-page, vf-watch-backup) > output:empty { display: none; }
 vf-watch-page ol, vf-watch-shop ul { list-style: none; margin: 0; padding: 0; display: grid; }
 vf-watch-shared { padding: var(--space-4); border-radius: var(--radius); background: var(--c-chip); justify-items: start; }
-vf-watch-summary { display: block; font-weight: var(--weight-semi); font-variant-numeric: tabular-nums; }
-/* one line: the summary, and the "Prices in" button (its menu is in a sheet) */
-vf-watch-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-4); }
-vf-watch-bar > button { font-size: var(--size-s); }
+vf-watch-summary { display: block; color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
 
 /* views: links that behave as tabs; the current one is bold and underlined, not only coloured */
 vf-watch-page > nav { position: sticky; inset-block-start: var(--header-h); z-index: 1; background: var(--c-bg); }
@@ -102,51 +99,89 @@ vf-watch-backup > p[hidden] { display: none; }
   vf-watch-all nav li { flex: none; }
 }
 
-/* Discogs import: a disclosure, open while the list is empty */
-vf-watch-import { display: block; }
-vf-watch-import details { display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); border-radius: var(--radius); background: var(--c-chip); }
-vf-watch-import summary { min-block-size: var(--tap); display: flex; align-items: center; font-weight: var(--weight-semi); cursor: pointer; }
-vf-watch-import details[open] > :not(summary) { margin-block: 0 var(--space-2); }
+
+/* header: title and summary, then the Discogs and "Prices in" buttons (their forms are in sheets) */
+vf-watch-page > vf-watch-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-2) var(--space-4); }
+vf-watch-page > vf-watch-head hgroup { display: grid; gap: var(--space-1); min-inline-size: 0; }
+vf-watch-page > vf-watch-head h1 { margin: 0; }
+vf-watch-page > vf-watch-head menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+vf-watch-page > vf-watch-head menu button { font-size: var(--size-s); }
+
+/* empty list: the start screen alone, with the import form */
+vf-watch-start, vf-watch-start > *, vf-watch-import, vf-watch-import > * { min-inline-size: 0; }
+vf-watch-start { display: grid; gap: var(--space-3); max-inline-size: var(--measure); padding: var(--space-6) var(--space-4); border-radius: var(--radius); background: var(--c-chip); }
+vf-watch-start h2 { font-size: var(--size-2); }
+vf-watch-page:not([empty]) > vf-watch-start, vf-watch-page[empty] > :is(nav, vf-watch-filters, vf-watch-available, vf-watch-now, vf-watch-changes, vf-watch-all), vf-watch-page[empty] > vf-watch-head :is(menu, vf-watch-summary) { display: none; }
+
+/* the import form (start screen and Discogs sheet) */
+vf-watch-import { display: grid; gap: var(--space-2); }
 vf-watch-import p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
 vf-watch-import form { display: grid; gap: var(--space-1); }
 vf-watch-import form label { font-weight: var(--weight-semi); }
 vf-field { display: flex; gap: var(--space-2); }
+vf-field > button { flex: none; }
+vf-watch-import label:has(> input[type="file"]) { white-space: normal; max-inline-size: 100%; }
 vf-field input { flex: 1; min-inline-size: 0; font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
 vf-watch-import[status="loading"] button[type="submit"] { opacity: var(--busy-opacity); pointer-events: none; }
 vf-watch-import output { display: block; font-size: var(--size-s); }
 vf-watch-import[status="error"] output { color: var(--c-error); }
 vf-watch-import output:empty { display: none; }
 
-/* sort and filters: one wrapping row, only with the views of records in stock */
-vf-watch-filters form { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); font-size: var(--size-s); }
-vf-watch-filters label { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); }
-vf-watch-filters :is(select, input[type="text"]) { font: inherit; font-size: max(16px, var(--size-s)); min-block-size: var(--tap); padding-inline: var(--space-2); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
-vf-watch-filters input[type="text"] { inline-size: 6ch; }
-vf-watch-filters input[type="checkbox"] { inline-size: var(--space-4); block-size: var(--space-4); accent-color: var(--c-accent); }
-vf-watch-page:is([view="changes"], [view="all"]) > vf-watch-filters, vf-watch-page[empty] > vf-watch-filters { display: none; }
-vf-watch-page[empty] > :is(nav, vf-watch-bar) { display: none; }
+/* tabs: counts after the label */
+vf-watch-page > nav a data { margin-inline-start: var(--space-1); font-size: var(--size-xs); font-variant-numeric: tabular-nums; color: var(--c-muted); }
+vf-watch-page > nav a data:empty { display: none; }
+
+/* filter chips: one row that scrolls sideways on phones, wraps from tablets */
+vf-watch-filters form { display: flex; gap: var(--space-2); overflow-x: auto; scrollbar-width: none; padding-block: var(--space-1); font-size: var(--size-s); }
+vf-watch-filters label { flex: none; display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--chip-h); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); white-space: nowrap; cursor: pointer; }
+vf-watch-filters label:has(input:checked) { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
+vf-watch-filters input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
+vf-watch-filters label:has(input[type="checkbox"]:focus-visible), vf-watch-filters :is(select, input[type="text"]):focus-visible { outline: var(--focus-ring); }
+vf-watch-filters label > span { color: var(--c-muted); }
+vf-watch-filters :is(select, input[type="text"]) { font: inherit; font-size: max(16px, var(--size-s)); border: 0; background: transparent; color: inherit; padding: 0; }
+vf-watch-filters input[type="text"] { inline-size: 5ch; text-align: end; }
+@media (min-width: 40rem) { vf-watch-filters form { flex-wrap: wrap; overflow: visible; } }
+vf-watch-page:is([view="changes"], [view="all"]) > vf-watch-filters { display: none; }
 /* shops are ordered by how many of your records they have: the sort is for the list of records */
 vf-watch-page[view="now"] vf-watch-filters label:has(select) { display: none; }
 
-/* a record in stock: title and price on the first line, where and labels under it */
-vf-watch-available > ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); column-gap: var(--space-6); }
-vf-watch-hit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 var(--space-3); align-items: center; min-block-size: var(--row-h); padding-block: var(--space-2); border-block-end: var(--line) solid var(--c-line); }
-vf-watch-hit > :not(vf-price) { grid-column: 1; }
-vf-watch-hit > vf-price { grid-column: 2; grid-row: 1 / span 2; text-align: end; }
-vf-watch-hit h3 { margin: 0; font-size: var(--size-0); line-height: var(--leading-tight); }
-vf-watch-hit h3 a { display: block; padding-block: var(--space-1); overflow-wrap: anywhere; }
-vf-watch-hit p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
-vf-watch-hit p a { color: inherit; }
-vf-badges { display: flex; flex-wrap: wrap; gap: var(--space-1); }
-vf-badges:empty { display: none; }
-vf-badge { font-size: var(--size-xs); font-weight: var(--weight-bold); padding-inline: var(--space-1); border-radius: var(--radius); color: var(--badge-fg, var(--c-muted)); background: var(--badge-bg, var(--c-chip)); }
+/* in stock: search rows (release.css), new ones in their own section, copies in the detail pane */
+:is(vf-watch-available, vf-watch-now) > h2 { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+vf-watch-hits { display: grid; gap: var(--space-2); align-content: start; min-inline-size: 0; }
+vf-watch-hits section { display: grid; }
+vf-watch-hits section[hidden], vf-watch-hits h3[hidden] { display: none; }
+vf-watch-hits h3 { margin: var(--space-3) 0 var(--space-1); font-size: var(--size-s); font-weight: var(--weight-semi); color: var(--c-muted); }
+vf-watch-hits section[name="new"] h3 { color: var(--c-event-new); }
+vf-watch-hits ol { list-style: none; margin: 0; padding: 0; display: grid; }
+vf-watch-hits vf-watch-showing { display: block; color: var(--c-muted); font-size: var(--size-s); }
+vf-watch-hits > button { justify-self: center; }
+vf-watch-hits > button[hidden] { display: none; }
+vf-watch-hits vf-release vf-meta > :is(span, vf-origin, vf-badge):nth-child(n) { display: inline-flex; }
+vf-watch-hits vf-release vf-meta > span { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+vf-watch-hits vf-release vf-meta { gap: var(--space-1); flex-wrap: nowrap; overflow: hidden; justify-content: start; }
+/* phones: title and price, then the artist, then labels and where, each on the full width */
+vf-watch-hits vf-release > a { grid-template-columns: var(--cover-row) minmax(0, 1fr) auto; grid-template-areas: "cover title price" "cover artist artist" "cover meta meta"; align-items: center; }
+vf-watch-hits vf-release > a > :is(img, vf-cover) { align-self: start; margin-block-start: var(--space-1); }
+vf-badge { flex: none; font-size: var(--size-xs); font-weight: var(--weight-bold); padding-inline: var(--space-1); border-radius: var(--radius); color: var(--badge-fg, var(--c-muted)); background: var(--badge-bg, var(--c-chip)); }
 vf-badge[kind="new"] { --badge-fg: var(--c-event-new); }
 vf-badge[kind="rare"] { --badge-fg: var(--c-event-restock); }
-vf-badge[kind="rating"] { --badge-fg: var(--c-fg); letter-spacing: var(--tracking-caps); }
-vf-watch-hit[new="true"] h3 { font-weight: var(--weight-bold); }
-vf-watch-available vf-watch-showing { display: block; color: var(--c-muted); font-size: var(--size-s); }
-vf-watch-available > button { justify-self: center; }
-vf-watch-available > button[hidden] { display: none; }
+vf-badge[kind="rating"] { --badge-fg: var(--c-fg); background: none; }
+vf-watch-available vf-split > vf-sheet[name="watch-record"][docked] { position: sticky; inset-block-start: calc(var(--header-h) + var(--tap) + var(--space-4)); max-block-size: calc(100dvh - var(--header-h) - var(--tap) - var(--space-6)); overflow: auto; background: var(--c-surface); border: var(--line) solid var(--c-line); border-radius: var(--radius); }
+vf-watch-available vf-detail[status="loading"] { color: var(--c-muted); }
+vf-watch-available vf-detail[status="missing"] { display: grid; gap: var(--space-3); padding: var(--space-4); }
+@media (min-width: 64rem) {
+  vf-watch-available vf-split { grid-template-columns: minmax(var(--list-min), 1.4fr) minmax(var(--detail-min), 1fr); }
+  /* the meta column is narrow beside the pane: labels and the shop, no "more shops" */
+  vf-watch-hits vf-release > a { grid-template-columns: var(--cover-row) minmax(0, 1fr) auto; grid-template-areas: "cover title price" "cover meta price"; }
+  vf-watch-hits vf-release vf-meta { justify-content: start; }
+}
 vf-watch-shop vf-price { margin-inline-start: auto; font-size: var(--size-s); }
 vf-watch-shop[reach="no"] h3 { color: var(--c-muted); }
-@media (min-width: 64rem) { vf-watch-available > ol { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+vf-watch-all > vf-watch-backup { margin-block-start: var(--space-6); }
+
+/* the status line is for screen readers: the summary and the progress bar say it on screen */
+vf-watch-page > output { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* tabs: one line on phones, scrolling sideways if needed */
+vf-watch-page > nav ul { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+vf-watch-page > nav li { flex: none; }
+@media (max-width: 40rem) { vf-watch-page > nav a { padding-inline: var(--space-2); } }

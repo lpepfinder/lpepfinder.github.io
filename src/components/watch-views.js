@@ -4,6 +4,8 @@ import { change } from './watch-render.js';
 import { price } from './price.js';
 import { origin } from './release-parts.js';
 import { hrefFor } from './selection.js';
+import { cover } from './cover.js';
+import { splitTitle } from '../lib/search/title.js';
 
 /**
  * The views of the watch page, as DOM: changes by day, records in stock (hits.js) and shops
@@ -26,8 +28,6 @@ export function changesByDay({ changes, past }, shops, rates) {
     el('ol', {}, ...items)));
 }
 
-const recordHref = (search, it, key) => `${search}?q=${encodeURIComponent(it.t || '')}&r=${key}`;
-
 /** Labels of a hit: new, only copy, the collector's Discogs rating. */
 function badges(h, isNew) {
   const out = [];
@@ -37,26 +37,40 @@ function badges(h, isNew) {
   return out;
 }
 
-/** Where the cheapest copy is: shop, its flag, "+ 3 more shops"; no customs is said in words. */
+/** "Sorry State Records 🇺🇸 +11": where the cheapest copy is, and how many other shops have one. */
 function where(h) {
   const { shop, reach } = h.best;
   const more = h.offers.length - 1;
-  return el('p', {},
-    shop?.origin ? el('a', { href: shop.origin, rel: 'nofollow', textContent: shop.name }) : (shop?.name || ''),
-    shop ? ' ' : null, shop ? origin(shop.country) : null,
-    more > 0 ? ` · ${tn('watchPage.moreShops', more)}` : '',
-    reach === 'local' || reach === 'zone' ? ` · ${t('watchPage.noCustoms')}` : '');
+  return [
+    el('span', { textContent: shop?.name || '' }),
+    shop?.country ? origin(shop.country) : null,
+    more > 0 ? el('span', { textContent: tn('watchPage.moreShops', more) }) : null,
+    reach === 'local' || reach === 'zone' ? el('span', { textContent: t('watchPage.noCustoms') }) : null,
+  ];
 }
 
-/** One record in stock: title (its detail in the search: every copy, with links), cheapest price, where, badges. */
-export function hitRow(h, { search, rates, newSince }) {
+/** The row's price: the converted figure; the shop's own price as its tooltip (like search rows). */
+function rowPrice(h, rates) {
+  const tag = price(h.best.cents, h.best.currency, rates, { from: h.offers.length > 1 });
+  const small = tag.querySelector('small');
+  if (small) { tag.title = small.textContent; small.remove(); }
+  return tag;
+}
+
+/**
+ * One record in stock, as a search result row (<vf-release>, release.css): cover, artist and title,
+ * labels and where, cheapest price. It links to ?record=<key>, the copies in the detail pane.
+ */
+export function hitRow(h, { rates, newSince, index }) {
   const isNew = !!h.it.f && h.it.f >= newSince;
-  return el('li', {}, attrs(el('vf-watch-hit', {},
-    el('h3', {}, el('a', { href: recordHref(search, h.it, h.key), textContent: h.it.t || t('watchPage.unknownTitle', { key: h.key }) })),
-    price(h.best.cents, h.best.currency, rates, { from: h.offers.length > 1 }),
-    where(h),
-    el('vf-badges', {}, ...badges(h, isNew)),
-  ), { new: String(isNew), reach: h.best.reach }));
+  const { artist, title } = splitTitle(h.it.t || t('watchPage.unknownTitle', { key: h.key }));
+  return el('li', {}, attrs(el('vf-release', {},
+    el('a', { href: hrefFor(h.key, 'record') },
+      cover(h.it.i, index),
+      el('vf-name', {}, artist && el('vf-artist', { textContent: artist }), artist && el('span', { textContent: ' – ' }), el('vf-title', { textContent: title })),
+      el('vf-meta', {}, ...badges(h, isNew), ...where(h)),
+      rowPrice(h, rates))),
+  { release: h.key, stock: 'in', new: String(isNew), reach: h.best.reach }));
 }
 
 /** One shop of "By shop": a row linking to ?view=now&shop=<id>: name, flag, how many of your records, their total. */
@@ -81,7 +95,7 @@ export function shopDetail(b, search, rates) {
       el('p', { textContent: place.filter(Boolean).join(' · ') })),
     b.shop?.origin ? el('p', {}, el('a', { href: b.shop.origin, rel: 'nofollow', textContent: t('watchPage.visitShop', { shop: b.shop.name }) })) : null,
     el('ul', {}, ...sorted.map((r) => el('li', {},
-      el('a', { href: recordHref(search, r.it, r.key), textContent: r.it.t || r.key }),
+      el('a', { href: `?view=available&record=${r.key}`, textContent: r.it.t || r.key }),
       r.offer.cents != null ? price(r.offer.cents, r.offer.currency, rates) : null))),
     el('p', {}, el('strong', { textContent: t('watchPage.total') }), ' ', price(b.cents, b.shop?.currency, rates)),
   ].filter(Boolean);

@@ -23,7 +23,8 @@ function condition(offers) {
  * <vf-detail release="<key>" stock="in|out" status="empty|ready">: one release compared across shops
  * (the "compare" level): cover, title, price range, condition, actions (Watch, Share, cheapest copy),
  * copies in stock (the first 8, then "Show all"), and the sold out ones in a closed <details>.
- * Set `view` to { group, view, rates, value, checked }, or call empty(). Fires "share".
+ * Set `view` to { group, view, rates, value, checked, search } (search: path of the search page, for the
+ * artist link from other pages), or call empty(). Fires "share".
  */
 export class VfDetail extends HTMLElement {
   set view(data) {
@@ -70,7 +71,7 @@ export class VfDetail extends HTMLElement {
         el('ul', {}, ...sold.map((o) => offer(o, rates)))),
       el('footer', {},
         checked && el('p', {}, ...this.checked(checked)),
-        artist && el('p', {}, el('a', { href: `?q=${encodeURIComponent(artist)}`, textContent: t('detail.searchArtist', { artist }) }))),
+        artist && el('p', {}, el('a', { href: `${this.data.search || ''}?q=${encodeURIComponent(artist)}`, textContent: t('detail.searchArtist', { artist }) }))),
     ].filter(Boolean));
     this.querySelector('button[name="all"]')?.addEventListener('click', () => this.showAll(shown.length));
     this.querySelector('button[name="share"]').addEventListener('click', () => this.dispatchEvent(new Event('share', { bubbles: true })));

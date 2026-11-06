@@ -295,8 +295,8 @@
     "noMatch": "Aucun disque suivi ne correspond à « {query} ».",
     "emptyList": "Vous ne suivez encore aucun disque. Importez votre wantlist Discogs ci-dessus, ou touchez Suivre sur un résultat de recherche.",
     "backShops": "Boutiques",
-    "viewAvailable": "Disponibles",
-    "viewShops": "Par boutique",
+    "viewAvailable": "En stock",
+    "viewShops": "Boutiques",
     "availableHeading": "Vos disques en stock maintenant",
     "shopsHeading": "Boutiques qui ont vos disques",
     "sortLabel": "Trier",
@@ -308,8 +308,8 @@
       "rating": "Votre note",
       "title": "A–Z"
     },
-    "filterShips": "Masquer les boutiques qui ne livrent pas chez moi",
-    "filterCustoms": "Sans frais de douane (même pays ou zone douanière)",
+    "filterShips": "Livre chez moi",
+    "filterCustoms": "Sans douane",
     "filterMax": "Jusqu’à",
     "badgeNew": "Nouveau",
     "badgeOnly": "Seul exemplaire",
@@ -351,7 +351,21 @@
       "private": "La wantlist de {user} est privée. Rendez-la publique sur Discogs, ou chargez son export CSV.",
       "network": "Discogs est injoignable. Réessayez dans une minute."
     },
-    "csvError": "Ce n’est pas un export CSV de Discogs (il faut des colonnes Artist et Title)."
+    "csvError": "Ce n’est pas un export CSV de Discogs (il faut des colonnes Artist et Title).",
+    "newSection": "Nouveaux depuis votre dernière visite",
+    "restSection": "En stock",
+    "startTitle": "Apportez votre wantlist Discogs",
+    "startOr": "Ou touchez ☆ Suivre sur n’importe quel disque de la recherche.",
+    "discogsButton": "Importer de Discogs",
+    "discogsSynced": "Discogs · {user}",
+    "loadingCopies": "Chargement des exemplaires…",
+    "copiesMissing": "Ses exemplaires ne sont pas dans l’index de recherche du jour. Cherchez-le pour voir ce que les boutiques ont maintenant.",
+    "searchIt": "Le chercher",
+    "backRecords": "Disques",
+    "summaryStock": {
+      "one": "{available} sur 1 disque en stock chez {shops}",
+      "other": "{available} sur {count} disques en stock chez {shops}"
+    }
   },
   "navApp": "Principal",
   "navSite": "Explorer",

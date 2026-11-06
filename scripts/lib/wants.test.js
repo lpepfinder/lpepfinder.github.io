@@ -21,8 +21,8 @@ test('Discogs CSV export and API wants', () => {
   const csv = 'Catalog#,Artist,Title,Label,Format,Rating,Released,release_id,Notes\n"KDJ-38","Moodymann (2)","Anotha Black Sunday","KDJ","LP",4,2000,123,"a, note"\n';
   assert.deepEqual(fromCsv(csv), [{ id: 123, artist: 'Moodymann', title: 'Anotha Black Sunday', catno: 'KDJ-38', rating: 4 }]);
   assert.equal(fromCsv('a,b\n1,2'), null);
-  const api = fromApi({ rating: 0, basic_information: { id: 9, title: 'Approaching The Gaz Giant', labels: [{ catno: 'OYE 01' }], artists: [{ name: 'C/Fe', join: '&' }, { name: 'Other (3)', anv: '' }] } });
-  assert.deepEqual(api, { id: 9, artist: 'C/Fe & Other', title: 'Approaching The Gaz Giant', catno: 'OYE 01', rating: 0 });
+  const api = fromApi({ rating: 0, basic_information: { id: 9, thumb: 'https://i.discogs.com/x.jpg', title: 'Approaching The Gaz Giant', labels: [{ catno: 'OYE 01' }], artists: [{ name: 'C/Fe', join: '&' }, { name: 'Other (3)', anv: '' }] } });
+  assert.deepEqual(api, { id: 9, artist: 'C/Fe & Other', title: 'Approaching The Gaz Giant', catno: 'OYE 01', rating: 0, thumb: 'https://i.discogs.com/x.jpg' });
   assert.equal(artistName('Prince*'), 'Prince');
 });
 

@@ -295,8 +295,8 @@
     "noMatch": "Keine gemerkte Platte passt zu „{query}“.",
     "emptyList": "Du beobachtest noch keine Platten. Importiere oben deine Discogs-Wantlist oder tippe bei einem Suchergebnis auf Beobachten.",
     "backShops": "Läden",
-    "viewAvailable": "Verfügbar",
-    "viewShops": "Nach Shop",
+    "viewAvailable": "Auf Lager",
+    "viewShops": "Shops",
     "availableHeading": "Deine Platten jetzt auf Lager",
     "shopsHeading": "Shops mit deinen Platten",
     "sortLabel": "Sortieren",
@@ -308,8 +308,8 @@
       "rating": "Deine Bewertung",
       "title": "A–Z"
     },
-    "filterShips": "Shops ausblenden, die nicht zu mir liefern",
-    "filterCustoms": "Ohne Zoll (gleiches Land oder Zollgebiet)",
+    "filterShips": "Liefert zu mir",
+    "filterCustoms": "Ohne Zoll",
     "filterMax": "Bis",
     "badgeNew": "Neu",
     "badgeOnly": "Einziges Exemplar",
@@ -351,7 +351,21 @@
       "private": "Die Wantlist von {user} ist privat. Mach sie auf Discogs öffentlich oder lade ihren CSV-Export hoch.",
       "network": "Discogs ist nicht erreichbar. Versuch es in einer Minute erneut."
     },
-    "csvError": "Das ist kein CSV-Export von Discogs (es braucht die Spalten Artist und Title)."
+    "csvError": "Das ist kein CSV-Export von Discogs (es braucht die Spalten Artist und Title).",
+    "newSection": "Neu seit deinem letzten Besuch",
+    "restSection": "Auf Lager",
+    "startTitle": "Bring deine Discogs-Wantlist mit",
+    "startOr": "Oder tippe in der Suche bei einer Platte auf ☆ Beobachten.",
+    "discogsButton": "Von Discogs importieren",
+    "discogsSynced": "Discogs · {user}",
+    "loadingCopies": "Exemplare werden geladen…",
+    "copiesMissing": "Ihre Exemplare sind nicht im heutigen Suchindex. Such danach, um zu sehen, was die Shops jetzt haben.",
+    "searchIt": "Danach suchen",
+    "backRecords": "Platten",
+    "summaryStock": {
+      "one": "{available} von 1 Platte auf Lager bei {shops}",
+      "other": "{available} von {count} Platten auf Lager bei {shops}"
+    }
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",

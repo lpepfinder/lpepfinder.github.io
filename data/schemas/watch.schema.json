@@ -57,6 +57,10 @@
           "r": {
             "type": "integer",
             "description": "The collector's Discogs rating, 1 to 5"
+          },
+          "i": {
+            "type": "string",
+            "description": "Cover thumbnail URL (from the Discogs wantlist)"
           }
         }
       }

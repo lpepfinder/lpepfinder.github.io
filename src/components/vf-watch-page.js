@@ -8,6 +8,7 @@ import { reach } from '../lib/watch/reach.js';
 import config from '../../data/watch.json' with { type: 'json' };
 import { changesByDay, hitRow, shopRow } from './watch-views.js';
 import { WatchShopPane } from './watch-shop-pane.js';
+import { WatchRecordPane } from './watch-record-pane.js';
 import { t, tn, formatNumber, formatDay } from './i18n.js';
 import { rates, currency, region, comparable, CURRENCY_EVENT } from './viewer.js';
 import { convert } from '../lib/currency.js';
@@ -21,10 +22,12 @@ const MAX_PAST = 100;
 const VIEWS = ['available', 'now', 'changes', 'all'];
 
 /**
- * <vf-watch-page status="idle|checking|done" view="available|now|changes|all">: a summary line, the
- * filters (sort, ships to me, no customs, max price) and four views chosen by links (?view=…):
- * records in stock (<vf-watch-available>), shops by how many of your records they have (<vf-watch-now>,
- * a shop opens in a sheet or the right pane), changes by day, and every record (<vf-watch-all>).
+ * <vf-watch-page status="idle|checking|done" view="available|now|changes|all" empty>: a start screen
+ * while the list is empty (Discogs import); else a header (summary, Discogs and "Prices in" sheets),
+ * tabs with counts, filter chips (sort, ships to me, no customs, max price) and four views (?view=…):
+ * records in stock (<vf-watch-available>, new ones first, a record's copies open in the detail pane),
+ * shops by how many of your records they have (<vf-watch-now>, a shop opens in a sheet or the right pane),
+ * changes by day, and every record (<vf-watch-all>, with backup and share).
  * Wants imported from Discogs also match by catalog number (wants.js).
  * Current states come from the `now` shards, fetched once per data build with a progress bar.
  * Changes are marked seen when the page is left.
@@ -33,7 +36,7 @@ export class VfWatchPage extends HTMLElement {
   connectedCallback() {
     this.live = this.querySelector(':scope > output');
     this.summary = this.querySelector('vf-watch-summary');
-    this.progress = this.querySelector('vf-progress');
+    this.progress = this.querySelector(':scope > vf-progress');
     this.views = Object.fromEntries(VIEWS.map((v) => [v, this.querySelector(`vf-watch-${v}`)]));
     this.form = this.querySelector('vf-watch-filters form');
     this.search = this.getAttribute('search') || '/';
@@ -45,11 +48,16 @@ export class VfWatchPage extends HTMLElement {
     this.shopIds = [];
     this.limit = config.pageSize;
     this.pane = new WatchShopPane(this.views.now, this);
+    this.record = new WatchRecordPane(this.views.available, this);
+    this.discogsButton = this.querySelector('button[name="discogs"]');
+    this.discogsButton.addEventListener('click', () => this.querySelector('vf-sheet[name="discogs"]').open());
+    addEventListener('vf-watch-imported', () => this.labelDiscogs());
+    this.labelDiscogs();
     this.currencyButton = this.querySelector('button[name="currency"]');
     this.currencyButton.addEventListener('click', () => this.querySelector('vf-sheet[name="currency"]').open());
     this.labelCurrency();
     this.setupFilters();
-    this.views.available.querySelector('button[name="more"]').addEventListener('click', () => {
+    this.views.available.querySelector('vf-watch-hits > button[name="more"]').addEventListener('click', () => {
       this.limit += config.pageSize;
       this.renderAvailable(true);
     });
@@ -204,26 +212,60 @@ export class VfWatchPage extends HTMLElement {
     box.querySelector('vf-watch-shops ul').replaceChildren(...groups.map((b) => shopRow(b, this.rates)));
     box.setAttribute('count', groups.length);
     this.pane.set(groups);
+    this.renderTabs(groups.length);
   }
 
-  /** A page of records in stock; "Show more" adds the next one and moves the focus to it. */
-  renderAvailable(focus) {
+  /**
+   * Records in stock. Sorted by newest, those found since the last visit get their own section first;
+   * the rest come a page at a time ("Show more" adds the next one and moves the focus to it).
+   */
+  renderAvailable(more) {
     const box = this.views.available;
-    const ol = box.querySelector('ol');
-    const from = focus ? ol.children.length : 0;
-    const rows = this.hits.slice(from, this.limit).map((h) => hitRow(h, { search: this.search, rates: this.rates, newSince: this.newSince }));
-    if (focus) ol.append(...rows); else ol.replaceChildren(...rows);
+    const isNew = (h) => !!h.it.f && h.it.f >= this.newSince;
+    const byNew = this.form.elements.sort.value === 'new';
+    const fresh = byNew ? this.hits.filter(isNew) : [];
+    const rest = byNew ? this.hits.filter((h) => !isNew(h)) : this.hits;
+    const [newSection, restSection] = box.querySelectorAll('vf-watch-hits > section');
+    const ol = restSection.querySelector('ol');
+    const row = (h, index) => hitRow(h, { rates: this.rates, newSince: this.newSince, index });
+    if (!more) newSection.querySelector('ol').replaceChildren(...fresh.map(row));
+    newSection.hidden = !fresh.length;
+    restSection.querySelector('h3').hidden = !fresh.length;
+    const from = more ? ol.children.length : 0;
+    const rows = rest.slice(from, Math.max(from, this.limit - fresh.length)).map((h, i) => row(h, fresh.length + from + i));
+    if (more) ol.append(...rows); else ol.replaceChildren(...rows);
     box.setAttribute('count', this.hits.length);
-    const left = this.hits.length - Math.min(this.limit, this.hits.length);
-    const more = box.querySelector('button[name="more"]');
-    more.hidden = left <= 0;
-    more.textContent = tn('watchPage.showMore', Math.min(left, config.pageSize));
-    box.querySelector('vf-watch-showing').textContent = this.hits.length
-      ? t('watchPage.showing', { shown: formatNumber(ol.children.length), total: formatNumber(this.hits.length) }) : '';
-    if (focus) rows[0]?.querySelector('a')?.focus();
+    const shown = fresh.length + ol.children.length;
+    const left = this.hits.length - shown;
+    const button = box.querySelector('vf-watch-hits > button[name="more"]');
+    button.hidden = left <= 0;
+    button.textContent = tn('watchPage.showMore', Math.min(left, config.pageSize));
+    box.querySelector('vf-watch-showing').textContent = left > 0
+      ? t('watchPage.showing', { shown: formatNumber(shown), total: formatNumber(this.hits.length) }) : '';
+    if (more) rows[0]?.querySelector('a')?.focus();
+    else this.record.set([...fresh, ...rest].map((h) => h.key));
   }
 
-  /** "10,214 watched · 412 available now at 96 shops · 7 new". */
+  /** Counts on the tabs: records in stock, shops, unseen changes, everything watched. */
+  renderTabs(shops) {
+    const { items, changes } = load();
+    const counts = { available: this.hits?.length, now: shops, changes: changes.length || null, all: Object.keys(items).length };
+    for (const a of this.querySelectorAll(':scope > nav a[view]')) {
+      const n = counts[a.getAttribute('view')];
+      const data = a.querySelector('data');
+      data.value = n ?? '';
+      data.textContent = n ? formatNumber(n) : '';
+    }
+  }
+
+  /** The Discogs button: "Discogs · username" once a wantlist was imported. */
+  labelDiscogs() {
+    let user = '';
+    try { user = localStorage.getItem('vf.discogs.user') || ''; } catch {}
+    this.discogsButton.textContent = user ? t('watchPage.discogsSynced', { user }) : t('watchPage.discogsButton');
+  }
+
+  /** "412 of 10,214 in stock at 96 shops · 7 new". */
   renderSummary() {
     const { items, changes } = load();
     const n = Object.keys(items).length;
@@ -232,13 +274,12 @@ export class VfWatchPage extends HTMLElement {
     for (const row of Object.values(this.rows)) if (row[0] && row[4]) for (let i = 0; i < row[4].length; i += 2) shops.add(row[4][i]);
     const fresh = Object.values(items).filter((it) => it.f && it.f >= this.newSince && it.s?.[0]).length;
     const since = changes.map((c) => c[8]).filter(Boolean).sort()[0];
-    const parts = [tn('watchPage.summaryWatched', n)];
-    if (n) parts.push(tn('watchPage.summaryAvailable', available, { shops: tn('results.shops', shops.size) }));
+    const parts = [n ? tn('watchPage.summaryStock', n, { available: formatNumber(available), shops: tn('results.shops', shops.size) }) : tn('watchPage.summaryWatched', n)];
     if (fresh) parts.push(tn('watchPage.summaryNew', fresh));
     else if (changes.length && since) parts.push(tn('watchPage.summaryChanges', changes.length, { date: formatDay(since.slice(0, 10)) }));
     this.summary.textContent = parts.join(' · ');
-    this.summary.hidden = !n;
     this.toggleAttribute('empty', !n);
+    this.renderTabs(this.views.now.getAttribute('count') * 1 || null);
   }
 
   renderChanges() {
