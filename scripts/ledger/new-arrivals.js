@@ -20,6 +20,16 @@ function interleave(items) {
   return out;
 }
 
+/** One item of the list. */
+function arrival(d, shop, day) {
+  const { format, used } = detectFormat(d.title);
+  return {
+    day, offerKey: d.offerKey, releaseKey: d.releaseKey, title: d.title, price: d.price ?? null, currency: d.currency || shop.state.currency || null,
+    url: productUrl(shop, d.path), image: d.image || null, shop: d.shop,
+    country: (shop.state.country || shop.country || '').toUpperCase() || null, format, used,
+  };
+}
+
 /** { count, items: [index, ...] } for one scope, the first `cap` items kept. */
 const scope = (list, cap) => ({ count: list.length, items: list.slice(0, cap) });
 
@@ -33,8 +43,9 @@ function group(order, key, cap) {
 }
 
 /**
- * New arrivals for the pages and feeds (generated/new-arrivals.json): records with a `new` event in
- * the last `days` days that are still in stock today, newest first. Each item is stored once in `items`;
+ * New arrivals for the pages and feeds (generated/new-arrivals.json): records still in stock today that
+ * are new in the last `days` days, newest first. New means a `new` event of the offer ledger, or the day the
+ * shop itself says it added the record (`created`, Shopify), which works from a shop's first crawl. Each item is stored once in `items`;
  * the scopes (all, countries, formats, byShop) give the total count and the indexes of the first items.
  */
 export function buildNewArrivals({ ledger, docs, shops, settings }) {
@@ -50,14 +61,14 @@ export function buildNewArrivals({ ledger, docs, shops, settings }) {
       const d = event === 'new' && !seen.has(offerKey) && inStock.get(offerKey);
       if (!d) continue;
       seen.add(offerKey);
-      const shop = shops.get(d.shop);
-      const { format, used } = detectFormat(d.title);
-      found.push({
-        day: when, offerKey, releaseKey, title: d.title, price: d.price ?? null, currency: d.currency || shop.state.currency || null,
-        url: productUrl(shop, d.path), image: d.image || null, shop: d.shop,
-        country: (shop.state.country || shop.country || '').toUpperCase() || null, format, used,
-      });
+      found.push(arrival(d, shops.get(d.shop), when));
     }
+  }
+  // the shop's own date: in stock records added in the window, not already found by the ledger
+  for (const d of inStock.values()) {
+    if (!d.created || d.created < from || d.created > day || seen.has(d.offerKey)) continue;
+    seen.add(d.offerKey);
+    found.push(arrival(d, shops.get(d.shop), d.created));
   }
   const items = interleave(found);
   const order = items.map((_, i) => i);

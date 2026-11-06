@@ -48,6 +48,8 @@ function toRecord(p) {
     extra: [...new Set([...(p.variants || []).map((v) => v.sku), ...(Array.isArray(p.tags) ? p.tags : [])].filter(Boolean))].join(' ').slice(0, 200) || null,
     image: p.images?.[0]?.src?.replace(/^https?:/, '') || null,
     updated: p.updated_at || p.published_at || null,
+    // the day the shop added it: "new in the shop" without waiting for our own history (new-arrivals.js)
+    created: (p.created_at || p.published_at || '').slice(0, 10) || null,
   };
 }
 

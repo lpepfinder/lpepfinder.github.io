@@ -33,3 +33,13 @@ test('new arrivals: last 7 days, still in stock, newest first, shops take turns'
   assert.equal(data.items[0].url, 'https://a.com/a1 12"');
   assert.equal(data.items[0].day, '2026-11-04');
 });
+
+test("new arrivals: the shop's own creation date counts from a shop's first crawl", () => {
+  const today = [offer('a.com', '/fresh'), offer('a.com', '/old'), offer('a.com', '/gone', { available: false })];
+  const ledger = settled(today);
+  const day = ledger.meta.day;
+  const docs = docsOf(today).map((d) => ({ ...d, created: d.path === '/old' ? addDays(day, -30) : day }));
+  const data = buildNewArrivals({ ledger, docs, shops, settings });
+  assert.deepEqual(data.items.map((i) => i.title), ['Artist – /fresh']);
+  assert.equal(data.items[0].day, day);
+});
