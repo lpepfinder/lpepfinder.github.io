@@ -537,5 +537,6 @@
   "moreAbout": "About",
   "homeWantsTitle": "Your wantlist, in stock",
   "homeWantsBody": "Bring your Discogs wantlist: see which of your records independent shops have right now, and what's new every day.",
-  "homeWantsAction": "Import my wantlist"
+  "homeWantsAction": "Import my wantlist",
+  "shopsNear": "Near you"
 }

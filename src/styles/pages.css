@@ -70,3 +70,10 @@ vf-more nav li + li { border-block-start: 0; }
 vf-more > p { color: var(--c-muted); font-size: var(--size-s); }
 /* phones: the More tab has all of the footer; only the browse links stay at the end of pages */
 @media (max-width: 64rem) { vf-app > footer > :not(nav:first-child) { display: none; } }
+
+/* <vf-near>: the viewer's country above the A–Z list of countries */
+vf-near { display: grid; gap: var(--space-1); }
+vf-near[hidden] { display: none; }
+vf-near h2 { margin: 0; font-size: var(--size-s); font-weight: var(--weight-semi); color: var(--c-muted); }
+vf-near a { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); min-block-size: var(--row-h); padding-inline: var(--space-4); border-radius: var(--radius); background: var(--c-chip-on); color: var(--c-chip-on-fg); font-weight: var(--weight-semi); text-decoration: none; }
+vf-near a data { color: inherit; }

@@ -16,5 +16,12 @@ const vars = { shops: number(lang, c.visible.length), countries: number(lang, c.
 <Base lang={lang} path="/shops/" title={pageTitle(t(lang, 'shopsSeoTitle'))} description={t(lang, 'shopsIntro', vars)}>
   <h1>{t(lang, 'shopsTitle')}</h1>
   <p>{t(lang, 'shopsIntro', vars)}</p>
+  <vf-near hidden>
+    <h2>{t(lang, 'shopsNear')}</h2>
+    <a href="#"><vf-near-name></vf-near-name> <data></data></a>
+  </vf-near>
   <CountryList lang={lang} countries={countries} />
 </Base>
+<script>
+  import '../../../components/vf-near.js';
+</script>

@@ -537,5 +537,6 @@
   "moreAbout": "Über",
   "homeWantsTitle": "Deine Wantlist, auf Lager",
   "homeWantsBody": "Bring deine Discogs-Wantlist mit: Sieh, welche deiner Platten unabhängige Läden gerade haben, und was täglich neu ist.",
-  "homeWantsAction": "Meine Wantlist importieren"
+  "homeWantsAction": "Meine Wantlist importieren",
+  "shopsNear": "In deiner Nähe"
 }

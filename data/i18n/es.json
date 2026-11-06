@@ -537,5 +537,6 @@
   "moreAbout": "Acerca de",
   "homeWantsTitle": "Tu wantlist, en stock",
   "homeWantsBody": "Trae tu wantlist de Discogs: mira qué discos tienen ahora las tiendas independientes y qué hay nuevo cada día.",
-  "homeWantsAction": "Importar mi wantlist"
+  "homeWantsAction": "Importar mi wantlist",
+  "shopsNear": "Cerca de ti"
 }
