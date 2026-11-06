@@ -3,5 +3,10 @@
   "name": "Atomic Records",
   "city": "Burbank",
   "osm": "node/10178928158",
-  "source": "osm"
+  "source": "osm",
+  "bluesky": {
+    "handle": "atomicrecords.bsky.social",
+    "did": null,
+    "verified": false
+  }
 }

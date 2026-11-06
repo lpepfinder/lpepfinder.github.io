@@ -3,5 +3,10 @@
   "country": "US",
   "address": "13616 Ventura Boulevard Los Angeles",
   "discogs": "https://www.discogs.com/record-stores/store/freakbeatrecords/",
-  "source": "discogs"
+  "source": "discogs",
+  "bluesky": {
+    "handle": "freakbeatrecords.com",
+    "did": "did:plc:bvjukmbg6ys4esp6tcwf3cze",
+    "verified": true
+  }
 }

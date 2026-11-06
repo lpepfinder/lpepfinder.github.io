@@ -2,5 +2,10 @@
   "url": "https://www.dustygroove.com",
   "name": "Dusty Groove",
   "country": "US",
-  "source": "wikidata"
+  "source": "wikidata",
+  "bluesky": {
+    "handle": "dustygroove.com",
+    "did": "did:plc:jqawds3rahqdzfu3eftscz46",
+    "verified": true
+  }
 }

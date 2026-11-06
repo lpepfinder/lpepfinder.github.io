@@ -3,5 +3,10 @@
   "name": "Resident Records",
   "city": "Brighton",
   "osm": "node/4866289406",
-  "source": "osm"
+  "source": "osm",
+  "bluesky": {
+    "handle": "resident-music.com",
+    "did": "did:plc:fcoislwat4v7psoz6eircnod",
+    "verified": true
+  }
 }

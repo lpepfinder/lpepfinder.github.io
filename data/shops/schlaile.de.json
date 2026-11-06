@@ -2,5 +2,10 @@
   "url": "https://www.schlaile.de",
   "name": "Musikhaus Schlaile",
   "country": "DE",
-  "source": "rsd"
+  "source": "rsd",
+  "bluesky": {
+    "handle": "schlaile.de",
+    "did": "did:plc:h6cbll335k3sciw4ej3k5ryn",
+    "verified": true
+  }
 }

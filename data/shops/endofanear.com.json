@@ -3,5 +3,10 @@
   "country": "US",
   "address": "4304 Clawson Road Austin",
   "discogs": "https://www.discogs.com/record-stores/store/endofanear/",
-  "source": "discogs"
+  "source": "discogs",
+  "bluesky": {
+    "handle": "endofanear.com",
+    "did": "did:plc:sgoo5regb3tnqaxu4wraur7t",
+    "verified": true
+  }
 }

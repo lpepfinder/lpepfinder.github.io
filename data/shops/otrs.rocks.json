@@ -3,5 +3,10 @@
   "country": "CH",
   "address": "66 Hertensteinstrasse Luzern",
   "discogs": "https://www.discogs.com/record-stores/store/oldtownrecordstore/",
-  "source": "discogs"
+  "source": "discogs",
+  "bluesky": {
+    "handle": "otrs.bsky.social",
+    "did": null,
+    "verified": false
+  }
 }

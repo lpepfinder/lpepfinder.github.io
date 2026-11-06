@@ -5,6 +5,9 @@ import { config } from '../lib/config.js';
 import { detectPlatform, pageTitle } from '../platforms/detect.js';
 import { adapters } from '../platforms/index.js';
 import { mentionsFormat } from '../platforms/filter.js';
+import { blueskyOf } from './bluesky.js';
+
+const fetchText = async (url) => { const r = await get(url); return r.ok ? (await r.text()).slice(0, 200) : null; };
 
 const PLATFORM_HOSTS = /\.(myshopify\.com|bigcartel\.com|bandcamp\.com|square\.site|wpcomstaging\.com)$/;
 const PARKED = /domain (is )?for sale|buy this domain|parked free|sedoparking|this domain may be for sale|hugedomains/i;
@@ -20,7 +23,8 @@ export async function checkShop(shop, previous = {}) {
   // the site answers but refuses bots (Cloudflare and similar): alive, just not readable by us
   if ([401, 403, 429, 503].includes(home.status)) {
     await home.body?.cancel?.();
-    return { ...state, url: new URL(home.url || shop.url).origin, status: 'listed', reason: `bot_protection_${home.status}`, platform: previous.platform || null, name: previous.name || null };
+    const bluesky = await blueskyOf(shop.id, '', { fetchText }) || previous.bluesky || null;
+    return { ...state, url: new URL(home.url || shop.url).origin, status: 'listed', reason: `bot_protection_${home.status}`, platform: previous.platform || null, name: previous.name || null, bluesky };
   }
   if (!home.ok) {
     const fails = (previous.fails || 0) + 1;
@@ -43,6 +47,8 @@ export async function checkShop(shop, previous = {}) {
   state.crawlDelay = robots.crawlDelay;
   state.platform = detectPlatform(html, home.headers);
   state.name = pageTitle(html);
+  // the shop on Bluesky: its domain as handle (verified), or a profile its homepage links (scripts/check/bluesky.js)
+  state.bluesky = await blueskyOf(finalUrl.hostname, html, { fetchText });
 
   const adapter = adapters[state.platform];
   if (adapter) {

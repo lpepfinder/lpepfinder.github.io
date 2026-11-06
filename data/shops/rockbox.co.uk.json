@@ -3,5 +3,10 @@
   "country": "GB",
   "address": "34 Obelisk Way",
   "discogs": "https://www.discogs.com/record-stores/store/therockbox/",
-  "source": "discogs"
+  "source": "discogs",
+  "bluesky": {
+    "handle": "rockbox.co.uk",
+    "did": "did:plc:asjnwjmiu2pezmiicvhybnvb",
+    "verified": true
+  }
 }

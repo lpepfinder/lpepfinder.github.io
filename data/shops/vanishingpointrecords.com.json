@@ -2,5 +2,10 @@
   "url": "https://www.vanishingpointrecords.com",
   "name": "Vanishing Point Records",
   "osm": "node/9624090798",
-  "source": "osm"
+  "source": "osm",
+  "bluesky": {
+    "handle": "vanishingpointrecs.bsky.social",
+    "did": null,
+    "verified": false
+  }
 }

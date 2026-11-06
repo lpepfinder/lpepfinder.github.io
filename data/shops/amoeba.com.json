@@ -3,5 +3,10 @@
   "country": "US",
   "address": "1855 Haight Street San Francisco",
   "discogs": "https://www.discogs.com/record-stores/store/amoebasf/",
-  "source": "discogs"
+  "source": "discogs",
+  "bluesky": {
+    "handle": "amoeba.com",
+    "did": "did:plc:7mmm6xbgdf5dxudf5o2jr2kh",
+    "verified": true
+  }
 }

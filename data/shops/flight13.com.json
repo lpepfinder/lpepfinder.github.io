@@ -2,5 +2,10 @@
   "url": "https://www.flight13.com",
   "name": "Flight 13 Records",
   "country": "DE",
-  "source": "rsd"
+  "source": "rsd",
+  "bluesky": {
+    "handle": "flight13.bsky.social",
+    "did": null,
+    "verified": false
+  }
 }

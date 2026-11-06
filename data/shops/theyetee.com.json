@@ -2,5 +2,10 @@
   "url": "https://theyetee.com",
   "name": "SuperJumbo Records and Arcade",
   "osm": "node/14141139701",
-  "source": "osm"
+  "source": "osm",
+  "bluesky": {
+    "handle": "theyetee.com",
+    "did": "did:plc:6g5yk33tv2wwn2or3ufhoqzj",
+    "verified": true
+  }
 }

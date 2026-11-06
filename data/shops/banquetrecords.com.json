@@ -1,5 +1,10 @@
 {
   "url": "https://www.banquetrecords.com",
   "country": "GB",
-  "source": "cse"
+  "source": "cse",
+  "bluesky": {
+    "handle": "banquetrecords.com",
+    "did": "did:plc:vjvympkwvjadppo2egllvzvn",
+    "verified": true
+  }
 }

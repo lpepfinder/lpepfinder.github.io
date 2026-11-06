@@ -1,5 +1,10 @@
 {
   "url": "https://www.normanrecords.com",
   "country": "GB",
-  "source": "cse"
+  "source": "cse",
+  "bluesky": {
+    "handle": "normanrecords.com",
+    "did": "did:plc:khd3yxzcj7eom6rwbh7pmqqh",
+    "verified": true
+  }
 }

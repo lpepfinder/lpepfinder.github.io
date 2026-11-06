@@ -101,6 +101,29 @@
           "description": "Extra start paths, e.g. [\"/genres\", \"/labels\"]"
         }
       }
+    },
+    "bluesky": {
+      "type": "object",
+      "description": "The shop on Bluesky, checked daily (scripts/check/bluesky.js); set by hand for a handle the check can't find. verified: the shop's domain is its handle (DNS or .well-known), so the account is provably the shop's.",
+      "properties": {
+        "handle": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9.-]*\\.[a-z]{2,}$"
+        },
+        "did": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "handle"
+      ],
+      "additionalProperties": false
     }
   }
 }

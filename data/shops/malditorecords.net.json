@@ -3,5 +3,10 @@
   "name": "Maldito Records",
   "city": "Tavernes Blanques",
   "osm": "node/11371220050",
-  "source": "osm"
+  "source": "osm",
+  "bluesky": {
+    "handle": "malditorecords.bsky.social",
+    "did": null,
+    "verified": false
+  }
 }

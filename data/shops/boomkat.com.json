@@ -1,5 +1,10 @@
 {
   "url": "https://boomkat.com",
   "country": "GB",
-  "source": "cse"
+  "source": "cse",
+  "bluesky": {
+    "handle": "boomkat.com",
+    "did": "did:plc:7ketojjqq3ygtxbdjx5j4zv4",
+    "verified": true
+  }
 }

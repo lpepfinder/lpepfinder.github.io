@@ -4,5 +4,10 @@
   "city": "Glasgow",
   "osm": "node/1612222904",
   "source": "osm",
-  "country": "GB"
+  "country": "GB",
+  "bluesky": {
+    "handle": "rubadub.co.uk",
+    "did": "did:plc:64ipekuuipxr47xtrmtsoe2g",
+    "verified": true
+  }
 }

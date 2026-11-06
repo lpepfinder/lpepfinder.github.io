@@ -3,5 +3,10 @@
   "country": "GB",
   "address": "12 Barker Street",
   "discogs": "https://www.discogs.com/record-stores/store/applestumprecords/",
-  "source": "discogs"
+  "source": "discogs",
+  "bluesky": {
+    "handle": "applestumprecords.com",
+    "did": "did:plc:vat4m2e22l35inecomalyzkz",
+    "verified": true
+  }
 }

@@ -3,5 +3,10 @@
   "country": "US",
   "address": "13710 Nicollet Avenue Burnsville",
   "discogs": "https://www.discogs.com/record-stores/store/southmetromusic/",
-  "source": "discogs"
+  "source": "discogs",
+  "bluesky": {
+    "handle": "southmetromusic.com",
+    "did": "did:plc:fbnazv3s63l2p2ld4ldsmv2v",
+    "verified": true
+  }
 }

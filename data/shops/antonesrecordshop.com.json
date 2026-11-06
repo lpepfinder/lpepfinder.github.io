@@ -3,5 +3,10 @@
   "country": "US",
   "address": "2928 Guadalupe Street Austin",
   "discogs": "https://www.discogs.com/record-stores/store/antonesrecordshop/",
-  "source": "discogs"
+  "source": "discogs",
+  "bluesky": {
+    "handle": "antonesrecordshop.com",
+    "did": "did:plc:asvpqfdw5j4r626efnsyaj2n",
+    "verified": true
+  }
 }

@@ -1,5 +1,10 @@
 {
   "url": "https://www.juno.co.uk",
   "country": "GB",
-  "source": "cse"
+  "source": "cse",
+  "bluesky": {
+    "handle": "juno.co.uk",
+    "did": "did:plc:e6xmq5udpyhokcpfltklib3m",
+    "verified": true
+  }
 }

@@ -1,5 +1,11 @@
 {
   "url": "https://hardwax.com",
   "country": "DE",
-  "source": "cse"
+  "source": "cse",
+  "bluesky": {
+    "handle": "hardwax.com",
+    "did": "did:plc:fljd625exjklznyhrm63sgka",
+    "verified": true
+  },
+  "name": "Hard Wax"
 }

@@ -4,5 +4,10 @@
   "city": "Newcastle upon Tyne",
   "osm": "way/1292881683",
   "source": "osm",
-  "country": "GB"
+  "country": "GB",
+  "bluesky": {
+    "handle": "vinylguru.co.uk",
+    "did": "did:plc:vl7nqweedlzrt5iluy55qv7s",
+    "verified": true
+  }
 }
