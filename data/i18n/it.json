@@ -118,7 +118,6 @@
   "navMeta": "Informazioni sul sito",
   "navMenu": "Menu",
   "homeTitle": "Vinili disponibili nei negozi di dischi indipendenti",
-  "homeTryTitle": "Prova",
   "homeAllShops": "Tutti i {shops} negozi di dischi in {countries} paesi",
   "homeAllArtists": "Tutti gli artisti dalla A alla Z",
   "footerGithub": "Codice sorgente su GitHub",
@@ -526,5 +525,8 @@
   "moreSettings": "Impostazioni",
   "moreBrowse": "Esplora",
   "moreShop": "Il tuo negozio di dischi",
-  "moreAbout": "Informazioni"
+  "moreAbout": "Informazioni",
+  "homeWantsTitle": "La tua wantlist, disponibile",
+  "homeWantsBody": "Porta la tua wantlist di Discogs: scopri quali dischi hanno ora i negozi indipendenti e cosa c'è di nuovo ogni giorno.",
+  "homeWantsAction": "Importa la mia wantlist"
 }

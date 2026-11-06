@@ -118,7 +118,6 @@
   "navMeta": "Site information",
   "navMenu": "Menu",
   "homeTitle": "Vinyl in stock at independent record shops",
-  "homeTryTitle": "Try",
   "homeAllShops": "All {shops} record shops in {countries} countries",
   "homeAllArtists": "All artists A–Z",
   "footerGithub": "Source code on GitHub",
@@ -526,5 +525,8 @@
   "moreSettings": "Settings",
   "moreBrowse": "Browse",
   "moreShop": "Your record shop",
-  "moreAbout": "About"
+  "moreAbout": "About",
+  "homeWantsTitle": "Your wantlist, in stock",
+  "homeWantsBody": "Bring your Discogs wantlist: see which of your records independent shops have right now, and what's new every day.",
+  "homeWantsAction": "Import my wantlist"
 }

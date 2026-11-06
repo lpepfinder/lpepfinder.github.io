@@ -87,3 +87,9 @@ vf-country-tile[local="true"] > a { border-color: var(--c-fg); }
 /* popular artists: a dense list in columns */
 vf-grid[density="dense"] > ul { columns: var(--dense-col); }
 vf-grid[density="dense"] li > a { min-block-size: var(--tap); font-size: var(--size-s); }
+
+/* the collector's way in: a Discogs wantlist, checked against every shop */
+vf-home-card { display: grid; gap: var(--space-2); justify-items: start; padding: var(--space-4); border-radius: var(--radius); background: var(--c-chip); }
+vf-home-card h2 { margin: 0; font-size: var(--size-1); }
+vf-home-card p { margin: 0; color: var(--c-muted); max-inline-size: var(--measure); }
+vf-app[mode="results"] vf-home-card { display: none; }

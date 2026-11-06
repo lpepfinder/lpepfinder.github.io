@@ -118,7 +118,6 @@
   "navMeta": "Información del sitio",
   "navMenu": "Menú",
   "homeTitle": "Vinilos en stock en tiendas de discos independientes",
-  "homeTryTitle": "Prueba",
   "homeAllShops": "Las {shops} tiendas de discos en {countries} países",
   "homeAllArtists": "Todos los artistas de la A a la Z",
   "footerGithub": "Código fuente en GitHub",
@@ -526,5 +525,8 @@
   "moreSettings": "Ajustes",
   "moreBrowse": "Explorar",
   "moreShop": "Tu tienda de discos",
-  "moreAbout": "Acerca de"
+  "moreAbout": "Acerca de",
+  "homeWantsTitle": "Tu wantlist, en stock",
+  "homeWantsBody": "Trae tu wantlist de Discogs: mira qué discos tienen ahora las tiendas independientes y qué hay nuevo cada día.",
+  "homeWantsAction": "Importar mi wantlist"
 }

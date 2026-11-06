@@ -115,7 +115,6 @@
   "navMeta": "サイト情報",
   "navMenu": "メニュー",
   "homeTitle": "インディペンデントのレコード店にあるレコード在庫",
-  "homeTryTitle": "例えば",
   "homeAllShops": "{countries} か国の全 {shops} 店のレコード店",
   "homeAllArtists": "アーティスト一覧（A–Z）",
   "footerGithub": "GitHub のソースコード",
@@ -496,5 +495,8 @@
   "moreSettings": "設定",
   "moreBrowse": "見つける",
   "moreShop": "あなたのレコード店",
-  "moreAbout": "概要"
+  "moreAbout": "概要",
+  "homeWantsTitle": "ウォントリストの在庫",
+  "homeWantsBody": "Discogsのウォントリストを持ち込んで、独立系レコード店にいま在庫があるレコードと毎日の新入荷を確認。",
+  "homeWantsAction": "ウォントリストを読み込む"
 }

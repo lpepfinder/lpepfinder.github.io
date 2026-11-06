@@ -118,7 +118,6 @@
   "navMeta": "Informations sur le site",
   "navMenu": "Menu",
   "homeTitle": "Vinyles en stock chez les disquaires indépendants",
-  "homeTryTitle": "Essayez",
   "homeAllShops": "Les {shops} disquaires dans {countries} pays",
   "homeAllArtists": "Tous les artistes de A à Z",
   "footerGithub": "Code source sur GitHub",
@@ -526,5 +525,8 @@
   "moreSettings": "Réglages",
   "moreBrowse": "Parcourir",
   "moreShop": "Votre disquaire",
-  "moreAbout": "À propos"
+  "moreAbout": "À propos",
+  "homeWantsTitle": "Votre wantlist, en stock",
+  "homeWantsBody": "Apportez votre wantlist Discogs : voyez quels disques les disquaires indépendants ont maintenant, et les nouveautés chaque jour.",
+  "homeWantsAction": "Importer ma wantlist"
 }

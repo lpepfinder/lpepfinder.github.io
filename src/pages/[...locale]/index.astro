@@ -7,7 +7,6 @@ import { homeStrip } from '../../lib/home-strip.js';
 import config from '../../../data/config.json';
 import { t, tn, localeParams, localPath, number, date } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
-import { homeContent } from '../../lib/home.js';
 import { pageTitle } from '../../lib/seo.js';
 
 export const getStaticPaths = localeParams;
@@ -19,7 +18,6 @@ const vars = {
   recordsShort: new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 2 }).format(c.totalRecords),
 };
 const home = new URL(localPath(lang, '/'), Astro.site).href;
-const examples = homeContent(lang).try;
 const strip = homeStrip(c, config.newArrivals.stripItems ?? config.newArrivals.homeItems);
 const ld = [{
   '@context': 'https://schema.org', '@type': 'WebSite', name: config.name, alternateName: config.formerNames, url: home, inLanguage: lang,
@@ -49,12 +47,11 @@ const ld = [{
       document.querySelector('vf-results').setAttribute('status', 'loading');
     }
   </script>
-  {examples.length > 0 && (
-    <section aria-labelledby="home-try">
-      <h2 id="home-try">{t(lang, 'homeTryTitle')}</h2>
-      <vf-chips><ul>{examples.map((e) => <li><a href={`${localPath(lang, '/')}?q=${encodeURIComponent(e)}`}>{e}</a></li>)}</ul></vf-chips>
-    </section>
-  )}
+  <vf-home-card>
+    <h2>{t(lang, 'homeWantsTitle')}</h2>
+    <p>{t(lang, 'homeWantsBody')}</p>
+    <a href={localPath(lang, '/watch/')} kind="strong">{t(lang, 'homeWantsAction')}</a>
+  </vf-home-card>
   {strip.count > 0 && (
     <section aria-labelledby="home-new">
       <h2 id="home-new">{t(lang, strip.fresh ? 'homeNewTitle' : 'homeLatestTitle')}</h2>
