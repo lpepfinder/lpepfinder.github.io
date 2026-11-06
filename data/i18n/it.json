@@ -543,5 +543,14 @@
   "navDocs": "Docs",
   "docsUsers": "Usare LP/EP Finder",
   "docsContributors": "Come è fatto",
-  "moreHelp": "Aiuto e docs"
+  "moreHelp": "Aiuto e docs",
+  "keys": {
+    "title": "Scorciatoie da tastiera",
+    "search": "Cerca",
+    "rows": "Disco successivo e precedente",
+    "open": "Apri il disco",
+    "close": "Chiudi un pannello o una finestra",
+    "help": "Queste scorciatoie",
+    "goTitle": "Vai a"
+  }
 }

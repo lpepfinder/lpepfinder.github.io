@@ -543,5 +543,14 @@
   "navDocs": "Docs",
   "docsUsers": "Using LP/EP Finder",
   "docsContributors": "How it's made",
-  "moreHelp": "Help and docs"
+  "moreHelp": "Help and docs",
+  "keys": {
+    "title": "Keyboard shortcuts",
+    "search": "Search",
+    "rows": "Next and previous record",
+    "open": "Open the record",
+    "close": "Close a panel or dialog",
+    "help": "These shortcuts",
+    "goTitle": "Go to"
+  }
 }

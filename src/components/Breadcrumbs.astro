@@ -1,13 +1,22 @@
 ---
 import { t } from '../lib/i18n.js';
 
-/** Visible breadcrumb trail; the last item is the current page. Pair with breadcrumbLd() for JSON-LD. */
+/**
+ * Breadcrumb trail; the last item is the current page. Pair with breadcrumbLd() for JSON-LD.
+ * On phones it shows as one "‹ Parent" back link, like an app (vf-crumbs.js goes back in history when
+ * the reader came from that parent, so it keeps its scroll and state).
+ */
 const { lang, items } = Astro.props;
 ---
-<nav aria-label={t(lang, 'navBreadcrumb')}>
-  <ol>
-    {items.map((item, i) => (
-      <li>{i < items.length - 1 ? <a href={item.href}>{item.name}</a> : <span aria-current="page">{item.name}</span>}</li>
-    ))}
-  </ol>
-</nav>
+<vf-crumbs>
+  <nav aria-label={t(lang, 'navBreadcrumb')}>
+    <ol>
+      {items.map((item, i) => (
+        <li>{i < items.length - 1 ? <a href={item.href}>{item.name}</a> : <span aria-current="page">{item.name}</span>}</li>
+      ))}
+    </ol>
+  </nav>
+</vf-crumbs>
+<script>
+  import './vf-crumbs.js';
+</script>

@@ -543,5 +543,14 @@
   "navDocs": "Docs",
   "docsUsers": "Usar LP/EP Finder",
   "docsContributors": "Cómo está hecho",
-  "moreHelp": "Ayuda y docs"
+  "moreHelp": "Ayuda y docs",
+  "keys": {
+    "title": "Atajos de teclado",
+    "search": "Buscar",
+    "rows": "Disco siguiente y anterior",
+    "open": "Abrir el disco",
+    "close": "Cerrar un panel o diálogo",
+    "help": "Estos atajos",
+    "goTitle": "Ir a"
+  }
 }

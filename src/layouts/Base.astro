@@ -4,6 +4,7 @@ import { t, languages, defaultLanguage, localPath, clientStrings } from '../lib/
 import Ads from '../components/Ads.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Shortcuts from '../components/Shortcuts.astro';
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import historyGuard from '../components/history-guard.js?raw';
@@ -67,6 +68,7 @@ const strings = JSON.stringify(clientStrings(lang, groups)).replace(/</g, '\\u00
     </main>
     <Footer lang={lang} path={path} />
   </vf-app>
+  <Shortcuts lang={lang} />
   <script>
     import '../components/vf-app.js';
     import '../components/router.js';

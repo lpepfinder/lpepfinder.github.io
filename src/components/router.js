@@ -9,7 +9,12 @@
  * A page in another language is loaded in full: dates, prices and plurals are formatted for one language.
  * The URL moves before the swap, so components see the new page's address when they connect.
  */
+// the path of the page before this one, for "‹ Back" links (vf-crumbs.js); null after a full load
+let previous = null;
+export const previousPath = () => previous;
+
 document.addEventListener('astro:before-swap', (e) => {
+  previous = location.pathname;
   if (e.newDocument.documentElement.lang !== document.documentElement.lang) {
     e.swap = () => location.assign(e.to.href);
     return;

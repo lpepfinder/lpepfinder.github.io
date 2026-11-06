@@ -513,5 +513,14 @@
   "navDocs": "ドキュメント",
   "docsUsers": "LP/EP Finderの使い方",
   "docsContributors": "しくみ",
-  "moreHelp": "ヘルプとドキュメント"
+  "moreHelp": "ヘルプとドキュメント",
+  "keys": {
+    "title": "キーボードショートカット",
+    "search": "検索",
+    "rows": "次・前のレコード",
+    "open": "レコードを開く",
+    "close": "パネルやダイアログを閉じる",
+    "help": "このショートカット一覧",
+    "goTitle": "移動"
+  }
 }

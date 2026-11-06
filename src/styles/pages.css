@@ -16,9 +16,17 @@ vf-grid li { break-inside: avoid; }
 vf-grid li > a { display: inline-flex; align-items: center; min-block-size: var(--tap); }
 
 
-main > nav ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); font-size: var(--size-s); color: var(--c-muted); }
-main > nav:not([sticky]) li + li::before { content: var(--breadcrumb-separator); margin-inline-end: var(--space-2); }
-main > nav a { min-block-size: var(--tap); }
+vf-crumbs { display: block; }
+main > nav ol, vf-crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); font-size: var(--size-s); color: var(--c-muted); }
+main > nav:not([sticky]) li + li::before, vf-crumbs li + li::before { content: var(--breadcrumb-separator); margin-inline-end: var(--space-2); }
+:is(main > nav, vf-crumbs) a { display: inline-flex; align-items: center; min-block-size: var(--tap); }
+/* phones: one back link to the parent page, like an app */
+@media (max-width: 40rem) {
+  vf-crumbs li:not(:nth-last-child(2)) { display: none; }
+  vf-crumbs li + li::before { content: none; }
+  vf-crumbs a { gap: var(--space-1); color: var(--c-fg); font-size: var(--size-0); text-decoration: none; }
+  vf-crumbs a::before { content: var(--back-mark); font-size: var(--size-1); line-height: 1; }
+}
 
 vf-status[value="ok"] { color: var(--c-ok); font-weight: var(--weight-semi); }
 vf-status[value="dead"], vf-status[value="moved"] { color: var(--c-bad); }
@@ -96,3 +104,19 @@ vf-near a data { color: inherit; }
   vf-shop-card::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--c-muted); mask: var(--icon-next) center / contain no-repeat; }
   vf-shop-card[searchable="false"] a { color: var(--c-muted); font-weight: normal; }
 }
+
+/* <vf-shortcuts>: the keyboard shortcuts' help, a native dialog in the middle of the screen */
+vf-shortcuts dialog { inline-size: min(100% - 2 * var(--gutter), var(--sheet-wide)); padding: var(--space-4); border: 0; border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
+vf-shortcuts dialog::backdrop { background: var(--c-scrim); }
+vf-shortcuts header { display: flex; align-items: center; justify-content: space-between; }
+vf-shortcuts :is(h2, h3) { margin: 0; }
+vf-shortcuts h2 { font-size: var(--size-1); }
+vf-shortcuts h3 { margin-block-start: var(--space-4); font-size: var(--size-s); color: var(--c-muted); }
+vf-shortcuts dl { display: grid; grid-template-columns: auto 1fr; gap: var(--space-2) var(--space-4); margin: var(--space-3) 0 0; }
+vf-shortcuts dd { margin: 0; }
+vf-shortcuts ul { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; }
+vf-shortcuts ul a { display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--tap); color: inherit; text-decoration: none; }
+vf-shortcuts ul a:hover span { text-decoration: underline; }
+kbd { display: inline-block; min-inline-size: 1.6em; padding: 0 var(--space-1); border: var(--line) solid var(--c-border); border-block-end-width: 2px; border-radius: var(--radius); background: var(--c-bg); font: inherit; font-size: var(--size-s); text-align: center; }
+/* touch screens have no keyboard shortcuts to show */
+@media (pointer: coarse) { vf-shortcuts { display: none; } }

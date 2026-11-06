@@ -543,5 +543,14 @@
   "navDocs": "Doku",
   "docsUsers": "LP/EP Finder nutzen",
   "docsContributors": "Wie es gemacht ist",
-  "moreHelp": "Hilfe und Doku"
+  "moreHelp": "Hilfe und Doku",
+  "keys": {
+    "title": "Tastenkürzel",
+    "search": "Suchen",
+    "rows": "Nächste und vorige Platte",
+    "open": "Platte öffnen",
+    "close": "Bereich oder Dialog schließen",
+    "help": "Diese Kürzel",
+    "goTitle": "Gehe zu"
+  }
 }

@@ -1,0 +1,36 @@
+---
+import { t, localPath } from '../lib/i18n.js';
+
+/**
+ * <vf-shortcuts>: keyboard shortcuts (vf-shortcuts.js) and their help, a native dialog opened with "?".
+ * Each "g then a letter" shortcut is a link in the dialog (data-key), so they are listed and clickable.
+ */
+const { lang } = Astro.props;
+const go = [
+  ['s', localPath(lang, '/'), 'tabSearch'],
+  ['d', '/new/', 'tabNew'],
+  ['w', localPath(lang, '/watch/'), 'tabWatch'],
+  ['m', localPath(lang, '/more/'), 'tabMore'],
+  ['h', '/docs/', 'navDocs'],
+];
+---
+<vf-shortcuts>
+  <dialog closedby="any" aria-labelledby="shortcuts-title">
+    <header>
+      <h2 id="shortcuts-title">{t(lang, 'keys.title')}</h2>
+      <form method="dialog"><button kind="text" aria-label={t(lang, 'sheet.close')}><vf-icon name="close"></vf-icon></button></form>
+    </header>
+    <dl>
+      <dt><kbd>/</kbd></dt><dd>{t(lang, 'keys.search')}</dd>
+      <dt><kbd>j</kbd> <kbd>k</kbd></dt><dd>{t(lang, 'keys.rows')}</dd>
+      <dt><kbd>Enter</kbd></dt><dd>{t(lang, 'keys.open')}</dd>
+      <dt><kbd>Esc</kbd></dt><dd>{t(lang, 'keys.close')}</dd>
+      <dt><kbd>?</kbd></dt><dd>{t(lang, 'keys.help')}</dd>
+    </dl>
+    <h3>{t(lang, 'keys.goTitle')}</h3>
+    <ul>{go.map(([key, href, label]) => <li><a href={href} data-key={key}><kbd>g</kbd> <kbd>{key}</kbd> <span>{t(lang, label)}</span></a></li>)}</ul>
+  </dialog>
+</vf-shortcuts>
+<script>
+  import './vf-shortcuts.js';
+</script>
