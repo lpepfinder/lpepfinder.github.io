@@ -15,10 +15,11 @@ export function getStaticPaths() {
 const { lang, country } = Astro.props;
 const name = countryName(lang, country.code);
 const vars = { country: name, shops: number(lang, country.shops.length), records: number(lang, country.records) };
-// grouped by city, cities and shops A–Z; shops without a city come last
+// grouped by city, cities A–Z; shops without a city come last; searchable shops first, then A–Z
 const NONE = '';
+const shopName = byName(lang, (s) => s.name);
 const cities = groupBy(country.shops, (s) => s.city?.trim() || NONE,
-  (a, b) => (a === NONE) - (b === NONE) || byName(lang)(a, b), byName(lang, (s) => s.name));
+  (a, b) => (a === NONE) - (b === NONE) || byName(lang)(a, b), (a, b) => (b.records > 0) - (a.records > 0) || shopName(a, b));
 const crumbs = [
   { name: t(lang, 'breadcrumbHome'), href: localPath(lang, '/') },
   { name: t(lang, 'navShops'), href: localPath(lang, '/shops/') },
@@ -37,10 +38,11 @@ const ld = [{
   <h1>{t(lang, 'countryTitle', vars)}</h1>
   <p>{tn(lang, 'countryDescription', country.shops.length, vars)}</p>
   {cities.length > 1 && (
-    <nav aria-label={t(lang, 'citiesNav')}>
+    <nav aria-label={t(lang, 'citiesNav')} sticky="phone">
       <ul>{cities.map(([city], i) => <li><a href={`#city-${i}`}>{city || t(lang, 'cityUnknown')}</a></li>)}</ul>
     </nav>
   )}
+  <vf-grid flow="columns">
   {cities.map(([city, shops], i) => (
     <section id={`city-${i}`}>
       <h2>{city || t(lang, 'cityUnknown')} <data value={shops.length}>{number(lang, shops.length)}</data></h2>
@@ -56,4 +58,5 @@ const ld = [{
       </ul>
     </section>
   ))}
+  </vf-grid>
 </Base>
