@@ -38,7 +38,10 @@ console.log('watchlist files', writeWatchFiles({ ledger, shops: catalog.shops, o
 const arrivals = buildNewArrivals({ ledger, docs: catalog.docs, shops: catalog.shops, settings: config.newArrivals });
 writeJson(path.join(GENERATED, 'new-arrivals.json'), arrivals);
 console.log('new arrivals', arrivals.total, 'at', arrivals.shops, 'shops');
-const docs = sortDocs([...catalog.docs, ...ledgerDocs(ledger, catalog.docs, catalog.shops, config.ledger)]);
+// sold-out records: only those the ledger saw in stock (recent sell-outs), so years-old sold-out
+// catalogs don't fill the search index; they stay in the ledger
+const extra = ledgerDocs(ledger, catalog.docs, catalog.shops, config.ledger);
+const docs = sortDocs([...catalog.docs, ...extra].filter((d) => d.available !== false || d.lastInStock));
 
 // each shop's last successful crawl day, kept by the ledger across runs
 const lastCrawl = Object.fromEntries(Object.entries(ledger.meta.shops).map(([id, s]) => [id, s.lastCrawl]));

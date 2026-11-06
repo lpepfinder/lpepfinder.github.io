@@ -107,10 +107,11 @@ export class SearchClient {
     return rows.map((row) => {
       if (!row) return null;
       const [shopIdx, title, price, path, image, currency, soldOut, lastInStock, firstSeen, wasPrice, lowPrice90] = row;
-      const [shopId, shopName, origin, country, shopCurrency, lastCrawl, shipsTo] = this.shops[shopIdx];
+      const [shopId, shopName, origin, country, shopCurrency, lastCrawl, shipsTo, imagePrefix] = this.shops[shopIdx];
       return {
-        title, price, image: image || null, available: soldOut !== 1, lastInStock: lastInStock || null,
-        url: path.startsWith('http') ? path : origin + path,
+        title, price, image: !image ? null : image.startsWith('~') ? imagePrefix + image.slice(1) : image,
+        available: soldOut !== 1, lastInStock: lastInStock || null,
+        url: path.startsWith('http') ? path : path.startsWith('~') ? `${origin}/products/${path.slice(1)}` : origin + path,
         currency: currency || shopCurrency,
         // from the offer ledger: firstSeen "YYYY-MM-DD"; wasPrice (cents) before a drop in the last 14 days;
         // lowPrice90 (cents) is the price itself when the row has no lower one but the ledger knows the offer

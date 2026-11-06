@@ -63,3 +63,11 @@ test('d/ rows: 0 for absent values, trailing zeros left out', () => {
   // lastInStock is only for sold-out records
   assert.deepEqual(docRow({ ...base, lastInStock: '2026-10-30' }, 0, shopRows), [0, 'T', 1500, '/p', 0, 0]);
 });
+
+test('rows store the shop image prefix and the Shopify products path once', () => {
+  const shopRows = [['s', 'S', 'https://s.com', 'DE', 'EUR', null, [], '//cdn.shopify.com/s/files/1/0001/'] ];
+  const row = docRow({ shop: 's', title: 'T', price: 900, path: '/products/abc', image: '//cdn.shopify.com/s/files/1/0001/x.jpg', currency: 'EUR', available: true }, 0, shopRows);
+  assert.deepEqual(row.slice(0, 5), [0, 'T', 900, '~abc', '~x.jpg']);
+  const soldOut = docRow({ shop: 's', title: 'T', price: 900, path: '/products/abc', image: '//cdn.shopify.com/s/files/1/0001/x.jpg', available: false }, 0, shopRows);
+  assert.equal(soldOut[4], 0); // no cover for sold-out rows
+});

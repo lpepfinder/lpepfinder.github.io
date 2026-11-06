@@ -64,8 +64,8 @@
   "seo": {
     "artistMinRecords": 3,
     "artistMinShops": 2,
-    "artistMaxPages": 5000,
-    "artistMaxRecordsPerPage": 120,
+    "artistMaxPages": 3000,
+    "artistMaxRecordsPerPage": 60,
     "shopLatestRecords": 24
   },
   "search": {

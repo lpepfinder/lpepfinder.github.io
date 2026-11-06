@@ -10,7 +10,9 @@ export function writeStatic(file, content) {
 
 /**
  * Static inverted index:
- *   search/shops.json         [[id, name, origin, country, currency, lastCrawl, shipsTo], ...]
+ *   search/shops.json         [[id, name, origin, country, currency, lastCrawl, shipsTo, imagePrefix], ...]
+ *                             (imagePrefix: start shared by the shop's image URLs, or 0; a row image starting with
+ *                             "~" continues it. A row path starting with "~" is origin + "/products/" + the rest)
  *                             (lastCrawl: "YYYY-MM-DD" UTC day of the shop's last successful crawl, null when
  *                             unknown; shipsTo: ISO country codes the shop ships to, "*" for rest of world,
  *                             [] when unknown. Both added later: older files have 5 fields)
@@ -36,7 +38,7 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
     const origin = new URL(s.state.url || s.url).origin;
     return [
       id, s.name || cleanShopName(s.state.name || '') || id, origin, s.state.country || s.country || null, s.state.currency || null,
-      lastCrawl[id] || null, s.shipsTo || s.state.shipsTo || [],
+      lastCrawl[id] || null, s.shipsTo || s.state.shipsTo || [], imagePrefix(docs, id),
     ];
   });
   writeStatic(path.join(outDir, 'shops.json'), JSON.stringify(shopRows));
@@ -77,11 +79,30 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
 
 const FIXED_FIELDS = 6;
 
+/** Longest start shared by a shop's image URLs (cut at a "/"), so rows store only the end. */
+function imagePrefix(docs, shopId) {
+  let prefix = null;
+  for (const d of docs) {
+    if (d.shop !== shopId || !d.image) continue;
+    if (prefix === null) { prefix = d.image; continue; }
+    let i = 0;
+    while (i < prefix.length && prefix[i] === d.image[i]) i++;
+    prefix = prefix.slice(0, i);
+    if (prefix.length < 16) return 0;
+  }
+  if (!prefix) return 0;
+  const cut = prefix.slice(0, prefix.lastIndexOf('/') + 1);
+  return cut.length >= 16 ? cut : 0;
+}
+
+const compactPath = (p) => (p?.startsWith('/products/') ? '~' + p.slice(10) : p);
+const compactImage = (img, prefix) => (img && prefix && img.startsWith(prefix) ? '~' + img.slice(prefix.length) : img || 0);
+
 /** One d/ row (see buildSearchIndex): absent values are 0, trailing ones after the fixed fields left out. */
 export function docRow(d, shopIdx, shopRows) {
   const soldOut = d.available === false;
   const row = [
-    shopIdx, d.title, d.price, d.path, d.image || 0, d.currency !== shopRows[shopIdx][4] ? d.currency : 0,
+    shopIdx, d.title, d.price, compactPath(d.path), soldOut ? 0 : compactImage(d.image, shopRows[shopIdx][7]), d.currency !== shopRows[shopIdx][4] ? d.currency : 0,
     soldOut ? 1 : 0, (soldOut && d.lastInStock) || 0, d.firstSeen || 0, d.wasPrice || 0, d.lowPrice90 || 0,
   ];
   let end = row.length;
