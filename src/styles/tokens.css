@@ -119,6 +119,8 @@
   --c-event-price-down: #1d6b34;
   --c-event-soldout: var(--c-muted);
   --c-event-gone: var(--c-muted);
+  --c-error: var(--c-accent);
+  --busy-opacity: 0.6;
   --c-badge: var(--c-accent);
   --c-badge-fg: var(--c-accent-fg);
   --c-toast: var(--c-chip-on);

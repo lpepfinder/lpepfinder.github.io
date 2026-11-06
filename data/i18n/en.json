@@ -277,10 +277,8 @@
     },
     "views": "Watchlist views",
     "viewChanges": "Changes",
-    "viewNow": "Available now",
     "viewAll": "All",
     "changesHeading": "Recent changes",
-    "nowHeading": "Available now, by shop",
     "allHeading": "All watched records",
     "noChangesAll": "No changes yet. They show up here when a watched record comes back in stock, sells out or gets cheaper.",
     "noneAvailable": "None of your records is in stock right now.",
@@ -295,8 +293,65 @@
     },
     "showing": "Showing {shown} of {total}",
     "noMatch": "No watched record matches “{query}”.",
-    "emptyList": "You're not watching any records yet. Tap Watch on a search result, or import a watchlist file below.",
-    "backShops": "Shops"
+    "emptyList": "You're not watching any records yet. Import your Discogs wantlist above, or tap Watch on a search result.",
+    "backShops": "Shops",
+    "viewAvailable": "Available",
+    "viewShops": "By shop",
+    "availableHeading": "Your records in stock now",
+    "shopsHeading": "Shops with your records",
+    "sortLabel": "Sort",
+    "sort": {
+      "new": "Newest found",
+      "price": "Lowest price",
+      "price-desc": "Highest price",
+      "rare": "Rarest first",
+      "rating": "Your rating",
+      "title": "A–Z"
+    },
+    "filterShips": "Hide shops that don't ship to me",
+    "filterCustoms": "No customs fees (same country or customs zone)",
+    "filterMax": "Up to",
+    "badgeNew": "New",
+    "badgeOnly": "Only copy",
+    "rating": "Your rating: {rating} of 5",
+    "moreShops": {
+      "one": "1 more shop",
+      "other": "{count} more shops"
+    },
+    "noCustoms": "no customs",
+    "noShipping": "doesn't ship to you",
+    "total": "Total",
+    "summaryNew": {
+      "one": "1 new",
+      "other": "{count} new"
+    },
+    "discogsTitle": "Import your Discogs wantlist",
+    "discogsIntro": "See which of your wants are in stock at independent shops right now. Matched by catalog number and by artist and title, checked every day.",
+    "discogsUser": "Discogs username",
+    "discogsUserPlaceholder": "your-username",
+    "discogsImport": "Import",
+    "discogsPublic": "Your wantlist must be public on Discogs. It is read from Discogs by this browser and kept here only.",
+    "csvLabel": "Or upload the CSV file from Discogs (Wantlist → Export):",
+    "discogsLoading": "Reading the wantlist of {user} from Discogs…",
+    "discogsProgress": "Reading your wantlist… {count} records",
+    "discogsDone": {
+      "one": "{user}: 1 want on Discogs.",
+      "other": "{user}: {count} wants on Discogs."
+    },
+    "discogsRemoved": {
+      "one": "1 record no longer on your wantlist was removed.",
+      "other": "{count} records no longer on your wantlist were removed."
+    },
+    "discogsFile": {
+      "one": "1 want in the file.",
+      "other": "{count} wants in the file."
+    },
+    "discogsError": {
+      "not-found": "No Discogs user named “{user}”.",
+      "private": "The wantlist of {user} is private. Make it public on Discogs, or upload its CSV export.",
+      "network": "Discogs couldn't be reached. Try again in a minute."
+    },
+    "csvError": "This isn't a Discogs CSV export (it needs Artist and Title columns)."
   },
   "navApp": "Main",
   "navSite": "Explore",

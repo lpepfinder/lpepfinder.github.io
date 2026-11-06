@@ -2,20 +2,30 @@ import { load, update, today } from '../lib/watch/store.js';
 import { due, check } from '../lib/watch/check.js';
 import { state } from '../lib/watch/diff.js';
 import * as data from '../lib/watch/data.js';
-import { changesByDay, byShop, shopRow } from './watch-views.js';
+import { catalogKeys, mergeRows } from '../lib/watch/wants.js';
+import { hits, sortHits, baskets } from '../lib/watch/hits.js';
+import { reach } from '../lib/watch/reach.js';
+import config from '../../data/watch.json' with { type: 'json' };
+import { changesByDay, hitRow, shopRow } from './watch-views.js';
 import { WatchShopPane } from './watch-shop-pane.js';
 import { t, tn, formatNumber, formatDay } from './i18n.js';
-import { rates, currency, CURRENCY_EVENT } from './viewer.js';
+import { rates, currency, region, comparable, CURRENCY_EVENT } from './viewer.js';
+import { convert } from '../lib/currency.js';
+import { readFilters, saveFilters } from './watch-filters.js';
 import './vf-watch-all.js';
+import './vf-watch-import.js';
+
+const daysAgo = (n) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
 
 const MAX_PAST = 100;
-const VIEWS = ['changes', 'now', 'all'];
+const VIEWS = ['available', 'now', 'changes', 'all'];
 
 /**
- * <vf-watch-page status="idle|checking|done" view="changes|now|all">: a summary line, then three
- * views chosen by links (?view=…, aria-current="page"): changes by day (<vf-watch-changes>),
- * records in stock now by shop (<vf-watch-now>, a shop opens in a sheet or the right pane), and every record (<vf-watch-all>).
- * The "Prices in" menu sits in a sheet behind a button.
+ * <vf-watch-page status="idle|checking|done" view="available|now|changes|all">: a summary line, the
+ * filters (sort, ships to me, no customs, max price) and four views chosen by links (?view=…):
+ * records in stock (<vf-watch-available>), shops by how many of your records they have (<vf-watch-now>,
+ * a shop opens in a sheet or the right pane), changes by day, and every record (<vf-watch-all>).
+ * Wants imported from Discogs also match by catalog number (wants.js).
  * Current states come from the `now` shards, fetched once per data build with a progress bar.
  * Changes are marked seen when the page is left.
  */
@@ -25,17 +35,25 @@ export class VfWatchPage extends HTMLElement {
     this.summary = this.querySelector('vf-watch-summary');
     this.progress = this.querySelector('vf-progress');
     this.views = Object.fromEntries(VIEWS.map((v) => [v, this.querySelector(`vf-watch-${v}`)]));
+    this.form = this.querySelector('vf-watch-filters form');
     this.search = this.getAttribute('search') || '/';
     this.views.all.setAttribute('search', this.search);
     this.shops = new Map();
+    this.zones = [];
     this.rows = {};
     this.rates = {};
     this.shopIds = [];
+    this.limit = config.pageSize;
     this.pane = new WatchShopPane(this.views.now, this);
     this.currencyButton = this.querySelector('button[name="currency"]');
     this.currencyButton.addEventListener('click', () => this.querySelector('vf-sheet[name="currency"]').open());
     this.labelCurrency();
-    this.querySelector('nav').addEventListener('click', (e) => {
+    this.setupFilters();
+    this.views.available.querySelector('button[name="more"]').addEventListener('click', () => {
+      this.limit += config.pageSize;
+      this.renderAvailable(true);
+    });
+    this.querySelector(':scope > nav').addEventListener('click', (e) => {
       const a = e.target.closest('a[href]');
       if (!a) return;
       e.preventDefault();
@@ -44,16 +62,54 @@ export class VfWatchPage extends HTMLElement {
     });
     addEventListener('popstate', () => this.show(false));
     addEventListener(data.PROGRESS, (e) => this.step(e.detail));
-    addEventListener(CURRENCY_EVENT, () => { this.labelCurrency(); this.renderChanges(); this.renderNow(); });
+    addEventListener(CURRENCY_EVENT, () => { this.labelCurrency(); this.renderChanges(); this.renderHits(); });
     const leave = () => this.markSeen();
     addEventListener('pagehide', leave);
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') leave(); });
-    if (load().fresh) update((list) => { list.fresh = 0; });
+    // "new" means found in stock since the visit before this one, at least the last config.newDays days
+    const visit = load().visit;
+    this.newSince = [visit, daysAgo(config.newDays)].filter(Boolean).sort()[0];
+    update((list) => { list.fresh = 0; if (list.visit !== today()) list.visit = today(); });
     this.show(false);
     this.views.all.refresh();
     this.renderChanges();
     this.renderSummary();
     this.refresh();
+  }
+
+  /** Sort and filters: kept in this browser, applied as they change. */
+  setupFilters() {
+    const saved = readFilters();
+    for (const [name, value] of Object.entries(saved)) {
+      const field = this.form.elements[name];
+      if (!field) continue;
+      if (field.type === 'checkbox') field.checked = !!value; else field.value = value ?? '';
+    }
+    this.form.addEventListener('submit', (e) => e.preventDefault());
+    this.form.addEventListener('input', () => {
+      saveFilters(this.filterValues());
+      this.limit = config.pageSize;
+      this.renderHits();
+    });
+    this.labelMax();
+  }
+
+  filterValues() {
+    const f = this.form.elements;
+    return { sort: f.sort.value, ships: f.ships.checked, customs: f.customs.checked, max: f.max.value };
+  }
+
+  /** The max price is typed in the "Prices in" currency (euros in shop mode); compared in euro cents. */
+  maxValue(raw) {
+    const n = parseFloat(String(raw).replace(',', '.'));
+    if (!(n > 0)) return null;
+    const cents = Math.round(n * 100);
+    const cur = currency() || 'EUR';
+    return cur === 'EUR' ? cents : convert(cents, cur, 'EUR', this.rates) ?? cents;
+  }
+
+  labelMax() {
+    this.form.querySelector('vf-currency-code').textContent = currency() || 'EUR';
   }
 
   /** The view in the URL; focus its heading when the reader picked it. */
@@ -62,7 +118,7 @@ export class VfWatchPage extends HTMLElement {
     const current = VIEWS.includes(view) ? view : VIEWS[0];
     this.setAttribute('view', current);
     for (const v of VIEWS) this.views[v].hidden = v !== current;
-    for (const a of this.querySelectorAll('nav a')) {
+    for (const a of this.querySelectorAll(':scope > nav a')) {
       if (new URL(a.href).searchParams.get('view') === current) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
     }
@@ -87,47 +143,102 @@ export class VfWatchPage extends HTMLElement {
   async run() {
     this.setAttribute('status', 'checking');
     if (due()) await check().catch(() => {});
-    const keys = Object.keys(load().items);
-    const [rows, shopIds, table] = await Promise.all([keys.length ? data.now(keys) : {}, data.shops(), rates(), this.loadShops()]);
+    const { items } = load();
+    const keys = Object.keys(items);
+    const [table, cat] = await Promise.all([rates(), data.cat(keys.map((k) => items[k].c).filter(Boolean)), this.loadShops()]);
     this.rates = table;
-    this.rows = rows;
+    // wants found by catalog number under other titles: their keys count as the want's
+    const extra = catalogKeys(items, cat);
+    const all = [...new Set([...keys, ...Object.values(extra).flat()])];
+    const [rows, shopIds] = await Promise.all([all.length ? data.now(all) : {}, data.shops()]);
+    const value = (cents, cur) => comparable(cents, cur, table);
+    this.rows = Object.fromEntries(keys.map((k) => [k, mergeRows([rows[k], ...(extra[k] || []).map((x) => rows[x])], value)]).filter(([, r]) => r));
     this.shopIds = shopIds;
-    const { refreshed, items } = load();
+    const { refreshed } = load();
     if (refreshed !== today() || keys.some((k) => !items[k].s)) {
       update((list) => {
-        for (const [key, it] of Object.entries(list.items)) it.s = state(rows[key]);
+        for (const [key, it] of Object.entries(list.items)) {
+          const next = state(this.rows[key]);
+          // found again: in stock now, out of stock at the last check
+          if (it.s && !it.s[0] && next[0]) it.f = today();
+          it.s = next;
+          if (extra[key]) it.x = extra[key]; else delete it.x;
+        }
         list.refreshed = today();
       });
     }
     this.progress.hidden = true;
     this.renderChanges();
-    this.renderNow();
+    this.renderHits();
     this.views.all.refresh();
     this.renderSummary();
     this.setAttribute('status', 'done');
     if (keys.length) this.live.textContent = t('watchPage.checked');
   }
 
-  /** Shop names, links and countries from the search index. */
+  /** Shop names, links, countries and shipping from the search index; customs zones. */
   async loadShops() {
     if (this.shops.size) return;
-    const rows = await fetch('/search/shops.json').then((r) => (r.ok ? r.json() : [])).catch(() => []);
-    this.shops = new Map(rows.map(([id, name, origin, country, currency]) => [id, { name, origin, country, currency }]));
+    const [rows, regions] = await Promise.all([
+      fetch('/search/shops.json').then((r) => (r.ok ? r.json() : [])).catch(() => []),
+      fetch('/regions.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+    ]);
+    this.zones = regions?.zones || [];
+    this.shops = new Map(rows.map(([id, name, origin, country, currency, , shipsTo]) => [id, { name, origin, country, currency, shipsTo: shipsTo || [] }]));
   }
 
-  /** "13,000 watched · 312 available now at 87 shops · 24 changes since 2 Nov". */
+  /** Records in stock under the filters, sorted; the shops view groups the same records by shop. */
+  renderHits() {
+    const f = this.filterValues();
+    this.labelMax();
+    const list = hits({
+      items: load().items, rows: this.rows, shopIds: this.shopIds, shops: this.shops,
+      value: (cents, cur) => comparable(cents, cur, this.rates),
+      reachOf: (shop) => reach(shop, region, this.zones),
+      filters: { ships: f.ships, customs: f.customs, max: this.maxValue(f.max) },
+    });
+    this.hits = sortHits(list, f.sort);
+    this.renderAvailable(false);
+    const groups = baskets(this.hits);
+    const box = this.views.now;
+    box.querySelector('vf-watch-shops ul').replaceChildren(...groups.map((b) => shopRow(b, this.rates)));
+    box.setAttribute('count', groups.length);
+    this.pane.set(groups);
+  }
+
+  /** A page of records in stock; "Show more" adds the next one and moves the focus to it. */
+  renderAvailable(focus) {
+    const box = this.views.available;
+    const ol = box.querySelector('ol');
+    const from = focus ? ol.children.length : 0;
+    const rows = this.hits.slice(from, this.limit).map((h) => hitRow(h, { search: this.search, rates: this.rates, newSince: this.newSince }));
+    if (focus) ol.append(...rows); else ol.replaceChildren(...rows);
+    box.setAttribute('count', this.hits.length);
+    const left = this.hits.length - Math.min(this.limit, this.hits.length);
+    const more = box.querySelector('button[name="more"]');
+    more.hidden = left <= 0;
+    more.textContent = tn('watchPage.showMore', Math.min(left, config.pageSize));
+    box.querySelector('vf-watch-showing').textContent = this.hits.length
+      ? t('watchPage.showing', { shown: formatNumber(ol.children.length), total: formatNumber(this.hits.length) }) : '';
+    if (focus) rows[0]?.querySelector('a')?.focus();
+  }
+
+  /** "10,214 watched · 412 available now at 96 shops · 7 new". */
   renderSummary() {
     const { items, changes } = load();
     const n = Object.keys(items).length;
-    const inStock = Object.entries(items).filter(([k, it]) => (this.rows[k] || it.s)?.[0] > 0).length;
+    const available = Object.keys(items).filter((k) => this.rows[k]?.[0] > 0 || (!this.rows[k] && items[k].s?.[0] > 0)).length;
     const shops = new Set();
     for (const row of Object.values(this.rows)) if (row[0] && row[4]) for (let i = 0; i < row[4].length; i += 2) shops.add(row[4][i]);
+    const fresh = Object.values(items).filter((it) => it.f && it.f >= this.newSince && it.s?.[0]).length;
     const since = changes.map((c) => c[8]).filter(Boolean).sort()[0];
     const parts = [tn('watchPage.summaryWatched', n)];
-    if (n) parts.push(tn('watchPage.summaryAvailable', inStock, { shops: tn('results.shops', shops.size) }));
-    if (changes.length && since) parts.push(tn('watchPage.summaryChanges', changes.length, { date: formatDay(since.slice(0, 10)) }));
+    if (n) parts.push(tn('watchPage.summaryAvailable', available, { shops: tn('results.shops', shops.size) }));
+    if (fresh) parts.push(tn('watchPage.summaryNew', fresh));
+    else if (changes.length && since) parts.push(tn('watchPage.summaryChanges', changes.length, { date: formatDay(since.slice(0, 10)) }));
     this.summary.textContent = parts.join(' · ');
     this.summary.hidden = !n;
+    this.toggleAttribute('empty', !n);
   }
 
   renderChanges() {
@@ -135,14 +246,6 @@ export class VfWatchPage extends HTMLElement {
     const box = this.views.changes;
     box.querySelector('vf-watch-days').replaceChildren(...changesByDay(list, this.shops, this.rates));
     box.setAttribute('count', list.changes.length + list.past.length);
-  }
-
-  renderNow() {
-    const groups = byShop(load().items, this.rows, this.shopIds, this.shops);
-    const box = this.views.now;
-    box.querySelector('vf-watch-shops ul').replaceChildren(...groups.map(shopRow));
-    box.setAttribute('count', groups.length);
-    this.pane.set(groups);
   }
 
   /** The currency button: "Prices in · EUR". */

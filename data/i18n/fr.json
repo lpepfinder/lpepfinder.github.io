@@ -277,10 +277,8 @@
     },
     "views": "Vues de la liste",
     "viewChanges": "Changements",
-    "viewNow": "Disponibles",
     "viewAll": "Tous",
     "changesHeading": "Changements récents",
-    "nowHeading": "Disponibles maintenant, par disquaire",
     "allHeading": "Tous les disques suivis",
     "noChangesAll": "Aucun changement pour l’instant. Ils s’affichent ici quand un disque suivi revient en stock, est épuisé ou baisse de prix.",
     "noneAvailable": "Aucun de vos disques n’est en stock en ce moment.",
@@ -295,8 +293,65 @@
     },
     "showing": "{shown} sur {total} affichés",
     "noMatch": "Aucun disque suivi ne correspond à « {query} ».",
-    "emptyList": "Vous ne suivez encore aucun disque. Touchez Suivre sur un résultat de recherche, ou importez un fichier de liste ci-dessous.",
-    "backShops": "Boutiques"
+    "emptyList": "Vous ne suivez encore aucun disque. Importez votre wantlist Discogs ci-dessus, ou touchez Suivre sur un résultat de recherche.",
+    "backShops": "Boutiques",
+    "viewAvailable": "Disponibles",
+    "viewShops": "Par boutique",
+    "availableHeading": "Vos disques en stock maintenant",
+    "shopsHeading": "Boutiques qui ont vos disques",
+    "sortLabel": "Trier",
+    "sort": {
+      "new": "Trouvés récemment",
+      "price": "Prix croissant",
+      "price-desc": "Prix décroissant",
+      "rare": "Les plus rares",
+      "rating": "Votre note",
+      "title": "A–Z"
+    },
+    "filterShips": "Masquer les boutiques qui ne livrent pas chez moi",
+    "filterCustoms": "Sans frais de douane (même pays ou zone douanière)",
+    "filterMax": "Jusqu’à",
+    "badgeNew": "Nouveau",
+    "badgeOnly": "Seul exemplaire",
+    "rating": "Votre note : {rating} sur 5",
+    "moreShops": {
+      "one": "1 autre boutique",
+      "other": "{count} autres boutiques"
+    },
+    "noCustoms": "sans douane",
+    "noShipping": "ne livre pas chez vous",
+    "total": "Total",
+    "summaryNew": {
+      "one": "1 nouveau",
+      "other": "{count} nouveaux"
+    },
+    "discogsTitle": "Importer votre wantlist Discogs",
+    "discogsIntro": "Voyez lesquels de vos disques recherchés sont en stock chez des disquaires indépendants, maintenant. Rapprochés par numéro de catalogue et par artiste et titre, vérifiés chaque jour.",
+    "discogsUser": "Nom d’utilisateur Discogs",
+    "discogsUserPlaceholder": "votre-pseudo",
+    "discogsImport": "Importer",
+    "discogsPublic": "Votre wantlist doit être publique sur Discogs. Ce navigateur la lit sur Discogs et la garde ici uniquement.",
+    "csvLabel": "Ou chargez le fichier CSV de Discogs (Wantlist → Export) :",
+    "discogsLoading": "Lecture de la wantlist de {user} sur Discogs…",
+    "discogsProgress": "Lecture de votre wantlist… {count} disques",
+    "discogsDone": {
+      "one": "{user} : 1 disque recherché sur Discogs.",
+      "other": "{user} : {count} disques recherchés sur Discogs."
+    },
+    "discogsRemoved": {
+      "one": "1 disque qui n’est plus dans votre wantlist a été retiré.",
+      "other": "{count} disques qui ne sont plus dans votre wantlist ont été retirés."
+    },
+    "discogsFile": {
+      "one": "1 disque dans le fichier.",
+      "other": "{count} disques dans le fichier."
+    },
+    "discogsError": {
+      "not-found": "Aucun utilisateur Discogs nommé « {user} ».",
+      "private": "La wantlist de {user} est privée. Rendez-la publique sur Discogs, ou chargez son export CSV.",
+      "network": "Discogs est injoignable. Réessayez dans une minute."
+    },
+    "csvError": "Ce n’est pas un export CSV de Discogs (il faut des colonnes Artist et Title)."
   },
   "navApp": "Principal",
   "navSite": "Explorer",

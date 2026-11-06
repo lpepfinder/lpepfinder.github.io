@@ -6,10 +6,14 @@ import Sheet from '../../components/Sheet.astro';
 import { t, localeParams, localPath } from '../../lib/i18n.js';
 import { pageTitle } from '../../lib/seo.js';
 
-/** The watchlist: a summary, three views (changes, available now by shop, all A–Z), backup and share. */
+/**
+ * The watchlist: Discogs import, a summary, sort and filters, four views (available now, by shop,
+ * changes, all A–Z), backup and share.
+ */
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
-const views = [['changes', 'viewChanges'], ['now', 'viewNow'], ['all', 'viewAll']];
+const views = [['available', 'viewAvailable'], ['now', 'viewShops'], ['changes', 'viewChanges'], ['all', 'viewAll']];
+const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
 ---
 <Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage']}>
   <hgroup>
@@ -21,7 +25,27 @@ const views = [['changes', 'viewChanges'], ['now', 'viewNow'], ['all', 'viewAll'
     <p></p>
     <button type="button" name="add-shared" kind="secondary">{t(lang, 'watchPage.sharedAdd')}</button>
   </vf-watch-shared>
-  <vf-watch-page status="idle" view="changes" search={localPath(lang, '/')}>
+  <vf-watch-import status="idle">
+    <details>
+      <summary>{t(lang, 'watchPage.discogsTitle')}</summary>
+      <p>{t(lang, 'watchPage.discogsIntro')}</p>
+      <form>
+        <label for="discogs-user">{t(lang, 'watchPage.discogsUser')}</label>
+        <vf-field>
+          <input id="discogs-user" name="user" autocomplete="off" autocapitalize="off" spellcheck="false" required placeholder={t(lang, 'watchPage.discogsUserPlaceholder')}>
+          <button type="submit">{t(lang, 'watchPage.discogsImport')}</button>
+        </vf-field>
+      </form>
+      <p>{t(lang, 'watchPage.discogsPublic')}</p>
+      <p><label>{t(lang, 'watchPage.csvLabel')} <input type="file" name="csv" accept=".csv,text/csv"></label></p>
+      <vf-progress hidden>
+        <label for="discogs-progress"></label>
+        <progress id="discogs-progress"></progress>
+      </vf-progress>
+      <output aria-live="polite"></output>
+    </details>
+  </vf-watch-import>
+  <vf-watch-page status="idle" view="available" search={localPath(lang, '/')}>
     <vf-watch-bar>
       <vf-watch-summary hidden></vf-watch-summary>
       <button type="button" name="currency" kind="secondary">{t(lang, 'currency.label')}</button>
@@ -39,13 +63,32 @@ const views = [['changes', 'viewChanges'], ['now', 'viewNow'], ['all', 'viewAll'
         {views.map(([view, label], i) => <li><a href={`?view=${view}`} aria-current={i === 0 ? 'page' : undefined}>{t(lang, `watchPage.${label}`)}</a></li>)}
       </ul>
     </nav>
-    <vf-watch-changes count="">
+    <vf-watch-filters>
+      <form>
+        <label>{t(lang, 'watchPage.sortLabel')}
+          <select name="sort">
+            {sorts.map((v) => <option value={v}>{t(lang, `watchPage.sort.${v}`)}</option>)}
+          </select>
+        </label>
+        <label><input type="checkbox" name="ships" checked> {t(lang, 'watchPage.filterShips')}</label>
+        <label><input type="checkbox" name="customs"> {t(lang, 'watchPage.filterCustoms')}</label>
+        <label>{t(lang, 'watchPage.filterMax')} <input type="text" name="max" inputmode="decimal" size="5" autocomplete="off"> <vf-currency-code>EUR</vf-currency-code></label>
+      </form>
+    </vf-watch-filters>
+    <vf-watch-available count="">
+      <h2 tabindex="-1">{t(lang, 'watchPage.availableHeading')}</h2>
+      <p>{t(lang, 'watchPage.noneAvailable')}</p>
+      <ol></ol>
+      <vf-watch-showing></vf-watch-showing>
+      <button type="button" name="more" kind="secondary" hidden></button>
+    </vf-watch-available>
+    <vf-watch-changes count="" hidden>
       <h2 tabindex="-1">{t(lang, 'watchPage.changesHeading')}</h2>
       <p>{t(lang, 'watchPage.noChangesAll')}</p>
       <vf-watch-days></vf-watch-days>
     </vf-watch-changes>
     <vf-watch-now count="" hidden>
-      <h2 tabindex="-1">{t(lang, 'watchPage.nowHeading')}</h2>
+      <h2 tabindex="-1">{t(lang, 'watchPage.shopsHeading')}</h2>
       <p>{t(lang, 'watchPage.noneAvailable')}</p>
       <vf-split>
         <vf-watch-shops><ul></ul></vf-watch-shops>

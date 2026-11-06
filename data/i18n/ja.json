@@ -262,10 +262,8 @@
     },
     "views": "ウォッチリストの表示",
     "viewChanges": "変更",
-    "viewNow": "購入可能",
     "viewAll": "すべて",
     "changesHeading": "最近の変更",
-    "nowHeading": "今買えるもの（お店別）",
     "allHeading": "ウォッチ中のすべてのレコード",
     "noChangesAll": "まだ変更はありません。ウォッチ中のレコードが再入荷、売り切れ、値下げになるとここに表示されます。",
     "noneAvailable": "今、在庫のあるレコードはありません。",
@@ -279,8 +277,60 @@
     },
     "showing": "{total}件中{shown}件を表示",
     "noMatch": "「{query}」に一致するウォッチ中のレコードはありません。",
-    "emptyList": "まだレコードをウォッチしていません。検索結果の「ウォッチ」をタップするか、下からウォッチリストのファイルを読み込んでください。",
-    "backShops": "ショップ一覧"
+    "emptyList": "まだレコードをウォッチしていません。上でDiscogsのウォントリストを読み込むか、検索結果の「ウォッチ」をタップしてください。",
+    "backShops": "ショップ一覧",
+    "viewAvailable": "在庫あり",
+    "viewShops": "ショップ別",
+    "availableHeading": "いま在庫のあるレコード",
+    "shopsHeading": "あなたのレコードがあるショップ",
+    "sortLabel": "並べ替え",
+    "sort": {
+      "new": "新しく見つかった順",
+      "price": "価格の安い順",
+      "price-desc": "価格の高い順",
+      "rare": "レアな順",
+      "rating": "あなたの評価",
+      "title": "A–Z"
+    },
+    "filterShips": "自分の国に発送しないショップを隠す",
+    "filterCustoms": "関税なし（同じ国または関税圏）",
+    "filterMax": "上限",
+    "badgeNew": "新着",
+    "badgeOnly": "残り1枚",
+    "rating": "あなたの評価：5点中{rating}点",
+    "moreShops": {
+      "other": "ほか{count}店"
+    },
+    "noCustoms": "関税なし",
+    "noShipping": "あなたの国へは発送不可",
+    "total": "合計",
+    "summaryNew": {
+      "other": "新着{count}件"
+    },
+    "discogsTitle": "Discogsのウォントリストを読み込む",
+    "discogsIntro": "探しているレコードのうち、いま独立系レコード店に在庫があるものがわかります。カタログ番号とアーティスト名・タイトルで照合し、毎日チェックします。",
+    "discogsUser": "Discogsのユーザー名",
+    "discogsUserPlaceholder": "your-username",
+    "discogsImport": "読み込む",
+    "discogsPublic": "ウォントリストはDiscogsで公開されている必要があります。このブラウザがDiscogsから読み込み、ここにだけ保存します。",
+    "csvLabel": "またはDiscogsのCSVファイルをアップロード（Wantlist → Export）：",
+    "discogsLoading": "Discogsから{user}のウォントリストを読み込み中…",
+    "discogsProgress": "ウォントリストを読み込み中… {count}件",
+    "discogsDone": {
+      "other": "{user}：Discogsのウォント{count}件。"
+    },
+    "discogsRemoved": {
+      "other": "ウォントリストから外れた{count}件を削除しました。"
+    },
+    "discogsFile": {
+      "other": "ファイル内のウォント{count}件。"
+    },
+    "discogsError": {
+      "not-found": "「{user}」というDiscogsユーザーは見つかりません。",
+      "private": "{user}のウォントリストは非公開です。Discogsで公開するか、CSVエクスポートをアップロードしてください。",
+      "network": "Discogsに接続できません。1分後にもう一度お試しください。"
+    },
+    "csvError": "DiscogsのCSVエクスポートではありません（ArtistとTitleの列が必要です）。"
   },
   "navApp": "メイン",
   "navSite": "探す",

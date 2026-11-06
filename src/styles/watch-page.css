@@ -1,6 +1,6 @@
-/* /watch/ page: summary, views (changes, available now, all), backup and share. State in attributes. */
-:is(vf-watch-page, vf-watch-changes, vf-watch-now, vf-watch-all, vf-watch-backup, vf-watch-shared) { display: grid; gap: var(--space-2); align-content: start; }
-:is(vf-watch-shared, vf-progress, vf-watch-summary, vf-watch-changes, vf-watch-now, vf-watch-all)[hidden] { display: none; }
+/* /watch/ page: Discogs import, summary, filters, views (available, by shop, changes, all), backup and share. State in attributes. */
+:is(vf-watch-page, vf-watch-available, vf-watch-changes, vf-watch-now, vf-watch-all, vf-watch-backup, vf-watch-shared) { display: grid; gap: var(--space-2); align-content: start; }
+:is(vf-watch-shared, vf-progress, vf-watch-summary, vf-watch-available, vf-watch-changes, vf-watch-now, vf-watch-all)[hidden] { display: none; }
 :is(vf-watch-page, vf-watch-backup, vf-watch-shared) :is(h2, h3, h4, p) { margin: 0; }
 vf-watch-backup > h2 { margin-block-start: var(--space-6); }
 :is(vf-watch-page, vf-watch-backup) > output { color: var(--c-muted); font-size: var(--size-s); }
@@ -19,7 +19,7 @@ vf-watch-page > nav a { display: inline-flex; align-items: center; min-block-siz
 vf-watch-page > nav a[aria-current="page"] { color: var(--c-fg); font-weight: var(--weight-semi); border-block-end-color: var(--c-accent); }
 
 /* empty states: the text shows only when the count is known to be 0 */
-:is(vf-watch-changes, vf-watch-now, vf-watch-all):not([count="0"]) > p { display: none; }
+:is(vf-watch-available, vf-watch-changes, vf-watch-now, vf-watch-all):not([count="0"]) > p { display: none; }
 vf-watch-all[count="0"] > :is(search, nav, vf-watch-showing) { display: none; }
 vf-watch-days > section { display: grid; gap: var(--space-1); margin-block-start: var(--space-4); }
 vf-watch-days h3 { font-size: var(--size-s); color: var(--c-muted); font-weight: var(--weight-semi); }
@@ -101,3 +101,52 @@ vf-watch-backup > p[hidden] { display: none; }
   vf-watch-all nav ul { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; padding-block: var(--focus-offset); }
   vf-watch-all nav li { flex: none; }
 }
+
+/* Discogs import: a disclosure, open while the list is empty */
+vf-watch-import { display: block; }
+vf-watch-import details { display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); border-radius: var(--radius); background: var(--c-chip); }
+vf-watch-import summary { min-block-size: var(--tap); display: flex; align-items: center; font-weight: var(--weight-semi); cursor: pointer; }
+vf-watch-import details[open] > :not(summary) { margin-block: 0 var(--space-2); }
+vf-watch-import p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-watch-import form { display: grid; gap: var(--space-1); }
+vf-watch-import form label { font-weight: var(--weight-semi); }
+vf-field { display: flex; gap: var(--space-2); }
+vf-field input { flex: 1; min-inline-size: 0; font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
+vf-watch-import[status="loading"] button[type="submit"] { opacity: var(--busy-opacity); pointer-events: none; }
+vf-watch-import output { display: block; font-size: var(--size-s); }
+vf-watch-import[status="error"] output { color: var(--c-error); }
+vf-watch-import output:empty { display: none; }
+
+/* sort and filters: one wrapping row, only with the views of records in stock */
+vf-watch-filters form { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); font-size: var(--size-s); }
+vf-watch-filters label { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); }
+vf-watch-filters :is(select, input[type="text"]) { font: inherit; font-size: max(16px, var(--size-s)); min-block-size: var(--tap); padding-inline: var(--space-2); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
+vf-watch-filters input[type="text"] { inline-size: 6ch; }
+vf-watch-filters input[type="checkbox"] { inline-size: var(--space-4); block-size: var(--space-4); accent-color: var(--c-accent); }
+vf-watch-page:is([view="changes"], [view="all"]) > vf-watch-filters, vf-watch-page[empty] > vf-watch-filters { display: none; }
+vf-watch-page[empty] > :is(nav, vf-watch-bar) { display: none; }
+/* shops are ordered by how many of your records they have: the sort is for the list of records */
+vf-watch-page[view="now"] vf-watch-filters label:has(select) { display: none; }
+
+/* a record in stock: title and price on the first line, where and labels under it */
+vf-watch-available > ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); column-gap: var(--space-6); }
+vf-watch-hit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 var(--space-3); align-items: center; min-block-size: var(--row-h); padding-block: var(--space-2); border-block-end: var(--line) solid var(--c-line); }
+vf-watch-hit > :not(vf-price) { grid-column: 1; }
+vf-watch-hit > vf-price { grid-column: 2; grid-row: 1 / span 2; text-align: end; }
+vf-watch-hit h3 { margin: 0; font-size: var(--size-0); line-height: var(--leading-tight); }
+vf-watch-hit h3 a { display: block; padding-block: var(--space-1); overflow-wrap: anywhere; }
+vf-watch-hit p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-watch-hit p a { color: inherit; }
+vf-badges { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+vf-badges:empty { display: none; }
+vf-badge { font-size: var(--size-xs); font-weight: var(--weight-bold); padding-inline: var(--space-1); border-radius: var(--radius); color: var(--badge-fg, var(--c-muted)); background: var(--badge-bg, var(--c-chip)); }
+vf-badge[kind="new"] { --badge-fg: var(--c-event-new); }
+vf-badge[kind="rare"] { --badge-fg: var(--c-event-restock); }
+vf-badge[kind="rating"] { --badge-fg: var(--c-fg); letter-spacing: var(--tracking-caps); }
+vf-watch-hit[new="true"] h3 { font-weight: var(--weight-bold); }
+vf-watch-available vf-watch-showing { display: block; color: var(--c-muted); font-size: var(--size-s); }
+vf-watch-available > button { justify-self: center; }
+vf-watch-available > button[hidden] { display: none; }
+vf-watch-shop vf-price { margin-inline-start: auto; font-size: var(--size-s); }
+vf-watch-shop[reach="no"] h3 { color: var(--c-muted); }
+@media (min-width: 64rem) { vf-watch-available > ol { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }

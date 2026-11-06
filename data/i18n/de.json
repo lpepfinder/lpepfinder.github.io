@@ -277,10 +277,8 @@
     },
     "views": "Ansichten der Merkliste",
     "viewChanges": "Änderungen",
-    "viewNow": "Erhältlich",
     "viewAll": "Alle",
     "changesHeading": "Letzte Änderungen",
-    "nowHeading": "Jetzt erhältlich, nach Laden",
     "allHeading": "Alle gemerkten Platten",
     "noChangesAll": "Noch keine Änderungen. Sie erscheinen hier, wenn eine gemerkte Platte wieder vorrätig, ausverkauft oder günstiger ist.",
     "noneAvailable": "Gerade ist keine Ihrer Platten vorrätig.",
@@ -295,8 +293,65 @@
     },
     "showing": "{shown} von {total} angezeigt",
     "noMatch": "Keine gemerkte Platte passt zu „{query}“.",
-    "emptyList": "Sie merken sich noch keine Platten. Tippen Sie bei einem Suchergebnis auf Merken oder importieren Sie unten eine Merklisten-Datei.",
-    "backShops": "Läden"
+    "emptyList": "Du beobachtest noch keine Platten. Importiere oben deine Discogs-Wantlist oder tippe bei einem Suchergebnis auf Beobachten.",
+    "backShops": "Läden",
+    "viewAvailable": "Verfügbar",
+    "viewShops": "Nach Shop",
+    "availableHeading": "Deine Platten jetzt auf Lager",
+    "shopsHeading": "Shops mit deinen Platten",
+    "sortLabel": "Sortieren",
+    "sort": {
+      "new": "Zuletzt gefunden",
+      "price": "Niedrigster Preis",
+      "price-desc": "Höchster Preis",
+      "rare": "Seltenste zuerst",
+      "rating": "Deine Bewertung",
+      "title": "A–Z"
+    },
+    "filterShips": "Shops ausblenden, die nicht zu mir liefern",
+    "filterCustoms": "Ohne Zoll (gleiches Land oder Zollgebiet)",
+    "filterMax": "Bis",
+    "badgeNew": "Neu",
+    "badgeOnly": "Einziges Exemplar",
+    "rating": "Deine Bewertung: {rating} von 5",
+    "moreShops": {
+      "one": "1 weiterer Shop",
+      "other": "{count} weitere Shops"
+    },
+    "noCustoms": "ohne Zoll",
+    "noShipping": "liefert nicht zu dir",
+    "total": "Summe",
+    "summaryNew": {
+      "one": "1 neu",
+      "other": "{count} neu"
+    },
+    "discogsTitle": "Deine Discogs-Wantlist importieren",
+    "discogsIntro": "Sieh, welche deiner gesuchten Platten gerade bei unabhängigen Plattenläden auf Lager sind. Abgeglichen über Katalognummer sowie Künstler und Titel, täglich geprüft.",
+    "discogsUser": "Discogs-Benutzername",
+    "discogsUserPlaceholder": "dein-name",
+    "discogsImport": "Importieren",
+    "discogsPublic": "Deine Wantlist muss auf Discogs öffentlich sein. Dieser Browser liest sie bei Discogs und speichert sie nur hier.",
+    "csvLabel": "Oder lade die CSV-Datei von Discogs hoch (Wantlist → Export):",
+    "discogsLoading": "Wantlist von {user} wird bei Discogs gelesen…",
+    "discogsProgress": "Wantlist wird gelesen… {count} Platten",
+    "discogsDone": {
+      "one": "{user}: 1 gesuchte Platte auf Discogs.",
+      "other": "{user}: {count} gesuchte Platten auf Discogs."
+    },
+    "discogsRemoved": {
+      "one": "1 Platte, die nicht mehr auf deiner Wantlist steht, wurde entfernt.",
+      "other": "{count} Platten, die nicht mehr auf deiner Wantlist stehen, wurden entfernt."
+    },
+    "discogsFile": {
+      "one": "1 Platte in der Datei.",
+      "other": "{count} Platten in der Datei."
+    },
+    "discogsError": {
+      "not-found": "Kein Discogs-Benutzer namens „{user}“.",
+      "private": "Die Wantlist von {user} ist privat. Mach sie auf Discogs öffentlich oder lade ihren CSV-Export hoch.",
+      "network": "Discogs ist nicht erreichbar. Versuch es in einer Minute erneut."
+    },
+    "csvError": "Das ist kein CSV-Export von Discogs (es braucht die Spalten Artist und Title)."
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",

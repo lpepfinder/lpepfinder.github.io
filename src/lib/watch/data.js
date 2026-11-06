@@ -1,6 +1,7 @@
-/** Fetches of the watch data files under /w/ (index.json, d/<date>.json, now/<xxx>.json, shops.json). */
+/** Fetches of the watch data files under /w/ (index.json, d/<date>.json, now/<xxx>.json, cat/<xx>.json, shops.json). */
 import config from '../../../data/watch.json' with { type: 'json' };
 import * as cache from './now-cache.js';
+import { catShard } from './catno.js';
 
 export const BASE = '/w/';
 /** Fired on window while `now` shards load: detail { done, total }. */
@@ -62,4 +63,27 @@ async function load(keys) {
     cache.save(c);
   }
   return Object.fromEntries(keys.filter((k) => c.rows[k]).map((k) => [k, c.rows[k]]));
+}
+
+/**
+ * Catalog-number entries ({ catno: ["releaseKey:tag", …] }) for the numbers given, one request per
+ * shard (first two characters), config.nowConcurrency at a time. The browser's HTTP cache keeps them for the day.
+ */
+export async function cat(catnos) {
+  const byShard = new Map();
+  for (const c of new Set(catnos)) {
+    const s = catShard(c);
+    if (!byShard.has(s)) byShard.set(s, []);
+    byShard.get(s).push(c);
+  }
+  const todo = [...byShard.keys()];
+  const out = {};
+  const next = async () => {
+    for (let s; (s = todo.pop());) {
+      const rows = await json(`cat/${encodeURIComponent(s)}.json`);
+      if (rows) for (const c of byShard.get(s)) if (rows[c]) out[c] = rows[c];
+    }
+  };
+  await Promise.all(Array.from({ length: config.nowConcurrency }, next));
+  return out;
 }

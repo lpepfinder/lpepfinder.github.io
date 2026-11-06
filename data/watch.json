@@ -4,5 +4,9 @@
   "toastSeconds": 12,
   "nowConcurrency": 8,
   "nowSaveEvery": 250,
-  "pageSize": 100
+  "pageSize": 100,
+  "discogsPerPage": 100,
+  "discogsPaceMs": 2600,
+  "discogsRetryMs": 30000,
+  "newDays": 7
 }
