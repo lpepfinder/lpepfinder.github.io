@@ -34,7 +34,7 @@ const day = today();
 const { ledger, events } = await updateLedger({ docs: catalog.docs, shops: catalog.shops, day, dir: GENERATED, settings: config.ledger, crawlDays: crawlDays(catalog.shopFiles) });
 const counts = events.reduce((a, e) => ({ ...a, [e[2]]: (a[e[2]] || 0) + 1 }), {});
 console.log('ledger', day, ledger.rows.size, 'offers, events:', counts);
-console.log('watchlist files', writeWatchFiles({ ledger, shops: catalog.shops, outDir: path.join(PUBLIC, 'w'), settings: config.ledger }));
+console.log('watchlist files', writeWatchFiles({ ledger, shops: catalog.shops, docs: catalog.docs, outDir: path.join(PUBLIC, 'w'), settings: config.ledger }));
 const arrivals = buildNewArrivals({ ledger, docs: catalog.docs, shops: catalog.shops, settings: config.newArrivals });
 writeJson(path.join(GENERATED, 'new-arrivals.json'), arrivals);
 console.log('new arrivals', arrivals.total, 'at', arrivals.shops, 'shops');

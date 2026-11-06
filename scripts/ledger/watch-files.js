@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { addDays } from './day.js';
+import { catnosIn, catShard, firstWordTag } from '../../src/lib/watch/catno.js';
 
 /**
  * Static files for the browser watchlist (public/w/):
@@ -12,6 +13,9 @@ import { addDays } from './day.js';
  *   shops.json                            [shopId, …] for the shop indexes of the `now` files (same build)
  *   d/<YYYY-MM-DD>.json                   [[releaseKey, offerKey, event, priceCents, currency, title, url, shopId], ...]
  *   index.json                            { dates: ["YYYY-MM-DD", ...] oldest first, builtAt }
+ *   cat/<first 2 chars>.json              { catno: ["releaseKey:tag", ...] } catalog numbers (src/lib/watch/catno.js) found
+ *                                         in titles and SKUs of offers in stock; tag: 4 hex of the listing's first word,
+ *                                         so the browser can check the match against a want's artist
  * An offer is in stock when the last crawl listed it as available; sold out when it is out of stock,
  * gone, or no longer crawled, for goneSearchDays after it was last seen (like the search index).
  */
@@ -52,7 +56,7 @@ const write = (file, data) => {
   fs.writeFileSync(file, JSON.stringify(data));
 };
 
-export function writeWatchFiles({ ledger, shops, outDir, settings }) {
+export function writeWatchFiles({ ledger, shops, outDir, settings, docs = [] }) {
   fs.rmSync(outDir, { recursive: true, force: true });
   const shards = new Map();
   const shopIds = [];
@@ -73,5 +77,26 @@ export function writeWatchFiles({ ledger, shops, outDir, settings }) {
   const days = [...ledger.events].sort((a, b) => a.day.localeCompare(b.day));
   for (const e of days) write(path.join(outDir, 'd', `${e.day}.json`), e.list.filter((x) => x[0]));
   write(path.join(outDir, 'index.json'), { dates: days.map((e) => e.day), builtAt: new Date().toISOString() });
-  return { releases: [...shards.values()].reduce((n, o) => n + Object.keys(o).length, 0), shards: shards.size, days: days.length };
+  const catnos = writeCatalogNumbers(docs, path.join(outDir, 'cat'));
+  return { catnos, releases: [...shards.values()].reduce((n, o) => n + Object.keys(o).length, 0), shards: shards.size, days: days.length };
+}
+
+/** cat/ files: catalog number -> release keys of offers in stock that carry it. Returns how many numbers. */
+export function writeCatalogNumbers(docs, dir) {
+  const byShard = new Map();
+  let count = 0;
+  for (const d of docs) {
+    if (!d.releaseKey || d.available === false) continue;
+    const tag = firstWordTag(d.title);
+    if (!tag) continue;
+    for (const c of catnosIn(`${d.title} ${d.extra || ''}`)) {
+      const s = catShard(c);
+      if (!byShard.has(s)) byShard.set(s, new Map());
+      const shard = byShard.get(s);
+      if (!shard.has(c)) { shard.set(c, new Set()); count++; }
+      shard.get(c).add(`${d.releaseKey}:${tag}`);
+    }
+  }
+  for (const [s, shard] of byShard) write(path.join(dir, `${s}.json`), Object.fromEntries([...shard].map(([c, v]) => [c, [...v]])));
+  return count;
 }
