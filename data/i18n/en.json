@@ -365,7 +365,7 @@
   "navApp": "Main",
   "navSite": "Explore",
   "tabSearch": "Search",
-  "tabNew": "New",
+  "tabNew": "Dig",
   "tabWatch": "Watchlist",
   "aboutSuggestTitle": "A record shop is missing?",
   "aboutSuggest": "Tell us about it: we check it automatically and add it within a day.",
@@ -505,5 +505,20 @@
     "nz": "New Zealand",
     "same": "Same customs zone",
     "import": "Import: duties may apply"
+  },
+  "dig": {
+    "crates": "Crates",
+    "crate": {
+      "new": "New",
+      "restock": "Back in stock",
+      "drop": "Price drops"
+    },
+    "ships": "Ships to me",
+    "customs": "No customs",
+    "format": "Format",
+    "more": "More records",
+    "empty": "Nothing in this crate with these filters.",
+    "title": "Dig",
+    "intro": "New in the shops, back in stock and cheaper this week. Tap a cover to go to the shop."
   }
 }

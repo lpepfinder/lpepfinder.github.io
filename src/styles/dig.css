@@ -1,0 +1,41 @@
+/* <vf-dig>: crates to flip through (new, back in stock, price drops) as a cover grid; the server-rendered list hides once it is ready. */
+vf-dig { display: grid; gap: var(--space-3); }
+vf-dig[status="loading"] > :is(ol, button), vf-dig[status="error"] { display: none; }
+main:has(vf-dig[status="ready"]) > :is(vf-record-list, section), main:has(vf-dig[status="ready"]) > p:not(:has(a[type])) { display: none; }
+
+/* crates: tabs with counts, one line */
+vf-dig > nav ul { display: flex; gap: var(--space-1); margin: 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: none; border-block-end: var(--line) solid var(--c-line); }
+vf-dig > nav li { flex: none; }
+vf-dig > nav a { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); padding-inline: var(--space-3); color: var(--c-muted); text-decoration: none; border-block-end: var(--tab-mark) solid transparent; white-space: nowrap; }
+vf-dig > nav a[aria-current="page"] { color: var(--c-fg); font-weight: var(--weight-semi); border-block-end-color: var(--c-accent); }
+vf-dig > nav data { font-size: var(--size-xs); }
+vf-dig > nav data:empty { display: none; }
+
+/* filter chips, as on the watchlist */
+vf-dig > form { display: flex; gap: var(--space-2); overflow-x: auto; scrollbar-width: none; font-size: var(--size-s); }
+vf-dig > form label { flex: none; display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--chip-h); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); white-space: nowrap; cursor: pointer; }
+vf-dig > form label:has(input:checked) { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
+vf-dig > form input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
+vf-dig > form label:has(input:focus-visible), vf-dig > form select:focus-visible { outline: var(--focus-ring); }
+vf-dig > form label > span { opacity: var(--busy-opacity); }
+vf-dig > form select { font: inherit; font-size: max(16px, var(--size-s)); border: 0; background: transparent; color: inherit; padding: 0; }
+@media (min-width: 40rem) { vf-dig > form { flex-wrap: wrap; overflow: visible; } }
+
+/* the grid: two covers across on phones, more as the screen grows */
+vf-dig > ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--dig-card-min), 1fr)); gap: var(--space-4) var(--space-3); }
+vf-dig-card { display: block; }
+vf-dig-card > a { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-1); color: inherit; text-decoration: none; }
+vf-dig-card > a > * { grid-area: auto; grid-column: 1; }
+vf-dig-card :is(img, vf-cover) { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); background: var(--c-skeleton) var(--thumb-fallback) center / 50% no-repeat; }
+vf-dig-card vf-price { display: flex; gap: var(--space-2); align-items: baseline; justify-items: start; text-align: start; font-weight: var(--weight-bold); }
+vf-dig-card vf-price data { color: var(--c-fg); }
+vf-dig-card vf-price s { color: var(--c-muted); font-weight: normal; font-size: var(--size-s); }
+vf-dig-card[crate="drop"] vf-price data { color: var(--c-event-price-down); }
+vf-dig-card vf-title { font-weight: var(--weight-semi); line-height: var(--leading-tight); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+vf-dig-card vf-artist { color: var(--c-muted); font-size: var(--size-s); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+vf-dig-card vf-shop { color: var(--c-muted); font-size: var(--size-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+vf-dig-card > a:hover vf-title { text-decoration: underline; }
+vf-dig > button { justify-self: center; }
+vf-dig > button[hidden] { display: none; }
+vf-dig-status { display: block; color: var(--c-muted); }
+vf-dig-status:empty { display: none; }

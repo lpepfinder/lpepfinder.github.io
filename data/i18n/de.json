@@ -365,7 +365,7 @@
   "navApp": "Haupt",
   "navSite": "Entdecken",
   "tabSearch": "Suche",
-  "tabNew": "Neu",
+  "tabNew": "Diggen",
   "tabWatch": "Merkliste",
   "aboutSuggestTitle": "Ein Plattenladen fehlt?",
   "aboutSuggest": "Sag uns Bescheid: Wir prüfen ihn automatisch und nehmen ihn innerhalb eines Tages auf.",
@@ -505,5 +505,20 @@
     "nz": "Neuseeland",
     "same": "Gleiche Zollzone",
     "import": "Import: Zoll möglich"
+  },
+  "dig": {
+    "crates": "Kisten",
+    "crate": {
+      "new": "Neu",
+      "restock": "Wieder da",
+      "drop": "Preissenkungen"
+    },
+    "ships": "Liefert zu mir",
+    "customs": "Ohne Zoll",
+    "format": "Format",
+    "more": "Mehr Platten",
+    "empty": "Nichts in dieser Kiste mit diesen Filtern.",
+    "title": "Diggen",
+    "intro": "Neu in den Shops, wieder da und günstiger diese Woche. Tippe auf ein Cover, um zum Shop zu gehen."
   }
 }

@@ -365,7 +365,7 @@
   "navApp": "Principale",
   "navSite": "Esplora",
   "tabSearch": "Cerca",
-  "tabNew": "Novità",
+  "tabNew": "Scava",
   "tabWatch": "Seguiti",
   "aboutSuggestTitle": "Manca un negozio di dischi?",
   "aboutSuggest": "Segnalacelo: lo verifichiamo automaticamente e lo aggiungiamo entro un giorno.",
@@ -505,5 +505,20 @@
     "nz": "Nuova Zelanda",
     "same": "Stessa zona doganale",
     "import": "Importazione: possibili dazi"
+  },
+  "dig": {
+    "crates": "Casse",
+    "crate": {
+      "new": "Novità",
+      "restock": "Di nuovo disponibili",
+      "drop": "Ribassi"
+    },
+    "ships": "Spedisce da me",
+    "customs": "Senza dogana",
+    "format": "Formato",
+    "more": "Altri dischi",
+    "empty": "Niente in questa cassa con questi filtri.",
+    "title": "Scava",
+    "intro": "Novità nei negozi, di nuovo disponibili e più economici questa settimana. Tocca una copertina per andare al negozio."
   }
 }

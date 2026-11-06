@@ -365,7 +365,7 @@
   "navApp": "Principal",
   "navSite": "Explorar",
   "tabSearch": "Buscar",
-  "tabNew": "Novedades",
+  "tabNew": "Rebuscar",
   "tabWatch": "Seguidos",
   "aboutSuggestTitle": "¿Falta una tienda de discos?",
   "aboutSuggest": "Avísanos: la comprobamos automáticamente y la añadimos en un día.",
@@ -505,5 +505,20 @@
     "nz": "Nueva Zelanda",
     "same": "Misma zona aduanera",
     "import": "Importación: puede haber aranceles"
+  },
+  "dig": {
+    "crates": "Cajas",
+    "crate": {
+      "new": "Novedades",
+      "restock": "De vuelta en stock",
+      "drop": "Bajadas de precio"
+    },
+    "ships": "Envía a mi país",
+    "customs": "Sin aduanas",
+    "format": "Formato",
+    "more": "Más discos",
+    "empty": "Nada en esta caja con estos filtros.",
+    "title": "Rebuscar",
+    "intro": "Novedades de las tiendas, de vuelta en stock y más baratos esta semana. Toca una portada para ir a la tienda."
   }
 }

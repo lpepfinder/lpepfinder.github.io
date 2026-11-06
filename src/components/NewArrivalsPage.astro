@@ -22,13 +22,35 @@ const crumbs = [
 const ld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: t(lang, `${scope.key}Title`, vars), inLanguage: lang }, breadcrumbLd(crumbs, Astro.site)];
 const feed = scope.feed && { href: scope.feed, title: t(lang, 'newFeed') };
 const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
+// the Dig crates (vf-dig.js) on /new/ itself; the server-rendered list below stays for search engines and without scripts
+const crates = ['new', 'restock', 'drop'];
 ---
-<Base lang={lang} title={pageTitle(t(lang, `${scope.key}SeoTitle`, vars))} description={t(lang, `${scope.key}Description`, vars)} ld={ld} feed={feed} noindex={!scope.count}>
+<Base lang={lang} title={pageTitle(t(lang, `${scope.key}SeoTitle`, vars))} description={t(lang, `${scope.key}Description`, vars)} ld={ld} feed={feed} noindex={!scope.count} strings={['dig']}>
   <Breadcrumbs lang={lang} items={crumbs} />
   <hgroup>
-    <h1 id="new-title">{t(lang, `${scope.key}Title`, vars)}</h1>
-    <p>{scope.count ? t(lang, `${scope.key}Description`, vars) : t(lang, 'newEmpty', vars)}</p>
+    <h1 id="new-title">{scope.key === 'new' ? t(lang, 'dig.title') : t(lang, `${scope.key}Title`, vars)}</h1>
+    <p>{scope.key === 'new' ? t(lang, 'dig.intro') : scope.count ? t(lang, `${scope.key}Description`, vars) : t(lang, 'newEmpty', vars)}</p>
   </hgroup>
+  {scope.key === 'new' && (
+    <vf-dig crate="new" status="loading">
+      <nav aria-label={t(lang, 'dig.crates')}><ul>
+        {crates.map((c) => <li><a href={`?crate=${c}`} crate={c} aria-current={c === 'new' ? 'page' : undefined}>{t(lang, `dig.crate.${c}`)} <data></data></a></li>)}
+      </ul></nav>
+      <form>
+        <label><input type="checkbox" name="ships" checked> {t(lang, 'dig.ships')}</label>
+        <label><input type="checkbox" name="customs"> {t(lang, 'dig.customs')}</label>
+        <label><span>{t(lang, 'dig.format')}</span>
+          <select name="format">
+            <option value="">{t(lang, 'newAllFormats')}</option>
+            {FORMAT_IDS.map((f) => <option value={f}>{t(lang, `formats.${f}`)}</option>)}
+          </select>
+        </label>
+      </form>
+      <ol></ol>
+      <vf-dig-status aria-live="polite"></vf-dig-status>
+      <button type="button" name="more" kind="secondary" hidden>{t(lang, 'dig.more')}</button>
+    </vf-dig>
+  )}
   {formats.length > 0 && (
     <section>
       <h2>{t(lang, 'newByFormat')}</h2>
@@ -50,3 +72,6 @@ const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
     </section>
   )}
 </Base>
+<script>
+  import './vf-dig.js';
+</script>

@@ -365,7 +365,7 @@
   "navApp": "Principal",
   "navSite": "Explorer",
   "tabSearch": "Recherche",
-  "tabNew": "Nouveautés",
+  "tabNew": "Fouiller",
   "tabWatch": "Suivis",
   "aboutSuggestTitle": "Il manque un disquaire ?",
   "aboutSuggest": "Signalez-le : nous le vérifions automatiquement et l'ajoutons en un jour.",
@@ -505,5 +505,20 @@
     "nz": "Nouvelle-Zélande",
     "same": "Même zone douanière",
     "import": "Import : droits de douane possibles"
+  },
+  "dig": {
+    "crates": "Bacs",
+    "crate": {
+      "new": "Nouveautés",
+      "restock": "De retour en stock",
+      "drop": "Baisses de prix"
+    },
+    "ships": "Livre chez moi",
+    "customs": "Sans douane",
+    "format": "Format",
+    "more": "Plus de disques",
+    "empty": "Rien dans ce bac avec ces filtres.",
+    "title": "Fouiller",
+    "intro": "Nouveautés des boutiques, retours en stock et baisses de prix de la semaine. Touchez une pochette pour aller à la boutique."
   }
 }

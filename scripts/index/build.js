@@ -12,9 +12,10 @@ import { crawlDays } from '../ledger/crawl-days.js';
 import { ledgerDocs } from '../ledger/search-docs.js';
 import { writeWatchFiles } from '../ledger/watch-files.js';
 import { buildNewArrivals } from '../ledger/new-arrivals.js';
+import { buildDig } from '../ledger/dig.js';
 
 /**
- * Crawl output -> offer ledger, watchlist files in public/w, static search index in public/search,
+ * Crawl output -> offer ledger, watchlist files in public/w, Dig crates in public/dig.json, static search index in public/search,
  * and data for the page builder (site-data.json, new-arrivals.json).
  */
 const outDir = path.join(PUBLIC, 'search');
@@ -42,6 +43,10 @@ console.log('new arrivals', arrivals.total, 'at', arrivals.shops, 'shops');
 // catalogs don't fill the search index; they stay in the ledger
 const extra = ledgerDocs(ledger, catalog.docs, catalog.shops, config.ledger);
 const docs = sortDocs([...catalog.docs, ...extra].filter((d) => d.available !== false || d.lastInStock));
+// the Dig crates (new, back in stock, price drops) for the New tab; needs the ledger fields set just above
+const dig = buildDig({ ledger, docs: catalog.docs, shops: catalog.shops, arrivals, settings: config.dig });
+writeStatic(path.join(PUBLIC, 'dig.json'), JSON.stringify(dig));
+console.log('dig', dig.items.reduce((a, i) => ({ ...a, [i[0]]: (a[i[0]] || 0) + 1 }), {}));
 
 // each shop's last successful crawl day, kept by the ledger across runs
 const lastCrawl = Object.fromEntries(Object.entries(ledger.meta.shops).map(([id, s]) => [id, s.lastCrawl]));

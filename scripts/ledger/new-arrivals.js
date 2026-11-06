@@ -3,7 +3,7 @@ import { productUrl } from './keys.js';
 import { detectFormat } from '../../src/lib/search/format.js';
 
 /** Newest day first; inside a day shops take turns, so one shop's big upload doesn't fill the list. */
-function interleave(items) {
+export function interleave(items) {
   const byDay = new Map();
   for (const it of items) {
     if (!byDay.has(it.day)) byDay.set(it.day, new Map());
