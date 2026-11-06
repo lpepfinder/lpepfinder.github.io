@@ -9,3 +9,5 @@ public/w/
 public/rates.json
 public/regions.json
 public/dig.json
+test-results/
+playwright-report/

@@ -21,10 +21,14 @@
     "submit": "node scripts/submit/index.js",
     "site": "node scripts/sources/site/index.js",
     "stats": "node scripts/stats/index.js",
-    "rates": "node scripts/rates/index.js"
+    "rates": "node scripts/rates/index.js",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.3.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0"
   }
 }
