@@ -539,5 +539,9 @@
   "homeWantsTitle": "Votre wantlist, en stock",
   "homeWantsBody": "Apportez votre wantlist Discogs : voyez quels disques les disquaires indépendants ont maintenant, et les nouveautés chaque jour.",
   "homeWantsAction": "Importer ma wantlist",
-  "shopsNear": "Près de chez vous"
+  "shopsNear": "Près de chez vous",
+  "navDocs": "Docs",
+  "docsUsers": "Utiliser LP/EP Finder",
+  "docsContributors": "Comment c’est fait",
+  "moreHelp": "Aide et docs"
 }

@@ -539,5 +539,9 @@
   "homeWantsTitle": "Your wantlist, in stock",
   "homeWantsBody": "Bring your Discogs wantlist: see which of your records independent shops have right now, and what's new every day.",
   "homeWantsAction": "Import my wantlist",
-  "shopsNear": "Near you"
+  "shopsNear": "Near you",
+  "navDocs": "Docs",
+  "docsUsers": "Using LP/EP Finder",
+  "docsContributors": "How it's made",
+  "moreHelp": "Help and docs"
 }

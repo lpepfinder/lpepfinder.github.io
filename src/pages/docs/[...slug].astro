@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t, defaultLanguage as lang } from '../../lib/i18n.js';
+import { pageTitle } from '../../lib/seo.js';
+import { docs, docsHref } from '../../lib/docs.js';
+
+/**
+ * The docs (docs/*.md, English): the topics in a column beside the page on wide screens, behind a
+ * "Docs · <page>" menu on phones; the page's own text in the readable width.
+ */
+export function getStaticPaths() {
+  return docs.map((doc) => ({ params: { slug: doc.slug || undefined }, props: { slug: doc.slug } }));
+}
+const doc = docs.find((d) => d.slug === Astro.props.slug);
+const groups = [['users', 'docsUsers'], ['contributors', 'docsContributors']];
+const here = (d) => (d.slug === doc.slug ? 'page' : undefined);
+---
+<Base lang={lang} title={pageTitle(doc.slug ? `${doc.title} · ${t(lang, 'navDocs')}` : t(lang, 'navDocs'))} description={doc.description}>
+  <vf-docs>
+    <details name="docs-nav">
+      <summary><vf-icon name="menu"></vf-icon><span>{t(lang, 'navDocs')}{doc.slug && ` · ${doc.title}`}</span></summary>
+      <nav aria-label={t(lang, 'navDocs')}>
+        <a href={docsHref(docs[0])} aria-current={here(docs[0])}>{t(lang, 'navDocs')}</a>
+        {groups.map(([audience, label]) => (
+          <section>
+            <h2>{t(lang, label)}</h2>
+            <ul>{docs.filter((d) => d.audience === audience).map((d) => <li><a href={docsHref(d)} aria-current={here(d)}>{d.title}</a></li>)}</ul>
+          </section>
+        ))}
+      </nav>
+    </details>
+    <article>
+      <h1>{doc.title}</h1>
+      {doc.description && doc.slug && <p>{doc.description}</p>}
+      <doc.Content />
+    </article>
+  </vf-docs>
+</Base>
+<script>
+  import '../../components/vf-docs.js';
+</script>

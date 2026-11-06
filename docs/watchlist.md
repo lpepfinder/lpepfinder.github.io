@@ -1,0 +1,36 @@
+---
+title: "Your watchlist"
+description: "Bring your Discogs wantlist and see which of your records independent shops have now."
+order: 3
+audience: users
+---
+
+The watchlist answers one question: which of the records I want can I buy now, and where? It's checked against every shop once a day.
+
+## Bring your Discogs wantlist
+
+- **By username**: type your Discogs username and press Import. Your wantlist must be public on Discogs. It's read page by page (Discogs allows a few requests a minute without an account): 10,000 wants take about 5 minutes, and the first results show in seconds.
+- **From a file**: on Discogs, Wantlist → Export gives a CSV file; upload it. This works for private wantlists too.
+- **Again later**: importing the same username again syncs: new wants are added, wants you removed on Discogs leave the watchlist (records you added from the search stay).
+
+You can also watch any record from the search: the ☆ Watch button in its detail.
+
+## How records are matched
+
+A want matches shop listings two ways:
+
+1. **Artist and title**: "Moodymann – Black Mahogani" matches listings with the same words, whatever else the shop adds (format, "180g", "reissue", condition).
+2. **Catalog number**: listings carrying the want's catalog number (in the title or the product code) match too, when the listing starts with a word of the artist or title, so the same number on another label doesn't.
+
+## The views
+
+- **In stock**: your records in stock now, with the cheapest copy and how many shops have one. Records found since your last visit come first. Sort by newest, price, rarity (only copy), your Discogs rating, or A–Z; filter by shipping, customs and a maximum price.
+- **Shops**: shops by how many of your records they have, with the total: the best places to order several records at once and pay shipping once.
+- **Changes**: what changed day by day: new copies, back in stock, sold out, cheaper.
+- **All**: every record you watch, with search and an A–Z index.
+
+Open a record to see every copy, set a **max price** for it (copies above are hidden), or mark it **Bought** (with Undo).
+
+## Your data stays with you
+
+The watchlist lives in this browser only: no account, nothing stored on our side. Use **Export** to keep a copy or move it to another device, or **Copy share link** to share it (the list is inside the link, after the #, never sent to the server). On iPhone, adding the site to the home screen keeps the browser from clearing it.

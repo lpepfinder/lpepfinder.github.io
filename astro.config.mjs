@@ -3,6 +3,8 @@ import sitemap from '@astrojs/sitemap';
 import config from './data/config.json' with { type: 'json' };
 import { catalog } from './src/lib/catalog.js';
 import { newArrivals } from './src/lib/new-arrivals.js';
+import { satteri } from '@astrojs/markdown-satteri';
+import { docsLinks } from './src/lib/docs-links.js';
 
 const locales = Object.fromEntries(config.languages.map((l) => [l, l]));
 const c = catalog();
@@ -31,6 +33,8 @@ export default defineConfig({
     locales: config.languages,
     routing: { prefixDefaultLocale: false },
   },
+  // docs/*.md link to each other as "page.md": on the site, /docs/page/
+  markdown: { processor: satteri({ mdastPlugins: [docsLinks] }) },
   integrations: [
     sitemap({
       i18n: { defaultLocale: config.defaultLanguage, locales },

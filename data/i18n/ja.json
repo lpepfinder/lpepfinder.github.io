@@ -509,5 +509,9 @@
   "homeWantsTitle": "ウォントリストの在庫",
   "homeWantsBody": "Discogsのウォントリストを持ち込んで、独立系レコード店にいま在庫があるレコードと毎日の新入荷を確認。",
   "homeWantsAction": "ウォントリストを読み込む",
-  "shopsNear": "お近くのショップ"
+  "shopsNear": "お近くのショップ",
+  "navDocs": "ドキュメント",
+  "docsUsers": "LP/EP Finderの使い方",
+  "docsContributors": "しくみ",
+  "moreHelp": "ヘルプとドキュメント"
 }
