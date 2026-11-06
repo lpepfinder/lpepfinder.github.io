@@ -94,6 +94,27 @@
     "Desde",
     "Última vez activa"
   ],
+  "statusQualityTitle": "Control de datos",
+  "statusQualityBody": "Cada actualización revisa los discos: se quitan anuncios de prueba y artículos que no son discos, y se ocultan precios inverosímiles.",
+  "statusQualityColumns": [
+    "Control",
+    "Discos"
+  ],
+  "quality": {
+    "no-title": "Sin título",
+    "test-listing": "Anuncio de prueba",
+    "not-record": "No es un disco",
+    "shop-price-low": "Precios de la tienda demasiado bajos (¿moneda?)",
+    "shop-price-high": "Precios de la tienda demasiado altos",
+    "price-low": "Precio demasiado bajo",
+    "price-high": "Precio demasiado alto"
+  },
+  "statusQualityShops": "Tiendas con precios dudosos",
+  "statusQualityShopColumns": [
+    "Tienda",
+    "Moneda",
+    "Precio mediano"
+  ],
   "navPrivacy": "Privacidad",
   "privacyTitle": "Política de privacidad",
   "privacyBody": [

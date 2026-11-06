@@ -91,6 +91,27 @@
     "開始日",
     "最後に確認"
   ],
+  "statusQualityTitle": "データチェック",
+  "statusQualityBody": "更新のたびにレコードを確認し、テスト商品やレコード以外の商品を除外、ありえない価格を非表示にします。",
+  "statusQualityColumns": [
+    "チェック",
+    "件数"
+  ],
+  "quality": {
+    "no-title": "タイトルなし",
+    "test-listing": "テスト商品",
+    "not-record": "レコードではない",
+    "shop-price-low": "店舗の価格が低すぎる(通貨?)",
+    "shop-price-high": "店舗の価格が高すぎる",
+    "price-low": "価格が低すぎる",
+    "price-high": "価格が高すぎる"
+  },
+  "statusQualityShops": "価格に疑いのある店舗",
+  "statusQualityShopColumns": [
+    "店舗",
+    "通貨",
+    "価格の中央値"
+  ],
   "navPrivacy": "プライバシー",
   "privacyTitle": "プライバシーポリシー",
   "privacyBody": [

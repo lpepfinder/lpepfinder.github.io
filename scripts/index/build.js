@@ -13,6 +13,8 @@ import { ledgerDocs } from '../ledger/search-docs.js';
 import { writeWatchFiles } from '../ledger/watch-files.js';
 import { buildNewArrivals } from '../ledger/new-arrivals.js';
 import { buildDig } from '../ledger/dig.js';
+import { qualityGate } from '../quality/gate.js';
+import { isMusicProduct } from '../platforms/filter.js';
 
 /**
  * Crawl output -> offer ledger, watchlist files in public/w, Dig crates in public/dig.json, static search index in public/search,
@@ -28,7 +30,22 @@ if (!fs.existsSync(files.products)) {
 const t0 = Date.now();
 // shop catalogs (products.ndjson.gz) plus other sources (products-site-<k>.ndjson.gz)
 const productFiles = fs.readdirSync(GENERATED).filter((f) => /^products.*\.ndjson\.gz$/.test(f)).map((f) => path.join(GENERATED, f));
-const catalog = await loadCatalog(productFiles);
+const loaded = await loadCatalog(productFiles);
+
+// data-quality gate (scripts/quality, settings in config.quality), before anything is built from the docs:
+// test listings, non-records and untitled listings are left out (not in the ledger, search, Dig or watchlist);
+// implausible prices and all prices of a shop that looks like a wrong currency are removed (price: null),
+// the record stays searchable without a price, can't be the cheapest offer or a price drop, and the ledger
+// forgets the price (priceFlag). Report in generated/quality-report.json, shown on /status/.
+const rates = readJson(path.join(DATA, 'rates.json')).rates;
+const currencyOf = (d) => d.currency || loaded.shops.get(d.shop)?.state.currency || null;
+const gate = qualityGate(loaded.docs, { rates, settings: config.quality, currencyOf, isMusic: isMusicProduct });
+const passed = new Set(gate.filter(loaded.docs));
+const catalog = {
+  ...loaded,
+  docs: loaded.docs.filter((d) => passed.has(d)),
+  byShop: new Map([...loaded.byShop].map(([id, list]) => [id, list.filter((d) => passed.has(d))])),
+};
 
 // the ledger dates the crawl by UTC day (LEDGER_DATE overrides it) and gives sold-out records their history
 const day = today();
@@ -41,7 +58,10 @@ writeJson(path.join(GENERATED, 'new-arrivals.json'), arrivals);
 console.log('new arrivals', arrivals.total, 'at', arrivals.shops, 'shops');
 // sold-out records: only those the ledger saw in stock (recent sell-outs), so years-old sold-out
 // catalogs don't fill the search index; they stay in the ledger
-const extra = ledgerDocs(ledger, catalog.docs, catalog.shops, config.ledger);
+// (gone offers come from older crawls: through the same quality gate)
+const extra = gate.filter(ledgerDocs(ledger, catalog.docs, catalog.shops, config.ledger));
+writeJson(path.join(GENERATED, 'quality-report.json'), { day, builtAt: new Date().toISOString(), ...gate.report() }, true);
+console.log(gate.summary());
 const docs = sortDocs([...catalog.docs, ...extra].filter((d) => d.available !== false || d.lastInStock));
 // the Dig crates (new, back in stock, price drops) for the New tab; needs the ledger fields set just above
 const dig = buildDig({ ledger, docs: catalog.docs, shops: catalog.shops, arrivals, settings: config.dig });

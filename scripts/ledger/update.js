@@ -12,7 +12,7 @@ export const BASE_FILE = 'ledger-prev.ndjson.gz';
 /**
  * Update the offer ledger in `dir` with today's catalog docs (display titles, see catalog.js).
  * crawlDays: the day of each shop's crawl data (crawl-days.js), for the new-shop guard.
- * Sets offerKey and releaseKey on each doc. Running twice on one UTC day gives the same result:
+ * Sets offerKey and releaseKey on each doc; a doc whose price the quality gate removed (priceFlag) clears the row's price. Running twice on one UTC day gives the same result:
  * the second run starts again from the ledger of the day before (BASE_FILE).
  */
 export async function updateLedger({ docs, shops, day, dir, settings, crawlDays }) {
@@ -31,6 +31,7 @@ export async function updateLedger({ docs, shops, day, dir, settings, crawlDays 
     return {
       offerKey: d.offerKey, releaseKey: d.releaseKey, shop: d.shop, path: d.path, title: d.title,
       price: d.price, currency: d.currency || shops.get(d.shop)?.state.currency || null, available: d.available !== false,
+      ...(d.priceFlag && { priceFlag: d.priceFlag }),
     };
   });
   const events = applyDay(ledger, offers, day, { settings, crawlDays, urlOf: (id, p) => productUrl(shops.get(id), p) });

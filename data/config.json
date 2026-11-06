@@ -57,7 +57,7 @@
   },
   "products": {
     "include": "vinyl|\\blp\\b|\\d?lp\\b|\\bep\\b|12\\s?(\"|”|inch|in\\b)|10\\s?(\"|”|inch)|7\\s?(\"|”|inch)|\\bsingle\\b|album|schallplatte|disque|vinile|vinilo|vinyle|レコード|record|\\bcds?\\b|cassette|\\bk7\\b|\\bcd\\b|compact disc|maxi",
-    "exclude": "t-?shirt|hoodie|sweatshirt|tote|\\bmug\\b|gift card|gift ?(voucher|certificate)|geschenkgutschein|carte cadeau|poster|slipmat|turntable|stylus|cartridge|needle|record cleaner|cleaning|inner sleeves?|outer sleeves?|storage|crate|\\bcap\\b|beanie|sticker|button|badge|book\\b|magazine|dvd|blu-?ray|vhs",
+    "exclude": "t-?shirt|hoodie|sweatshirt|tote|\\bmug\\b|gift card|gift ?(voucher|certificate)|geschenkgutschein|carte cadeau|poster|slipmat|turntable|stylus|cartridge|needle|record cleaner|cleaning|inner sleeves?|outer sleeves?|storage|crate|\\bcap\\b|beanie|sticker|button|badge|book\\b|magazine|dvd|blu-?ray|vhs|guitar (picks|strings?|straps?)\\b|drum ?sticks|audio interface|keyboard stand|digital piano|clavinova|clarinet reeds",
     "minShopMusicRatio": 0.05,
     "strictBelowRatio": 0.5
   },
@@ -159,5 +159,15 @@
     "perCrate": 400,
     "dropMin": 0.1,
     "dropMax": 0.7
+  },
+  "quality": {
+    "description": "Data-quality checks of npm run index (scripts/quality): a record priced under `minEur` or over `maxEur` (converted to euros with data/rates.json) has its price removed; a shop with at least `shopMinRecords` priced records whose median price is under `shopMinMedianEur` or over `shopMaxMedianEur` has all its prices removed (wrong currency); titles matching `testTitle` (shop test listings) are left out. `samples`: examples per reason in generated/quality-report.json.",
+    "minEur": 0.5,
+    "maxEur": 3000,
+    "shopMinRecords": 20,
+    "shopMinMedianEur": 2,
+    "shopMaxMedianEur": 500,
+    "testTitle": "\\btest ?(product|item|listing)\\b|^\\(?test\\)?$|\\btestproduct\\b|\\bdummy (product|item)\\b",
+    "samples": 5
   }
 }

@@ -1,7 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import config from '../../data/config.json';
-import { t, defaultLanguage as lang, number, date } from '../lib/i18n.js';
+import path from 'node:path';
+import { t, defaultLanguage as lang, number, date, price } from '../lib/i18n.js';
+import { readJson } from '../../scripts/lib/json.js';
+import { GENERATED } from '../../scripts/lib/paths.js';
 import { catalog } from '../lib/catalog.js';
 import reasons from '../../data/status-reasons.json';
 
@@ -16,6 +19,9 @@ const changes = c.shops
 const dead = c.shops.filter((s) => s.status === 'dead').sort((a, b) => (b.deadSince || '').localeCompare(a.deadSince || ''));
 const day = (iso) => (iso ? date(lang, iso) : '');
 const rules = reasons.rules.map((r) => ({ ...r, re: new RegExp(r.pattern) }));
+// data-quality report of the index build (scripts/quality): records left out or shown without a price, per reason
+const quality = readJson(path.join(GENERATED, 'quality-report.json'), null);
+const checks = quality ? Object.entries(quality.counts).filter(([, n]) => n > 0) : [];
 /** Plain-language reason for a check error code (data/status-reasons.json). */
 const reason = (code) => t(lang, `statusReason.${rules.find((r) => r.re.test(String(code || '')))?.id || reasons.fallback}`);
 ---
@@ -37,6 +43,26 @@ const reason = (code) => t(lang, `statusReason.${rules.find((r) => r.re.test(Str
         <table>
           <thead><tr>{t(lang, 'statusShopColumns').slice(0, 3).map((col) => <th scope="col">{col}</th>)}</tr></thead>
           <tbody>{changes.map((e) => <tr><td><a href={e.shop.url} rel="nofollow noopener">{e.shop.name}</a></td><td><vf-status value={e.status}>{t(lang, `status.${e.status}`)}</vf-status></td><td><time datetime={e.at}>{day(e.at)}</time></td></tr>)}</tbody>
+        </table>
+      </figure>
+    )}
+
+    {quality && <h2>{t(lang, 'statusQualityTitle')}</h2>}
+    {quality && <p>{t(lang, 'statusQualityBody')}</p>}
+    {checks.length > 0 && (
+      <figure>
+        <table>
+          <thead><tr>{t(lang, 'statusQualityColumns').map((col) => <th scope="col">{col}</th>)}</tr></thead>
+          <tbody>{checks.map(([reason, n]) => <tr><td>{t(lang, `quality.${reason}`)}</td><td><data value={n}>{number(lang, n)}</data></td></tr>)}</tbody>
+        </table>
+      </figure>
+    )}
+    {quality?.suspectShops.length > 0 && <h3>{t(lang, 'statusQualityShops')}</h3>}
+    {quality?.suspectShops.length > 0 && (
+      <figure>
+        <table>
+          <thead><tr>{t(lang, 'statusQualityShopColumns').map((col) => <th scope="col">{col}</th>)}</tr></thead>
+          <tbody>{quality.suspectShops.map((s) => <tr><td>{s.shop}</td><td>{s.currency}</td><td><data value={s.medianEur}>{price(lang, Math.round(s.medianEur * 100), 'EUR')}</data></td></tr>)}</tbody>
         </table>
       </figure>
     )}

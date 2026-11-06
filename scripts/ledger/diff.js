@@ -1,5 +1,5 @@
 import { addDays } from './day.js';
-import { trackPrice, trimPriceLog } from './price.js';
+import { clearPrice, trackPrice, trimPriceLog } from './price.js';
 
 /**
  * The offer ledger: one row per offer (one shop's listing of one record).
@@ -36,7 +36,9 @@ const newRow = (o, day) => ({
  *   price-down in stock both days, cheaper today (same currency)
  *   gone       listing missing from a shop that was crawled today
  * Shops without any record today (not crawled, failed) keep their rows as they are.
- * offers: [{ offerKey, releaseKey, shop, path, title, price, currency, available }]
+ * offers: [{ offerKey, releaseKey, shop, path, title, price, currency, available, priceFlag? }]
+ * priceFlag: the quality gate removed the offer's price as wrong (scripts/quality): the row forgets its price too,
+ * so a wrong price is not kept for the watchlist or compared with tomorrow's for a price drop.
  * urlOf(shopId, path): product URL for events.
  * crawlDays: Map shopId -> UTC day of the shop's crawl data (null: not freshly crawled, e.g. records carried
  * over after a failure). Shops missing from it count as crawled on `day`.
@@ -69,7 +71,8 @@ export function applyDay(ledger, offers, day, { settings, urlOf, crawlDays = new
     const before = { price: row.price, currency: row.currency };
     Object.assign(row, { title: o.title, releaseKey: o.releaseKey, path: o.path, lastSeen: day, status: o.available ? 'in' : 'out' });
     if (o.available) row.lastInStock = day;
-    trackPrice(row, o.price ?? null, o.currency || null, day, settings.lowPriceDays);
+    if (o.priceFlag) clearPrice(row);
+    else trackPrice(row, o.price ?? null, o.currency || null, day, settings.lowPriceDays);
     if (o.available && was !== 'in') emit(row, 'restock');
     else if (!o.available && was === 'in') emit(row, 'soldout');
     else if (o.available && before.price != null && row.price != null && before.currency === row.currency && row.price < before.price) emit(row, 'price-down');
