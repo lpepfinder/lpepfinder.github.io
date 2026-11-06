@@ -413,7 +413,7 @@
       "other": "{count} disquaires"
     },
     "countLine": "{records} · {copies} chez {shops}",
-    "countPartial": "{line} (sur {total} trouvés)",
+    "countPartial": "{total} trouvés · {records} affichés",
     "from": "dès {price}",
     "approx": "≈ {price}",
     "soldOutCount": {

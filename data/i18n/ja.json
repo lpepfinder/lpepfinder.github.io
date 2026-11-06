@@ -388,7 +388,7 @@
       "other": "{count}店"
     },
     "countLine": "{records}・{shops}で{copies}",
-    "countPartial": "{line}（全{total}点中）",
+    "countPartial": "{total}件見つかりました・{records}を表示",
     "from": "{price}から",
     "approx": "≈ {price}",
     "soldOutCount": {

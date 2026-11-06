@@ -150,7 +150,8 @@ export class VfResults extends HTMLElement {
   count(views) {
     const n = totals(views);
     const line = t('results.countLine', { records: tn('results.records', n.records), copies: tn('results.copies', n.copies), shops: tn('results.shops', n.shops) });
-    this.countLine.textContent = this.shown < this.total ? t('results.countPartial', { line, total: formatNumber(this.total) }) : line;
+    // more matches than loaded: say how many were found, and how many records are shown so far
+    this.countLine.textContent = this.shown < this.total ? t('results.countPartial', { total: tn('results.copies', this.total), records: tn('results.records', n.records) }) : line;
     this.labelFilters(n.records);
     this.note.hidden = views.length > 0;
   }

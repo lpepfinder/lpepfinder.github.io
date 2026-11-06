@@ -413,7 +413,7 @@
       "other": "{count} Läden"
     },
     "countLine": "{records} · {copies} in {shops}",
-    "countPartial": "{line} (von {total} gefundenen)",
+    "countPartial": "{total} gefunden · {records} angezeigt",
     "from": "ab {price}",
     "approx": "≈ {price}",
     "soldOutCount": {
