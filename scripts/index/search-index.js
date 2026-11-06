@@ -14,9 +14,16 @@ export function writeStatic(file, content) {
  *                             (lastCrawl: "YYYY-MM-DD" UTC day of the shop's last successful crawl, null when
  *                             unknown; shipsTo: ISO country codes the shop ships to, "*" for rest of world,
  *                             [] when unknown. Both added later: older files have 5 fields)
- *   search/d/<n>.json         docs chunk: [[shop, title, priceCents, path, image, currency, soldOut?, lastInStock?], ...]
- *                             (soldOut is 1 for sold-out records, left out when in stock; lastInStock
- *                             is the "YYYY-MM-DD" day a sold-out record was last seen in stock, when known)
+ *   search/d/<n>.json         docs chunk: [[shop, title, priceCents, path, image, currency,
+ *                               soldOut, lastInStock, firstSeen, wasPrice, lowPrice90], ...]
+ *                             0 stands for an absent value, and trailing zeros after `currency` are left out,
+ *                             so a row has 6 to 11 fields:
+ *                             - soldOut      1 for sold-out records
+ *                             - lastInStock  "YYYY-MM-DD" day a sold-out record was last seen in stock
+ *                             - firstSeen    "YYYY-MM-DD" day the offer ledger first saw the offer
+ *                             - wasPrice     cents before a price drop in the last ledger.priceDropDays (14) days
+ *                             - lowPrice90   lowest price (cents) in the last 90 days, only when lower than priceCents
+ *                             (firstSeen, wasPrice and lowPrice90 were added later; see scripts/ledger/offer-fields.js)
  *   search/i/<shard>.json     { token: "base36 id deltas joined by ." }
  *   search/meta.json          counts and settings the browser needs
  */
@@ -43,11 +50,7 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
     }
   }
   for (let c = 0; c * docsPerChunk < docs.length; c++) {
-    const rows = docs.slice(c * docsPerChunk, (c + 1) * docsPerChunk)
-      .map((d) => {
-        const row = [shopIndex.get(d.shop), d.title, d.price, d.path, d.image || 0, d.currency !== shopRows[shopIndex.get(d.shop)][4] ? d.currency : 0];
-        return d.available === false ? [...row, 1, ...(d.lastInStock ? [d.lastInStock] : [])] : row;
-      });
+    const rows = docs.slice(c * docsPerChunk, (c + 1) * docsPerChunk).map((d) => docRow(d, shopIndex.get(d.shop), shopRows));
     writeStatic(path.join(outDir, 'd', `${c}.json`), JSON.stringify(rows));
   }
 
@@ -69,4 +72,18 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
   const meta = { docs: docs.length, soldOutFrom: soldOutFrom < 0 ? docs.length : soldOutFrom, shops: shopRows.length, docsPerChunk, tokens: postings.size - common.length, common, shards: shards.size, builtAt: new Date().toISOString() };
   writeStatic(path.join(outDir, 'meta.json'), JSON.stringify(meta));
   return meta;
+}
+
+const FIXED_FIELDS = 6;
+
+/** One d/ row (see buildSearchIndex): absent values are 0, trailing ones after the fixed fields left out. */
+export function docRow(d, shopIdx, shopRows) {
+  const soldOut = d.available === false;
+  const row = [
+    shopIdx, d.title, d.price, d.path, d.image || 0, d.currency !== shopRows[shopIdx][4] ? d.currency : 0,
+    soldOut ? 1 : 0, (soldOut && d.lastInStock) || 0, d.firstSeen || 0, d.wasPrice || 0, d.lowPrice90 || 0,
+  ];
+  let end = row.length;
+  while (end > FIXED_FIELDS && row[end - 1] === 0) end--;
+  return row.slice(0, end);
 }

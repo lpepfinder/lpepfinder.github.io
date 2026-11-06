@@ -106,12 +106,16 @@ export class SearchClient {
     const rows = await this.rows(ids);
     return rows.map((row) => {
       if (!row) return null;
-      const [shopIdx, title, price, path, image, currency, soldOut, lastInStock] = row;
+      const [shopIdx, title, price, path, image, currency, soldOut, lastInStock, firstSeen, wasPrice, lowPrice90] = row;
       const [shopId, shopName, origin, country, shopCurrency, lastCrawl, shipsTo] = this.shops[shopIdx];
       return {
         title, price, image: image || null, available: soldOut !== 1, lastInStock: lastInStock || null,
         url: path.startsWith('http') ? path : origin + path,
         currency: currency || shopCurrency,
+        // from the offer ledger: firstSeen "YYYY-MM-DD"; wasPrice (cents) before a drop in the last 14 days;
+        // lowPrice90 (cents) is the price itself when the row has no lower one but the ledger knows the offer
+        firstSeen: firstSeen || null, wasPrice: wasPrice || null,
+        lowPrice90: lowPrice90 || (firstSeen && price != null ? price : null),
         // lastCrawl: "YYYY-MM-DD" or null; shipsTo: ISO codes ("*" rest of world), [] when unknown
         shop: { id: shopId, name: shopName, country, lastCrawl: lastCrawl || null, shipsTo: shipsTo || [] },
       };
