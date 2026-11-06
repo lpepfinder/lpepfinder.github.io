@@ -9,6 +9,23 @@ header {
 header > a[rel="home"] { grid-area: logo; display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: var(--tap); font-weight: var(--weight-bold); font-size: var(--size-1); color: inherit; text-decoration: none; }
 header > vf-search { grid-area: search; }
 
+/* <vf-logo>: magnifier with a record in the lens, in the brand color; the record turns at 33⅓ rpm (1.8 s a turn)
+   while the pointer is on the logo and while a search loads */
+vf-logo { display: inline-grid; color: var(--c-brand); }
+vf-logo svg { display: block; overflow: visible; }
+vf-logo [part="handle"], vf-logo [part="vinyl"] { fill: currentColor; }
+vf-logo [part="ring"] { fill: none; stroke: currentColor; stroke-width: 3; }
+vf-logo [part="groove"] { fill: none; stroke: var(--c-bg); stroke-opacity: 0.3; stroke-width: 0.5; }
+vf-logo [part="sheen"] { fill: none; stroke: var(--c-bg); stroke-opacity: 0.7; stroke-width: 1; stroke-linecap: round; }
+vf-logo [part="label"] { fill: var(--c-bg); }
+vf-logo [part="hole"] { fill: currentColor; }
+vf-logo [part="disc"] { transform-box: fill-box; transform-origin: center; }
+@keyframes vf-spin { to { rotate: 1turn; } }
+@media (prefers-reduced-motion: no-preference) {
+  header > a[rel="home"]:is(:hover, :focus-visible) vf-logo [part="disc"],
+  vf-app:has(vf-results[status="loading"]) vf-logo [part="disc"] { animation: vf-spin var(--spin-33) linear infinite; }
+}
+
 /* the search label is announced, not shown; the button is an icon */
 header vf-search label { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 header vf-search form { gap: 0; }

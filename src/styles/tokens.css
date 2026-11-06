@@ -127,6 +127,8 @@
   --c-accent: #b3261e;
   --c-accent-fg: #ffffff;
   --c-link: #1a4fb4;
+  --c-brand: #1340ff;
+  --spin-33: 1.8s;
   --c-focus: #1a4fb4;
   --c-chip: #efeee8;
   --c-chip-surface: var(--c-bg);
@@ -165,6 +167,7 @@
     --c-accent: #ef6f5f;
     --c-accent-fg: #111214;
     --c-link: #8fb3ff;
+    --c-brand: #8fb3ff;
     --c-focus: #8fb3ff;
     --c-chip: #24262a;
     --c-chip-on: #ecebe6;
