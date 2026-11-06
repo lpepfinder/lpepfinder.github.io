@@ -103,7 +103,7 @@ vf-icon[name="bluesky"] { --icon: var(--icon-bluesky); }
   vf-tabbar { gap: var(--space-2); }
   vf-tabbar a { grid-auto-flow: column; gap: var(--space-2); min-block-size: var(--tap); padding-inline: var(--space-3); font-size: var(--size-s); border-radius: var(--radius); }
   vf-tabbar a[aria-current="page"] { background: var(--c-chip); }
-  vf-tabbar vf-icon { --icon-size: var(--icon-size); }
+  vf-tabbar vf-icon { --icon-size: var(--icon-size-nav); }
   vf-tabbar vf-watch-count { position: static; }
   vf-app { padding-block-end: 0; }
 }

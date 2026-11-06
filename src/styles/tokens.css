@@ -55,6 +55,7 @@
   --dim: 0.5;
   --sold-out-filter: grayscale(1);
   --icon-size: 1.25rem;
+  --icon-size-nav: 1.125rem;
   --breadcrumb-separator: "›";
   --count-separator: "· ";
   --star-mark: 0.75rem;
