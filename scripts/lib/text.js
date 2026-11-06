@@ -38,8 +38,10 @@ const GENERIC_NAME = /^(home|homepage|shop|store|online ?shop|welcome|index|star
 export function cleanShopName(name) {
   const decoded = decodeEntities(name).replace(/\s+/g, ' ').trim();
   if (GENERIC_NAME.test(decoded)) return '';
-  const first = decoded.split(/\s+[–—|·•:]\s+|\s+-\s+/)[0].trim();
-  return first.length >= 3 ? first : decoded;
+  // "Homepage: Record Shack -", "Dig Deep Records |": page-title words and dangling separators go
+  const bare = decoded.replace(/^(?:home\s?page|home|welcome|start)\s*[:|–—-]\s*/i, '').replace(/\s*[–—|·•:-]+$/, '').trim();
+  const first = bare.split(/\s+[–—|·•:]\s+|\s+-\s+/)[0].trim();
+  return first.length >= 3 ? first : bare;
 }
 
 const LABELISH = /records|recordings|music|label|distribution|distro|ltd|inc|gmbh|s\.?r\.?l|vinyl|import|various/i;

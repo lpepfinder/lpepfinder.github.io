@@ -21,6 +21,8 @@ test('artistOf reads "Artist - Title" and vendor fields', () => {
 
 test('shop names and titles are cleaned for display', () => {
   assert.equal(cleanShopName('Amadeus Dischi &#8211; Musica dal 1986'), 'Amadeus Dischi');
+  assert.equal(cleanShopName('Dig Deep Records |'), 'Dig Deep Records');
+  assert.equal(cleanShopName('Homepage: Record Shack -'), 'Record Shack');
   assert.equal(decodeEntities('Argy&#039;s'), "Argy's");
   assert.equal(cleanTitle('Aphex Twin: <br>Cheetah EP [12&Prime;]'), 'Aphex Twin: Cheetah EP [12″]');
   assert.equal(displayTitle('Syro (New 3LP)', 'Aphex Twin'), 'Aphex Twin – Syro (New 3LP)');
