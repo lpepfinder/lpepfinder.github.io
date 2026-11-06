@@ -159,5 +159,15 @@
     "perCrate": 400,
     "dropMin": 0.1,
     "dropMax": 0.7
+  },
+  "quality": {
+    "description": "Data-quality checks of npm run index (scripts/quality): a record priced under `minEur` or over `maxEur` (converted to euros with data/rates.json) has its price removed; a shop with at least `shopMinRecords` priced records whose median price is under `shopMinMedianEur` or over `shopMaxMedianEur` has all its prices removed (wrong currency); titles matching `testTitle` (shop test listings) are left out. `samples`: examples per reason in generated/quality-report.json.",
+    "minEur": 0.5,
+    "maxEur": 3000,
+    "shopMinRecords": 20,
+    "shopMinMedianEur": 2,
+    "shopMaxMedianEur": 500,
+    "testTitle": "\\btest ?(product|item|listing)\\b|^\\(?test\\)?$|\\btestproduct\\b|\\bdummy (product|item)\\b",
+    "samples": 5
   }
 }
