@@ -18,7 +18,7 @@ const views = [['changes', 'viewChanges'], ['now', 'viewNow'], ['all', 'viewAll'
   <vf-watch-shared hidden>
     <h2>{t(lang, 'watchPage.sharedTitle')}</h2>
     <p></p>
-    <button type="button" name="add-shared">{t(lang, 'watchPage.sharedAdd')}</button>
+    <button type="button" name="add-shared" kind="secondary">{t(lang, 'watchPage.sharedAdd')}</button>
   </vf-watch-shared>
   <vf-watch-page status="idle" view="changes" search={localPath(lang, '/')}>
     <vf-watch-summary hidden></vf-watch-summary>
@@ -53,7 +53,7 @@ const views = [['changes', 'viewChanges'], ['now', 'viewNow'], ['all', 'viewAll'
       <nav aria-label={t(lang, 'watchPage.jumpLabel')}><ul></ul></nav>
       <ol aria-labelledby="watch-all"></ol>
       <vf-watch-showing></vf-watch-showing>
-      <button type="button" name="more" hidden></button>
+      <button type="button" name="more" kind="secondary" hidden></button>
     </vf-watch-all>
   </vf-watch-page>
   <WatchBackup lang={lang} />

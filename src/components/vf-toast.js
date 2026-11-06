@@ -21,6 +21,7 @@ export function toast(text, action, link) {
   }
   const button = (label, fn) => {
     const b = Object.assign(document.createElement('button'), { type: 'button', textContent: label });
+    b.setAttribute('kind', 'secondary');
     b.addEventListener('click', () => { fn?.(); box.remove(); });
     const li = document.createElement('li');
     li.append(b);

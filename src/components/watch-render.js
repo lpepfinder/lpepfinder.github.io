@@ -41,6 +41,7 @@ function watched(it) {
 export function item(key, it, search) {
   const title = it.t || t('watchPage.unknownTitle', { key });
   const remove = el('button', { type: 'button', name: 'remove', value: key, textContent: t('watchPage.remove') });
+  remove.setAttribute('kind', 'secondary');
   remove.setAttribute('aria-label', t('watchPage.removeLabel', { title }));
   return el('li', {}, attrs(el('vf-watch-item', {},
     el('h3', {}, link(it.t && `${search}?q=${encodeURIComponent(it.t)}`, title)),

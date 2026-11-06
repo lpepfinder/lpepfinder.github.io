@@ -2,7 +2,7 @@ import { load, remove } from '../lib/watch/store.js';
 import config from '../../data/watch.json' with { type: 'json' };
 import { item } from './watch-render.js';
 import { t, tn, formatNumber } from './i18n.js';
-import { el } from './dom.js';
+import { el, attrs } from './dom.js';
 
 const collator = new Intl.Collator(undefined, { sensitivity: 'base', numeric: true });
 const fold = (s) => String(s || '').normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -64,7 +64,7 @@ export class VfWatchAll extends HTMLElement {
   /** Jump bar: one button per letter present in the current matches. */
   letters() {
     const present = [...new Set(this.matches.map((r) => letterOf(r.title)))].sort((a, b) => (a === '#') - (b === '#') || a.localeCompare(b));
-    this.jump.replaceChildren(...present.map((l) => el('li', {}, el('button', { type: 'button', value: l, textContent: l === '#' ? t('watchPage.jumpOther') : l }))));
+    this.jump.replaceChildren(...present.map((l) => el('li', {}, attrs(el('button', { type: 'button', value: l, textContent: l === '#' ? t('watchPage.jumpOther') : l }), { kind: 'secondary' }))));
   }
 
   /** Start the page at the first match with this letter; focus its first record. */
