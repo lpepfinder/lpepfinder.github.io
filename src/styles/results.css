@@ -44,3 +44,12 @@ vf-suggest { display: grid; gap: var(--space-1); margin-block: var(--space-2); f
 vf-suggest[hidden] { display: none; }
 vf-suggest p { margin: 0; }
 vf-suggest a { font-weight: var(--weight-semi); }
+
+/* <vf-record-list layout="covers">: a shop's records as a crate, big covers in a grid from tablets up */
+@media (min-width: 40rem) {
+  vf-record-list[layout="covers"] ol { grid-template-columns: repeat(auto-fill, minmax(var(--dig-card-min), 1fr)); gap: var(--space-4) var(--space-3); }
+  vf-record-list[layout="covers"] vf-result { grid-template-columns: minmax(0, 1fr); grid-template-areas: "img" "price" "head" "meta"; gap: var(--space-1); padding: 0; border: 0; min-block-size: 0; }
+  vf-record-list[layout="covers"] vf-result > :is(img, vf-cover) { inline-size: 100%; block-size: auto; aspect-ratio: 1; }
+  vf-record-list[layout="covers"] vf-result > vf-price { grid-area: price; justify-items: start; text-align: start; font-weight: var(--weight-bold); }
+  vf-record-list[layout="covers"] vf-result vf-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+}

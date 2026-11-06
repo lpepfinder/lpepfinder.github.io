@@ -31,6 +31,7 @@ const crumbs = [
   ...(shop.country ? [{ name: country, href: `/shops/${shop.country.toLowerCase()}/` }] : []),
   { name: shop.name, href: `/shop/${shop.id}/` },
 ];
+const host = new URL(shop.url).hostname.replace(/^www\./, '');
 const bluesky = shop.bluesky && `https://bsky.app/profile/${shop.bluesky.handle}`;
 const ld = [{
   '@context': 'https://schema.org', '@type': 'RecordStore', '@id': `${pageUrl}#store`, name: shop.name, url: shop.url, sameAs: [shop.url, bluesky].filter(Boolean),
@@ -47,18 +48,18 @@ const ld = [{
       {shop.records ? tn(lang, 'shopRecords', shop.records) : t(lang, 'shopListedOnly')}
     </p>
     <menu>
-      <li><a href={shop.url} rel="noopener" kind="strong"><span>{t(lang, 'shopVisit')}: {new URL(shop.url).host}</span><vf-icon name="external"></vf-icon></a></li>
+      <li><a href={shop.url} rel="noopener" kind="strong" aria-label={`${t(lang, 'shopVisit')}: ${host}`}><span>{host}</span><vf-icon name="external"></vf-icon></a></li>
       {bluesky && <li><a href={bluesky} rel="me noopener" kind="secondary"><vf-icon name="bluesky"></vf-icon><span>@{shop.bluesky.handle}</span></a></li>}
+      {feed && <li><a href={feed.href} type="application/atom+xml" kind="secondary" title={t(lang, 'newFeed')}><vf-icon name="rss"></vf-icon><span>{t(lang, 'feedShort')}</span></a></li>}
     </menu>
     {bluesky && <vf-bluesky verified={String(!!shop.bluesky.verified)}>{t(lang, shop.bluesky.verified ? 'shopBlueskyVerified' : 'shopBlueskyLinked', { domain: new URL(shop.url).hostname.replace(/^www\./, '') })}</vf-bluesky>}
     {fresh.count > 0 && (
       <section>
         <h2 id="shop-new">{t(lang, 'shopNewTitle', { count: number(lang, fresh.count) })}</h2>
-        <RecordList lang={lang} records={fresh.records} labelledby="shop-new" showShop={false} />
+        <RecordList lang={lang} records={fresh.records} labelledby="shop-new" showShop={false} layout="covers" />
       </section>
     )}
-    {feed && <p><a href={feed.href} type="application/atom+xml"><vf-icon name="rss"></vf-icon>{t(lang, 'newFeed')}</a></p>}
     {shop.latest.length > 0 && <h2 id="shop-latest">{t(lang, 'shopLatest')}</h2>}
-    {shop.latest.length > 0 && <RecordList lang={lang} records={shop.latest} labelledby="shop-latest" showShop={false} />}
+    {shop.latest.length > 0 && <RecordList lang={lang} records={shop.latest} labelledby="shop-latest" showShop={false} layout="covers" />}
   </article>
 </Base>

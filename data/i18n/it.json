@@ -578,5 +578,6 @@
   },
   "shopBlueskyVerified": "Verificato: il dominio del negozio, {domain}, è il suo handle Bluesky.",
   "shopBlueskyLinked": "Collegato dal sito del negozio.",
-  "shopOnBluesky": "Su Bluesky"
+  "shopOnBluesky": "Su Bluesky",
+  "feedShort": "Feed"
 }

@@ -548,5 +548,6 @@
   },
   "shopBlueskyVerified": "確認済み：ショップのドメイン {domain} が Bluesky のハンドルです。",
   "shopBlueskyLinked": "ショップのサイトからリンクされています。",
-  "shopOnBluesky": "Bluesky"
+  "shopOnBluesky": "Bluesky",
+  "feedShort": "フィード"
 }

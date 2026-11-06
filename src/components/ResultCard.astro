@@ -5,11 +5,12 @@ import { thumb } from '../lib/thumb.js';
 
 /**
  * Server-rendered <vf-result> card, the same markup <vf-result> builds in the browser (styles in results.css).
- * record: { title, price, currency, url, image, country, format, used, day }; shopName (none on the shop's own page); index (eager images first).
+ * record: { title, price, currency, url, image, country, format, used, day }; shopName (none on the shop's own page); index (eager images first);
+ * width: image pixels asked of the shop (112 for rows, more for cover grids).
  */
-const { lang, record: r, shopName, index = 0 } = Astro.props;
+const { lang, record: r, shopName, index = 0, width = 112 } = Astro.props;
 const { artist, title } = splitTitle(r.title);
-const src = thumb(r.image, { safe: true });
+const src = thumb(r.image, { safe: true, width });
 const eager = index < 4;
 const kind = [r.format && t(lang, `formats.${r.format}`), r.used && t(lang, 'conditionUsed')].filter(Boolean).join(' · ');
 const [addedBefore, addedAfter = ''] = t(lang, 'addedOn', { date: '\u0000' }).split('\u0000');

@@ -578,5 +578,6 @@
   },
   "shopBlueskyVerified": "Verificado: el dominio de la tienda, {domain}, es su usuario de Bluesky.",
   "shopBlueskyLinked": "Enlazado desde la web de la tienda.",
-  "shopOnBluesky": "En Bluesky"
+  "shopOnBluesky": "En Bluesky",
+  "feedShort": "Feed"
 }

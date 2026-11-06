@@ -578,5 +578,6 @@
   },
   "shopBlueskyVerified": "Verifiziert: Die eigene Domain des Shops, {domain}, ist sein Bluesky-Handle.",
   "shopBlueskyLinked": "Von der Website des Shops verlinkt.",
-  "shopOnBluesky": "Auf Bluesky"
+  "shopOnBluesky": "Auf Bluesky",
+  "feedShort": "Feed"
 }
