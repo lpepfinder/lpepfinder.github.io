@@ -16,7 +16,7 @@ vf-grid li { break-inside: avoid; }
 vf-grid li > a { display: inline-flex; align-items: center; min-block-size: var(--tap); }
 
 main > nav ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); font-size: var(--size-s); color: var(--c-muted); }
-main > nav li + li::before { content: var(--breadcrumb-separator); margin-inline-end: var(--space-2); }
+main > nav:not([sticky]) li + li::before { content: var(--breadcrumb-separator); margin-inline-end: var(--space-2); }
 main > nav a { min-block-size: var(--tap); }
 
 vf-status[value="ok"] { color: var(--c-ok); font-weight: var(--weight-semi); }
@@ -39,7 +39,8 @@ main > nav[sticky="always"] { position: sticky; inset-block-start: var(--header-
 /* columns that read down: cities (cards of shops) on the country page, artists of a letter */
 vf-grid[flow="columns"] { display: block; columns: var(--grid-min); column-gap: var(--space-6); }
 vf-grid[flow="columns"] > ul { display: block; columns: var(--grid-min); column-gap: var(--space-6); }
-vf-grid[flow="columns"] > section { break-inside: avoid; padding-block-end: var(--space-4); }
+vf-grid[flow="columns"] > section { padding-block-end: var(--space-4); }
+vf-grid[flow="columns"] > section > h2 { break-after: avoid; }
 vf-grid[flow="columns"] > section > h2 { margin-block-start: 0; font-size: var(--size-1); }
 vf-grid[flow="columns"] > section > ul { list-style: none; margin: 0; padding: 0; }
 :is(vf-grid, main > section) h2 data, vf-grid li > data { color: var(--c-muted); font-size: var(--size-s); font-weight: normal; }
