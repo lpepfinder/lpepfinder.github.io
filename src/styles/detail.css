@@ -19,7 +19,7 @@ vf-detail > menu { display: flex; flex-wrap: wrap; align-items: center; gap: var
 vf-detail > menu > li:last-child:has(> a) { flex: 1 1 auto; }
 vf-detail > menu a { display: flex; align-items: center; justify-content: center; min-block-size: var(--tap); padding-inline: var(--space-4); border-radius: var(--radius); background: var(--c-chip-on); color: var(--c-chip-on-fg); font-weight: var(--weight-semi); text-decoration: none; text-align: center; }
 vf-sheet:not([docked]) vf-detail > menu {
-  position: sticky; inset-block-end: 0; z-index: 1; order: 99;
+  position: sticky; inset-block-end: 0; z-index: 2; order: 99;
   margin-inline: calc(-1 * var(--gutter)); padding: var(--space-2) var(--gutter) calc(var(--space-2) + env(safe-area-inset-bottom));
   background: var(--c-surface); border-block-start: var(--line) solid var(--c-line);
 }
