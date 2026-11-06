@@ -45,7 +45,7 @@ const formats = (g) => g.formats.map((f) => t(lang, `formats.${f}`)).join(' / ')
         })}
       </ol>
     </section>
-    <Sheet lang={lang} name="release" mode="adaptive" dock="(min-width: 64rem)" labelledby="detail-title" back={t(lang, 'detail.backList')}>
+    <Sheet lang={lang} name="release" mode="adaptive" dock="(min-width: 64rem)" labelledby="detail-title" back={t(lang, 'detail.backList')} expandable>
       <vf-detail status="empty"></vf-detail>
     </Sheet>
   </vf-split>

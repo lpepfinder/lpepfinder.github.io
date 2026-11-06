@@ -28,7 +28,7 @@ const shops = localPath(lang, '/shops/');
   <button type="button" name="more" kind="secondary" hidden><vf-icon name="chevron-down"></vf-icon><span>{t(lang, 'loadMore')}</span></button>
   <AdSlot lang={lang} place="results" template />
   </section>
-  <Sheet lang={lang} name="release" mode="adaptive" dock="(min-width: 64rem)" labelledby="detail-title" back={t(lang, 'detail.back')}>
+  <Sheet lang={lang} name="release" mode="adaptive" dock="(min-width: 64rem)" labelledby="detail-title" back={t(lang, 'detail.back')} expandable>
     <vf-detail status="empty"></vf-detail>
     <AdSlot lang={lang} place="detail" />
   </Sheet>

@@ -466,7 +466,8 @@
   },
   "lettersNav": "Aller à la lettre",
   "sheet": {
-    "close": "Fermer"
+    "close": "Fermer",
+    "expand": "Plein écran"
   },
   "detail": {
     "back": "Résultats",

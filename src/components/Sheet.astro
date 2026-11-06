@@ -5,10 +5,11 @@ import { t } from '../lib/i18n.js';
  * <vf-sheet>: a native <dialog> as a bottom, side or full-screen sheet, docked in place while `dock` matches.
  * Props: lang, name, mode ("bottom" | "side" | "full"), dock (media query, optional), title (heading text;
  * omit it and fill the "header" slot instead), labelledby (id of the heading when there is no title),
- * back (label of a "‹ Back" close button at the start, instead of the ✕ at the end).
+ * back (label of a "‹ Back" close button at the start, instead of the ✕ at the end); expandable (a Full screen
+ * button: the docked pane or the partial sheet opens over the whole screen).
  * Slots: default (content), "header" (replaces the title), "footer".
  */
-const { lang, name, mode = 'bottom', dock, title, labelledby, back } = Astro.props;
+const { lang, name, mode = 'bottom', dock, title, labelledby, back, expandable = false } = Astro.props;
 const titleId = `${name}-sheet-title`;
 ---
 <vf-sheet name={name} mode={mode} dock={dock}>
@@ -16,6 +17,7 @@ const titleId = `${name}-sheet-title`;
     <header>
       {back && <button type="button" value="close" kind="text" back>{back}</button>}
       {Astro.slots.has('header') ? <slot name="header" /> : title && <h2 id={titleId}>{title}</h2>}
+      {expandable && <button type="button" value="expand" kind="text" aria-label={t(lang, 'sheet.expand')} title={t(lang, 'sheet.expand')}><vf-icon name="expand"></vf-icon></button>}
       {!back && <button type="button" value="close" kind="text" aria-label={t(lang, 'sheet.close')}><vf-icon name="close"></vf-icon></button>}
     </header>
     <slot />

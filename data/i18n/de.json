@@ -466,7 +466,8 @@
   },
   "lettersNav": "Zum Buchstaben",
   "sheet": {
-    "close": "Schließen"
+    "close": "Schließen",
+    "expand": "Vollbild"
   },
   "detail": {
     "back": "Ergebnisse",

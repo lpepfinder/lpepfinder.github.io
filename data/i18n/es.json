@@ -466,7 +466,8 @@
   },
   "lettersNav": "Ir a la letra",
   "sheet": {
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "expand": "Pantalla completa"
   },
   "detail": {
     "back": "Resultados",

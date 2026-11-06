@@ -466,7 +466,8 @@
   },
   "lettersNav": "Jump to letter",
   "sheet": {
-    "close": "Close"
+    "close": "Close",
+    "expand": "Full screen"
   },
   "detail": {
     "back": "Results",

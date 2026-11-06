@@ -20,10 +20,21 @@ vf-sheet > dialog:modal { animation: vf-sheet-in var(--duration) var(--ease); }
 /* docked: non-modal, static in its grid area, no close button */
 vf-sheet[docked] { display: block; min-inline-size: 0; }
 vf-sheet[docked] > dialog[open] { position: static; inline-size: auto; block-size: auto; max-block-size: none; border-radius: 0; background: none; animation: none; }
-vf-sheet[docked] > dialog > header > button[value="close"] { display: none; }
+vf-sheet[docked]:not([expanded]) > dialog > header > button[value="close"] { display: none; }
 vf-sheet[docked] > dialog > :not(header, footer) { overflow: visible; }
 
-vf-sheet[docked] > dialog > header:not(:has(h2)) { display: none; }
+/* docked, the header holds only the Full screen button */
+vf-sheet[docked]:not([expanded]) > dialog > header:not(:has(h2, button[value="expand"])) { display: none; }
+vf-sheet[docked]:not([expanded]) > dialog > header > button[back] { display: none; }
+vf-sheet[docked]:not([expanded]) > dialog > header { justify-content: end; border: 0; padding-block: 0; }
+vf-sheet > dialog > header > button[value="expand"] { inline-size: var(--tap); padding: 0; display: grid; place-items: center; margin-inline-start: auto; color: var(--c-muted); text-decoration: none; }
+vf-sheet > dialog > header > button[value="expand"]:hover { color: var(--c-fg); }
+/* phones: the sheet is already the whole screen; expanded: the Full screen button has done its work */
+@media (max-width: 40rem) { vf-sheet > dialog > header > button[value="expand"] { display: none; } }
+vf-sheet[expanded] > dialog > header > button[value="expand"] { display: none; }
+/* expanded: a full-screen modal over everything, whatever the layout was; the content keeps a readable width */
+vf-sheet[expanded] > dialog[open] { position: fixed; inset: 0; inline-size: 100%; block-size: 100dvh; max-inline-size: none; max-block-size: none; border-radius: 0; background: var(--c-surface); animation: vf-sheet-in var(--duration) var(--ease); }
+vf-sheet[expanded] > dialog > :not(header, footer) { overflow: auto; padding-inline: max(var(--gutter), calc((100% - var(--width)) / 2)); }
 /* plain sheet content */
 vf-sheet-body { display: block; padding-block: var(--space-4); }
 

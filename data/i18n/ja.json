@@ -437,7 +437,8 @@
   },
   "lettersNav": "頭文字へ移動",
   "sheet": {
-    "close": "閉じる"
+    "close": "閉じる",
+    "expand": "全画面"
   },
   "detail": {
     "back": "検索結果",
