@@ -170,5 +170,15 @@
     "shopMaxMedianEur": 500,
     "testTitle": "\\btest ?(product|item|listing)\\b|^\\(?test\\)?$|\\btestproduct\\b|\\bdummy (product|item)\\b",
     "samples": 5
+  },
+  "health": {
+    "description": "Daily health report (scripts/health, run by Deploy): today's build against the last build of an earlier day. Degraded when records drop by more than `recordsDropMax` (share) or searchable shops by more than `shopsDropMax`, the site exceeds `siteMaxMB`, more than `crawlErrorMax` of the crawled shops failed, the crawl is older than `crawlMaxAgeHours`, or an end-to-end test failed. One GitHub issue labelled `label` is opened or updated, and closed once healthy. `keepDays` days of numbers are kept in the data release (health.json).",
+    "recordsDropMax": 0.15,
+    "shopsDropMax": 0.05,
+    "siteMaxMB": 850,
+    "crawlErrorMax": 0.2,
+    "crawlMaxAgeHours": 36,
+    "label": "health",
+    "keepDays": 60
   }
 }

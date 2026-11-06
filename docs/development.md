@@ -15,7 +15,13 @@ npm run discover   # find new shops on OpenStreetMap (-- --write saves them to d
 npm run build      # validate data, build index and site into dist/
 npm run dev        # Astro dev server
 npm test
+npm run test:e2e   # browser tests (Playwright, e2e/) against the built dist/
 ```
+
+End-to-end tests (`e2e/*.spec.js`, `playwright.config.js`) run Chromium at a phone (390×844) and a desktop
+(1440×900) size against `dist/` served by `astro preview` (port 4600, `E2E_PORT` overrides it). They need a build
+with data (search index, watchlist files, `dig.json`); requests outside the site are blocked, and the Discogs API is
+mocked with records taken from the build. Once: `npx playwright install chromium`.
 
 ## Layout
 

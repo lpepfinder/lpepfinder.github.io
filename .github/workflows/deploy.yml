@@ -19,9 +19,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    # write: the build updates the offer ledger in the "data" release
+    # write: the build updates the offer ledger in the "data" release; issues: the health report
     permissions:
       contents: write
+      issues: write
     env:
       GH_TOKEN: ${{ github.token }}
       # the offer ledger holds millions of rows in memory next to the catalog
@@ -59,6 +60,36 @@ jobs:
         run: |
           du -sm --apparent-size dist dist/search dist/w dist/new dist/feed 2>/dev/null || true
           test "$(du -sm --apparent-size dist | cut -f1)" -le 900
+      # the built site in a browser, as readers use it: a failing test stops here, the live site keeps the previous build
+      - name: Browser for the end-to-end tests
+        run: npx playwright install --with-deps chromium
+      - name: End-to-end tests
+        id: e2e
+        run: npm run test:e2e
+      - name: Playwright report
+        if: failure() && steps.e2e.outcome == 'failure'
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: |
+            playwright-report
+            test-results
+          retention-days: 14
+      # health report: today's numbers against the last build of an earlier day (history: health.json in the
+      # "data" release); one issue labelled "health" opened or updated while degraded, closed once healthy.
+      # Also after a failed step (a failed test is reported), and never a reason to hold the deploy back.
+      - name: Health report
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        env:
+          E2E_OUTCOME: ${{ steps.e2e.outcome }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh release download data --pattern health.json --dir generated --clobber || echo "no health history yet"
+          # the numbers are saved even when the issue can't be updated
+          npm run health -- --history generated/health.json --issue || status=$?
+          if [ -f generated/health.json ]; then gh release upload data generated/health.json --clobber; fi
+          exit "${status:-0}"
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
