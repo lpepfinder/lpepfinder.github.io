@@ -54,3 +54,10 @@ export function buildSiteData({ docs, shops, byShop, seo }) {
   }
   return { builtAt: new Date().toISOString(), totalRecords: docs.filter(inStock).length, shopStats, artists: artistPages };
 }
+
+/**
+ * search/artists.json for "top hits" in search: [[slug, name, recordCount], ...], artist page order
+ * (most shops first), the first `max` (search.maxArtists: 4,000 keep it under 60 KB gzipped).
+ * recordCount is the artist page's: records shown there.
+ */
+export const artistList = (artists, max) => artists.slice(0, max).map((a) => [a.slug, a.name, a.records.length]);

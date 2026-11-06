@@ -71,7 +71,8 @@
   "search": {
     "resultsPerPage": 30,
     "docsPerChunk": 64,
-    "maxPrefixExpansions": 64
+    "maxPrefixExpansions": 64,
+    "maxArtists": 4000
   },
   "ledger": {
     "eventDays": 14,

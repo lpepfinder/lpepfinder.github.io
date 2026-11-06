@@ -26,6 +26,7 @@ export function writeStatic(file, content) {
  *                             (firstSeen, wasPrice and lowPrice90 were added later; see scripts/ledger/offer-fields.js)
  *   search/i/<shard>.json     { token: "base36 id deltas joined by ." }
  *   search/meta.json          counts and settings the browser needs
+ *   search/artists.json       [[slug, name, recordCount], ...] top artist pages, written by build.js (site-data.js)
  */
 export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFrequency = 0.2, lastCrawl = {} }) {
   const shopIds = [...new Set(docs.map((d) => d.shop))];

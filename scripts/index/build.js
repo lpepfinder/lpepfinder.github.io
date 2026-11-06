@@ -4,8 +4,8 @@ import { files, GENERATED, PUBLIC } from '../lib/paths.js';
 import { config } from '../lib/config.js';
 import { writeJson } from '../lib/json.js';
 import { loadCatalog, sortDocs } from './catalog.js';
-import { buildSearchIndex } from './search-index.js';
-import { buildSiteData } from './site-data.js';
+import { buildSearchIndex, writeStatic } from './search-index.js';
+import { buildSiteData, artistList } from './site-data.js';
 import { today } from '../ledger/day.js';
 import { updateLedger } from '../ledger/update.js';
 import { crawlDays } from '../ledger/crawl-days.js';
@@ -45,4 +45,5 @@ const lastCrawl = Object.fromEntries(Object.entries(ledger.meta.shops).map(([id,
 const meta = buildSearchIndex({ ...catalog, docs, outDir, docsPerChunk: config.search.docsPerChunk, lastCrawl });
 const siteData = buildSiteData({ ...catalog, seo: config.seo });
 writeJson(path.join(GENERATED, 'site-data.json'), siteData);
+writeStatic(path.join(outDir, 'artists.json'), JSON.stringify(artistList(siteData.artists, config.search.maxArtists)));
 console.log('index built in', Math.round((Date.now() - t0) / 1000), 's', meta, 'artist pages:', siteData.artists.length);
