@@ -2,9 +2,10 @@ import { load, update, today } from '../lib/watch/store.js';
 import { due, check } from '../lib/watch/check.js';
 import { state } from '../lib/watch/diff.js';
 import * as data from '../lib/watch/data.js';
-import { changesByDay, byShop, shopGroup } from './watch-views.js';
+import { changesByDay, byShop, shopRow } from './watch-views.js';
+import { WatchShopPane } from './watch-shop-pane.js';
 import { t, tn, formatNumber, formatDay } from './i18n.js';
-import { rates, CURRENCY_EVENT } from './viewer.js';
+import { rates, currency, CURRENCY_EVENT } from './viewer.js';
 import './vf-watch-all.js';
 
 const MAX_PAST = 100;
@@ -13,7 +14,8 @@ const VIEWS = ['changes', 'now', 'all'];
 /**
  * <vf-watch-page status="idle|checking|done" view="changes|now|all">: a summary line, then three
  * views chosen by links (?view=…, aria-current="page"): changes by day (<vf-watch-changes>),
- * records in stock now by shop (<vf-watch-now>), and every record (<vf-watch-all>).
+ * records in stock now by shop (<vf-watch-now>, a shop opens in a sheet or the right pane), and every record (<vf-watch-all>).
+ * The "Prices in" menu sits in a sheet behind a button.
  * Current states come from the `now` shards, fetched once per data build with a progress bar.
  * Changes are marked seen when the page is left.
  */
@@ -29,6 +31,10 @@ export class VfWatchPage extends HTMLElement {
     this.rows = {};
     this.rates = {};
     this.shopIds = [];
+    this.pane = new WatchShopPane(this.views.now, this);
+    this.currencyButton = this.querySelector('button[name="currency"]');
+    this.currencyButton.addEventListener('click', () => this.querySelector('vf-sheet[name="currency"]').open());
+    this.labelCurrency();
     this.querySelector('nav').addEventListener('click', (e) => {
       const a = e.target.closest('a[href]');
       if (!a) return;
@@ -38,7 +44,7 @@ export class VfWatchPage extends HTMLElement {
     });
     addEventListener('popstate', () => this.show(false));
     addEventListener(data.PROGRESS, (e) => this.step(e.detail));
-    addEventListener(CURRENCY_EVENT, () => { this.renderChanges(); this.renderNow(); });
+    addEventListener(CURRENCY_EVENT, () => { this.labelCurrency(); this.renderChanges(); this.renderNow(); });
     const leave = () => this.markSeen();
     addEventListener('pagehide', leave);
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') leave(); });
@@ -60,6 +66,7 @@ export class VfWatchPage extends HTMLElement {
       if (new URL(a.href).searchParams.get('view') === current) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
     }
+    this.pane?.fromUrl();
     if (focus) this.views[current].querySelector('h2').focus();
   }
 
@@ -133,8 +140,14 @@ export class VfWatchPage extends HTMLElement {
   renderNow() {
     const groups = byShop(load().items, this.rows, this.shopIds, this.shops);
     const box = this.views.now;
-    box.querySelector('vf-watch-shops').replaceChildren(...groups.map((g) => shopGroup(g, this.search, this.rates)));
+    box.querySelector('vf-watch-shops ul').replaceChildren(...groups.map(shopRow));
     box.setAttribute('count', groups.length);
+    this.pane.set(groups);
+  }
+
+  /** The currency button: "Prices in · EUR". */
+  labelCurrency() {
+    this.currencyButton.textContent = `${t('currency.label')} · ${currency() || t('currency.shop')}`;
   }
 
   markSeen() {

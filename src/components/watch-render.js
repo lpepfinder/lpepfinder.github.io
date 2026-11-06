@@ -37,14 +37,14 @@ function watched(it) {
   return el('p', {}, link(it.u, label, 'nofollow'), price != null ? ` · ${formatPrice(price, currency)}` : '');
 }
 
-/** A watched release: title linking to a search for every copy, its state, the copy watched, a Remove button (value = key). */
+/** A watched release: title linking to its detail in a search for every copy, its state, the copy watched, a Remove button (value = key). */
 export function item(key, it, search) {
   const title = it.t || t('watchPage.unknownTitle', { key });
   const remove = el('button', { type: 'button', name: 'remove', value: key, textContent: t('watchPage.remove') });
-  remove.setAttribute('kind', 'secondary');
+  remove.setAttribute('kind', 'text');
   remove.setAttribute('aria-label', t('watchPage.removeLabel', { title }));
   return el('li', {}, attrs(el('vf-watch-item', {},
-    el('h3', {}, link(it.t && `${search}?q=${encodeURIComponent(it.t)}`, title)),
+    el('h3', {}, link(it.t && `${search}?q=${encodeURIComponent(it.t)}&r=${key}`, title)),
     el('p', { textContent: stateText(it.s) }),
     watched(it),
     remove,

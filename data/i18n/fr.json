@@ -295,7 +295,8 @@
     },
     "showing": "{shown} sur {total} affichés",
     "noMatch": "Aucun disque suivi ne correspond à « {query} ».",
-    "emptyList": "Vous ne suivez encore aucun disque. Touchez Suivre sur un résultat de recherche, ou importez un fichier de liste ci-dessous."
+    "emptyList": "Vous ne suivez encore aucun disque. Touchez Suivre sur un résultat de recherche, ou importez un fichier de liste ci-dessous.",
+    "backShops": "Boutiques"
   },
   "navApp": "Principal",
   "navSite": "Explorer",

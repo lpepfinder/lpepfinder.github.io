@@ -24,6 +24,8 @@ vf-sheet[docked] > dialog > header > button[value="close"] { display: none; }
 vf-sheet[docked] > dialog > :not(header, footer) { overflow: visible; }
 
 vf-sheet[docked] > dialog > header:not(:has(h2)) { display: none; }
+/* plain sheet content */
+vf-sheet-body { display: block; padding-block: var(--space-4); }
 
 /* adaptive (the release detail): full screen on phones; on tablets a bottom sheet in portrait, a side sheet in landscape */
 @media (min-width: 40rem) {

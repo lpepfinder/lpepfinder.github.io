@@ -3,6 +3,8 @@ import { region } from './viewer.js';
 import { el, attrs } from './dom.js';
 import { change } from './watch-render.js';
 import { price } from './price.js';
+import { origin } from './release-parts.js';
+import { hrefFor } from './selection.js';
 
 /**
  * The Changes and Available now views of the watch page, as DOM.
@@ -47,20 +49,26 @@ export function byShop(items, rows, shopIds, shops) {
 
 const collator = new Intl.Collator(undefined, { sensitivity: 'base', numeric: true });
 
-/** One shop: a <details> whose records are drawn the first time it opens (long lists stay cheap). */
-export function shopGroup(g, search, rates) {
-  const where = [g.shop.name, g.shop.country && countryName(g.shop.country)].filter(Boolean).join(' · ');
-  const list = el('ul');
-  const details = el('details', {},
-    el('summary', {}, el('h3', { textContent: where }), el('span', { textContent: tn('results.records', g.records.length) })),
+/** One shop of "Available now": a row linking to ?view=now&shop=<id> (name, flag, count), opening its detail. */
+export function shopRow(g) {
+  return el('li', {}, attrs(el('vf-watch-shop', {},
+    el('a', { href: hrefFor(g.id, 'shop') },
+      el('h3', { textContent: g.shop.name }),
+      origin(g.shop.country),
+      el('span', { textContent: tn('results.records', g.records.length) }))),
+  { shop: g.id, country: g.shop.country || null, count: g.records.length, local: String(!!region && g.shop.country === region) }));
+}
+
+/** The shop's detail: name and place, "Visit shop", the watched records in stock there (A–Z, linking to their detail in the search). */
+export function shopDetail(g, search, rates) {
+  const sorted = [...g.records].sort((a, b) => collator.compare(a.title, b.title));
+  return [
+    el('hgroup', {},
+      el('h2', { id: 'watch-shop-title', tabIndex: -1, textContent: g.shop.name }),
+      el('p', { textContent: [g.shop.country && countryName(g.shop.country), tn('results.records', g.records.length)].filter(Boolean).join(' · ') })),
     g.shop.origin ? el('p', {}, el('a', { href: g.shop.origin, rel: 'nofollow', textContent: t('watchPage.visitShop', { shop: g.shop.name }) })) : null,
-    list);
-  details.addEventListener('toggle', () => {
-    if (!details.open || list.childElementCount) return;
-    const sorted = [...g.records].sort((a, b) => collator.compare(a.title, b.title));
-    list.append(...sorted.map((r) => el('li', {},
-      el('a', { href: `${search}?q=${encodeURIComponent(r.title)}`, textContent: r.title }),
-      r.price != null ? price(r.price, g.shop.currency, rates) : null)));
-  });
-  return attrs(el('vf-watch-shop', {}, details), { country: g.shop.country || null, count: g.records.length });
+    el('ul', {}, ...sorted.map((r) => el('li', {},
+      el('a', { href: `${search}?q=${encodeURIComponent(r.title)}&r=${r.key}`, textContent: r.title }),
+      r.price != null ? price(r.price, g.shop.currency, rates) : null))),
+  ].filter(Boolean);
 }

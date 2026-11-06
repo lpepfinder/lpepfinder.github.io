@@ -295,7 +295,8 @@
     },
     "showing": "Showing {shown} of {total}",
     "noMatch": "No watched record matches “{query}”.",
-    "emptyList": "You're not watching any records yet. Tap Watch on a search result, or import a watchlist file below."
+    "emptyList": "You're not watching any records yet. Tap Watch on a search result, or import a watchlist file below.",
+    "backShops": "Shops"
   },
   "navApp": "Main",
   "navSite": "Explore",

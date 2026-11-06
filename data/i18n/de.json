@@ -295,7 +295,8 @@
     },
     "showing": "{shown} von {total} angezeigt",
     "noMatch": "Keine gemerkte Platte passt zu „{query}“.",
-    "emptyList": "Sie merken sich noch keine Platten. Tippen Sie bei einem Suchergebnis auf Merken oder importieren Sie unten eine Merklisten-Datei."
+    "emptyList": "Sie merken sich noch keine Platten. Tippen Sie bei einem Suchergebnis auf Merken oder importieren Sie unten eine Merklisten-Datei.",
+    "backShops": "Läden"
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",

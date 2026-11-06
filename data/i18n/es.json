@@ -295,7 +295,8 @@
     },
     "showing": "Mostrando {shown} de {total}",
     "noMatch": "Ningún disco seguido coincide con «{query}».",
-    "emptyList": "Aún no sigues ningún disco. Toca Seguir en un resultado de búsqueda o importa un archivo de lista abajo."
+    "emptyList": "Aún no sigues ningún disco. Toca Seguir en un resultado de búsqueda o importa un archivo de lista abajo.",
+    "backShops": "Tiendas"
   },
   "navApp": "Principal",
   "navSite": "Explorar",

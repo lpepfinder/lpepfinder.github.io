@@ -1,39 +1,40 @@
 /**
- * The release the detail shows, in the URL as ?r=<key>, so a link opens it and Back closes it.
- * The first selection pushes a history entry; switching between releases replaces it, so Back
- * leaves the detail in one step. Closing goes back when we pushed, else drops r from the URL.
+ * What a detail shows, in the URL (?r=<release key> on search and artist pages, ?shop=<id> on the
+ * watchlist), so a link opens it and Back closes it. The first selection pushes a history entry;
+ * switching replaces it, so Back leaves the detail in one step. Closing goes back when we pushed,
+ * else drops the parameter from the URL.
  */
 const PARAM = 'r';
 
-const urlWith = (key) => {
+const urlWith = (key, param) => {
   const url = new URL(location.href);
-  if (key) url.searchParams.set(PARAM, key);
-  else url.searchParams.delete(PARAM);
+  if (key) url.searchParams.set(param, key);
+  else url.searchParams.delete(param);
   return url;
 };
 
 /** The selected key, or null. */
-export const selected = () => new URLSearchParams(location.search).get(PARAM);
+export const selected = (param = PARAM) => new URLSearchParams(location.search).get(param);
 
-/** Link of a row: this page and its filters, with r. */
-export const hrefFor = (key) => {
-  const url = urlWith(key);
+/** Link of a row: this page and its filters, with the parameter. */
+export const hrefFor = (key, param = PARAM) => {
+  const url = urlWith(key, param);
   return url.pathname + url.search;
 };
 
-/** Select a release (the reader picked it). */
-export function select(key) {
-  if (selected() === key) return;
-  if (history.state?.[PARAM]) history.replaceState({ [PARAM]: key }, '', urlWith(key));
-  else history.pushState({ [PARAM]: key }, '', urlWith(key));
+/** Select (the reader picked it). */
+export function select(key, param = PARAM) {
+  if (selected(param) === key) return;
+  if (history.state?.[param]) history.replaceState({ [param]: key }, '', urlWith(key, param));
+  else history.pushState({ [param]: key }, '', urlWith(key, param));
 }
 
 /** Leave the selection (close button, Escape). */
-export function unselect() {
-  if (!selected()) return;
-  if (history.state?.[PARAM]) history.back();
-  else history.replaceState(null, '', urlWith(null));
+export function unselect(param = PARAM) {
+  if (!selected(param)) return;
+  if (history.state?.[param]) history.back();
+  else history.replaceState(null, '', urlWith(null, param));
 }
 
-/** Drop r without a history step (a deep link to a record that is no longer found). */
-export const forget = () => history.replaceState(null, '', urlWith(null));
+/** Drop the parameter without a history step (a link to something no longer there). */
+export const forget = (param = PARAM) => history.replaceState(null, '', urlWith(null, param));
