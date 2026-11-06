@@ -7,6 +7,8 @@ main:has(vf-dig[status="ready"]) > :is(vf-record-list, section), main:has(vf-dig
 /* crates: tabs with counts, one line */
 vf-dig > nav ul { display: flex; flex-wrap: nowrap; gap: var(--space-1); margin: 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: none; border-block-end: var(--line) solid var(--c-line); }
 vf-dig > nav li { flex: none; }
+/* empty crates step aside (the one shown stays, with its empty message) */
+vf-dig[status="ready"] > nav li:has(data[value="0"]):not(:has([aria-current])) { display: none; }
 /* "Your records" only with a watchlist */
 vf-dig:not([watching]) > nav li:has(a[crate="mine"]) { display: none; }
 vf-dig > nav a[crate="mine"] data:not(:empty) { color: var(--c-accent); font-weight: var(--weight-bold); }
@@ -46,3 +48,9 @@ vf-dig-status:empty { display: none; }
 
 /* icons in tabs and chips: a little smaller than the words' line */
 vf-dig > :is(nav, form) vf-icon { --icon-size: 1rem; flex: none; }
+
+/* phones: Dig is a top-level tab, its name in the tab bar: the covers come first, not an introduction */
+@media (max-width: 40rem) {
+  main:has(vf-dig[status="ready"]) > hgroup > p { display: none; }
+  main:has(vf-dig) > hgroup h1 { font-size: var(--size-2); margin-block: var(--space-2) 0; }
+}

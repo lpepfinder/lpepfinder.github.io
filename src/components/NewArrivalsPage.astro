@@ -26,8 +26,8 @@ const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
 const crates = ['mine', 'new', 'restock', 'drop'];
 const crateIcons = { mine: 'star', new: 'sparkle', restock: 'refresh', drop: 'trend-down' };
 ---
-<Base lang={lang} title={pageTitle(t(lang, `${scope.key}SeoTitle`, vars))} description={t(lang, `${scope.key}Description`, vars)} ld={ld} feed={feed} noindex={!scope.count} strings={['dig']}>
-  <Breadcrumbs lang={lang} items={crumbs} />
+<Base lang={lang} title={pageTitle(t(lang, `${scope.key}SeoTitle`, vars))} description={t(lang, `${scope.key}Description`, vars)} ld={ld} feed={feed} noindex={!scope.count} strings={['dig']} data="/dig.json">
+  {scope.key !== 'new' && <Breadcrumbs lang={lang} items={crumbs} />}
   <hgroup>
     <h1 id="new-title">{scope.key === 'new' ? t(lang, 'dig.title') : t(lang, `${scope.key}Title`, vars)}</h1>
     <p>{scope.key === 'new' ? t(lang, 'dig.intro') : scope.count ? t(lang, `${scope.key}Description`, vars) : t(lang, 'newEmpty', vars)}</p>
