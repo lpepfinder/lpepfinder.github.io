@@ -98,7 +98,7 @@ vf-icon[name="bluesky"] { --icon: var(--icon-bluesky); }
 }
 
 @media (min-width: 48rem) {
-  header { grid-template-columns: auto minmax(0, 36rem) 1fr auto; grid-template-areas: "logo search . tabs"; padding-block: var(--space-2); }
+  header { grid-template-columns: auto minmax(var(--search-min), 36rem) 1fr auto; grid-template-areas: "logo search . tabs"; padding-block: var(--space-2); }
   header > nav { grid-area: tabs; position: static; padding: 0; background: none; border: 0; }
   vf-tabbar { gap: var(--space-2); }
   vf-tabbar a { grid-auto-flow: column; gap: var(--space-2); min-block-size: var(--tap); padding-inline: var(--space-3); font-size: var(--size-s); border-radius: var(--radius); }
@@ -106,4 +106,11 @@ vf-icon[name="bluesky"] { --icon: var(--icon-bluesky); }
   vf-tabbar vf-icon { --icon-size: var(--icon-size-nav); }
   vf-tabbar vf-watch-count { position: static; }
   vf-app { padding-block-end: 0; }
+}
+/* tablets and small laptops: the header's tabs are icons (their names stay for screen readers and as tooltips),
+   so the search box keeps its room */
+@media (min-width: 48rem) and (max-width: 75rem) {
+  vf-tabbar a { padding-inline: var(--space-2); }
+  vf-tabbar a > span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  vf-tabbar vf-icon { --icon-size: var(--icon-size-tab); }
 }
