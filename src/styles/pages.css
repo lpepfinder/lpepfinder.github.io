@@ -1,10 +1,16 @@
 /* Page content: home sections, link lists, status table values. */
 hgroup p { color: var(--c-muted); margin: var(--space-2) 0 0; }
 main > section > ol, article > ul { padding-inline-start: var(--space-6); }
-/* link lists in home sections are chips */
-main > section > ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
-main > section > ul > li > a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); color: var(--c-fg); text-decoration: none; }
-main > section > ul > li > a:is(:hover, [aria-current]) { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
+
+/* <vf-chips>: link lists that wrap as chips (home, new arrivals) */
+vf-chips > ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+vf-chips a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); color: var(--c-fg); text-decoration: none; }
+vf-chips a:is(:hover, [aria-current]) { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
+
+/* <vf-grid>: directory lists (countries, cities, shops, artists) in columns */
+vf-grid > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); gap: 0 var(--space-6); }
+vf-grid li { break-inside: avoid; }
+vf-grid li > a { display: inline-flex; align-items: center; min-block-size: var(--tap); }
 
 main > nav ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); font-size: var(--size-s); color: var(--c-muted); }
 main > nav li + li::before { content: var(--breadcrumb-separator); margin-inline-end: var(--space-2); }
@@ -14,7 +20,7 @@ vf-status[value="ok"] { color: var(--c-ok); font-weight: var(--weight-semi); }
 vf-status[value="dead"], vf-status[value="moved"] { color: var(--c-bad); }
 
 @media (forced-colors: active) {
-  main > section > ul > li > a { border: var(--line) solid CanvasText; }
+  vf-chips a { border: var(--line) solid CanvasText; }
 }
 
 /* country page: shops grouped by city; artists grouped by letter */

@@ -3,8 +3,8 @@ import { localPath, countryName, number } from '../lib/i18n.js';
 
 const { lang, countries } = Astro.props;
 ---
-<ul>
+<vf-grid><ul>
   {countries.map((c) => (
     <li><a href={localPath(lang, `/shops/${c.code.toLowerCase()}/`)}>{countryName(lang, c.code)}</a> <data value={c.shops.length}>{number(lang, c.shops.length)}</data></li>
   ))}
-</ul>
+</ul></vf-grid>

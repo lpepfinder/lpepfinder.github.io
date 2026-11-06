@@ -49,6 +49,7 @@
   --price-max: 34%;
   --results-width: 52rem;
   --tab-mark: 3px;
+  --grid-min: 16rem;
   --offers-indent: var(--space-4);
   --disclosure: "▸";
   --disclosure-open: "▾";

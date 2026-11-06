@@ -52,7 +52,7 @@ const ld = [{
   {examples.length > 0 && (
     <section>
       <h2>{t(lang, 'homeTryTitle')}</h2>
-      <ul>{examples.map((e) => <li><a href={`${localPath(lang, '/')}?q=${encodeURIComponent(e)}`}>{e}</a></li>)}</ul>
+      <vf-chips><ul>{examples.map((e) => <li><a href={`${localPath(lang, '/')}?q=${encodeURIComponent(e)}`}>{e}</a></li>)}</ul></vf-chips>
     </section>
   )}
   {fresh.count > 0 && (
@@ -70,7 +70,7 @@ const ld = [{
   {c.artists.length > 0 && (
     <section>
       <h2>{t(lang, 'homeArtistsTitle')}</h2>
-      <ul>{c.artists.slice(0, 24).map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a></li>)}</ul>
+      <vf-chips><ul>{c.artists.slice(0, 24).map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a></li>)}</ul></vf-chips>
       <p><a href="/artists/">{t(lang, 'homeAllArtists')}</a></p>
     </section>
   )}
