@@ -11,6 +11,17 @@ const PAGE_SIZE = 250;
  * The localization cookie pins the shop's home country, so prices come in its own currency.
  */
 const market = (country) => (/^[A-Z]{2}$/.test(country || '') ? { headers: { cookie: `localization=${country}` } } : {});
+
+/**
+ * The currency the shop actually serves us, from /cart.js with the same cookie as the catalog: some shops
+ * ignore the localization cookie and answer a US runner in USD ("53.00" for a ¥5,300 LP). Records are labelled
+ * with it, so a price is never shown in the wrong currency. Null when the cart doesn't say.
+ */
+export async function servedCurrency(origin, country, get = getJson) {
+  const res = await get(`${origin}/cart.js`, market(country));
+  const code = res.ok ? res.data?.currency : null;
+  return /^[A-Z]{3}$/.test(code || '') ? code : null;
+}
 const text = (p) => [p.title, p.product_type, p.vendor, ...(Array.isArray(p.tags) ? p.tags : [p.tags])].join(' ');
 
 /** Shop metadata and a catalog sample. */
@@ -81,11 +92,23 @@ async function* list(url, opts, seen, budget, firstIsFatal) {
   return true;
 }
 
+/** Records of a list labelled with the served currency; returns what the list returns (capped or not). */
+async function* withCurrency(records, currency) {
+  if (!currency) return yield* records;
+  for (;;) {
+    const next = await records.next();
+    if (next.done) return next.value;
+    yield { ...next.value, currency };
+  }
+}
+
 /** Yield in-stock music products: the main list, then collections when the main list is capped. */
 export async function* crawl(shop, opts) {
   const seen = new Set();
   const budget = { left: opts.maxRequests ?? Infinity };
-  const capped = yield* list(`${shop.url}/products.json`, opts, seen, budget, true);
+  const currency = await servedCurrency(shop.url, opts.country);
+  budget.left--;
+  const capped = yield* withCurrency(list(`${shop.url}/products.json`, opts, seen, budget, true), currency);
   if (!capped) return;
   for (let page = 1; page <= 40 && budget.left > 0 && Date.now() < opts.deadline; page++) {
     const res = await getJson(`${shop.url}/collections.json?limit=250&page=${page}`, { retries: 4, ...market(opts.country) });
@@ -93,7 +116,7 @@ export async function* crawl(shop, opts) {
     budget.left--;
     for (const c of collections.sort((a, b) => (b.products_count || 0) - (a.products_count || 0))) {
       if (c.products_count === 0) continue;
-      yield* list(`${shop.url}/collections/${c.handle}/products.json`, opts, seen, budget, false);
+      yield* withCurrency(list(`${shop.url}/collections/${c.handle}/products.json`, opts, seen, budget, false), currency);
     }
     if (collections.length < 250) return;
   }
