@@ -262,7 +262,7 @@ export class VfWatchPage extends HTMLElement {
   labelDiscogs() {
     let user = '';
     try { user = localStorage.getItem('vf.discogs.user') || ''; } catch {}
-    this.discogsButton.textContent = user ? t('watchPage.discogsSynced', { user }) : t('watchPage.discogsButton');
+    this.discogsButton.querySelector('span').textContent = user ? t('watchPage.discogsSynced', { user }) : t('watchPage.discogsButton');
   }
 
   /** "412 of 10,214 in stock at 96 shops · 7 new". */
@@ -291,7 +291,9 @@ export class VfWatchPage extends HTMLElement {
 
   /** The currency button: "Prices in · EUR". */
   labelCurrency() {
-    this.currencyButton.textContent = `${t('currency.label')} · ${currency() || t('currency.shop')}`;
+    // the code alone on the button ("GBP"), the full words for screen readers
+    this.currencyButton.querySelector('span').textContent = currency() || t('currency.shop');
+    this.currencyButton.setAttribute('aria-label', `${t('currency.label')} · ${currency() || t('currency.shop')}`);
   }
 
   markSeen() {

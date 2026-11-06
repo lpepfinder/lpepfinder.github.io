@@ -60,7 +60,7 @@ export class VfDetail extends HTMLElement {
         el('dt', { textContent: t('detail.shops') }), el('dd', { textContent: t('detail.shopsInStock', { shops: tn('results.shops', v.shops), inStock: tn('results.inStockCount', inStock.length) }) })),
       el('menu', {},
         el('li', {}, watch(group, v)),
-        el('li', {}, attrs(el('button', { type: 'button', name: 'share', textContent: t('detail.share') }), { kind: 'secondary' })),
+        el('li', {}, attrs(el('button', { type: 'button', name: 'share' }, attrs(el('vf-icon'), { name: 'share' }), el('span', { textContent: t('detail.share') })), { kind: 'secondary' })),
         cheapest && el('li', {}, el('a', { href: cheapest.url, rel: 'nofollow', textContent: t('detail.cheapest', { shop: cheapest.shop.name, price: money(cheapest, rates) }) }))),
       inStock.length && el('section', {},
         el('h3', {}, t('detail.inStock'), ' ', el('data', { value: inStock.length, textContent: formatNumber(inStock.length) })),

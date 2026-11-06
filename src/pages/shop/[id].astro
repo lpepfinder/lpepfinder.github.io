@@ -45,7 +45,7 @@ const ld = [{
       {place && ' · '}
       {shop.records ? tn(lang, 'shopRecords', shop.records) : t(lang, 'shopListedOnly')}
     </p>
-    <p><a href={shop.url} rel="noopener" kind="strong">{t(lang, 'shopVisit')}: {new URL(shop.url).host}</a></p>
+    <p><a href={shop.url} rel="noopener" kind="strong"><span>{t(lang, 'shopVisit')}: {new URL(shop.url).host}</span><vf-icon name="external"></vf-icon></a></p>
     {fresh.count > 0 && (
       <section>
         <h2 id="shop-new">{t(lang, 'shopNewTitle', { count: number(lang, fresh.count) })}</h2>

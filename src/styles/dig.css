@@ -1,10 +1,11 @@
 /* <vf-dig>: crates to flip through (new, back in stock, price drops) as a cover grid; the server-rendered list hides once it is ready. */
-vf-dig { display: grid; gap: var(--space-3); }
+vf-dig { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); min-inline-size: 0; }
+vf-dig > * { min-inline-size: 0; }
 vf-dig[status="loading"] > :is(ol, button), vf-dig[status="error"] { display: none; }
 main:has(vf-dig[status="ready"]) > :is(vf-record-list, section), main:has(vf-dig[status="ready"]) > p:not(:has(a[type])) { display: none; }
 
 /* crates: tabs with counts, one line */
-vf-dig > nav ul { display: flex; gap: var(--space-1); margin: 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: none; border-block-end: var(--line) solid var(--c-line); }
+vf-dig > nav ul { display: flex; flex-wrap: nowrap; gap: var(--space-1); margin: 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: none; border-block-end: var(--line) solid var(--c-line); }
 vf-dig > nav li { flex: none; }
 /* "Your records" only with a watchlist */
 vf-dig:not([watching]) > nav li:has(a[crate="mine"]) { display: none; }
@@ -42,3 +43,6 @@ vf-dig > button { justify-self: center; }
 vf-dig > button[hidden] { display: none; }
 vf-dig-status { display: block; color: var(--c-muted); }
 vf-dig-status:empty { display: none; }
+
+/* icons in tabs and chips: a little smaller than the words' line */
+vf-dig > :is(nav, form) vf-icon { --icon-size: 1rem; flex: none; }

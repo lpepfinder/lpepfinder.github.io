@@ -104,7 +104,10 @@ vf-watch-backup > p[hidden] { display: none; }
 vf-watch-page > vf-watch-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-2) var(--space-4); }
 vf-watch-page > vf-watch-head hgroup { display: grid; gap: var(--space-1); min-inline-size: 0; }
 vf-watch-page > vf-watch-head h1 { margin: 0; }
-vf-watch-page > vf-watch-head menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+vf-watch-page > vf-watch-head menu { display: flex; flex-wrap: nowrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; min-inline-size: 0; max-inline-size: 100%; }
+vf-watch-page > vf-watch-head menu li { min-inline-size: 0; }
+vf-watch-page > vf-watch-head menu button { max-inline-size: 100%; }
+vf-watch-page > vf-watch-head menu button > span { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 vf-watch-page > vf-watch-head menu button { font-size: var(--size-s); }
 
 /* empty list: the start screen alone, with the import form */
@@ -194,3 +197,7 @@ vf-watch-controls form { display: flex; flex-wrap: wrap; align-items: center; ga
 vf-watch-controls label { display: inline-flex; align-items: center; gap: var(--space-1); }
 vf-watch-controls input { font: inherit; font-size: max(16px, var(--size-s)); inline-size: 7ch; min-block-size: var(--tap); padding-inline: var(--space-2); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
 vf-watch-controls menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+
+/* icons in tabs and chips: a little smaller than the words' line */
+vf-watch-page > :is(nav, vf-watch-filters) vf-icon { --icon-size: 1rem; flex: none; }
+vf-watch-page > nav a { gap: var(--space-1); }

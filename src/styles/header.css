@@ -42,6 +42,25 @@ vf-icon[name="close"] { --icon: var(--icon-close); }
 vf-icon[name="info"] { --icon: var(--icon-info); }
 vf-icon[name="prev"] { --icon: var(--icon-prev); }
 vf-icon[name="next"] { --icon: var(--icon-next); }
+vf-icon[name="share"] { --icon: var(--icon-share); }
+vf-icon[name="external"] { --icon: var(--icon-external); }
+vf-icon[name="truck"] { --icon: var(--icon-truck); }
+vf-icon[name="globe"] { --icon: var(--icon-globe); }
+vf-icon[name="sparkle"] { --icon: var(--icon-sparkle); }
+vf-icon[name="refresh"] { --icon: var(--icon-refresh); }
+vf-icon[name="trend-down"] { --icon: var(--icon-trend-down); }
+vf-icon[name="store"] { --icon: var(--icon-store); }
+vf-icon[name="person"] { --icon: var(--icon-person); }
+vf-icon[name="code"] { --icon: var(--icon-code); }
+vf-icon[name="chart"] { --icon: var(--icon-chart); }
+vf-icon[name="shield"] { --icon: var(--icon-shield); }
+vf-icon[name="pulse"] { --icon: var(--icon-pulse); }
+vf-icon[name="chat"] { --icon: var(--icon-chat); }
+vf-icon[name="plus"] { --icon: var(--icon-plus); }
+vf-icon[name="download"] { --icon: var(--icon-download); }
+vf-icon[name="coin"] { --icon: var(--icon-coin); }
+vf-icon[name="bag"] { --icon: var(--icon-bag); }
+vf-icon[name="shelf"] { --icon: var(--icon-shelf); }
 [dir="rtl"] vf-icon:is([name="prev"], [name="next"]) { scale: -1 1; }
 
 /* phones with results: one compact row (the logo's name stays its accessible name), tucked away while reading down */

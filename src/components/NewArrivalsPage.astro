@@ -24,6 +24,7 @@ const feed = scope.feed && { href: scope.feed, title: t(lang, 'newFeed') };
 const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
 // the Dig crates (vf-dig.js) on /new/ itself; the server-rendered list below stays for search engines and without scripts
 const crates = ['mine', 'new', 'restock', 'drop'];
+const crateIcons = { mine: 'star', new: 'sparkle', restock: 'refresh', drop: 'trend-down' };
 ---
 <Base lang={lang} title={pageTitle(t(lang, `${scope.key}SeoTitle`, vars))} description={t(lang, `${scope.key}Description`, vars)} ld={ld} feed={feed} noindex={!scope.count} strings={['dig']}>
   <Breadcrumbs lang={lang} items={crumbs} />
@@ -34,12 +35,12 @@ const crates = ['mine', 'new', 'restock', 'drop'];
   {scope.key === 'new' && (
     <vf-dig crate="new" status="loading">
       <nav aria-label={t(lang, 'dig.crates')}><ul>
-        {crates.map((c) => <li><a href={`?crate=${c}`} crate={c} aria-current={c === 'new' ? 'page' : undefined}>{t(lang, `dig.crate.${c}`)} <data></data></a></li>)}
+        {crates.map((c) => <li><a href={`?crate=${c}`} crate={c} aria-current={c === 'new' ? 'page' : undefined}><vf-icon name={crateIcons[c]}></vf-icon>{t(lang, `dig.crate.${c}`)} <data></data></a></li>)}
       </ul></nav>
       <form>
-        <label><input type="checkbox" name="ships" checked> {t(lang, 'dig.ships')}</label>
-        <label><input type="checkbox" name="customs"> {t(lang, 'dig.customs')}</label>
-        <label><span>{t(lang, 'dig.format')}</span>
+        <label><input type="checkbox" name="ships" checked><vf-icon name="truck"></vf-icon> {t(lang, 'dig.ships')}</label>
+        <label><input type="checkbox" name="customs"><vf-icon name="globe"></vf-icon> {t(lang, 'dig.customs')}</label>
+        <label><vf-icon name="record"></vf-icon><span>{t(lang, 'dig.format')}</span>
           <select name="format">
             <option value="">{t(lang, 'newAllFormats')}</option>
             {FORMAT_IDS.map((f) => <option value={f}>{t(lang, `formats.${f}`)}</option>)}

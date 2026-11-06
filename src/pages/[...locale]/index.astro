@@ -50,7 +50,7 @@ const ld = [{
   <vf-home-card>
     <h2>{t(lang, 'homeWantsTitle')}</h2>
     <p>{t(lang, 'homeWantsBody')}</p>
-    <a href={localPath(lang, '/watch/')} kind="strong">{t(lang, 'homeWantsAction')}</a>
+    <a href={localPath(lang, '/watch/')} kind="strong"><vf-icon name="download"></vf-icon>{t(lang, 'homeWantsAction')}</a>
   </vf-home-card>
   {strip.count > 0 && (
     <section aria-labelledby="home-new">

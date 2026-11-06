@@ -14,7 +14,7 @@ import { pageTitle } from '../../lib/seo.js';
  */
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
-const views = [['available', 'viewAvailable'], ['now', 'viewShops'], ['changes', 'viewChanges'], ['all', 'viewAll']];
+const views = [['available', 'viewAvailable', 'bag'], ['now', 'viewShops', 'store'], ['changes', 'viewChanges', 'pulse'], ['all', 'viewAll', 'star']];
 const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
 ---
 <Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage']}>
@@ -30,8 +30,8 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
         <vf-watch-summary></vf-watch-summary>
       </hgroup>
       <menu>
-        <li><button type="button" name="discogs" kind="secondary">{t(lang, 'watchPage.discogsButton')}</button></li>
-        <li><button type="button" name="currency" kind="secondary">{t(lang, 'currency.label')}</button></li>
+        <li><button type="button" name="discogs" kind="secondary"><vf-icon name="download"></vf-icon><span>{t(lang, 'watchPage.discogsButton')}</span></button></li>
+        <li><button type="button" name="currency" kind="secondary"><vf-icon name="coin"></vf-icon><span>{t(lang, 'currency.label')}</span></button></li>
       </menu>
     </vf-watch-head>
     <vf-watch-start>
@@ -53,7 +53,7 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
     <output aria-live="polite"></output>
     <nav aria-label={t(lang, 'watchPage.views')}>
       <ul>
-        {views.map(([view, label], i) => <li><a href={`?view=${view}`} view={view} aria-current={i === 0 ? 'page' : undefined}>{t(lang, `watchPage.${label}`)} <data></data></a></li>)}
+        {views.map(([view, label, icon], i) => <li><a href={`?view=${view}`} view={view} aria-current={i === 0 ? 'page' : undefined}><vf-icon name={icon}></vf-icon>{t(lang, `watchPage.${label}`)} <data></data></a></li>)}
       </ul>
     </nav>
     <vf-watch-filters>
@@ -63,9 +63,9 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
             {sorts.map((v) => <option value={v}>{t(lang, `watchPage.sort.${v}`)}</option>)}
           </select>
         </label>
-        <label><input type="checkbox" name="ships" checked> {t(lang, 'watchPage.filterShips')}</label>
-        <label><input type="checkbox" name="customs"> {t(lang, 'watchPage.filterCustoms')}</label>
-        <label>{t(lang, 'watchPage.filterMax')} <input type="text" name="max" inputmode="decimal" size="4" autocomplete="off" placeholder="–"> <vf-currency-code>EUR</vf-currency-code></label>
+        <label><input type="checkbox" name="ships" checked><vf-icon name="truck"></vf-icon> {t(lang, 'watchPage.filterShips')}</label>
+        <label><input type="checkbox" name="customs"><vf-icon name="globe"></vf-icon> {t(lang, 'watchPage.filterCustoms')}</label>
+        <label><vf-icon name="coin"></vf-icon>{t(lang, 'watchPage.filterMax')} <input type="text" name="max" inputmode="decimal" size="4" autocomplete="off" placeholder="–"> <vf-currency-code>EUR</vf-currency-code></label>
       </form>
     </vf-watch-filters>
     <vf-watch-available count="">

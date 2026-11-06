@@ -13,20 +13,20 @@ export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 const groups = [
   { title: 'moreBrowse', links: [
-    { href: localPath(lang, '/shops/'), key: 'navShops' },
-    { href: '/artists/', key: 'navArtists' },
-    { href: '/new/', key: 'tabNew' },
+    { href: localPath(lang, '/shops/'), key: 'navShops', icon: 'store' },
+    { href: '/artists/', key: 'navArtists', icon: 'person' },
+    { href: '/new/', key: 'tabNew', icon: 'record' },
   ] },
   { title: 'moreShop', links: [
-    { href: localPath(lang, '/submit/'), key: 'aboutSuggestAction' },
+    { href: localPath(lang, '/submit/'), key: 'aboutSuggestAction', icon: 'plus' },
   ] },
   { title: 'moreAbout', links: [
-    { href: localPath(lang, '/about/'), key: 'navAbout' },
-    { href: localPath(lang, '/privacy/'), key: 'navPrivacy' },
-    { href: '/status/', key: 'navStatus' },
-    { href: config.repository, key: 'footerGithub' },
-    { href: `${config.repository}/issues`, key: 'contactGithub' },
-    { href: config.analytics.publicDashboard, key: 'footerAnalytics' },
+    { href: localPath(lang, '/about/'), key: 'navAbout', icon: 'info' },
+    { href: localPath(lang, '/privacy/'), key: 'navPrivacy', icon: 'shield' },
+    { href: '/status/', key: 'navStatus', icon: 'pulse' },
+    { href: config.repository, key: 'footerGithub', icon: 'code' },
+    { href: `${config.repository}/issues`, key: 'contactGithub', icon: 'chat' },
+    { href: config.analytics.publicDashboard, key: 'footerAnalytics', icon: 'chart' },
   ] },
 ];
 ---
@@ -46,7 +46,7 @@ const groups = [
     {groups.map((g) => (
       <section>
         <h2>{t(lang, g.title)}</h2>
-        <ul>{g.links.map((n) => <li><a href={n.href}>{t(lang, n.key)}</a></li>)}</ul>
+        <ul>{g.links.map((n) => <li><a href={n.href}><vf-icon name={n.icon}></vf-icon><span>{t(lang, n.key)}</span></a></li>)}</ul>
       </section>
     ))}
     <p>{t(lang, 'footerNote')}</p>
