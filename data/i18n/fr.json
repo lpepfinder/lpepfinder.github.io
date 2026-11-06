@@ -94,6 +94,27 @@
     "Depuis",
     "Vu en ligne"
   ],
+  "statusQualityTitle": "Contrôles des données",
+  "statusQualityBody": "Chaque mise à jour vérifie les disques : annonces de test et articles hors disques sont écartés, les prix invraisemblables masqués.",
+  "statusQualityColumns": [
+    "Contrôle",
+    "Disques"
+  ],
+  "quality": {
+    "no-title": "Sans titre",
+    "test-listing": "Annonce de test",
+    "not-record": "Pas un disque",
+    "shop-price-low": "Prix du disquaire trop bas (devise ?)",
+    "shop-price-high": "Prix du disquaire trop hauts",
+    "price-low": "Prix trop bas",
+    "price-high": "Prix trop haut"
+  },
+  "statusQualityShops": "Disquaires aux prix suspects",
+  "statusQualityShopColumns": [
+    "Disquaire",
+    "Devise",
+    "Prix médian"
+  ],
   "navPrivacy": "Confidentialité",
   "privacyTitle": "Politique de confidentialité",
   "privacyBody": [

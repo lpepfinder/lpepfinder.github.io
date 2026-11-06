@@ -94,6 +94,27 @@
     "Da",
     "Ultima volta attivo"
   ],
+  "statusQualityTitle": "Controllo dei dati",
+  "statusQualityBody": "Ogni aggiornamento controlla i dischi: annunci di prova e articoli che non sono dischi vengono esclusi, i prezzi inverosimili nascosti.",
+  "statusQualityColumns": [
+    "Controllo",
+    "Dischi"
+  ],
+  "quality": {
+    "no-title": "Senza titolo",
+    "test-listing": "Annuncio di prova",
+    "not-record": "Non è un disco",
+    "shop-price-low": "Prezzi del negozio troppo bassi (valuta?)",
+    "shop-price-high": "Prezzi del negozio troppo alti",
+    "price-low": "Prezzo troppo basso",
+    "price-high": "Prezzo troppo alto"
+  },
+  "statusQualityShops": "Negozi con prezzi sospetti",
+  "statusQualityShopColumns": [
+    "Negozio",
+    "Valuta",
+    "Prezzo mediano"
+  ],
   "navPrivacy": "Privacy",
   "privacyTitle": "Informativa sulla privacy",
   "privacyBody": [

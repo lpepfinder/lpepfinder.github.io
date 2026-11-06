@@ -94,6 +94,27 @@
     "Since",
     "Last seen alive"
   ],
+  "statusQualityTitle": "Data checks",
+  "statusQualityBody": "Each build checks the records: test listings and non-records are left out, implausible prices are hidden.",
+  "statusQualityColumns": [
+    "Check",
+    "Records"
+  ],
+  "quality": {
+    "no-title": "No title",
+    "test-listing": "Shop test listing",
+    "not-record": "Not a record",
+    "shop-price-low": "Shop prices too low (currency?)",
+    "shop-price-high": "Shop prices too high",
+    "price-low": "Price too low",
+    "price-high": "Price too high"
+  },
+  "statusQualityShops": "Shops with suspect prices",
+  "statusQualityShopColumns": [
+    "Shop",
+    "Currency",
+    "Median price"
+  ],
   "navPrivacy": "Privacy",
   "privacyTitle": "Privacy policy",
   "privacyBody": [

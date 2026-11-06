@@ -94,6 +94,27 @@
     "Seit",
     "Zuletzt erreichbar"
   ],
+  "statusQualityTitle": "Datenprüfung",
+  "statusQualityBody": "Jeder Build prüft die Platten: Testartikel und Nicht-Tonträger fallen weg, unplausible Preise werden ausgeblendet.",
+  "statusQualityColumns": [
+    "Prüfung",
+    "Platten"
+  ],
+  "quality": {
+    "no-title": "Ohne Titel",
+    "test-listing": "Testartikel",
+    "not-record": "Kein Tonträger",
+    "shop-price-low": "Ladenpreise zu niedrig (Währung?)",
+    "shop-price-high": "Ladenpreise zu hoch",
+    "price-low": "Preis zu niedrig",
+    "price-high": "Preis zu hoch"
+  },
+  "statusQualityShops": "Läden mit fraglichen Preisen",
+  "statusQualityShopColumns": [
+    "Laden",
+    "Währung",
+    "Medianpreis"
+  ],
   "navPrivacy": "Datenschutz",
   "privacyTitle": "Datenschutzerklärung",
   "privacyBody": [
