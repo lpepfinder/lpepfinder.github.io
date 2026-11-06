@@ -4,6 +4,7 @@ import { selectKey } from '../lib/search/select-key.js';
 import { region, rates, comparable, CURRENCY_EVENT } from './viewer.js';
 import { ReleaseDetail } from './release-detail.js';
 import './vf-release.js';
+import { listen, unlisten } from './dom.js';
 
 /**
  * <vf-release-list>: server-rendered release rows of a static page (an artist) with the same
@@ -12,7 +13,11 @@ import './vf-release.js';
  * in the browser like the search's (prices in the viewer's currency).
  */
 export class VfReleaseList extends HTMLElement {
+  disconnectedCallback() { unlisten(this); }
+
   async connectedCallback() {
+    // after client-side navigation, the new page's elements upgrade parent first: ready the ones used here
+    customElements.upgrade(this);
     if (this.details) return;
     this.list = this.querySelector('ol');
     this.live = this.querySelector(':scope > output');
@@ -26,7 +31,7 @@ export class VfReleaseList extends HTMLElement {
       group.row = this.list.querySelector(`vf-release[release="${key}"]`);
       this.details.add(key, group);
     }
-    addEventListener(CURRENCY_EVENT, () => this.render());
+    listen(this, window, CURRENCY_EVENT, () => this.render());
     this.render();
     await this.details.restore(async () => {}, () => false);
   }

@@ -1,5 +1,6 @@
 import { t, formatNumber, countryName } from './i18n.js';
 import { region, coversOn, setCovers } from './viewer.js';
+import { listen, unlisten } from './dom.js';
 
 /**
  * <vf-filters>: toggles in the filters sheet, real controls of the search form (form="search"),
@@ -8,6 +9,8 @@ import { region, coversOn, setCovers } from './viewer.js';
  * Fires "filters" when a toggle changes; `value` is { inStock, near, formats, covers }.
  */
 export class VfFilters extends HTMLElement {
+  disconnectedCallback() { unlisten(this); }
+
   connectedCallback() {
     this.stock = this.querySelector('input[name="stock"]');
     this.near = this.querySelector('input[name="near"]');
@@ -17,7 +20,7 @@ export class VfFilters extends HTMLElement {
     else this.near.closest('label').hidden = true;
     this.covers.checked = coversOn();
     this.fromUrl();
-    addEventListener('popstate', () => this.fromUrl());
+    listen(this, window, 'vf-popstate', () => this.fromUrl());
     this.addEventListener('change', (e) => {
       if (e.target.closest('vf-currency')) return;
       if (e.target === this.covers) setCovers(this.covers.checked);

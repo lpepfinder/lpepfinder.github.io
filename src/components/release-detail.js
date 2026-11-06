@@ -3,6 +3,7 @@ import { groupView } from '../lib/search/group.js';
 import { selected, select, unselect, forget } from './selection.js';
 import './vf-sheet.js';
 import './vf-detail.js';
+import { listen } from './dom.js';
 
 /** Pages a deep link (?r=) may load looking for its release. */
 const LOOK_AHEAD = 3;
@@ -42,7 +43,7 @@ export class ReleaseDetail {
     this.sheet.addEventListener('dismiss', () => unselect());
     this.sheet.addEventListener('dock', () => this.redock());
     this.detail.addEventListener('share', () => results.share());
-    addEventListener('popstate', () => this.fromUrl());
+    listen(results, window, 'vf-popstate', () => this.fromUrl());
   }
 
   /** A new result set. */

@@ -2,6 +2,7 @@ import { SearchClient } from '../lib/search/client.js';
 import { t } from './i18n.js';
 import { addRecent } from './recent.js';
 import './vf-results.js';
+import { listen, unlisten } from './dom.js';
 
 /** Slices one page may load at most, so a query of one record in thousands of copies stays bounded. */
 const MAX_SLICES = 10;
@@ -12,14 +13,18 @@ const MAX_SLICES = 10;
  * simply submits to the home page.
  */
 export class VfSearch extends HTMLElement {
+  disconnectedCallback() { unlisten(this); }
+
   connectedCallback() {
     // "/" focuses the search box (keyboards), unless the reader is typing somewhere
-    document.addEventListener('keydown', (e) => {
+    listen(this, document, 'keydown', (e) => {
       if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || e.target.closest?.('input, textarea, select, [contenteditable]')) return;
       e.preventDefault();
       this.querySelector('input[name="q"]').focus();
     });
     this.results = document.querySelector('vf-results');
+    // after client-side navigation, the new page's elements upgrade parent first: ready the ones used here
+    if (this.results) customElements.upgrade(this.results);
     if (!this.results) return;
     this.client = new SearchClient(this.getAttribute('index') || '/search/');
     this.form = this.querySelector('form');
@@ -30,7 +35,7 @@ export class VfSearch extends HTMLElement {
     this.results.addEventListener('more', () => this.more(true));
     this.results.addEventListener('retry', () => { this.client = new SearchClient(this.client.base); this.run(this.input.value, { submitted: true }); });
     // back/forward: search again only when the query changed (not for ?r= of a release)
-    window.addEventListener('popstate', () => {
+    listen(this, window, 'vf-popstate', () => {
       if ((new URLSearchParams(location.search).get('q') || '').trim() !== this.query) this.fromUrl();
     });
     this.fromUrl();

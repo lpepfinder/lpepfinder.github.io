@@ -1,6 +1,7 @@
 import { shopDetail } from './watch-views.js';
 import { selected, select, unselect } from './selection.js';
 import './vf-sheet.js';
+import { listen } from './dom.js';
 
 const PARAM = 'shop';
 const modified = (e) => e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
@@ -27,7 +28,7 @@ export class WatchShopPane {
     });
     this.sheet.addEventListener('dismiss', () => unselect(PARAM));
     this.sheet.addEventListener('dock', () => this.fromUrl());
-    addEventListener('popstate', () => this.fromUrl());
+    listen(page, window, 'vf-popstate', () => this.fromUrl());
   }
 
   /** New groups (after a check or a currency change); keeps what is shown. */

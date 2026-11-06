@@ -1,7 +1,7 @@
 import { t, tn, formatNumber } from './i18n.js';
 import { addToGroups, groupView, orderGroups, totals } from '../lib/search/group.js';
 import { region, rates, comparable, currency, CURRENCY_EVENT } from './viewer.js';
-import { el, attrs } from './dom.js';
+import { el, attrs, listen, unlisten } from './dom.js';
 import './vf-filters.js';
 import './vf-release.js';
 import './vf-ad.js';
@@ -15,7 +15,11 @@ import { selectKey } from './release-parts.js';
  * Fires "more" (show more) and "retry" (index error) events.
  */
 export class VfResults extends HTMLElement {
+  disconnectedCallback() { unlisten(this); }
+
   connectedCallback() {
+    // after client-side navigation, the new page's elements upgrade parent first: ready the ones used here
+    customElements.upgrade(this);
     this.heading = this.querySelector('vf-results-bar h2');
     this.countLine = this.querySelector('vf-results-bar p');
     this.filters = this.querySelector('vf-filters');
@@ -38,7 +42,7 @@ export class VfResults extends HTMLElement {
     if (this.native) this.shareButton.textContent = t('results.shareLink');
     this.shareButton.addEventListener('click', () => this.share());
     this.querySelector('button[name="retry"]')?.addEventListener('click', () => this.dispatchEvent(new Event('retry')));
-    addEventListener(CURRENCY_EVENT, () => { if (this.groups.size) this.render(true); });
+    listen(this, window, CURRENCY_EVENT, () => { if (this.groups.size) this.render(true); });
     this.filters.addEventListener('filters', () => {
       this.render(true);
       this.live.textContent = this.countLine.textContent;

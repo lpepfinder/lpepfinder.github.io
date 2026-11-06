@@ -1,11 +1,19 @@
-/** UI strings rendered by the page builder into <script type="application/json" data-i18n>. */
-const el = document.querySelector('script[data-i18n]');
-const strings = el ? JSON.parse(el.textContent) : {};
+/**
+ * UI strings rendered by the page builder into <script type="application/json" data-i18n>, read again when
+ * client-side navigation brings a page with other strings (each page carries the groups it needs).
+ */
+let source = null;
+let cache = {};
+const strings = () => {
+  const el = document.querySelector('script[data-i18n]');
+  if (el !== source) { source = el; cache = el ? JSON.parse(el.textContent) : {}; }
+  return cache;
+};
 
 export const lang = document.documentElement.lang || 'en';
 
 export function t(key, vars = {}) {
-  const s = strings[key] ?? key;
+  const s = strings()[key] ?? key;
   return s.replace(/\{(\w+)\}/g, (_, k) => (vars[k] ?? ''));
 }
 
@@ -27,5 +35,5 @@ export function formatPrice(cents, currency) {
 const plurals = new Intl.PluralRules(lang);
 export function tn(key, count, vars = {}) {
   const form = `${key}.${plurals.select(count)}`;
-  return t(form in strings ? form : `${key}.other`, { ...vars, count: formatNumber(count) });
+  return t(form in strings() ? form : `${key}.other`, { ...vars, count: formatNumber(count) });
 }

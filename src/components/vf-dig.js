@@ -4,7 +4,7 @@ import { reach, noCustoms } from '../lib/watch/reach.js';
 import { t, formatNumber, formatPrice } from './i18n.js';
 import { rates, region, toViewer, currency, CURRENCY_EVENT } from './viewer.js';
 import { flag } from './release-parts.js';
-import { el, attrs } from './dom.js';
+import { el, attrs, listen, unlisten } from './dom.js';
 import { load } from '../lib/watch/store.js';
 import { releaseKey } from '../lib/search/release-key.js';
 
@@ -25,7 +25,11 @@ const daysBetween = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / 864e5
  * three crates, by release key (the record's own and those its catalog number found); it shows only with a watchlist.
  */
 export class VfDig extends HTMLElement {
+  disconnectedCallback() { unlisten(this); }
+
   async connectedCallback() {
+    // after client-side navigation, the new page's elements upgrade parent first: ready the ones used here
+    customElements.upgrade(this);
     this.grid = this.querySelector(':scope > ol');
     this.form = this.querySelector(':scope > form');
     this.more = this.querySelector(':scope > button[name="more"]');
@@ -52,7 +56,7 @@ export class VfDig extends HTMLElement {
       scrollTo({ top: this.offsetTop - 80 });
     });
     this.more.addEventListener('click', () => { this.limit += PAGE; this.render(true); });
-    addEventListener(CURRENCY_EVENT, () => this.render());
+    listen(this, window, CURRENCY_EVENT, () => this.render());
     try {
       const [data, table, regions] = await Promise.all([
         fetch('/dig.json').then((r) => (r.ok ? r.json() : Promise.reject())),

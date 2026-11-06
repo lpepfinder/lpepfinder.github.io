@@ -2,7 +2,10 @@
  * <vf-strip at="start|middle|end">: a scrolling row of cards with Previous/Next buttons (keyboard and
  * mouse users never need to swipe). The buttons scroll by most of a screen; `at` reflects the position.
  */
+import { listen, unlisten } from './dom.js';
 export class VfStrip extends HTMLElement {
+  disconnectedCallback() { unlisten(this); }
+
   connectedCallback() {
     this.list = this.querySelector('ul');
     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
@@ -18,7 +21,7 @@ export class VfStrip extends HTMLElement {
       this.setAttribute('at', max <= 0 ? 'all' : x <= 1 ? 'start' : x >= max ? 'end' : 'middle');
     };
     this.list.addEventListener('scroll', update, { passive: true });
-    addEventListener('resize', update, { passive: true });
+    listen(this, window, 'resize', update, { passive: true });
     update();
   }
 }

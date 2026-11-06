@@ -4,9 +4,12 @@
  * search header away while reading down a list and bring it back on the way up.
  * Tapping the Search tab while on the search page scrolls to the top and focuses the search box.
  */
+import { listen, unlisten } from './dom.js';
 const THRESHOLD = 8;
 
 export class VfApp extends HTMLElement {
+  disconnectedCallback() { unlisten(this); }
+
   connectedCallback() {
     let last = scrollY;
     let queued = false;
@@ -18,7 +21,7 @@ export class VfApp extends HTMLElement {
       else return;
       last = y;
     };
-    addEventListener('scroll', () => {
+    listen(this, window, 'scroll', () => {
       if (!queued) { queued = true; requestAnimationFrame(update); }
     }, { passive: true });
     update();

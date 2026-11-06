@@ -8,7 +8,7 @@ import { toast } from './vf-toast.js';
 import { selected, select, unselect, forget } from './selection.js';
 import { comparable, region } from './viewer.js';
 import { t } from './i18n.js';
-import { el } from './dom.js';
+import { el, listen } from './dom.js';
 import './vf-sheet.js';
 import './vf-detail.js';
 
@@ -67,7 +67,7 @@ export class WatchRecordPane {
     this.controls.querySelector('form').addEventListener('submit', (e) => { e.preventDefault(); this.setMax(); });
     this.controls.querySelector('button[name="bought"]').addEventListener('click', () => this.drop('watchPage.boughtDone'));
     this.controls.querySelector('button[name="remove"]').addEventListener('click', () => this.drop('watchPage.removed'));
-    addEventListener('popstate', () => this.fromUrl());
+    listen(page, window, 'vf-popstate', () => this.fromUrl());
   }
 
   /** Keys of the rows shown, in order (after a check, a filter or a currency change). */

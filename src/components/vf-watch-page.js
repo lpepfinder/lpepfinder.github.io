@@ -15,6 +15,7 @@ import { convert } from '../lib/currency.js';
 import { readFilters, saveFilters } from './watch-filters.js';
 import './vf-watch-all.js';
 import './vf-watch-import.js';
+import { listen, unlisten } from './dom.js';
 
 const daysAgo = (n) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
 
@@ -33,7 +34,11 @@ const VIEWS = ['available', 'now', 'changes', 'all'];
  * Changes are marked seen when the page is left.
  */
 export class VfWatchPage extends HTMLElement {
+  disconnectedCallback() { this.markSeen(); unlisten(this); }
+
   connectedCallback() {
+    // after client-side navigation, the new page's elements upgrade parent first: ready the ones used here
+    customElements.upgrade(this);
     this.live = this.querySelector(':scope > output');
     this.summary = this.querySelector('vf-watch-summary');
     this.progress = this.querySelector(':scope > vf-progress');
@@ -51,7 +56,7 @@ export class VfWatchPage extends HTMLElement {
     this.record = new WatchRecordPane(this.views.available, this);
     this.discogsButton = this.querySelector('button[name="discogs"]');
     this.discogsButton.addEventListener('click', () => this.querySelector('vf-sheet[name="discogs"]').open());
-    addEventListener('vf-watch-imported', () => this.labelDiscogs());
+    listen(this, window, 'vf-watch-imported', () => this.labelDiscogs());
     this.labelDiscogs();
     this.currencyButton = this.querySelector('button[name="currency"]');
     this.currencyButton.addEventListener('click', () => this.querySelector('vf-sheet[name="currency"]').open());
@@ -68,12 +73,12 @@ export class VfWatchPage extends HTMLElement {
       history.pushState(null, '', a.href);
       this.show(true);
     });
-    addEventListener('popstate', () => this.show(false));
-    addEventListener(data.PROGRESS, (e) => this.step(e.detail));
-    addEventListener(CURRENCY_EVENT, () => { this.labelCurrency(); this.renderChanges(); this.renderHits(); });
+    listen(this, window, 'vf-popstate', () => this.show(false));
+    listen(this, window, data.PROGRESS, (e) => this.step(e.detail));
+    listen(this, window, CURRENCY_EVENT, () => { this.labelCurrency(); this.renderChanges(); this.renderHits(); });
     const leave = () => this.markSeen();
-    addEventListener('pagehide', leave);
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') leave(); });
+    listen(this, window, 'pagehide', leave);
+    listen(this, document, 'visibilitychange', () => { if (document.visibilityState === 'hidden') leave(); });
     // "new" means found in stock since the visit before this one, at least the last config.newDays days
     const visit = load().visit;
     this.newSince = [visit, daysAgo(config.newDays)].filter(Boolean).sort()[0];
