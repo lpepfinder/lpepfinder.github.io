@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseSitemap } from './sitemap.js';
+import { parseSitemap, sitemapEntries } from './sitemap.js';
 import { canonical, isProductUrl, links } from './links.js';
 import { surtPrefix, parseClusterIndex, blocksFor, productUrls } from './commoncrawl.js';
 import { shardOf } from './targets.js';
@@ -76,4 +76,19 @@ test('new readers: parked shops without records are probed again, once', () => {
   const good = { seen: { 'https://x.com/a': { k: 'p', r: { title: 'A', price: 100 } } }, method: 'sitemap', probedAt: '2026-11-01' };
   assert.equal(reevaluate(good), false);
   assert.equal(good.probedAt, '2026-11-01');
+});
+
+test('sitemaps: relative or broken URLs declared in robots.txt', async () => {
+  const asked = [];
+  const ctx = {
+    origin: 'https://recordland.com',
+    robots: { sitemaps: ['/sitemap.xml', 'http://[broken'] },
+    get: async (url) => {
+      asked.push(url);
+      return { ok: true, text: url.endsWith('/sitemap.xml') ? '<sitemapindex><sitemap><loc>/products.xml</loc></sitemap></sitemapindex>' : '<urlset><url><loc>https://recordland.com/p/a</loc></url></urlset>' };
+    },
+  };
+  const entries = await sitemapEntries(ctx);
+  assert.deepEqual(asked, ['https://recordland.com/sitemap.xml', 'https://recordland.com/products.xml']);
+  assert.deepEqual(entries.map((e) => e.loc), ['https://recordland.com/p/a']);
 });

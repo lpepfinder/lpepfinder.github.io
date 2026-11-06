@@ -13,9 +13,12 @@ export function parseSitemap(xml = '') {
   return { index, entries };
 }
 
+const absolute = (u, base) => { try { return new URL(String(u).trim(), base + '/').href; } catch { return null; } };
+
 /** Read up to `maxFiles` sitemap files of the shop: [{ loc, lastmod, from }]. */
 export async function sitemapEntries(ctx, { maxFiles = 3, extra = [] } = {}) {
-  const declared = [...extra, ...ctx.robots.sitemaps];
+  // robots.txt may declare relative or broken sitemap URLs ("Sitemap: /sitemap.xml")
+  const declared = [...extra, ...ctx.robots.sitemaps].map((u) => absolute(u, ctx.origin)).filter(Boolean);
   const todo = [...new Set(declared.length ? declared : [`${ctx.origin}/sitemap.xml`])];
   const done = new Set();
   const out = [];
@@ -27,7 +30,7 @@ export async function sitemapEntries(ctx, { maxFiles = 3, extra = [] } = {}) {
     if (!res) break;
     if (!res.ok) continue;
     const { index, entries } = parseSitemap(res.text);
-    if (index) todo.unshift(...entries.map((e) => e.loc).sort((a, b) => PREFER.test(b) - PREFER.test(a)));
+    if (index) todo.unshift(...entries.map((e) => absolute(e.loc, ctx.origin)).filter(Boolean).sort((a, b) => PREFER.test(b) - PREFER.test(a)));
     else for (const e of entries) out.push({ ...e, from: file });
   }
   return out;
