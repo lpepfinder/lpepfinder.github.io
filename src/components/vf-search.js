@@ -3,6 +3,7 @@ import { t } from './i18n.js';
 import { addRecent } from './recent.js';
 import './vf-results.js';
 import { listen, unlisten } from './dom.js';
+import config from '../../data/config.json' with { type: 'json' };
 
 /** Slices one page may load at most, so a query of one record in thousands of copies stays bounded. */
 const MAX_SLICES = 10;
@@ -31,7 +32,15 @@ export class VfSearch extends HTMLElement {
     this.input = this.form.querySelector('input[name="q"]');
     this.per = Number(this.getAttribute('per-page')) || 30;
     this.releasesPer = Number(this.getAttribute('releases-per-page')) || 24;
-    this.form.addEventListener('submit', (e) => { e.preventDefault(); this.run(this.input.value, { push: true, submitted: true }); });
+    this.form.addEventListener('submit', (e) => { e.preventDefault(); clearTimeout(this.typing); this.run(this.input.value, { push: true, submitted: true }); });
+    // results as you type: after a short pause, from config.search.typeMinChars characters; the first search
+    // from the home page is one history step (Back returns home), later keystrokes only update the address
+    this.input.addEventListener('input', () => {
+      clearTimeout(this.typing);
+      const q = this.input.value.trim();
+      if (q === this.query || (q && q.length < config.search.typeMinChars)) return;
+      this.typing = setTimeout(() => this.run(q, { push: !this.query, replace: !!this.query, typed: true }), config.search.typeDelayMs);
+    });
     this.results.addEventListener('more', () => this.more(true));
     this.results.addEventListener('retry', () => { this.client = new SearchClient(this.client.base); this.run(this.input.value, { submitted: true }); });
     // back/forward: search again only when the query changed (not for ?r= of a release)
@@ -47,14 +56,17 @@ export class VfSearch extends HTMLElement {
     this.run(q, {});
   }
 
-  async run(query, { push = false, submitted = false }) {
+  async run(query, { push = false, replace = false, submitted = false, typed = false }) {
     const q = query.trim();
     this.query = q;
-    if (push) {
+    // a newer search started while this one waited for the index: this one's results are dropped
+    const id = (this.runs = (this.runs || 0) + 1);
+    const current = () => id === this.runs;
+    if (push || replace) {
       const url = new URL(location.href);
       q ? url.searchParams.set('q', q) : url.searchParams.delete('q');
       url.searchParams.delete('r');
-      history.pushState(null, '', url);
+      if (push) history.pushState(null, '', url); else history.replaceState(history.state, '', url);
     }
     this.setAttribute('status', q ? 'loading' : 'idle');
     document.querySelector('vf-app')?.setAttribute('mode', q ? 'results' : 'home');
@@ -62,7 +74,9 @@ export class VfSearch extends HTMLElement {
     document.title = t('searchTitle', { query: q });
     this.results.loading();
     try {
-      this.ids = await this.client.rank(await this.client.match(q), q, this.per);
+      const ids = await this.client.rank(await this.client.match(q), q, this.per);
+      if (!current()) return;
+      this.ids = ids;
       this.shown = 0;
       this.results.checked = this.client.meta?.builtAt;
       this.results.start(q, this.ids.length);
@@ -70,15 +84,23 @@ export class VfSearch extends HTMLElement {
         await this.more(false);
         await this.results.restore(() => this.more(false), () => this.shown < this.ids.length);
       }
-      else this.results.suggest(await this.client.suggest(q).catch(() => ({})));
+      else {
+        const hint = await this.client.suggest(q).catch(() => ({}));
+        if (current()) this.results.suggest(hint);
+      }
     } catch (err) {
+      if (!current()) return;
       console.error(err);
       this.results.error();
     }
+    if (!current()) return;
     this.setAttribute('status', this.results.getAttribute('status'));
     if (submitted) { this.input.blur(); this.results.focusHeading(); }
-    if (this.ids?.length) addRecent(q);
-    window.umami?.track?.('search', { q, results: this.ids?.length ?? -1 });
+    // a search typed and left there counts too, but not each keystroke
+    clearTimeout(this.settle);
+    const record = () => { if (this.ids?.length) addRecent(q); window.umami?.track?.('search', { q, results: this.ids?.length ?? -1 }); };
+    if (typed) this.settle = setTimeout(() => { if (current()) record(); }, config.search.typeSettleMs);
+    else record();
   }
 
   /**
@@ -88,8 +110,9 @@ export class VfSearch extends HTMLElement {
    */
   async more(focus) {
     const before = this.results.groups.size;
+    const run = this.runs;
     let first = null;
-    for (let i = 0; i < MAX_SLICES && this.shown < this.ids.length; i++) {
+    for (let i = 0; i < MAX_SLICES && this.shown < this.ids.length && run === this.runs; i++) {
       const slice = this.ids.slice(this.shown, this.shown + this.per);
       this.shown += slice.length;
       first ??= await this.results.append(await this.client.records(slice), this.shown);

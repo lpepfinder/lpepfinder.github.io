@@ -5,7 +5,7 @@ order: 1
 audience: users
 ---
 
-Type what you know into the search box: an artist, a title, a label, a catalog number, or a mix. Results come as you type, from every shop at once.
+Type what you know into the search box: an artist, a title, a label, a catalog number, or a mix. Results come as you type, from every shop at once; Enter takes you to them.
 
 ## What to type
 

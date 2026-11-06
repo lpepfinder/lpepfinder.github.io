@@ -72,7 +72,10 @@
     "resultsPerPage": 30,
     "docsPerChunk": 64,
     "maxPrefixExpansions": 64,
-    "maxArtists": 4000
+    "maxArtists": 4000,
+    "typeDelayMs": 250,
+    "typeMinChars": 2,
+    "typeSettleMs": 2000
   },
   "ledger": {
     "eventDays": 14,
