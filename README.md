@@ -44,7 +44,7 @@ Fields added later are appended at the end of a row, so older files still read t
   - `lastCrawl`: `"YYYY-MM-DD"` UTC day of the shop's last successful crawl (from the ledger), `null` when unknown.
   - `shipsTo`: ISO 3166-1 codes the shop ships to, `"*"` for Shopify's "rest of world", `[]` when unknown.
     Read from Shopify `/meta.json` (`ships_to_countries`) by the check, or set by hand as `shipsTo` in `data/shops/<host>.json`.
-- `search/d/<n>.json`: chunks of `docsPerChunk` records,
+- `search/d/<n>.bin`: gzip-compressed JSON chunks of `docsPerChunk` records,
   `[[shop, title, priceCents, path, image, currency, soldOut, lastInStock, firstSeen, wasPrice, lowPrice90], ...]`.
   `0` means absent, and trailing zeros after `currency` are left out (rows have 6 to 11 fields).
   - `shop`: index in `shops.json`; `currency`: `0` when it is the shop's.
@@ -52,7 +52,9 @@ Fields added later are appended at the end of a row, so older files still read t
   - `firstSeen`: `"YYYY-MM-DD"` day the offer ledger first saw the offer.
   - `wasPrice`: cents before a price drop in the last `ledger.priceDropDays` (14) days.
   - `lowPrice90`: lowest price in the last 90 days, only when lower than `priceCents`.
-- `search/i/<shard>.json`: `{ token: "base36 doc id deltas joined by ." }`.
+- `search/i/<shard>.bin`: gzip-compressed binary list of the shard's tokens and their doc ids (varint deltas);
+  layout in `src/lib/search/codec.js`. The `.bin` files are stored compressed (about 3× smaller than JSON, which keeps
+  the site under the GitHub Pages 1 GB limit) and decompressed by the browser with `DecompressionStream`.
 - `search/artists.json`: `[[slug, name, recordCount], ...]` of the artist pages, most shops first, at most `search.maxArtists`
   (4,000, under 60 KB gzipped); `recordCount` as shown on `/artist/<slug>/`. For "top hits" in search.
 - `regions.json`: copy of `data/regions.json`, customs zones `{ "zones": [{ id, label, countries }] }`.

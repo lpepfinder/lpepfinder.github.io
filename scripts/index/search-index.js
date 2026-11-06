@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 import { tokenize, shardKey, shardFile, cleanShopName } from '../lib/text.js';
+import { encodeShard, encodeChunk } from '../../src/lib/search/codec.js';
 
 /** Write a static file. No .gz twin: GitHub Pages compresses responses itself. */
 export function writeStatic(file, content) {
@@ -8,15 +10,18 @@ export function writeStatic(file, content) {
   fs.writeFileSync(file, content);
 }
 
+/** Write an index file gzip-compressed (src/lib/search/codec.js): the browser decompresses it. */
+const writeGzip = (file, bytes) => writeStatic(file, zlib.gzipSync(bytes, { level: 9 }));
+
 /**
- * Static inverted index:
+ * Static inverted index (binary format in src/lib/search/codec.js):
  *   search/shops.json         [[id, name, origin, country, currency, lastCrawl, shipsTo, imagePrefix], ...]
  *                             (imagePrefix: start shared by the shop's image URLs, or 0; a row image starting with
  *                             "~" continues it. A row path starting with "~" is origin + "/products/" + the rest)
  *                             (lastCrawl: "YYYY-MM-DD" UTC day of the shop's last successful crawl, null when
  *                             unknown; shipsTo: ISO country codes the shop ships to, "*" for rest of world,
  *                             [] when unknown. Both added later: older files have 5 fields)
- *   search/d/<n>.json         docs chunk: [[shop, title, priceCents, path, image, currency,
+ *   search/d/<n>.bin          docs chunk (gzip JSON): [[shop, title, priceCents, path, image, currency,
  *                               soldOut, lastInStock, firstSeen, wasPrice, lowPrice90], ...]
  *                             0 stands for an absent value, and trailing zeros after `currency` are left out,
  *                             so a row has 6 to 11 fields:
@@ -26,7 +31,7 @@ export function writeStatic(file, content) {
  *                             - wasPrice     cents before a price drop in the last ledger.priceDropDays (14) days
  *                             - lowPrice90   lowest price (cents) in the last 90 days, only when lower than priceCents
  *                             (firstSeen, wasPrice and lowPrice90 were added later; see scripts/ledger/offer-fields.js)
- *   search/i/<shard>.json     { token: "base36 id deltas joined by ." }
+ *   search/i/<shard>.bin      tokens and their doc ids (gzip binary, see codec.js)
  *   search/meta.json          counts and settings the browser needs
  *   search/artists.json       [[slug, name, recordCount], ...] top artist pages, written by build.js (site-data.js)
  */
@@ -54,7 +59,7 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
   }
   for (let c = 0; c * docsPerChunk < docs.length; c++) {
     const rows = docs.slice(c * docsPerChunk, (c + 1) * docsPerChunk).map((d) => docRow(d, shopIndex.get(d.shop), shopRows));
-    writeStatic(path.join(outDir, 'd', `${c}.json`), JSON.stringify(rows));
+    writeGzip(path.join(outDir, 'd', `${c}.bin`), encodeChunk(rows));
   }
 
   const maxDf = Math.max(1000, docs.length * maxDocFrequency);
@@ -64,11 +69,10 @@ export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFreq
   for (const [token, ids] of postings) {
     if (ids.length > maxDf) { common.push(token); continue; }
     const key = shardFile(shardKey(token));
-    if (!shards.has(key)) shards.set(key, {});
-    let prev = 0;
-    shards.get(key)[token] = ids.map((id) => { const d = id - prev; prev = id; return d.toString(36); }).join('.');
+    if (!shards.has(key)) shards.set(key, []);
+    shards.get(key).push([token, ids]);
   }
-  for (const [key, obj] of shards) writeStatic(path.join(outDir, 'i', `${key}.json`), JSON.stringify(obj));
+  for (const [key, entries] of shards) writeGzip(path.join(outDir, 'i', `${key}.bin`), encodeShard(entries));
 
   // docs are sorted in stock first: ids from soldOutFrom on are sold out
   const soldOutFrom = docs.findIndex((d) => d.available === false);

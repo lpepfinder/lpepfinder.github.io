@@ -1,6 +1,7 @@
 import { tokenize, normalize, shardKey, shardFile } from './tokenize.js';
 import { pickWindow, diversify } from './rank.js';
 import { closest } from './suggest.js';
+import { decodeShard, postingIds, decodeChunk, isGzip } from './codec.js';
 
 /** Browser side of the static index built by src/index/search-index.js. */
 export class SearchClient {
@@ -23,13 +24,28 @@ export class SearchClient {
     return this.cache.get(file);
   }
 
+  /** A gzip-compressed index file (codec.js) as bytes, or null. */
+  bin(file, decode) {
+    if (!this.cache.has(file)) {
+      this.cache.set(file, fetch(this.base + file)
+        .then(async (r) => (r.ok ? decode(await gunzip(new Uint8Array(await r.arrayBuffer()))) : null))
+        .catch(() => null));
+    }
+    return this.cache.get(file);
+  }
+
+  /** Decoded shard of a token: Map token -> entry (codec.js). */
+  async shard(token) {
+    return (await this.bin(`i/${shardFile(shardKey(token))}.bin`, decodeShard)) || new Map();
+  }
+
   async postings(token, prefix) {
-    const shard = (await this.json(`i/${shardFile(shardKey(token))}.json`)) || {};
+    const shard = await this.shard(token);
     const keys = prefix && token.length >= 3
-      ? Object.keys(shard).filter((k) => k.startsWith(token)).slice(0, 64)
-      : shard[token] ? [token] : [];
+      ? [...shard.keys()].filter((k) => k.startsWith(token)).slice(0, 64)
+      : shard.has(token) ? [token] : [];
     if (!keys.length) return [];
-    const lists = keys.map((k) => decode(shard[k]));
+    const lists = keys.map((k) => postingIds(shard.get(k)));
     return lists.length === 1 ? lists[0] : union(lists);
   }
 
@@ -72,7 +88,8 @@ export class SearchClient {
     const out = {};
     const fixed = await Promise.all(tokens.map(async (t, i) => {
       if ((await this.postings(t, i === tokens.length - 1)).length) return t;
-      return closest(t, (await this.json(`i/${shardFile(shardKey(t))}.json`)) || {}) || t;
+      const counts = Object.fromEntries([...(await this.shard(t))].map(([k, e]) => [k, e.count]));
+      return closest(t, counts) || t;
     }));
     const spelling = fixed.join(' ');
     if (spelling !== tokens.join(' ') && (await this.match(spelling)).length) out.spelling = spelling;
@@ -91,7 +108,7 @@ export class SearchClient {
   async rows(ids) {
     const per = this.meta.docsPerChunk;
     const chunks = [...new Set(ids.map((id) => Math.floor(id / per)))];
-    const loaded = new Map(await Promise.all(chunks.map(async (c) => [c, await this.json(`d/${c}.json`)])));
+    const loaded = new Map(await Promise.all(chunks.map(async (c) => [c, await this.bin(`d/${c}.bin`, decodeChunk)])));
     return ids.map((id) => loaded.get(Math.floor(id / per))?.[id % per] || null);
   }
 
@@ -124,10 +141,12 @@ export class SearchClient {
   }
 }
 
-const decode = (s) => {
-  let prev = 0;
-  return s.split('.').map((d) => (prev += parseInt(d, 36)));
-};
+/** Bytes of a gzip file; the host may already have decoded them (Content-Encoding). */
+async function gunzip(bytes) {
+  if (!isGzip(bytes)) return bytes;
+  const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+  return new Uint8Array(await new Response(stream).arrayBuffer());
+}
 
 function union(lists) {
   const set = new Set();

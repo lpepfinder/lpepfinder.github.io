@@ -20,10 +20,10 @@ export function distance(a, b, max = 2) {
   return prev[b.length];
 }
 
-/** How many records a shard entry lists ("base36 deltas joined by ."). */
-const frequency = (postings) => postings.split('.').length;
+/** How many records a shard entry lists: a count, or (older format) "base36 deltas joined by .". */
+const frequency = (postings) => (typeof postings === 'number' ? postings : postings.split('.').length);
 
-/** Closest token to `token` among the keys of its shard ({ token: postings }), or null. */
+/** Closest token to `token` among the keys of its shard ({ token: record count }), or null. */
 export function closest(token, shard, max = 2) {
   let best = null;
   for (const [key, postings] of Object.entries(shard)) {
