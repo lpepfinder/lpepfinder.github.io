@@ -10,20 +10,26 @@ export function writeStatic(file, content) {
 
 /**
  * Static inverted index:
- *   search/shops.json         [[id, name, origin, country, currency], ...]
+ *   search/shops.json         [[id, name, origin, country, currency, lastCrawl, shipsTo], ...]
+ *                             (lastCrawl: "YYYY-MM-DD" UTC day of the shop's last successful crawl, null when
+ *                             unknown; shipsTo: ISO country codes the shop ships to, "*" for rest of world,
+ *                             [] when unknown. Both added later: older files have 5 fields)
  *   search/d/<n>.json         docs chunk: [[shop, title, priceCents, path, image, currency, soldOut?, lastInStock?], ...]
  *                             (soldOut is 1 for sold-out records, left out when in stock; lastInStock
  *                             is the "YYYY-MM-DD" day a sold-out record was last seen in stock, when known)
  *   search/i/<shard>.json     { token: "base36 id deltas joined by ." }
  *   search/meta.json          counts and settings the browser needs
  */
-export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFrequency = 0.2 }) {
+export function buildSearchIndex({ docs, shops, outDir, docsPerChunk, maxDocFrequency = 0.2, lastCrawl = {} }) {
   const shopIds = [...new Set(docs.map((d) => d.shop))];
   const shopIndex = new Map(shopIds.map((id, i) => [id, i]));
   const shopRows = shopIds.map((id) => {
     const s = shops.get(id);
     const origin = new URL(s.state.url || s.url).origin;
-    return [id, s.name || cleanShopName(s.state.name || '') || id, origin, s.state.country || s.country || null, s.state.currency || null];
+    return [
+      id, s.name || cleanShopName(s.state.name || '') || id, origin, s.state.country || s.country || null, s.state.currency || null,
+      lastCrawl[id] || null, s.shipsTo || s.state.shipsTo || [],
+    ];
   });
   writeStatic(path.join(outDir, 'shops.json'), JSON.stringify(shopRows));
 

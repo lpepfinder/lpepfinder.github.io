@@ -107,12 +107,13 @@ export class SearchClient {
     return rows.map((row) => {
       if (!row) return null;
       const [shopIdx, title, price, path, image, currency, soldOut, lastInStock] = row;
-      const [shopId, shopName, origin, country, shopCurrency] = this.shops[shopIdx];
+      const [shopId, shopName, origin, country, shopCurrency, lastCrawl, shipsTo] = this.shops[shopIdx];
       return {
         title, price, image: image || null, available: soldOut !== 1, lastInStock: lastInStock || null,
         url: path.startsWith('http') ? path : origin + path,
         currency: currency || shopCurrency,
-        shop: { id: shopId, name: shopName, country },
+        // lastCrawl: "YYYY-MM-DD" or null; shipsTo: ISO codes ("*" rest of world), [] when unknown
+        shop: { id: shopId, name: shopName, country, lastCrawl: lastCrawl || null, shipsTo: shipsTo || [] },
       };
     }).filter(Boolean);
   }

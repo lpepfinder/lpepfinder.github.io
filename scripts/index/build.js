@@ -40,7 +40,9 @@ writeJson(path.join(GENERATED, 'new-arrivals.json'), arrivals);
 console.log('new arrivals', arrivals.total, 'at', arrivals.shops, 'shops');
 const docs = sortDocs([...catalog.docs, ...ledgerDocs(ledger, catalog.docs, catalog.shops, config.ledger)]);
 
-const meta = buildSearchIndex({ ...catalog, docs, outDir, docsPerChunk: config.search.docsPerChunk });
+// each shop's last successful crawl day, kept by the ledger across runs
+const lastCrawl = Object.fromEntries(Object.entries(ledger.meta.shops).map(([id, s]) => [id, s.lastCrawl]));
+const meta = buildSearchIndex({ ...catalog, docs, outDir, docsPerChunk: config.search.docsPerChunk, lastCrawl });
 const siteData = buildSiteData({ ...catalog, seo: config.seo });
 writeJson(path.join(GENERATED, 'site-data.json'), siteData);
 console.log('index built in', Math.round((Date.now() - t0) / 1000), 's', meta, 'artist pages:', siteData.artists.length);
