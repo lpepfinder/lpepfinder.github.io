@@ -40,6 +40,9 @@ vf-icon[name="star"] { --icon: var(--icon-star); }
 vf-icon[name="record"] { --icon: var(--icon-record); }
 vf-icon[name="close"] { --icon: var(--icon-close); }
 vf-icon[name="info"] { --icon: var(--icon-info); }
+vf-icon[name="prev"] { --icon: var(--icon-prev); }
+vf-icon[name="next"] { --icon: var(--icon-next); }
+[dir="rtl"] vf-icon:is([name="prev"], [name="next"]) { scale: -1 1; }
 
 /* phones with results: one compact row (the logo's name stays its accessible name), tucked away while reading down */
 @media (max-width: 40rem) {

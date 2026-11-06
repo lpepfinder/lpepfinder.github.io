@@ -383,7 +383,9 @@
   },
   "recent": {
     "title": "Búsquedas recientes",
-    "clear": "Borrar búsquedas recientes"
+    "clear": "Borrar búsquedas recientes",
+    "clearShort": "Borrar",
+    "remove": "Quitar «{query}» de las búsquedas recientes"
   },
   "citiesNav": "Ciudades",
   "cityUnknown": "Otros lugares",
@@ -421,5 +423,10 @@
     "share": "Compartir",
     "searchArtist": "Buscar todo de {artist}",
     "backList": "Todos los discos"
+  },
+  "homeLatestTitle": "Lo último en las tiendas",
+  "homeStrip": {
+    "prev": "Discos anteriores",
+    "next": "Más discos"
   }
 }

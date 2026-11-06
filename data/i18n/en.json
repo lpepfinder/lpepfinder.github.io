@@ -383,7 +383,9 @@
   },
   "recent": {
     "title": "Recent searches",
-    "clear": "Clear recent searches"
+    "clear": "Clear recent searches",
+    "clearShort": "Clear",
+    "remove": "Remove “{query}” from recent searches"
   },
   "citiesNav": "Cities",
   "cityUnknown": "Other places",
@@ -421,5 +423,10 @@
     "share": "Share",
     "searchArtist": "Search all {artist}",
     "backList": "All records"
+  },
+  "homeLatestTitle": "Latest in the shops",
+  "homeStrip": {
+    "prev": "Previous records",
+    "next": "More records"
   }
 }

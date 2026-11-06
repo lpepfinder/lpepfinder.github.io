@@ -383,7 +383,9 @@
   },
   "recent": {
     "title": "Letzte Suchen",
-    "clear": "Letzte Suchen löschen"
+    "clear": "Letzte Suchen löschen",
+    "clearShort": "Löschen",
+    "remove": "„{query}“ aus den letzten Suchen entfernen"
   },
   "citiesNav": "Städte",
   "cityUnknown": "Weitere Orte",
@@ -421,5 +423,10 @@
     "share": "Teilen",
     "searchArtist": "Alles von {artist} suchen",
     "backList": "Alle Platten"
+  },
+  "homeLatestTitle": "Neu in den Läden",
+  "homeStrip": {
+    "prev": "Vorherige Platten",
+    "next": "Weitere Platten"
   }
 }

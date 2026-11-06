@@ -58,6 +58,17 @@
   --breadcrumb-separator: "›";
   --count-separator: "· ";
   --star-mark: 0.75rem;
+  --chip-h: 2.25rem;
+  --hero-w: 44rem;
+  --hero-input-h: 3.5rem;
+  --home-col: 22rem;
+  --strip-card: 9.5rem;
+  --tile-min: 11rem;
+  --dense-col: 12rem;
+  --disclosure: "▸";
+  --disclosure-open: "▾";
+  --icon-prev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z'/%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8.6 5.4 10 4l8 8-8 8-1.4-1.4 6.6-6.6z'/%3E%3C/svg%3E");
   --meta-max: 9rem;
   --ad-h: 6.25rem;
   --shadow-float: 0 2px 8px var(--c-scrim);
@@ -93,6 +104,7 @@
   --c-link: #1a4fb4;
   --c-focus: #1a4fb4;
   --c-chip: #efeee8;
+  --c-chip-surface: var(--c-bg);
   --c-chip-on: #15161a;
   --c-chip-on-fg: #ffffff;
   --c-price: var(--c-fg);

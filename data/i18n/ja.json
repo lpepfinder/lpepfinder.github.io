@@ -361,7 +361,9 @@
   },
   "recent": {
     "title": "最近の検索",
-    "clear": "最近の検索を消去"
+    "clear": "最近の検索を消去",
+    "clearShort": "消去",
+    "remove": "「{query}」を最近の検索から削除"
   },
   "citiesNav": "都市",
   "cityUnknown": "その他の地域",
@@ -397,5 +399,10 @@
     "share": "共有",
     "searchArtist": "{artist}をすべて検索",
     "backList": "すべてのレコード"
+  },
+  "homeLatestTitle": "ショップの最新入荷",
+  "homeStrip": {
+    "prev": "前のレコード",
+    "next": "次のレコード"
   }
 }

@@ -1,0 +1,34 @@
+---
+import { t, price } from '../lib/i18n.js';
+import { splitTitle } from '../lib/search/title.js';
+import { thumb } from '../lib/thumb.js';
+
+/**
+ * A horizontal row of cover cards (<vf-strip>): scroll-snap, and Previous/Next buttons so it never
+ * needs a swipe. Each card links out to the record at its shop. Props: lang, records, shopsById, labelledby.
+ */
+const { lang, records, shopsById, labelledby } = Astro.props;
+---
+<vf-strip>
+  <button type="button" value="prev" kind="secondary" aria-label={t(lang, 'homeStrip.prev')}><vf-icon name="prev"></vf-icon></button>
+  <ul aria-labelledby={labelledby}>
+    {records.map((r, i) => {
+      const { artist, title } = splitTitle(r.title);
+      const src = thumb(r.image, { safe: true });
+      return (
+        <li><vf-strip-card>
+          {src
+            ? <img src={src} alt="" width="160" height="160" decoding="async" referrerpolicy="no-referrer" loading={i < 4 ? 'eager' : 'lazy'}>
+            : <vf-cover></vf-cover>}
+          <a href={r.url} rel="nofollow">{artist && <vf-artist>{artist}</vf-artist>}{artist && <span> – </span>}<vf-title>{title}</vf-title></a>
+          <vf-price><data value={r.price ?? ''}>{price(lang, r.price, r.currency)}</data></vf-price>
+          <p>{shopsById.get(r.shop)?.name || r.shop}</p>
+        </vf-strip-card></li>
+      );
+    })}
+  </ul>
+  <button type="button" value="next" kind="secondary" aria-label={t(lang, 'homeStrip.next')}><vf-icon name="next"></vf-icon></button>
+</vf-strip>
+<script>
+  import './vf-strip.js';
+</script>
