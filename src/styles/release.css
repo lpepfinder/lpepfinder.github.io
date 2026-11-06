@@ -1,40 +1,57 @@
-/* <vf-release>: one record across shops, a row linking to its detail (detail.css). */
-vf-release { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 0 var(--space-1); border-block-end: var(--line) solid var(--c-line); }
-vf-release > a { min-inline-size: 0; color: inherit; text-decoration: none; }
-vf-release > vf-watch { padding-block-start: var(--space-2); }
-
+/* <vf-release>: one record across shops, a compact row linking to its detail (detail.css). */
+vf-release { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; border-block-end: var(--line) solid var(--c-line); }
 vf-release > a {
-  display: grid; grid-template-columns: minmax(0, 1fr) fit-content(var(--price-max));
-  grid-template-areas: "head price" "meta meta";
-  gap: var(--space-1) var(--space-3); align-items: start;
-  min-block-size: var(--tap); padding: var(--space-2) var(--space-1); border-radius: var(--radius);
+  display: grid; grid-template-columns: var(--cover-row) minmax(0, 1fr) auto;
+  grid-template-areas: "cover title price" "cover artist meta";
+  column-gap: var(--space-3); align-items: center;
+  position: relative; min-block-size: var(--row-h); padding: var(--space-1); border-radius: var(--radius);
+  color: inherit; text-decoration: none;
 }
-vf-release > a > * { min-inline-size: 0; overflow-wrap: anywhere; }
-vf-release > a:has(> :is(img, vf-cover)) { grid-template-columns: var(--thumb-row) minmax(0, 1fr) fit-content(var(--price-max)); grid-template-areas: "cover head price" "cover meta meta"; }
+vf-results[covers="off"] vf-release > a { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title price" "artist meta"; }
 vf-release > a:hover { background: var(--c-hover); }
+vf-release[aria-current="true"] { background: var(--c-selected); }
+vf-release > a > :is(img, vf-cover) { grid-area: cover; display: block; inline-size: var(--cover-row); block-size: var(--cover-row); object-fit: cover; border-radius: var(--radius); background: var(--c-skeleton) var(--thumb-fallback) center / 80% no-repeat; }
 
-vf-release > a > :is(img, vf-cover) { grid-area: cover; display: block; inline-size: var(--thumb-row); block-size: var(--thumb-row); object-fit: cover; border-radius: var(--radius); background: var(--c-skeleton); }
-vf-release > a > vf-cover { background: var(--c-skeleton) var(--thumb-fallback) center / 80% no-repeat; }
-vf-release h3 { grid-area: head; margin: 0; font-size: var(--size-0); line-height: var(--leading-tight); overflow-wrap: anywhere; }
-vf-release vf-artist { display: block; font-weight: normal; font-size: var(--size-s); color: var(--c-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-vf-release vf-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font-weight: var(--weight-bold); }
-/* a long "from" price wraps before it squeezes the title */
-vf-release > a > vf-price { grid-area: price; min-inline-size: var(--price-col); }
-vf-release > a > p { grid-area: meta; margin: 0; color: var(--c-muted); font-size: var(--size-s); }
-vf-release abbr { text-decoration: none; }
-/* sold out: less emphasis, same contrast, and the words "Sold out" in the meta line */
-vf-release[stock="out"] > a :is(vf-title, vf-price) { color: var(--c-muted); font-weight: normal; }
+vf-release vf-name { display: contents; }
+/* the separator is for the link's name only: absolutely placed, it takes no grid cell */
+vf-release vf-name > span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: pre; }
+vf-release :is(vf-title, vf-artist) { min-inline-size: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+vf-release vf-title { grid-area: title; font-weight: var(--weight-bold); line-height: var(--leading-tight); }
+vf-release vf-artist { grid-area: artist; color: var(--c-muted); font-size: var(--size-s); }
+vf-release vf-meta { grid-area: meta; display: flex; align-items: center; justify-content: end; gap: var(--space-2); color: var(--c-muted); font-size: var(--size-xs); white-space: nowrap; }
+vf-release vf-meta > span { min-inline-size: 0; max-inline-size: var(--meta-max); overflow: hidden; text-overflow: ellipsis; }
+vf-release vf-meta > span:nth-child(n+2) { display: none; }
+vf-release vf-meta abbr { display: none; }
+vf-release > a > vf-price { grid-area: price; }
+/* the star of a watched release, after its title (phones: the toggle itself is in the detail) */
+vf-release:has(> vf-watch[watching="true"]) vf-title::after { content: ""; display: inline-block; inline-size: var(--star-mark); block-size: var(--star-mark); margin-inline-start: var(--space-1); background: var(--c-watching); mask: var(--icon-star-on) center / contain no-repeat; }
+vf-release > vf-watch { display: none; }
+/* sold out: less emphasis, same contrast, and the words "Sold out" in the meta (from tablets) */
+vf-release[stock="out"] :is(vf-title, vf-price) { color: var(--c-muted); font-weight: normal; }
 vf-release[stock="out"] > a > img { filter: var(--sold-out-filter); }
 
 vf-price { display: grid; justify-items: end; text-align: end; }
 vf-price, vf-price small { white-space: nowrap; }
 vf-price small { font-size: var(--size-xs); font-weight: normal; color: var(--c-muted); }
 
-/* the Watch toggle: the star alone on phones (its name stays in aria-label), with its word on wider screens */
-vf-release vf-watch button { inline-size: var(--tap); justify-content: center; padding-inline: 0; }
-vf-release vf-watch button > span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-
+/* tablets: every glance fact, and the Watch star beside the row */
 @media (min-width: 40rem) {
-  vf-release vf-watch button { inline-size: auto; padding-inline: var(--space-3); }
-  vf-release vf-watch button > span { position: static; inline-size: auto; block-size: auto; overflow: visible; clip-path: none; }
+  vf-release vf-meta > span:nth-child(n) { display: inline-block; }
+  vf-release vf-meta > span + span::before { content: var(--count-separator); }
+  vf-release > vf-watch { display: block; }
+  vf-release:has(> vf-watch) vf-title::after { content: none; }
+  vf-release vf-watch button[kind] { inline-size: var(--tap); justify-content: center; padding-inline: 0; box-shadow: none; background: none; }
+  vf-release vf-watch button[kind]:hover { background: var(--c-hover); }
+  vf-release vf-watch button > span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+/* desktop: one line, "Artist  Title · meta · price", prices aligned */
+@media (min-width: 64rem) {
+  vf-release > a { grid-template-columns: var(--cover-row) minmax(0, 2fr) minmax(0, 1.2fr) minmax(var(--price-col), auto); grid-template-areas: "cover title meta price"; }
+  vf-results[covers="off"] vf-release > a { grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr) minmax(var(--price-col), auto); grid-template-areas: "title meta price"; }
+  vf-release vf-name { grid-area: title; display: flex; gap: var(--space-2); align-items: baseline; min-inline-size: 0; }
+  vf-release vf-name > vf-artist { flex: 0 1 auto; max-inline-size: 45%; font-size: var(--size-0); }
+  vf-release vf-name > vf-title { flex: 1 1 0; }
+  vf-release vf-meta abbr { display: inline; }
+  vf-release vf-meta { min-inline-size: 0; overflow: hidden; }
+  vf-release vf-meta > span:first-child { max-inline-size: none; flex: 0 1 auto; }
 }
