@@ -3,5 +3,7 @@
   "country": "BE",
   "address": "28 Sint-Jorispoort Antwerpen",
   "discogs": "https://www.discogs.com/record-stores/store/kalkmanantwerp/",
-  "source": "discogs"
+  "source": "discogs",
+  "disabled": true,
+  "note": "Not a record shop (hi-fi / art); prices flagged by the quality gate, 2026-11-06."
 }

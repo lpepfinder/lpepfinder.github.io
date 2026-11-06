@@ -14,7 +14,7 @@ data/shops/*.json ──▶ Refresh (daily)      ──▶ "data" release ──
                       crawl     Shopify / Woo
 ```
 
-1. **Shops** are curated in `data/shops/<host>.json`, one file per shop ([schema](data/schemas/shop.schema.json)).
+1. **Shops** are curated in `data/shops/<host>.json`, one file per shop ([schema](https://github.com/lpepfinder/lpepfinder.github.io/blob/main/data/schemas/shop.schema.json)).
 2. **Discover** (`npm run discover`, monthly): finds record shops with a website on OpenStreetMap,
    checks them, and keeps those whose catalog we can read.
 3. **Check** (`npm run check`): for every shop, is it up, does robots.txt allow us, which platform is it,
