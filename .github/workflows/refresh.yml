@@ -20,15 +20,15 @@ concurrency:
 
 jobs:
   refresh:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 300
     permissions:
       contents: write
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -65,17 +65,17 @@ jobs:
           gh release upload data generated.tar.gz --clobber
 
   site-plan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       shards: ${{ steps.plan.outputs.shards }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: plan
         run: echo "shards=$(node -p "JSON.stringify([...Array(require('./data/config.json').site.shards).keys()])")" >> "$GITHUB_OUTPUT"
 
   site:
     needs: site-plan
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # the crawler stops itself at site.maxMinutes (290) and saves its state; this is the safety net
     timeout-minutes: 330
     strategy:
@@ -88,8 +88,8 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       SITE_SHARD: ${{ matrix.shard }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm

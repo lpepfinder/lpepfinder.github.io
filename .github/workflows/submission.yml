@@ -17,14 +17,14 @@ concurrency:
 jobs:
   add:
     if: contains(github.event.issue.labels.*.name, 'new shop')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
       GH_TOKEN: ${{ github.token }}
       ISSUE: ${{ github.event.issue.number }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
       # the issue text is passed as data in an env var, never interpolated into the script
