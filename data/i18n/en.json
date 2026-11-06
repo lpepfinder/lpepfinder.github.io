@@ -380,5 +380,18 @@
     "one": "1 record",
     "other": "{count} records"
   },
-  "lettersNav": "Jump to letter"
+  "lettersNav": "Jump to letter",
+  "zone": {
+    "eu": "European Union",
+    "uk": "United Kingdom",
+    "ch": "Switzerland",
+    "no": "Norway",
+    "us": "United States",
+    "ca": "Canada",
+    "jp": "Japan",
+    "au": "Australia",
+    "nz": "New Zealand",
+    "same": "Same customs zone",
+    "import": "Import: duties may apply"
+  }
 }

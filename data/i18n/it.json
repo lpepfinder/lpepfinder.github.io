@@ -380,5 +380,18 @@
     "one": "1 disco",
     "other": "{count} dischi"
   },
-  "lettersNav": "Vai alla lettera"
+  "lettersNav": "Vai alla lettera",
+  "zone": {
+    "eu": "Unione europea",
+    "uk": "Regno Unito",
+    "ch": "Svizzera",
+    "no": "Norvegia",
+    "us": "Stati Uniti",
+    "ca": "Canada",
+    "jp": "Giappone",
+    "au": "Australia",
+    "nz": "Nuova Zelanda",
+    "same": "Stessa zona doganale",
+    "import": "Importazione: possibili dazi"
+  }
 }

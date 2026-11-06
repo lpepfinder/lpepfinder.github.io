@@ -380,5 +380,18 @@
     "one": "1 Platte",
     "other": "{count} Platten"
   },
-  "lettersNav": "Zum Buchstaben"
+  "lettersNav": "Zum Buchstaben",
+  "zone": {
+    "eu": "Europäische Union",
+    "uk": "Vereinigtes Königreich",
+    "ch": "Schweiz",
+    "no": "Norwegen",
+    "us": "Vereinigte Staaten",
+    "ca": "Kanada",
+    "jp": "Japan",
+    "au": "Australien",
+    "nz": "Neuseeland",
+    "same": "Gleiche Zollzone",
+    "import": "Import: Zoll möglich"
+  }
 }
