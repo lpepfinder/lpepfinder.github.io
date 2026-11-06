@@ -76,8 +76,9 @@ export class VfDig extends HTMLElement {
 
   get crate() {
     const c = new URLSearchParams(location.search).get('crate');
-    if (c === 'mine' && !this.watched?.size) return 'new';
-    return CRATES.includes(c) ? c : 'new';
+    if (CRATES.includes(c) && (c !== 'mine' || this.watched?.size)) return c;
+    // no crate asked for: the first one with records (yours first, then new, back in stock, price drops)
+    return CRATES.filter((x) => x !== 'mine' || this.watched?.size).find((x) => this.pick(x).length) || 'new';
   }
 
   /** Items of the crate under the filters. */

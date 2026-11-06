@@ -154,9 +154,10 @@
     "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
   },
   "dig": {
-    "description": "The Dig crates (public/dig.json): records new, back in stock or cheaper in the last `days` days, at most `perCrate` each; a price drop counts from `dropMin` (share of the old price).",
+    "description": "The Dig crates (public/dig.json): records new, back in stock or cheaper in the last `days` days, at most `perCrate` each; a price drop counts from `dropMin` to `dropMax` (share of the old price; bigger drops are pricing errors).",
     "days": 7,
     "perCrate": 400,
-    "dropMin": 0.1
+    "dropMin": 0.1,
+    "dropMax": 0.7
   }
 }

@@ -4,19 +4,22 @@ import { interleave } from './new-arrivals.js';
 import { detectFormat } from '../../src/lib/search/format.js';
 
 export const CRATES = ['new', 'restock', 'drop'];
+/** Listings shops use to test their checkout. */
+const TEST = /\btest ?(product|item|listing)\b|^\(?test\)?$|\(testproduct\)|\btestproduct\b/i;
 
 /**
  * The Dig crates for the browser (public/dig.json), records still in stock today:
  *   new      new arrivals (new-arrivals.js: the ledger's new events and the shops' own dates)
  *   restock  back in stock in the last `days` days (ledger events)
- *   drop     cheaper by at least `dropMin` after a recent drop (wasPrice of the ledger), biggest drop first
+ *   drop     cheaper by at least `dropMin` and at most `dropMax` after a recent drop (wasPrice of the ledger), biggest
+ *            drop first; a bigger "drop" is a pricing error (2,299 → 16.99), and test listings are left out
  * Each crate newest first with shops taking turns, at most `perCrate` records:
  *   { day, builtAt, shops: [[id, name, country, shipsTo]], items: [[crate, day, title, cents, currency, url, image,
  *     shopIndex, format, wasCents]] } (format: "" when unknown, wasCents: 0 unless a drop)
  * docs: today's catalog docs with offerKey and the ledger's wasPrice (search-docs.js); arrivals: new-arrivals.json.
  */
 export function buildDig({ ledger, docs, shops, arrivals, settings }) {
-  const { days, perCrate, dropMin } = settings;
+  const { days, perCrate, dropMin, dropMax = 0.7 } = settings;
   const day = ledger.meta.day;
   const from = addDays(day, -(days - 1));
   const inStock = new Map(docs.filter((d) => d.available !== false && d.price != null).map((d) => [d.offerKey, d]));
@@ -47,7 +50,8 @@ export function buildDig({ ledger, docs, shops, arrivals, settings }) {
     }
   }
   const drops = [...inStock.values()]
-    .filter((d) => d.wasPrice && (d.wasPrice - d.price) / d.wasPrice >= dropMin)
+    .filter((d) => d.wasPrice && d.price > 0 && !TEST.test(d.title))
+    .filter((d) => { const off = (d.wasPrice - d.price) / d.wasPrice; return off >= dropMin && off <= dropMax; })
     .sort((a, b) => (b.wasPrice - b.price) / b.wasPrice - (a.wasPrice - a.price) / a.wasPrice)
     // one "day" for all: shops take turns, the biggest drops of each shop first
     .map((d, i) => ({ day: day, shop: d.shop, title: String(i).padStart(8, '0'), d }));
