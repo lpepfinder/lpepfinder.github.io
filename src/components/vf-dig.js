@@ -6,13 +6,15 @@ import { rates, region, toViewer, currency, CURRENCY_EVENT } from './viewer.js';
 import { flag } from './release-parts.js';
 import { el, attrs, listen, unlisten } from './dom.js';
 import { load } from '../lib/watch/store.js';
+import { scoped } from '../lib/watch/profiles.js';
+import { ownedKeys } from '../lib/watch/owned.js';
 import { releaseKey } from '../lib/search/release-key.js';
 
 const CRATES = ['mine', 'new', 'restock', 'drop'];
 const PAGE = 48;
-const KEY = 'vf.dig';
-const read = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
-const save = (v) => { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch {} };
+const KEY = () => scoped('vf.dig');
+const read = () => { try { return JSON.parse(localStorage.getItem(KEY())) || {}; } catch { return {}; } };
+const save = (v) => { try { localStorage.setItem(KEY(), JSON.stringify(v)); } catch {} };
 const ago = new Intl.RelativeTimeFormat(document.documentElement.lang || 'en', { numeric: 'auto' });
 const daysBetween = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
 
@@ -42,7 +44,7 @@ export class VfDig extends HTMLElement {
       else if (field) field.value = value;
     }
     this.form.addEventListener('change', () => {
-      save({ ships: this.form.elements.ships.checked, customs: this.form.elements.customs.checked, format: this.form.elements.format.value });
+      save({ ships: this.form.elements.ships.checked, customs: this.form.elements.customs.checked, owned: this.form.elements.owned.checked, format: this.form.elements.format.value });
       this.limit = PAGE;
       this.render();
     });
@@ -71,6 +73,9 @@ export class VfDig extends HTMLElement {
       this.watched = new Set([...Object.keys(items), ...Object.values(items).flatMap((it) => it.x || [])]);
       this.toggleAttribute('watching', this.watched.size > 0);
       for (const it of data.items) it.key = releaseKey(it[2]);
+      // records the collector owns (Discogs collection): the chip shows once there is one
+      this.owned = ownedKeys();
+      this.form.elements.owned.closest('label').hidden = !this.owned.size;
       this.setAttribute('status', 'ready');
       this.render();
     } catch {
@@ -91,7 +96,8 @@ export class VfDig extends HTMLElement {
     return this.data.items.filter((it) => (crate === 'mine' ? this.watched.has(it.key) : it[0] === crate)
       && (!f.format.value || it[8] === f.format.value)
       && (!f.ships.checked || this.reach[it[7]] !== 'no')
-      && (!f.customs.checked || noCustoms(this.reach[it[7]])));
+      && (!f.customs.checked || noCustoms(this.reach[it[7]]))
+      && !((crate === 'mine' || f.owned.checked) && this.owned?.has(it.key)));
   }
 
   render(append = false) {

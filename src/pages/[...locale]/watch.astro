@@ -17,7 +17,7 @@ const { lang } = Astro.props;
 const views = [['available', 'viewAvailable', 'bag'], ['now', 'viewShops', 'store'], ['changes', 'viewChanges', 'pulse'], ['all', 'viewAll', 'star']];
 const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
 ---
-<Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage']}>
+<Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'profiles']}>
   <vf-watch-shared hidden>
     <h2>{t(lang, 'watchPage.sharedTitle')}</h2>
     <p></p>

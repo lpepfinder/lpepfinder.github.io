@@ -31,7 +31,7 @@ const groups = [
   ] },
 ];
 ---
-<Base lang={lang} path="/more/" title={pageTitle(t(lang, 'moreTitle'))} description={t(lang, 'footerNote')} noindex>
+<Base lang={lang} path="/more/" title={pageTitle(t(lang, 'moreTitle'))} description={t(lang, 'footerNote')} noindex strings={['profiles']}>
   <vf-more>
     <h1>{t(lang, 'moreTitle')}</h1>
     <section>
@@ -44,6 +44,20 @@ const groups = [
         ))}</ul>
       </nav>
     </section>
+    <section id="profiles">
+      <h2>{t(lang, 'profiles.title')}</h2>
+      <vf-profiles>
+        <ul></ul>
+        <form>
+          <label for="profile-name">{t(lang, 'profiles.add')}</label>
+          <vf-field>
+            <input id="profile-name" name="name" maxlength="40" autocomplete="off" placeholder={t(lang, 'profiles.addPlaceholder')}>
+            <button type="submit" kind="secondary">{t(lang, 'profiles.addButton')}</button>
+          </vf-field>
+        </form>
+        <p>{t(lang, 'profiles.note')}</p>
+      </vf-profiles>
+    </section>
     {groups.map((g) => (
       <section>
         <h2>{t(lang, g.title)}</h2>
@@ -53,3 +67,6 @@ const groups = [
     <p>{t(lang, 'footerNote')}</p>
   </vf-more>
 </Base>
+<script>
+  import '../../components/vf-profiles.js';
+</script>
