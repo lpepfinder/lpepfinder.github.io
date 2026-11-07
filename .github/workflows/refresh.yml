@@ -163,12 +163,21 @@ jobs:
           gh release view data > /dev/null 2>&1 || gh release create data --title "Crawl data" --notes "Latest output of the Refresh workflow, used by Deploy."
           gh release upload data social.json.gz social-state.json.gz --clobber
 
+  # the index from today's crawl data, once (index.yml); Deploy then finds it up to date
+  index:
+    needs: [refresh, site]
+    # a failed crawl job keeps yesterday's data asset: index in any case
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/index.yml
+    permissions:
+      contents: write
+
   deploy:
-    needs: [refresh, site, enrich, social]
+    needs: [index, enrich, social]
     # a failed job keeps yesterday's data asset: deploy in any case, so one bad job never holds the site back
     if: ${{ !cancelled() }}
     uses: ./.github/workflows/deploy.yml
-    # write: Deploy saves the offer ledger in the "data" release; issues: its health report
+    # write: Deploy saves the health history in the "data" release, and may build the index; issues: its health report
     permissions:
       contents: write
       pages: write

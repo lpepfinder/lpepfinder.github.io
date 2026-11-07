@@ -1,0 +1,67 @@
+# The search index, watch files and Dig crates, built from the latest crawl data, once (docs/ci.md):
+# called by Refresh after the crawls, and by Deploy when the code that shapes the index changed
+# (scripts/ci/index-key.js). The result is the "index bundle" in the "data" release: index.tar.gz (the files the
+# site serves and the small crawl files its pages read) and index-manifest.json (the key it was built with).
+# Saved as soon as it is built, so nothing that fails later (a test, a deploy) costs a rebuild.
+name: Index
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  index:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    # one build at a time (a push during a refresh waits, then finds the bundle up to date or builds once)
+    concurrency:
+      group: index
+      cancel-in-progress: false
+    env:
+      GH_TOKEN: ${{ github.token }}
+      # the offer ledger holds millions of rows in memory next to the catalog
+      NODE_OPTIONS: --max-old-space-size=12288
+    steps:
+      # the latest code, not the commit that started the run: a refresh runs for hours, fixes land meanwhile
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # no crawl data yet = no index, so the live site is never replaced by an empty one
+      - name: Crawl data
+        run: |
+          gh release download data --pattern generated.tar.gz && tar xzf generated.tar.gz
+          # site crawler shards (only those of the current shard count)
+          for k in $(node -p "[...Array(require('./data/config.json').site.shards).keys()].join(' ')"); do
+            gh release download data --pattern "site-$k.tar.gz" --clobber && tar xzf "site-$k.tar.gz" || echo "no site-$k.tar.gz yet"
+          done
+      - run: npm run validate && npm run rates
+      # offer ledger: today's state and the one before it (a second build on the same day starts from that)
+      - name: Offer ledger
+        run: gh release download data --pattern "ledger*.ndjson.gz" --dir generated --clobber || echo "no ledger yet, starting one"
+      - name: Search index
+        run: npm run index
+      - name: Save the offer ledger
+        run: |
+          files=generated/ledger.ndjson.gz
+          if [ -f generated/ledger-prev.ndjson.gz ]; then files="$files generated/ledger-prev.ndjson.gz"; fi
+          gh release upload data $files --clobber
+      - name: Save the index bundle
+        run: |
+          tar czf index.tar.gz public/search public/w public/dig.json public/regions.json \
+            generated/site-data.json generated/new-arrivals.json generated/quality-report.json \
+            generated/shops-state.json generated/candidates.json generated/crawl-report.json
+          node -e "console.log(JSON.stringify({ key: process.argv[1], builtAt: new Date().toISOString(), commit: process.argv[2] }))" \
+            "$(node scripts/ci/index-key.js)" "$(git rev-parse --short=12 HEAD)" > index-manifest.json
+          cat index-manifest.json
+          ls -la index.tar.gz
+          # the bundle first, its manifest last: a manifest never names a bundle that isn't there
+          gh release upload data index.tar.gz --clobber
+          gh release upload data index-manifest.json --clobber

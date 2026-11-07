@@ -1,4 +1,5 @@
-# Build the search index and the Astro site from the latest crawl data, publish to GitHub Pages.
+# Build the site with the latest index bundle (index.yml) and publish it to GitHub Pages (docs/ci.md).
+# A push rebuilds the index only when the code that shapes it changed; Refresh builds it once a day.
 name: Deploy
 
 on:
@@ -17,16 +18,46 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  # is the index bundle in the "data" release built by the code being deployed? (scripts/ci/index-key.js)
+  check:
     runs-on: ubuntu-24.04
-    # write: the build updates the offer ledger in the "data" release; issues: the health report
+    outputs:
+      stale: ${{ steps.key.outputs.stale }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - id: key
+        run: |
+          want=$(node scripts/ci/index-key.js)
+          have=$(gh release download data --pattern index-manifest.json -O - 2>/dev/null | node -p "JSON.parse(require('fs').readFileSync(0)).key" 2>/dev/null || echo none)
+          echo "index code $want, bundle built with $have"
+          echo "stale=$([ "$want" = "$have" ] && echo false || echo true)" >> "$GITHUB_OUTPUT"
+
+  # only when the code that shapes the index changed (or there is no bundle yet): build it once, here
+  index:
+    needs: check
+    if: needs.check.outputs.stale == 'true'
+    uses: ./.github/workflows/index.yml
+    permissions:
+      contents: write
+
+  build:
+    needs: [check, index]
+    # index skipped (bundle up to date) is fine; index failed is not
+    if: ${{ !cancelled() && needs.check.result == 'success' && needs.index.result != 'failure' }}
+    runs-on: ubuntu-24.04
+    # write: the health history in the "data" release; issues: the health report
     permissions:
       contents: write
       issues: write
     env:
       GH_TOKEN: ${{ github.token }}
-      # the offer ledger holds millions of rows in memory next to the catalog
-      NODE_OPTIONS: --max-old-space-size=12288
     steps:
       # the latest code, not the commit that started the run: a refresh runs for hours, fixes land meanwhile
       - uses: actions/checkout@v7
@@ -37,43 +68,14 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # no crawl data yet = no deploy, so the live site is never replaced by an empty one
-      - name: Crawl data
+      # the index bundle (index.yml): the search index, watch files, Dig crates and the crawl files the pages read.
+      # No bundle = no deploy, so the live site is never replaced by an empty one.
+      - name: Index bundle
         run: |
-          gh release download data --pattern generated.tar.gz && tar xzf generated.tar.gz
-          # site crawler shards (only those of the current shard count)
-          for k in $(node -p "[...Array(require('./data/config.json').site.shards).keys()].join(' ')"); do
-            gh release download data --pattern "site-$k.tar.gz" --clobber && tar xzf "site-$k.tar.gz" || echo "no site-$k.tar.gz yet"
-          done
-      # The search index, watchlist files and Dig crates take ~20 minutes to build from millions of offers: they are
-      # cached, keyed by the crawl data (its upload times in the "data" release) and by everything that shapes them
-      # (indexing code, shops, settings). A push that changes neither reuses them; new crawl data rebuilds them.
-      - name: Index key
-        run: |
-          gh release view data --json assets --jq '[.assets[] | select(.name | test("^(generated|site-[0-9]+)[.]tar[.]gz$")) | .name + "@" + .updatedAt] | sort | join(",")' > .index-data-id
-          cat .index-data-id
-      - name: Index cache
-        id: index-cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            public/search
-            public/w
-            public/dig.json
-            public/regions.json
-            generated/site-data.json
-            generated/new-arrivals.json
-            generated/quality-report.json
-          key: index-${{ hashFiles('.index-data-id', 'scripts/index/**', 'scripts/ledger/**', 'scripts/quality/**', 'scripts/lib/**', 'scripts/platforms/filter.js', 'src/lib/search/**', 'src/lib/watch/catno.js', 'data/config.json', 'data/release-key.json', 'data/facets.json', 'data/regions.json', 'data/rates.json', 'data/shops/**') }}
+          gh release download data --pattern index.tar.gz
+          tar xzf index.tar.gz
+          rm index.tar.gz
       - run: npm run validate && npm run rates
-      # offer ledger: today's state and the one before it (a second build on the same day starts from that)
-      - name: Offer ledger
-        if: steps.index-cache.outputs.cache-hit != 'true'
-        run: |
-          gh release download data --pattern "ledger*.ndjson.gz" --dir generated --clobber || echo "no ledger yet, starting one"
-      - name: Search index
-        if: steps.index-cache.outputs.cache-hit != 'true'
-        run: npm run index
       # artist profiles (Refresh's enrich job, docs/sources.md): not part of the index cache, always the latest
       - name: Artist profiles
         run: |
@@ -83,12 +85,6 @@ jobs:
       - name: Collectors feed
         run: gh release download data --pattern social.json.gz -O - | gunzip > public/social.json || { echo "no feed yet"; rm -f public/social.json; }
       - run: npx astro build
-      - name: Save the offer ledger
-        if: steps.index-cache.outputs.cache-hit != 'true'
-        run: |
-          files=generated/ledger.ndjson.gz
-          if [ -f generated/ledger-prev.ndjson.gz ]; then files="$files generated/ledger-prev.ndjson.gz"; fi
-          gh release upload data $files --clobber
       # GitHub Pages sites may be 1 GB: stop at 900 MB so a growth spike never takes the site down
       - name: Size budget
         run: |
