@@ -121,6 +121,7 @@
     "LP/EP Finder does not ask for an account and does not store personal data on its servers. Searches run in your browser.",
     "Advertising: this site shows ads from Google AdSense. Google and its partners use cookies to show ads based on your visits to this and other websites. You can turn off personalised ads in Google's Ads Settings (adssettings.google.com). Visitors in the European Economic Area, the UK and Switzerland are asked for consent first.",
     "Analytics: we count visits with Umami, which uses no cookies and collects no personal data. The statistics are public.",
+    "Optional Bluesky sign-in: the records you watch, and the lists you choose to publish, are saved in your own Bluesky account, where they are public; nothing is kept on our servers. Your Discogs lists are read from Discogs by your browser. Artist photos load from Wikimedia Commons.",
     "Links to record shops take you to their websites, which have their own privacy policies.",
     "Questions, corrections or removal requests: open an issue on GitHub."
   ],
@@ -641,7 +642,18 @@
       "syncing": "syncing…",
       "synced": "synced",
       "error": "not synced, will retry"
-    }
+    },
+    "publishTitle": "Public lists",
+    "publishWants": "Publish my wantlist",
+    "publishCollection": "Publish my collection",
+    "publishNote": "A published list is saved in your Bluesky account, where anyone can see it, here on your public page and elsewhere. Turning it off deletes it from your account.",
+    "publicPage": "Your public page",
+    "publishing": "Publishing…",
+    "unpublishing": "Taking it down…",
+    "published": "Published. It updates by itself when your list changes.",
+    "unpublished": "Deleted from your Bluesky account.",
+    "publishScope": "Your sign-in is from before publishing existed: sign out, then sign in again to allow it.",
+    "publishError": "Couldn't reach your Bluesky account. Try again in a minute."
   },
   "sources": {
     "label": "Where your lists come from",
@@ -663,7 +675,8 @@
       "one": "1 fewer on Discogs",
       "other": "{count} fewer on Discogs"
     },
-    "resync": "Resync"
+    "resync": "Resync",
+    "publicPage": "Public page"
   },
   "profile": {
     "type": {
@@ -696,5 +709,49 @@
     "reportBody": "The profile of {artist} shows another artist.\n\nMusicBrainz: {musicbrainz}\nThe right one (MusicBrainz link, if you know it): ",
     "born": "born {year}",
     "more": "Read more"
+  },
+  "user": {
+    "title": "Collectors",
+    "seoTitle": "A collector's lists",
+    "description": "What a collector wants and has, from the lists they publish on their Bluesky account, and which of their wants independent shops have now.",
+    "intro": "See what a collector wants and has, from the lists they publish on their Bluesky account, and which of their wants independent record shops have right now.",
+    "lookupLabel": "A collector's Bluesky handle",
+    "lookupPlaceholder": "someone.bsky.social",
+    "lookupButton": "Show",
+    "loading": "Reading the lists of @{handle}…",
+    "error": "Couldn't read @{handle}. Check the handle.",
+    "none": "@{handle} hasn't published a list on LP/EP Finder yet.",
+    "pageTitle": "{name}'s records",
+    "wants": {
+      "one": "1 want",
+      "other": "{count} wants"
+    },
+    "collection": {
+      "one": "1 record in the collection",
+      "other": "{count} records in the collection"
+    },
+    "inStock": {
+      "one": "1 in stock now",
+      "other": "{count} in stock now"
+    },
+    "stockHeading": {
+      "one": "In stock now: 1",
+      "other": "In stock now: {count}"
+    },
+    "wantsHeading": {
+      "one": "All wants: 1",
+      "other": "All wants: {count}"
+    },
+    "noneInStock": "None of these wants is in stock right now.",
+    "copies": {
+      "one": "1 in stock",
+      "other": "{count} in stock"
+    },
+    "outOfStock": "not in stock now",
+    "more": "Show more",
+    "bluesky": "Bluesky",
+    "discogs": "Discogs · {user}",
+    "source": "Published by @{handle} on their Bluesky account, updated {date}. Stock and prices from today's data.",
+    "checking": "Checking {done} of {total}…"
   }
 }

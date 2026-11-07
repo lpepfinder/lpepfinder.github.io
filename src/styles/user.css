@@ -1,0 +1,34 @@
+/* <vf-user-page>: a collector's public page. The lookup form until a handle is given; then their head
+   (avatar, name, counts, links), their wants in stock now and all their wants, as release rows. */
+vf-user-page { display: grid; gap: var(--space-4); }
+vf-user-page > *, vf-user-page p { margin: 0; min-inline-size: 0; }
+vf-user-page:not([status="idle"]) > vf-user-lookup { display: none; }
+vf-user-lookup { display: grid; gap: var(--space-3); max-inline-size: var(--measure); }
+vf-user-lookup form { display: grid; gap: var(--space-1); }
+vf-user-lookup label { font-weight: var(--weight-semi); font-size: var(--size-s); }
+vf-user-lookup button { display: inline-flex; align-items: center; gap: var(--space-2); }
+vf-user-lookup p { color: var(--c-muted); }
+
+vf-user-head[hidden], vf-user-page section[hidden], vf-user-page > vf-progress[hidden], vf-user-page img[hidden] { display: none; }
+vf-user-head { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "avatar name" "counts counts" "links links"; align-items: center; gap: var(--space-2) var(--space-3); }
+vf-user-head > img { grid-area: avatar; inline-size: var(--avatar); block-size: var(--avatar); border-radius: var(--radius-pill); object-fit: cover; background: var(--c-skeleton); }
+vf-user-head > hgroup { grid-area: name; display: grid; gap: var(--space-1); min-inline-size: 0; }
+vf-user-head h1 { margin: 0; font-size: var(--size-2); overflow-wrap: anywhere; }
+vf-user-head > hgroup > p { color: var(--c-muted); font-size: var(--size-s); }
+vf-user-head > p { grid-area: counts; font-weight: var(--weight-semi); font-variant-numeric: tabular-nums; }
+vf-user-head > ul { grid-area: links; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+vf-user-head > ul a { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); padding-inline: var(--space-3); border: var(--line) solid var(--c-line); border-radius: var(--radius-pill); color: var(--c-fg); text-decoration: none; font-size: var(--size-s); }
+vf-user-head > ul a vf-icon[name="bluesky"] { color: var(--c-bluesky); }
+@media (min-width: 48rem) {
+  vf-user-head { --avatar: var(--avatar-wide); grid-template-areas: "avatar name" "avatar counts" "avatar links"; }
+}
+
+vf-user-page > output:empty { display: none; }
+vf-user-page > output, vf-user-page > p { color: var(--c-muted); font-size: var(--size-s); }
+vf-user-page section { display: grid; gap: var(--space-2); }
+vf-user-page section > h2 { margin: 0; font-size: var(--size-1); }
+vf-user-page section > ul { list-style: none; margin: 0; padding: 0; display: grid; }
+vf-user-page section > button[name="more"] { justify-self: start; }
+vf-user-page[status="done"] > output { display: none; }
+/* no avatar: no avatar column */
+vf-user-head:has(> img[hidden]) { grid-template-columns: minmax(0, 1fr); grid-template-areas: "name" "counts" "links"; }

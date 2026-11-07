@@ -6,7 +6,8 @@
 import { BrowserOAuthClient } from '@atproto/oauth-client-browser';
 import config from '../../../data/atproto.json' with { type: 'json' };
 
-export const SCOPE = ['atproto', ...Object.values(config.collections).map((nsid) => `repo:${nsid}`)].join(' ');
+// the record types written, and the JSON blobs of published lists (public/client-metadata.json has the same scope)
+export const SCOPE = ['atproto', ...Object.values(config.collections).map((nsid) => `repo:${nsid}`), `blob:${config.blobAccept}`].join(' ');
 
 export function loadClient() {
   const { protocol, hostname, port, origin } = location;

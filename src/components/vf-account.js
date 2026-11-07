@@ -1,5 +1,5 @@
 import { accounts, currentAccount } from '../lib/atproto/accounts.js';
-import { EVENT as PROFILE_EVENT } from '../lib/watch/profiles.js';
+import { EVENT as PROFILE_EVENT, scoped } from '../lib/watch/profiles.js';
 import { SYNC_EVENT, boot } from './atproto-boot.js';
 import { t } from './i18n.js';
 import { listen, unlisten } from './dom.js';
@@ -16,6 +16,8 @@ export class VfAccount extends HTMLElement {
     this.live = this.querySelector('output');
     this.form.addEventListener('submit', (e) => { e.preventDefault(); this.signIn(); });
     this.querySelector('button[name="signout"]').addEventListener('click', () => this.signOut());
+    this.publish = this.querySelector('fieldset[name="publish"]');
+    this.publish.addEventListener('change', (e) => this.setPublish(e.target.name, e.target.checked, e.target));
     listen(this, window, PROFILE_EVENT, () => this.render());
     listen(this, window, SYNC_EVENT, (e) => { this.setAttribute('sync', e.detail); this.render(); });
     this.render();
@@ -27,6 +29,26 @@ export class VfAccount extends HTMLElement {
     const account = currentAccount();
     this.setAttribute('state', account ? 'in' : 'out');
     this.status.textContent = account ? t('account.signedIn', { handle: account.handle }) + (this.getAttribute('sync') ? ` · ${t(`account.sync.${this.getAttribute('sync')}`)}` : '') : '';
+    if (!account) return;
+    this.publish.querySelector('a').href = `${this.publish.querySelector('a').pathname}?h=${encodeURIComponent(account.handle)}`;
+    // the switches read their settings without loading the account code
+    let on = {};
+    try { on = JSON.parse(localStorage.getItem(scoped('vf.publish'))) || {}; } catch {}
+    for (const box of this.publish.querySelectorAll('input')) box.checked = !!on[box.name];
+  }
+
+  /** Publish a list on the account, or take it down; a session from before publishing existed must sign in again. */
+  async setPublish(kind, on, box) {
+    box.disabled = true;
+    this.live.textContent = t(on ? 'account.publishing' : 'account.unpublishing');
+    try {
+      await (await import('../lib/atproto/publish.js')).setPublish(kind, on);
+      this.live.textContent = t(on ? 'account.published' : 'account.unpublished');
+    } catch (e) {
+      console.error(e);
+      this.live.textContent = t(e.code === 'scope' ? 'account.publishScope' : 'account.publishError');
+    }
+    box.disabled = false;
   }
 
   async signIn() {

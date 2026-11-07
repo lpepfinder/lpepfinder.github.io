@@ -118,6 +118,7 @@
     "LP/EP Finder はアカウント登録を求めず、サーバーに個人データを保存しません。検索はブラウザ内で行われます。",
     "広告：このサイトは Google AdSense の広告を表示します。Google とそのパートナーは Cookie を使い、このサイトや他のサイトへの訪問に基づいて広告を表示します。パーソナライズ広告は Google の広告設定（adssettings.google.com）で無効にできます。欧州経済領域・英国・スイスからの訪問者には事前に同意を求めます。",
     "アクセス解析：訪問数は Cookie を使わず個人データも収集しない Umami で計測しています。統計は公開されています。",
+    "Bluesky ログインは任意です。ウォッチしたレコードと、公開を選んだリストはあなた自身の Bluesky アカウントに保存され、公開されます。当サイトのサーバーには何も残りません。Discogs のリストはブラウザが Discogs から直接読み込みます。アーティスト写真は Wikimedia Commons から読み込まれます。",
     "レコード店へのリンク先は各店舗のサイトで、それぞれのプライバシーポリシーが適用されます。",
     "ご質問・修正・掲載削除の依頼は GitHub の Issue でどうぞ。"
   ],
@@ -608,7 +609,18 @@
       "syncing": "同期中…",
       "synced": "同期済み",
       "error": "未同期、再試行します"
-    }
+    },
+    "publishTitle": "公開リスト",
+    "publishWants": "ウォントリストを公開する",
+    "publishCollection": "コレクションを公開する",
+    "publishNote": "公開したリストはあなたの Bluesky アカウントに保存され、ここの公開ページやほかの場所で誰でも見られます。オフにするとアカウントから削除されます。",
+    "publicPage": "あなたの公開ページ",
+    "publishing": "公開中…",
+    "unpublishing": "削除中…",
+    "published": "公開しました。リストが変わると自動で更新されます。",
+    "unpublished": "Bluesky アカウントから削除しました。",
+    "publishScope": "公開機能より前のログインです。ログアウトしてもう一度ログインすると許可できます。",
+    "publishError": "Bluesky アカウントに接続できませんでした。少ししてからもう一度お試しください。"
   },
   "sources": {
     "label": "リストの取得元",
@@ -627,7 +639,8 @@
     "fewer": {
       "other": "Discogs で {count} 件減少"
     },
-    "resync": "再同期"
+    "resync": "再同期",
+    "publicPage": "公開ページ"
   },
   "profile": {
     "type": {
@@ -660,5 +673,43 @@
     "reportBody": "{artist} のプロフィールに別のアーティストが表示されています。\n\nMusicBrainz: {musicbrainz}\n正しいもの(わかれば MusicBrainz のリンク): ",
     "born": "{year}年生まれ",
     "more": "続きを読む"
+  },
+  "user": {
+    "title": "コレクター",
+    "seoTitle": "コレクターのリスト",
+    "description": "コレクターが Bluesky アカウントで公開しているリストから、欲しいもの・持っているもの、そして今インディーショップにある欲しいレコード。",
+    "intro": "コレクターが Bluesky アカウントで公開しているリストから、欲しいもの・持っているものと、そのうち今インディーのレコード店にあるものを表示します。",
+    "lookupLabel": "コレクターの Bluesky ハンドル",
+    "lookupPlaceholder": "someone.bsky.social",
+    "lookupButton": "表示",
+    "loading": "@{handle} のリストを読み込み中…",
+    "error": "@{handle} を読み込めませんでした。ハンドルを確認してください。",
+    "none": "@{handle} はまだ LP/EP Finder にリストを公開していません。",
+    "pageTitle": "{name} のレコード",
+    "wants": {
+      "other": "欲しいもの {count} 枚"
+    },
+    "collection": {
+      "other": "コレクション {count} 枚"
+    },
+    "inStock": {
+      "other": "在庫あり {count} 枚"
+    },
+    "stockHeading": {
+      "other": "今の在庫: {count}"
+    },
+    "wantsHeading": {
+      "other": "欲しいものすべて: {count}"
+    },
+    "noneInStock": "今、在庫のあるものはありません。",
+    "copies": {
+      "other": "在庫 {count}"
+    },
+    "outOfStock": "現在在庫なし",
+    "more": "もっと見る",
+    "bluesky": "Bluesky",
+    "discogs": "Discogs · {user}",
+    "source": "@{handle} が Bluesky アカウントで公開、{date} 更新。在庫と価格は本日のデータ。",
+    "checking": "{total} 件中 {done} 件を確認中…"
   }
 }

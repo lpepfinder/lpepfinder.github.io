@@ -1,0 +1,22 @@
+{
+  "lexicon": 1,
+  "id": "com.lpepfinder.list",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "any",
+      "description": "A whole list the account chose to publish on LP/EP Finder (lpepfinder.com): its wantlist (record key \"wants\") or its collection (record key \"collection\"). The list itself is a JSON blob, so a list of 10,000 records is one write. Wants: {\"version\":1,\"kind\":\"wants\",\"items\":[[releaseKey, \"Artist – Title\", discogsReleaseId or 0, coverUrl or \"\"], …]}. Collection: {\"version\":1,\"kind\":\"collection\",\"keys\":[releaseKey, …]}. A release key is 12 hex characters derived from the record's artist and title, the same in every shop.",
+      "record": {
+        "type": "object",
+        "required": ["kind", "count", "items", "updatedAt"],
+        "properties": {
+          "kind": { "type": "string", "knownValues": ["wants", "collection"] },
+          "count": { "type": "integer", "minimum": 0, "description": "Records in the list" },
+          "items": { "type": "blob", "accept": ["application/json"], "maxSize": 5000000 },
+          "discogs": { "type": "string", "maxLength": 100, "description": "The Discogs username the list was imported from, when it was" },
+          "updatedAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    }
+  }
+}

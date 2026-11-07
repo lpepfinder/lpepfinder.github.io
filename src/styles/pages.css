@@ -157,5 +157,12 @@ vf-account > output:empty, vf-account-status:empty { display: none; }
 vf-account-status { display: block; font-weight: var(--weight-semi); }
 vf-account[state="in"] > :is(form, p), vf-account[state="out"] > button[name="signout"] { display: none; }
 vf-account > button[name="signout"] { justify-self: start; }
+/* lists published on the account (public), shown once signed in */
+vf-account[state="out"] > fieldset { display: none; }
+vf-account > fieldset { display: grid; gap: var(--space-2); margin: 0; padding: var(--space-3); border: var(--line) solid var(--c-line); border-radius: var(--radius); }
+vf-account > fieldset > legend { padding-inline: var(--space-1); font-weight: var(--weight-semi); font-size: var(--size-s); }
+vf-account > fieldset > label { display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--tap); }
+vf-account > fieldset > p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-account > fieldset a { display: inline-flex; align-items: center; gap: var(--space-1); }
 vf-account[sync="error"] vf-account-status { color: var(--c-error); }
 vf-account[busy] form button { opacity: var(--busy-opacity); pointer-events: none; }

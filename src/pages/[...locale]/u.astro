@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t, localeParams, localPath } from '../../lib/i18n.js';
+import { pageTitle } from '../../lib/seo.js';
+
+/**
+ * A collector's public page, /u/?h=<handle>: the lists they publish on their Bluesky account (vf-user-page.js),
+ * which of their wants independent shops have now, and a way to watch them too. Without a handle: a lookup form.
+ */
+export const getStaticPaths = localeParams;
+const { lang } = Astro.props;
+---
+<Base lang={lang} path="/u/" title={pageTitle(t(lang, 'user.seoTitle'))} description={t(lang, 'user.description')} noindex strings={['user', 'watch']}>
+  <vf-user-page status="idle">
+    <vf-user-lookup>
+      <h1>{t(lang, 'user.title')}</h1>
+      <p>{t(lang, 'user.intro')}</p>
+      <form action={localPath(lang, '/u/')}>
+        <label for="user-handle">{t(lang, 'user.lookupLabel')}</label>
+        <vf-field>
+          <input id="user-handle" name="h" autocomplete="off" autocapitalize="off" spellcheck="false" required placeholder={t(lang, 'user.lookupPlaceholder')}>
+          <button type="submit"><vf-icon name="search"></vf-icon><span>{t(lang, 'user.lookupButton')}</span></button>
+        </vf-field>
+      </form>
+    </vf-user-lookup>
+    <vf-user-head hidden>
+      <img alt="" width="96" height="96" referrerpolicy="no-referrer" hidden>
+      <hgroup>
+        <h1></h1>
+        <p></p>
+      </hgroup>
+      <p></p>
+      <ul></ul>
+    </vf-user-head>
+    <vf-progress hidden>
+      <label for="user-progress"></label>
+      <progress id="user-progress"></progress>
+    </vf-progress>
+    <output aria-live="polite"></output>
+    <section name="stock" hidden>
+      <h2></h2>
+      <ul></ul>
+      <button type="button" name="more" kind="secondary" hidden>{t(lang, 'user.more')}</button>
+    </section>
+    <section name="wants" hidden>
+      <h2></h2>
+      <ul></ul>
+      <button type="button" name="more" kind="secondary" hidden>{t(lang, 'user.more')}</button>
+    </section>
+    <p></p>
+  </vf-user-page>
+</Base>
+<script>
+  import '../../components/vf-user-page.js';
+</script>

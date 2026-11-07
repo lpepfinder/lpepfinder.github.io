@@ -121,6 +121,7 @@
     "LP/EP Finder verlangt kein Konto und speichert keine personenbezogenen Daten auf Servern. Suchen laufen in deinem Browser.",
     "Werbung: Diese Seite zeigt Anzeigen von Google AdSense. Google und seine Partner verwenden Cookies, um Anzeigen auf Grundlage deiner Besuche auf dieser und anderen Websites zu zeigen. Personalisierte Werbung kannst du in den Google-Anzeigeneinstellungen (adssettings.google.com) abschalten. Besucher aus dem EWR, dem Vereinigten Königreich und der Schweiz werden vorher um Einwilligung gebeten.",
     "Statistik: Wir zählen Besuche mit Umami, ohne Cookies und ohne personenbezogene Daten. Die Statistik ist öffentlich.",
+    "Optionale Bluesky-Anmeldung: Die Platten, die du beobachtest, und die Listen, die du veröffentlichst, liegen in deinem eigenen Bluesky-Konto, wo sie öffentlich sind; auf unseren Servern bleibt nichts. Deine Discogs-Listen liest dein Browser direkt bei Discogs. Künstlerfotos werden von Wikimedia Commons geladen.",
     "Links zu Plattenläden führen auf deren Websites mit eigener Datenschutzerklärung.",
     "Fragen, Korrekturen oder Löschwünsche: Eröffne ein Issue auf GitHub."
   ],
@@ -641,7 +642,18 @@
       "syncing": "wird synchronisiert…",
       "synced": "synchronisiert",
       "error": "nicht synchronisiert, neuer Versuch folgt"
-    }
+    },
+    "publishTitle": "Öffentliche Listen",
+    "publishWants": "Meine Wunschliste veröffentlichen",
+    "publishCollection": "Meine Sammlung veröffentlichen",
+    "publishNote": "Eine veröffentlichte Liste liegt in deinem Bluesky-Konto, wo alle sie sehen können, hier auf deiner öffentlichen Seite und anderswo. Ausschalten löscht sie aus deinem Konto.",
+    "publicPage": "Deine öffentliche Seite",
+    "publishing": "Wird veröffentlicht…",
+    "unpublishing": "Wird entfernt…",
+    "published": "Veröffentlicht. Sie aktualisiert sich, wenn sich deine Liste ändert.",
+    "unpublished": "Aus deinem Bluesky-Konto gelöscht.",
+    "publishScope": "Deine Anmeldung ist älter als das Veröffentlichen: melde dich ab und wieder an, um es zu erlauben.",
+    "publishError": "Dein Bluesky-Konto war nicht erreichbar. Versuche es gleich noch einmal."
   },
   "sources": {
     "label": "Woher deine Listen kommen",
@@ -663,7 +675,8 @@
       "one": "1 weniger auf Discogs",
       "other": "{count} weniger auf Discogs"
     },
-    "resync": "Neu abgleichen"
+    "resync": "Neu abgleichen",
+    "publicPage": "Öffentliche Seite"
   },
   "profile": {
     "type": {
@@ -696,5 +709,49 @@
     "reportBody": "Das Profil von {artist} zeigt jemand anderen.\n\nMusicBrainz: {musicbrainz}\nDer richtige Eintrag (MusicBrainz-Link, falls bekannt): ",
     "born": "geboren {year}",
     "more": "Weiterlesen"
+  },
+  "user": {
+    "title": "Sammler:innen",
+    "seoTitle": "Die Listen einer Sammlerin",
+    "description": "Was jemand sucht und besitzt, aus den Listen auf dem eigenen Bluesky-Konto, und welche Wünsche unabhängige Läden gerade haben.",
+    "intro": "Sieh, was jemand sucht und besitzt, aus den Listen auf dem eigenen Bluesky-Konto, und welche dieser Wünsche unabhängige Plattenläden gerade haben.",
+    "lookupLabel": "Bluesky-Handle einer Sammlerin",
+    "lookupPlaceholder": "jemand.bsky.social",
+    "lookupButton": "Zeigen",
+    "loading": "Lese die Listen von @{handle}…",
+    "error": "@{handle} konnte nicht gelesen werden. Prüfe das Handle.",
+    "none": "@{handle} hat noch keine Liste auf LP/EP Finder veröffentlicht.",
+    "pageTitle": "Die Platten von {name}",
+    "wants": {
+      "one": "1 Wunsch",
+      "other": "{count} Wünsche"
+    },
+    "collection": {
+      "one": "1 Platte in der Sammlung",
+      "other": "{count} Platten in der Sammlung"
+    },
+    "inStock": {
+      "one": "1 jetzt vorrätig",
+      "other": "{count} jetzt vorrätig"
+    },
+    "stockHeading": {
+      "one": "Jetzt vorrätig: 1",
+      "other": "Jetzt vorrätig: {count}"
+    },
+    "wantsHeading": {
+      "one": "Alle Wünsche: 1",
+      "other": "Alle Wünsche: {count}"
+    },
+    "noneInStock": "Keiner dieser Wünsche ist gerade vorrätig.",
+    "copies": {
+      "one": "1 vorrätig",
+      "other": "{count} vorrätig"
+    },
+    "outOfStock": "gerade nicht vorrätig",
+    "more": "Mehr zeigen",
+    "bluesky": "Bluesky",
+    "discogs": "Discogs · {user}",
+    "source": "Von @{handle} auf dem eigenen Bluesky-Konto veröffentlicht, aktualisiert am {date}. Bestand und Preise von heute.",
+    "checking": "Prüfe {done} von {total}…"
   }
 }

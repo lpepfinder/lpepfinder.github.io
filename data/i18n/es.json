@@ -121,6 +121,7 @@
     "LP/EP Finder no pide cuenta y no guarda datos personales en sus servidores. Las búsquedas se ejecutan en tu navegador.",
     "Publicidad: este sitio muestra anuncios de Google AdSense. Google y sus socios usan cookies para mostrar anuncios según tus visitas a este y otros sitios. Puedes desactivar los anuncios personalizados en la configuración de anuncios de Google (adssettings.google.com). En el Espacio Económico Europeo, el Reino Unido y Suiza se pide antes tu consentimiento.",
     "Estadísticas: contamos las visitas con Umami, sin cookies ni datos personales. Las estadísticas son públicas.",
+    "Inicio de sesión con Bluesky opcional: los discos que sigues, y las listas que decides publicar, se guardan en tu propia cuenta de Bluesky, donde son públicos; no guardamos nada en nuestros servidores. Tu navegador lee tus listas de Discogs directamente en Discogs. Las fotos de artistas se cargan desde Wikimedia Commons.",
     "Los enlaces a las tiendas llevan a sus sitios, que tienen su propia política de privacidad.",
     "Preguntas, correcciones o solicitudes de retirada: abre un issue en GitHub."
   ],
@@ -641,7 +642,18 @@
       "syncing": "sincronizando…",
       "synced": "sincronizado",
       "error": "sin sincronizar, se reintentará"
-    }
+    },
+    "publishTitle": "Listas públicas",
+    "publishWants": "Publicar mi lista de deseos",
+    "publishCollection": "Publicar mi colección",
+    "publishNote": "Una lista publicada se guarda en tu cuenta de Bluesky, donde cualquiera puede verla, aquí en tu página pública y en otros sitios. Desactivarla la borra de tu cuenta.",
+    "publicPage": "Tu página pública",
+    "publishing": "Publicando…",
+    "unpublishing": "Retirando…",
+    "published": "Publicada. Se actualiza sola cuando cambia tu lista.",
+    "unpublished": "Borrada de tu cuenta de Bluesky.",
+    "publishScope": "Tu sesión es de antes de poder publicar: cierra sesión y vuelve a entrar para permitirlo.",
+    "publishError": "No se pudo contactar con tu cuenta de Bluesky. Inténtalo en un minuto."
   },
   "sources": {
     "label": "De dónde vienen tus listas",
@@ -663,7 +675,8 @@
       "one": "1 menos en Discogs",
       "other": "{count} menos en Discogs"
     },
-    "resync": "Resincronizar"
+    "resync": "Resincronizar",
+    "publicPage": "Página pública"
   },
   "profile": {
     "type": {
@@ -696,5 +709,49 @@
     "reportBody": "El perfil de {artist} muestra a otro artista.\n\nMusicBrainz: {musicbrainz}\nEl correcto (enlace de MusicBrainz, si lo conoces): ",
     "born": "nacido/a en {year}",
     "more": "Leer más"
+  },
+  "user": {
+    "title": "Coleccionistas",
+    "seoTitle": "Las listas de un coleccionista",
+    "description": "Lo que un coleccionista busca y tiene, según las listas que publica en su cuenta de Bluesky, y cuáles de sus deseos tienen hoy las tiendas independientes.",
+    "intro": "Mira lo que un coleccionista busca y tiene, según las listas publicadas en su cuenta de Bluesky, y cuáles de sus deseos tienen ahora las tiendas de discos independientes.",
+    "lookupLabel": "El usuario de Bluesky de un coleccionista",
+    "lookupPlaceholder": "alguien.bsky.social",
+    "lookupButton": "Mostrar",
+    "loading": "Leyendo las listas de @{handle}…",
+    "error": "No se pudo leer @{handle}. Revisa el usuario.",
+    "none": "@{handle} aún no ha publicado ninguna lista en LP/EP Finder.",
+    "pageTitle": "Los discos de {name}",
+    "wants": {
+      "one": "1 deseado",
+      "other": "{count} deseados"
+    },
+    "collection": {
+      "one": "1 disco en la colección",
+      "other": "{count} discos en la colección"
+    },
+    "inStock": {
+      "one": "1 en stock ahora",
+      "other": "{count} en stock ahora"
+    },
+    "stockHeading": {
+      "one": "En stock ahora: 1",
+      "other": "En stock ahora: {count}"
+    },
+    "wantsHeading": {
+      "one": "Todos los deseados: 1",
+      "other": "Todos los deseados: {count}"
+    },
+    "noneInStock": "Ninguno de estos discos está en stock ahora.",
+    "copies": {
+      "one": "1 en stock",
+      "other": "{count} en stock"
+    },
+    "outOfStock": "sin stock ahora",
+    "more": "Ver más",
+    "bluesky": "Bluesky",
+    "discogs": "Discogs · {user}",
+    "source": "Publicado por @{handle} en su cuenta de Bluesky, actualizado el {date}. Stock y precios de hoy.",
+    "checking": "Comprobando {done} de {total}…"
   }
 }

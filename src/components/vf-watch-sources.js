@@ -1,5 +1,5 @@
 import { sources, checkDiscogs, freshness, EVENT } from '../lib/watch/sources.js';
-import { EVENT as PROFILE_EVENT } from '../lib/watch/profiles.js';
+import { EVENT as PROFILE_EVENT, scoped } from '../lib/watch/profiles.js';
 import { currentAccount } from '../lib/atproto/accounts.js';
 import { SYNC_EVENT } from './atproto-boot.js';
 import { el, attrs, listen, unlisten } from './dom.js';
@@ -61,7 +61,13 @@ export class VfWatchSources extends HTMLElement {
   blueskyRow(account, s) {
     const state = this.sync === 'syncing' ? 'syncing' : this.sync === 'error' ? 'error' : 'current';
     const notes = [state === 'current' && s.bluesky?.at ? t('sources.synced', { ago: formatAgo(s.bluesky.at) }) : t(`account.sync.${this.sync || 'syncing'}`)];
-    return this.row('bluesky', state, 'bluesky', t('sources.bluesky', { handle: account.handle }), notes, null);
+    // with a list published, its public page is one tap away
+    let published = {};
+    try { published = JSON.parse(localStorage.getItem(scoped('vf.publish'))) || {}; } catch {}
+    const page = Object.values(published).some(Boolean)
+      ? attrs(el('a', { href: `${this.getAttribute('user-page') || '/u/'}?h=${encodeURIComponent(account.handle)}` }, icon('person'), t('sources.publicPage')), { kind: 'secondary' })
+      : null;
+    return this.row('bluesky', state, 'bluesky', t('sources.bluesky', { handle: account.handle }), notes, page);
   }
 
   row(kind, state, name, label, notes, action) {

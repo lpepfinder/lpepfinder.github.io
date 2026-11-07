@@ -117,7 +117,7 @@ vf-source { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid
 vf-source > vf-icon { grid-area: icon; color: var(--c-muted); }
 vf-source > strong { grid-area: name; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 vf-source > small { grid-area: note; color: var(--c-muted); font-size: var(--size-xs); }
-vf-source > button { grid-area: action; display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--size-s); }
+vf-source > :is(button, a) { grid-area: action; display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--size-s); }
 vf-source[kind="bluesky"] > vf-icon { color: var(--c-bluesky); }
 vf-source[state="changed"] { border-color: var(--c-watching); }
 vf-source[state="changed"] > small { color: var(--c-watching); }

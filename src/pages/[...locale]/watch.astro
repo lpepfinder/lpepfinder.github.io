@@ -35,7 +35,7 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
         <li><button type="button" name="currency" kind="secondary"><vf-icon name="coin"></vf-icon><span>{t(lang, 'currency.label')}</span></button></li>
       </menu>
     </vf-watch-head>
-    <vf-watch-sources hidden>
+    <vf-watch-sources user-page={localPath(lang, '/u/')} hidden>
       <ul aria-label={t(lang, 'sources.label')}></ul>
     </vf-watch-sources>
     <vf-watch-start>

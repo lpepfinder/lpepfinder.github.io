@@ -9,6 +9,7 @@ import { load, update, EVENT as WATCH_EVENT } from '../watch/store.js';
 import { scoped, EVENT as PROFILE_EVENT } from '../watch/profiles.js';
 import { currentAccount } from './accounts.js';
 import { synced } from '../watch/sources.js';
+import { publishAll } from './publish.js';
 import { sessionFor } from './session.js';
 import config from '../../../data/atproto.json' with { type: 'json' };
 
@@ -101,13 +102,17 @@ export async function pushProfile() {
 /** Keep the current profile's account in sync: pull now and on profile change, push after changes. */
 export function keepInSync(onState) {
   let timer;
+  let publishing;
   const run = async (fn) => { onState?.('syncing'); try { await fn(); synced(); onState?.('synced'); } catch (e) { console.error(e); onState?.('error'); } };
-  const pullNow = () => currentAccount() && run(pull);
+  const pullNow = () => currentAccount() && run(async () => { await pull(); await publishAll(); });
   addEventListener(PROFILE_EVENT, pullNow);
   addEventListener(WATCH_EVENT, () => {
     if (!currentAccount()) return;
     clearTimeout(timer);
     timer = setTimeout(() => run(push), config.syncDelayMs);
+    // published lists (publish.js) are whole files: rewritten once the list has settled
+    clearTimeout(publishing);
+    publishing = setTimeout(() => run(publishAll), config.publishDelayMs);
   });
   addEventListener('vf-watch-imported', () => currentAccount() && run(pushProfile));
   return pullNow();
