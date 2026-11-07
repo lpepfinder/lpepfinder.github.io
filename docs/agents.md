@@ -14,12 +14,12 @@ The pages are made for people. Everything they show is also published as plain J
 | `/api/index.json` | the endpoints below, counts (records, shops, countries) and the build time |
 | `/api/shops.json` | every listed shop: id, name, site, country, city, records in stock, `searchable`, `bluesky` (`handle`, `verified`), its page |
 | `/api/artists.json` | artists with records in stock at several shops: name, number of shops and records, page, and the URL of their JSON |
-| `/artist/{slug}.json` | one artist's records in stock, cheapest first: title, `priceCents` and `currency`, shop, the shop's product URL, image |
+| `/artist/{slug}.json` | one artist's records in stock, cheapest first: title, `priceCents` and `currency`, shop, the shop's product URL, image; and `profile` (or null): type, country, years, genres, links (MusicBrainz, Wikidata, Wikipedia, website, Discogs, YouTube, Bluesky), the Wikipedia lead and a photo with their licences, and `sources` ([Open data sources](sources.md)) |
 | `/dig.json` | this week's crates: new in the shops, back in stock, price drops ([format](data-formats.md)) |
 | `/feed/new.xml`, `/feed/shop/{id}.xml` | Atom feeds of new arrivals |
 | `/sitemap-index.xml` | every page |
 
-Every page that has data links its JSON in its `<head>` as `<link rel="alternate" type="application/json">`: an artist page links `/artist/{slug}.json`, Dig links `/dig.json`, the shops page links `/api/shops.json`. Artist and shop pages also carry schema.org data (`Product` with `Offer`, `RecordStore`).
+Every page that has data links its JSON in its `<head>` as `<link rel="alternate" type="application/json">`: an artist page links `/artist/{slug}.json`, Dig links `/dig.json`, the shops page links `/api/shops.json`. Artist and shop pages also carry schema.org data (`Product` with `Offer`, `RecordStore`; an artist with a profile is a `MusicGroup` or `Person` with `sameAs` links).
 
 Prices are in cents of the shop's currency (`priceCents: 2499`, `currency: "EUR"` is €24.99). Fields may be added; existing ones keep their name and meaning (`version` says which).
 

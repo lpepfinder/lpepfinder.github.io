@@ -1,0 +1,23 @@
+/* <vf-artist-profile>: who the artist is (open data), a compact header above their records, so the records stay
+   close: a small photo beside the facts and genres, the Wikipedia lead (the rest under "Read more"), links, credits. */
+vf-artist-profile { display: grid; gap: var(--space-3); max-inline-size: var(--profile-max); }
+vf-artist-profile > *, vf-artist-profile p { margin: 0; min-inline-size: 0; }
+vf-artist-head { display: flex; align-items: center; gap: var(--space-3); }
+vf-artist-head > img { flex: none; inline-size: var(--profile-photo); block-size: var(--profile-photo); object-fit: cover; object-position: top; border-radius: var(--radius); background: var(--c-skeleton); }
+vf-artist-facts { display: grid; gap: var(--space-2); min-inline-size: 0; }
+vf-artist-facts > p { font-weight: var(--weight-semi); color: var(--c-muted); font-size: var(--size-s); }
+vf-artist-facts > ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-1); }
+vf-artist-facts > ul > li { padding: var(--space-1) var(--space-2); border-radius: var(--radius-pill); background: var(--c-chip); font-size: var(--size-xs); }
+vf-artist-profile > blockquote { display: grid; gap: var(--space-1); margin: 0; padding-inline-start: var(--space-3); border-inline-start: var(--quote-w) solid var(--c-line); max-inline-size: var(--measure); }
+vf-artist-profile > blockquote details > summary { cursor: pointer; color: var(--c-link); font-size: var(--size-s); inline-size: fit-content; min-block-size: var(--tap); display: flex; align-items: center; }
+vf-artist-profile > blockquote details[open] > summary { display: none; }
+vf-artist-profile > blockquote > footer, vf-artist-profile > footer { font-size: var(--size-xs); color: var(--c-muted); }
+vf-artist-profile footer a { display: inline; min-block-size: 0; color: inherit; }
+vf-artist-profile > nav > ul { list-style: none; margin: 0; padding: var(--focus-offset); display: flex; flex-wrap: nowrap; gap: var(--space-2); overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; }
+vf-artist-profile > nav a { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); padding-inline: var(--space-3); border: var(--line) solid var(--c-line); border-radius: var(--radius-pill); color: var(--c-fg); text-decoration: none; white-space: nowrap; font-size: var(--size-s); }
+vf-artist-profile > nav a:hover { border-color: var(--c-border); }
+vf-artist-profile > nav a[kind="bluesky"] vf-icon { color: var(--c-bluesky); }
+@media (min-width: 48rem) {
+  vf-artist-profile { --profile-photo: var(--profile-photo-wide); }
+  vf-artist-profile > nav > ul { flex-wrap: wrap; overflow: visible; }
+}

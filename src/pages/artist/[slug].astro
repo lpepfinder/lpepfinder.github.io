@@ -2,6 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import ReleaseList from '../../components/ReleaseList.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ArtistProfile from '../../components/ArtistProfile.astro';
+import { artistProfile, sameAs } from '../../lib/enrich.js';
 import { t, defaultLanguage as lang, number, price } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
 import { pageTitle, truncate, breadcrumbLd } from '../../lib/seo.js';
@@ -12,6 +14,7 @@ export function getStaticPaths() {
 }
 const { artist } = Astro.props;
 const c = catalog();
+const profile = artistProfile(artist.slug);
 const cheapest = artist.records.find((r) => r.price != null);
 const vars = {
   artist: artist.name, count: number(lang, artist.records.length), shops: number(lang, artist.shopCount),
@@ -28,7 +31,7 @@ const shopUrl = (id) => new URL(`/shop/${id}/`, Astro.site).href;
 const offers = artist.records.filter((r) => r.price != null && r.currency).slice(0, 50);
 const ld = [{
   '@context': 'https://schema.org', '@type': 'CollectionPage', name: t(lang, 'artistTitle', vars),
-  about: { '@type': 'MusicGroup', name: artist.name },
+  about: { '@type': profile?.type === 'Person' ? 'Person' : 'MusicGroup', name: artist.name, ...(profile ? { sameAs: sameAs(profile), ...(profile.genres.length ? { genre: profile.genres } : {}) } : {}) },
   mainEntity: {
     '@type': 'ItemList',
     itemListElement: offers.map((r, i) => ({
@@ -49,6 +52,7 @@ const ld = [{
 <Base lang={lang} title={pageTitle(title)} description={t(lang, cheapest ? 'artistDescription' : 'artistDescriptionNoPrice', vars)} ld={ld} data={`/artist/${artist.slug}.json`}>
   <Breadcrumbs lang={lang} items={crumbs} />
   <h1 id="artist-title">{t(lang, 'artistTitle', vars)}</h1>
+  <ArtistProfile lang={lang} profile={profile} />
   <p>{t(lang, 'artistIntro', vars)}</p>
   <p><a href={`/?q=${encodeURIComponent(artist.name)}`} kind="secondary"><vf-icon name="search"></vf-icon>{t(lang, 'artistSearchAll', vars)}</a></p>
   <ReleaseList lang={lang} records={artist.records} shopsById={c.shopsById} labelledby="artist-title" checked={c.builtAt} />

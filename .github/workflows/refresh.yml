@@ -108,8 +108,35 @@ jobs:
           gh release view data > /dev/null 2>&1 || gh release create data --title "Crawl data" --notes "Latest output of the Refresh workflow, used by Deploy." || true
           gh release upload data "site-$SITE_SHARD.tar.gz" --clobber
 
+  # artist profiles from open sources (docs/sources.md), for the artists the live site lists: next to the crawls
+  enrich:
+    runs-on: ubuntu-24.04
+    # the run stops itself at enrich.maxMinutes (40) and saves what it did
+    timeout-minutes: 60
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Previous profiles
+        run: |
+          mkdir -p generated/enrich
+          gh release download data --pattern enrich.json.gz -O - | gunzip > generated/enrich/artists.json || { echo "no profiles yet"; rm -f generated/enrich/artists.json; }
+      - run: npm run enrich
+      - name: Publish profiles
+        run: |
+          gzip -c generated/enrich/artists.json > enrich.json.gz
+          gh release view data > /dev/null 2>&1 || gh release create data --title "Crawl data" --notes "Latest output of the Refresh workflow, used by Deploy."
+          gh release upload data enrich.json.gz --clobber
+
   deploy:
-    needs: [refresh, site]
+    needs: [refresh, site, enrich]
     # a failed job keeps yesterday's data asset: deploy in any case, so one bad job never holds the site back
     if: ${{ !cancelled() }}
     uses: ./.github/workflows/deploy.yml

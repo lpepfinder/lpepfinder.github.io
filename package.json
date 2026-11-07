@@ -23,7 +23,8 @@
     "stats": "node scripts/stats/index.js",
     "rates": "node scripts/rates/index.js",
     "test:e2e": "playwright test",
-    "health": "node scripts/health/index.js"
+    "health": "node scripts/health/index.js",
+    "enrich": "node scripts/enrich/index.js"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "^0.4.3",

@@ -628,5 +628,37 @@
       "other": "Discogs で {count} 件減少"
     },
     "resync": "再同期"
+  },
+  "profile": {
+    "type": {
+      "Person": "アーティスト",
+      "Group": "バンド",
+      "Orchestra": "オーケストラ",
+      "Choir": "合唱団",
+      "Character": "キャラクター",
+      "Other": "プロジェクト"
+    },
+    "genres": "ジャンル",
+    "imageAlt": "{artist}",
+    "imageCredit": "写真: {author}、{license}、Wikimedia Commons",
+    "unknownAuthor": "作者不明",
+    "wikipediaCredit": "Wikipedia より: {title}",
+    "elsewhere": "{artist} の外部リンク",
+    "link": {
+      "website": "公式サイト",
+      "bluesky": "Bluesky",
+      "youtube": "YouTube",
+      "discogs": "Discogs",
+      "wikipedia": "Wikipedia",
+      "musicbrainz": "MusicBrainz",
+      "wikidata": "Wikidata"
+    },
+    "sources": "オープンデータより:",
+    "about": "プロフィールの作り方",
+    "report": "別のアーティスト?",
+    "reportTitle": "アーティストプロフィール: {artist}",
+    "reportBody": "{artist} のプロフィールに別のアーティストが表示されています。\n\nMusicBrainz: {musicbrainz}\n正しいもの(わかれば MusicBrainz のリンク): ",
+    "born": "{year}年生まれ",
+    "more": "続きを読む"
   }
 }

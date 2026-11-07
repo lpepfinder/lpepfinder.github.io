@@ -1,0 +1,54 @@
+---
+import { t, countryName } from '../lib/i18n.js';
+import { SOURCES, years } from '../lib/enrich.js';
+import config from '../../data/config.json' with { type: 'json' };
+
+/**
+ * <vf-artist-profile>: who the artist is, from open sources (src/lib/enrich.js, docs/sources.md): a photo with its
+ * author and licence, type, origin, years and genres, the Wikipedia lead quoted with its credit, links elsewhere,
+ * and the sources with a way to report a wrong match. Nothing without a profile.
+ */
+const { lang, profile: p } = Astro.props;
+const summary = p?.summary?.[lang] || p?.summary?.en || null;
+const summaryLang = p?.summary?.[lang] ? lang : 'en';
+// the first sentences on the page (config.enrich.leadChars), the rest under "Read more"
+const sentences = summary?.text.match(/[^.!?。]+[.!?。]+["”’)]*\s*|[^.!?。]+$/g) || [];
+let lead = '';
+while (sentences.length && (!lead || lead.length + sentences[0].length <= config.enrich.leadChars)) lead += sentences.shift();
+const rest = sentences.join('').trim();
+const span = p && years(p);
+const facts = p ? [p.type ? t(lang, `profile.type.${p.type}`) : null, p.country && p.country !== 'XW' ? countryName(lang, p.country) : null, span?.born ? t(lang, 'profile.born', { year: span.born }) : span].filter(Boolean) : [];
+const LINKS = [['website', 'globe'], ['bluesky', 'bluesky'], ['youtube', 'play'], ['discogs', 'record'], ['wikipedia', 'book'], ['musicbrainz', 'info'], ['wikidata', 'code']];
+const links = p ? LINKS.map(([kind, icon]) => [kind, icon, kind === 'wikipedia' ? (p.links.wikipedia?.[lang] || p.links.wikipedia?.en) : p.links[kind]]).filter(([, , href]) => href) : [];
+const report = p && `${config.repository}/issues/new?${new URLSearchParams({ title: t(lang, 'profile.reportTitle', { artist: p.name }), body: t(lang, 'profile.reportBody', { artist: p.name, musicbrainz: p.links.musicbrainz }) })}`;
+---
+{p && (
+  <vf-artist-profile image={p.image ? 'true' : undefined}>
+    <vf-artist-head>
+      {p.image && <img src={p.image.src} width={p.image.width} height={p.image.height} alt={t(lang, 'profile.imageAlt', { artist: p.name })} decoding="async" referrerpolicy="no-referrer">}
+      <vf-artist-facts>
+        {facts.length > 0 && <p>{facts.join(' · ')}</p>}
+        {p.genres?.length > 0 && <ul aria-label={t(lang, 'profile.genres')}>{p.genres.map((g) => <li>{g}</li>)}</ul>}
+      </vf-artist-facts>
+    </vf-artist-head>
+    {summary && (
+      <blockquote cite={summary.url} lang={summaryLang}>
+        <p>{lead.trim()}</p>
+        {rest && <details><summary>{t(lang, 'profile.more')}</summary><p>{rest}</p></details>}
+        <footer><a href={summary.url} rel="nofollow">{t(lang, 'profile.wikipediaCredit', { title: summary.title })}</a> · <a href={SOURCES.wikipedia.licenseUrl} rel="license nofollow">{SOURCES.wikipedia.license}</a></footer>
+      </blockquote>
+    )}
+    {links.length > 0 && (
+      <nav aria-label={t(lang, 'profile.elsewhere', { artist: p.name })}>
+        <ul>{links.map(([kind, icon, href]) => <li><a href={href} rel="nofollow noopener" kind={kind}><vf-icon name={icon}></vf-icon>{t(lang, `profile.link.${kind}`)}</a></li>)}</ul>
+      </nav>
+    )}
+    <footer>
+      <small>
+        {t(lang, 'profile.sources')} {p.sources.map((s, i) => <>{i > 0 && ', '}<a href={SOURCES[s].url} rel="nofollow">{SOURCES[s].name}</a></>)}.
+        {p.image && <>{' '}<a href={p.image.page} rel="nofollow">{t(lang, 'profile.imageCredit', { author: p.image.author || t(lang, 'profile.unknownAuthor'), license: p.image.license })}</a>.</>}
+        {' '}<a href="/docs/sources/">{t(lang, 'profile.about')}</a> · <a href={report} rel="nofollow">{t(lang, 'profile.report')}</a>
+      </small>
+    </footer>
+  </vf-artist-profile>
+)}

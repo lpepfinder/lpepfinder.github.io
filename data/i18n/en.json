@@ -664,5 +664,37 @@
       "other": "{count} fewer on Discogs"
     },
     "resync": "Resync"
+  },
+  "profile": {
+    "type": {
+      "Person": "Artist",
+      "Group": "Band",
+      "Orchestra": "Orchestra",
+      "Choir": "Choir",
+      "Character": "Character",
+      "Other": "Project"
+    },
+    "genres": "Genres",
+    "imageAlt": "{artist}",
+    "imageCredit": "Photo: {author}, {license}, Wikimedia Commons",
+    "unknownAuthor": "unknown author",
+    "wikipediaCredit": "From Wikipedia: {title}",
+    "elsewhere": "{artist} elsewhere",
+    "link": {
+      "website": "Website",
+      "bluesky": "Bluesky",
+      "youtube": "YouTube",
+      "discogs": "Discogs",
+      "wikipedia": "Wikipedia",
+      "musicbrainz": "MusicBrainz",
+      "wikidata": "Wikidata"
+    },
+    "sources": "From open data:",
+    "about": "How profiles are made",
+    "report": "Wrong artist?",
+    "reportTitle": "Artist profile: {artist}",
+    "reportBody": "The profile of {artist} shows another artist.\n\nMusicBrainz: {musicbrainz}\nThe right one (MusicBrainz link, if you know it): ",
+    "born": "born {year}",
+    "more": "Read more"
   }
 }

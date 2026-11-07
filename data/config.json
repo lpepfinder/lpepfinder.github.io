@@ -185,5 +185,25 @@
     "crawlMaxAgeHours": 36,
     "label": "health",
     "keepDays": 60
+  },
+  "enrich": {
+    "description": "Artist profiles from open sources (scripts/enrich, docs/sources.md), run daily by the Enrich workflow. Each run reads the artists of the live site (/api/artists.json) and profiles at most `artistsPerRun` of them, for at most `maxMinutes`: new ones first, then the oldest after `refreshDays` (`retryNoneDays` for one not found). An artist is matched on MusicBrainz only through one of its records in stock (`titlesPerArtist` titles tried), never by name alone. Requests are one at a time per host, at least `paceMs` apart (MusicBrainz asks for one a second). Wikipedia summaries in `wikipediaLanguages`; `genres`: most-voted MusicBrainz genres kept; `imageWidth`: Wikimedia Commons thumbnail width. `leadChars`: the summary's first sentences shown up to this length, the rest under \"Read more\".",
+    "artistsPerRun": 400,
+    "maxMinutes": 40,
+    "refreshDays": 30,
+    "retryNoneDays": 60,
+    "titlesPerArtist": 3,
+    "paceMs": {
+      "musicbrainz.org": 1100,
+      "www.wikidata.org": 300,
+      "commons.wikimedia.org": 300,
+      "wikipedia.org": 300
+    },
+    "wikipediaLanguages": [
+      "en"
+    ],
+    "genres": 5,
+    "imageWidth": 480,
+    "leadChars": 280
   }
 }

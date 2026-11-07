@@ -15,7 +15,7 @@ The pages are made for people; the same data is published as JSON for robots. Se
 
 - [API index](${url('/api/index.json')}): endpoints, counts, build time
 - [Shops](${url('/api/shops.json')}): every shop, its site, place, records in stock, Bluesky account (verified when the shop's domain is its handle)
-- [Artists](${url('/api/artists.json')}): artists in stock at several shops; each has /artist/{slug}.json with every record, price and shop link
+- [Artists](${url('/api/artists.json')}): artists in stock at several shops; each has /artist/{slug}.json with every record, price and shop link, and who the artist is (open data, with sources and licences)
 - [Dig](${url('/dig.json')}): this week's records new in the shops, back in stock, and price drops
 
 ## Feeds and pages

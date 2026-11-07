@@ -74,6 +74,11 @@ jobs:
       - name: Search index
         if: steps.index-cache.outputs.cache-hit != 'true'
         run: npm run index
+      # artist profiles (Refresh's enrich job, docs/sources.md): not part of the index cache, always the latest
+      - name: Artist profiles
+        run: |
+          mkdir -p generated/enrich
+          gh release download data --pattern enrich.json.gz -O - | gunzip > generated/enrich/artists.json || { echo "no profiles yet"; rm -f generated/enrich/artists.json; }
       - run: npx astro build
       - name: Save the offer ledger
         if: steps.index-cache.outputs.cache-hit != 'true'
