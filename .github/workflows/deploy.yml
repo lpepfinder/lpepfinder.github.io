@@ -45,12 +45,38 @@ jobs:
           for k in $(node -p "[...Array(require('./data/config.json').site.shards).keys()].join(' ')"); do
             gh release download data --pattern "site-$k.tar.gz" --clobber && tar xzf "site-$k.tar.gz" || echo "no site-$k.tar.gz yet"
           done
+      # The search index, watchlist files and Dig crates take ~20 minutes to build from millions of offers: they are
+      # cached, keyed by the crawl data (its upload times in the "data" release) and by everything that shapes them
+      # (indexing code, shops, settings). A push that changes neither reuses them; new crawl data rebuilds them.
+      - name: Index key
+        run: |
+          gh release view data --json assets --jq '[.assets[] | select(.name | test("^(generated|site-[0-9]+)[.]tar[.]gz$")) | .name + "@" + .updatedAt] | sort | join(",")' > .index-data-id
+          cat .index-data-id
+      - name: Index cache
+        id: index-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            public/search
+            public/w
+            public/dig.json
+            public/regions.json
+            generated/site-data.json
+            generated/new-arrivals.json
+            generated/quality-report.json
+          key: index-${{ hashFiles('.index-data-id', 'scripts/index/**', 'scripts/ledger/**', 'scripts/quality/**', 'scripts/lib/**', 'scripts/platforms/filter.js', 'src/lib/search/**', 'src/lib/watch/catno.js', 'data/config.json', 'data/release-key.json', 'data/facets.json', 'data/regions.json', 'data/rates.json', 'data/shops/**') }}
+      - run: npm run validate && npm run rates
       # offer ledger: today's state and the one before it (a second build on the same day starts from that)
       - name: Offer ledger
+        if: steps.index-cache.outputs.cache-hit != 'true'
         run: |
           gh release download data --pattern "ledger*.ndjson.gz" --dir generated --clobber || echo "no ledger yet, starting one"
-      - run: npm run build
+      - name: Search index
+        if: steps.index-cache.outputs.cache-hit != 'true'
+        run: npm run index
+      - run: npx astro build
       - name: Save the offer ledger
+        if: steps.index-cache.outputs.cache-hit != 'true'
         run: |
           files=generated/ledger.ndjson.gz
           if [ -f generated/ledger-prev.ndjson.gz ]; then files="$files generated/ledger-prev.ndjson.gz"; fi
