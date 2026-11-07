@@ -125,6 +125,11 @@
         "handle"
       ],
       "additionalProperties": false
+    },
+    "store": {
+      "type": "string",
+      "pattern": "^https?://[^/]+$",
+      "description": "The shop's online store when it lives on another site (Big Cartel, Square Online, a shop. subdomain): its catalog is checked and read there, product links go there. The shop keeps its own id, name and page."
     }
   }
 }

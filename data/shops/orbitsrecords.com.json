@@ -3,5 +3,6 @@
   "country": "US",
   "address": "601 Central Avenue Barboursville",
   "discogs": "https://www.discogs.com/record-stores/store/orbitsrecordshop/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://orbits-record-shop.square.site"
 }

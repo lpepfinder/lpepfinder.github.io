@@ -3,5 +3,6 @@
   "name": "Grooves Records",
   "city": "London",
   "osm": "node/12943943642",
-  "source": "osm"
+  "source": "osm",
+  "store": "https://shop.groovesrecordstore.com"
 }

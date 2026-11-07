@@ -3,5 +3,6 @@
   "name": "All Ages Records",
   "city": "London",
   "osm": "way/458856245",
-  "source": "osm"
+  "source": "osm",
+  "store": "https://allagesrecords.bigcartel.com"
 }

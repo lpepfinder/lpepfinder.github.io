@@ -3,5 +3,6 @@
   "country": "US",
   "address": "8312 Louetta Road Spring",
   "discogs": "https://www.discogs.com/record-stores/store/soundrev01/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://shop.soundrevolutionhtx.com"
 }

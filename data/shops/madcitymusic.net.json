@@ -3,5 +3,6 @@
   "country": "US",
   "address": "2023 Atwood Avenue Madison",
   "discogs": "https://www.discogs.com/record-stores/store/madcitymusic/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://madcitymusicexchange.bigcartel.com"
 }

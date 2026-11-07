@@ -2,5 +2,6 @@
   "url": "https://www.zzzrecords.com",
   "name": "Zzz Records",
   "osm": "way/156269224",
-  "source": "osm"
+  "source": "osm",
+  "store": "https://zzzrecords.square.site"
 }

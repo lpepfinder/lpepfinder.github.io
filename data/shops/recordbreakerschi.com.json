@@ -3,5 +3,6 @@
   "country": "US",
   "address": "2935 North Milwaukee Avenue Chicago",
   "discogs": "https://www.discogs.com/record-stores/store/record_breakers/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://shop.recordbreakerschi.com"
 }

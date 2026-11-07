@@ -3,5 +3,6 @@
   "country": "US",
   "address": "12330 Lake City Way Northeast Seattle",
   "discogs": "https://www.discogs.com/record-stores/store/hexenductionrecords/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://hexenduction.bigcartel.com"
 }

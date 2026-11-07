@@ -3,5 +3,6 @@
   "country": "US",
   "address": "210 Thompson Street New York",
   "discogs": "https://www.discogs.com/record-stores/store/generationrecords/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://generationrecords.bigcartel.com"
 }

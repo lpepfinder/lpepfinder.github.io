@@ -4,5 +4,6 @@
   "city": "Calgary",
   "osm": "node/12801214961",
   "source": "osm",
-  "country": "CA"
+  "country": "CA",
+  "store": "https://shop.hotwaxrecords.ca"
 }

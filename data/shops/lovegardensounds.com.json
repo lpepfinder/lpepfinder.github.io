@@ -3,5 +3,6 @@
   "country": "US",
   "address": "822 Massachusetts Street Lawrence",
   "discogs": "https://www.discogs.com/record-stores/store/lovegardensounds/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://lovegardensounds.bigcartel.com"
 }

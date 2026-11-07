@@ -4,5 +4,6 @@
   "city": "London",
   "osm": "node/13355840372",
   "source": "osm",
-  "country": "GB"
+  "country": "GB",
+  "store": "https://upsidedownrecords.square.site"
 }

@@ -14,12 +14,19 @@ const PARKED = /domain (is )?for sale|buy this domain|parked free|sedoparking|th
 const baseName = (host) => (host || '').replace(/^(www|shop|store)\./, '').split('.').slice(0, -1).join('.');
 
 /**
+ * Where a shop's catalog is checked and read: its online store when it lives on another site (`store`:
+ * Big Cartel, Square Online, a shop. subdomain), else its own site. Everything downstream (crawlers,
+ * product links) follows the state's url, so it all reads the store.
+ */
+export const catalogUrl = (shop) => shop.store || shop.url;
+
+/**
  * Check one shop: reachable, allowed by robots.txt, platform, metadata,
  * and whether it still sells records. Returns its new state.
  */
 export async function checkShop(shop, previous = {}) {
   const state = { checkedAt: new Date().toISOString(), fails: 0 };
-  const home = await get(shop.url);
+  const home = await get(catalogUrl(shop));
   // the site answers but refuses bots (Cloudflare and similar): alive, just not readable by us
   if ([401, 403, 429, 503].includes(home.status)) {
     await home.body?.cancel?.();
@@ -38,7 +45,8 @@ export async function checkShop(shop, previous = {}) {
   if (PARKED.test(html)) return { ...state, status: 'dead', reason: 'parked' };
 
   const movedTo = hostOf(finalUrl.href);
-  const moved = movedTo !== shop.id && baseName(movedTo) !== baseName(shop.id) && !PLATFORM_HOSTS.test(movedTo);
+  // a store on another site is where we were sent on purpose, not a move
+  const moved = !shop.store && movedTo !== shop.id && baseName(movedTo) !== baseName(shop.id) && !PLATFORM_HOSTS.test(movedTo);
   const looksMusic = mentionsFormat(html.replace(/<[^>]+>/g, ' '));
   if (moved && !looksMusic) return { ...state, status: 'moved', reason: `redirects_to_${movedTo}` };
 
@@ -48,7 +56,7 @@ export async function checkShop(shop, previous = {}) {
   state.platform = detectPlatform(html, home.headers);
   state.name = pageTitle(html);
   // the shop on Bluesky: its domain as handle (verified), or a profile its homepage links (scripts/check/bluesky.js)
-  state.bluesky = await blueskyOf(finalUrl.hostname, html, { fetchText });
+  state.bluesky = await blueskyOf(shop.id, html, { fetchText });
 
   const adapter = adapters[state.platform];
   if (adapter) {

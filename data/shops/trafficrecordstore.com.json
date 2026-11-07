@@ -3,5 +3,6 @@
   "country": "US",
   "address": "5850 Traffic Way Atascadero",
   "discogs": "https://www.discogs.com/record-stores/store/trafficrecords/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://traffic-records.square.site"
 }

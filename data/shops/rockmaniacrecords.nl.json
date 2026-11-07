@@ -4,5 +4,6 @@
   "city": "Gouda",
   "osm": "node/2787978550",
   "source": "osm",
-  "country": "NL"
+  "country": "NL",
+  "store": "https://webshop.rockmaniacrecords.nl"
 }

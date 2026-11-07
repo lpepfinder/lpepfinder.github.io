@@ -3,5 +3,6 @@
   "country": "US",
   "address": "321 South Main Street Burlington",
   "discogs": "https://www.discogs.com/record-stores/store/mainstreetvinylnc/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://store.mainstreetvinyl.com"
 }

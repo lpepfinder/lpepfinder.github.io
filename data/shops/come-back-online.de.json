@@ -3,5 +3,6 @@
   "name": "Comeback CD + Schallplatten",
   "osm": "node/924636217",
   "source": "osm",
-  "country": "DE"
+  "country": "DE",
+  "store": "https://shop.come-back-online.de"
 }

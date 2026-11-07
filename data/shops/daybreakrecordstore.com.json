@@ -3,5 +3,6 @@
   "name": "Daybreak Records",
   "city": "Seattle",
   "osm": "way/234930524",
-  "source": "osm"
+  "source": "osm",
+  "store": "https://shop.daybreakrecordstore.com"
 }

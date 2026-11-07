@@ -3,5 +3,6 @@
   "country": "CH",
   "address": "1 Viale Stazione Maroggia",
   "discogs": "https://www.discogs.com/record-stores/store/tondomusic/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://shop.tondomusic.com"
 }

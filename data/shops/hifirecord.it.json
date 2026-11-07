@@ -3,5 +3,6 @@
   "country": "IT",
   "address": "25 Via Roberto Marin Padova",
   "discogs": "https://www.discogs.com/record-stores/store/hifi_record/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://shop.hifirecord.it"
 }

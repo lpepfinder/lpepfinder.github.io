@@ -3,5 +3,6 @@
   "name": "Marv's Record Shop",
   "city": "Des Moines",
   "osm": "node/9458924187",
-  "source": "osm"
+  "source": "osm",
+  "store": "https://vinyl-cup-records.square.site"
 }

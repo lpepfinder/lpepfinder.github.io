@@ -3,5 +3,6 @@
   "name": "Bloodshot Records",
   "city": "Chicago",
   "osm": "node/4666490092",
-  "source": "osm"
+  "source": "osm",
+  "store": "https://shop.bloodshotrecords.com"
 }

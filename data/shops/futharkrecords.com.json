@@ -3,5 +3,6 @@
   "country": "CA",
   "address": "127 Monarch Park Avenue Toronto",
   "discogs": "https://www.discogs.com/record-stores/store/futharkrecords/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://futhark-records.square.site"
 }

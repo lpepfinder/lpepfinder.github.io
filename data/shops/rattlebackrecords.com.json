@@ -3,5 +3,6 @@
   "country": "US",
   "address": "5405 North Clark Street Chicago",
   "discogs": "https://www.discogs.com/record-stores/store/rattlebackrecords/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://store.rattlebackrecords.com"
 }

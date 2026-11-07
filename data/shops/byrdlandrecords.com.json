@@ -2,5 +2,6 @@
   "url": "https://byrdlandrecords.com",
   "name": "Byrdland Records",
   "country": "US",
-  "source": "wikidata"
+  "source": "wikidata",
+  "store": "https://shop.byrdlandrecords.com"
 }

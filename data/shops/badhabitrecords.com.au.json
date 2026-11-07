@@ -2,5 +2,6 @@
   "url": "https://badhabitrecords.com.au",
   "name": "Bad Habit Records",
   "country": "AU",
-  "source": "rsd"
+  "source": "rsd",
+  "store": "https://badhabitrecords.square.site"
 }

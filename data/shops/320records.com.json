@@ -3,5 +3,6 @@
   "country": "BE",
   "address": "320 Brusselsesteenweg Overijse",
   "discogs": "https://www.discogs.com/record-stores/store/muziekstroom/",
-  "source": "discogs"
+  "source": "discogs",
+  "store": "https://shop.320records.com"
 }
