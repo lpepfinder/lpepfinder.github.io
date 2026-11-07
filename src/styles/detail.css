@@ -30,7 +30,7 @@ vf-detail h3 > data, vf-detail summary > data { font-weight: normal; }
 vf-detail ul { list-style: none; margin: 0; padding: 0; }
 vf-detail section > button { margin-block-start: var(--space-2); }
 vf-detail summary { font-weight: var(--weight-semi); cursor: pointer; }
-vf-detail > footer { display: grid; gap: var(--space-1); color: var(--c-muted); font-size: var(--size-s); }
+vf-detail > footer { display: grid; gap: var(--space-1); color: var(--c-muted); font-size: var(--size-s); border-block-start: var(--line) solid var(--c-line); padding-block: var(--space-4) var(--space-8); }
 vf-detail > footer p { margin: 0; }
 vf-detail > footer a { display: inline-flex; align-items: center; min-block-size: var(--tap); }
 vf-detail[status="loading"] { opacity: var(--dim); }

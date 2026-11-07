@@ -4,15 +4,15 @@ vf-app > * { min-inline-size: 0; }
 vf-app > :is(main, footer) { inline-size: 100%; max-inline-size: var(--width-wide); margin-inline: auto; padding-inline: var(--gutter); }
 /* lists use the full width, prose doesn't */
 vf-app[layout="prose"] > :is(main, footer) { max-inline-size: var(--width); }
-main > :is(p, hgroup), main > article > p, hgroup p, footer > p { max-inline-size: var(--measure); }
+main > :is(p, hgroup), main > article > p, hgroup p, vf-app > footer > p { max-inline-size: var(--measure); }
 
 main { display: grid; gap: var(--space-4); align-content: start; padding-block: var(--space-4) var(--space-8); }
 
 nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 var(--space-4); }
 nav a[aria-current] { color: var(--c-fg); font-weight: var(--weight-semi); text-decoration: none; }
 
-footer { border-block-start: var(--line) solid var(--c-line); padding-block: var(--space-4) var(--space-8); color: var(--c-muted); font-size: var(--size-s); display: grid; gap: var(--space-2); }
-footer p { margin: 0; }
+vf-app > footer { border-block-start: var(--line) solid var(--c-line); padding-block: var(--space-4) var(--space-8); color: var(--c-muted); font-size: var(--size-s); display: grid; gap: var(--space-2); }
+vf-app > footer p { margin: 0; }
 
 /* results mode: home sections leave the layout, the H1 stays for assistive tech */
 vf-app[mode="results"] main > :is(section, vf-recent) { display: none; }
