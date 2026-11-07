@@ -79,6 +79,9 @@ jobs:
         run: |
           mkdir -p generated/enrich
           gh release download data --pattern enrich.json.gz -O - | gunzip > generated/enrich/artists.json || { echo "no profiles yet"; rm -f generated/enrich/artists.json; }
+      # the collectors feed (Refresh's social job, docs/feed.md), served as /social.json
+      - name: Collectors feed
+        run: gh release download data --pattern social.json.gz -O - | gunzip > public/social.json || { echo "no feed yet"; rm -f public/social.json; }
       - run: npx astro build
       - name: Save the offer ledger
         if: steps.index-cache.outputs.cache-hit != 'true'

@@ -524,7 +524,16 @@
     "searchArtist": "Alles von {artist} suchen",
     "backList": "Alle Platten",
     "goTo": "Zu {shop}",
-    "goToPrice": "Zu {shop} · {price}"
+    "goToPrice": "Zu {shop} · {price}",
+    "collectors": "Sammler:innen",
+    "wantedBy": {
+      "one": "Von 1 Person gesucht",
+      "other": "Von {count} Personen gesucht"
+    },
+    "ownedBy": {
+      "one": "in 1 Sammlung",
+      "other": "in {count} Sammlungen"
+    }
   },
   "homeLatestTitle": "Neu in den Läden",
   "homeStrip": {
@@ -752,6 +761,13 @@
     "bluesky": "Bluesky",
     "discogs": "Discogs · {user}",
     "source": "Von @{handle} auf dem eigenen Bluesky-Konto veröffentlicht, aktualisiert am {date}. Bestand und Preise von heute.",
-    "checking": "Prüfe {done} von {total}…"
+    "checking": "Prüfe {done} von {total}…",
+    "feedEvents": "Zuletzt gesucht",
+    "feedTop": "Am meisten gesucht",
+    "feedCollectors": "Sammler:innen",
+    "feedWants": "sucht",
+    "feedJoin": "Deine Wunschliste könnte auch hier sein, mit jeder Platte, die ein Laden für dich hat:",
+    "feedJoinLink": "veröffentliche sie über dein Bluesky-Konto",
+    "feedNone": "Noch hat niemand eine Liste veröffentlicht."
   }
 }

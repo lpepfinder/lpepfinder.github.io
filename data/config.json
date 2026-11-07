@@ -187,7 +187,7 @@
     "keepDays": 60
   },
   "enrich": {
-    "description": "Artist profiles from open sources (scripts/enrich, docs/sources.md), run daily by the Enrich workflow. Each run reads the artists of the live site (/api/artists.json) and profiles at most `artistsPerRun` of them, for at most `maxMinutes`: new ones first, then the oldest after `refreshDays` (`retryNoneDays` for one not found). An artist is matched on MusicBrainz only through one of its records in stock (`titlesPerArtist` titles tried), never by name alone. Requests are one at a time per host, at least `paceMs` apart (MusicBrainz asks for one a second). Wikipedia summaries in `wikipediaLanguages`; `genres`: most-voted MusicBrainz genres kept; `imageWidth`: Wikimedia Commons thumbnail width. `leadChars`: the summary's first sentences shown up to this length, the rest under \"Read more\".",
+    "description": "Artist profiles from open sources (scripts/enrich, docs/sources.md), run daily by the Enrich workflow. Each run reads the artists of the live site (/api/artists.json) and profiles at most `artistsPerRun` of them, for at most `maxMinutes`: new ones first, then the oldest after `refreshDays` (`retryNoneDays` for one not found). An artist is matched on MusicBrainz only through one of its records in stock (`titlesPerArtist` titles tried), never by name alone. Requests are one at a time per host, at least `paceMs` apart (MusicBrainz asks for one a second). Wikipedia summaries in `wikipediaLanguages`; `genres`: most-voted MusicBrainz genres kept; `imageWidth`: Wikimedia Commons thumbnail width. `leadChars`: the summary's first sentences shown up to this length, the rest under \"Read more\". `paceMs` also paces the social job (scripts/social): the relay, plc.directory and the Bluesky app view; any other host (a collector's account server) gets one request a second.",
     "artistsPerRun": 400,
     "maxMinutes": 40,
     "refreshDays": 30,
@@ -197,7 +197,10 @@
       "musicbrainz.org": 1100,
       "www.wikidata.org": 300,
       "commons.wikimedia.org": 300,
-      "wikipedia.org": 300
+      "wikipedia.org": 300,
+      "plc.directory": 200,
+      "bsky.network": 500,
+      "public.api.bsky.app": 200
     },
     "wikipediaLanguages": [
       "en"
@@ -205,5 +208,13 @@
     "genres": 5,
     "imageWidth": 480,
     "leadChars": 280
+  },
+  "social": {
+    "description": "The collectors feed (scripts/social, docs/feed.md), run daily by Refresh: accounts that published a list (com.lpepfinder.list, opt-in) found through the Bluesky `relay` (listReposByCollection), at most `maxCollectors`; each one's lists read from its own account. Out comes public/social.json: the collectors, how many want and have each record, the records wanted since the day before (kept `eventDays` days, at most `maxEvents`) and the `topWanted` most wanted.",
+    "relay": "https://relay1.us-east.bsky.network",
+    "maxCollectors": 2000,
+    "eventDays": 14,
+    "maxEvents": 300,
+    "topWanted": 100
   }
 }

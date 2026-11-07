@@ -5,6 +5,7 @@ import { el, attrs } from './dom.js';
 import { cover } from './cover.js';
 import { price } from './price.js';
 import { offer, watch, selectKey } from './release-parts.js';
+import { loadSocial, countsFor, localPath } from './social.js';
 
 /** In-stock copies shown before "Show all". */
 const FIRST = 8;
@@ -56,6 +57,9 @@ export class VfDetail extends HTMLElement {
       ? t('detail.priceRange', { low: money(range.low, rates), high: money(range.high, rates) }) : '';
     const shown = this.all ? inStock : inStock.slice(0, FIRST);
     const cheapest = inStock.length ? v.cheapest : null;
+    // collectors who publish their lists: how many want and have it (the feed loads once, then this redraws)
+    const social = group.watchKey ? countsFor(group.watchKey) : null;
+    if (!this.social) this.social = loadSocial().then(() => { if (this.data && group.watchKey && countsFor(group.watchKey)) this.render(); });
     this.replaceChildren(...[
       cover(v.offers.find((o) => o.image)?.image, 0),
       el('hgroup', {},
@@ -64,7 +68,9 @@ export class VfDetail extends HTMLElement {
       el('dl', {},
         el('dt', { textContent: t('detail.price') }), el('dd', {}, spread || price(v.cheapest.price, v.cheapest.currency, rates)),
         el('dt', { textContent: t('detail.condition') }), el('dd', { textContent: condition(v.offers) }),
-        el('dt', { textContent: t('detail.shops') }), el('dd', { textContent: t('detail.shopsInStock', { shops: tn('results.shops', v.shops), inStock: tn('results.inStockCount', inStock.length) }) })),
+        el('dt', { textContent: t('detail.shops') }), el('dd', { textContent: t('detail.shopsInStock', { shops: tn('results.shops', v.shops), inStock: tn('results.inStockCount', inStock.length) }) }),
+        social && el('dt', { textContent: t('detail.collectors') }),
+        social && el('dd', {}, el('a', { href: localPath('/u/'), textContent: [social.wanted ? tn('detail.wantedBy', social.wanted) : null, social.owned ? tn('detail.ownedBy', social.owned) : null].filter(Boolean).join(' · ') }))),
       el('menu', {},
         el('li', {}, watch(group, v)),
         el('li', {}, attrs(el('button', { type: 'button', name: 'share' }, attrs(el('vf-icon'), { name: 'share' }), el('span', { textContent: t('detail.share') })), { kind: 'secondary' })),

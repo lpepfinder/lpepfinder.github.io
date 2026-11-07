@@ -23,6 +23,21 @@ const { lang } = Astro.props;
         </vf-field>
       </form>
     </vf-user-lookup>
+    <vf-user-feed hidden>
+      <section name="events" hidden>
+        <h2>{t(lang, 'user.feedEvents')}</h2>
+        <ul></ul>
+      </section>
+      <section name="top" hidden>
+        <h2>{t(lang, 'user.feedTop')}</h2>
+        <ul></ul>
+      </section>
+      <section name="collectors">
+        <h2>{t(lang, 'user.feedCollectors')}</h2>
+        <ul></ul>
+        <p>{t(lang, 'user.feedJoin')} <a href={localPath(lang, '/more/') + '#account'}>{t(lang, 'user.feedJoinLink')}</a></p>
+      </section>
+    </vf-user-feed>
     <vf-user-head hidden>
       <img alt="" width="96" height="96" referrerpolicy="no-referrer" hidden>
       <hgroup>

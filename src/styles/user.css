@@ -32,3 +32,21 @@ vf-user-page section > button[name="more"] { justify-self: start; }
 vf-user-page[status="done"] > output { display: none; }
 /* no avatar: no avatar column */
 vf-user-head:has(> img[hidden]) { grid-template-columns: minmax(0, 1fr); grid-template-areas: "name" "counts" "links"; }
+
+/* the collectors feed (no handle): records wanted lately, the most wanted, the collectors */
+vf-user-feed[hidden] { display: none; }
+vf-user-feed { display: grid; gap: var(--space-6); }
+vf-user-feed section { display: grid; gap: var(--space-2); }
+vf-user-feed section > h2 { margin: 0; font-size: var(--size-1); }
+vf-user-feed ul { list-style: none; margin: 0; padding: 0; display: grid; }
+vf-user-feed li { border-block-end: var(--line) solid var(--c-line); }
+vf-feed-item { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-2); padding-block: var(--space-2); font-size: var(--size-s); }
+vf-feed-item > time, vf-feed-item > span, vf-feed-item > small { color: var(--c-muted); }
+vf-feed-item > vf-price { margin-inline-start: auto; }
+vf-feed-item[stock="out"] > small { margin-inline-start: auto; }
+vf-user-feed section[name="collectors"] li > a { display: grid; grid-template-columns: var(--feed-avatar) minmax(0, 1fr); grid-template-areas: "avatar name" "avatar meta"; column-gap: var(--space-3); align-items: center; min-block-size: var(--row-h); padding-block: var(--space-2); color: var(--c-fg); text-decoration: none; }
+vf-user-feed section[name="collectors"] li > a > :is(img, vf-cover) { grid-area: avatar; inline-size: var(--feed-avatar); block-size: var(--feed-avatar); border-radius: var(--radius-pill); object-fit: cover; background: var(--c-skeleton); }
+vf-user-feed section[name="collectors"] li > a > strong { grid-area: name; }
+vf-user-feed section[name="collectors"] li > a > small { grid-area: meta; color: var(--c-muted); }
+vf-user-feed section[name="collectors"] > p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-user-page:not([status="idle"]) > vf-user-feed { display: none; }

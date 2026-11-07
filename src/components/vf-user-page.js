@@ -7,13 +7,15 @@ import { splitTitle } from '../lib/search/title.js';
 import { el, attrs, listen, unlisten } from './dom.js';
 import { t, tn, formatNumber, formatDay } from './i18n.js';
 import './vf-watch.js';
+import { loadSocial } from './social.js';
 
 const PAGE = 60;
 
 /**
  * <vf-user-page status="idle|loading|done|empty|error">: a collector's page from ?h=<handle> (public.js):
  * who they are (Bluesky profile, Discogs link), their wants in stock now (cheapest first) and all their wants,
- * each with Watch to add it to your own list. Without a handle, only the lookup form shows.
+ * each with Watch to add it to your own list. Without a handle: the lookup form and the collectors feed
+ * (social.js): records wanted lately, the most wanted, and the collectors who publish their lists.
  */
 export class VfUserPage extends HTMLElement {
   disconnectedCallback() { unlisten(this); }
@@ -31,7 +33,44 @@ export class VfUserPage extends HTMLElement {
     listen(this, window, data.PROGRESS, (e) => this.step(e.detail));
     const handle = new URLSearchParams(location.search).get('h')?.trim().replace(/^@/, '');
     this.querySelector('input[name="h"]').value = handle || '';
-    if (handle) this.load(handle);
+    if (handle) this.load(handle); else this.feed();
+  }
+
+  /** The collectors feed, with today's stock for the records in it. */
+  async feed() {
+    const box = this.querySelector('vf-user-feed');
+    const social = await loadSocial();
+    box.hidden = false;
+    const collectors = social?.collectors || [];
+    const byDid = new Map(collectors.map((c) => [c.did, c]));
+    const keys = [...new Set([...(social?.events || []).map((e) => e[2]), ...(social?.top || [])])];
+    const [rows, rates] = await Promise.all([keys.length ? data.now(keys) : {}, loadRates()]);
+    this.rates = rates;
+    const userHref = (c) => `?h=${encodeURIComponent(c.handle)}`;
+    const stockOf = (key) => (rows[key]?.[0] > 0 ? price(rows[key][2], rows[key][3], rates, { from: rows[key][0] > 1 }) : el('small', { textContent: t('user.outOfStock') }));
+    const record = (key) => el('a', { href: `/?q=${encodeURIComponent(social.titles[key] || '')}`, textContent: social.titles[key] || key });
+
+    const events = (social?.events || []).filter((e) => byDid.has(e[1]));
+    const eventsBox = box.querySelector('section[name="events"]');
+    eventsBox.hidden = !events.length;
+    eventsBox.querySelector('ul').replaceChildren(...events.map(([date, did, key]) => {
+      const c = byDid.get(did);
+      return el('li', {}, attrs(el('vf-feed-item', {},
+        el('a', { href: userHref(c), textContent: `@${c.handle}` }), el('span', { textContent: ` ${t('user.feedWants')} ` }), record(key),
+        el('time', { dateTime: date, textContent: formatDay(date) }), stockOf(key)), { stock: rows[key]?.[0] > 0 ? 'in' : 'out' }));
+    }));
+
+    const top = social?.top || [];
+    const topBox = box.querySelector('section[name="top"]');
+    topBox.hidden = !top.length;
+    topBox.querySelector('ul').replaceChildren(...top.map((key) => el('li', {}, attrs(el('vf-feed-item', {},
+      record(key), el('span', { textContent: tn('detail.wantedBy', social.wanted[key]) }), stockOf(key)), { stock: rows[key]?.[0] > 0 ? 'in' : 'out' }))));
+
+    box.querySelector('section[name="collectors"] ul').replaceChildren(...collectors.map((c) => el('li', {}, el('a', { href: userHref(c) },
+      c.avatar ? el('img', { src: c.avatar, alt: '', width: 40, height: 40, loading: 'lazy', referrerPolicy: 'no-referrer' }) : el('vf-cover'),
+      el('strong', { textContent: c.name || `@${c.handle}` }),
+      el('small', { textContent: [`@${c.handle}`, tn('user.wants', c.wants), c.collection ? tn('user.collection', c.collection) : null].filter(Boolean).join(' · ') })))));
+    if (!collectors.length) box.querySelector('section[name="collectors"] ul').append(el('li', {}, el('p', { textContent: t('user.feedNone') })));
   }
 
   async load(handle) {

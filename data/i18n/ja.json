@@ -493,7 +493,14 @@
     "searchArtist": "{artist}をすべて検索",
     "backList": "すべてのレコード",
     "goTo": "{shop} へ",
-    "goToPrice": "{shop} へ · {price}"
+    "goToPrice": "{shop} へ · {price}",
+    "collectors": "コレクター",
+    "wantedBy": {
+      "other": "{count} 人のコレクターが探しています"
+    },
+    "ownedBy": {
+      "other": "{count} 人のコレクションにあり"
+    }
   },
   "homeLatestTitle": "ショップの最新入荷",
   "homeStrip": {
@@ -710,6 +717,13 @@
     "bluesky": "Bluesky",
     "discogs": "Discogs · {user}",
     "source": "@{handle} が Bluesky アカウントで公開、{date} 更新。在庫と価格は本日のデータ。",
-    "checking": "{total} 件中 {done} 件を確認中…"
+    "checking": "{total} 件中 {done} 件を確認中…",
+    "feedEvents": "最近のウォント",
+    "feedTop": "人気のウォント",
+    "feedCollectors": "コレクター",
+    "feedWants": "が探しています:",
+    "feedJoin": "あなたのウォントリストもここに載せられます。ショップに入荷したレコードと一緒に:",
+    "feedJoinLink": "Bluesky アカウントから公開する",
+    "feedNone": "まだリストを公開したコレクターはいません。"
   }
 }

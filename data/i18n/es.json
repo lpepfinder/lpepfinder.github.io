@@ -524,7 +524,16 @@
     "searchArtist": "Buscar todo de {artist}",
     "backList": "Todos los discos",
     "goTo": "Ir a {shop}",
-    "goToPrice": "Ir a {shop} · {price}"
+    "goToPrice": "Ir a {shop} · {price}",
+    "collectors": "Coleccionistas",
+    "wantedBy": {
+      "one": "Lo busca 1 coleccionista",
+      "other": "Lo buscan {count} coleccionistas"
+    },
+    "ownedBy": {
+      "one": "en 1 colección",
+      "other": "en {count} colecciones"
+    }
   },
   "homeLatestTitle": "Lo último en las tiendas",
   "homeStrip": {
@@ -752,6 +761,13 @@
     "bluesky": "Bluesky",
     "discogs": "Discogs · {user}",
     "source": "Publicado por @{handle} en su cuenta de Bluesky, actualizado el {date}. Stock y precios de hoy.",
-    "checking": "Comprobando {done} de {total}…"
+    "checking": "Comprobando {done} de {total}…",
+    "feedEvents": "Buscados últimamente",
+    "feedTop": "Los más buscados",
+    "feedCollectors": "Coleccionistas",
+    "feedWants": "busca",
+    "feedJoin": "Tu lista también podría estar aquí, con cada disco que una tienda tenga para ti:",
+    "feedJoinLink": "publícala desde tu cuenta de Bluesky",
+    "feedNone": "Ningún coleccionista ha publicado una lista todavía."
   }
 }

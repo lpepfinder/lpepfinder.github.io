@@ -524,7 +524,16 @@
     "searchArtist": "Search all {artist}",
     "backList": "All records",
     "goTo": "Go to {shop}",
-    "goToPrice": "Go to {shop} · {price}"
+    "goToPrice": "Go to {shop} · {price}",
+    "collectors": "Collectors",
+    "wantedBy": {
+      "one": "Wanted by 1 collector",
+      "other": "Wanted by {count} collectors"
+    },
+    "ownedBy": {
+      "one": "in 1 collection",
+      "other": "in {count} collections"
+    }
   },
   "homeLatestTitle": "Latest in the shops",
   "homeStrip": {
@@ -752,6 +761,13 @@
     "bluesky": "Bluesky",
     "discogs": "Discogs · {user}",
     "source": "Published by @{handle} on their Bluesky account, updated {date}. Stock and prices from today's data.",
-    "checking": "Checking {done} of {total}…"
+    "checking": "Checking {done} of {total}…",
+    "feedEvents": "Wanted lately",
+    "feedTop": "Most wanted",
+    "feedCollectors": "Collectors",
+    "feedWants": "wants",
+    "feedJoin": "Your wantlist could be here too, with every record a shop gets for you:",
+    "feedJoinLink": "publish it from your Bluesky account",
+    "feedNone": "No collector has published a list yet."
   }
 }
