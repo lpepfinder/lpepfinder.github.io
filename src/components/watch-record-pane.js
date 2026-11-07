@@ -13,8 +13,10 @@ import './vf-sheet.js';
 import './vf-detail.js';
 
 const PARAM = 'record';
-/** Records of the search index read for one lookup (all copies of a record are neighbours in rank order). */
+/** Records of the search index read per step of a lookup, and at most in all: a common title can rank its copies
+ *  far down among millions of records, so the lookup reads on until it finds them. */
 const LOOKUP = 160;
+const LOOKUP_MAX = 1120;
 const modified = (e) => e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
 let client = null;
 
@@ -28,11 +30,16 @@ export async function lookup(key, it) {
   const keys = new Set([key, ...(it.x || [])]);
   const queries = [it.t, it.c].filter(Boolean);
   const groups = new Map();
+  const found = () => [...groups.values()].some((g) => keys.has(g.watchKey));
   for (const q of queries) {
     const ids = await client.match(q);
     if (!ids.length) continue;
     const order = await client.rank(ids, q);
-    addToGroups(groups, await client.records(order.slice(0, LOOKUP)));
+    // read on while the record isn't found; once found, its copies are neighbours: one more step gets the rest
+    for (let from = 0, extra = 1; from < Math.min(order.length, LOOKUP_MAX) && extra >= 0; from += LOOKUP) {
+      addToGroups(groups, await client.records(order.slice(from, from + LOOKUP)));
+      if (found()) extra--;
+    }
   }
   const offers = [...groups.values()].filter((g) => keys.has(g.watchKey)).flatMap((g) => g.offers);
   const seen = new Set();
