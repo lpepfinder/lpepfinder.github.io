@@ -346,7 +346,7 @@
     "discogsUserPlaceholder": "your-username",
     "discogsImport": "Import",
     "discogsPublic": "Your wantlist must be public on Discogs. It is read from Discogs by this browser and kept here only.",
-    "csvLabel": "Or upload the CSV file from Discogs (Wantlist → Export):",
+    "csvLabel": "Or upload a CSV file from Discogs (Wantlist or Collection → Export):",
     "discogsLoading": "Reading the wantlist of {user} from Discogs…",
     "discogsProgress": "Reading your wantlist… {count} records",
     "discogsDone": {
@@ -387,7 +387,13 @@
     "boughtDone": "Bought: {title}. Off your list.",
     "maxSet": "Max price {price}: copies above it are hidden.",
     "maxCleared": "No max price.",
-    "undo": "Undo"
+    "undo": "Undo",
+    "collectionImport": "Import my collection too",
+    "collectionLoading": "Reading the collection of {user} from Discogs…",
+    "collectionDone": {
+      "one": "{user}: 1 record in your collection, marked Owned in search.",
+      "other": "{user}: {count} records in your collection, marked Owned in search."
+    }
   },
   "navApp": "Main",
   "navSite": "Explore",
@@ -445,7 +451,8 @@
     "showRecords": {
       "one": "Show 1 record",
       "other": "Show {count} records"
-    }
+    },
+    "owned": "Owned"
   },
   "statusReason": {
     "dns": "The web address no longer exists",
@@ -551,7 +558,8 @@
     "empty": "Nothing in this crate with these filters.",
     "title": "Dig",
     "intro": "New in the shops, back in stock and cheaper this week. Tap a cover to go to the shop.",
-    "emptyMine": "None of your watched records is new, back or cheaper this week."
+    "emptyMine": "None of your watched records is new, back or cheaper this week.",
+    "hideOwned": "Hide what I own"
   },
   "tabMore": "More",
   "moreTitle": "More",
@@ -582,5 +590,17 @@
   "feedShort": "Feed",
   "shopOwnerTitle": "Is this your shop?",
   "shopOwnerBody": "Correct its details, get verified with Bluesky, or opt out.",
-  "shopOwnerBodyListed": "See how to make its catalog searchable, correct its details, get verified with Bluesky, or opt out."
+  "shopOwnerBodyListed": "See how to make its catalog searchable, correct its details, get verified with Bluesky, or opt out.",
+  "profiles": {
+    "title": "Profiles",
+    "default": "Me",
+    "rename": "Rename",
+    "remove": "Remove",
+    "renamePrompt": "New name",
+    "removeConfirm": "Remove the profile “{name}” and its lists from this browser?",
+    "add": "Add a profile",
+    "addPlaceholder": "Shop, gifts, a friend…",
+    "addButton": "Add",
+    "note": "Each profile has its own watchlist, Discogs account and collection, in this browser only. Anyone using this browser can open them."
+  }
 }

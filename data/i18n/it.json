@@ -346,7 +346,7 @@
     "discogsUserPlaceholder": "il-tuo-nome",
     "discogsImport": "Importa",
     "discogsPublic": "La tua wantlist deve essere pubblica su Discogs. Questo browser la legge da Discogs e la conserva solo qui.",
-    "csvLabel": "Oppure carica il file CSV di Discogs (Wantlist → Export):",
+    "csvLabel": "Oppure carica un file CSV di Discogs (Wantlist o Collection → Export):",
     "discogsLoading": "Lettura della wantlist di {user} da Discogs…",
     "discogsProgress": "Lettura della tua wantlist… {count} dischi",
     "discogsDone": {
@@ -387,7 +387,13 @@
     "boughtDone": "Comprato: {title}. Tolto dalla tua lista.",
     "maxSet": "Prezzo massimo {price}: le copie più care sono nascoste.",
     "maxCleared": "Nessun prezzo massimo.",
-    "undo": "Annulla"
+    "undo": "Annulla",
+    "collectionImport": "Importa anche la mia collezione",
+    "collectionLoading": "Lettura della collezione di {user} da Discogs…",
+    "collectionDone": {
+      "one": "{user}: 1 disco nella tua collezione, segnato «Ce l’ho» nella ricerca.",
+      "other": "{user}: {count} dischi nella tua collezione, segnati «Ce l’ho» nella ricerca."
+    }
   },
   "navApp": "Principale",
   "navSite": "Esplora",
@@ -445,7 +451,8 @@
     "showRecords": {
       "one": "Mostra 1 disco",
       "other": "Mostra {count} dischi"
-    }
+    },
+    "owned": "Ce l’ho"
   },
   "statusReason": {
     "dns": "L’indirizzo web non esiste più",
@@ -551,7 +558,8 @@
     "empty": "Niente in questa cassa con questi filtri.",
     "title": "Scava",
     "intro": "Novità nei negozi, di nuovo disponibili e più economici questa settimana. Tocca una copertina per andare al negozio.",
-    "emptyMine": "Nessuno dei dischi che segui è nuovo, tornato o più economico questa settimana."
+    "emptyMine": "Nessuno dei dischi che segui è nuovo, tornato o più economico questa settimana.",
+    "hideOwned": "Nascondi ciò che ho"
   },
   "tabMore": "Altro",
   "moreTitle": "Altro",
@@ -582,5 +590,17 @@
   "feedShort": "Feed",
   "shopOwnerTitle": "È il tuo negozio?",
   "shopOwnerBody": "Correggi i dati, fallo verificare con Bluesky o ritiralo.",
-  "shopOwnerBodyListed": "Scopri come rendere il catalogo cercabile, correggi i dati, fallo verificare con Bluesky o ritiralo."
+  "shopOwnerBodyListed": "Scopri come rendere il catalogo cercabile, correggi i dati, fallo verificare con Bluesky o ritiralo.",
+  "profiles": {
+    "title": "Profili",
+    "default": "Io",
+    "rename": "Rinomina",
+    "remove": "Rimuovi",
+    "renamePrompt": "Nuovo nome",
+    "removeConfirm": "Rimuovere il profilo «{name}» e le sue liste da questo browser?",
+    "add": "Aggiungi un profilo",
+    "addPlaceholder": "Negozio, regali, un amico…",
+    "addButton": "Aggiungi",
+    "note": "Ogni profilo ha la sua lista, il suo account Discogs e la sua collezione, solo in questo browser. Chi usa questo browser può aprirli."
+  }
 }

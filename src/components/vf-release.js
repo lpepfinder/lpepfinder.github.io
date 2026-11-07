@@ -6,14 +6,16 @@ import { price } from './price.js';
 import { origin, watch, selectKey } from './release-parts.js';
 import { region } from './viewer.js';
 import { hrefFor } from './selection.js';
+import { ownedKeys } from '../lib/watch/owned.js';
 
 /**
  * Glance facts: "6 shops" (or the shop of a single copy), "4 in stock" or "Sold out", the formats,
  * and the viewer's flag when a copy is in stock in their country. Phones show the first one and the flag.
  */
-function meta(v) {
+function meta(v, owned) {
   const single = v.offers.length === 1;
   return el('vf-meta', {},
+    owned ? attrs(el('vf-badge', { textContent: t('results.owned') }), { kind: 'owned' }) : null,
     el('span', { textContent: single ? v.offers[0].shop.name : tn('results.shops', v.shops) }),
     el('span', { textContent: v.inStock ? tn('results.inStockCount', v.inStock) : t('soldOut') }),
     v.formats.length ? el('span', { textContent: v.formats.map((f) => t(`formats.${f}`)).join(' / ') }) : null,
@@ -45,13 +47,15 @@ export class VfRelease extends HTMLElement {
       this.link = this.querySelector(':scope > a') || this.appendChild(el('a'));
     }
     const key = selectKey(group);
+    // in the collector's collection (Discogs "haves", owned.js)
+    const owned = !!group.watchKey && ownedKeys().has(group.watchKey);
     const { artist, title } = splitTitle(group.offers[0].title);
     const image = covers ? v.offers.find((o) => o.image)?.image : undefined;
     this.link.href = hrefFor(key);
     this.link.replaceChildren(...[
       covers && cover(image, index),
       el('vf-name', {}, artist && el('vf-artist', { textContent: artist }), artist && el('span', { textContent: ' – ' }), el('vf-title', { textContent: title })),
-      meta(v),
+      meta(v, owned),
       rowPrice(v, rates),
     ].filter(Boolean));
     const toggle = watch(group, v);
@@ -59,7 +63,7 @@ export class VfRelease extends HTMLElement {
       this.querySelector(':scope > vf-watch')?.remove();
       this.append(toggle);
     }
-    attrs(this, { release: key, stock: v.inStock ? 'in' : 'out', offers: v.offers.length, local: String(!!v.local) });
+    attrs(this, { release: key, stock: v.inStock ? 'in' : 'out', offers: v.offers.length, local: String(!!v.local), owned: owned ? 'true' : null });
   }
 }
 customElements.define('vf-release', VfRelease);

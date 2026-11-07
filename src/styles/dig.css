@@ -54,3 +54,4 @@ vf-dig > :is(nav, form) vf-icon { --icon-size: 1rem; flex: none; }
   main:has(vf-dig[status="ready"]) > hgroup > p { display: none; }
   main:has(vf-dig) > hgroup h1 { font-size: var(--size-2); margin-block: var(--space-2) 0; }
 }
+vf-dig > form label[hidden] { display: none; }

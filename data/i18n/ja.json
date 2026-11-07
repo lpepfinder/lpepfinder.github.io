@@ -328,7 +328,7 @@
     "discogsUserPlaceholder": "your-username",
     "discogsImport": "読み込む",
     "discogsPublic": "ウォントリストはDiscogsで公開されている必要があります。このブラウザがDiscogsから読み込み、ここにだけ保存します。",
-    "csvLabel": "またはDiscogsのCSVファイルをアップロード（Wantlist → Export）：",
+    "csvLabel": "またはDiscogsのCSVファイルをアップロード（WantlistまたはCollection → Export）：",
     "discogsLoading": "Discogsから{user}のウォントリストを読み込み中…",
     "discogsProgress": "ウォントリストを読み込み中… {count}件",
     "discogsDone": {
@@ -365,7 +365,12 @@
     "boughtDone": "購入済み：{title}。リストから外しました。",
     "maxSet": "上限価格 {price}：それより高い在庫は表示しません。",
     "maxCleared": "上限価格なし。",
-    "undo": "元に戻す"
+    "undo": "元に戻す",
+    "collectionImport": "コレクションも読み込む",
+    "collectionLoading": "Discogsから{user}のコレクションを読み込み中…",
+    "collectionDone": {
+      "other": "{user}：コレクション{count}件。検索で「所有」と表示します。"
+    }
   },
   "navApp": "メイン",
   "navSite": "探す",
@@ -417,7 +422,8 @@
     "displayLabel": "表示設定",
     "showRecords": {
       "other": "{count}タイトルを表示"
-    }
+    },
+    "owned": "所有"
   },
   "statusReason": {
     "dns": "このウェブアドレスはもう存在しません",
@@ -521,7 +527,8 @@
     "empty": "このフィルターで該当するレコードはありません。",
     "title": "ディグ",
     "intro": "今週の新入荷、再入荷、値下げ。ジャケットをタップするとショップへ移動します。",
-    "emptyMine": "今週、ウォッチ中のレコードに新入荷・再入荷・値下げはありません。"
+    "emptyMine": "今週、ウォッチ中のレコードに新入荷・再入荷・値下げはありません。",
+    "hideOwned": "所有しているものを隠す"
   },
   "tabMore": "その他",
   "moreTitle": "その他",
@@ -552,5 +559,17 @@
   "feedShort": "フィード",
   "shopOwnerTitle": "あなたのお店ですか？",
   "shopOwnerBody": "情報の修正、Blueskyでの確認、掲載の取り下げができます。",
-  "shopOwnerBodyListed": "カタログを検索可能にする方法、情報の修正、Blueskyでの確認、掲載の取り下げについて。"
+  "shopOwnerBodyListed": "カタログを検索可能にする方法、情報の修正、Blueskyでの確認、掲載の取り下げについて。",
+  "profiles": {
+    "title": "プロフィール",
+    "default": "自分",
+    "rename": "名前を変更",
+    "remove": "削除",
+    "renamePrompt": "新しい名前",
+    "removeConfirm": "プロフィール「{name}」とそのリストをこのブラウザから削除しますか？",
+    "add": "プロフィールを追加",
+    "addPlaceholder": "お店、ギフト、友達…",
+    "addButton": "追加",
+    "note": "プロフィールごとにウォッチリスト、Discogsアカウント、コレクションがあり、このブラウザにだけ保存されます。このブラウザを使う人は誰でも開けます。"
+  }
 }

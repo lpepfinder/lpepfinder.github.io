@@ -15,6 +15,7 @@ const { lang, id } = Astro.props;
       <button type="submit">{t(lang, 'watchPage.discogsImport')}</button>
     </vf-field>
   </form>
+  <p><button type="button" name="collection" kind="secondary">{t(lang, 'watchPage.collectionImport')}</button></p>
   <p>{t(lang, 'watchPage.discogsPublic')}</p>
   <p><label>{t(lang, 'watchPage.csvLabel')} <input type="file" name="csv" accept=".csv,text/csv"></label></p>
   <vf-progress hidden>

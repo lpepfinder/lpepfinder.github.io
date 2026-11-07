@@ -40,6 +40,7 @@ const crateIcons = { mine: 'star', new: 'sparkle', restock: 'refresh', drop: 'tr
       <form>
         <label><input type="checkbox" name="ships" checked><vf-icon name="truck"></vf-icon> {t(lang, 'dig.ships')}</label>
         <label><input type="checkbox" name="customs"><vf-icon name="globe"></vf-icon> {t(lang, 'dig.customs')}</label>
+        <label hidden><input type="checkbox" name="owned" checked><vf-icon name="star"></vf-icon> {t(lang, 'dig.hideOwned')}</label>
         <label><vf-icon name="record"></vf-icon><span>{t(lang, 'dig.format')}</span>
           <select name="format">
             <option value="">{t(lang, 'newAllFormats')}</option>

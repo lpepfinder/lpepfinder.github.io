@@ -20,7 +20,7 @@ vf-release vf-title { grid-area: title; font-weight: var(--weight-bold); line-he
 vf-release vf-artist { grid-area: artist; color: var(--c-muted); font-size: var(--size-s); }
 vf-release vf-meta { grid-area: meta; display: flex; align-items: center; justify-content: end; gap: var(--space-2); color: var(--c-muted); font-size: var(--size-xs); white-space: nowrap; }
 vf-release vf-meta > span { min-inline-size: 0; max-inline-size: var(--meta-max); overflow: hidden; text-overflow: ellipsis; }
-vf-release vf-meta > span:nth-child(n+2) { display: none; }
+vf-release vf-meta > span:nth-of-type(n+2) { display: none; }
 vf-release vf-meta abbr { display: none; }
 vf-release > a > vf-price { grid-area: price; }
 /* the star of a watched release, after its title (phones: the toggle itself is in the detail) */
@@ -36,7 +36,7 @@ vf-price small { font-size: var(--size-xs); font-weight: normal; color: var(--c-
 
 /* tablets: every glance fact, and the Watch star beside the row */
 @media (min-width: 40rem) {
-  vf-release vf-meta > span:nth-child(n) { display: inline-block; }
+  vf-release vf-meta > span:nth-of-type(n) { display: inline-block; }
   vf-release vf-meta > span + span::before { content: var(--count-separator); }
   vf-release > vf-watch { display: block; }
   vf-release:has(> vf-watch) vf-title::after { content: none; }
@@ -54,8 +54,8 @@ vf-price small { font-size: var(--size-xs); font-weight: normal; color: var(--c-
   vf-release vf-meta abbr { display: inline; }
   vf-release vf-meta { min-inline-size: 0; overflow: hidden; }
   vf-release vf-meta > span { flex: none; }
-  vf-release vf-meta > span:first-child { flex: 0 1 auto; }
-  vf-release vf-meta > span:nth-child(3) { display: none; }
+  vf-release vf-meta > span:first-of-type { flex: 0 1 auto; }
+  vf-release vf-meta > span:nth-of-type(3) { display: none; }
 }
 @media (min-width: 90rem) {
   vf-release vf-meta > span:nth-child(3) { display: inline-block; }
@@ -65,3 +65,7 @@ vf-price small { font-size: var(--size-xs); font-weight: normal; color: var(--c-
 @media (max-width: 64rem) {
   vf-release vf-title { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 }
+
+/* a record in the collector's collection (Discogs "haves") */
+vf-release vf-badge[kind="owned"] { --badge-fg: var(--c-ok); }
+vf-release vf-meta > vf-badge { display: inline-flex; }

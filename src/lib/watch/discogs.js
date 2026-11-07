@@ -37,7 +37,15 @@ export class DiscogsError extends Error {
  * under the API's limit for anonymous use (config.discogsPaceMs); a 429 waits and retries.
  * Throws DiscogsError: "not-found" (no such user), "private" (wantlist not public), "network".
  */
-export async function fetchWantlist(username, { onPage, signal } = {}) {
+/** Discogs lists read the same way: the wantlist, and the collection (all folders). */
+const LISTS = { wants: { path: 'wants', key: 'wants' }, collection: { path: 'collection/folders/0/releases', key: 'releases' } };
+
+export const fetchWantlist = (username, opts) => fetchList(username, 'wants', opts);
+/** The collection ("haves"): records the collector owns, to hide or mark them. Must be public too. */
+export const fetchCollection = (username, opts) => fetchList(username, 'collection', opts);
+
+async function fetchList(username, kind, { onPage, signal } = {}) {
+  const list = LISTS[kind];
   const user = encodeURIComponent(username.trim().replace(/^.*discogs\.com\/(?:user\/)?/i, '').replace(/\/.*$/, ''));
   let page = 1;
   let pages = 1;
@@ -45,7 +53,7 @@ export async function fetchWantlist(username, { onPage, signal } = {}) {
   while (page <= pages) {
     let res;
     try {
-      res = await fetch(`${API}/users/${user}/wants?per_page=${config.discogsPerPage}&page=${page}`, { signal });
+      res = await fetch(`${API}/users/${user}/${list.path}?per_page=${config.discogsPerPage}&page=${page}`, { signal });
     } catch (e) {
       if (signal?.aborted) throw e;
       throw new DiscogsError('network');
@@ -56,7 +64,7 @@ export async function fetchWantlist(username, { onPage, signal } = {}) {
     if (!res.ok) throw new DiscogsError('network');
     const body = await res.json();
     pages = body.pagination?.pages || 1;
-    const wants = (body.wants || []).map(fromApi);
+    const wants = (body[list.key] || []).map(fromApi);
     total += wants.length;
     onPage?.(wants, { page, pages });
     page++;
@@ -84,6 +92,9 @@ export function csvRows(text) {
   if (field || row.length) { row.push(field); rows.push(row); }
   return rows.filter((r) => r.some(Boolean));
 }
+
+/** A collection export has a folder column; a wantlist export doesn't. */
+export const isCollectionCsv = (text) => /(^|,)"?Collection Folder"?(,|$)/m.test(text.slice(0, 2000));
 
 /**
  * Wants from a Discogs CSV export (Wantlist → Export): columns found by name

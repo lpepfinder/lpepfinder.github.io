@@ -1,12 +1,16 @@
 import { add, update } from '../lib/watch/store.js';
-import { fetchWantlist, fromCsv, DiscogsError } from '../lib/watch/discogs.js';
+import { scoped } from '../lib/watch/profiles.js';
+import { listen, unlisten } from './dom.js';
+import { fetchWantlist, fetchCollection, fromCsv, isCollectionCsv, DiscogsError } from '../lib/watch/discogs.js';
+import { setOwned } from '../lib/watch/owned.js';
 import { wantRecords } from '../lib/watch/wants.js';
 import { afterWatch } from './vf-toast.js';
 import { t, tn, formatNumber } from './i18n.js';
 
-const USER = 'vf.discogs.user';
-const read = () => { try { return localStorage.getItem(USER) || ''; } catch { return ''; } };
-const remember = (u) => { try { localStorage.setItem(USER, u); } catch {} };
+// the Discogs account of the current profile (profiles.js)
+const USER = () => scoped('vf.discogs.user');
+const read = () => { try { return localStorage.getItem(USER()) || ''; } catch { return ''; } };
+const remember = (u) => { try { localStorage.setItem(USER(), u); } catch {} };
 const page = () => document.querySelector('vf-watch-page');
 
 /**
@@ -16,13 +20,18 @@ const page = () => document.querySelector('vf-watch-page');
  * Fires "vf-watch-imported" on window when a username was imported (the page labels its Discogs button).
  */
 export class VfWatchImport extends HTMLElement {
+  disconnectedCallback() { unlisten(this); }
+
   connectedCallback() {
     this.form = this.querySelector('form');
     this.user = this.form.elements.user;
     this.live = this.querySelector('output');
     this.progress = this.querySelector('vf-progress');
     this.user.value = read();
+    // the page has two import forms (start screen, Discogs sheet): a username imported in one fills the other
+    listen(this, window, 'vf-watch-imported', () => { if (!this.user.value) this.user.value = read(); });
     this.form.addEventListener('submit', (e) => { e.preventDefault(); this.fromDiscogs(); });
+    this.querySelector('button[name="collection"]').addEventListener('click', () => this.fromCollection());
     this.querySelector('input[name="csv"]').addEventListener('change', (e) => this.fromFile(e.target));
   }
 
@@ -68,6 +77,32 @@ export class VfWatchImport extends HTMLElement {
     page()?.refresh();
   }
 
+  /** The collection ("haves"): marked in search, hidden in Dig on request. A new import replaces the old one. */
+  async fromCollection() {
+    const user = this.user.value.trim();
+    if (!user) { this.user.focus(); this.user.reportValidity(); return; }
+    if (this.getAttribute('status') === 'loading') return;
+    this.setAttribute('status', 'loading');
+    this.live.textContent = t('watchPage.collectionLoading', { user });
+    let count = 0;
+    try {
+      await fetchCollection(user, {
+        onPage: (records, { page: n, pages }) => {
+          count += setOwned(records, { replace: n === 1 });
+          this.step(n, pages, count);
+        },
+      });
+      remember(user);
+      this.setAttribute('status', 'done');
+      this.live.textContent = tn('watchPage.collectionDone', count, { user });
+    } catch (e) {
+      this.setAttribute('status', 'error');
+      const code = e instanceof DiscogsError ? e.code : 'network';
+      this.live.textContent = t(`watchPage.discogsError.${code}`, { user });
+    }
+    this.progress.hidden = true;
+  }
+
   step(n, pages, count) {
     this.progress.hidden = n >= pages;
     const bar = this.progress.querySelector('progress');
@@ -79,7 +114,16 @@ export class VfWatchImport extends HTMLElement {
   async fromFile(input) {
     const file = input.files?.[0];
     if (!file) return;
-    const wants = fromCsv(await file.text().catch(() => ''));
+    const text = await file.text().catch(() => '');
+    // a collection export marks owned records; a wantlist export adds wants
+    if (isCollectionCsv(text)) {
+      const owned = fromCsv(text) || [];
+      this.setAttribute('status', 'done');
+      this.live.textContent = tn('watchPage.collectionDone', setOwned(owned, { replace: true }), { user: file.name });
+      input.value = '';
+      return;
+    }
+    const wants = fromCsv(text);
     if (!wants) {
       this.setAttribute('status', 'error');
       this.live.textContent = t('watchPage.csvError');
