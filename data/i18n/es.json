@@ -58,10 +58,10 @@
   "aboutBody": [
     "LP/EP Finder es un buscador gratuito de discos de vinilo vendidos por tiendas independientes. Existe desde hace más de diez años y durante un tiempo se llamó Vinyl Finder.",
     "Cada día nuestro rastreador, LPEPFinderBot, lee los catálogos públicos de las tiendas, conserva los discos en stock y crea un índice de búsqueda. Cada disco enlaza a la tienda: no vendemos nada ni copiamos descripciones o imágenes.",
-    "Tiendas: aparecéis gratis. Para salir, bloquead LPEPFinderBot en robots.txt o escribidnos; para entrar, usad la página «Añadir una tienda»."
+    "Tiendas: tu tienda aparece gratis. LPEPFinderBot lee tu catálogo público una vez al día, una petición cada vez, como mucho una por segundo (más despacio si tu robots.txt fija un Crawl-delay); la mayoría de tiendas reciben una docena de peticiones al día. Para que vaya más lento, fija un Crawl-delay; para salir, bloquea LPEPFinderBot en robots.txt o abre una incidencia en GitHub; para entrar, usa el formulario de la página «Añadir una tienda»."
   ],
   "aboutDataTitle": "Fuentes de datos",
-  "aboutData": "Lista de tiendas: comunidad de LP/EP Finder, directorio de tiendas de Discogs y colaboradores de OpenStreetMap (ODbL). Productos: catálogo público de cada tienda.",
+  "aboutData": "Lista de tiendas: comunidad de LP/EP Finder, directorio de tiendas de Discogs y colaboradores de OpenStreetMap (ODbL). Productos: catálogo público de cada tienda. Perfiles de artistas de MusicBrainz, Wikidata, Wikipedia y Wikimedia Commons, citados en cada página.",
   "aboutContactTitle": "Contacto",
   "submitTitle": "Añadir una tienda de discos",
   "submitBody": "Cualquier tienda en línea que venda discos puede aparecer. Las tiendas en Shopify o WooCommerce tienen todo su catálogo buscable; las demás aparecen con un enlace.",

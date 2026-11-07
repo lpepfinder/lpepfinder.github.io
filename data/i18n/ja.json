@@ -55,10 +55,10 @@
   "aboutBody": [
     "LP/EP Finder は、独立系レコード店が販売するレコードを探せる無料の検索エンジンです。10年以上前から続いており、一時期は Vinyl Finder という名前でした。",
     "クローラー LPEPFinderBot が毎日各店舗の公開カタログを読み込み、在庫のあるレコードから検索インデックスを作ります。すべてのレコードは販売店にリンクしており、私たちは販売を行わず、説明文や画像も複製しません。",
-    "店舗の方へ：掲載は無料です。掲載をやめたい場合は robots.txt で LPEPFinderBot をブロックするか、ご連絡ください。追加は「店舗を追加」ページからどうぞ。"
+    "ショップの方へ: 掲載は無料です。LPEPFinderBot は公開カタログを 1 日 1 回、1 リクエストずつ、最大で毎秒 1 回(robots.txt に Crawl-delay があればそれより遅く)読み込みます。ほとんどのショップへのリクエストは 1 日十数回です。遅くしたい場合は Crawl-delay を、掲載をやめたい場合は robots.txt で LPEPFinderBot をブロックするか GitHub で issue を開いてください。掲載希望は「ショップを追加」ページのフォームから。"
   ],
   "aboutDataTitle": "データの出典",
-  "aboutData": "店舗リスト：LP/EP Finder コミュニティ、Discogs のレコード店一覧、OpenStreetMap 協力者（ODbL）。商品データ：各店舗の公開カタログ。",
+  "aboutData": "店舗リスト：LP/EP Finder コミュニティ、Discogs のレコード店一覧、OpenStreetMap 協力者（ODbL）。商品データ：各店舗の公開カタログ。 アーティストのプロフィールは MusicBrainz、Wikidata、Wikipedia、Wikimedia Commons から(各ページに出典を記載)。",
   "aboutContactTitle": "お問い合わせ",
   "submitTitle": "レコード店を追加",
   "submitBody": "レコードを販売しているオンラインストアなら掲載できます。Shopify または WooCommerce の店舗はカタログ全体を検索でき、それ以外はリンク付きで掲載されます。",

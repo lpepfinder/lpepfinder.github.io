@@ -38,7 +38,7 @@
     },
     "delayMs": {
       "shopify": 1000,
-      "woocommerce": 400
+      "woocommerce": 1000
     },
     "maxCrawlDelaySeconds": 10,
     "maxMinutesPerShop": 60,

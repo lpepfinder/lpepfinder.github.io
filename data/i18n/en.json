@@ -58,10 +58,10 @@
   "aboutBody": [
     "LP/EP Finder is a free search engine for vinyl records sold by independent record shops. It started more than ten years ago, and was called Vinyl Finder for a while.",
     "Every day our crawler, LPEPFinderBot, reads the public product catalogs of record shops, keeps the records in stock, and builds a search index. We link to the shop for every record; we don't sell anything and don't copy product descriptions or images.",
-    "Shop owners: your shop is listed for free. To be removed, block LPEPFinderBot in robots.txt or contact us; to be added, use the form on the “Add a shop” page."
+    "Shop owners: your shop is listed for free. LPEPFinderBot reads your public catalog once a day, one request at a time, at most one a second (slower if your robots.txt sets a Crawl-delay); most shops get a dozen requests a day. To slow it down, set a Crawl-delay; to be removed, block LPEPFinderBot in robots.txt or open an issue on GitHub; to be added, use the form on the “Add a shop” page."
   ],
   "aboutDataTitle": "Data sources",
-  "aboutData": "Shop list from the LP/EP Finder community, Discogs record store listings and OpenStreetMap contributors (ODbL). Product data from each shop's public catalog.",
+  "aboutData": "Shop list from the LP/EP Finder community, Discogs record store listings and OpenStreetMap contributors (ODbL). Product data from each shop's public catalog. Artist profiles from MusicBrainz, Wikidata, Wikipedia and Wikimedia Commons, credited on each page.",
   "aboutContactTitle": "Contact",
   "submitTitle": "Add a record shop",
   "submitBody": "Any shop with an online store selling records can be listed. Shops on Shopify or WooCommerce get their full catalog searchable; others are listed with a link.",

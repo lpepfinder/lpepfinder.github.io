@@ -58,10 +58,10 @@
   "aboutBody": [
     "LP/EP Finder ist eine kostenlose Suchmaschine für Schallplatten aus unabhängigen Plattenläden. Es gibt sie seit über zehn Jahren, eine Zeit lang hieß sie Vinyl Finder.",
     "Jeden Tag liest unser Crawler LPEPFinderBot die öffentlichen Produktkataloge der Läden, behält die Platten auf Lager und baut daraus einen Suchindex. Jede Platte verlinkt auf den Laden: Wir verkaufen nichts und kopieren weder Beschreibungen noch Bilder.",
-    "Ladeninhaber: Euer Laden ist kostenlos gelistet. Zum Entfernen LPEPFinderBot in robots.txt sperren oder uns schreiben; zum Hinzufügen die Seite „Laden hinzufügen“ nutzen."
+    "Ladenbesitzer:innen: Dein Laden ist kostenlos gelistet. LPEPFinderBot liest deinen öffentlichen Katalog einmal am Tag, eine Anfrage nach der anderen, höchstens eine pro Sekunde (langsamer, wenn deine robots.txt ein Crawl-delay setzt); die meisten Läden bekommen ein Dutzend Anfragen am Tag. Zum Verlangsamen setze ein Crawl-delay; zum Entfernen sperre LPEPFinderBot in der robots.txt oder eröffne ein Issue auf GitHub; zum Hinzufügen nutze das Formular auf der Seite „Laden hinzufügen“."
   ],
   "aboutDataTitle": "Datenquellen",
-  "aboutData": "Ladenliste: LP/EP-Finder-Community, Discogs-Plattenladenverzeichnis und OpenStreetMap-Mitwirkende (ODbL). Produktdaten: öffentlicher Katalog jedes Ladens.",
+  "aboutData": "Ladenliste: LP/EP-Finder-Community, Discogs-Plattenladenverzeichnis und OpenStreetMap-Mitwirkende (ODbL). Produktdaten: öffentlicher Katalog jedes Ladens. Künstlerprofile aus MusicBrainz, Wikidata, Wikipedia und Wikimedia Commons, auf jeder Seite genannt.",
   "aboutContactTitle": "Kontakt",
   "submitTitle": "Plattenladen hinzufügen",
   "submitBody": "Jeder Onlineshop, der Platten verkauft, kann gelistet werden. Bei Shopify- oder WooCommerce-Shops ist der ganze Katalog durchsuchbar, andere werden mit Link gelistet.",
