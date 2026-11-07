@@ -6,7 +6,8 @@
  * losing what is shown. history-guard.js (inline, first in <head>) stops those same-path history events
  * before the router sees them and fires "vf-popstate" instead, which the components listen to.
  *
- * A page in another language is loaded in full: dates, prices and plurals are formatted for one language.
+ * A page in another language is loaded in full: dates, prices and plurals are formatted for one language;
+ * so is a page from another deploy (<meta name="build">).
  * The URL moves before the swap, so components see the new page's address when they connect.
  */
 // the path of the page before this one, for "‹ Back" links (vf-crumbs.js); null after a full load
@@ -15,7 +16,10 @@ export const previousPath = () => previous;
 
 document.addEventListener('astro:before-swap', (e) => {
   previous = location.pathname;
-  if (e.newDocument.documentElement.lang !== document.documentElement.lang) {
+  // another language, or a page from another deploy (its scripts are other files: swapping it in would run
+  // them next to this page's and register every component twice): load it in full
+  const build = (doc) => doc.querySelector('meta[name="build"]')?.content;
+  if (e.newDocument.documentElement.lang !== document.documentElement.lang || build(e.newDocument) !== build(document)) {
     e.swap = () => location.assign(e.to.href);
     return;
   }
