@@ -1,0 +1,19 @@
+{
+  "lexicon": 1,
+  "id": "com.lpepfinder.profile",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "literal:self",
+      "description": "The account's LP/EP Finder settings: its Discogs username, so its wantlist and collection can be read again on any device.",
+      "record": {
+        "type": "object",
+        "required": ["updatedAt"],
+        "properties": {
+          "discogs": { "type": "string", "maxLength": 100, "description": "Discogs username (public wantlist and collection)" },
+          "updatedAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    }
+  }
+}

@@ -625,5 +625,22 @@
       "one": "Add 1 to my watchlist",
       "other": "Add {count} to my watchlist"
     }
+  },
+  "account": {
+    "title": "Bluesky account",
+    "label": "Your Bluesky handle",
+    "placeholder": "you.bsky.social",
+    "signIn": "Sign in with Bluesky",
+    "signOut": "Sign out",
+    "note": "Signing in makes a profile for your account and keeps its watchlist the same on all your devices. What's synced (the records you watch here and your Discogs username) is saved in your Bluesky account, where it is public.",
+    "going": "Going to your Bluesky sign-in page…",
+    "error": "Couldn't start signing in with {handle}. Check the handle.",
+    "signedIn": "Signed in as @{handle}",
+    "signedOut": "Signed out of @{handle}. Its profile stays in this browser.",
+    "sync": {
+      "syncing": "syncing…",
+      "synced": "synced",
+      "error": "not synced, will retry"
+    }
   }
 }

@@ -625,5 +625,22 @@
       "one": "Aggiungi 1 alla mia lista",
       "other": "Aggiungi {count} alla mia lista"
     }
+  },
+  "account": {
+    "title": "Account Bluesky",
+    "label": "Il tuo handle Bluesky",
+    "placeholder": "tu.bsky.social",
+    "signIn": "Accedi con Bluesky",
+    "signOut": "Esci",
+    "note": "L’accesso crea un profilo per il tuo account e mantiene la sua lista uguale su tutti i tuoi dispositivi. Ciò che viene sincronizzato (i dischi seguiti qui e il tuo nome Discogs) è salvato nel tuo account Bluesky, dove è pubblico.",
+    "going": "Verso la pagina di accesso di Bluesky…",
+    "error": "Impossibile accedere con {handle}. Controlla l’handle.",
+    "signedIn": "Accesso come @{handle}",
+    "signedOut": "Uscito da @{handle}. Il profilo resta in questo browser.",
+    "sync": {
+      "syncing": "sincronizzazione…",
+      "synced": "sincronizzato",
+      "error": "non sincronizzato, nuovo tentativo"
+    }
   }
 }

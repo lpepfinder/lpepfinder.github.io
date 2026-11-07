@@ -592,5 +592,22 @@
     "add": {
       "other": "{count}件をリストに追加"
     }
+  },
+  "account": {
+    "title": "Blueskyアカウント",
+    "label": "Blueskyハンドル",
+    "placeholder": "you.bsky.social",
+    "signIn": "Blueskyでサインイン",
+    "signOut": "サインアウト",
+    "note": "サインインするとアカウント用のプロフィールが作られ、ウォッチリストがすべての端末で同じになります。同期される内容（ここでウォッチしたレコードとDiscogsユーザー名）はBlueskyアカウントに保存され、公開されます。",
+    "going": "Blueskyのサインインページへ移動中…",
+    "error": "{handle}でサインインできませんでした。ハンドルを確認してください。",
+    "signedIn": "@{handle}としてサインイン中",
+    "signedOut": "@{handle}からサインアウトしました。プロフィールはこのブラウザに残ります。",
+    "sync": {
+      "syncing": "同期中…",
+      "synced": "同期済み",
+      "error": "未同期、再試行します"
+    }
   }
 }

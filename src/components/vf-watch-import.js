@@ -37,7 +37,8 @@ export class VfWatchImport extends HTMLElement {
 
   /** Add one batch of wants; returns how many were new. */
   add(wants) {
-    const n = add(wantRecords(wants));
+    // `d`: kept by Discogs, re-imported from the username on any device, not written to a Bluesky account
+    const n = add(wantRecords(wants).map((r) => ({ ...r, fields: { ...r.fields, d: 1 } })));
     if (n) afterWatch();
     return n;
   }

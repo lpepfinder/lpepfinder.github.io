@@ -31,7 +31,7 @@ const groups = [
   ] },
 ];
 ---
-<Base lang={lang} path="/more/" title={pageTitle(t(lang, 'moreTitle'))} description={t(lang, 'footerNote')} noindex strings={['profiles']}>
+<Base lang={lang} path="/more/" title={pageTitle(t(lang, 'moreTitle'))} description={t(lang, 'footerNote')} noindex strings={['profiles', 'account']}>
   <vf-more>
     <h1>{t(lang, 'moreTitle')}</h1>
     <section>
@@ -43,6 +43,22 @@ const groups = [
           <li><a href={localPath(l, '/more/')} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{t(l, 'langName')}</a></li>
         ))}</ul>
       </nav>
+    </section>
+    <section id="account">
+      <h2>{t(lang, 'account.title')}</h2>
+      <vf-account state="out">
+        <vf-account-status></vf-account-status>
+        <form>
+          <label for="account-handle">{t(lang, 'account.label')}</label>
+          <vf-field>
+            <input id="account-handle" name="handle" autocomplete="username" autocapitalize="off" spellcheck="false" required placeholder={t(lang, 'account.placeholder')}>
+            <button type="submit"><vf-icon name="bluesky"></vf-icon><span>{t(lang, 'account.signIn')}</span></button>
+          </vf-field>
+        </form>
+        <p>{t(lang, 'account.note')}</p>
+        <button type="button" name="signout" kind="secondary">{t(lang, 'account.signOut')}</button>
+        <output aria-live="polite"></output>
+      </vf-account>
     </section>
     <section id="profiles">
       <h2>{t(lang, 'profiles.title')}</h2>
@@ -69,4 +85,5 @@ const groups = [
 </Base>
 <script>
   import '../../components/vf-profiles.js';
+  import '../../components/vf-account.js';
 </script>

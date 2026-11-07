@@ -1,0 +1,22 @@
+{
+  "lexicon": 1,
+  "id": "com.lpepfinder.want",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "any",
+      "description": "A record the account wants, watched on LP/EP Finder (lpepfinder.com). The record key is the release key: 12 hex characters derived from the record's artist and title, the same in every shop.",
+      "record": {
+        "type": "object",
+        "required": ["title", "createdAt"],
+        "properties": {
+          "title": { "type": "string", "maxLength": 1000, "maxGraphemes": 300, "description": "Artist – Title" },
+          "catno": { "type": "string", "maxLength": 100, "description": "Catalog number, when known" },
+          "discogsRelease": { "type": "integer", "minimum": 1, "description": "Discogs release id, when known" },
+          "maxPrice": { "type": "integer", "minimum": 0, "description": "Highest price wanted, in euro cents" },
+          "createdAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    }
+  }
+}

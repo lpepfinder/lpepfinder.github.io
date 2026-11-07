@@ -33,6 +33,14 @@ export function add(name) {
   return id;
 }
 
+/** A profile with this id (a Bluesky account's), created when missing, made current. */
+export function ensure(id, name) {
+  const p = profiles();
+  const list = p.list.some((x) => x.id === id) ? p.list.map((x) => (x.id === id ? { ...x, name } : x)) : [...p.list, { id, name }];
+  write({ current: id, list });
+  dispatchEvent(new Event(EVENT));
+}
+
 export function rename(id, name) {
   const p = profiles();
   write({ ...p, list: p.list.map((x) => (x.id === id ? { ...x, name: name.trim() } : x)) });

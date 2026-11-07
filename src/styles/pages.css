@@ -146,3 +146,16 @@ vf-profile[current="true"] > button[name="use"]::before { content: "✓ "; }
 vf-profiles form { display: grid; gap: var(--space-1); }
 vf-profiles form label { font-weight: var(--weight-semi); font-size: var(--size-s); }
 vf-profiles > p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+
+/* <vf-account>: sign in with Bluesky, or the account of the current profile */
+vf-account { display: grid; gap: var(--space-2); }
+vf-account form { display: grid; gap: var(--space-1); }
+vf-account form label { font-weight: var(--weight-semi); font-size: var(--size-s); }
+vf-account form button { display: inline-flex; align-items: center; gap: var(--space-2); }
+vf-account > p, vf-account > output { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-account > output:empty, vf-account-status:empty { display: none; }
+vf-account-status { display: block; font-weight: var(--weight-semi); }
+vf-account[state="in"] > :is(form, p), vf-account[state="out"] > button[name="signout"] { display: none; }
+vf-account > button[name="signout"] { justify-self: start; }
+vf-account[sync="error"] vf-account-status { color: var(--c-error); }
+vf-account[busy] form button { opacity: var(--busy-opacity); pointer-events: none; }

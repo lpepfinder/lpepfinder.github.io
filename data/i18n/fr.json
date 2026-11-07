@@ -625,5 +625,22 @@
       "one": "Ajouter 1 à ma liste",
       "other": "Ajouter {count} à ma liste"
     }
+  },
+  "account": {
+    "title": "Compte Bluesky",
+    "label": "Votre identifiant Bluesky",
+    "placeholder": "vous.bsky.social",
+    "signIn": "Se connecter avec Bluesky",
+    "signOut": "Se déconnecter",
+    "note": "Se connecter crée un profil pour votre compte et garde sa liste identique sur tous vos appareils. Ce qui est synchronisé (les disques suivis ici et votre identifiant Discogs) est enregistré dans votre compte Bluesky, où c’est public.",
+    "going": "Vers votre page de connexion Bluesky…",
+    "error": "Impossible de se connecter avec {handle}. Vérifiez l’identifiant.",
+    "signedIn": "Connecté en tant que @{handle}",
+    "signedOut": "Déconnecté de @{handle}. Son profil reste dans ce navigateur.",
+    "sync": {
+      "syncing": "synchronisation…",
+      "synced": "synchronisé",
+      "error": "non synchronisé, nouvel essai à venir"
+    }
   }
 }

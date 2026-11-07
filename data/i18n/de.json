@@ -625,5 +625,22 @@
       "one": "1 zur Liste hinzufügen",
       "other": "{count} zur Liste hinzufügen"
     }
+  },
+  "account": {
+    "title": "Bluesky-Konto",
+    "label": "Dein Bluesky-Handle",
+    "placeholder": "du.bsky.social",
+    "signIn": "Mit Bluesky anmelden",
+    "signOut": "Abmelden",
+    "note": "Die Anmeldung legt ein Profil für dein Konto an und hält seine Liste auf allen Geräten gleich. Was synchronisiert wird (hier beobachtete Platten und dein Discogs-Name), wird in deinem Bluesky-Konto gespeichert und ist dort öffentlich.",
+    "going": "Weiter zu deiner Bluesky-Anmeldung…",
+    "error": "Anmeldung mit {handle} nicht möglich. Prüfe das Handle.",
+    "signedIn": "Angemeldet als @{handle}",
+    "signedOut": "Von @{handle} abgemeldet. Das Profil bleibt in diesem Browser.",
+    "sync": {
+      "syncing": "wird synchronisiert…",
+      "synced": "synchronisiert",
+      "error": "nicht synchronisiert, neuer Versuch folgt"
+    }
   }
 }

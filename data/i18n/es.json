@@ -625,5 +625,22 @@
       "one": "Añadir 1 a mi lista",
       "other": "Añadir {count} a mi lista"
     }
+  },
+  "account": {
+    "title": "Cuenta de Bluesky",
+    "label": "Tu usuario de Bluesky",
+    "placeholder": "tu.bsky.social",
+    "signIn": "Entrar con Bluesky",
+    "signOut": "Cerrar sesión",
+    "note": "Al entrar se crea un perfil para tu cuenta y su lista queda igual en todos tus dispositivos. Lo sincronizado (los discos que sigues aquí y tu usuario de Discogs) se guarda en tu cuenta de Bluesky, donde es público.",
+    "going": "Hacia tu página de acceso de Bluesky…",
+    "error": "No se pudo entrar con {handle}. Revisa el usuario.",
+    "signedIn": "Sesión iniciada como @{handle}",
+    "signedOut": "Sesión cerrada de @{handle}. Su perfil queda en este navegador.",
+    "sync": {
+      "syncing": "sincronizando…",
+      "synced": "sincronizado",
+      "error": "sin sincronizar, se reintentará"
+    }
   }
 }
