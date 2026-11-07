@@ -66,10 +66,12 @@ test('a collector page: a handle that cannot be read says so', async ({ page }) 
 
 test('the collectors feed: news, most wanted, collectors; a record says how many collectors want it', async ({ page }) => {
   const [a, b] = wants;
+  // the record whose detail is opened later: its counts are served once it is known
+  let opened = null;
   await page.route('**/social.json', (r) => r.fulfill({ json: {
     version: 1, builtAt: '2026-11-07T04:00:00Z',
     collectors: [{ did: DID, handle: HANDLE, name: 'E2E Collector', avatar: '', wants: 5, collection: 2, updatedAt: '2026-11-07T03:00:00Z' }],
-    wanted: { [a.key]: 3 }, owned: { [a.key]: 1 }, top: [a.key], events: [['2026-11-07', DID, b.key, b.title]],
+    wanted: { [a.key]: 3, ...(opened ? { [opened]: 3 } : {}) }, owned: { [a.key]: 1 }, top: [a.key], events: [['2026-11-07', DID, b.key, b.title]],
     titles: { [a.key]: a.title, [b.key]: b.title },
   } }));
   await page.goto('/u/');
@@ -80,10 +82,11 @@ test('the collectors feed: news, most wanted, collectors; a record says how many
   await expect(feed.locator('section[name="collectors"] li a').first()).toHaveAttribute('href', `?h=${HANDLE}`);
   expect(await page.locator('main').innerText()).not.toMatch(/\b(user|detail)\.[a-zA-Z]+/);
 
-  // the record's detail: wanted by 3 collectors, in 1 collection
+  // a record's detail: wanted by 3 collectors (the first result, whichever today's data puts there)
   await page.goto(`/?q=${encodeURIComponent(a.title)}`);
   await expect(page.locator('vf-results')).toHaveAttribute('status', 'done', { timeout: 30_000 });
-  const row = page.locator(`vf-results vf-release[release="${a.key}"] > a`).first();
-  await row.click();
+  const row = page.locator('vf-results vf-release[release]:not([release^="u"])').first();
+  opened = await row.getAttribute('release');
+  await row.locator('> a').click();
   await expect(page.locator('vf-detail[status="ready"]').first()).toContainText(en.detail.wantedBy.other.replace('{count}', '3'));
 });
