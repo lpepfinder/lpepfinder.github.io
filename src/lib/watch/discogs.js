@@ -110,3 +110,21 @@ export function fromCsv(text) {
     catno: at.catno >= 0 ? r[at.catno] : '', rating: Number(r[at.rating]) || 0,
   })).filter((w) => w.title);
 }
+
+/**
+ * One release or master on Discogs (a radio track's Discogs link) as a want; null when Discogs doesn't have it.
+ * Called one at a time, paced like the lists (config.discogsPaceMs).
+ */
+export async function fetchRelease({ kind, id }, { signal } = {}) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const res = await fetch(`${API}/${kind === 'master' ? 'masters' : 'releases'}/${id}`, { signal }).catch(() => null);
+    if (res?.status === 429) { await wait(config.discogsRetryMs, signal); continue; }
+    if (!res?.ok) return null;
+    const r = await res.json();
+    return {
+      id: kind === 'master' ? r.main_release || null : r.id, artist: artistsOf(r.artists), title: r.title || '',
+      catno: r.labels?.[0]?.catno || '', rating: 0, thumb: r.images?.[0]?.uri150 || r.thumb || '',
+    };
+  }
+  return null;
+}

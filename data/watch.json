@@ -8,5 +8,13 @@
   "discogsPerPage": 100,
   "discogsPaceMs": 2600,
   "discogsRetryMs": 30000,
-  "newDays": 7
+  "newDays": 7,
+  "atproto": {
+    "appview": "https://public.api.bsky.app",
+    "plcDirectory": "https://plc.directory"
+  },
+  "radio": {
+    "maxTracks": 200,
+    "maxCandidates": 3
+  }
 }

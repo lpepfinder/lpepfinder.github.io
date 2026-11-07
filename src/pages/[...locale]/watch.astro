@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import WatchBackup from '../../components/WatchBackup.astro';
 import WatchImport from '../../components/WatchImport.astro';
+import RadioImport from '../../components/RadioImport.astro';
 import CurrencySelect from '../../components/CurrencySelect.astro';
 import Sheet from '../../components/Sheet.astro';
 import { t, localeParams, localPath } from '../../lib/i18n.js';
@@ -17,7 +18,7 @@ const { lang } = Astro.props;
 const views = [['available', 'viewAvailable', 'bag'], ['now', 'viewShops', 'store'], ['changes', 'viewChanges', 'pulse'], ['all', 'viewAll', 'star']];
 const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
 ---
-<Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'profiles']}>
+<Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'profiles', 'radio']}>
   <vf-watch-shared hidden>
     <h2>{t(lang, 'watchPage.sharedTitle')}</h2>
     <p></p>
@@ -38,10 +39,16 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
       <h2>{t(lang, 'watchPage.startTitle')}</h2>
       <p>{t(lang, 'watchPage.discogsIntro')}</p>
       <WatchImport lang={lang} id="start" />
+      <h3>{t(lang, 'radio.title')}</h3>
+      <RadioImport lang={lang} id="start" />
       <p>{t(lang, 'watchPage.startOr')}</p>
     </vf-watch-start>
     <Sheet lang={lang} name="discogs" mode="bottom" title={t(lang, 'watchPage.discogsTitle')}>
-      <vf-sheet-body><WatchImport lang={lang} id="sheet" /></vf-sheet-body>
+      <vf-sheet-body>
+        <WatchImport lang={lang} id="sheet" />
+        <h3>{t(lang, 'radio.title')}</h3>
+        <RadioImport lang={lang} id="sheet" />
+      </vf-sheet-body>
     </Sheet>
     <Sheet lang={lang} name="currency" mode="bottom" title={t(lang, 'currency.label')}>
       <vf-sheet-body><CurrencySelect lang={lang} id="currency-watch" /></vf-sheet-body>
@@ -134,4 +141,5 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
 <script>
   import '../../components/vf-watch-page.js';
   import '../../components/vf-watch-backup.js';
+  import '../../components/vf-radio-import.js';
 </script>

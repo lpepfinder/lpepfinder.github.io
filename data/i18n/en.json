@@ -602,5 +602,28 @@
     "addPlaceholder": "Shop, gifts, a friend…",
     "addButton": "Add",
     "note": "Each profile has its own watchlist, Discogs account and collection, in this browser only. Anyone using this browser can open them."
+  },
+  "radio": {
+    "title": "From a Radio4000 radio",
+    "label": "Radio (Bluesky handle)",
+    "placeholder": "someone.bsky.social",
+    "find": "Find records",
+    "intro": "Your radio's latest tracks, matched to records in stock: exact for tracks with a Discogs link, a guess from the song's title otherwise. You choose what to add.",
+    "reading": "Reading the radio of {handle}…",
+    "matching": "Looking for records… {done} / {total} tracks",
+    "checking": "Checking Discogs links…",
+    "found": {
+      "one": "1 record in stock for these {tracks} tracks. Tick the ones to watch.",
+      "other": "{count} records in stock for these {tracks} tracks. Tick the ones to watch."
+    },
+    "none": "No record in stock found for these {tracks} tracks.",
+    "empty": "This radio has no tracks yet.",
+    "error": "The radio of {handle} couldn't be read. Check the handle.",
+    "exact": "Discogs link of “{track}”",
+    "guess": "Has “{track}”? Check before adding.",
+    "add": {
+      "one": "Add 1 to my watchlist",
+      "other": "Add {count} to my watchlist"
+    }
   }
 }

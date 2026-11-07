@@ -602,5 +602,28 @@
     "addPlaceholder": "Tienda, regalos, un amigo…",
     "addButton": "Añadir",
     "note": "Cada perfil tiene su propia lista, cuenta de Discogs y colección, solo en este navegador. Quien use este navegador puede abrirlos."
+  },
+  "radio": {
+    "title": "Desde una radio Radio4000",
+    "label": "Radio (usuario de Bluesky)",
+    "placeholder": "alguien.bsky.social",
+    "find": "Buscar discos",
+    "intro": "Las últimas pistas de tu radio, emparejadas con discos en stock: exacto para las que tienen enlace de Discogs, una suposición por el título si no. Tú eliges qué añadir.",
+    "reading": "Leyendo la radio de {handle}…",
+    "matching": "Buscando discos… {done} / {total} pistas",
+    "checking": "Comprobando enlaces de Discogs…",
+    "found": {
+      "one": "1 disco en stock para estas {tracks} pistas. Marca los que quieras seguir.",
+      "other": "{count} discos en stock para estas {tracks} pistas. Marca los que quieras seguir."
+    },
+    "none": "Ningún disco en stock para estas {tracks} pistas.",
+    "empty": "Esta radio aún no tiene pistas.",
+    "error": "No se pudo leer la radio de {handle}. Revisa el usuario.",
+    "exact": "Enlace de Discogs de «{track}»",
+    "guess": "¿Incluye «{track}»? Compruébalo antes de añadir.",
+    "add": {
+      "one": "Añadir 1 a mi lista",
+      "other": "Añadir {count} a mi lista"
+    }
   }
 }

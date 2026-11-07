@@ -602,5 +602,28 @@
     "addPlaceholder": "Laden, Geschenke, ein Freund…",
     "addButton": "Hinzufügen",
     "note": "Jedes Profil hat seine eigene Beobachtungsliste, sein Discogs-Konto und seine Sammlung, nur in diesem Browser. Wer diesen Browser nutzt, kann sie öffnen."
+  },
+  "radio": {
+    "title": "Aus einem Radio4000-Radio",
+    "label": "Radio (Bluesky-Handle)",
+    "placeholder": "jemand.bsky.social",
+    "find": "Platten finden",
+    "intro": "Die neuesten Tracks deines Radios, mit Platten auf Lager abgeglichen: exakt bei Tracks mit Discogs-Link, sonst eine Vermutung nach dem Songtitel. Du wählst, was hinzukommt.",
+    "reading": "Radio von {handle} wird gelesen…",
+    "matching": "Suche nach Platten… {done} / {total} Tracks",
+    "checking": "Discogs-Links werden geprüft…",
+    "found": {
+      "one": "1 Platte auf Lager für diese {tracks} Tracks. Hake an, was du beobachten willst.",
+      "other": "{count} Platten auf Lager für diese {tracks} Tracks. Hake an, was du beobachten willst."
+    },
+    "none": "Keine Platte auf Lager für diese {tracks} Tracks gefunden.",
+    "empty": "Dieses Radio hat noch keine Tracks.",
+    "error": "Das Radio von {handle} konnte nicht gelesen werden. Prüfe das Handle.",
+    "exact": "Discogs-Link von „{track}“",
+    "guess": "Enthält „{track}“? Vor dem Hinzufügen prüfen.",
+    "add": {
+      "one": "1 zur Liste hinzufügen",
+      "other": "{count} zur Liste hinzufügen"
+    }
   }
 }

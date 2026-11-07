@@ -602,5 +602,28 @@
     "addPlaceholder": "Boutique, cadeaux, un ami…",
     "addButton": "Ajouter",
     "note": "Chaque profil a sa liste de suivi, son compte Discogs et sa collection, dans ce navigateur seulement. Toute personne utilisant ce navigateur peut les ouvrir."
+  },
+  "radio": {
+    "title": "Depuis une radio Radio4000",
+    "label": "Radio (identifiant Bluesky)",
+    "placeholder": "quelquun.bsky.social",
+    "find": "Trouver les disques",
+    "intro": "Les derniers morceaux de votre radio, rapprochés des disques en stock : exact pour ceux avec un lien Discogs, une supposition d’après le titre sinon. Vous choisissez quoi ajouter.",
+    "reading": "Lecture de la radio de {handle}…",
+    "matching": "Recherche de disques… {done} / {total} morceaux",
+    "checking": "Vérification des liens Discogs…",
+    "found": {
+      "one": "1 disque en stock pour ces {tracks} morceaux. Cochez ceux à suivre.",
+      "other": "{count} disques en stock pour ces {tracks} morceaux. Cochez ceux à suivre."
+    },
+    "none": "Aucun disque en stock trouvé pour ces {tracks} morceaux.",
+    "empty": "Cette radio n’a pas encore de morceaux.",
+    "error": "La radio de {handle} n’a pas pu être lue. Vérifiez l’identifiant.",
+    "exact": "Lien Discogs de « {track} »",
+    "guess": "Contient « {track} » ? À vérifier avant d’ajouter.",
+    "add": {
+      "one": "Ajouter 1 à ma liste",
+      "other": "Ajouter {count} à ma liste"
+    }
   }
 }

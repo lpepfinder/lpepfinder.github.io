@@ -571,5 +571,26 @@
     "addPlaceholder": "お店、ギフト、友達…",
     "addButton": "追加",
     "note": "プロフィールごとにウォッチリスト、Discogsアカウント、コレクションがあり、このブラウザにだけ保存されます。このブラウザを使う人は誰でも開けます。"
+  },
+  "radio": {
+    "title": "Radio4000のラジオから",
+    "label": "ラジオ（Blueskyハンドル）",
+    "placeholder": "someone.bsky.social",
+    "find": "レコードを探す",
+    "intro": "ラジオの最新トラックを在庫のあるレコードと照合します。Discogsリンクがあれば正確に、なければ曲名から推測します。追加するものは自分で選べます。",
+    "reading": "{handle}のラジオを読み込み中…",
+    "matching": "レコードを検索中… {done} / {total} トラック",
+    "checking": "Discogsリンクを確認中…",
+    "found": {
+      "other": "{tracks}トラックに対して在庫のあるレコード{count}件。ウォッチするものにチェックしてください。"
+    },
+    "none": "{tracks}トラックに在庫のあるレコードは見つかりませんでした。",
+    "empty": "このラジオにはまだトラックがありません。",
+    "error": "{handle}のラジオを読み込めませんでした。ハンドルを確認してください。",
+    "exact": "「{track}」のDiscogsリンク",
+    "guess": "「{track}」を収録？追加する前に確認してください。",
+    "add": {
+      "other": "{count}件をリストに追加"
+    }
   }
 }
