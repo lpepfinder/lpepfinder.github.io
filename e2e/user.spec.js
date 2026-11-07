@@ -87,6 +87,9 @@ test('the collectors feed: news, most wanted, collectors; a record says how many
   await expect(page.locator('vf-results')).toHaveAttribute('status', 'done', { timeout: 30_000 });
   const row = page.locator('vf-results vf-release[release]:not([release^="u"])').first();
   opened = await row.getAttribute('release');
-  await row.locator('> a').click();
+  // the feed loads once per page (desktop opens the first result by itself): load the page again, now with its counts
+  await page.reload();
+  await expect(page.locator('vf-results')).toHaveAttribute('status', 'done', { timeout: 30_000 });
+  await page.locator(`vf-results vf-release[release="${opened}"] > a`).first().click();
   await expect(page.locator('vf-detail[status="ready"]').first()).toContainText(en.detail.wantedBy.other.replace('{count}', '3'));
 });
