@@ -22,7 +22,16 @@ export const formatNumber = (n) => new Intl.NumberFormat(lang).format(n);
 /** "YYYY-MM-DD" (a UTC day) as a short local date. */
 export const formatDay = (day) => new Intl.DateTimeFormat(lang, { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${day}T00:00:00Z`));
 
-const regions = new Intl.DisplayNames([lang], { type: 'region' });
+/** An ISO time as "3 days ago", "in 2 hours", "now" (the largest unit that fits). */
+const relative = new Intl.RelativeTimeFormat(lang, { numeric: 'auto' });
+const UNITS = [['year', 31536e6], ['month', 2592e6], ['week', 6048e5], ['day', 864e5], ['hour', 36e5], ['minute', 6e4]];
+export function formatAgo(iso) {
+  const ms = Date.parse(iso) - Date.now();
+  const [unit, size] = UNITS.find(([, s]) => Math.abs(ms) >= s) || ['second', 1e3];
+  return relative.format(Math.round(ms / size), unit);
+}
+
+const regions =new Intl.DisplayNames([lang], { type: 'region' });
 export const countryName = (cc) => { try { return regions.of(cc); } catch { return cc; } };
 
 export function formatPrice(cents, currency) {

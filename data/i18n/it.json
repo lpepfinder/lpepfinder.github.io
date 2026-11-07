@@ -642,5 +642,27 @@
       "synced": "sincronizzato",
       "error": "non sincronizzato, nuovo tentativo"
     }
+  },
+  "sources": {
+    "label": "Da dove vengono le tue liste",
+    "wants": "Wantlist Discogs · {user}",
+    "collection": "Collezione Discogs · {user}",
+    "bluesky": "Bluesky · @{handle}",
+    "count": {
+      "one": "1 disco",
+      "other": "{count} dischi"
+    },
+    "read": "letta {ago}",
+    "synced": "sincronizzato {ago}",
+    "current": "aggiornata",
+    "more": {
+      "one": "1 in più su Discogs",
+      "other": "{count} in più su Discogs"
+    },
+    "fewer": {
+      "one": "1 in meno su Discogs",
+      "other": "{count} in meno su Discogs"
+    },
+    "resync": "Risincronizza"
   }
 }

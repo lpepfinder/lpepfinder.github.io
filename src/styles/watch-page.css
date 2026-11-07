@@ -110,6 +110,21 @@ vf-watch-page > vf-watch-head menu button { max-inline-size: 100%; }
 vf-watch-page > vf-watch-head menu button > span { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 vf-watch-page > vf-watch-head menu button { font-size: var(--size-s); }
 
+/* where the lists come from: one row per source, with Resync when Discogs changed or the list is old */
+vf-watch-sources[hidden], vf-watch-page[empty] > vf-watch-sources { display: none; }
+vf-watch-sources > ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); }
+vf-source { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "icon name action" "icon note action"; align-items: center; column-gap: var(--space-3); min-block-size: var(--row-h); padding: var(--space-2) var(--space-3); border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); font-size: var(--size-s); }
+vf-source > vf-icon { grid-area: icon; color: var(--c-muted); }
+vf-source > strong { grid-area: name; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+vf-source > small { grid-area: note; color: var(--c-muted); font-size: var(--size-xs); }
+vf-source > button { grid-area: action; display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--size-s); }
+vf-source[kind="bluesky"] > vf-icon { color: var(--c-bluesky); }
+vf-source[state="changed"] { border-color: var(--c-watching); }
+vf-source[state="changed"] > small { color: var(--c-watching); }
+vf-source[state="error"] > small { color: var(--c-error); }
+vf-source[state="syncing"] > small { color: var(--c-muted); font-style: italic; }
+@media (min-width: 48rem) { vf-watch-sources > ul { grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--source-min)), 1fr)); } }
+
 /* empty list: the start screen alone, with the import form */
 vf-watch-start, vf-watch-start > *, vf-watch-import, vf-watch-import > * { min-inline-size: 0; }
 vf-watch-start { display: grid; gap: var(--space-3); max-inline-size: var(--measure); padding: var(--space-6) var(--space-4); border-radius: var(--radius); background: var(--c-chip); }

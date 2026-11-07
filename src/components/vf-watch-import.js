@@ -3,6 +3,7 @@ import { scoped } from '../lib/watch/profiles.js';
 import { listen, unlisten } from './dom.js';
 import { fetchWantlist, fetchCollection, fromCsv, isCollectionCsv, DiscogsError } from '../lib/watch/discogs.js';
 import { setOwned } from '../lib/watch/owned.js';
+import { imported } from '../lib/watch/sources.js';
 import { wantRecords } from '../lib/watch/wants.js';
 import { afterWatch } from './vf-toast.js';
 import { t, tn, formatNumber } from './i18n.js';
@@ -66,6 +67,7 @@ export class VfWatchImport extends HTMLElement {
         for (const [key, it] of Object.entries(list.items)) if (it.w && !ids.has(it.w)) { delete list.items[key]; removed++; }
       });
       remember(user);
+      imported('wants', user, ids.size);
       dispatchEvent(new Event('vf-watch-imported'));
       this.setAttribute('status', 'done');
       this.live.textContent = [tn('watchPage.discogsDone', ids.size, { user }), tn('watchPage.imported', added), removed ? tn('watchPage.discogsRemoved', removed) : null].filter(Boolean).join(' ');
@@ -94,6 +96,7 @@ export class VfWatchImport extends HTMLElement {
         },
       });
       remember(user);
+      imported('collection', user, count);
       this.setAttribute('status', 'done');
       this.live.textContent = tn('watchPage.collectionDone', count, { user });
     } catch (e) {

@@ -18,7 +18,7 @@ const { lang } = Astro.props;
 const views = [['available', 'viewAvailable', 'bag'], ['now', 'viewShops', 'store'], ['changes', 'viewChanges', 'pulse'], ['all', 'viewAll', 'star']];
 const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
 ---
-<Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'profiles', 'radio']}>
+<Base lang={lang} path="/watch/" title={pageTitle(t(lang, 'watchPage.seoTitle'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'profiles', 'radio', 'sources', 'account']}>
   <vf-watch-shared hidden>
     <h2>{t(lang, 'watchPage.sharedTitle')}</h2>
     <p></p>
@@ -35,6 +35,9 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
         <li><button type="button" name="currency" kind="secondary"><vf-icon name="coin"></vf-icon><span>{t(lang, 'currency.label')}</span></button></li>
       </menu>
     </vf-watch-head>
+    <vf-watch-sources hidden>
+      <ul aria-label={t(lang, 'sources.label')}></ul>
+    </vf-watch-sources>
     <vf-watch-start>
       <h2>{t(lang, 'watchPage.startTitle')}</h2>
       <p>{t(lang, 'watchPage.discogsIntro')}</p>

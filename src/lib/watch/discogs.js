@@ -40,13 +40,16 @@ export class DiscogsError extends Error {
 /** Discogs lists read the same way: the wantlist, and the collection (all folders). */
 const LISTS = { wants: { path: 'wants', key: 'wants' }, collection: { path: 'collection/folders/0/releases', key: 'releases' } };
 
+/** A username, or the address of a Discogs profile or list, as it goes in an API path. */
+const slug = (username) => encodeURIComponent(username.trim().replace(/^.*discogs\.com\/(?:user\/)?/i, '').replace(/\/.*$/, ''));
+
 export const fetchWantlist = (username, opts) => fetchList(username, 'wants', opts);
 /** The collection ("haves"): records the collector owns, to hide or mark them. Must be public too. */
 export const fetchCollection = (username, opts) => fetchList(username, 'collection', opts);
 
 async function fetchList(username, kind, { onPage, signal } = {}) {
   const list = LISTS[kind];
-  const user = encodeURIComponent(username.trim().replace(/^.*discogs\.com\/(?:user\/)?/i, '').replace(/\/.*$/, ''));
+  const user = slug(username);
   let page = 1;
   let pages = 1;
   let total = 0;
@@ -71,6 +74,24 @@ async function fetchList(username, kind, { onPage, signal } = {}) {
     if (page <= pages) await wait(config.discogsPaceMs, signal);
   }
   return total;
+}
+
+/**
+ * How many records the lists hold now on Discogs ({ wants, collection }): the first page with one record
+ * per list, whose pagination gives the total (a profile's own counts are often hidden). A list that can't
+ * be read (private, gone) is left out. One request per list, paced like the imports.
+ */
+export async function fetchCounts(username, kinds = ['wants', 'collection'], { signal } = {}) {
+  const user = slug(username);
+  const counts = {};
+  for (const [i, kind] of kinds.entries()) {
+    if (i) await wait(config.discogsPaceMs, signal);
+    const res = await fetch(`${API}/users/${user}/${LISTS[kind].path}?per_page=1&page=1`, { signal });
+    if (!res.ok) continue;
+    const total = (await res.json()).pagination?.items;
+    if (Number.isFinite(total)) counts[kind] = total;
+  }
+  return counts;
 }
 
 /** RFC 4180 rows: quoted fields may hold commas, quotes ("") and line breaks. */

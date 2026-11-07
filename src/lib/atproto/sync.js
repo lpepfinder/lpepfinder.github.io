@@ -8,6 +8,7 @@
 import { load, update, EVENT as WATCH_EVENT } from '../watch/store.js';
 import { scoped, EVENT as PROFILE_EVENT } from '../watch/profiles.js';
 import { currentAccount } from './accounts.js';
+import { synced } from '../watch/sources.js';
 import { sessionFor } from './session.js';
 import config from '../../../data/atproto.json' with { type: 'json' };
 
@@ -100,7 +101,7 @@ export async function pushProfile() {
 /** Keep the current profile's account in sync: pull now and on profile change, push after changes. */
 export function keepInSync(onState) {
   let timer;
-  const run = async (fn) => { onState?.('syncing'); try { await fn(); onState?.('synced'); } catch (e) { console.error(e); onState?.('error'); } };
+  const run = async (fn) => { onState?.('syncing'); try { await fn(); synced(); onState?.('synced'); } catch (e) { console.error(e); onState?.('error'); } };
   const pullNow = () => currentAccount() && run(pull);
   addEventListener(PROFILE_EVENT, pullNow);
   addEventListener(WATCH_EVENT, () => {

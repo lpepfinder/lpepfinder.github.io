@@ -1,5 +1,5 @@
 {
-  "description": "Browser watchlist. Editable: limits and the format rules that decide what counts as vinyl.",
+  "description": "Browser watchlist. Editable: limits and the format rules that decide what counts as vinyl. discogsCheckHours: how often the watch page asks Discogs whether an imported list changed (one light request per list); discogsStaleDays: after this, an unchanged list is still offered a resync.",
   "installHintAfter": 3,
   "toastSeconds": 12,
   "nowConcurrency": 8,
@@ -8,6 +8,8 @@
   "discogsPerPage": 100,
   "discogsPaceMs": 2600,
   "discogsRetryMs": 30000,
+  "discogsCheckHours": 24,
+  "discogsStaleDays": 30,
   "newDays": 7,
   "atproto": {
     "appview": "https://public.api.bsky.app",

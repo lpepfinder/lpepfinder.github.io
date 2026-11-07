@@ -16,6 +16,7 @@ import { convert } from '../lib/currency.js';
 import { readFilters, saveFilters } from './watch-filters.js';
 import './vf-watch-all.js';
 import './vf-watch-import.js';
+import './vf-watch-sources.js';
 import { listen, unlisten } from './dom.js';
 
 const daysAgo = (n) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);

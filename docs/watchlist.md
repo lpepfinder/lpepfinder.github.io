@@ -12,6 +12,7 @@ The watchlist answers one question: which of the records I want can I buy now, a
 - **By username**: type your Discogs username and press Import. Your wantlist must be public on Discogs. It's read page by page (Discogs allows a few requests a minute without an account): 10,000 wants take about 5 minutes, and the first results show in seconds.
 - **From a file**: on Discogs, Wantlist → Export gives a CSV file; upload it. This works for private wantlists too.
 - **Again later**: importing the same username again syncs: new wants are added, wants you removed on Discogs leave the watchlist (records you added from the search stay).
+- **Is it up to date?** Under the title, each source has a row: your Discogs wantlist and collection (how many records, when they were read) and your Bluesky account (when it last synced). Once a day, the page asks Discogs how many records each list holds now: one light request per list, the first page of one record. When the count differs, the row says how many more or fewer there are on Discogs and offers **Resync**; a list read more than 30 days ago gets Resync too, since a want swapped for another doesn't change the count.
 
 You can also watch any record from the search: the ☆ Watch button in its detail.
 
