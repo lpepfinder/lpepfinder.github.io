@@ -19,7 +19,10 @@ data/shops/*.json ──▶ Refresh (daily)      ──▶ "data" release ──
    checks them, and keeps those whose catalog we can read.
 3. **Check** (`npm run check`): for every shop, is it up, does robots.txt allow us, which platform is it,
    does it still sell records? Dead, moved, duplicated, non-music and blocked shops are excluded automatically.
-   Results: `generated/shops-state.json`, shown on `/status/`.
+   Results: `generated/shops-state.json`, shown on `/status/`. Each shop gets only the check it needs
+   (`scripts/check/plan.js`, `data/config.json` `check`): the full check weekly, the day after a failed crawl and
+   when its address changes; robots.txt alone on the other days (so an opt-out counts the next day); dead shops
+   less and less often, up to monthly.
 4. **Crawl** (`npm run crawl`): reads public catalogs (Shopify `products.json`, WooCommerce Store API),
    keeps in-stock records, one request at a time per shop. Output: `generated/products.ndjson.gz`.
 5. **Quality checks** (start of `npm run index`, code in `scripts/quality/`, settings in `data/config.json` `quality`):

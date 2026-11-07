@@ -25,7 +25,8 @@ export const catalogUrl = (shop) => shop.store || shop.url;
  * and whether it still sells records. Returns its new state.
  */
 export async function checkShop(shop, previous = {}) {
-  const state = { checkedAt: new Date().toISOString(), fails: 0 };
+  // source: the address checked, so a change of the shop's url or store brings a full check (plan.js)
+  const state = { checkedAt: new Date().toISOString(), fails: 0, source: catalogUrl(shop) };
   const home = await get(catalogUrl(shop));
   // the site answers but refuses bots (Cloudflare and similar): alive, just not readable by us
   if ([401, 403, 429, 503].includes(home.status)) {

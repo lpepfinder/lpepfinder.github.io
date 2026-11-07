@@ -17,7 +17,7 @@ LP/EP Finder sends buyers to independent record shops: every record links to the
 
 ## What we read
 
-Once a day, slowly (one request at a time, pauses between pages), our crawler `LPEPFinderBot` reads the public catalog: title, price, currency, stock, image and product link. Nothing else: no customer data, no orders, no checkout. It respects `robots.txt`.
+Once a day, slowly (one request at a time, at most one a second), our crawler `LPEPFinderBot` reads the public catalog: title, price, currency, stock, image and product link. Nothing else: no customer data, no orders, no checkout. Most shops get about a dozen requests a day, plus a look at `robots.txt`; the home page is checked once a week. It respects `robots.txt`, including a `Crawl-delay` to slow it down, and a `Disallow` for `LPEPFinderBot` takes effect the next day.
 
 ## Update or opt out
 

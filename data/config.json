@@ -216,5 +216,10 @@
     "eventDays": 14,
     "maxEvents": 300,
     "topWanted": 100
+  },
+  "check": {
+    "description": "How often shops are checked (scripts/check/plan.js): a full check (home page, robots.txt, platform probe, Bluesky) every `fullDays` days, the day after a failed crawl and when a shop's address changes; robots.txt alone on the days between, so an opt-out counts the next day. Dead shops are checked again after half the days they've been dead, at most every `deadMaxDays`.",
+    "fullDays": 7,
+    "deadMaxDays": 30
   }
 }

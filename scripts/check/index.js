@@ -1,12 +1,17 @@
 import { loadShops, loadState } from '../lib/shops.js';
-import { writeJson } from '../lib/json.js';
+import { writeJson, readJson } from '../lib/json.js';
 import { files } from '../lib/paths.js';
 import { pool } from '../lib/pool.js';
 import { config } from '../lib/config.js';
-import { checkShop } from './shop.js';
+import { checkShop, catalogUrl } from './shop.js';
+import { checkKind } from './plan.js';
+import { lightCheck } from './light.js';
 import { withHistory } from './history.js';
 
-/** Health check of every shop; writes generated/shops-state.json with each shop's history. */
+/**
+ * Health check of every shop; writes generated/shops-state.json with each shop's history. Each shop gets the
+ * check it needs today (plan.js): full, robots.txt only, or none.
+ */
 const shops = loadShops().filter((s) => !s.disabled);
 const previous = loadState();
 const only = process.argv[2];
@@ -15,12 +20,20 @@ const next = only ? previous : {};
 const started = Date.now();
 let done = 0;
 
+// yesterday's crawl: a shop whose catalog failed gets its full check today
+const crawled = readJson(files.crawlReport, {}).shops || {};
+const kinds = {};
 await pool(todo, config.crawl.concurrency * 2, async (shop) => {
+  const prev = previous[shop.id];
+  let kind = only ? 'full' : checkKind(prev, { source: catalogUrl(shop), crawlError: !!crawled[shop.id]?.error, ...config.check });
   try {
-    next[shop.id] = await checkShop(shop, previous[shop.id]);
+    if (kind === 'skip') next[shop.id] = prev;
+    else if (kind === 'light') next[shop.id] = await lightCheck(prev);
+    if (!next[shop.id]) { kind = 'full'; next[shop.id] = await checkShop(shop, prev); }
   } catch (e) {
     next[shop.id] = { status: 'dead', reason: `check_error_${e.message}`.slice(0, 80), checkedAt: new Date().toISOString() };
   }
+  kinds[kind] = (kinds[kind] || 0) + 1;
   if (++done % 100 === 0) console.log(`checked ${done}/${todo.length}`);
 });
 
@@ -39,4 +52,4 @@ for (const id of checked) if (next[id]) next[id] = withHistory(next[id], previou
 
 writeJson(files.state, next, true);
 const counts = Object.values(next).reduce((a, s) => ({ ...a, [s.status]: (a[s.status] || 0) + 1 }), {});
-console.log('check done in', Math.round((Date.now() - started) / 1000), 's', counts);
+console.log('check done in', Math.round((Date.now() - started) / 1000), 's', counts, 'checks', kinds);
