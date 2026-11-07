@@ -126,6 +126,8 @@ jobs:
 
   deploy:
     needs: build
+    # explicit: a skipped index job upstream would otherwise skip this one too
+    if: ${{ !cancelled() && needs.build.result == 'success' }}
     runs-on: ubuntu-24.04
     environment:
       name: github-pages
