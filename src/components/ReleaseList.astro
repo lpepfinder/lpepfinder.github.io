@@ -8,16 +8,17 @@ import Sheet from './Sheet.astro';
 /**
  * Records of a static page grouped by release, as the search shows them: compact <vf-release> rows
  * (built here, the same markup vf-release.js builds) linking to ?r=<key>, and the release detail
- * (a sheet; the right pane from 64rem) drawn in the browser by <vf-release-list> from the embedded records.
- * Props: lang, records (catalog records), shopsById, labelledby (id of the list's heading), checked (ISO date of the prices).
+ * (a sheet; the right pane from 64rem) drawn in the browser by <vf-release-list> from the page's JSON (`src`: the
+ * same records, also for robots), so the records aren't carried twice in the page.
+ * Props: lang, records (catalog records), shopsById, labelledby (id of the list's heading), checked (ISO date of the
+ * prices), src (the JSON of these records, /artist/<slug>.json).
  */
-const { lang, records, shopsById, labelledby, checked } = Astro.props;
+const { lang, records, shopsById, labelledby, checked, src: json } = Astro.props;
 const all = records.map((r) => clientRecord(r, shopsById));
 const groups = releaseGroups(all);
-const data = JSON.stringify(all).replace(/</g, '\\u003c');
 const formats = (g) => g.formats.map((f) => t(lang, `formats.${f}`)).join(' / ');
 ---
-<vf-release-list covers="on" checked={checked}>
+<vf-release-list covers="on" checked={checked} src={json}>
   <vf-split>
     <section aria-labelledby={labelledby}>
       <ol aria-labelledby={labelledby}>
@@ -50,7 +51,6 @@ const formats = (g) => g.formats.map((f) => t(lang, `formats.${f}`)).join(' / ')
     </Sheet>
   </vf-split>
   <output aria-live="polite"></output>
-  <script is:inline type="application/json" data-records set:html={data}></script>
 </vf-release-list>
 <script>
   import './vf-release-list.js';

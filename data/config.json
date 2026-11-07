@@ -66,7 +66,8 @@
     "artistMinShops": 2,
     "artistMaxPages": 3000,
     "artistMaxRecordsPerPage": 60,
-    "shopLatestRecords": 24
+    "shopLatestRecords": 24,
+    "artistLdOffers": 12
   },
   "search": {
     "resultsPerPage": 30,

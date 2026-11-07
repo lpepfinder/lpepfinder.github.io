@@ -6,10 +6,16 @@ import { ReleaseDetail } from './release-detail.js';
 import './vf-release.js';
 import { listen, unlisten } from './dom.js';
 
+/** An API record (src/lib/api.js) as the search's records: the shape the release detail draws. */
+const fromApi = (r) => ({
+  title: r.title, price: r.priceCents, image: r.image, available: r.available !== false, lastInStock: null,
+  url: r.url, currency: r.currency, shop: { id: r.shop, name: r.shopName || r.shop, country: r.country || null },
+});
+
 /**
  * <vf-release-list>: server-rendered release rows of a static page (an artist) with the same
  * release detail as the search: rows link to ?r=<key>, the detail opens in a sheet (a pane from 64rem).
- * The copies come from the embedded <script type="application/json" data-records>; the rows are redrawn
+ * The copies come from the page's JSON (`src`, the artist's API file, fetched once); the rows are redrawn
  * in the browser like the search's (prices in the viewer's currency).
  */
 export class VfReleaseList extends HTMLElement {
@@ -23,9 +29,12 @@ export class VfReleaseList extends HTMLElement {
     this.live = this.querySelector(':scope > output');
     this.checked = this.getAttribute('checked');
     this.details = new ReleaseDetail(this);
-    this.rates = await rates();
+    const [rateTable, records] = await Promise.all([rates(), fetch(this.getAttribute('src')).then((r) => (r.ok ? r.json() : null)).catch(() => null)]);
+    this.rates = rateTable;
     this.groups = new Map();
-    addToGroups(this.groups, JSON.parse(this.querySelector('script[data-records]').textContent));
+    // without its JSON the rows stay as built, linking to the search
+    if (!records) return;
+    addToGroups(this.groups, records.records.map(fromApi));
     for (const group of this.groups.values()) {
       const key = selectKey(group);
       group.row = this.list.querySelector(`vf-release[release="${key}"]`);

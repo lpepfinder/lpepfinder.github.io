@@ -9,11 +9,18 @@ export const API_VERSION = 1;
 export const json = (data) => new Response(JSON.stringify(data), { headers: { 'content-type': 'application/json; charset=utf-8' } });
 export const abs = (site, path) => new URL(path, site).href;
 
-/** A record as the API gives it: title, price in cents with its currency, the shop and the link to buy. */
-export const apiRecord = (site, r) => ({
-  title: r.title, priceCents: r.price ?? null, currency: r.currency || null, shop: r.shop,
-  shopPage: abs(site, `/shop/${r.shop}/`), url: r.url, image: r.image ? (r.image.startsWith('//') ? `https:${r.image}` : r.image) : null,
-});
+/**
+ * A record as the API gives it: title, price in cents with its currency, whether it's in stock, the shop (id, name,
+ * country, page) and the link to buy. The artist page's list reads the same file (vf-release-list.js).
+ */
+export const apiRecord = (site, r) => {
+  const shop = catalog().shopsById.get(r.shop);
+  return {
+    title: r.title, priceCents: r.price ?? null, currency: r.currency || null, available: r.available !== false,
+    shop: r.shop, shopName: shop?.name || r.shop, country: shop?.country || null,
+    shopPage: abs(site, `/shop/${r.shop}/`), url: r.url, image: r.image ? (r.image.startsWith('//') ? `https:${r.image}` : r.image) : null,
+  };
+};
 
 export function apiShop(site, s) {
   return {

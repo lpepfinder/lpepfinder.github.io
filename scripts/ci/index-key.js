@@ -17,6 +17,9 @@ export const INPUTS = [
   'data/release-key.json', 'data/facets.json', 'data/regions.json', 'data/currencies.json',
 ];
 export const SECTIONS = ['products', 'search', 'ledger', 'quality', 'dig', 'newArrivals', 'seo'];
+/** Of these sections, only these settings shape the index (the others are read by the pages). */
+export const PICK = { seo: ['artistMinRecords', 'artistMinShops', 'artistMaxPages', 'artistMaxRecordsPerPage', 'shopLatestRecords'] };
+const section = (s) => (PICK[s] ? Object.fromEntries(PICK[s].map((k) => [k, config[s][k]])) : config[s]);
 
 function files(p) {
   const abs = path.join(ROOT, p);
@@ -30,7 +33,7 @@ export function indexKey() {
   for (const f of INPUTS.flatMap(files).filter((f) => !f.endsWith('.test.js')).sort()) {
     hash.update(`${f}\0`).update(fs.readFileSync(path.join(ROOT, f))).update('\0');
   }
-  hash.update(JSON.stringify(Object.fromEntries(SECTIONS.map((s) => [s, config[s]]))));
+  hash.update(JSON.stringify(Object.fromEntries(SECTIONS.map((s) => [s, section(s)]))));
   return hash.digest('hex').slice(0, 16);
 }
 

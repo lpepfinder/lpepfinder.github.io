@@ -6,6 +6,7 @@ import ArtistProfile from '../../components/ArtistProfile.astro';
 import { artistProfile, sameAs } from '../../lib/enrich.js';
 import { t, defaultLanguage as lang, number, price } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
+import config from '../../../data/config.json' with { type: 'json' };
 import { pageTitle, truncate, breadcrumbLd } from '../../lib/seo.js';
 
 /** Records by one artist in stock across shops, cheapest first: the comparison is the page's value. */
@@ -28,7 +29,8 @@ const crumbs = [
 ];
 const shopUrl = (id) => new URL(`/shop/${id}/`, Astro.site).href;
 // Product items only when they carry a valid Offer (price and currency)
-const offers = artist.records.filter((r) => r.price != null && r.currency).slice(0, 50);
+// the cheapest few are enough for search engines (config.seo.artistLdOffers); the page and its JSON have them all
+const offers = artist.records.filter((r) => r.price != null && r.currency).slice(0, config.seo.artistLdOffers);
 const ld = [{
   '@context': 'https://schema.org', '@type': 'CollectionPage', name: t(lang, 'artistTitle', vars),
   about: { '@type': profile?.type === 'Person' ? 'Person' : 'MusicGroup', name: artist.name, ...(profile ? { sameAs: sameAs(profile), ...(profile.genres.length ? { genre: profile.genres } : {}) } : {}) },
@@ -55,5 +57,5 @@ const ld = [{
   <ArtistProfile lang={lang} profile={profile} />
   <p>{t(lang, 'artistIntro', vars)}</p>
   <p><a href={`/?q=${encodeURIComponent(artist.name)}`} kind="secondary"><vf-icon name="search"></vf-icon>{t(lang, 'artistSearchAll', vars)}</a></p>
-  <ReleaseList lang={lang} records={artist.records} shopsById={c.shopsById} labelledby="artist-title" checked={c.builtAt} />
+  <ReleaseList lang={lang} records={artist.records} shopsById={c.shopsById} labelledby="artist-title" checked={c.builtAt} src={`/artist/${artist.slug}.json`} />
 </Base>
