@@ -44,8 +44,9 @@ vf-price small { font-size: var(--size-xs); font-weight: normal; color: var(--c-
   vf-release vf-watch button[kind]:hover { background: var(--c-hover); }
   vf-release vf-watch button > span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 }
-/* desktop: one line, "Artist  Title · meta · price", prices aligned */
-@media (min-width: 64rem) {
+/* wide screens (the list beside the sidebar and the detail pane has room from 90rem): one line,
+   "Artist  Title · meta · price", prices aligned */
+@media (min-width: 90rem) {
   vf-release > a { grid-template-columns: var(--cover-row) minmax(0, 2fr) minmax(0, 1.2fr) minmax(var(--price-col), auto); grid-template-areas: "cover title meta price"; }
   vf-results[covers="off"] vf-release > a { grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr) minmax(var(--price-col), auto); grid-template-areas: "title meta price"; }
   vf-release vf-name { grid-area: title; display: flex; gap: var(--space-2); align-items: baseline; min-inline-size: 0; }

@@ -11,7 +11,7 @@ import Sheet from './Sheet.astro';
  */
 const { lang } = Astro.props;
 ---
-<Sheet lang={lang} name="filters" mode="bottom" dock="(min-width: 90rem)" title={t(lang, 'results.filters')}>
+<Sheet lang={lang} name="filters" mode="bottom" dock="(min-width: 110rem)" title={t(lang, 'results.filters')}>
   <vf-filters>
     <fieldset name="show">
       <legend>{t(lang, 'results.showLabel')}</legend>

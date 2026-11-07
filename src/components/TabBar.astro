@@ -1,7 +1,8 @@
 ---
 import { t, localPath } from '../lib/i18n.js';
+import Logo from './Logo.astro';
 
-/** The app's tabs: search, dig (new, back in stock, price drops), the watchlist (with its change count), and more (settings, shops, about). */
+/** The app's tabs (the Search tab's icon is the brand): search, dig (new, back in stock, price drops), the watchlist (with its change count), and more (settings, shops, about). */
 const { lang, current } = Astro.props;
 const search = localPath(lang, '/');
 const watch = localPath(lang, '/watch/');
@@ -10,7 +11,7 @@ const here = (href) => (href === current ? 'page' : undefined);
 ---
 <nav aria-label={t(lang, 'navApp')}>
   <vf-tabbar>
-    <a href={search} aria-current={here(search)} title={t(lang, 'tabSearch')}><vf-icon name="search"></vf-icon><span>{t(lang, 'tabSearch')}</span></a>
+    <a href={search} aria-current={here(search)} title={t(lang, 'tabSearch')}><Logo /><span>{t(lang, 'tabSearch')}</span></a>
     <a href="/new/" aria-current={here('/new/')} title={t(lang, 'tabNew')}><vf-icon name="record"></vf-icon><span>{t(lang, 'tabNew')}</span></a>
     <vf-watchlist>
       <a href={watch} aria-current={here(watch)} title={t(lang, 'tabWatch')}><vf-icon name="star"></vf-icon><span>{t(lang, 'tabWatch')}</span> <vf-watch-count count="0"></vf-watch-count></a>

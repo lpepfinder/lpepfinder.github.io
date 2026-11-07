@@ -1,5 +1,5 @@
 /* <vf-split>: master–detail frame of the results. One pane on phones and tablets (the detail is a sheet);
-   from 64rem the list and a sticky detail pane side by side; from 90rem the filter rail too (filters.css). */
+   from 64rem the list and a sticky detail pane side by side; from 110rem (the sidebar takes room) the filter rail too (filters.css). */
 vf-split { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); align-items: start; }
 vf-split > section { display: grid; gap: var(--space-2); min-inline-size: 0; }
 
@@ -18,7 +18,7 @@ li[role="none"]:has(> vf-ad) { list-style: none; }
   }
   vf-split > vf-sheet[docked] > dialog { display: grid; }
 }
-@media (min-width: 90rem) {
+@media (min-width: 110rem) {
   vf-split:has(> vf-sheet[name="filters"]) { grid-template-columns: var(--rail-w) minmax(var(--list-min), 1.4fr) minmax(var(--detail-min), 1fr); }
   vf-split > vf-sheet[name="filters"][docked] { position: sticky; inset-block-start: calc(var(--header-h) + var(--space-2)); max-block-size: calc(100dvh - var(--header-h) - var(--space-4)); overflow: auto; }
 }

@@ -2,7 +2,7 @@
 
 /* wide screens: the header's search becomes the centered hero search */
 @media (min-width: 48rem) {
-  vf-app[mode="home"] header { position: static; grid-template-columns: auto 1fr auto; grid-template-areas: "logo . tabs" "search search search"; row-gap: var(--space-6); padding-block-end: var(--space-6); border-block-end: 0; }
+  vf-app[mode="home"] header { position: static; grid-template-columns: minmax(0, 1fr); padding-block: var(--space-8) var(--space-6); border-block-end: 0; }
   vf-app[mode="home"] header > vf-search { justify-self: center; inline-size: min(100%, var(--hero-w)); }
   vf-app[mode="home"] header vf-search input { min-block-size: var(--hero-input-h); font-size: var(--size-1); padding-inline: var(--space-4); }
   vf-app[mode="home"] header vf-search button { inline-size: var(--hero-input-h); }

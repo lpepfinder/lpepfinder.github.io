@@ -20,7 +20,7 @@ vf-filters vf-currency { inline-size: 100%; }
 vf-filters vf-currency label { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 vf-filters vf-currency select { flex: 1 1 auto; }
 
-/* the docked rail (from 90rem): one column, sticky */
+/* the docked rail (from 110rem): one column, sticky */
 vf-sheet[name="filters"][docked] vf-filters { grid-template-columns: minmax(0, 1fr); padding-block: var(--space-2); }
 vf-sheet[name="filters"][docked] > dialog > :is(header, footer) { padding-inline: 0; border: 0; }
 vf-sheet[name="filters"][docked] > dialog > :not(header, footer) { padding-inline: 0; }
@@ -47,7 +47,7 @@ vf-results:not([status="done"]) > vf-results-actions { display: none; }
 @media (min-width: 40rem) {
   vf-results-actions { display: none; }
 }
-@media (min-width: 90rem) {
+@media (min-width: 110rem) {
   vf-results-bar > button[name="filters"] { display: none; }
 }
 
