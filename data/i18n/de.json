@@ -579,5 +579,8 @@
   "shopBlueskyVerified": "Verifiziert: Die eigene Domain des Shops, {domain}, ist sein Bluesky-Handle.",
   "shopBlueskyLinked": "Von der Website des Shops verlinkt.",
   "shopOnBluesky": "Auf Bluesky",
-  "feedShort": "Feed"
+  "feedShort": "Feed",
+  "shopOwnerTitle": "Ist das dein Laden?",
+  "shopOwnerBody": "Korrigiere die Angaben, lass ihn mit Bluesky verifizieren oder melde ihn ab.",
+  "shopOwnerBodyListed": "Sieh, wie sein Katalog durchsuchbar wird, korrigiere die Angaben, lass ihn mit Bluesky verifizieren oder melde ihn ab."
 }

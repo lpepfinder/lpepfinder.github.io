@@ -12,7 +12,8 @@ LP/EP Finder sends buyers to independent record shops: every record links to the
 [Suggest your shop](https://github.com/lpepfinder/lpepfinder.github.io/issues/new?template=shop.yml) (a short form on GitHub), or ask a regular to do it. New shops are also found on OpenStreetMap and Record Store Day lists every month.
 
 - **Shopify and WooCommerce shops** get their whole catalog searchable: we read the public catalog these platforms publish for every shop.
-- **Other shops** are listed with a link, and become searchable as more platforms are supported.
+- **Square Online shops** are searchable too (the same public product list as their storefront).
+- **Other shops** are listed with a link, and become searchable as more platforms are supported. A shop whose online store lives on another site (Big Cartel, a `shop.` subdomain) can tell us its store's address in an issue.
 
 ## What we read
 

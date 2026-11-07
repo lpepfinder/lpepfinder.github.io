@@ -579,5 +579,8 @@
   "shopBlueskyVerified": "Vérifié : le domaine de la boutique, {domain}, est son identifiant Bluesky.",
   "shopBlueskyLinked": "Lien depuis le site de la boutique.",
   "shopOnBluesky": "Sur Bluesky",
-  "feedShort": "Flux"
+  "feedShort": "Flux",
+  "shopOwnerTitle": "C’est votre boutique ?",
+  "shopOwnerBody": "Corrigez ses informations, faites-la vérifier avec Bluesky, ou retirez-la.",
+  "shopOwnerBodyListed": "Voyez comment rendre son catalogue cherchable, corriger ses informations, la faire vérifier avec Bluesky, ou la retirer."
 }

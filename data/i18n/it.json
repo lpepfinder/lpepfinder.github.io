@@ -579,5 +579,8 @@
   "shopBlueskyVerified": "Verificato: il dominio del negozio, {domain}, è il suo handle Bluesky.",
   "shopBlueskyLinked": "Collegato dal sito del negozio.",
   "shopOnBluesky": "Su Bluesky",
-  "feedShort": "Feed"
+  "feedShort": "Feed",
+  "shopOwnerTitle": "È il tuo negozio?",
+  "shopOwnerBody": "Correggi i dati, fallo verificare con Bluesky o ritiralo.",
+  "shopOwnerBodyListed": "Scopri come rendere il catalogo cercabile, correggi i dati, fallo verificare con Bluesky o ritiralo."
 }

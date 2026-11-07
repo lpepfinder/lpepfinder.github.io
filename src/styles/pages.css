@@ -128,3 +128,10 @@ vf-bluesky { display: block; color: var(--c-muted); font-size: var(--size-s); }
 vf-bluesky[verified="true"] { color: var(--c-ok); }
 vf-bluesky[verified="true"]::before { content: "✓ "; }
 article > menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+
+/* <vf-shop-owner>: one quiet line for the shop's owner at the end of its page */
+vf-shop-owner { display: block; margin-block-start: var(--space-8); padding-block-start: var(--space-4); border-block-start: var(--line) solid var(--c-line); font-size: var(--size-s); color: var(--c-muted); }
+vf-shop-owner a { display: flex; align-items: start; gap: var(--space-2); color: inherit; text-decoration: none; }
+vf-shop-owner a:hover span { text-decoration: underline; }
+vf-shop-owner strong { color: var(--c-fg); }
+vf-shop-owner vf-icon { flex: none; --icon-size: var(--icon-size-nav); margin-block-start: 0.1em; }

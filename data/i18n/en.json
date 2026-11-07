@@ -579,5 +579,8 @@
   "shopBlueskyVerified": "Verified: the shop's own domain {domain} is its Bluesky handle.",
   "shopBlueskyLinked": "Linked from the shop's website.",
   "shopOnBluesky": "On Bluesky",
-  "feedShort": "Feed"
+  "feedShort": "Feed",
+  "shopOwnerTitle": "Is this your shop?",
+  "shopOwnerBody": "Correct its details, get verified with Bluesky, or opt out.",
+  "shopOwnerBodyListed": "See how to make its catalog searchable, correct its details, get verified with Bluesky, or opt out."
 }

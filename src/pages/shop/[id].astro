@@ -61,5 +61,8 @@ const ld = [{
     )}
     {shop.latest.length > 0 && <h2 id="shop-latest">{t(lang, 'shopLatest')}</h2>}
     {shop.latest.length > 0 && <RecordList lang={lang} records={shop.latest} labelledby="shop-latest" showShop={false} layout="covers" />}
+    <vf-shop-owner>
+      <a href="/docs/for-shops/"><vf-icon name="store"></vf-icon><span><strong>{t(lang, 'shopOwnerTitle')}</strong> {t(lang, shop.records ? 'shopOwnerBody' : 'shopOwnerBodyListed')}</span></a>
+    </vf-shop-owner>
   </article>
 </Base>

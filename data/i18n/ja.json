@@ -549,5 +549,8 @@
   "shopBlueskyVerified": "確認済み：ショップのドメイン {domain} が Bluesky のハンドルです。",
   "shopBlueskyLinked": "ショップのサイトからリンクされています。",
   "shopOnBluesky": "Bluesky",
-  "feedShort": "フィード"
+  "feedShort": "フィード",
+  "shopOwnerTitle": "あなたのお店ですか？",
+  "shopOwnerBody": "情報の修正、Blueskyでの確認、掲載の取り下げができます。",
+  "shopOwnerBodyListed": "カタログを検索可能にする方法、情報の修正、Blueskyでの確認、掲載の取り下げについて。"
 }
