@@ -1,10 +1,10 @@
 /* <vf-user-page>: a collector's public page. The lookup form until a handle is given; then their head
    (avatar, name, counts, links), their wants in stock now and all their wants, as release rows. */
-vf-user-page { display: grid; gap: var(--space-4); }
+vf-user-page { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
 vf-user-page > *, vf-user-page p { margin: 0; min-inline-size: 0; }
 vf-user-page:not([status="idle"]) > vf-user-lookup { display: none; }
-vf-user-lookup { display: grid; gap: var(--space-3); max-inline-size: var(--measure); }
-vf-user-lookup form { display: grid; gap: var(--space-1); }
+vf-user-lookup { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); max-inline-size: var(--measure); }
+vf-user-lookup form { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
 vf-user-lookup label { font-weight: var(--weight-semi); font-size: var(--size-s); }
 vf-user-lookup button { display: inline-flex; align-items: center; gap: var(--space-2); }
 vf-user-lookup p { color: var(--c-muted); }

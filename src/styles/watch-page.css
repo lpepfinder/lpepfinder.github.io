@@ -136,10 +136,12 @@ vf-watch-import { display: grid; gap: var(--space-2); }
 vf-watch-import p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
 vf-watch-import form { display: grid; gap: var(--space-1); }
 vf-watch-import form label { font-weight: var(--weight-semi); }
-vf-field { display: flex; gap: var(--space-2); }
+vf-field { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 vf-field > button { flex: none; }
 vf-watch-import label:has(> input[type="file"]) { white-space: normal; max-inline-size: 100%; }
-vf-field input { flex: 1; min-inline-size: 0; font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
+/* the field takes what the button leaves, at least --field-min, else the button goes under it; inline-size 0
+   drops the field's built-in ~20 characters, which would widen the page */
+vf-field input { flex: 1 1 var(--field-min); inline-size: 0; min-inline-size: 0; font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
 vf-watch-import[status="loading"] button[type="submit"] { opacity: var(--busy-opacity); pointer-events: none; }
 vf-watch-import output { display: block; font-size: var(--size-s); }
 vf-watch-import[status="error"] output { color: var(--c-error); }
