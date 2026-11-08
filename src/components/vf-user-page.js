@@ -115,7 +115,9 @@ export class VfUserPage extends HTMLElement {
     this.head.hidden = false;
     const img = this.head.querySelector('img');
     if (u.avatar) { img.src = u.avatar; img.hidden = false; }
-    this.head.querySelector('h1').textContent = u.name || `@${u.handle}`;
+    // one h1 per view: the lookup's "Collectors" is hidden now, the collector's name takes its place
+    const hgroup = this.head.querySelector('hgroup');
+    (hgroup.querySelector('h1') || hgroup.insertBefore(el('h1'), hgroup.firstChild)).textContent = u.name || `@${u.handle}`;
     this.head.querySelector('hgroup > p').textContent = `@${u.handle}`;
     this.head.querySelector(':scope > p').textContent = [
       tn('user.wants', u.wants.size), u.collection.count ? tn('user.collection', u.collection.count) : null, tn('user.inStock', inStock),
