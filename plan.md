@@ -12,7 +12,7 @@ The catalog crawl stops at its 200-minute cap every day (73 shops left on 2026-1
 
 ## Shops that refuse our bot
 
-About 130 shops answer 403 or 429 to the check. Look at who protects them (Cloudflare, AWS WAF…); if many, sign requests with Web Bot Auth so firewalls can verify LPEPFinderBot from any address. Only then consider a crawler box with a fixed address (hotpink if it's a real server, else a small paid server: say the cost first).
+About 130 shops answer 403 or 429 to the check. Look at who protects them (Cloudflare, AWS WAF…); if many, sign requests with Web Bot Auth so firewalls can verify LPEPFinderBot from any address. Only then consider a crawler box with a fixed address: a small paid server, cost said first (hotpink is the hwww.org infrastructure, not for this).
 
 ## Hosting: GitHub builds, Cloudflare serves
 
