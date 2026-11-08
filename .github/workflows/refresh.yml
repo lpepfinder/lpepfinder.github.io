@@ -47,7 +47,12 @@ jobs:
             git add data/shops
             git diff --cached --quiet || { git commit -m "Add shops found by the monthly discovery"; git pull --rebase; git push; }
           fi
-      - run: npm run check
+      # a check that fails (it writes the shop states only at its end) leaves yesterday's states: the crawl
+      # still runs with them, so one bad shop server never costs a day of data (the failure stays visible)
+      - name: Check shops
+        id: check
+        continue-on-error: true
+        run: npm run check
       - run: npm run crawl
       # weekly numbers in git; the commit also keeps the schedule alive (GitHub stops it after 60 idle days)
       - name: Weekly stats
