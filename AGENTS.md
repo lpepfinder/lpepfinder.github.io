@@ -4,7 +4,7 @@ A free search engine for vinyl records in stock at independent record shops, reb
 
 Objectives: find any record in stock at an independent shop in seconds, on a phone; match a collector's Discogs wantlist (10,000 records) against every shop every day; run with almost no running cost, paid for by discreet ads.
 Never: a marketplace or an aggregator of big resellers (no Bandcamp, eBay or Discogs marketplace as sources; importing a Discogs wantlist or collection is wanted); a tracker; a paid service for its users; a burden on small shops' servers.
-People: the casual searcher (one record, now), the digger (what's new and cheap, Dig), the collector (a big wantlist, the watchlist, publishing lists), the shop owner (their shop page, how the bot reads them), robots and agents (llms.txt, JSON next to each page). Contact goes through GitHub issues only.
+People: the casual searcher (one record, now), the digger (what's new and cheap, Dig), the collector (a big wantlist, the watchlist, publishing lists), the DJ (a Radio4000 radio's tracks matched to records), the shop owner (their shop page, how the bot reads them), robots and agents (llms.txt, JSON next to each page). Contact goes through GitHub issues only.
 
 Follows https://hwww.gitlab.io/savoir/agents.md (local: ~/src/hwww/savoir). Exceptions, on purpose:
 - sveltekit-static, sveltekit-3, paraglide-routing: Astro 7 with custom elements and our own i18n (`data/i18n/`), because it builds ~10,000 static pages from one data file and moving would cost weeks for no visible gain.
