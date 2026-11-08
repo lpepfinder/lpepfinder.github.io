@@ -1,7 +1,9 @@
 import fs from 'node:fs';
 import { crawlableShops } from '../lib/shops.js';
 import { ndjsonWriter, ndjsonReader, writeJson } from '../lib/json.js';
-import { files } from '../lib/paths.js';
+import path from 'node:path';
+import { files, GENERATED } from '../lib/paths.js';
+import { shardOf } from '../lib/shard.js';
 import { pool, semaphore } from '../lib/pool.js';
 import { config } from '../lib/config.js';
 import { adapters } from '../platforms/index.js';
@@ -11,16 +13,23 @@ import { adapters } from '../platforms/index.js';
  * The whole run has a time budget (crawl.maxTotalMinutes), so it always finishes and saves:
  * shops not reached, or cut short, keep their products from the previous run, and go
  * first next time. Shops that fail keep their previous products too.
+ * In shards (CRAWL_SHARD of CRAWL_SHARDS, one runner each, docs/ci.md): only the shard's shops, into
+ * generated/products-crawl-<k>.ndjson.gz and crawl-report-<k>.json, joined again by scripts/crawl/merge.js.
  */
 const c = config.crawl;
 const only = process.argv[2];
+const shards = Number(process.env.CRAWL_SHARDS) || 1;
+const shard = Number(process.env.CRAWL_SHARD) || 0;
+const mine = (id) => shards === 1 || shardOf(id, shards) === shard;
+const output = shards === 1 ? { products: files.products, report: files.crawlReport }
+  : { products: path.join(GENERATED, `products-crawl-${shard}.ndjson.gz`), report: path.join(GENERATED, `crawl-report-${shard}.json`) };
 const previousReport = (() => { try { return JSON.parse(fs.readFileSync(files.crawlReport, 'utf8')).shops || {}; } catch { return {}; } })();
 const waited = (id) => (previousReport[id]?.skipped || previousReport[id]?.partial ? 0 : 1);
-const shops = crawlableShops().filter((s) => !only || s.id.includes(only))
+const shops = crawlableShops().filter((s) => mine(s.id) && (!only || s.id.includes(only)))
   .sort((a, b) => waited(a.id) - waited(b.id))
   .slice(0, Number(process.env.CRAWL_LIMIT) || undefined);
 const limits = Object.fromEntries(Object.entries(c.platformConcurrency).map(([k, n]) => [k, semaphore(n)]));
-const tmp = files.products + '.tmp';
+const tmp = output.products + '.tmp';
 const out = ndjsonWriter(tmp);
 const report = {};
 const started = Date.now();
@@ -71,13 +80,15 @@ const keepAll = new Set(Object.entries(report).filter(([, r]) => r.skipped || (r
 const keepUnseen = new Set(Object.entries(report).filter(([, r]) => r.partial).map(([id]) => id));
 if (fs.existsSync(files.products)) {
   for await (const p of ndjsonReader(files.products)) {
+    // another shard's shops are that shard's to write
+    if (!mine(p.shop)) continue;
     const keep = keepAll.has(p.shop) || (only && !p.shop.includes(only)) || (keepUnseen.has(p.shop) && !paths.get(p.shop)?.has(p.path));
     if (keep) { out.write(p); if (report[p.shop]) report[p.shop].carried = (report[p.shop].carried || 0) + 1; }
   }
 }
 await out.close();
-fs.renameSync(tmp, files.products);
+fs.renameSync(tmp, output.products);
 const total = Object.values(report).reduce((n, r) => n + r.count + (r.carried || 0), 0);
-writeJson(files.crawlReport, { finishedAt: new Date().toISOString(), seconds: Math.round((Date.now() - started) / 1000), total, shops: report }, true);
+writeJson(output.report, { finishedAt: new Date().toISOString(), seconds: Math.round((Date.now() - started) / 1000), total, shops: report }, true);
 const skipped = Object.values(report).filter((r) => r.skipped).length;
 console.log(`crawl done: ${total} products from ${shops.length} shops in ${Math.round((Date.now() - started) / 60000)} min${skipped ? `, ${skipped} shops left for the next run` : ''}`);

@@ -1,8 +1,7 @@
-import { createHash } from 'node:crypto';
 import { loadShops, loadState } from '../../lib/shops.js';
+import { shardOf } from '../../lib/shard.js';
 
-/** Stable shard of a shop: hash(id) % shards. */
-export const shardOf = (id, shards) => parseInt(createHash('sha1').update(id).digest('hex').slice(0, 8), 16) % shards;
+export { shardOf };
 
 /**
  * Shops for the site crawler: alive ("listed") but without a catalog API we read, not
