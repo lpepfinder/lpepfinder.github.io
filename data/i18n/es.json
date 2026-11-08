@@ -611,7 +611,9 @@
     "add": "Añadir un perfil",
     "addPlaceholder": "Tienda, regalos, un amigo…",
     "addButton": "Añadir",
-    "note": "Cada perfil tiene su propia lista, cuenta de Discogs y colección, solo en este navegador. Quien use este navegador puede abrirlos."
+    "note": "Cada perfil tiene su propia lista, cuenta de Discogs y colección, solo en este navegador. Quien use este navegador puede abrirlos.",
+    "cancel": "Cancelar",
+    "renameTitle": "Renombrar «{name}»"
   },
   "radio": {
     "title": "Desde una radio Radio4000",

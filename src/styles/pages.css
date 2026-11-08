@@ -67,7 +67,7 @@ vf-shop-card[searchable="false"] a { font-weight: normal; }
 vf-more { display: grid; gap: var(--space-6); max-inline-size: var(--width); }
 vf-more h1 { margin: 0; }
 vf-more section { display: grid; gap: var(--space-2); }
-vf-more h2 { margin: 0; font-size: var(--size-s); font-weight: var(--weight-semi); color: var(--c-muted); text-transform: uppercase; letter-spacing: var(--tracking-caps); }
+vf-more h2 { margin: 0; font-size: var(--size-s); font-weight: var(--weight-semi); color: var(--c-muted); }
 vf-more h3 { margin: var(--space-2) 0 0; font-size: var(--size-0); }
 vf-more ul { list-style: none; margin: 0; padding: 0; display: grid; border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); }
 vf-more li + li { border-block-start: var(--line) solid var(--c-line); }
@@ -136,7 +136,15 @@ vf-shop-owner a:hover span { text-decoration: underline; }
 vf-shop-owner strong { color: var(--c-fg); }
 vf-shop-owner vf-icon { flex: none; --icon-size: var(--icon-size-nav); margin-block-start: 0.1em; }
 
-/* <vf-profiles>: local profiles in the More tab */
+/* <vf-profiles>: local profiles in the More tab, renamed or removed in a native dialog */
+vf-profiles > dialog { inline-size: min(100% - 2 * var(--gutter), var(--dialog-w)); padding: var(--space-4); border: 0; border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
+vf-profiles > dialog::backdrop { background: var(--c-scrim); }
+vf-profiles > dialog form { display: grid; gap: var(--space-3); }
+vf-profiles > dialog h2 { margin: 0; font-size: var(--size-1); }
+vf-profiles > dialog label { display: grid; gap: var(--space-1); }
+vf-profiles > dialog label[hidden] { display: none; }
+vf-profiles > dialog menu { display: flex; justify-content: end; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+vf-profiles > dialog[action="remove"] button[value="ok"] { background: var(--c-bad); color: var(--c-accent-fg); }
 vf-profiles { display: grid; gap: var(--space-3); }
 vf-profiles ul li { display: block; }
 vf-profile { display: flex; align-items: center; gap: var(--space-2); padding-inline-end: var(--space-2); }

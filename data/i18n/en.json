@@ -611,7 +611,9 @@
     "add": "Add a profile",
     "addPlaceholder": "Shop, gifts, a friend…",
     "addButton": "Add",
-    "note": "Each profile has its own watchlist, Discogs account and collection, in this browser only. Anyone using this browser can open them."
+    "note": "Each profile has its own watchlist, Discogs account and collection, in this browser only. Anyone using this browser can open them.",
+    "cancel": "Cancel",
+    "renameTitle": "Rename “{name}”"
   },
   "radio": {
     "title": "From a Radio4000 radio",

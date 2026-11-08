@@ -611,7 +611,9 @@
     "add": "Profil hinzufügen",
     "addPlaceholder": "Laden, Geschenke, ein Freund…",
     "addButton": "Hinzufügen",
-    "note": "Jedes Profil hat seine eigene Beobachtungsliste, sein Discogs-Konto und seine Sammlung, nur in diesem Browser. Wer diesen Browser nutzt, kann sie öffnen."
+    "note": "Jedes Profil hat seine eigene Beobachtungsliste, sein Discogs-Konto und seine Sammlung, nur in diesem Browser. Wer diesen Browser nutzt, kann sie öffnen.",
+    "cancel": "Abbrechen",
+    "renameTitle": "„{name}“ umbenennen"
   },
   "radio": {
     "title": "Aus einem Radio4000-Radio",

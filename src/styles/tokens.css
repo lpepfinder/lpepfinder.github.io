@@ -39,6 +39,7 @@
   --profile-photo: 5.5rem;
   --profile-photo-wide: 8rem;
   --quote-w: 3px;
+  --dialog-w: 28rem;
   --avatar: 4rem;
   --avatar-wide: 6rem;
   --feed-avatar: 2.5rem;
@@ -129,7 +130,6 @@
   --toast-width: 32rem;
   --badge-size: 1.25rem;
   --layer-toast: 3;
-  --tracking-caps: 0.04em;
   --thumb-row: 2.75rem;
   --price-col: 7.5rem;
   --price-max: 34%;

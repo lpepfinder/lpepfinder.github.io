@@ -80,6 +80,17 @@ const groups = [
           </vf-field>
         </form>
         <p>{t(lang, 'profiles.note')}</p>
+        <!-- rename or remove a profile: a native dialog that keeps the profile unless confirmed (Cancel is focused) -->
+        <dialog closedby="any" aria-labelledby="profile-dialog-title">
+          <form method="dialog">
+            <h2 id="profile-dialog-title"></h2>
+            <label><span>{t(lang, 'profiles.renamePrompt')}</span><input name="name" maxlength="40" autocomplete="off"></label>
+            <menu>
+              <li><button value="cancel" kind="secondary" autofocus>{t(lang, 'profiles.cancel')}</button></li>
+              <li><button value="ok"></button></li>
+            </menu>
+          </form>
+        </dialog>
       </vf-profiles>
     </section>
     {groups.map((g) => (

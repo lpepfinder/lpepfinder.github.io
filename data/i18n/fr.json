@@ -611,7 +611,9 @@
     "add": "Ajouter un profil",
     "addPlaceholder": "Boutique, cadeaux, un ami…",
     "addButton": "Ajouter",
-    "note": "Chaque profil a sa liste de suivi, son compte Discogs et sa collection, dans ce navigateur seulement. Toute personne utilisant ce navigateur peut les ouvrir."
+    "note": "Chaque profil a sa liste de suivi, son compte Discogs et sa collection, dans ce navigateur seulement. Toute personne utilisant ce navigateur peut les ouvrir.",
+    "cancel": "Annuler",
+    "renameTitle": "Renommer « {name} »"
   },
   "radio": {
     "title": "Depuis une radio Radio4000",

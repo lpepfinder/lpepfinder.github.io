@@ -611,7 +611,9 @@
     "add": "Aggiungi un profilo",
     "addPlaceholder": "Negozio, regali, un amico…",
     "addButton": "Aggiungi",
-    "note": "Ogni profilo ha la sua lista, il suo account Discogs e la sua collezione, solo in questo browser. Chi usa questo browser può aprirli."
+    "note": "Ogni profilo ha la sua lista, il suo account Discogs e la sua collezione, solo in questo browser. Chi usa questo browser può aprirli.",
+    "cancel": "Annulla",
+    "renameTitle": "Rinomina «{name}»"
   },
   "radio": {
     "title": "Da una radio Radio4000",
