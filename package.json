@@ -23,6 +23,7 @@
     "stats": "node scripts/stats/index.js",
     "rates": "node scripts/rates/index.js",
     "test:e2e": "playwright test",
+    "verify": "npm run validate && npm test && astro build && playwright test",
     "health": "node scripts/health/index.js",
     "enrich": "node scripts/enrich/index.js",
     "social": "node scripts/social/index.js"
