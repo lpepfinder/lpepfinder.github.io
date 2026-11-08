@@ -53,7 +53,7 @@ export class VfWatchAll extends HTMLElement {
 
   filter() {
     const words = fold(this.input.value).split(/[^\p{L}\p{N}]+/u).filter(Boolean);
-    this.matches = words.length ? this.sorted.filter((r) => words.every((w) => r.folded.includes(w))) : this.sorted;
+    this.found = words.length ? this.sorted.filter((r) => words.every((w) => r.folded.includes(w))) : this.sorted;
     this.letters();
     this.start = 0;
     this.shown = 0;
@@ -63,13 +63,13 @@ export class VfWatchAll extends HTMLElement {
 
   /** Jump bar: one button per letter present in the current matches. */
   letters() {
-    const present = [...new Set(this.matches.map((r) => letterOf(r.title)))].sort((a, b) => (a === '#') - (b === '#') || a.localeCompare(b));
+    const present = [...new Set(this.found.map((r) => letterOf(r.title)))].sort((a, b) => (a === '#') - (b === '#') || a.localeCompare(b));
     this.jump.replaceChildren(...present.map((l) => el('li', {}, attrs(el('button', { type: 'button', value: l, textContent: l === '#' ? t('watchPage.jumpOther') : l }), { kind: 'secondary' }))));
   }
 
   /** Start the page at the first match with this letter; focus its first record. */
   jumpTo(letter) {
-    const i = this.matches.findIndex((r) => letterOf(r.title) === letter);
+    const i = this.found.findIndex((r) => letterOf(r.title) === letter);
     if (i < 0) return;
     this.start = i;
     this.shown = 0;
@@ -80,12 +80,12 @@ export class VfWatchAll extends HTMLElement {
   /** Append the next page; with focus, move it to the first new record. */
   page(focus) {
     const from = this.start + this.shown;
-    const rows = this.matches.slice(from, from + config.pageSize);
+    const rows = this.found.slice(from, from + config.pageSize);
     const search = this.getAttribute('search') || '/';
     const items = rows.map((r) => item(r.key, r.it, search));
     this.list.append(...items);
     this.shown += rows.length;
-    const left = this.matches.length - (this.start + this.shown);
+    const left = this.found.length - (this.start + this.shown);
     this.more.hidden = left <= 0;
     this.more.textContent = tn('watchPage.showMore', Math.min(left, config.pageSize));
     this.showing.textContent = this.status();
@@ -94,8 +94,8 @@ export class VfWatchAll extends HTMLElement {
 
   status() {
     const q = this.input.value.trim();
-    if (q && !this.matches.length) return t('watchPage.noMatch', { query: q });
-    return t('watchPage.showing', { shown: formatNumber(this.shown), total: formatNumber(this.matches.length) });
+    if (q && !this.found.length) return t('watchPage.noMatch', { query: q });
+    return t('watchPage.showing', { shown: formatNumber(this.shown), total: formatNumber(this.found.length) });
   }
 
   remove(button) {
@@ -105,7 +105,7 @@ export class VfWatchAll extends HTMLElement {
     remove(button.value);
     li.remove();
     this.sorted = this.sorted.filter((r) => r.key !== button.value);
-    this.matches = this.matches.filter((r) => r.key !== button.value);
+    this.found = this.found.filter((r) => r.key !== button.value);
     this.shown--;
     this.setAttribute('count', this.sorted.length);
     this.showing.textContent = this.status();
