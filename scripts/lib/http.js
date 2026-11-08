@@ -1,5 +1,6 @@
 import { config } from './config.js';
 import { sleep } from './pool.js';
+import './net.js';
 
 const { userAgent, timeoutMs } = config.crawl;
 

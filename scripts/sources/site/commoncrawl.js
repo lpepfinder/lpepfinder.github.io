@@ -6,6 +6,7 @@ import { sleep } from '../../lib/pool.js';
 import { site, userAgent } from './settings.js';
 import { canonical, isProductUrl } from './links.js';
 import { addUrl } from './store.js';
+import '../../lib/net.js';
 
 /**
  * Common Crawl seed: product-looking URLs of our shops from the latest crawls' URL index,

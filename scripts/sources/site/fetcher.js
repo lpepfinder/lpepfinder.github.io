@@ -1,6 +1,7 @@
 import { gunzipSync } from 'node:zlib';
 import { sleep } from '../../lib/pool.js';
 import { site, userAgent } from './settings.js';
+import '../../lib/net.js';
 
 /** Last request time per host: requests to one host are at least `delayMs` apart. */
 const lastHit = new Map();

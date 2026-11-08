@@ -1,4 +1,5 @@
 import { config } from '../lib/config.js';
+import '../lib/net.js';
 
 const OVERPASS = 'https://overpass-api.de/api/interpreter';
 
