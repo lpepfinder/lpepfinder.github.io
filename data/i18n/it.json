@@ -671,6 +671,13 @@
     "wants": "Wantlist Discogs · {user}",
     "collection": "Collezione Discogs · {user}",
     "bluesky": "Bluesky · @{handle}",
+    "radio": "Radio4000 · @{handle}",
+    "radioNew": "brani della tua radio, non ancora cercati",
+    "radioAdded": "nuovi brani nella radio",
+    "tracks": {
+      "one": "1 brano",
+      "other": "{count} brani"
+    },
     "count": {
       "one": "1 disco",
       "other": "{count} dischi"

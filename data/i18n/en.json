@@ -671,6 +671,13 @@
     "wants": "Discogs wantlist · {user}",
     "collection": "Discogs collection · {user}",
     "bluesky": "Bluesky · @{handle}",
+    "radio": "Radio4000 · @{handle}",
+    "radioNew": "tracks on your radio, not matched yet",
+    "radioAdded": "new tracks on the radio",
+    "tracks": {
+      "one": "1 track",
+      "other": "{count} tracks"
+    },
     "count": {
       "one": "1 record",
       "other": "{count} records"

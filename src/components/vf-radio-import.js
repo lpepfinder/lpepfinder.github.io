@@ -8,6 +8,8 @@ import { t, tn, formatNumber } from './i18n.js';
 import { price } from './price.js';
 import { el, attrs } from './dom.js';
 import { afterWatch } from './vf-toast.js';
+import { radioRead } from '../lib/watch/sources.js';
+import { currentAccount } from '../lib/atproto/accounts.js';
 
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 const page = () => document.querySelector('vf-watch-page');
@@ -15,7 +17,8 @@ const page = () => document.querySelector('vf-watch-page');
 /**
  * <vf-radio-import status="idle|loading|review|done|error">: a radio's latest tracks (radio.js) matched to records
  * in stock (radio-match.js), listed with checkboxes: exact matches (a Discogs link) ticked, records found by the
- * song's title not ticked, since they're a guess. "Add" puts the ticked ones in the watchlist.
+ * song's title not ticked, since they're a guess. "Add" puts the ticked ones in the watchlist. Signed in with
+ * Bluesky, the field starts with the account's handle; the reading is kept in sources.js.
  */
 export class VfRadioImport extends HTMLElement {
   connectedCallback() {
@@ -27,6 +30,15 @@ export class VfRadioImport extends HTMLElement {
     this.form.addEventListener('submit', (e) => { e.preventDefault(); this.find(); });
     this.list.addEventListener('change', () => this.count());
     this.addButton.addEventListener('click', () => this.add());
+    // signed in with Bluesky: the radio is most likely the account's own
+    const input = this.form.elements.handle;
+    if (!input.value) input.value = currentAccount()?.handle || '';
+  }
+
+  /** Read a radio now (from the sources list): `handle` in the field, then the same steps as the form. */
+  read(handle) {
+    this.form.elements.handle.value = handle;
+    return this.find();
   }
 
   step(done, total, label) {
@@ -47,6 +59,7 @@ export class VfRadioImport extends HTMLElement {
     try {
       const tracks = await latestTracks(await resolve(handle));
       if (!tracks.length) throw new Error('empty');
+      radioRead(handle, tracks.length, tracks[0].uri);
       const found = await matchRadio(tracks, {
         maxCandidates: config.radio.maxCandidates,
         onProgress: (done, total) => this.step(done, total, t('radio.matching', { done: formatNumber(done), total: formatNumber(total) })),

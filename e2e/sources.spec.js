@@ -42,3 +42,53 @@ test('sources: a wantlist that changed on Discogs offers Resync, which brings it
   await expect(page.locator('vf-sheet[name="discogs"]')).toHaveAttribute('open', '');
   await expect(row).toHaveAttribute('state', 'current');
 });
+
+test('sources: a radio read once shows its tracks, and offers Resync when tracks were added', async ({ page }) => {
+  const HANDLE = 'e2e-radio.test';
+  const DID = 'did:plc:e2eradio';
+  const PDS = 'https://pds.e2e.test';
+  let newest = `at://${DID}/radio.4000.track/2`;
+  await page.route(/resolveHandle/, (r) => r.fulfill({ json: { did: DID } }));
+  await page.route(`https://plc.directory/${DID}`, (r) => r.fulfill({ json: { id: DID, service: [{ id: '#atproto_pds', type: 'AtprotoPersonalDataServer', serviceEndpoint: PDS }] } }));
+  await page.route(`${PDS}/**`, (r) => {
+    const one = new URL(r.request().url()).searchParams.get('limit') === '1';
+    const records = [{ uri: newest, value: { title: 'Nobody Known - No Such Song', url: '' } }, { uri: `at://${DID}/radio.4000.track/1`, value: { title: 'Nobody Else - Nothing', url: '' } }];
+    return r.fulfill({ json: { records: one ? records.slice(0, 1) : records } });
+  });
+
+  // a watchlist to start from
+  await page.route('https://api.discogs.com/**', (route) => route.fulfill({ json: discogsPage(wants) }));
+  await page.goto('/watch/');
+  const start = page.locator('vf-watch-start vf-watch-import');
+  await start.locator('input[name="user"]').fill(USER);
+  await start.locator('button[type="submit"]').click();
+  await expect(start).toHaveAttribute('status', 'done');
+
+  // the radio never read, but known to have tracks (as for a signed-in DJ): offered
+  await page.evaluate(([handle, uri]) => {
+    const s = JSON.parse(localStorage.getItem('vf.sources'));
+    s.radio = { handle, remote: uri, checkedAt: new Date().toISOString() };
+    localStorage.setItem('vf.sources', JSON.stringify(s));
+  }, [HANDLE, newest]);
+  await page.reload();
+  const row = page.locator('vf-watch-sources vf-source[kind="radio"]');
+  await expect(row).toHaveAttribute('state', 'new');
+  await expect(row).toContainText(en.sources.radioNew);
+
+  await row.locator('button[name="resync"]').click();
+  await expect(page.locator('vf-sheet[name="discogs"]')).toHaveAttribute('open', '');
+  await expect(page.locator('vf-sheet[name="discogs"] vf-radio-import')).toHaveAttribute('status', /done|review/, { timeout: 30_000 });
+  await expect(row).toHaveAttribute('state', 'current');
+  await expect(row).toContainText(en.sources.tracks.other.replace('{count}', '2'));
+
+  // a day later the radio has a new track
+  newest = `at://${DID}/radio.4000.track/3`;
+  await page.evaluate(() => {
+    const s = JSON.parse(localStorage.getItem('vf.sources'));
+    s.radio.checkedAt = new Date(Date.now() - 2 * 864e5).toISOString();
+    localStorage.setItem('vf.sources', JSON.stringify(s));
+  });
+  await page.reload();
+  await expect(row).toHaveAttribute('state', 'changed');
+  await expect(row).toContainText(en.sources.radioAdded);
+});

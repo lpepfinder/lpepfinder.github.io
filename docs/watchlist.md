@@ -14,6 +14,12 @@ The watchlist answers one question: which of the records I want can I buy now, a
 - **Again later**: importing the same username again syncs: new wants are added, wants you removed on Discogs leave the watchlist (records you added from the search stay).
 - **Is it up to date?** Under the title, each source has a row: your Discogs wantlist and collection (how many records, when they were read) and your Bluesky account (when it last synced). Once a day, the page asks Discogs how many records each list holds now: one light request per list, the first page of one record. When the count differs, the row says how many more or fewer there are on Discogs and offers **Resync**; a list read more than 30 days ago gets Resync too, since a want swapped for another doesn't change the count.
 
+## From a Radio4000 radio
+
+A [Radio4000](https://4000.radio) radio lives on Bluesky (atproto): type its handle under "From a Radio4000 radio" and its latest 200 tracks are matched to records in stock. A track with a Discogs link is matched exactly and ticked; for the others, records whose title holds the artist and the song are a guess, not ticked. You choose what to add.
+
+Signed in with Bluesky, the field already holds your handle, and the sources rows tell you when your radio has tracks you haven't matched yet (**Find records**), or new tracks since the last time (**Resync**): the page asks the radio for its newest track once a day, one light request.
+
 You can also watch any record from the search: the ☆ Watch button in its detail.
 
 ## How records are matched

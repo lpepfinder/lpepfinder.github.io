@@ -33,11 +33,17 @@ export async function latestTracks({ did, pds }, limit = config.radio.maxTracks)
   let cursor = '';
   while (tracks.length < limit) {
     const page = await json(`${pds}/xrpc/com.atproto.repo.listRecords?repo=${did}&collection=${COLLECTION}&limit=100&reverse=false${cursor ? `&cursor=${cursor}` : ''}`);
-    for (const r of page.records || []) tracks.push({ title: r.value.title || '', url: r.value.url || '', discogsUrl: r.value.discogsUrl || '' });
+    for (const r of page.records || []) tracks.push({ uri: r.uri, title: r.value.title || '', url: r.value.url || '', discogsUrl: r.value.discogsUrl || '' });
     cursor = page.cursor;
     if (!cursor || !page.records?.length) break;
   }
   return tracks.slice(0, limit);
+}
+
+/** The uri of the radio's newest track, or null: one light request, to tell whether tracks were added. */
+export async function newestTrack({ did, pds }) {
+  const page = await json(`${pds}/xrpc/com.atproto.repo.listRecords?repo=${did}&collection=${COLLECTION}&limit=1`);
+  return page.records?.[0]?.uri || null;
 }
 
 /** A Discogs link -> { kind: "release" | "master", id }, or null. */

@@ -636,6 +636,12 @@
     "wants": "Discogs ウォントリスト · {user}",
     "collection": "Discogs コレクション · {user}",
     "bluesky": "Bluesky · @{handle}",
+    "radio": "Radio4000 · @{handle}",
+    "radioNew": "まだ照合していないラジオの曲があります",
+    "radioAdded": "ラジオに新しい曲",
+    "tracks": {
+      "other": "{count}曲"
+    },
     "count": {
       "other": "{count} 枚"
     },
