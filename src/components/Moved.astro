@@ -1,0 +1,20 @@
+---
+/**
+ * A page that moved (URLs that stay): sends the browser to `to`, keeping the query and #hash (a sign-in coming
+ * back carries its answer there), with a refresh and a canonical link for clients without JavaScript.
+ */
+const { to } = Astro.props;
+---
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href={to}>
+  <meta http-equiv="refresh" content={`0; url=${to}`}>
+  <script is:inline define:vars={{ to }}>location.replace(to + location.search + location.hash);</script>
+  <title>→ {to}</title>
+</head>
+<body><a href={to}>{to}</a></body>
+</html>

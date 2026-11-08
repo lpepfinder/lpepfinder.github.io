@@ -9,7 +9,7 @@ Collectors who publish their lists (see [Accounts](/docs/accounts/)) make LP/EP 
 
 ## The Collectors page
 
-**More → Collectors** (`/u/`) shows:
+**Settings → Collectors** (`/u/`) shows:
 
 - **Wanted lately**: records collectors added to their wantlists in the last two weeks, with today's cheapest copy when a shop has one.
 - **Most wanted**: the records on the most wantlists.

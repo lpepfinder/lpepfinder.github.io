@@ -6,11 +6,11 @@ import { t, tn } from './i18n.js';
 import { listen, unlisten } from './dom.js';
 
 /**
- * <vf-more-settings>: the settings of this browser in the More tab as rows (account, profile, language, prices
- * in), each showing its value and opening its own sheet (savoir app-shell, as joblist's Menu). A link to
- * /more/#account or /more/#profiles opens that sheet.
+ * <vf-settings-rows>: the settings of this browser in the Settings tab as rows (account, profile, language, prices
+ * in, moving to another device), each showing its value and opening its own sheet (savoir app-shell, as joblist's
+ * Menu). A link to /settings/#account, #profiles or #transfer opens that sheet.
  */
-export class VfMoreSettings extends HTMLElement {
+export class VfSettingsRows extends HTMLElement {
   connectedCallback() {
     this.addEventListener('click', (e) => {
       const row = e.target.closest('section > ul > li > button[value]');
@@ -20,14 +20,24 @@ export class VfMoreSettings extends HTMLElement {
     listen(this, window, CURRENCY_EVENT, () => this.render());
     this.render();
     const asked = location.hash.slice(1);
-    if (asked && this.sheet(asked)) this.open(asked);
+    if (asked === 'transfer' || (asked && this.sheet(asked))) this.open(asked);
   }
 
   disconnectedCallback() { unlisten(this); }
 
   sheet(name) { return this.querySelector(`vf-sheet[name="${CSS.escape(name)}"]`); }
 
-  open(name) { this.sheet(name)?.open(); }
+  open(name) {
+    // moving to another device is part of the profiles sheet: open it at its export button
+    if (name === 'transfer') {
+      this.sheet('profiles')?.open();
+      const button = this.querySelector('vf-profiles button[name="export"]');
+      button?.scrollIntoView({ block: 'center' });
+      button?.focus();
+      return;
+    }
+    this.sheet(name)?.open();
+  }
 
   value(name, text) {
     const data = this.querySelector(`section button[value="${name}"] > data`);
@@ -47,4 +57,4 @@ export class VfMoreSettings extends HTMLElement {
     this.value('currency', code === 'shop' ? t('currency.shop') : code);
   }
 }
-customElements.define('vf-more-settings', VfMoreSettings);
+customElements.define('vf-settings-rows', VfSettingsRows);

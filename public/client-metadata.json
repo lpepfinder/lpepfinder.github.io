@@ -4,7 +4,7 @@
   "client_uri": "https://lpepfinder.com",
   "logo_uri": "https://lpepfinder.com/favicon.png",
   "policy_uri": "https://lpepfinder.com/privacy/",
-  "redirect_uris": ["https://lpepfinder.com/more/"],
+  "redirect_uris": ["https://lpepfinder.com/settings/", "https://lpepfinder.com/more/"],
   "scope": "atproto repo:com.lpepfinder.want repo:com.lpepfinder.profile repo:com.lpepfinder.list blob:application/json",
   "grant_types": ["authorization_code", "refresh_token"],
   "response_types": ["code"],

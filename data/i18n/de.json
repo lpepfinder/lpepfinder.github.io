@@ -396,8 +396,6 @@
   "navApp": "Haupt",
   "navSite": "Entdecken",
   "tabSearch": "Suche",
-  "tabNew": "Diggen",
-  "tabWatch": "Merkliste",
   "aboutSuggestTitle": "Ein Plattenladen fehlt?",
   "aboutSuggest": "Sag uns Bescheid: Wir prüfen ihn automatisch und nehmen ihn innerhalb eines Tages auf.",
   "aboutSuggestAction": "Plattenladen vorschlagen",
@@ -568,9 +566,6 @@
     "emptyMine": "Keine deiner beobachteten Platten ist diese Woche neu, wieder da oder günstiger.",
     "hideOwned": "Ausblenden, was ich habe"
   },
-  "tabMore": "Mehr",
-  "moreTitle": "Mehr",
-  "moreSettings": "Einstellungen",
   "moreBrowse": "Stöbern",
   "moreShop": "Dein Plattenladen",
   "moreAbout": "Über",
@@ -798,5 +793,14 @@
     "feedJoinLink": "veröffentliche sie über dein Bluesky-Konto",
     "feedNone": "Noch hat niemand eine Liste veröffentlicht."
   },
-  "noscriptSearch": "Die Suche läuft in deinem Browser und braucht JavaScript. Ohne JavaScript stöbere nach Künstler oder nach Laden:"
+  "noscriptSearch": "Die Suche läuft in deinem Browser und braucht JavaScript. Ohne JavaScript stöbere nach Künstler oder nach Laden:",
+  "tabExplore": "Entdecken",
+  "tabMe": "Ich",
+  "tabSettings": "Einstellungen",
+  "settingsTitle": "Einstellungen",
+  "settingsBrowser": "Dieser Browser",
+  "me": {
+    "profiles": "Profile",
+    "lists": "Deine Listen"
+  }
 }

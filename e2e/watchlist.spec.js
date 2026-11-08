@@ -11,7 +11,7 @@ test('watchlist: Discogs import, copies of a record, max price, Bought and Undo'
     if (url.pathname !== `/users/${USER}/wants`) return route.fulfill({ status: 404, json: { message: 'User does not exist.' } });
     return route.fulfill({ json: discogsPage(wants) });
   });
-  await page.goto('/watch/');
+  await page.goto('/me/');
   const watch = page.locator('vf-watch-page');
   await expect(watch).toHaveAttribute('empty');
 

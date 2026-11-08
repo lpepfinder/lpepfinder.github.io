@@ -396,8 +396,6 @@
   "navApp": "Principal",
   "navSite": "Explorer",
   "tabSearch": "Recherche",
-  "tabNew": "Fouiller",
-  "tabWatch": "Suivis",
   "aboutSuggestTitle": "Il manque un disquaire ?",
   "aboutSuggest": "Signalez-le : nous le vérifions automatiquement et l'ajoutons en un jour.",
   "aboutSuggestAction": "Proposer un disquaire",
@@ -568,9 +566,6 @@
     "emptyMine": "Aucun de vos disques suivis n’est nouveau, de retour ou moins cher cette semaine.",
     "hideOwned": "Masquer ce que j’ai"
   },
-  "tabMore": "Plus",
-  "moreTitle": "Plus",
-  "moreSettings": "Réglages",
   "moreBrowse": "Parcourir",
   "moreShop": "Votre disquaire",
   "moreAbout": "À propos",
@@ -798,5 +793,14 @@
     "feedJoinLink": "publiez-la depuis votre compte Bluesky",
     "feedNone": "Aucun collectionneur n’a encore publié de liste."
   },
-  "noscriptSearch": "La recherche fonctionne dans votre navigateur et a besoin de JavaScript. Sans lui, parcourez par artiste ou par boutique :"
+  "noscriptSearch": "La recherche fonctionne dans votre navigateur et a besoin de JavaScript. Sans lui, parcourez par artiste ou par boutique :",
+  "tabExplore": "Explorer",
+  "tabMe": "Moi",
+  "tabSettings": "Réglages",
+  "settingsTitle": "Réglages",
+  "settingsBrowser": "Ce navigateur",
+  "me": {
+    "profiles": "Profils",
+    "lists": "Vos listes"
+  }
 }

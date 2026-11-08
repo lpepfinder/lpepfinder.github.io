@@ -1,4 +1,4 @@
-/* /watch/ page: start screen (empty list), header, tabs with counts, filter chips, views (in stock, shops, activity, all). State in attributes. */
+/* /me/ page (the profile in use, its lists and watchlist; was /watch/): start screen (empty list), header, tabs with counts, filter chips, views (in stock, shops, activity, all). State in attributes. */
 :is(vf-watch-page, vf-watch-available, vf-watch-changes, vf-watch-now, vf-watch-all, vf-watch-backup, vf-watch-shared) { display: grid; gap: var(--space-2); align-content: start; }
 :is(vf-watch-shared, vf-progress, vf-watch-summary, vf-watch-available, vf-watch-changes, vf-watch-now, vf-watch-all)[hidden] { display: none; }
 :is(vf-watch-page, vf-watch-backup, vf-watch-shared) :is(h2, h3, h4, p) { margin: 0; }
@@ -103,7 +103,16 @@ vf-watch-backup > p[hidden] { display: none; }
 /* header: title and summary, then the Discogs and "Prices in" buttons (their forms are in sheets) */
 vf-watch-page > vf-watch-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-2) var(--space-4); }
 vf-watch-page > vf-watch-head hgroup { display: grid; gap: var(--space-1); min-inline-size: 0; }
-vf-watch-page > vf-watch-head h1 { margin: 0; }
+vf-watch-page > vf-watch-head h2 { margin: 0; font-size: var(--size-2); }
+/* /me/: the profile in use and its account, then its lists, then the watchlist */
+vf-me-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-4); margin-block-end: var(--space-4); }
+vf-me-head hgroup { display: grid; gap: var(--space-1); min-inline-size: 0; }
+vf-me-head h1 { margin: 0; overflow-wrap: anywhere; }
+vf-me-head p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-me-head:is([state="offline"], [state="error"]) p { color: var(--c-watching); }
+vf-me-head > a { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--size-s); }
+vf-watch-sources > h2 { margin: 0; font-size: var(--size-s); font-weight: var(--weight-semi); color: var(--c-muted); }
+vf-watch-page[empty] > vf-watch-head { display: none; }
 vf-watch-page > vf-watch-head menu { display: flex; flex-wrap: nowrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; min-inline-size: 0; max-inline-size: 100%; }
 vf-watch-page > vf-watch-head menu li { min-inline-size: 0; }
 vf-watch-page > vf-watch-head menu button { max-inline-size: 100%; }

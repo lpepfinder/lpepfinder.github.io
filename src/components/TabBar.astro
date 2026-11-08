@@ -3,29 +3,28 @@ import { t, localPath } from '../lib/i18n.js';
 import Logo from './Logo.astro';
 
 /**
- * The app's tabs (the Search tab's icon is the brand): search, dig (new, back in stock, price drops), the watchlist
- * (with its change count), and more (settings, shops, about; a badge when changes wait to sync). On the rail, the
- * account control at the bottom (vf-shell-account.js).
+ * The app's tabs (savoir app-shell): Search (its icon is the brand); Explore (Dig: new, back in stock, price
+ * drops); the profile in use (/me/: its account and lists, the watchlist inside, with its change count), labelled
+ * with the profile's name; and Settings (account, profiles, language, prices in, then browse and about; a badge
+ * when changes wait to reach the account). vf-shell-account.js names the profile tab and sets the badge.
  */
 const { lang, current } = Astro.props;
 const search = localPath(lang, '/');
-const watch = localPath(lang, '/watch/');
-const more = localPath(lang, '/more/');
+const me = localPath(lang, '/me/');
+const settings = localPath(lang, '/settings/');
 const here = (href) => (href === current ? 'page' : undefined);
 ---
 <nav aria-label={t(lang, 'navApp')}>
   <vf-tabbar>
     <a href={search} aria-current={here(search)} title={t(lang, 'tabSearch')}><Logo /><span>{t(lang, 'tabSearch')}</span></a>
-    <a href="/new/" aria-current={here('/new/')} title={t(lang, 'tabNew')}><vf-icon name="record"></vf-icon><span>{t(lang, 'tabNew')}</span></a>
-    <vf-watchlist>
-      <a href={watch} aria-current={here(watch)} title={t(lang, 'tabWatch')}><vf-icon name="star"></vf-icon><span>{t(lang, 'tabWatch')}</span> <vf-watch-count count="0"></vf-watch-count></a>
-    </vf-watchlist>
-    <a href={more} aria-current={here(more)} title={t(lang, 'tabMore')}><vf-icon name="menu"></vf-icon><span>{t(lang, 'tabMore')}</span> <vf-sync-count hidden></vf-sync-count></a>
+    <a href="/new/" aria-current={here('/new/')} title={t(lang, 'tabExplore')}><vf-icon name="explore"></vf-icon><span>{t(lang, 'tabExplore')}</span></a>
+    <vf-shell-account>
+      <vf-watchlist>
+        <a href={me} aria-current={here(me)} title={t(lang, 'tabMe')} rel="me"><vf-icon name="person"></vf-icon><span>{t(lang, 'tabMe')}</span> <vf-watch-count count="0"></vf-watch-count></a>
+      </vf-watchlist>
+      <a href={settings} aria-current={here(settings)} title={t(lang, 'tabSettings')}><vf-icon name="settings"></vf-icon><span>{t(lang, 'tabSettings')}</span> <vf-sync-count hidden></vf-sync-count></a>
+    </vf-shell-account>
   </vf-tabbar>
-  <!-- the account control (savoir app-shell): the profile in use, its account and what waits to sync; at the rail's bottom -->
-  <vf-shell-account hidden>
-    <a href={`${more}#account`}><vf-icon name="person"></vf-icon><span></span><small></small></a>
-  </vf-shell-account>
 </nav>
 <script>
   import './vf-watchlist.js';

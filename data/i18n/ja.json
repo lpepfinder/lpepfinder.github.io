@@ -373,8 +373,6 @@
   "navApp": "メイン",
   "navSite": "探す",
   "tabSearch": "検索",
-  "tabNew": "ディグ",
-  "tabWatch": "ウォッチ",
   "aboutSuggestTitle": "載っていないレコード店がありますか？",
   "aboutSuggest": "お知らせください。自動で確認し、1日以内に追加します。",
   "aboutSuggestAction": "レコード店を提案",
@@ -535,9 +533,6 @@
     "emptyMine": "今週、ウォッチ中のレコードに新入荷・再入荷・値下げはありません。",
     "hideOwned": "所有しているものを隠す"
   },
-  "tabMore": "その他",
-  "moreTitle": "その他",
-  "moreSettings": "設定",
   "moreBrowse": "見つける",
   "moreShop": "あなたのレコード店",
   "moreAbout": "概要",
@@ -750,5 +745,14 @@
     "feedJoinLink": "Bluesky アカウントから公開する",
     "feedNone": "まだリストを公開したコレクターはいません。"
   },
-  "noscriptSearch": "検索はブラウザで動作し、JavaScript が必要です。JavaScript なしでは、アーティスト別・ショップ別にご覧ください:"
+  "noscriptSearch": "検索はブラウザで動作し、JavaScript が必要です。JavaScript なしでは、アーティスト別・ショップ別にご覧ください:",
+  "tabExplore": "探す",
+  "tabMe": "マイページ",
+  "tabSettings": "設定",
+  "settingsTitle": "設定",
+  "settingsBrowser": "このブラウザ",
+  "me": {
+    "profiles": "プロフィール",
+    "lists": "あなたのリスト"
+  }
 }

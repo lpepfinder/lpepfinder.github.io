@@ -15,7 +15,7 @@ test('sources: a wantlist that changed on Discogs offers Resync, which brings it
     if (url.searchParams.get('per_page') === '1') body.pagination.items += extra;
     return route.fulfill({ json: body });
   });
-  await page.goto('/watch/');
+  await page.goto('/me/');
   const start = page.locator('vf-watch-start vf-watch-import');
   await start.locator('input[name="user"]').fill(USER);
   await start.locator('button[type="submit"]').click();
@@ -58,7 +58,7 @@ test('sources: a radio read once shows its tracks, and offers Resync when tracks
 
   // a watchlist to start from
   await page.route('https://api.discogs.com/**', (route) => route.fulfill({ json: discogsPage(wants) }));
-  await page.goto('/watch/');
+  await page.goto('/me/');
   const start = page.locator('vf-watch-start vf-watch-import');
   await start.locator('input[name="user"]').fill(USER);
   await start.locator('button[type="submit"]').click();

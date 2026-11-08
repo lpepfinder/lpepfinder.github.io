@@ -35,7 +35,7 @@ const { lang } = Astro.props;
       <section name="collectors">
         <h2>{t(lang, 'user.feedCollectors')}</h2>
         <ul></ul>
-        <p>{t(lang, 'user.feedJoin')} <a href={localPath(lang, '/more/') + '#account'}>{t(lang, 'user.feedJoinLink')}</a></p>
+        <p>{t(lang, 'user.feedJoin')} <a href={localPath(lang, '/settings/') + '#account'}>{t(lang, 'user.feedJoinLink')}</a></p>
       </section>
     </vf-user-feed>
     <vf-user-head hidden>

@@ -5,7 +5,7 @@ order: 3
 audience: users
 ---
 
-The watchlist answers one question: which of the records I want can I buy now, and where? It's checked against every shop once a day.
+The watchlist is part of your profile, on the **Me** tab (`/me/`). It answers one question: which of the records I want can I buy now, and where? It's checked against every shop once a day.
 
 ## Bring your Discogs wantlist
 
@@ -40,4 +40,4 @@ Open a record to see every copy, set a **max price** for it (copies above are hi
 
 ## Your data stays with you
 
-The watchlist lives in this browser only: no account, nothing stored on our side. Use **More → Profiles → Export this profile** to keep a copy or move it to another device ([profiles](accounts.md)), or **Copy share link** to share it (the list is inside the link, after the #, never sent to the server). On iPhone, adding the site to the home screen keeps the browser from clearing it.
+The watchlist lives in this browser only: no account, nothing stored on our side. Use **Settings → Profiles → Export this profile** to keep a copy or move it to another device ([profiles](accounts.md)), or **Copy share link** to share it (the list is inside the link, after the #, never sent to the server). On iPhone, adding the site to the home screen keeps the browser from clearing it.

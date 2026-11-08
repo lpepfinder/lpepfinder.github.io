@@ -24,9 +24,9 @@ qualityTests([
   // /artists/ is left out: 3,000 links take the gate close to its 90 s limit and fail under load (plan.md:
   // one page per letter would fix it for phones too)
   { name: 'new arrivals', path: '/new/' },
-  { name: 'watchlist', path: '/watch/', touch: 44 },
+  { name: 'watchlist', path: '/me/', touch: 44 },
   { name: 'collectors', path: '/u/', touch: 44 },
-  { name: 'more', path: '/more/', touch: 44 },
+  { name: 'settings', path: '/settings/', touch: 44 },
   { name: 'docs', path: '/docs/' },
   { name: 'about', path: '/about/' },
   { name: 'french home', path: '/fr/' },

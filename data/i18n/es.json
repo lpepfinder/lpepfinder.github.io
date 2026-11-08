@@ -396,8 +396,6 @@
   "navApp": "Principal",
   "navSite": "Explorar",
   "tabSearch": "Buscar",
-  "tabNew": "Rebuscar",
-  "tabWatch": "Seguidos",
   "aboutSuggestTitle": "¿Falta una tienda de discos?",
   "aboutSuggest": "Avísanos: la comprobamos automáticamente y la añadimos en un día.",
   "aboutSuggestAction": "Proponer una tienda",
@@ -568,9 +566,6 @@
     "emptyMine": "Ninguno de tus discos seguidos es nuevo, ha vuelto o está más barato esta semana.",
     "hideOwned": "Ocultar lo que tengo"
   },
-  "tabMore": "Más",
-  "moreTitle": "Más",
-  "moreSettings": "Ajustes",
   "moreBrowse": "Explorar",
   "moreShop": "Tu tienda de discos",
   "moreAbout": "Acerca de",
@@ -798,5 +793,14 @@
     "feedJoinLink": "publícala desde tu cuenta de Bluesky",
     "feedNone": "Ningún coleccionista ha publicado una lista todavía."
   },
-  "noscriptSearch": "La búsqueda funciona en tu navegador y necesita JavaScript. Sin él, explora por artista o por tienda:"
+  "noscriptSearch": "La búsqueda funciona en tu navegador y necesita JavaScript. Sin él, explora por artista o por tienda:",
+  "tabExplore": "Explorar",
+  "tabMe": "Yo",
+  "tabSettings": "Ajustes",
+  "settingsTitle": "Ajustes",
+  "settingsBrowser": "Este navegador",
+  "me": {
+    "profiles": "Perfiles",
+    "lists": "Tus listas"
+  }
 }

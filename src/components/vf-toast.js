@@ -50,6 +50,6 @@ export function afterWatch() {
   } else if (n === 1 || !load().persistAsked) {
     update((list) => { list.persistAsked = 1; });
     navigator.storage?.persist?.().catch(() => {});
-    toast(t('watch.firstWatch'), null, { href: document.querySelector('vf-watchlist a')?.href || '/watch/', label: t('watch.open') });
+    toast(t('watch.firstWatch'), null, { href: document.querySelector('vf-watchlist a')?.href || '/me/', label: t('watch.open') });
   }
 }

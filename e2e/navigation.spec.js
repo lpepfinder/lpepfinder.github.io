@@ -4,8 +4,8 @@ import fr from '../data/i18n/fr.json' with { type: 'json' };
 /** Tabs of the app, in order: path, and an element only that page has. */
 const TABS = [
   ['/new/', 'vf-dig'],
-  ['/watch/', 'vf-watch-page'],
-  ['/more/', 'vf-more-settings'],
+  ['/me/', 'vf-watch-page'],
+  ['/settings/', 'vf-settings-rows'],
   ['/', 'vf-results'],
 ];
 
@@ -23,14 +23,23 @@ test('tab bar: client-side navigation without reloads, no raw i18n keys; languag
     expect(await marked(page), `${path} was a full page load`).toBe(true);
   }
 
-  await page.locator('vf-tabbar a[href="/more/"]').click();
-  await page.locator('vf-more-settings button[value="language"]').click();
+  await page.locator('vf-tabbar a[href="/settings/"]').click();
+  await page.locator('vf-settings-rows button[value="language"]').click();
   await expect(page.locator('main a[hreflang="fr"]')).toBeVisible();
   await page.locator('main a[hreflang="fr"]').click();
-  await expect(page).toHaveURL(/\/fr\/more\/$/);
+  await expect(page).toHaveURL(/\/fr\/settings\/$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
-  await expect(page.locator('main h1')).toHaveText(fr.moreTitle);
-  await expect(page.locator('vf-tabbar a[href="/fr/more/"]')).toContainText(fr.tabMore);
+  await expect(page.locator('main h1')).toHaveText(fr.settingsTitle);
+  await expect(page.locator('vf-tabbar a[href="/fr/settings/"]')).toContainText(fr.tabSettings);
   expect(await marked(page), 'another language is a full page load').toBe(false);
   expect(await page.locator('main').innerText()).not.toMatch(RAW_KEY);
+});
+
+test('moved pages: /more/ and /watch/ (and their translations) send to /settings/ and /me/, keeping the #hash', async ({ page }) => {
+  await page.goto('/more/#profiles');
+  await expect(page).toHaveURL(/\/settings\/#profiles$/);
+  await expect(page.locator('vf-sheet[name="profiles"]')).toHaveAttribute('open', '');
+  await page.goto('/fr/watch/');
+  await expect(page).toHaveURL(/\/fr\/me\/$/);
+  await expect(page.locator('vf-me-head h1')).toBeVisible();
 });

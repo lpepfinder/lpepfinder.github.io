@@ -3,7 +3,7 @@ import { due, check } from '../lib/watch/check.js';
 import { tn, t } from './i18n.js';
 
 /**
- * <vf-watchlist> in the header of every page: the link to /watch/ with the number of
+ * <vf-watchlist> in the tab bar of every page: the profile tab (/me/, with the watchlist) with the number of
  * unseen changes (<vf-watch-count count="2">, hidden at 0), or of records just added. Runs the daily check, at most
  * once a day and only with a non-empty list. status="checking|done".
  */

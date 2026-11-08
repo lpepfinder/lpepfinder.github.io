@@ -396,8 +396,6 @@
   "navApp": "Main",
   "navSite": "Explore",
   "tabSearch": "Search",
-  "tabNew": "Dig",
-  "tabWatch": "Watchlist",
   "aboutSuggestTitle": "A record shop is missing?",
   "aboutSuggest": "Tell us about it: we check it automatically and add it within a day.",
   "aboutSuggestAction": "Suggest a record shop",
@@ -568,9 +566,6 @@
     "emptyMine": "None of your watched records is new, back or cheaper this week.",
     "hideOwned": "Hide what I own"
   },
-  "tabMore": "More",
-  "moreTitle": "More",
-  "moreSettings": "Settings",
   "moreBrowse": "Browse",
   "moreShop": "Your record shop",
   "moreAbout": "About",
@@ -798,5 +793,14 @@
     "feedJoinLink": "publish it from your Bluesky account",
     "feedNone": "No collector has published a list yet."
   },
-  "noscriptSearch": "Search runs in your browser and needs JavaScript. Without it, browse by artist or by shop:"
+  "noscriptSearch": "Search runs in your browser and needs JavaScript. Without it, browse by artist or by shop:",
+  "tabExplore": "Explore",
+  "tabMe": "Me",
+  "tabSettings": "Settings",
+  "settingsTitle": "Settings",
+  "settingsBrowser": "This browser",
+  "me": {
+    "profiles": "Profiles",
+    "lists": "Your lists"
+  }
 }

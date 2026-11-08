@@ -1,5 +1,5 @@
 import { load, update, today } from '../lib/watch/store.js';
-import { scoped, profiles } from '../lib/watch/profiles.js';
+import { scoped } from '../lib/watch/profiles.js';
 import { due, check } from '../lib/watch/check.js';
 import { state } from '../lib/watch/diff.js';
 import * as data from '../lib/watch/data.js';
@@ -291,9 +291,6 @@ export class VfWatchPage extends HTMLElement {
     const parts = [n ? tn('watchPage.summaryStock', n, { available: formatNumber(available), shops: tn('results.shops', shops.size) }) : tn('watchPage.summaryWatched', n)];
     if (fresh) parts.push(tn('watchPage.summaryNew', fresh));
     else if (changes.length && since) parts.push(tn('watchPage.summaryChanges', changes.length, { date: formatDay(since.slice(0, 10)) }));
-    // with several profiles, whose list this is
-    const { current, list: all } = profiles();
-    if (all.length > 1) parts.unshift(all.find((p) => p.id === current)?.name || t('profiles.default'));
     this.summary.textContent = parts.join(' · ');
     this.toggleAttribute('empty', !n);
     this.renderTabs(this.views.now.getAttribute('count') * 1 || null);

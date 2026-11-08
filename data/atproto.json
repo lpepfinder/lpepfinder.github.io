@@ -11,7 +11,7 @@
     "plcDirectory": "https://plc.directory",
     "appview": "https://public.api.bsky.app"
   },
-  "redirectPath": "/more/",
+  "redirectPath": "/settings/",
   "syncDelayMs": 1500,
   "writeBatch": 100,
   "blobAccept": "application/json",
