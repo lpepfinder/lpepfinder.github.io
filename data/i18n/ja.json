@@ -345,7 +345,6 @@
     "newSection": "前回の訪問以降の新着",
     "restSection": "在庫あり",
     "startTitle": "Discogsのウォントリストを持ち込む",
-    "startOr": "または検索で任意のレコードの☆ウォッチをタップ。",
     "discogsButton": "Discogsから読み込む",
     "discogsSynced": "Discogs · {user}",
     "loadingCopies": "在庫を読み込み中…",
@@ -367,7 +366,9 @@
     "collectionDone": {
       "other": "{user}：コレクション{count}件。検索で「所有」と表示します。"
     },
-    "backupMove": "プロフィールを別のブラウザに移す"
+    "backupMove": "プロフィールを別のブラウザに移す",
+    "startOther": "ほかの始め方",
+    "startSearch": "検索からレコードをウォッチ（☆）"
   },
   "navApp": "メイン",
   "navSite": "探す",
@@ -586,7 +587,11 @@
     "imported": {
       "other": "{count}枚追加しました。"
     },
-    "importError": "このファイルを読み込めませんでした。"
+    "importError": "このファイルを読み込めませんでした。",
+    "row": "プロフィール",
+    "count": {
+      "other": "{count}件のプロフィール"
+    }
   },
   "radio": {
     "title": "Radio4000のラジオから",
@@ -639,7 +644,8 @@
     "publishError": "Bluesky アカウントに接続できませんでした。少ししてからもう一度お試しください。",
     "waiting": {
       "other": "{count}件の変更が送信待ち"
-    }
+    },
+    "signedOutShort": "未サインイン"
   },
   "sources": {
     "label": "リストの取得元",

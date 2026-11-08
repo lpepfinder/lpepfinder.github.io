@@ -42,9 +42,12 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
       <h2>{t(lang, 'watchPage.startTitle')}</h2>
       <p>{t(lang, 'watchPage.discogsIntro')}</p>
       <WatchImport lang={lang} id="start" />
-      <h3>{t(lang, 'radio.title')}</h3>
-      <RadioImport lang={lang} id="start" />
-      <p>{t(lang, 'watchPage.startOr')}</p>
+      <!-- the other ways in, as rows (savoir app-shell): the radio opens the import sheet, the search is a link -->
+      <h3>{t(lang, 'watchPage.startOther')}</h3>
+      <ul>
+        <li><button type="button" name="radio"><vf-icon name="play"></vf-icon><span>{t(lang, 'radio.title')}</span></button></li>
+        <li><a href={localPath(lang, '/')}><vf-icon name="star"></vf-icon><span>{t(lang, 'watchPage.startSearch')}</span></a></li>
+      </ul>
     </vf-watch-start>
     <Sheet lang={lang} name="discogs" mode="bottom" title={t(lang, 'watchPage.discogsTitle')}>
       <vf-sheet-body>

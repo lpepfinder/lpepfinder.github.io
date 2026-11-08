@@ -52,7 +52,9 @@ vf-tabbar a {
 vf-tabbar a[aria-current="page"] { color: var(--c-accent); }
 vf-tabbar :is(vf-icon, vf-logo) { --icon-size: 1.5rem; }
 vf-tabbar vf-logo svg { inline-size: var(--icon-size); block-size: var(--icon-size); }
-vf-tabbar vf-watch-count { position: absolute; inset-block-start: var(--space-1); inset-inline-start: calc(50% + 0.5rem); }
+/* the account control lives on the rail only; on phones the More tab's badge says what waits */
+vf-shell-account { display: none; }
+vf-tabbar :is(vf-watch-count, vf-sync-count) { position: absolute; inset-block-start: var(--space-1); inset-inline-start: calc(50% + 0.5rem); }
 /* room for the fixed tab bar */
 vf-app { padding-block-end: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
 
@@ -112,6 +114,13 @@ vf-icon[name="play"] { --icon: var(--icon-play); }
   vf-tabbar a { min-block-size: var(--rail-item-h); border-radius: var(--radius); }
   vf-tabbar a:hover { background: var(--c-hover); }
   vf-tabbar a[aria-current="page"] { background: var(--c-chip); }
+  /* the account control at the rail's bottom: an icon here, its name beside it on wide screens */
+  header > nav { display: flex; flex-direction: column; }
+  vf-shell-account:not([hidden]) { display: block; margin-block-start: auto; }
+  vf-shell-account a { display: grid; place-items: center; min-block-size: var(--rail-item-h); border-radius: var(--radius); color: var(--c-muted); text-decoration: none; }
+  vf-shell-account a:hover { background: var(--c-hover); }
+  vf-shell-account :is(span, small) { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  vf-shell-account[state="offline"] vf-icon, vf-shell-account[state="error"] vf-icon { color: var(--c-watching); }
 }
 /* wide screens: a sidebar with the brand at the top and each tab's name beside its icon */
 @media (min-width: 75rem) {
@@ -126,4 +135,12 @@ vf-icon[name="play"] { --icon: var(--icon-play); }
   vf-tabbar a { grid-auto-flow: column; justify-content: start; gap: var(--space-3); min-block-size: var(--tap); padding-inline: var(--space-3); font-size: var(--size-0); }
   vf-tabbar :is(vf-icon, vf-logo) { --icon-size: var(--icon-size-nav); }
   vf-tabbar vf-watch-count { position: static; }
+  vf-tabbar vf-sync-count { position: static; }
+  vf-shell-account a { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "icon name" "icon note"; justify-items: start; column-gap: var(--space-3); padding: var(--space-2) var(--space-3); color: inherit; }
+  vf-shell-account vf-icon { grid-area: icon; --icon-size: var(--icon-size-nav); }
+  vf-shell-account :is(span, small) { position: static; inline-size: auto; block-size: auto; clip-path: none; max-inline-size: 100%; text-overflow: ellipsis; }
+  vf-shell-account span { grid-area: name; font-weight: var(--weight-semi); }
+  vf-shell-account small { grid-area: note; color: var(--c-muted); font-size: var(--size-xs); }
+  vf-shell-account small:empty { display: none; }
+  vf-shell-account[state="offline"] small, vf-shell-account[state="error"] small { color: var(--c-watching); }
 }

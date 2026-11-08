@@ -32,7 +32,9 @@ const groupKeys = (group, o = lookup(defaultLanguage, group)) => Object.entries(
 export const clientStrings = (lang, groups = []) => Object.fromEntries([
   'searchTitle', 'searching', 'showingOf', 'emptyTitle', 'indexError',
   'conditionUsed', 'soldOut', 'lastInStock', ...FORMAT_IDS.map((id) => `formats.${id}`),
-  ...['watch', 'results', 'currency', 'grades', 'recent', 'sheet', 'detail', ...groups].flatMap((g) => groupKeys(g)),
+  // the shell's account control (vf-shell-account.js)
+  'account.signIn', 'profiles.default', 'profiles.local',
+  ...['watch', 'results', 'currency', 'grades', 'recent', 'sheet', 'detail', 'account.sync', 'account.waiting', ...groups].flatMap((g) => groupKeys(g)),
 ].map((k) => [k, lookup(lang, k) ?? lookup(defaultLanguage, k)]));
 
 const pluralRules = Object.fromEntries(languages.map((l) => [l, new Intl.PluralRules(l)]));

@@ -2,7 +2,11 @@
 import { t, localPath } from '../lib/i18n.js';
 import Logo from './Logo.astro';
 
-/** The app's tabs (the Search tab's icon is the brand): search, dig (new, back in stock, price drops), the watchlist (with its change count), and more (settings, shops, about). */
+/**
+ * The app's tabs (the Search tab's icon is the brand): search, dig (new, back in stock, price drops), the watchlist
+ * (with its change count), and more (settings, shops, about; a badge when changes wait to sync). On the rail, the
+ * account control at the bottom (vf-shell-account.js).
+ */
 const { lang, current } = Astro.props;
 const search = localPath(lang, '/');
 const watch = localPath(lang, '/watch/');
@@ -16,9 +20,14 @@ const here = (href) => (href === current ? 'page' : undefined);
     <vf-watchlist>
       <a href={watch} aria-current={here(watch)} title={t(lang, 'tabWatch')}><vf-icon name="star"></vf-icon><span>{t(lang, 'tabWatch')}</span> <vf-watch-count count="0"></vf-watch-count></a>
     </vf-watchlist>
-    <a href={more} aria-current={here(more)} title={t(lang, 'tabMore')}><vf-icon name="menu"></vf-icon><span>{t(lang, 'tabMore')}</span></a>
+    <a href={more} aria-current={here(more)} title={t(lang, 'tabMore')}><vf-icon name="menu"></vf-icon><span>{t(lang, 'tabMore')}</span> <vf-sync-count hidden></vf-sync-count></a>
   </vf-tabbar>
+  <!-- the account control (savoir app-shell): the profile in use, its account and what waits to sync; at the rail's bottom -->
+  <vf-shell-account hidden>
+    <a href={`${more}#account`}><vf-icon name="person"></vf-icon><span></span><small></small></a>
+  </vf-shell-account>
 </nav>
 <script>
   import './vf-watchlist.js';
+  import './vf-shell-account.js';
 </script>

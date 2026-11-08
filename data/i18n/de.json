@@ -366,7 +366,6 @@
     "newSection": "Neu seit deinem letzten Besuch",
     "restSection": "Auf Lager",
     "startTitle": "Bring deine Discogs-Wantlist mit",
-    "startOr": "Oder tippe in der Suche bei einer Platte auf ☆ Beobachten.",
     "discogsButton": "Von Discogs importieren",
     "discogsSynced": "Discogs · {user}",
     "loadingCopies": "Exemplare werden geladen…",
@@ -390,7 +389,9 @@
       "one": "{user}: 1 Platte in deiner Sammlung, in der Suche als „Hab ich“ markiert.",
       "other": "{user}: {count} Platten in deiner Sammlung, in der Suche als „Hab ich“ markiert."
     },
-    "backupMove": "Ein Profil in einen anderen Browser umziehen"
+    "backupMove": "Ein Profil in einen anderen Browser umziehen",
+    "startOther": "Andere Wege",
+    "startSearch": "Platten aus der Suche beobachten (☆)"
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",
@@ -620,7 +621,12 @@
       "one": "1 Platte hinzugefügt.",
       "other": "{count} Platten hinzugefügt."
     },
-    "importError": "Diese Datei konnte nicht gelesen werden."
+    "importError": "Diese Datei konnte nicht gelesen werden.",
+    "row": "Profil",
+    "count": {
+      "one": "1 Profil",
+      "other": "{count} Profile"
+    }
   },
   "radio": {
     "title": "Aus einem Radio4000-Radio",
@@ -676,7 +682,8 @@
     "waiting": {
       "one": "1 Änderung wartet",
       "other": "{count} Änderungen warten"
-    }
+    },
+    "signedOutShort": "Nicht angemeldet"
   },
   "sources": {
     "label": "Woher deine Listen kommen",

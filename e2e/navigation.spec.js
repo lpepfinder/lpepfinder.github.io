@@ -5,7 +5,7 @@ import fr from '../data/i18n/fr.json' with { type: 'json' };
 const TABS = [
   ['/new/', 'vf-dig'],
   ['/watch/', 'vf-watch-page'],
-  ['/more/', 'main a[hreflang]'],
+  ['/more/', 'vf-more-settings'],
   ['/', 'vf-results'],
 ];
 
@@ -24,6 +24,7 @@ test('tab bar: client-side navigation without reloads, no raw i18n keys; languag
   }
 
   await page.locator('vf-tabbar a[href="/more/"]').click();
+  await page.locator('vf-more-settings button[value="language"]').click();
   await expect(page.locator('main a[hreflang="fr"]')).toBeVisible();
   await page.locator('main a[hreflang="fr"]').click();
   await expect(page).toHaveURL(/\/fr\/more\/$/);

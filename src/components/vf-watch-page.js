@@ -58,6 +58,13 @@ export class VfWatchPage extends HTMLElement {
     this.record = new WatchRecordPane(this.views.available, this);
     this.discogsButton = this.querySelector('button[name="discogs"]');
     this.discogsButton.addEventListener('click', () => this.querySelector('vf-sheet[name="discogs"]').open());
+    // the start screen's radio row: the import sheet, at the radio's field
+    this.querySelector('vf-watch-start button[name="radio"]')?.addEventListener('click', () => {
+      this.querySelector('vf-sheet[name="discogs"]').open();
+      const field = this.querySelector('vf-sheet[name="discogs"] vf-radio-import input[name="handle"]');
+      field?.scrollIntoView({ block: 'center' });
+      field?.focus();
+    });
     listen(this, window, 'vf-watch-imported', () => this.labelDiscogs());
     this.labelDiscogs();
     this.currencyButton = this.querySelector('button[name="currency"]');

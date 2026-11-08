@@ -64,14 +64,24 @@ vf-shop-card span::before { content: var(--count-separator); }
 vf-shop-card[searchable="false"] a { font-weight: normal; }
 
 /* <vf-more>: the More tab, settings and links as an app screen */
-vf-more { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); max-inline-size: var(--width); }
+vf-more { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); max-inline-size: var(--menu-w); }
 vf-more h1 { margin: 0; }
 vf-more section { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
 vf-more h2 { margin: 0; font-size: var(--size-s); font-weight: var(--weight-semi); color: var(--c-muted); }
 vf-more h3 { margin: var(--space-2) 0 0; font-size: var(--size-0); }
 vf-more ul { list-style: none; margin: 0; padding: 0; display: grid; border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); }
 vf-more li + li { border-block-start: var(--line) solid var(--c-line); }
-vf-more ul a { display: flex; align-items: center; gap: var(--space-3); min-block-size: var(--row-h); padding-inline: var(--space-4); color: inherit; text-decoration: none; }
+vf-more ul a, vf-more-settings section > ul > li > button { display: flex; align-items: center; gap: var(--space-3); min-block-size: var(--row-h); padding-inline: var(--space-4); color: inherit; text-decoration: none; }
+/* a settings row: icon, label, its value, chevron (vf-more-settings.js) */
+vf-more-settings > section > ul > li > button { inline-size: 100%; background: none; border-radius: 0; font: inherit; font-weight: normal; text-align: start; justify-content: start; box-shadow: none; }
+vf-more-settings > section > ul > li > button:hover { background: var(--c-hover); }
+vf-more-settings > section > ul > li > button > vf-icon { color: var(--c-muted); }
+vf-more-settings > section > ul > li > button > span { flex: 1; }
+vf-more-settings > section > ul > li > button > data { min-inline-size: 0; max-inline-size: 50%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--c-muted); font-size: var(--size-s); }
+vf-more-settings > section > ul > li > button::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--c-muted); mask: var(--icon-next) center / contain no-repeat; }
+vf-more-settings { display: contents; }
+vf-more-settings vf-sheet-body nav ul { grid-template-columns: minmax(0, 1fr); }
+vf-more-settings vf-sheet-body nav li + li { border-block-start: var(--line) solid var(--c-line); }
 /* settings-list rows: icon, words, a chevron at the end */
 vf-more ul a > vf-icon { color: var(--c-muted); }
 vf-more ul a > span { flex: 1; }

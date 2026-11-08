@@ -2,7 +2,7 @@ import { test, expect } from './fixtures.js';
 import en from '../data/i18n/en.json' with { type: 'json' };
 
 test('profiles: rename and remove ask in a native dialog that keeps the profile unless confirmed', async ({ page }) => {
-  await page.goto('/more/');
+  await page.goto('/more/#profiles');
   const profiles = page.locator('vf-profiles');
   await profiles.locator('input[name="name"]').first().fill('Gifts');
   await profiles.locator('form button[type="submit"]').first().click();
@@ -30,7 +30,7 @@ test('profiles: rename and remove ask in a native dialog that keeps the profile 
 });
 
 test('profiles: local by default; each profile has its own list; a profile moves to another browser as a file', async ({ page, browser }) => {
-  await page.goto('/more/');
+  await page.goto('/more/#profiles');
   const profiles = page.locator('vf-profiles');
   await expect(profiles.locator('vf-profile[current="true"]')).toContainText(en.profiles.local);
 
@@ -55,7 +55,7 @@ test('profiles: local by default; each profile has its own list; a profile moves
   await profiles.locator('button[name="export"]').click();
   const file = await (await download).path();
   const other = await browser.newPage();
-  await other.goto('/more/');
+  await other.goto('/more/#profiles');
   await other.locator('vf-profiles input[name="import"]').setInputFiles(file);
   await expect(other.locator('vf-profiles > output')).toHaveText(en.profiles.imported.one);
   expect(await other.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('vf.watch.v1')).items))).toEqual(['aaaaaaaaaaaa']);

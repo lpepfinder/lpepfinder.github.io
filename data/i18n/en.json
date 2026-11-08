@@ -366,7 +366,6 @@
     "newSection": "New since your last visit",
     "restSection": "In stock",
     "startTitle": "Bring your Discogs wantlist",
-    "startOr": "Or tap ☆ Watch on any record in the search.",
     "discogsButton": "Import from Discogs",
     "discogsSynced": "Discogs · {user}",
     "loadingCopies": "Loading the copies…",
@@ -390,7 +389,9 @@
       "one": "{user}: 1 record in your collection, marked Owned in search.",
       "other": "{user}: {count} records in your collection, marked Owned in search."
     },
-    "backupMove": "Move a profile to another browser"
+    "backupMove": "Move a profile to another browser",
+    "startOther": "Other ways to start",
+    "startSearch": "Watch records from the search (☆)"
   },
   "navApp": "Main",
   "navSite": "Explore",
@@ -620,7 +621,12 @@
       "one": "1 record added.",
       "other": "{count} records added."
     },
-    "importError": "This file couldn’t be read."
+    "importError": "This file couldn’t be read.",
+    "row": "Profile",
+    "count": {
+      "one": "1 profile",
+      "other": "{count} profiles"
+    }
   },
   "radio": {
     "title": "From a Radio4000 radio",
@@ -676,7 +682,8 @@
     "waiting": {
       "one": "1 change waiting",
       "other": "{count} changes waiting"
-    }
+    },
+    "signedOutShort": "Not signed in"
   },
   "sources": {
     "label": "Where your lists come from",

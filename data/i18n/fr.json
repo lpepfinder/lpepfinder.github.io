@@ -366,7 +366,6 @@
     "newSection": "Nouveaux depuis votre dernière visite",
     "restSection": "En stock",
     "startTitle": "Apportez votre wantlist Discogs",
-    "startOr": "Ou touchez ☆ Suivre sur n’importe quel disque de la recherche.",
     "discogsButton": "Importer de Discogs",
     "discogsSynced": "Discogs · {user}",
     "loadingCopies": "Chargement des exemplaires…",
@@ -390,7 +389,9 @@
       "one": "{user} : 1 disque dans votre collection, marqué « À moi » dans la recherche.",
       "other": "{user} : {count} disques dans votre collection, marqués « À moi » dans la recherche."
     },
-    "backupMove": "Déplacer un profil vers un autre navigateur"
+    "backupMove": "Déplacer un profil vers un autre navigateur",
+    "startOther": "Autres façons de commencer",
+    "startSearch": "Suivre des disques depuis la recherche (☆)"
   },
   "navApp": "Principal",
   "navSite": "Explorer",
@@ -620,7 +621,12 @@
       "one": "1 disque ajouté.",
       "other": "{count} disques ajoutés."
     },
-    "importError": "Ce fichier n’a pas pu être lu."
+    "importError": "Ce fichier n’a pas pu être lu.",
+    "row": "Profil",
+    "count": {
+      "one": "1 profil",
+      "other": "{count} profils"
+    }
   },
   "radio": {
     "title": "Depuis une radio Radio4000",
@@ -676,7 +682,8 @@
     "waiting": {
       "one": "1 changement en attente",
       "other": "{count} changements en attente"
-    }
+    },
+    "signedOutShort": "Non connecté"
   },
   "sources": {
     "label": "D’où viennent vos listes",
