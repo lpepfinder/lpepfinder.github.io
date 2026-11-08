@@ -16,12 +16,6 @@
   ],
   "defaultLanguage": "en",
   "repository": "https://github.com/lpepfinder/lpepfinder.github.io",
-  "ads": {
-    "enabled": true,
-    "lazy": true,
-    "delayMs": 4000,
-    "adsenseClient": "ca-pub-7578240828852744"
-  },
   "analytics": {
     "umamiScript": "https://eu.umami.is/script.js",
     "umamiWebsiteId": "0c19139a-e4c0-4c1b-a355-f6403ac4bed8",

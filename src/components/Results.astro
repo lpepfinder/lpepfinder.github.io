@@ -3,7 +3,6 @@ import { t, localPath, number } from '../lib/i18n.js';
 import { catalog } from '../lib/catalog.js';
 import FiltersSheet from './FiltersSheet.astro';
 import Sheet from './Sheet.astro';
-import AdSlot from './AdSlot.astro';
 
 /**
  * Results region filled by <vf-search>, a <vf-split>: the filters (a sheet, the left rail from 90rem),
@@ -28,11 +27,9 @@ const shops = localPath(lang, '/shops/');
   <ol aria-labelledby="results-title"></ol>
   <vf-note reason="filtered" hidden><p>{t(lang, 'results.noneFiltered')}</p></vf-note>
   <button type="button" name="more" kind="secondary" hidden><vf-icon name="chevron-down"></vf-icon><span>{t(lang, 'loadMore')}</span></button>
-  <AdSlot lang={lang} place="results" template />
   </section>
   <Sheet lang={lang} name="release" mode="adaptive" dock="(min-width: 64rem)" labelledby="detail-title" back={t(lang, 'detail.back')} expandable>
     <vf-detail status="empty"></vf-detail>
-    <AdSlot lang={lang} place="detail" />
   </Sheet>
   </vf-split>
   <vf-results-actions><button type="button" name="filters" kind="strong"><vf-icon name="filter"></vf-icon><span>{t(lang, 'results.filters')}</span></button></vf-results-actions>

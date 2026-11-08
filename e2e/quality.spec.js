@@ -14,8 +14,6 @@ const { artists } = JSON.parse(fs.readFileSync(path.join(DIST, 'api/artists.json
 const { shops } = JSON.parse(fs.readFileSync(path.join(DIST, 'api/shops.json'), 'utf8'));
 const shop = shops.find((s) => s.searchable) || shops[0];
 
-// AdSense's <ins class="adsbygoogle"> is Google's markup, required as is, not ours
-const ADS = ['ins.adsbygoogle'];
 
 qualityTests([
   { name: 'home', path: '/', touch: 44 },
@@ -40,4 +38,4 @@ qualityTests([
       await page.locator('vf-detail[status="ready"]').first().waitFor();
     },
   },
-].map((screen) => ({ libraries: ADS, ...screen })));
+]);

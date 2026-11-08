@@ -2,7 +2,7 @@ import { test as base, expect } from '@playwright/test';
 
 /**
  * Shared test setup:
- * - requests outside the site are aborted (ads, analytics, shop covers), so a test never depends on the network;
+ * - requests outside the site are aborted (analytics, shop covers), so a test never depends on the network;
  *   a test mocks the hosts it needs with page.route (registered later, so it wins);
  * - every uncaught page error is collected and fails the test at its end.
  */

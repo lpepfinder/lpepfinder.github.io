@@ -1,7 +1,6 @@
 ---
 import config from '../../data/config.json';
 import { t, languages, defaultLanguage, localPath, clientStrings } from '../lib/i18n.js';
-import Ads from '../components/Ads.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Shortcuts from '../components/Shortcuts.astro';
@@ -58,7 +57,6 @@ const strings = JSON.stringify(clientStrings(lang, groups)).replace(/</g, '\\u00
   <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title={config.name}>
   {feed && <link rel="alternate" type="application/atom+xml" href={feed.href} title={feed.title}>}
   <link rel="alternate" type="application/json" href={data || '/api/index.json'}>
-  <Ads />
   <script is:inline defer src={config.analytics.umamiScript} data-website-id={config.analytics.umamiWebsiteId}></script>
   <script is:inline type="application/json" data-i18n set:html={strings}></script>
   {ld.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data).replace(/</g, '\\u003c')}></script>)}

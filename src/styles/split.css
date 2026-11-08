@@ -3,10 +3,6 @@
 vf-split { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); align-items: start; }
 vf-split > section { display: grid; gap: var(--space-2); min-inline-size: 0; }
 
-/* the fixed-height ad spot (only rendered when config.ads.slots sets a unit) */
-vf-ad { display: block; block-size: var(--ad-h); overflow: hidden; margin-block: var(--space-2); background: var(--c-skeleton); border-radius: var(--radius); }
-vf-ad > ins { display: block; block-size: 100%; }
-li[role="none"]:has(> vf-ad) { list-style: none; }
 
 @media (min-width: 64rem) {
   vf-split { grid-template-columns: minmax(var(--list-min), 1.4fr) minmax(var(--detail-min), 1fr); }

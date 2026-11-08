@@ -85,7 +85,6 @@
   "footerNote": "Prix et stocks viennent de chaque disquaire et peuvent changer. Les liens mènent aux disquaires.",
   "notFoundTitle": "Page introuvable",
   "notFoundBody": "Cette page n'existe pas. Cherchez un disque avec le champ ci-dessus, ou repartez de l'accueil.",
-  "adLabel": "Publicité",
   "statusChangesTitle": "Changements des 30 derniers jours",
   "statusDeadTitle": "Disquaires injoignables",
   "statusShopColumns": [
@@ -119,7 +118,6 @@
   "privacyTitle": "Politique de confidentialité",
   "privacyBody": [
     "LP/EP Finder ne demande pas de compte et ne conserve aucune donnée personnelle sur ses serveurs. Les recherches s'exécutent dans votre navigateur.",
-    "Publicité : ce site affiche des annonces Google AdSense. Google et ses partenaires utilisent des cookies pour afficher des annonces selon vos visites sur ce site et d'autres. Vous pouvez désactiver les annonces personnalisées dans les paramètres des annonces de Google (adssettings.google.com). Dans l'Espace économique européen, au Royaume-Uni et en Suisse, votre consentement est demandé au préalable.",
     "Mesure d'audience : nous comptons les visites avec Umami, sans cookies ni données personnelles. Les statistiques sont publiques.",
     "Connexion Bluesky facultative : les disques que vous suivez, et les listes que vous choisissez de publier, sont enregistrés dans votre propre compte Bluesky, où ils sont publics ; rien n’est gardé sur nos serveurs. Vos listes Discogs sont lues sur Discogs par votre navigateur. Les photos d’artistes viennent de Wikimedia Commons.",
     "Les liens vers les disquaires mènent à leurs sites, qui ont leur propre politique de confidentialité.",

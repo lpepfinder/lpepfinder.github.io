@@ -9,4 +9,4 @@ audience: contributors
   with the "shop" template. The weekly check fills in name, platform and country.
 - **Remove a shop** (owner request): set `"disabled": true`. Shops can also block `LPEPFinderBot` (or the former `VinylFinderBot`) in robots.txt.
 - **Texts and translations**: `data/i18n/<lang>.json`. **Settings**: `data/config.json`
-  (crawl limits, product filters, SEO thresholds, ads and analytics IDs).
+  (crawl limits, product filters, SEO thresholds, analytics ID).

@@ -85,7 +85,6 @@
   "footerNote": "Prices and stock come from each shop and can change. Links go to the shops.",
   "notFoundTitle": "Page not found",
   "notFoundBody": "This page doesn't exist. Search for a record with the box above, or start from the home page.",
-  "adLabel": "Advertisement",
   "statusChangesTitle": "Changes in the last 30 days",
   "statusDeadTitle": "Unreachable shops",
   "statusShopColumns": [
@@ -119,7 +118,6 @@
   "privacyTitle": "Privacy policy",
   "privacyBody": [
     "LP/EP Finder does not ask for an account and does not store personal data on its servers. Searches run in your browser.",
-    "Advertising: this site shows ads from Google AdSense. Google and its partners use cookies to show ads based on your visits to this and other websites. You can turn off personalised ads in Google's Ads Settings (adssettings.google.com). Visitors in the European Economic Area, the UK and Switzerland are asked for consent first.",
     "Analytics: we count visits with Umami, which uses no cookies and collects no personal data. The statistics are public.",
     "Optional Bluesky sign-in: the records you watch, and the lists you choose to publish, are saved in your own Bluesky account, where they are public; nothing is kept on our servers. Your Discogs lists are read from Discogs by your browser. Artist photos load from Wikimedia Commons.",
     "Links to record shops take you to their websites, which have their own privacy policies.",
