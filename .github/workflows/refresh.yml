@@ -1,5 +1,5 @@
-# Daily: check every shop, crawl catalogs (and find new shops on the 1st of the month),
-# keep the result in the "data" release, then deploy the site.
+# Daily: check every shop, crawl catalogs in parallel shards (and find new shops on the 1st of the month),
+# keep the result in the "data" release, then build the index and deploy the site (docs/ci.md).
 # Next to it, the site crawler reads shops without a catalog API, in shards (data/config.json
 # site.shards). Each shard keeps its own release asset site-<k>.tar.gz, so no job overwrites another's.
 name: Refresh
@@ -19,9 +19,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  refresh:
+  # the shops: alive, platform, robots.txt (scripts/check/plan.js); the states go to the crawl shards and the merge
+  check:
     runs-on: ubuntu-24.04
-    timeout-minutes: 300
+    timeout-minutes: 60
     permissions:
       contents: write
     env:
@@ -50,10 +51,95 @@ jobs:
       # a check that fails (it writes the shop states only at its end) leaves yesterday's states: the crawl
       # still runs with them, so one bad shop server never costs a day of data (the failure stays visible)
       - name: Check shops
-        id: check
         continue-on-error: true
         run: npm run check
+      - uses: actions/upload-artifact@v7
+        with:
+          name: shops-state
+          path: generated/shops-state.json
+          retention-days: 2
+
+  crawl-plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      shards: ${{ steps.plan.outputs.shards }}
+      count: ${{ steps.plan.outputs.count }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: plan
+        run: |
+          n=$(node -p "require('./data/config.json').crawl.shards")
+          echo "count=$n" >> "$GITHUB_OUTPUT"
+          echo "shards=$(node -p "JSON.stringify([...Array($n).keys()])")" >> "$GITHUB_OUTPUT"
+
+  # the catalogs, in shards (crawl.shards): each runner reads its share of the shops at the same pace per shop
+  crawl:
+    needs: [check, crawl-plan]
+    runs-on: ubuntu-24.04
+    # the crawl stops itself at crawl.maxTotalMinutes and saves; this is the safety net
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.crawl-plan.outputs.shards) }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      CRAWL_SHARD: ${{ matrix.shard }}
+      CRAWL_SHARDS: ${{ needs.crawl-plan.outputs.count }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # yesterday's products (kept for shops not reached) and today's shop states
+      - name: Previous crawl data
+        run: gh release download data --pattern generated.tar.gz && tar xzf generated.tar.gz || echo "no previous data"
+      - uses: actions/download-artifact@v7
+        with:
+          name: shops-state
+          path: generated
       - run: npm run crawl
+      - uses: actions/upload-artifact@v7
+        with:
+          name: crawl-${{ matrix.shard }}
+          path: |
+            generated/products-crawl-${{ matrix.shard }}.ndjson.gz
+            generated/crawl-report-${{ matrix.shard }}.json
+          retention-days: 2
+
+  # the shards joined into the files everything downstream reads (scripts/crawl/merge.js), then published
+  refresh:
+    needs: [check, crawl-plan, crawl]
+    # a lost shard makes the merge refuse: the previous data stays published
+    if: ${{ !cancelled() && needs.check.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Previous crawl data
+        run: gh release download data --pattern generated.tar.gz && tar xzf generated.tar.gz || echo "no previous data"
+      - uses: actions/download-artifact@v7
+        with:
+          name: shops-state
+          path: generated
+      - uses: actions/download-artifact@v7
+        with:
+          pattern: crawl-*
+          path: shards
+          merge-multiple: true
+      - name: Merge the crawl shards
+        run: CRAWL_SHARDS=${{ needs.crawl-plan.outputs.count }} node scripts/crawl/merge.js shards
       # weekly numbers in git; the commit also keeps the schedule alive (GitHub stops it after 60 idle days)
       - name: Weekly stats
         if: github.event_name == 'schedule'

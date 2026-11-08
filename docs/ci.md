@@ -9,9 +9,13 @@ Two rhythms, kept apart: the **data** changes once a day (crawls, then the index
 with each push (then only the site is built). The index is the costly part (~20 minutes): it's built once a day,
 and on a push only when the code that shapes it changed.
 
-- **Refresh** (`.github/workflows/refresh.yml`) runs daily at 03:00 UTC: check, crawl (and on the 1st of the month
-  discover new shops), the site crawler shards, artist profiles (`enrich`) and the collectors feed (`social`), each
-  kept in the `data` release. Then **Index** builds the index from that day's data, then **Deploy** publishes.
+- **Refresh** (`.github/workflows/refresh.yml`) runs daily at 03:00 UTC: `check` (and on the 1st of the month
+  discover new shops), then the catalog `crawl` in `crawl.shards` parallel runners, each reading its share of the
+  shops (the same split as the site crawler, `scripts/lib/shard.js`) at the same pace per shop; `refresh` joins the
+  shards (`scripts/crawl/merge.js`: a missing shard merges nothing, so yesterday's data stays) and publishes
+  `generated.tar.gz`. Next to it: the site crawler shards, artist profiles (`enrich`) and the collectors feed
+  (`social`), each kept in the `data` release. Then **Index** builds the index from that day's data, then
+  **Deploy** publishes.
 - **Index** (`.github/workflows/index.yml`): downloads the crawl data and the offer ledger, runs `npm run index`, and
   saves the result at once as the **index bundle** in the `data` release: `index.tar.gz` (`public/search`, `public/w`,
   `dig.json`, and the crawl files the pages read: `site-data.json`, `shops-state.json`…) and `index-manifest.json`,

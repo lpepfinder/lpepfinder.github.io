@@ -53,7 +53,8 @@
       "vinylfinderbot"
     ],
     "maxRequestsPerShop": 600,
-    "maxTotalMinutes": 200
+    "maxTotalMinutes": 200,
+    "shards": 4
   },
   "products": {
     "include": "vinyl|\\blp\\b|\\d?lp\\b|\\bep\\b|12\\s?(\"|”|inch|in\\b)|10\\s?(\"|”|inch)|7\\s?(\"|”|inch)|\\bsingle\\b|album|schallplatte|disque|vinile|vinilo|vinyle|レコード|record|\\bcds?\\b|cassette|\\bk7\\b|\\bcd\\b|compact disc|maxi",
