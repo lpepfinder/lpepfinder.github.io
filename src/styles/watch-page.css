@@ -158,7 +158,7 @@ vf-watch-filters label:has(input:checked) { background: var(--c-chip-on); color:
 vf-watch-filters input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
 vf-watch-filters label:has(input[type="checkbox"]:focus-visible), vf-watch-filters :is(select, input[type="text"]):focus-visible { outline: var(--focus-ring); }
 vf-watch-filters label > span { color: var(--c-muted); }
-vf-watch-filters :is(select, input[type="text"]) { font: inherit; font-size: max(16px, var(--size-s)); border: 0; background: transparent; color: inherit; padding: 0; }
+vf-watch-filters :is(select, input[type="text"]) { font: inherit; font-size: max(16px, var(--size-s)); min-block-size: var(--chip-h); border: 0; background: transparent; color: inherit; padding: 0; }
 vf-watch-filters input[type="text"] { inline-size: 5ch; text-align: end; }
 @media (min-width: 40rem) { vf-watch-filters form { flex-wrap: wrap; overflow: visible; } }
 vf-watch-page:is([view="changes"], [view="all"]) > vf-watch-filters { display: none; }
