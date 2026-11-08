@@ -65,7 +65,7 @@ vf-watch-item > button { grid-column: 2; grid-row: 1 / span 3; align-self: cente
 :is(vf-change, vf-watch-item) :is(h3, h4) { font-size: var(--size-0); line-height: var(--leading-tight); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 :is(vf-change, vf-watch-item) :is(h3, h4) a { display: block; min-block-size: var(--tap); padding-block: var(--space-3); overflow: hidden; text-overflow: ellipsis; }
 :is(vf-change, vf-watch-item) p { color: var(--c-muted); font-size: var(--size-s); }
-vf-event { font-size: var(--size-xs); font-weight: var(--weight-bold); text-transform: uppercase; letter-spacing: var(--tracking-caps); color: var(--event-color, var(--c-muted)); }
+vf-event { font-size: var(--size-xs); font-weight: var(--weight-semi); color: var(--event-color, var(--c-muted)); }
 vf-change[event="new"] { --event-color: var(--c-event-new); }
 vf-change[event="restock"] { --event-color: var(--c-event-restock); }
 vf-change[event="price-down"] { --event-color: var(--c-event-price-down); }
