@@ -769,5 +769,6 @@
     "feedJoin": "Your wantlist could be here too, with every record a shop gets for you:",
     "feedJoinLink": "publish it from your Bluesky account",
     "feedNone": "No collector has published a list yet."
-  }
+  },
+  "noscriptSearch": "Search runs in your browser and needs JavaScript. Without it, browse by artist or by shop:"
 }

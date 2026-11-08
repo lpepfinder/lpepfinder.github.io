@@ -769,5 +769,6 @@
     "feedJoin": "Tu lista también podría estar aquí, con cada disco que una tienda tenga para ti:",
     "feedJoinLink": "publícala desde tu cuenta de Bluesky",
     "feedNone": "Ningún coleccionista ha publicado una lista todavía."
-  }
+  },
+  "noscriptSearch": "La búsqueda funciona en tu navegador y necesita JavaScript. Sin él, explora por artista o por tienda:"
 }

@@ -15,6 +15,8 @@ const listed = catalog().visible.filter((s) => !s.records).length;
 const shops = localPath(lang, '/shops/');
 ---
 <vf-results status="idle" aria-busy="false" covers="on">
+  <!-- the index is read in the browser: without JavaScript, the static pages are the way in -->
+  <noscript><p>{t(lang, 'noscriptSearch')} <a href="/artists/">{t(lang, 'navArtists')}</a> · <a href={shops}>{t(lang, 'navShops')}</a></p></noscript>
   <vf-split>
   <FiltersSheet lang={lang} />
   <section aria-labelledby="results-title">

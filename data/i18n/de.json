@@ -769,5 +769,6 @@
     "feedJoin": "Deine Wunschliste könnte auch hier sein, mit jeder Platte, die ein Laden für dich hat:",
     "feedJoinLink": "veröffentliche sie über dein Bluesky-Konto",
     "feedNone": "Noch hat niemand eine Liste veröffentlicht."
-  }
+  },
+  "noscriptSearch": "Die Suche läuft in deinem Browser und braucht JavaScript. Ohne JavaScript stöbere nach Künstler oder nach Laden:"
 }
