@@ -23,6 +23,8 @@ test('test listings, missing titles and merch are flagged; test pressings are re
   assert.equal(checkDoc(doc('Artist – Album (Test Pressing) LP'), ctx()), null);
   assert.equal(checkDoc(doc('Testament – The Legacy LP'), ctx()), null);
   assert.equal(checkDoc(doc('  '), ctx()), 'no-title');
+  assert.equal(checkDoc(doc('???? - ?? ??? ?? ?? ?? ??? ?? ???'), ctx()), 'no-title');
+  assert.notEqual(checkDoc(doc('坂本龍一 - 戦場のメリークリスマス'), ctx()), 'no-title');
   assert.equal(checkDoc(doc('Ernie Ball Guitar Strings 10-46'), ctx()), 'not-record');
 });
 

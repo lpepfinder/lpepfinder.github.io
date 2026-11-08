@@ -60,7 +60,8 @@ export function suspectShops(docs, { rates, settings, currencyOf }) {
  */
 export function checkDoc(doc, { rates, settings, currency, suspect, testTitle, isMusic }) {
   const title = String(doc.title || '').trim();
-  if (!title) return 'no-title';
+  // no letter or digit at all: empty, or an encoding that lost every character ("???? - ?? ???")
+  if (!/[\p{L}\p{N}]/u.test(title)) return 'no-title';
   if (testTitle.test(title)) return 'test-listing';
   if (!isMusic(`${title} ${doc.type || ''}`)) return 'not-record';
   if (doc.price == null) return null;
