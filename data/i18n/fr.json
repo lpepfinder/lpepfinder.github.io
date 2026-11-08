@@ -258,15 +258,12 @@
     "unknownTitle": "Disque {key}",
     "checking": "Vérification des disquaires… {done} / {total}",
     "checked": "À jour.",
-    "backupTitle": "Sauvegarder et partager",
-    "backupIntro": "Votre liste n'existe que dans ce navigateur. Exportez-la pour en garder une copie, ou partagez-la par un lien.",
-    "export": "Exporter (JSON)",
-    "import": "Importer un fichier",
+    "backupTitle": "Partager",
+    "backupIntro": "Partagez votre liste par un lien.",
     "imported": {
       "one": "{count} disque ajouté.",
       "other": "{count} disques ajoutés."
     },
-    "importError": "Impossible de lire ce fichier.",
     "share": "Copier le lien de partage",
     "shareLabel": "Lien de partage",
     "shareCopied": "Lien copié.",
@@ -392,7 +389,8 @@
     "collectionDone": {
       "one": "{user} : 1 disque dans votre collection, marqué « À moi » dans la recherche.",
       "other": "{user} : {count} disques dans votre collection, marqués « À moi » dans la recherche."
-    }
+    },
+    "backupMove": "Déplacer un profil vers un autre navigateur"
   },
   "navApp": "Principal",
   "navSite": "Explorer",
@@ -609,9 +607,20 @@
     "add": "Ajouter un profil",
     "addPlaceholder": "Boutique, cadeaux, un ami…",
     "addButton": "Ajouter",
-    "note": "Chaque profil a sa liste de suivi, son compte Discogs et sa collection, dans ce navigateur seulement. Toute personne utilisant ce navigateur peut les ouvrir.",
+    "note": "Chaque profil a sa liste, ses listes Discogs, sa radio et ses filtres, dans ce navigateur. Un profil reste local tant que vous n’y connectez pas de compte Bluesky. Changer de profil recharge la page. Toute personne utilisant ce navigateur peut les ouvrir.",
     "cancel": "Annuler",
-    "renameTitle": "Renommer « {name} »"
+    "renameTitle": "Renommer « {name} »",
+    "local": "Local, dans ce navigateur",
+    "account": "Bluesky · @{handle}",
+    "transferTitle": "Déplacer un profil",
+    "transferIntro": "Exportez le profil utilisé dans un fichier, puis importez-le dans un autre navigateur : aucun compte nécessaire. L’import ajoute ses disques au profil utilisé.",
+    "export": "Exporter ce profil",
+    "import": "Importer un fichier",
+    "imported": {
+      "one": "1 disque ajouté.",
+      "other": "{count} disques ajoutés."
+    },
+    "importError": "Ce fichier n’a pas pu être lu."
   },
   "radio": {
     "title": "Depuis une radio Radio4000",
@@ -642,7 +651,7 @@
     "placeholder": "vous.bsky.social",
     "signIn": "Se connecter avec Bluesky",
     "signOut": "Se déconnecter",
-    "note": "Se connecter crée un profil pour votre compte et garde sa liste identique sur tous vos appareils. Ce qui est synchronisé (les disques suivis ici et votre identifiant Discogs) est enregistré dans votre compte Bluesky, où c’est public.",
+    "note": "Se connecter rattache votre compte Bluesky au profil utilisé (ou ouvre le profil auquel il appartient déjà) : sa liste est la même sur tous vos appareils. Ce qui est synchronisé (les disques que vous suivez ici et votre nom Discogs) est enregistré dans votre compte Bluesky, où il est public. Sans connexion, tout reste dans ce navigateur.",
     "going": "Vers votre page de connexion Bluesky…",
     "error": "Impossible de se connecter avec {handle}. Vérifiez l’identifiant.",
     "signedIn": "Connecté en tant que @{handle}",
@@ -650,7 +659,8 @@
     "sync": {
       "syncing": "synchronisation…",
       "synced": "synchronisé",
-      "error": "non synchronisé, nouvel essai à venir"
+      "error": "non synchronisé, nouvel essai à venir",
+      "offline": "hors ligne, les changements partiront au retour du réseau"
     },
     "publishTitle": "Listes publiques",
     "publishWants": "Publier mes disques recherchés",
@@ -662,7 +672,11 @@
     "published": "Publiée. Elle se met à jour quand votre liste change.",
     "unpublished": "Supprimée de votre compte Bluesky.",
     "publishScope": "Votre connexion date d’avant la publication : déconnectez-vous puis reconnectez-vous pour l’autoriser.",
-    "publishError": "Impossible de joindre votre compte Bluesky. Réessayez dans une minute."
+    "publishError": "Impossible de joindre votre compte Bluesky. Réessayez dans une minute.",
+    "waiting": {
+      "one": "1 changement en attente",
+      "other": "{count} changements en attente"
+    }
   },
   "sources": {
     "label": "D’où viennent vos listes",

@@ -1,7 +1,7 @@
 import { sources, checkDiscogs, freshness, checkRadio, radioFreshness, EVENT } from '../lib/watch/sources.js';
-import { EVENT as PROFILE_EVENT, scoped } from '../lib/watch/profiles.js';
+import { scoped } from '../lib/watch/profiles.js';
 import { currentAccount } from '../lib/atproto/accounts.js';
-import { SYNC_EVENT } from './atproto-boot.js';
+import { SYNC_EVENT, syncState } from './atproto-boot.js';
 import { el, attrs, listen, unlisten } from './dom.js';
 import { t, tn, formatAgo } from './i18n.js';
 
@@ -22,7 +22,7 @@ export class VfWatchSources extends HTMLElement {
     this.list = this.querySelector('ul');
     const render = () => this.render();
     listen(this, window, EVENT, render);
-    listen(this, window, PROFILE_EVENT, () => { this.render(); this.check(); });
+    this.sync = syncState();
     listen(this, window, SYNC_EVENT, (e) => { this.sync = e.detail; this.render(); });
     this.list.addEventListener('click', (e) => {
       const button = e.target.closest('button[name="resync"]');
@@ -89,8 +89,12 @@ export class VfWatchSources extends HTMLElement {
   }
 
   blueskyRow(account, s) {
-    const state = this.sync === 'syncing' ? 'syncing' : this.sync === 'error' ? 'error' : 'current';
-    const notes = [state === 'current' && s.bluesky?.at ? t('sources.synced', { ago: formatAgo(s.bluesky.at) }) : t(`account.sync.${this.sync || 'syncing'}`)];
+    const sync = this.sync?.state;
+    const state = ['syncing', 'offline', 'error'].includes(sync) ? sync : 'current';
+    const notes = [
+      state === 'current' && s.bluesky?.at ? t('sources.synced', { ago: formatAgo(s.bluesky.at) }) : t(`account.sync.${sync || 'syncing'}`),
+      this.sync?.waiting ? tn('account.waiting', this.sync.waiting) : null,
+    ];
     // with a list published, its public page is one tap away
     let published = {};
     try { published = JSON.parse(localStorage.getItem(scoped('vf.publish'))) || {}; } catch {}

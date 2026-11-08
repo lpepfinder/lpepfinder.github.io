@@ -7,11 +7,19 @@ audience: users
 
 ## Profiles
 
-A profile is a watchlist with its own Discogs account, collection and filters: "Me", "Shop", "Gifts"… Add, rename, switch and remove profiles in **More → Profiles**. They live in this browser only: anyone using it can open them.
+A profile is a space of its own: a watchlist with its Discogs lists, radio, filters and Dig settings. "Me", "Shop", "Gifts"… Add, rename, switch and remove profiles in **More → Profiles**; switching reloads the page into the other profile.
+
+Profiles are **local by default**: they live in this browser and nothing leaves it. Anyone using the browser can open them: profiles keep lists apart, they don't protect them. Each profile may be signed in to one Bluesky account (below); the list shows which.
+
+Removing a profile deletes what it kept in this browser and signs its account out here (nothing is deleted from the account). The first profile can't be removed, only emptied.
+
+**Move a profile** to another browser without any account: **Export this profile** saves a file (its watchlist, collection, Discogs username, radio, filters and Dig settings); **Import a file** in the other browser adds its records to the profile in use, and takes the settings it doesn't have yet. A watchlist exported before profiles existed imports too.
 
 ## Sign in with Bluesky
 
-**More → Bluesky account → Sign in with Bluesky** takes you to your account's own sign-in page (your password never reaches LP/EP Finder), then back. Signing in makes a profile named after your handle, and keeps its watchlist the same on every device you sign in on.
+**More → Bluesky account → Sign in with Bluesky** takes you to your account's own sign-in page (your password never reaches LP/EP Finder), then back. Signing in attaches your account to the profile you're using, if it has none yet, so its list goes to your account; if the account already belongs to another profile here, that profile opens instead, and if the profile in use has another account, a new profile is made for yours. One account per profile, one profile per account. Its watchlist is then the same on every device you sign in on.
+
+**Offline:** every change is kept in this browser at once. What hasn't reached your account yet is the difference between your list and what the account last held, so it survives closing the tab: it's sent a moment after each change, as soon as the browser is back online, and every minute while your account's server can't be reached. **More → Bluesky account** and the watch page show "offline" and how many changes are waiting. A record you delete while offline stays deleted when the account is read again.
 
 What's saved in your Bluesky account, where it is **public** like everything in an atproto account:
 

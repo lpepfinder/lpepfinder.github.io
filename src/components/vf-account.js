@@ -1,13 +1,14 @@
 import { accounts, currentAccount } from '../lib/atproto/accounts.js';
-import { EVENT as PROFILE_EVENT, scoped } from '../lib/watch/profiles.js';
-import { SYNC_EVENT, boot } from './atproto-boot.js';
-import { t } from './i18n.js';
+import { scoped } from '../lib/watch/profiles.js';
+import { SYNC_EVENT, boot, syncState } from './atproto-boot.js';
+import { t, tn } from './i18n.js';
 import { listen, unlisten } from './dom.js';
 import { handleOf } from '../lib/watch/radio.js';
 
 /**
- * <vf-account state="out|in" sync="syncing|synced|error">: sign in with Bluesky (More tab), and the account
- * of the current profile with its sync state and Sign out. What is synced is public: the form says so.
+ * <vf-account state="out|in" sync="syncing|synced|offline|error">: sign in with Bluesky (More tab), and the
+ * account of the current profile with its sync state (and the changes waiting to be sent) and Sign out.
+ * What is synced is public: the form says so.
  */
 export class VfAccount extends HTMLElement {
   connectedCallback() {
@@ -18,17 +19,23 @@ export class VfAccount extends HTMLElement {
     this.querySelector('button[name="signout"]').addEventListener('click', () => this.signOut());
     this.publish = this.querySelector('fieldset[name="publish"]');
     this.publish.addEventListener('change', (e) => this.setPublish(e.target.name, e.target.checked, e.target));
-    listen(this, window, PROFILE_EVENT, () => this.render());
-    listen(this, window, SYNC_EVENT, (e) => { this.setAttribute('sync', e.detail); this.render(); });
-    this.render();
+    listen(this, window, SYNC_EVENT, (e) => this.showSync(e.detail));
+    this.showSync(syncState());
   }
 
   disconnectedCallback() { unlisten(this); }
 
+  showSync(s) {
+    this.syncInfo = s;
+    if (s) this.setAttribute('sync', s.state); else this.removeAttribute('sync');
+    this.render();
+  }
+
   render() {
     const account = currentAccount();
     this.setAttribute('state', account ? 'in' : 'out');
-    this.status.textContent = account ? t('account.signedIn', { handle: account.handle }) + (this.getAttribute('sync') ? ` · ${t(`account.sync.${this.getAttribute('sync')}`)}` : '') : '';
+    const s = this.syncInfo;
+    this.status.textContent = account ? [t('account.signedIn', { handle: account.handle }), s && t(`account.sync.${s.state}`), s?.waiting ? tn('account.waiting', s.waiting) : null].filter(Boolean).join(' · ') : '';
     if (!account) return;
     this.publish.querySelector('a').href = `${this.publish.querySelector('a').pathname}?h=${encodeURIComponent(account.handle)}`;
     // the switches read their settings without loading the account code
@@ -70,8 +77,7 @@ export class VfAccount extends HTMLElement {
     if (!account) return;
     await (await import('../lib/atproto/session.js')).signOut(account.did);
     this.live.textContent = t('account.signedOut', { handle: account.handle });
-    this.removeAttribute('sync');
-    this.render();
+    this.showSync(null);
   }
 }
 customElements.define('vf-account', VfAccount);

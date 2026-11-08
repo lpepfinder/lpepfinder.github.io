@@ -148,12 +148,19 @@ vf-profiles > dialog[action="remove"] button[value="ok"] { background: var(--c-b
 vf-profiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
 vf-profiles ul li { display: block; }
 vf-profile { display: flex; align-items: center; gap: var(--space-2); padding-inline-end: var(--space-2); }
-vf-profile > button[name="use"] { flex: 1; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; justify-content: start; text-align: start; background: none; color: inherit; font-weight: normal; min-block-size: var(--row-h); padding-inline: var(--space-4); }
-vf-profile[current="true"] > button[name="use"] { font-weight: var(--weight-semi); color: var(--c-accent); }
-vf-profile[current="true"] > button[name="use"]::before { content: "✓ "; }
+vf-profile > button[name="use"] { flex: 1; min-inline-size: 0; display: grid; justify-content: start; justify-items: start; text-align: start; background: none; color: inherit; font-weight: normal; min-block-size: var(--row-h); padding-inline: var(--space-4); }
+vf-profile > button[name="use"] > span { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+vf-profile > button[name="use"] > small { color: var(--c-muted); font-size: var(--size-xs); font-weight: normal; }
+vf-profile[current="true"] > button[name="use"] > span { font-weight: var(--weight-semi); color: var(--c-accent); }
+vf-profile[current="true"] > button[name="use"] > span::before { content: "✓ "; }
 vf-profiles form { display: grid; gap: var(--space-1); }
 vf-profiles form label { font-weight: var(--weight-semi); font-size: var(--size-s); }
 vf-profiles > p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-profiles > h3 { margin: var(--space-3) 0 0; font-size: var(--size-s); }
+vf-profiles > menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+vf-profiles > menu :is(button, label) { gap: var(--space-1); }
+vf-profiles > output { color: var(--c-muted); font-size: var(--size-s); }
+vf-profiles > output:empty { display: none; }
 
 /* <vf-account>: sign in with Bluesky, or the account of the current profile */
 vf-account { display: grid; gap: var(--space-2); }

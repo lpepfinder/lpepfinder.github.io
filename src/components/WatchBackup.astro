@@ -1,15 +1,13 @@
 ---
-import { t } from '../lib/i18n.js';
+import { t, localPath } from '../lib/i18n.js';
 
-/** Export, import and share link of the watchlist; filled in by vf-watch-backup.js. */
+/** The watchlist's share link; filled in by vf-watch-backup.js. Moving a whole profile (a file) is in More → Profiles. */
 const { lang } = Astro.props;
 ---
 <vf-watch-backup>
   <h2>{t(lang, 'watchPage.backupTitle')}</h2>
-  <p>{t(lang, 'watchPage.backupIntro')}</p>
+  <p>{t(lang, 'watchPage.backupIntro')} <a href={localPath(lang, '/more/') + '#profiles'}>{t(lang, 'watchPage.backupMove')}</a></p>
   <menu>
-    <li><button type="button" name="export" kind="secondary">{t(lang, 'watchPage.export')}</button></li>
-    <li><label>{t(lang, 'watchPage.import')} <input type="file" name="import" accept=".json,application/json"></label></li>
     <li><button type="button" name="share" kind="secondary">{t(lang, 'watchPage.share')}</button></li>
   </menu>
   <p hidden><label for="watch-share-url">{t(lang, 'watchPage.shareLabel')}</label> <input id="watch-share-url" type="url" readonly></p>

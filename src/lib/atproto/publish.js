@@ -8,6 +8,7 @@ import { load } from '../watch/store.js';
 import { scoped } from '../watch/profiles.js';
 import { currentAccount } from './accounts.js';
 import { sessionFor } from './session.js';
+import { httpError } from './reach.js';
 import config from '../../../data/atproto.json' with { type: 'json' };
 
 export const KINDS = ['wants', 'collection'];
@@ -44,7 +45,7 @@ async function xrpc(s, nsid, body, type = 'application/json') {
   const res = await s.fetchHandler(`/xrpc/${nsid}`, { method: 'POST', headers: { 'content-type': type }, body });
   // a session from before publishing existed lacks the blob permission: signing in again grants it
   if (res.status === 401 || res.status === 403) throw new PublishError('scope');
-  if (!res.ok) throw new PublishError('network');
+  if (!res.ok) throw Object.assign(new PublishError('network'), { cause: httpError(nsid, res.status) });
   return res.json().catch(() => ({}));
 }
 
@@ -84,6 +85,16 @@ export async function setPublish(kind, on) {
   put(scoped('vf.publish'), { ...settings(), [kind]: on });
   dispatchEvent(new Event(EVENT));
   return on ? publish(kind) : unpublish(kind);
+}
+
+/** How many published lists wait to be sent: turned on and changed since they were last sent. */
+export function pending() {
+  const on = settings();
+  const sent = get(scoped('vf.publish.sent'));
+  return KINDS.filter((kind) => {
+    const data = on[kind] ? payload(kind) : null;
+    return on[kind] ? (data ? sent[kind] !== fingerprint(data.body) : kind in sent) : false;
+  }).length;
 }
 
 /** The lists turned on, brought up to date (after changes, sync.js). */

@@ -3,14 +3,20 @@
  *   com.lpepfinder.want     one record per record watched on this site, keyed by its release key
  *   com.lpepfinder.profile  "self": the Discogs username, so any device re-imports the Discogs lists
  * Wants imported from Discogs (`d` on the item) are not written: Discogs keeps them, the username brings them back.
- * Pull on start and on profile change; push the differences a moment after each change. Records are public.
+ * Records are public.
+ *
+ * The account is a remote (savoir: profiles-and-sync). Every change is kept in the browser at once; what waits
+ * to be sent is the difference between the watchlist and what the account was last known to hold ("vf.at.synced",
+ * plan()), so it survives reloads and going offline, and is sent in one go: a moment after each change, when the
+ * browser is back online, and every config.retryMs while the server can't be reached. Pull on page load.
  */
 import { load, update, EVENT as WATCH_EVENT } from '../watch/store.js';
-import { scoped, EVENT as PROFILE_EVENT } from '../watch/profiles.js';
+import { scoped } from '../watch/profiles.js';
 import { currentAccount } from './accounts.js';
 import { synced } from '../watch/sources.js';
-import { publishAll } from './publish.js';
+import { publishAll, pending } from './publish.js';
 import { sessionFor } from './session.js';
+import { notReached, httpError } from './reach.js';
 import config from '../../../data/atproto.json' with { type: 'json' };
 
 const { want: WANT, profile: PROFILE } = config.collections;
@@ -47,11 +53,20 @@ export function plan(items, synced) {
 const call = async (s, nsid, { params, body } = {}) => {
   const res = await s.fetchHandler(`/xrpc/${nsid}${params ? `?${new URLSearchParams(params)}` : ''}`, body
     ? { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) } : {});
-  if (!res.ok) throw new Error(`${nsid} ${res.status}`);
+  if (!res.ok) throw httpError(nsid, res.status);
   return res.status === 200 ? res.json().catch(() => ({})) : {};
 };
 
-/** The account's wants into the watchlist: new ones added, ones deleted elsewhere removed. */
+/** How many writes wait for the account: wants to create, update or delete, and published lists to rewrite. */
+export function waiting() {
+  if (!currentAccount()) return 0;
+  return plan(load().items, get(SYNCED(), {})).writes.length + pending();
+}
+
+/**
+ * The account's wants into the watchlist: new ones added, ones deleted elsewhere removed. A want deleted here
+ * and not sent yet (in "synced", gone from the list) stays deleted: the next push deletes it on the account.
+ */
 export async function pull() {
   const account = currentAccount();
   if (!account) return;
@@ -66,7 +81,7 @@ export async function pull() {
   const synced = get(SYNCED(), {});
   update((list) => {
     for (const [key, v] of server) {
-      if (list.items[key]) continue;
+      if (list.items[key] || key in synced) continue;
       list.items[key] = { t: v.title, a: (v.createdAt || '').slice(0, 10), ...(v.catno ? { c: v.catno } : {}), ...(v.discogsRelease ? { w: v.discogsRelease } : {}), ...(v.maxPrice != null ? { m: v.maxPrice } : {}) };
     }
     // written from here before, gone from the account now: removed on another device
@@ -99,21 +114,45 @@ export async function pushProfile() {
   await call(s, 'com.atproto.repo.putRecord', { body: { repo: account.did, collection: PROFILE, rkey: 'self', record: { $type: PROFILE, discogs, updatedAt: new Date().toISOString() } } });
 }
 
-/** Keep the current profile's account in sync: pull now and on profile change, push after changes. */
+/**
+ * Keep the current profile's account in sync: pull and send what waits now, push after changes, send again
+ * when back online and on a timer while the server can't be reached. onState({ state, waiting }):
+ * state "syncing", "synced", "offline" (not reached: the changes wait) or "error" (refused).
+ */
 export function keepInSync(onState) {
   let timer;
   let publishing;
-  const run = async (fn) => { onState?.('syncing'); try { await fn(); synced(); onState?.('synced'); } catch (e) { console.error(e); onState?.('error'); } };
-  const pullNow = () => currentAccount() && run(async () => { await pull(); await publishAll(); });
-  addEventListener(PROFILE_EVENT, pullNow);
+  let retry;
+  let busy = Promise.resolve();
+  let last = 'synced';
+  const report = (state = last) => { last = state; onState?.({ state, waiting: waiting() }); };
+  // one run at a time, in order: a push never overlaps a pull
+  const run = (fn) => (busy = busy.then(async () => {
+    clearTimeout(retry);
+    report('syncing');
+    try {
+      await fn();
+      synced();
+      report('synced');
+    } catch (e) {
+      if (notReached(e)) {
+        report('offline');
+        retry = setTimeout(sendAll, config.retryMs);
+      } else { console.error(e); report('error'); }
+    }
+  }));
+  const sendAll = () => currentAccount() && run(async () => { await push(); await publishAll(); });
   addEventListener(WATCH_EVENT, () => {
     if (!currentAccount()) return;
+    report();
     clearTimeout(timer);
     timer = setTimeout(() => run(push), config.syncDelayMs);
     // published lists (publish.js) are whole files: rewritten once the list has settled
     clearTimeout(publishing);
     publishing = setTimeout(() => run(publishAll), config.publishDelayMs);
   });
+  addEventListener('online', sendAll);
   addEventListener('vf-watch-imported', () => currentAccount() && run(pushProfile));
-  return pullNow();
+  if (!currentAccount()) return Promise.resolve();
+  return run(async () => { await pull(); await push(); await publishAll(); });
 }

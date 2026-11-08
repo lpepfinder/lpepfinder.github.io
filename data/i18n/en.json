@@ -258,15 +258,12 @@
     "unknownTitle": "Record {key}",
     "checking": "Checking shops… {done} / {total}",
     "checked": "Up to date.",
-    "backupTitle": "Back up and share",
-    "backupIntro": "Your watchlist lives only in this browser. Export it to keep a copy, or share it as a link.",
-    "export": "Export (JSON)",
-    "import": "Import a file",
+    "backupTitle": "Share",
+    "backupIntro": "Share your watchlist as a link.",
     "imported": {
       "one": "1 record added.",
       "other": "{count} records added."
     },
-    "importError": "This file couldn't be read.",
     "share": "Copy share link",
     "shareLabel": "Share link",
     "shareCopied": "Link copied.",
@@ -392,7 +389,8 @@
     "collectionDone": {
       "one": "{user}: 1 record in your collection, marked Owned in search.",
       "other": "{user}: {count} records in your collection, marked Owned in search."
-    }
+    },
+    "backupMove": "Move a profile to another browser"
   },
   "navApp": "Main",
   "navSite": "Explore",
@@ -609,9 +607,20 @@
     "add": "Add a profile",
     "addPlaceholder": "Shop, gifts, a friend…",
     "addButton": "Add",
-    "note": "Each profile has its own watchlist, Discogs account and collection, in this browser only. Anyone using this browser can open them.",
+    "note": "Each profile has its own watchlist, Discogs lists, radio and filters, in this browser. A profile is local unless you sign in to a Bluesky account with it. Switching profile reloads the page. Anyone using this browser can open them.",
     "cancel": "Cancel",
-    "renameTitle": "Rename “{name}”"
+    "renameTitle": "Rename “{name}”",
+    "local": "Local, in this browser",
+    "account": "Bluesky · @{handle}",
+    "transferTitle": "Move a profile",
+    "transferIntro": "Export the profile you are using as a file, then import it in another browser: no account needed. Importing adds its records to the profile in use.",
+    "export": "Export this profile",
+    "import": "Import a file",
+    "imported": {
+      "one": "1 record added.",
+      "other": "{count} records added."
+    },
+    "importError": "This file couldn’t be read."
   },
   "radio": {
     "title": "From a Radio4000 radio",
@@ -642,7 +651,7 @@
     "placeholder": "you.bsky.social",
     "signIn": "Sign in with Bluesky",
     "signOut": "Sign out",
-    "note": "Signing in makes a profile for your account and keeps its watchlist the same on all your devices. What's synced (the records you watch here and your Discogs username) is saved in your Bluesky account, where it is public.",
+    "note": "Signing in attaches your Bluesky account to the profile you are using (or opens the profile it already belongs to): its watchlist stays the same on all your devices. What is synced (the records you watch here and your Discogs username) is saved in your Bluesky account, where it is public. Without signing in, everything stays in this browser.",
     "going": "Going to your Bluesky sign-in page…",
     "error": "Couldn't start signing in with {handle}. Check the handle.",
     "signedIn": "Signed in as @{handle}",
@@ -650,7 +659,8 @@
     "sync": {
       "syncing": "syncing…",
       "synced": "synced",
-      "error": "not synced, will retry"
+      "error": "not synced, will retry",
+      "offline": "offline, changes will be sent when back online"
     },
     "publishTitle": "Public lists",
     "publishWants": "Publish my wantlist",
@@ -662,7 +672,11 @@
     "published": "Published. It updates by itself when your list changes.",
     "unpublished": "Deleted from your Bluesky account.",
     "publishScope": "Your sign-in is from before publishing existed: sign out, then sign in again to allow it.",
-    "publishError": "Couldn't reach your Bluesky account. Try again in a minute."
+    "publishError": "Couldn't reach your Bluesky account. Try again in a minute.",
+    "waiting": {
+      "one": "1 change waiting",
+      "other": "{count} changes waiting"
+    }
   },
   "sources": {
     "label": "Where your lists come from",

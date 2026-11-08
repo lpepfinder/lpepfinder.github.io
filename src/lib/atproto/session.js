@@ -3,6 +3,7 @@
  * The OAuth library is large: it loads only when there's an account, or a sign-in coming back.
  */
 import { accounts, remember, forget, signInReturning } from './accounts.js';
+import { notReached } from './reach.js';
 import config from '../../../data/atproto.json' with { type: 'json' };
 
 const sessions = new Map();
@@ -18,8 +19,8 @@ async function handleOf(did) {
 }
 
 /**
- * On each page load: finish a sign-in coming back (then remember the account and switch to its profile),
- * or restore the last session. Nothing loads without an account.
+ * On each page load: finish a sign-in coming back (then attach the account to a profile, profiles.js; the page
+ * reloads when that is another profile), or restore the last session. Nothing loads without an account.
  */
 export async function start() {
   if (!accounts().length && !signInReturning()) return null;
@@ -28,8 +29,9 @@ export async function start() {
   const { did } = result.session;
   sessions.set(did, result.session);
   if (result.state !== undefined) {
-    remember({ did, handle: await handleOf(did).catch(() => did) });
+    const moved = remember({ did, handle: await handleOf(did).catch(() => did) });
     if (result.state) history.replaceState(null, '', result.state);
+    if (moved) location.reload();
   }
   return result.session;
 }
@@ -40,8 +42,8 @@ export async function sessionFor(did) {
     try {
       sessions.set(did, await (await client()).restore(did));
     } catch (e) {
-      // revoked or expired on the account's side: the account is signed out here too
-      forget(did);
+      // revoked or expired on the account's side: signed out here too; offline, it stays and waits
+      if (!notReached(e)) forget(did);
       throw e;
     }
   }

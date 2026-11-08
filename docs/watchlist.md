@@ -40,4 +40,4 @@ Open a record to see every copy, set a **max price** for it (copies above are hi
 
 ## Your data stays with you
 
-The watchlist lives in this browser only: no account, nothing stored on our side. Use **Export** to keep a copy or move it to another device, or **Copy share link** to share it (the list is inside the link, after the #, never sent to the server). On iPhone, adding the site to the home screen keeps the browser from clearing it.
+The watchlist lives in this browser only: no account, nothing stored on our side. Use **More → Profiles → Export this profile** to keep a copy or move it to another device ([profiles](accounts.md)), or **Copy share link** to share it (the list is inside the link, after the #, never sent to the server). On iPhone, adding the site to the home screen keeps the browser from clearing it.

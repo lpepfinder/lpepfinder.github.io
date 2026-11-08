@@ -258,15 +258,12 @@
     "unknownTitle": "Platte {key}",
     "checking": "Läden werden geprüft… {done} / {total}",
     "checked": "Aktuell.",
-    "backupTitle": "Sichern und teilen",
-    "backupIntro": "Deine Merkliste gibt es nur in diesem Browser. Exportiere sie als Kopie oder teile sie als Link.",
-    "export": "Exportieren (JSON)",
-    "import": "Datei importieren",
+    "backupTitle": "Teilen",
+    "backupIntro": "Teile deine Merkliste als Link.",
     "imported": {
       "one": "1 Platte hinzugefügt.",
       "other": "{count} Platten hinzugefügt."
     },
-    "importError": "Diese Datei kann nicht gelesen werden.",
     "share": "Link zum Teilen kopieren",
     "shareLabel": "Link zum Teilen",
     "shareCopied": "Link kopiert.",
@@ -392,7 +389,8 @@
     "collectionDone": {
       "one": "{user}: 1 Platte in deiner Sammlung, in der Suche als „Hab ich“ markiert.",
       "other": "{user}: {count} Platten in deiner Sammlung, in der Suche als „Hab ich“ markiert."
-    }
+    },
+    "backupMove": "Ein Profil in einen anderen Browser umziehen"
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",
@@ -609,9 +607,20 @@
     "add": "Profil hinzufügen",
     "addPlaceholder": "Laden, Geschenke, ein Freund…",
     "addButton": "Hinzufügen",
-    "note": "Jedes Profil hat seine eigene Beobachtungsliste, sein Discogs-Konto und seine Sammlung, nur in diesem Browser. Wer diesen Browser nutzt, kann sie öffnen.",
+    "note": "Jedes Profil hat seine eigene Merkliste, Discogs-Listen, sein Radio und seine Filter, in diesem Browser. Ein Profil bleibt lokal, solange du kein Bluesky-Konto damit verbindest. Ein Profilwechsel lädt die Seite neu. Jeder, der diesen Browser nutzt, kann sie öffnen.",
     "cancel": "Abbrechen",
-    "renameTitle": "„{name}“ umbenennen"
+    "renameTitle": "„{name}“ umbenennen",
+    "local": "Lokal, in diesem Browser",
+    "account": "Bluesky · @{handle}",
+    "transferTitle": "Profil umziehen",
+    "transferIntro": "Exportiere das aktive Profil als Datei und importiere es in einem anderen Browser: kein Konto nötig. Der Import fügt seine Platten dem aktiven Profil hinzu.",
+    "export": "Dieses Profil exportieren",
+    "import": "Datei importieren",
+    "imported": {
+      "one": "1 Platte hinzugefügt.",
+      "other": "{count} Platten hinzugefügt."
+    },
+    "importError": "Diese Datei konnte nicht gelesen werden."
   },
   "radio": {
     "title": "Aus einem Radio4000-Radio",
@@ -642,7 +651,7 @@
     "placeholder": "du.bsky.social",
     "signIn": "Mit Bluesky anmelden",
     "signOut": "Abmelden",
-    "note": "Die Anmeldung legt ein Profil für dein Konto an und hält seine Liste auf allen Geräten gleich. Was synchronisiert wird (hier beobachtete Platten und dein Discogs-Name), wird in deinem Bluesky-Konto gespeichert und ist dort öffentlich.",
+    "note": "Die Anmeldung verbindet dein Bluesky-Konto mit dem aktiven Profil (oder öffnet das Profil, zu dem es schon gehört): seine Merkliste ist auf all deinen Geräten gleich. Was synchronisiert wird (die Platten, die du hier beobachtest, und dein Discogs-Name), liegt in deinem Bluesky-Konto und ist dort öffentlich. Ohne Anmeldung bleibt alles in diesem Browser.",
     "going": "Weiter zu deiner Bluesky-Anmeldung…",
     "error": "Anmeldung mit {handle} nicht möglich. Prüfe das Handle.",
     "signedIn": "Angemeldet als @{handle}",
@@ -650,7 +659,8 @@
     "sync": {
       "syncing": "wird synchronisiert…",
       "synced": "synchronisiert",
-      "error": "nicht synchronisiert, neuer Versuch folgt"
+      "error": "nicht synchronisiert, neuer Versuch folgt",
+      "offline": "offline, Änderungen werden gesendet, sobald du wieder online bist"
     },
     "publishTitle": "Öffentliche Listen",
     "publishWants": "Meine Wunschliste veröffentlichen",
@@ -662,7 +672,11 @@
     "published": "Veröffentlicht. Sie aktualisiert sich, wenn sich deine Liste ändert.",
     "unpublished": "Aus deinem Bluesky-Konto gelöscht.",
     "publishScope": "Deine Anmeldung ist älter als das Veröffentlichen: melde dich ab und wieder an, um es zu erlauben.",
-    "publishError": "Dein Bluesky-Konto war nicht erreichbar. Versuche es gleich noch einmal."
+    "publishError": "Dein Bluesky-Konto war nicht erreichbar. Versuche es gleich noch einmal.",
+    "waiting": {
+      "one": "1 Änderung wartet",
+      "other": "{count} Änderungen warten"
+    }
   },
   "sources": {
     "label": "Woher deine Listen kommen",

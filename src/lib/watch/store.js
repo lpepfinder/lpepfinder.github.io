@@ -10,7 +10,7 @@
  *   changes  unseen changes, rows like the daily event files plus their date; past: seen ones
  * Storage can throw (private mode, blocked site data): every access is guarded.
  */
-import { scoped, EVENT as PROFILE_EVENT } from './profiles.js';
+import { scoped } from './profiles.js';
 
 // the current profile's list (profiles.js): "vf.watch.v1", or "vf.watch.v1:<profile>"
 const KEY = () => scoped('vf.watch.v1');
@@ -71,14 +71,6 @@ export const remove = (key) => update((list) => {
 try {
   addEventListener('storage', (e) => {
     if (e.key !== KEY()) return;
-    cache = null;
-    dispatchEvent(new Event(EVENT));
-  });
-} catch {}
-
-/** Another profile: its own list. */
-try {
-  addEventListener(PROFILE_EVENT, () => {
     cache = null;
     dispatchEvent(new Event(EVENT));
   });

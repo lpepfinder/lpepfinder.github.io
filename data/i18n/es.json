@@ -258,15 +258,12 @@
     "unknownTitle": "Disco {key}",
     "checking": "Comprobando tiendas… {done} / {total}",
     "checked": "Al día.",
-    "backupTitle": "Copia de seguridad y compartir",
-    "backupIntro": "Tu lista solo existe en este navegador. Expórtala para guardar una copia o compártela con un enlace.",
-    "export": "Exportar (JSON)",
-    "import": "Importar un archivo",
+    "backupTitle": "Compartir",
+    "backupIntro": "Comparte tu lista con un enlace.",
     "imported": {
       "one": "1 disco añadido.",
       "other": "{count} discos añadidos."
     },
-    "importError": "No se pudo leer este archivo.",
     "share": "Copiar enlace para compartir",
     "shareLabel": "Enlace para compartir",
     "shareCopied": "Enlace copiado.",
@@ -392,7 +389,8 @@
     "collectionDone": {
       "one": "{user}: 1 disco en tu colección, marcado «Lo tengo» en la búsqueda.",
       "other": "{user}: {count} discos en tu colección, marcados «Lo tengo» en la búsqueda."
-    }
+    },
+    "backupMove": "Mover un perfil a otro navegador"
   },
   "navApp": "Principal",
   "navSite": "Explorar",
@@ -609,9 +607,20 @@
     "add": "Añadir un perfil",
     "addPlaceholder": "Tienda, regalos, un amigo…",
     "addButton": "Añadir",
-    "note": "Cada perfil tiene su propia lista, cuenta de Discogs y colección, solo en este navegador. Quien use este navegador puede abrirlos.",
+    "note": "Cada perfil tiene su lista, sus listas de Discogs, su radio y sus filtros, en este navegador. Un perfil es local mientras no le conectes una cuenta de Bluesky. Cambiar de perfil recarga la página. Cualquiera que use este navegador puede abrirlos.",
     "cancel": "Cancelar",
-    "renameTitle": "Renombrar «{name}»"
+    "renameTitle": "Renombrar «{name}»",
+    "local": "Local, en este navegador",
+    "account": "Bluesky · @{handle}",
+    "transferTitle": "Mover un perfil",
+    "transferIntro": "Exporta el perfil que usas a un archivo e impórtalo en otro navegador: sin cuenta. Importar añade sus discos al perfil en uso.",
+    "export": "Exportar este perfil",
+    "import": "Importar un archivo",
+    "imported": {
+      "one": "1 disco añadido.",
+      "other": "{count} discos añadidos."
+    },
+    "importError": "No se pudo leer este archivo."
   },
   "radio": {
     "title": "Desde una radio Radio4000",
@@ -642,7 +651,7 @@
     "placeholder": "tu.bsky.social",
     "signIn": "Entrar con Bluesky",
     "signOut": "Cerrar sesión",
-    "note": "Al entrar se crea un perfil para tu cuenta y su lista queda igual en todos tus dispositivos. Lo sincronizado (los discos que sigues aquí y tu usuario de Discogs) se guarda en tu cuenta de Bluesky, donde es público.",
+    "note": "Al iniciar sesión, tu cuenta de Bluesky se une al perfil que usas (o abre el perfil al que ya pertenece): su lista es la misma en todos tus dispositivos. Lo que se sincroniza (los discos que sigues aquí y tu usuario de Discogs) se guarda en tu cuenta de Bluesky, donde es público. Sin iniciar sesión, todo queda en este navegador.",
     "going": "Hacia tu página de acceso de Bluesky…",
     "error": "No se pudo entrar con {handle}. Revisa el usuario.",
     "signedIn": "Sesión iniciada como @{handle}",
@@ -650,7 +659,8 @@
     "sync": {
       "syncing": "sincronizando…",
       "synced": "sincronizado",
-      "error": "sin sincronizar, se reintentará"
+      "error": "sin sincronizar, se reintentará",
+      "offline": "sin conexión, los cambios se enviarán al volver"
     },
     "publishTitle": "Listas públicas",
     "publishWants": "Publicar mi lista de deseos",
@@ -662,7 +672,11 @@
     "published": "Publicada. Se actualiza sola cuando cambia tu lista.",
     "unpublished": "Borrada de tu cuenta de Bluesky.",
     "publishScope": "Tu sesión es de antes de poder publicar: cierra sesión y vuelve a entrar para permitirlo.",
-    "publishError": "No se pudo contactar con tu cuenta de Bluesky. Inténtalo en un minuto."
+    "publishError": "No se pudo contactar con tu cuenta de Bluesky. Inténtalo en un minuto.",
+    "waiting": {
+      "one": "1 cambio pendiente",
+      "other": "{count} cambios pendientes"
+    }
   },
   "sources": {
     "label": "De dónde vienen tus listas",

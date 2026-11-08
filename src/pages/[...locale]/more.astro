@@ -80,6 +80,13 @@ const groups = [
           </vf-field>
         </form>
         <p>{t(lang, 'profiles.note')}</p>
+        <h3>{t(lang, 'profiles.transferTitle')}</h3>
+        <p>{t(lang, 'profiles.transferIntro')}</p>
+        <menu>
+          <li><button type="button" name="export" kind="secondary"><vf-icon name="download"></vf-icon><span>{t(lang, 'profiles.export')}</span></button></li>
+          <li><label><vf-icon name="plus"></vf-icon><span>{t(lang, 'profiles.import')}</span><input type="file" name="import" accept=".json,application/json"></label></li>
+        </menu>
+        <output aria-live="polite"></output>
         <!-- rename or remove a profile: a native dialog that keeps the profile unless confirmed (Cancel is focused) -->
         <dialog closedby="any" aria-labelledby="profile-dialog-title">
           <form method="dialog">

@@ -119,8 +119,8 @@ vf-source > strong { grid-area: name; min-inline-size: 0; overflow: hidden; text
 vf-source > small { grid-area: note; color: var(--c-muted); font-size: var(--size-xs); }
 vf-source > :is(button, a) { grid-area: action; display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--size-s); }
 vf-source[kind="bluesky"] > vf-icon { color: var(--c-bluesky); }
-vf-source:is([state="changed"], [state="new"]) { border-color: var(--c-watching); }
-vf-source:is([state="changed"], [state="new"]) > small { color: var(--c-watching); }
+vf-source:is([state="changed"], [state="new"], [state="offline"]) { border-color: var(--c-watching); }
+vf-source:is([state="changed"], [state="new"], [state="offline"]) > small { color: var(--c-watching); }
 vf-source[state="error"] > small { color: var(--c-error); }
 vf-source[state="syncing"] > small { color: var(--c-muted); font-style: italic; }
 @media (min-width: 48rem) { vf-watch-sources > ul { grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--source-min)), 1fr)); } }

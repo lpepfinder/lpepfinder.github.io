@@ -258,15 +258,12 @@
     "unknownTitle": "Disco {key}",
     "checking": "Controllo dei negozi… {done} / {total}",
     "checked": "Aggiornato.",
-    "backupTitle": "Backup e condivisione",
-    "backupIntro": "La tua lista esiste solo in questo browser. Esportala per tenerne una copia o condividila con un link.",
-    "export": "Esporta (JSON)",
-    "import": "Importa un file",
+    "backupTitle": "Condividi",
+    "backupIntro": "Condividi la tua lista con un link.",
     "imported": {
       "one": "1 disco aggiunto.",
       "other": "{count} dischi aggiunti."
     },
-    "importError": "Impossibile leggere questo file.",
     "share": "Copia il link di condivisione",
     "shareLabel": "Link di condivisione",
     "shareCopied": "Link copiato.",
@@ -392,7 +389,8 @@
     "collectionDone": {
       "one": "{user}: 1 disco nella tua collezione, segnato «Ce l’ho» nella ricerca.",
       "other": "{user}: {count} dischi nella tua collezione, segnati «Ce l’ho» nella ricerca."
-    }
+    },
+    "backupMove": "Spostare un profilo in un altro browser"
   },
   "navApp": "Principale",
   "navSite": "Esplora",
@@ -609,9 +607,20 @@
     "add": "Aggiungi un profilo",
     "addPlaceholder": "Negozio, regali, un amico…",
     "addButton": "Aggiungi",
-    "note": "Ogni profilo ha la sua lista, il suo account Discogs e la sua collezione, solo in questo browser. Chi usa questo browser può aprirli.",
+    "note": "Ogni profilo ha la sua lista, le sue liste Discogs, la sua radio e i suoi filtri, in questo browser. Un profilo resta locale finché non vi colleghi un account Bluesky. Cambiare profilo ricarica la pagina. Chiunque usi questo browser può aprirli.",
     "cancel": "Annulla",
-    "renameTitle": "Rinomina «{name}»"
+    "renameTitle": "Rinomina «{name}»",
+    "local": "Locale, in questo browser",
+    "account": "Bluesky · @{handle}",
+    "transferTitle": "Spostare un profilo",
+    "transferIntro": "Esporta il profilo in uso in un file, poi importalo in un altro browser: nessun account necessario. L’importazione aggiunge i suoi dischi al profilo in uso.",
+    "export": "Esporta questo profilo",
+    "import": "Importa un file",
+    "imported": {
+      "one": "1 disco aggiunto.",
+      "other": "{count} dischi aggiunti."
+    },
+    "importError": "Impossibile leggere questo file."
   },
   "radio": {
     "title": "Da una radio Radio4000",
@@ -642,7 +651,7 @@
     "placeholder": "tu.bsky.social",
     "signIn": "Accedi con Bluesky",
     "signOut": "Esci",
-    "note": "L’accesso crea un profilo per il tuo account e mantiene la sua lista uguale su tutti i tuoi dispositivi. Ciò che viene sincronizzato (i dischi seguiti qui e il tuo nome Discogs) è salvato nel tuo account Bluesky, dove è pubblico.",
+    "note": "Accedendo, il tuo account Bluesky si collega al profilo in uso (o apre il profilo a cui appartiene già): la sua lista è la stessa su tutti i tuoi dispositivi. Ciò che viene sincronizzato (i dischi che segui qui e il tuo nome Discogs) è salvato nel tuo account Bluesky, dove è pubblico. Senza accesso, tutto resta in questo browser.",
     "going": "Verso la pagina di accesso di Bluesky…",
     "error": "Impossibile accedere con {handle}. Controlla l’handle.",
     "signedIn": "Accesso come @{handle}",
@@ -650,7 +659,8 @@
     "sync": {
       "syncing": "sincronizzazione…",
       "synced": "sincronizzato",
-      "error": "non sincronizzato, nuovo tentativo"
+      "error": "non sincronizzato, nuovo tentativo",
+      "offline": "offline, le modifiche partiranno al ritorno della rete"
     },
     "publishTitle": "Liste pubbliche",
     "publishWants": "Pubblica la mia wantlist",
@@ -662,7 +672,11 @@
     "published": "Pubblicata. Si aggiorna da sola quando la tua lista cambia.",
     "unpublished": "Eliminata dal tuo account Bluesky.",
     "publishScope": "Il tuo accesso è precedente alla pubblicazione: esci e accedi di nuovo per permetterla.",
-    "publishError": "Impossibile raggiungere il tuo account Bluesky. Riprova tra un minuto."
+    "publishError": "Impossibile raggiungere il tuo account Bluesky. Riprova tra un minuto.",
+    "waiting": {
+      "one": "1 modifica in attesa",
+      "other": "{count} modifiche in attesa"
+    }
   },
   "sources": {
     "label": "Da dove vengono le tue liste",
