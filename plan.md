@@ -20,14 +20,14 @@ Site on Cloudflare Workers static assets, index on R2 (`data.lpepfinder.com`, ve
 
 ## Income without AdSense
 
-AdSense follows visitors across sites (savoir `income-without-tracking`); the owner wants it changed, or at least another income found. In order of effort:
+AdSense was removed on 2026-11-08 (savoir `income-without-tracking`: no tracking ad network); nothing replaces it yet. Ideas, in order of effort:
 
 1. Donations: a page and a footer link to Liberapay or Open Collective; free, and tells us whether the daily users care.
 2. A sponsor slot, sold directly to a record shop or a label: a static image and a link, kept as CMS content (see the CMS item), no script.
 3. Partner links where a shop runs a partner programme: a tagged link to the offer, paid per sale, no tracking on our pages.
 4. Paid extras for heavy collectors (alerts by email, exports): needs accounts and payments, last.
 
-Remove AdSense once one of these brings what it brings now; first write down what it earns per month. Meanwhile: check whether Google's consent message for Europe is on in AdSense (our code asks nothing), and keep it out of the watchlist.
+Also: remove the site from the AdSense account, so Google stops expecting `ads.txt`.
 
 ## One app-shell switch
 

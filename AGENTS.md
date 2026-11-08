@@ -2,8 +2,8 @@
 
 A free search engine for vinyl records in stock at independent record shops, rebuilt every day from the shops' public catalogs (https://lpepfinder.com). For people looking for a record, and for collectors who want to know when a shop has one of their wants.
 
-Objectives: find any record in stock at an independent shop in seconds, on a phone; match a collector's Discogs wantlist (10,000 records) against every shop every day; run with almost no running cost, paid for by discreet ads.
-Never: a marketplace or an aggregator of big resellers (no Bandcamp, eBay or Discogs marketplace as sources; importing a Discogs wantlist or collection is wanted); a tracker; a paid service for its users; a burden on small shops' servers.
+Objectives: find any record in stock at an independent shop in seconds, on a phone; match a collector's Discogs wantlist (10,000 records) against every shop every day; run with almost no running cost.
+Never: a marketplace or an aggregator of big resellers (no Bandcamp, eBay or Discogs marketplace as sources; importing a Discogs wantlist or collection is wanted); a tracker or a tracking ad network; a paid service for its users; a burden on small shops' servers.
 People: the casual searcher (one record, now), the digger (what's new and cheap, Dig), the collector (a big wantlist, the watchlist, publishing lists), the DJ (a Radio4000 radio's tracks matched to records), the shop owner (their shop page, how the bot reads them), robots and agents (llms.txt, JSON next to each page). Contact goes through GitHub issues only.
 
 Follows https://hwww.gitlab.io/savoir/agents.md (local: ~/src/hwww/savoir). Exceptions, on purpose:
@@ -11,7 +11,6 @@ Follows https://hwww.gitlab.io/savoir/agents.md (local: ~/src/hwww/savoir). Exce
 - bun-by-default: npm, because CI and the lockfile use it; nothing gained by switching.
 - testing-stack: `node:test` for the scripts, Playwright for the site, because the scripts are plain Node modules; Vitest would add a dependency, not coverage.
 - progressive-enhancement: search results need JavaScript, because the index is static files read in the browser (no server). Artist, shop and country pages are the paths that work without it.
-- income-without-tracking: Google AdSense, a tracking ad network, because it was the only income needing no extra infrastructure. Temporary, with `plan.md` saying how to replace it. Today it loads on the first interaction (or 4 s after load), with no consent step of our own, and shows in search results and the release sheet.
 - zero-running-cost: free today. Moving the index to Cloudflare R2 may cost a few euros a month; the owner accepted that ("I can pay") for a cleaner architecture.
 
 ## Commands
