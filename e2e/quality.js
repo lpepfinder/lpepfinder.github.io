@@ -26,7 +26,8 @@
  * creates (icons, MapLibre, Leaflet, editors: LIBRARY_ROOTS) are exempt from `classless`; add more with
  * `libraries: ['.widget-root']`.
  *
- * Don't edit a copy: improve it in savoir-faire and copy it again.
+ * Don't edit a copy: improve it in savoir-faire. Projects keep this file committed (tests stay offline
+ * and reviewable) and refresh it with `bun run gate:update`; CI's `gate:check` warns when it's behind.
  *
  * SPDX-License-Identifier: GPL-3.0-only (https://gitlab.com/hwww/savoir)
  */
