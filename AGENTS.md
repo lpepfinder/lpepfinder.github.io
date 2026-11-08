@@ -11,6 +11,7 @@ Follows https://hwww.gitlab.io/savoir/agents.md (local: ~/src/hwww/savoir). Exce
 - bun-by-default: npm, because CI and the lockfile use it; nothing gained by switching.
 - testing-stack: `node:test` for the scripts, Playwright for the site, because the scripts are plain Node modules; Vitest would add a dependency, not coverage.
 - progressive-enhancement: search results need JavaScript, because the index is static files read in the browser (no server). Artist, shop and country pages are the paths that work without it.
+- income-without-tracking: Google AdSense, a tracking ad network, because it was the only income needing no extra infrastructure. Temporary, with `plan.md` saying how to replace it. Today it loads on the first interaction (or 4 s after load), with no consent step of our own, and shows in search results and the release sheet.
 - zero-running-cost: free today. Moving the index to Cloudflare R2 may cost a few euros a month; the owner accepted that ("I can pay") for a cleaner architecture.
 
 ## Commands

@@ -18,6 +18,17 @@ About 130 shops answer 403 or 429 to the check. Look at who protects them (Cloud
 
 Site on Cloudflare Workers static assets, index on R2 (`data.lpepfinder.com`, versioned folders and a `current.json` pointer), uploading only changed files to stay free. Waits on the owner: R2 enabled, an API token as a GitHub secret, DNS approval. Practice: `cloudflare-free-plan`, `zero-running-cost`.
 
+## Income without AdSense
+
+AdSense follows visitors across sites (savoir `income-without-tracking`); the owner wants it changed, or at least another income found. In order of effort:
+
+1. Donations: a page and a footer link to Liberapay or Open Collective; free, and tells us whether the daily users care.
+2. A sponsor slot, sold directly to a record shop or a label: a static image and a link, kept as CMS content (see the CMS item), no script.
+3. Partner links where a shop runs a partner programme: a tagged link to the offer, paid per sale, no tracking on our pages.
+4. Paid extras for heavy collectors (alerts by email, exports): needs accounts and payments, last.
+
+Remove AdSense once one of these brings what it brings now; first write down what it earns per month. Meanwhile: check whether Google's consent message for Europe is on in AdSense (our code asks nothing), and keep it out of the watchlist.
+
 ## One app-shell switch
 
 The CSS switches layout at 40, 48, 64, 75, 90 and 110rem; the rail starts at 48rem. savoir's `app-shell` decides one switch at 64rem, and `intrinsic-layout` wants components laid out by container queries. Converge on 64rem, then move the other breakpoints into container queries, one component at a time.
