@@ -18,6 +18,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # is e2e/quality.js still savoir's latest gate? A warning, never a red pipeline (npm run gate:update adopts it)
+  gate:
+    runs-on: ubuntu-24.04
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+      - run: npm run gate:check
+
   # is the index bundle in the "data" release built by the code being deployed? (scripts/ci/index-key.js)
   check:
     runs-on: ubuntu-24.04

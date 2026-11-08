@@ -23,6 +23,8 @@
     "stats": "node scripts/stats/index.js",
     "rates": "node scripts/rates/index.js",
     "test:e2e": "playwright test",
+    "gate:update": "curl -fsSL https://hwww.gitlab.io/savoir/kit/quality.js -o e2e/quality.js",
+    "gate:check": "curl -fsSL https://hwww.gitlab.io/savoir/kit/quality.js | diff -q - e2e/quality.js",
     "verify": "npm run validate && npm test && astro build && playwright test",
     "health": "node scripts/health/index.js",
     "enrich": "node scripts/enrich/index.js",
