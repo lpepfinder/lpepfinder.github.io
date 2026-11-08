@@ -112,7 +112,9 @@ export async function qualityProblems(page, { touch = 24, skip = [], libraries =
 				const stretched = after && after.content !== 'none' && after.position === 'absolute';
 				let card = el.parentElement;
 				while (stretched && card && getComputedStyle(card).position === 'static') card = card.parentElement;
-				const box = ((stretched && card) || el).getBoundingClientRect();
+				// A checkbox or radio inside its <label> is toggled by tapping the label (a chip): the label is the target.
+				const label = el.matches('input[type=checkbox], input[type=radio]') ? el.closest('label') : null;
+				const box = ((stretched && card) || label || el).getBoundingClientRect();
 				// Not shown, or visually hidden until focused (a skip link): nothing to tap.
 				if (box.width <= 1 || box.height <= 1 || style.visibility === 'hidden') return;
 

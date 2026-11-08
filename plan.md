@@ -28,6 +28,7 @@ Shops (`data/shops/`), settings (`data/config.json`), translations (`data/i18n/`
 
 ## Smaller
 
+- The artists page is one 268 KB page of 3,000 links: heavy on a phone, and too slow for the quality gate. One page per letter (`/artists/a/`), with the letters on top; the old URL keeps the letters (ask before changing URLs).
 - No page max-width (`radical-mobile-first`): `main` stops at 120rem (`--width-wide`); only running text needs a measure.
 - Artist pages exist in English only; their strings and the profile are translated, the routes aren't (`no-half-translation`).
 - Shop and record profiles from open data, like artists (OpenStreetMap opening hours and place, Bluesky profile).
