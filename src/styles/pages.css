@@ -92,7 +92,6 @@ vf-settings nav ul { grid-template-columns: repeat(auto-fill, minmax(var(--lang-
 vf-settings nav li + li { border-block-start: 0; }
 vf-settings > p { color: var(--c-muted); font-size: var(--size-s); }
 /* phones: the More tab has all of the footer; only the browse links stay at the end of pages */
-@media (max-width: 64rem) { vf-app > footer > :not(nav:first-child) { display: none; } }
 
 /* <vf-near>: the viewer's country above the A–Z list of countries */
 vf-near { display: grid; gap: var(--space-1); }

@@ -16,10 +16,12 @@ test('sources: a wantlist that changed on Discogs offers Resync, which brings it
     return route.fulfill({ json: body });
   });
   await page.goto('/me/');
-  const start = page.locator('vf-watch-start vf-watch-import');
+  await page.locator('vf-source[kind="wants"] button[name="connect"]').click();
+  const start = page.locator('vf-sheet[name="discogs"] vf-watch-import');
   await start.locator('input[name="user"]').fill(USER);
   await start.locator('button[type="submit"]').click();
   await expect(start).toHaveAttribute('status', 'done');
+  await page.keyboard.press('Escape');
 
   const row = page.locator('vf-watch-sources vf-source[kind="wants"]');
   await expect(row).toHaveAttribute('state', 'current');
@@ -59,10 +61,12 @@ test('sources: a radio read once shows its tracks, and offers Resync when tracks
   // a watchlist to start from
   await page.route('https://api.discogs.com/**', (route) => route.fulfill({ json: discogsPage(wants) }));
   await page.goto('/me/');
-  const start = page.locator('vf-watch-start vf-watch-import');
+  await page.locator('vf-source[kind="wants"] button[name="connect"]').click();
+  const start = page.locator('vf-sheet[name="discogs"] vf-watch-import');
   await start.locator('input[name="user"]').fill(USER);
   await start.locator('button[type="submit"]').click();
   await expect(start).toHaveAttribute('status', 'done');
+  await page.keyboard.press('Escape');
 
   // the radio never read, but known to have tracks (as for a signed-in DJ): offered
   await page.evaluate(([handle, uri]) => {
@@ -76,8 +80,8 @@ test('sources: a radio read once shows its tracks, and offers Resync when tracks
   await expect(row).toContainText(en.sources.radioNew);
 
   await row.locator('button[name="resync"]').click();
-  await expect(page.locator('vf-sheet[name="discogs"]')).toHaveAttribute('open', '');
-  await expect(page.locator('vf-sheet[name="discogs"] vf-radio-import')).toHaveAttribute('status', /done|review/, { timeout: 30_000 });
+  await expect(page.locator('vf-sheet[name="radio"]')).toHaveAttribute('open', '');
+  await expect(page.locator('vf-sheet[name="radio"] vf-radio-import')).toHaveAttribute('status', /done|review/, { timeout: 30_000 });
   await expect(row).toHaveAttribute('state', 'current');
   await expect(row).toContainText(en.sources.tracks.other.replace('{count}', '2'));
 

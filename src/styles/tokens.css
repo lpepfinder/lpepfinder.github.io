@@ -44,6 +44,7 @@
   --field-min: 10rem;
   --avatar: 4rem;
   --avatar-wide: 6rem;
+  --avatar-me: 3.5rem;    /* the profile picture at the top of /me/ */
   --feed-avatar: 2.5rem;
   --cover-row: 2.5rem;
   --cover-detail: 7.5rem;

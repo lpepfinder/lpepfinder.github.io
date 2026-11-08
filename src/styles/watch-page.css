@@ -106,7 +106,12 @@ vf-watch-page > vf-watch-head hgroup { display: grid; gap: var(--space-1); min-i
 vf-watch-page > vf-watch-head h2 { margin: 0; font-size: var(--size-2); }
 /* /me/: the profile in use and its account, then its lists, then the watchlist */
 vf-me-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-4); margin-block-end: var(--space-4); }
-vf-me-head hgroup { display: grid; gap: var(--space-1); min-inline-size: 0; }
+vf-me-head hgroup { display: grid; gap: var(--space-1); min-inline-size: 0; flex: 1; }
+/* the profile's picture: the account's avatar, else its initial */
+vf-avatar { flex: none; display: grid; place-items: center; inline-size: var(--avatar-me); block-size: var(--avatar-me); border-radius: 50%; overflow: hidden; background: var(--c-chip); color: var(--c-muted); font-size: var(--size-2); font-weight: var(--weight-bold); }
+vf-avatar > img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+/* a list not connected yet: what it brings, in the muted color, and its action */
+vf-source[state="none"] > strong { font-weight: var(--weight-semi); }
 vf-me-head h1 { margin: 0; overflow-wrap: anywhere; }
 vf-me-head p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
 vf-me-head:is([state="offline"], [state="error"]) p { color: var(--c-watching); }
@@ -120,7 +125,7 @@ vf-watch-page > vf-watch-head menu button > span { min-inline-size: 0; overflow:
 vf-watch-page > vf-watch-head menu button { font-size: var(--size-s); }
 
 /* where the lists come from: one row per source, with Resync when Discogs changed or the list is old */
-vf-watch-sources[hidden], vf-watch-page[empty] > vf-watch-sources { display: none; }
+vf-watch-sources[hidden] { display: none; }
 vf-watch-sources > ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); }
 vf-source { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "icon name action" "icon note action"; align-items: center; column-gap: var(--space-3); min-block-size: var(--row-h); padding: var(--space-2) var(--space-3); border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); font-size: var(--size-s); }
 vf-source > vf-icon { grid-area: icon; color: var(--c-muted); }
@@ -136,16 +141,8 @@ vf-source[state="syncing"] > small { color: var(--c-muted); font-style: italic; 
 
 /* empty list: the start screen alone, with the import form */
 vf-watch-start, vf-watch-start > *, vf-watch-import, vf-watch-import > * { min-inline-size: 0; }
-vf-watch-start { display: grid; gap: var(--space-3); max-inline-size: var(--measure); padding: var(--space-6) var(--space-4); border-radius: var(--radius); background: var(--c-chip); }
-vf-watch-start h2 { font-size: var(--size-2); }
-/* the other ways in: rows like the More tab's (icon, label, chevron) */
-vf-watch-start > ul { list-style: none; margin: 0; padding: 0; display: grid; border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); }
-vf-watch-start > ul li + li { border-block-start: var(--line) solid var(--c-line); }
-vf-watch-start > ul :is(a, button) { display: flex; align-items: center; gap: var(--space-3); inline-size: 100%; min-block-size: var(--row-h); padding-inline: var(--space-4); background: none; box-shadow: none; border-radius: 0; color: inherit; font: inherit; font-weight: normal; text-align: start; justify-content: start; text-decoration: none; }
-vf-watch-start > ul :is(a, button):hover { background: var(--c-hover); }
-vf-watch-start > ul vf-icon { color: var(--c-muted); }
-vf-watch-start > ul span { flex: 1; }
-vf-watch-start > ul :is(a, button)::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--c-muted); mask: var(--icon-next) center / contain no-repeat; }
+vf-watch-start { display: block; max-inline-size: var(--measure); color: var(--c-muted); }
+vf-watch-start p { margin: 0; }
 vf-watch-page:not([empty]) > vf-watch-start, vf-watch-page[empty] > :is(nav, vf-watch-filters, vf-watch-available, vf-watch-now, vf-watch-changes, vf-watch-all), vf-watch-page[empty] > vf-watch-head :is(menu, vf-watch-summary) { display: none; }
 
 /* the import form (start screen and Discogs sheet) */

@@ -9,7 +9,8 @@ const icon = (name) => attrs(el('vf-icon'), { name });
 
 /**
  * <vf-watch-sources>: where the lists come from and whether they are up to date, one <vf-source> each:
- *   <vf-source kind="wants|collection|radio|bluesky" state="current|changed|old|new|syncing|error">
+ *   <vf-source kind="wants|collection|radio|bluesky" state="none|current|changed|old|new|syncing|offline|error">
+ * Every list shows, connected or not: one not connected yet (state="none") says what it brings, with Connect.
  * Discogs lists show their count, when they were read and what changed on Discogs since (checked at most daily,
  * sources.js), with Resync when they changed or are old; a Radio4000 radio (the signed-in account's own, or the
  * last one read) offers to find records when it has tracks not read yet; the Bluesky account shows its last sync.
@@ -25,6 +26,8 @@ export class VfWatchSources extends HTMLElement {
     this.sync = syncState();
     listen(this, window, SYNC_EVENT, (e) => { this.sync = e.detail; this.render(); });
     this.list.addEventListener('click', (e) => {
+      const connect = e.target.closest('button[name="connect"]');
+      if (connect) return this.connect(connect.value);
       const button = e.target.closest('button[name="resync"]');
       if (button?.value === 'radio') this.readRadio();
       else if (button) this.resync(button.value);
@@ -45,18 +48,17 @@ export class VfWatchSources extends HTMLElement {
 
   render() {
     const s = sources();
-    const rows = ['wants', 'collection'].map((kind) => this.discogsRow(kind, s)).filter(Boolean);
-    const radio = this.radioRow(s);
-    if (radio) rows.push(radio);
+    // every list the profile can have, connected or not: a list not connected yet says what it brings, with its action
+    const rows = [this.discogsRow('wants', s), this.discogsRow('collection', s), this.radioRow(s)];
     const account = currentAccount();
-    if (account) rows.push(this.blueskyRow(account, s));
+    rows.push(account ? this.blueskyRow(account, s) : this.signInRow());
     this.list.replaceChildren(...rows.map((row) => el('li', {}, row)));
-    this.hidden = !rows.length;
+    this.hidden = false;
   }
 
   discogsRow(kind, s) {
     const f = freshness(kind, s);
-    if (!f) return null;
+    if (!f) return this.none(kind, kind === 'wants' ? 'star' : 'shelf', t(`sources.${kind}None`), t(`sources.${kind}Hint`), t(kind === 'wants' ? 'sources.connect' : 'sources.import'));
     // what matters first: what changed on Discogs, or that it is up to date
     const notes = [
       f.state === 'changed' ? tn(f.diff > 0 ? 'sources.more' : 'sources.fewer', Math.abs(f.diff)) : f.state === 'current' ? t('sources.current') : null,
@@ -69,7 +71,7 @@ export class VfWatchSources extends HTMLElement {
   /** The radio: offered when it has tracks never read (a signed-in DJ's own), resync when tracks were added. */
   radioRow(s) {
     const f = radioFreshness(s);
-    if (!f) return null;
+    if (!f) return this.none('radio', 'play', t('radio.title'), t('sources.radioHint'), t('sources.connect'));
     const notes = f.state === 'new' ? [t('sources.radioNew')]
       : [f.state === 'changed' ? t('sources.radioAdded') : t('sources.current'), f.n == null ? null : tn('sources.tracks', f.n), t('sources.read', { ago: formatAgo(f.at) })];
     const action = f.state === 'current' ? null
@@ -80,7 +82,7 @@ export class VfWatchSources extends HTMLElement {
   /** The radio's reading in the sheet, with its matches to review. */
   readRadio() {
     const page = this.closest('vf-watch-page') || document;
-    const sheet = page.querySelector('vf-sheet[name="discogs"]');
+    const sheet = page.querySelector('vf-sheet[name="radio"]');
     const importer = sheet?.querySelector('vf-radio-import');
     if (!importer) return;
     sheet.open();
@@ -102,6 +104,26 @@ export class VfWatchSources extends HTMLElement {
       ? attrs(el('a', { href: `${this.getAttribute('user-page') || '/u/'}?h=${encodeURIComponent(account.handle)}` }, icon('person'), t('sources.publicPage')), { kind: 'secondary' })
       : null;
     return this.row('bluesky', state, 'bluesky', t('sources.bluesky', { handle: account.handle }), notes, page);
+  }
+
+  /** A list not connected yet: what it brings, and the button that connects it. */
+  none(kind, name, label, hint, action) {
+    return this.row(kind, 'none', name, label, [hint], attrs(el('button', { type: 'button', name: 'connect', value: kind }, icon('plus'), action), { kind: 'secondary' }));
+  }
+
+  /** No Bluesky account on this profile: lists stay in this browser; signing in (Settings) keeps them everywhere. */
+  signInRow() {
+    const link = attrs(el('a', { href: `${this.getAttribute('settings') || '/settings/'}#account` }, icon('bluesky'), t('account.signInShort')), { kind: 'secondary' });
+    return this.row('bluesky', 'none', 'bluesky', t('sources.blueskyNone'), [t('sources.blueskyHint')], link);
+  }
+
+  /** Connect a list: the Discogs sheet (the collection is read at once when the username is known), or the radio's. */
+  connect(kind) {
+    const page = this.closest('vf-watch-page') || document;
+    if (kind === 'collection' && sources().discogs?.user) return this.resync('collection');
+    const sheet = page.querySelector(`vf-sheet[name="${kind === 'radio' ? 'radio' : 'discogs'}"]`);
+    sheet?.open();
+    sheet?.querySelector('input:not([type="file"])')?.focus();
   }
 
   row(kind, state, name, label, notes, action) {

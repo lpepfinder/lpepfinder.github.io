@@ -344,9 +344,6 @@
     "csvError": "DiscogsのCSVエクスポートではありません（ArtistとTitleの列が必要です）。",
     "newSection": "前回の訪問以降の新着",
     "restSection": "在庫あり",
-    "startTitle": "Discogsのウォントリストを持ち込む",
-    "discogsButton": "Discogsから読み込む",
-    "discogsSynced": "Discogs · {user}",
     "loadingCopies": "在庫を読み込み中…",
     "copiesMissing": "今日の検索インデックスにこのレコードの在庫はありません。検索してショップの今の在庫を確認してください。",
     "searchIt": "検索する",
@@ -366,9 +363,7 @@
     "collectionDone": {
       "other": "{user}：コレクション{count}件。検索で「所有」と表示します。"
     },
-    "backupMove": "プロフィールを別のブラウザに移す",
-    "startOther": "ほかの始め方",
-    "startSearch": "検索からレコードをウォッチ（☆）"
+    "backupMove": "プロフィールを別のブラウザに移す"
   },
   "navApp": "メイン",
   "navSite": "探す",
@@ -640,7 +635,8 @@
     "waiting": {
       "other": "{count}件の変更が送信待ち"
     },
-    "signedOutShort": "未サインイン"
+    "signedOutShort": "未サインイン",
+    "signInShort": "サインイン"
   },
   "sources": {
     "label": "リストの取得元",
@@ -666,7 +662,16 @@
       "other": "Discogs で {count} 件減少"
     },
     "resync": "再同期",
-    "publicPage": "公開ページ"
+    "publicPage": "公開ページ",
+    "wantsNone": "Discogsのウォントリスト",
+    "wantsHint": "ほしいレコードの在庫を確認",
+    "collectionNone": "Discogsのコレクション",
+    "collectionHint": "持っているレコードに印を付ける",
+    "radioHint": "ラジオの曲を在庫のレコードと照合",
+    "blueskyNone": "Bluesky",
+    "blueskyHint": "サインインすると、すべての端末で同じリストを使えます",
+    "connect": "接続",
+    "import": "読み込む"
   },
   "profile": {
     "type": {
@@ -753,6 +758,8 @@
   "settingsBrowser": "このブラウザ",
   "me": {
     "profiles": "プロフィール",
-    "lists": "あなたのリスト"
+    "lists": "あなたのリスト",
+    "empty": "まだ何もウォッチしていません。上のリストを接続するか、",
+    "emptySearch": "検索からレコードをウォッチ（☆）できます。"
   }
 }

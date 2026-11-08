@@ -365,9 +365,6 @@
     "csvError": "Ce n’est pas un export CSV de Discogs (il faut des colonnes Artist et Title).",
     "newSection": "Nouveaux depuis votre dernière visite",
     "restSection": "En stock",
-    "startTitle": "Apportez votre wantlist Discogs",
-    "discogsButton": "Importer de Discogs",
-    "discogsSynced": "Discogs · {user}",
     "loadingCopies": "Chargement des exemplaires…",
     "copiesMissing": "Ses exemplaires ne sont pas dans l’index de recherche du jour. Cherchez-le pour voir ce que les boutiques ont maintenant.",
     "searchIt": "Le chercher",
@@ -389,9 +386,7 @@
       "one": "{user} : 1 disque dans votre collection, marqué « À moi » dans la recherche.",
       "other": "{user} : {count} disques dans votre collection, marqués « À moi » dans la recherche."
     },
-    "backupMove": "Déplacer un profil vers un autre navigateur",
-    "startOther": "Autres façons de commencer",
-    "startSearch": "Suivre des disques depuis la recherche (☆)"
+    "backupMove": "Déplacer un profil vers un autre navigateur"
   },
   "navApp": "Principal",
   "navSite": "Explorer",
@@ -678,7 +673,8 @@
       "one": "1 changement en attente",
       "other": "{count} changements en attente"
     },
-    "signedOutShort": "Non connecté"
+    "signedOutShort": "Non connecté",
+    "signInShort": "Se connecter"
   },
   "sources": {
     "label": "D’où viennent vos listes",
@@ -708,7 +704,16 @@
       "other": "{count} de moins sur Discogs"
     },
     "resync": "Resynchroniser",
-    "publicPage": "Page publique"
+    "publicPage": "Page publique",
+    "wantsNone": "Liste de souhaits Discogs",
+    "wantsHint": "Voyez lesquels de vos souhaits sont en stock",
+    "collectionNone": "Collection Discogs",
+    "collectionHint": "Marquez les disques que vous avez déjà",
+    "radioHint": "Trouvez des disques pour les morceaux de votre radio",
+    "blueskyNone": "Bluesky",
+    "blueskyHint": "Connectez-vous pour retrouver vos listes sur tous vos appareils",
+    "connect": "Connecter",
+    "import": "Importer"
   },
   "profile": {
     "type": {
@@ -801,6 +806,8 @@
   "settingsBrowser": "Ce navigateur",
   "me": {
     "profiles": "Profils",
-    "lists": "Vos listes"
+    "lists": "Vos listes",
+    "empty": "Rien de suivi pour l’instant. Connectez une liste ci-dessus, ou",
+    "emptySearch": "suivez des disques depuis la recherche (☆)."
   }
 }

@@ -15,10 +15,12 @@ test('watchlist: Discogs import, copies of a record, max price, Bought and Undo'
   const watch = page.locator('vf-watch-page');
   await expect(watch).toHaveAttribute('empty');
 
-  const start = page.locator('vf-watch-start vf-watch-import');
+  await page.locator('vf-source[kind="wants"] button[name="connect"]').click();
+  const start = page.locator('vf-sheet[name="discogs"] vf-watch-import');
   await start.locator('input[name="user"]').fill(USER);
   await start.locator('button[type="submit"]').click();
   await expect(start).toHaveAttribute('status', 'done');
+  await page.keyboard.press('Escape');
   await expect(watch).not.toHaveAttribute('empty');
   await expect(watch).toHaveAttribute('status', 'done');
 

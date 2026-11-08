@@ -1,5 +1,4 @@
 import { load, update, today } from '../lib/watch/store.js';
-import { scoped } from '../lib/watch/profiles.js';
 import { due, check } from '../lib/watch/check.js';
 import { state } from '../lib/watch/diff.js';
 import * as data from '../lib/watch/data.js';
@@ -56,17 +55,6 @@ export class VfWatchPage extends HTMLElement {
     this.limit = config.pageSize;
     this.pane = new WatchShopPane(this.views.now, this);
     this.record = new WatchRecordPane(this.views.available, this);
-    this.discogsButton = this.querySelector('button[name="discogs"]');
-    this.discogsButton.addEventListener('click', () => this.querySelector('vf-sheet[name="discogs"]').open());
-    // the start screen's radio row: the import sheet, at the radio's field
-    this.querySelector('vf-watch-start button[name="radio"]')?.addEventListener('click', () => {
-      this.querySelector('vf-sheet[name="discogs"]').open();
-      const field = this.querySelector('vf-sheet[name="discogs"] vf-radio-import input[name="handle"]');
-      field?.scrollIntoView({ block: 'center' });
-      field?.focus();
-    });
-    listen(this, window, 'vf-watch-imported', () => this.labelDiscogs());
-    this.labelDiscogs();
     this.currencyButton = this.querySelector('button[name="currency"]');
     this.currencyButton.addEventListener('click', () => this.querySelector('vf-sheet[name="currency"]').open());
     this.labelCurrency();
@@ -270,13 +258,6 @@ export class VfWatchPage extends HTMLElement {
       data.value = n ?? '';
       data.textContent = n ? formatNumber(n) : '';
     }
-  }
-
-  /** The Discogs button: "Discogs · username" once a wantlist was imported. */
-  labelDiscogs() {
-    let user = '';
-    try { user = localStorage.getItem(scoped('vf.discogs.user')) || ''; } catch {}
-    this.discogsButton.querySelector('span').textContent = user ? t('watchPage.discogsSynced', { user }) : t('watchPage.discogsButton');
   }
 
   /** "412 of 10,214 in stock at 96 shops · 7 new". */

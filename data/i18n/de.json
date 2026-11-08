@@ -365,9 +365,6 @@
     "csvError": "Das ist kein CSV-Export von Discogs (es braucht die Spalten Artist und Title).",
     "newSection": "Neu seit deinem letzten Besuch",
     "restSection": "Auf Lager",
-    "startTitle": "Bring deine Discogs-Wantlist mit",
-    "discogsButton": "Von Discogs importieren",
-    "discogsSynced": "Discogs · {user}",
     "loadingCopies": "Exemplare werden geladen…",
     "copiesMissing": "Ihre Exemplare sind nicht im heutigen Suchindex. Such danach, um zu sehen, was die Shops jetzt haben.",
     "searchIt": "Danach suchen",
@@ -389,9 +386,7 @@
       "one": "{user}: 1 Platte in deiner Sammlung, in der Suche als „Hab ich“ markiert.",
       "other": "{user}: {count} Platten in deiner Sammlung, in der Suche als „Hab ich“ markiert."
     },
-    "backupMove": "Ein Profil in einen anderen Browser umziehen",
-    "startOther": "Andere Wege",
-    "startSearch": "Platten aus der Suche beobachten (☆)"
+    "backupMove": "Ein Profil in einen anderen Browser umziehen"
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",
@@ -678,7 +673,8 @@
       "one": "1 Änderung wartet",
       "other": "{count} Änderungen warten"
     },
-    "signedOutShort": "Nicht angemeldet"
+    "signedOutShort": "Nicht angemeldet",
+    "signInShort": "Anmelden"
   },
   "sources": {
     "label": "Woher deine Listen kommen",
@@ -708,7 +704,16 @@
       "other": "{count} weniger auf Discogs"
     },
     "resync": "Neu abgleichen",
-    "publicPage": "Öffentliche Seite"
+    "publicPage": "Öffentliche Seite",
+    "wantsNone": "Discogs-Wantlist",
+    "wantsHint": "Sieh, welche deiner Wünsche vorrätig sind",
+    "collectionNone": "Discogs-Sammlung",
+    "collectionHint": "Markiere die Platten, die du schon hast",
+    "radioHint": "Finde Platten zu den Tracks deines Radios",
+    "blueskyNone": "Bluesky",
+    "blueskyHint": "Melde dich an, um deine Listen auf allen Geräten zu haben",
+    "connect": "Verbinden",
+    "import": "Importieren"
   },
   "profile": {
     "type": {
@@ -801,6 +806,8 @@
   "settingsBrowser": "Dieser Browser",
   "me": {
     "profiles": "Profile",
-    "lists": "Deine Listen"
+    "lists": "Deine Listen",
+    "empty": "Noch nichts beobachtet. Verbinde oben eine Liste oder",
+    "emptySearch": "beobachte Platten aus der Suche (☆)."
   }
 }

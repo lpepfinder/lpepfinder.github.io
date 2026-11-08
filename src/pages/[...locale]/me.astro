@@ -27,6 +27,7 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
     <button type="button" name="add-shared" kind="secondary">{t(lang, 'watchPage.sharedAdd')}</button>
   </vf-watch-shared>
   <vf-me-head>
+    <vf-avatar aria-hidden="true"><span>M</span></vf-avatar>
     <hgroup>
       <h1>{t(lang, 'profiles.default')}</h1>
       <p>{t(lang, 'profiles.local')}</p>
@@ -34,7 +35,7 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
     <a href={localPath(lang, '/settings/') + '#profiles'} kind="secondary"><vf-icon name="person"></vf-icon><span>{t(lang, 'me.profiles')}</span></a>
   </vf-me-head>
   <vf-watch-page status="idle" view="available" search={localPath(lang, '/')} empty>
-    <vf-watch-sources user-page={localPath(lang, '/u/')} hidden>
+    <vf-watch-sources user-page={localPath(lang, '/u/')} settings={localPath(lang, '/settings/')}>
       <h2 id="my-lists">{t(lang, 'me.lists')}</h2>
       <ul aria-labelledby="my-lists"></ul>
     </vf-watch-sources>
@@ -44,27 +45,21 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
         <vf-watch-summary></vf-watch-summary>
       </hgroup>
       <menu>
-        <li><button type="button" name="discogs" kind="secondary"><vf-icon name="download"></vf-icon><span>{t(lang, 'watchPage.discogsButton')}</span></button></li>
         <li><button type="button" name="currency" kind="secondary"><vf-icon name="coin"></vf-icon><span>{t(lang, 'currency.label')}</span></button></li>
       </menu>
     </vf-watch-head>
+    <!-- nothing watched yet: the lists above connect one; any record of the search can be watched too -->
     <vf-watch-start>
-      <h2>{t(lang, 'watchPage.startTitle')}</h2>
-      <p>{t(lang, 'watchPage.discogsIntro')}</p>
-      <WatchImport lang={lang} id="start" />
-      <!-- the other ways in, as rows (savoir app-shell): the radio opens the import sheet, the search is a link -->
-      <h3>{t(lang, 'watchPage.startOther')}</h3>
-      <ul>
-        <li><button type="button" name="radio"><vf-icon name="play"></vf-icon><span>{t(lang, 'radio.title')}</span></button></li>
-        <li><a href={localPath(lang, '/')}><vf-icon name="star"></vf-icon><span>{t(lang, 'watchPage.startSearch')}</span></a></li>
-      </ul>
+      <p>{t(lang, 'me.empty')} <a href={localPath(lang, '/')}>{t(lang, 'me.emptySearch')}</a></p>
     </vf-watch-start>
     <Sheet lang={lang} name="discogs" mode="bottom" title={t(lang, 'watchPage.discogsTitle')}>
       <vf-sheet-body>
+        <p>{t(lang, 'watchPage.discogsIntro')}</p>
         <WatchImport lang={lang} id="sheet" />
-        <h3>{t(lang, 'radio.title')}</h3>
-        <RadioImport lang={lang} id="sheet" />
       </vf-sheet-body>
+    </Sheet>
+    <Sheet lang={lang} name="radio" mode="bottom" title={t(lang, 'radio.title')}>
+      <vf-sheet-body><RadioImport lang={lang} id="sheet" /></vf-sheet-body>
     </Sheet>
     <Sheet lang={lang} name="currency" mode="bottom" title={t(lang, 'currency.label')}>
       <vf-sheet-body><CurrencySelect lang={lang} id="currency-watch" /></vf-sheet-body>

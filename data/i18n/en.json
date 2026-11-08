@@ -365,9 +365,6 @@
     "csvError": "This isn't a Discogs CSV export (it needs Artist and Title columns).",
     "newSection": "New since your last visit",
     "restSection": "In stock",
-    "startTitle": "Bring your Discogs wantlist",
-    "discogsButton": "Import from Discogs",
-    "discogsSynced": "Discogs · {user}",
     "loadingCopies": "Loading the copies…",
     "copiesMissing": "Its copies aren't in today's search index. Search for it to see what shops have now.",
     "searchIt": "Search for it",
@@ -389,9 +386,7 @@
       "one": "{user}: 1 record in your collection, marked Owned in search.",
       "other": "{user}: {count} records in your collection, marked Owned in search."
     },
-    "backupMove": "Move a profile to another browser",
-    "startOther": "Other ways to start",
-    "startSearch": "Watch records from the search (☆)"
+    "backupMove": "Move a profile to another browser"
   },
   "navApp": "Main",
   "navSite": "Explore",
@@ -678,7 +673,8 @@
       "one": "1 change waiting",
       "other": "{count} changes waiting"
     },
-    "signedOutShort": "Not signed in"
+    "signedOutShort": "Not signed in",
+    "signInShort": "Sign in"
   },
   "sources": {
     "label": "Where your lists come from",
@@ -708,7 +704,16 @@
       "other": "{count} fewer on Discogs"
     },
     "resync": "Resync",
-    "publicPage": "Public page"
+    "publicPage": "Public page",
+    "wantsNone": "Discogs wantlist",
+    "wantsHint": "See which of your wants are in stock",
+    "collectionNone": "Discogs collection",
+    "collectionHint": "Mark the records you already own",
+    "radioHint": "Match your radio’s tracks to records in stock",
+    "blueskyNone": "Bluesky",
+    "blueskyHint": "Sign in to keep your lists on all your devices",
+    "connect": "Connect",
+    "import": "Import"
   },
   "profile": {
     "type": {
@@ -801,6 +806,8 @@
   "settingsBrowser": "This browser",
   "me": {
     "profiles": "Profiles",
-    "lists": "Your lists"
+    "lists": "Your lists",
+    "empty": "Nothing watched yet. Connect a list above, or",
+    "emptySearch": "watch records from the search (☆)."
   }
 }

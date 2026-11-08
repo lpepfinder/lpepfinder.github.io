@@ -365,9 +365,6 @@
     "csvError": "Esto no es una exportación CSV de Discogs (necesita las columnas Artist y Title).",
     "newSection": "Nuevos desde tu última visita",
     "restSection": "En stock",
-    "startTitle": "Trae tu wantlist de Discogs",
-    "discogsButton": "Importar de Discogs",
-    "discogsSynced": "Discogs · {user}",
     "loadingCopies": "Cargando las copias…",
     "copiesMissing": "Sus copias no están en el índice de búsqueda de hoy. Búscalo para ver qué tienen las tiendas ahora.",
     "searchIt": "Buscarlo",
@@ -389,9 +386,7 @@
       "one": "{user}: 1 disco en tu colección, marcado «Lo tengo» en la búsqueda.",
       "other": "{user}: {count} discos en tu colección, marcados «Lo tengo» en la búsqueda."
     },
-    "backupMove": "Mover un perfil a otro navegador",
-    "startOther": "Otras formas de empezar",
-    "startSearch": "Seguir discos desde la búsqueda (☆)"
+    "backupMove": "Mover un perfil a otro navegador"
   },
   "navApp": "Principal",
   "navSite": "Explorar",
@@ -678,7 +673,8 @@
       "one": "1 cambio pendiente",
       "other": "{count} cambios pendientes"
     },
-    "signedOutShort": "Sin iniciar sesión"
+    "signedOutShort": "Sin iniciar sesión",
+    "signInShort": "Iniciar sesión"
   },
   "sources": {
     "label": "De dónde vienen tus listas",
@@ -708,7 +704,16 @@
       "other": "{count} menos en Discogs"
     },
     "resync": "Resincronizar",
-    "publicPage": "Página pública"
+    "publicPage": "Página pública",
+    "wantsNone": "Lista de deseos de Discogs",
+    "wantsHint": "Mira cuáles de tus deseos están en stock",
+    "collectionNone": "Colección de Discogs",
+    "collectionHint": "Marca los discos que ya tienes",
+    "radioHint": "Encuentra discos para las pistas de tu radio",
+    "blueskyNone": "Bluesky",
+    "blueskyHint": "Inicia sesión para tener tus listas en todos tus dispositivos",
+    "connect": "Conectar",
+    "import": "Importar"
   },
   "profile": {
     "type": {
@@ -801,6 +806,8 @@
   "settingsBrowser": "Este navegador",
   "me": {
     "profiles": "Perfiles",
-    "lists": "Tus listas"
+    "lists": "Tus listas",
+    "empty": "Aún no sigues nada. Conecta una lista arriba, o",
+    "emptySearch": "sigue discos desde la búsqueda (☆)."
   }
 }
