@@ -71,7 +71,7 @@
   --breadcrumb-separator: "›";
   --count-separator: "· ";
   --star-mark: 0.75rem;
-  --chip-h: 2.25rem;
+  --chip-h: var(--tap);
   --hero-w: 44rem;
   --hero-input-h: 3.5rem;
   --home-col: 22rem;
