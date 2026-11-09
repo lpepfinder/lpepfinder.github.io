@@ -105,15 +105,6 @@ const groups = [
           </vf-profiles>
         </vf-sheet-body>
       </Sheet>
-      <Sheet lang={lang} name="language" mode="bottom" title={t(lang, 'navLanguage')}>
-        <vf-sheet-body>
-          <nav aria-label={t(lang, 'navLanguage')}>
-            <ul>{languages.map((l) => (
-              <li><a href={localPath(l, '/settings/')} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{t(l, 'langName')}</a></li>
-            ))}</ul>
-          </nav>
-        </vf-sheet-body>
-      </Sheet>
       <Sheet lang={lang} name="currency" mode="bottom" title={t(lang, 'currency.label')}>
         <vf-sheet-body><CurrencySelect lang={lang} id="currency-more" /></vf-sheet-body>
       </Sheet>

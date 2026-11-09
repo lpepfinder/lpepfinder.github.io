@@ -55,6 +55,8 @@ vf-tabbar a[aria-current="page"] { color: var(--c-accent); }
 vf-tabbar :is(vf-icon, vf-logo) { --icon-size: 1.5rem; }
 vf-tabbar vf-logo svg { inline-size: var(--icon-size); block-size: var(--icon-size); }
 vf-tabbar :is(vf-watch-count, vf-sync-count) { position: absolute; inset-block-start: var(--space-1); inset-inline-start: calc(50% + 0.5rem); }
+/* the language: at the foot of the side rail; on phones it is in Settings */
+header > button[name="language"] { display: none; }
 /* room for the fixed tab bar */
 vf-app { padding-block-end: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
 
@@ -116,6 +118,13 @@ vf-icon[name="play"] { --icon: var(--icon-play); }
   vf-tabbar a { min-block-size: var(--rail-item-h); border-radius: var(--radius); }
   vf-tabbar a:hover { background: var(--c-hover); }
   vf-tabbar a[aria-current="page"] { background: var(--c-chip); }
+  header > button[name="language"] {
+    position: fixed; inset-block-end: var(--space-3); inset-inline-start: var(--space-2); z-index: 3; inline-size: calc(var(--rail-w) - 2 * var(--space-2));
+    display: grid; justify-items: center; gap: 2px; min-block-size: var(--rail-item-h); padding: 0 var(--space-1);
+    color: var(--c-muted); font-size: var(--size-xs); font-weight: var(--weight-semi);
+  }
+  header > button[name="language"] > span { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  header > button[name="language"]:hover { color: var(--c-fg); background: var(--c-hover); }
 }
 /* wide screens: a sidebar with the brand at the top and each tab's name beside its icon */
 @media (min-width: 75rem) {
@@ -131,4 +140,5 @@ vf-icon[name="play"] { --icon: var(--icon-play); }
   vf-tabbar :is(vf-icon, vf-logo) { --icon-size: var(--icon-size-nav); }
   vf-tabbar vf-watch-count { position: static; }
   vf-tabbar vf-sync-count { position: static; }
+  header > button[name="language"] { inset-inline-start: var(--space-3); inline-size: calc(var(--rail-w) - 2 * var(--space-3)); grid-auto-flow: column; justify-content: start; gap: var(--space-3); min-block-size: var(--tap); padding-inline: var(--space-3); font-size: var(--size-0); font-weight: normal; }
 }

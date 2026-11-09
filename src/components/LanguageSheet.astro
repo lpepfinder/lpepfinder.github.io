@@ -1,0 +1,41 @@
+---
+import Sheet from './Sheet.astro';
+import { t, languages, localPath } from '../lib/i18n.js';
+
+/**
+ * The languages, in one sheet on every page (opened by the Language row of Settings and the globe of the side rail):
+ * each language in its own name, with its name in the page's language below, linking to this same page in it
+ * (vf-languages.js keeps the ?query and #hash). From FILTER_FROM languages on, a box filters them by either name
+ * or code. Pages that exist in one language only link to each language's home.
+ */
+const FILTER_FROM = 10;
+const { lang, path } = Astro.props;
+const names = new Intl.DisplayNames([lang], { type: 'language' });
+const filter = languages.length >= FILTER_FROM;
+---
+<vf-languages>
+  <Sheet lang={lang} name="language" mode="bottom" title={t(lang, 'navLanguage')}>
+    <vf-sheet-body>
+      {filter && (
+        <search>
+          <label for="language-filter">{t(lang, 'languageFilter')}</label>
+          <input id="language-filter" type="search" autocomplete="off" spellcheck="false">
+        </search>
+      )}
+      <nav aria-label={t(lang, 'navLanguage')}>
+        <ul>{languages.map((l) => {
+          const native = t(l, 'langName');
+          const here = names.of(l);
+          return (
+            <li><a href={localPath(l, path || '/')} hreflang={l} aria-current={l === lang ? 'true' : undefined} data-match={[l, native, here].join(' ')}>
+              <strong lang={l}>{native}</strong>{here && here.toLowerCase() !== native.toLowerCase() && <small>{here}</small>}
+            </a></li>
+          );
+        })}</ul>
+      </nav>
+    </vf-sheet-body>
+  </Sheet>
+</vf-languages>
+<script>
+  import './vf-languages.js';
+</script>

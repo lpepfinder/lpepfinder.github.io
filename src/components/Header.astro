@@ -3,13 +3,17 @@ import config from '../../data/config.json';
 import SearchForm from './SearchForm.astro';
 import TabBar from './TabBar.astro';
 import Logo from './Logo.astro';
-import { localPath } from '../lib/i18n.js';
+import { t, localPath } from '../lib/i18n.js';
 
-/** App header: brand and search. The app's tabs (search, new, watchlist) sit at the bottom on phones, in the header on wide screens. */
+/**
+ * App header: brand and search. The app's tabs sit at the bottom on phones, in a side rail on wider screens, with
+ * the language at the rail's foot (phones: in Settings): it opens the languages sheet (LanguageSheet.astro).
+ */
 const { lang, current } = Astro.props;
 ---
 <header>
   <a href={localPath(lang, '/')} rel="home"><Logo /> <span>{config.name}</span></a>
   <SearchForm lang={lang} />
   <TabBar lang={lang} current={current} />
+  <button type="button" name="language" kind="text" title={t(lang, 'navLanguage')} aria-label={`${t(lang, 'navLanguage')}: ${t(lang, 'langName')}`}><vf-icon name="globe"></vf-icon><span>{t(lang, 'langName')}</span></button>
 </header>

@@ -56,6 +56,9 @@
   --sheet-radius: var(--radius) var(--radius) 0 0;
   --sheet-side: min(28rem, 60vw);
   --sheet-wide: 40rem;
+  /* a dialog centred on the screen (tablets and wider): its corners, its height */
+  --dialog-radius: var(--radius);
+  --dialog-max: 80dvh;
   --layer-header: 2;
   --layer-sheet: 4;
   --c-scrim: rgb(0 0 0 / 0.45);

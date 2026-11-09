@@ -25,14 +25,29 @@ test('tab bar: client-side navigation without reloads, no raw i18n keys; languag
 
   await page.locator('vf-tabbar a[href="/settings/"]').click();
   await page.locator('vf-settings-rows button[value="language"]').click();
-  await expect(page.locator('main a[hreflang="fr"]')).toBeVisible();
-  await page.locator('main a[hreflang="fr"]').click();
+  await expect(page.locator('vf-languages a[hreflang="fr"]')).toBeVisible();
+  await page.locator('vf-languages a[hreflang="fr"]').click();
   await expect(page).toHaveURL(/\/fr\/settings\/$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
   await expect(page.locator('main h1')).toHaveText(fr.settingsTitle);
   await expect(page.locator('vf-tabbar a[href="/fr/settings/"]')).toContainText(fr.tabSettings);
   expect(await marked(page), 'another language is a full page load').toBe(false);
   expect(await page.locator('main').innerText()).not.toMatch(RAW_KEY);
+});
+
+test('language: the rail globe opens the languages, centred; a language keeps the page and its query', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/me/?view=all');
+  await page.locator('header > button[name="language"]').click();
+  const dialog = page.locator('vf-sheet[name="language"] > dialog');
+  await expect(dialog).toBeVisible();
+  const box = await dialog.boundingBox();
+  expect(Math.abs(box.x + box.width / 2 - 640), 'centred across').toBeLessThan(2);
+  expect(Math.abs(box.y + box.height / 2 - 400), 'centred down').toBeLessThan(2);
+  await expect(page.locator('vf-languages a[hreflang="de"] small')).toHaveText('German');
+  await page.locator('vf-languages a[hreflang="de"]').click();
+  await expect(page).toHaveURL(/\/de\/me\/\?view=all$/);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'de');
 });
 
 test('moved pages: /more/ and /watch/ (and their translations) send to /settings/ and /me/, keeping the #hash', async ({ page }) => {

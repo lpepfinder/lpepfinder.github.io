@@ -25,7 +25,8 @@ export class VfSettingsRows extends HTMLElement {
 
   disconnectedCallback() { unlisten(this); }
 
-  sheet(name) { return this.querySelector(`vf-sheet[name="${CSS.escape(name)}"]`); }
+  /** Its own sheets, or one every page has (the languages, LanguageSheet.astro). */
+  sheet(name) { return this.querySelector(`vf-sheet[name="${CSS.escape(name)}"]`) || document.querySelector(`vf-sheet[name="${CSS.escape(name)}"]`); }
 
   open(name) {
     // moving to another device is part of the profiles sheet: open it at its export button

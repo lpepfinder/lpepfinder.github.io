@@ -3,6 +3,7 @@ import config from '../../data/config.json';
 import { t, languages, defaultLanguage, localPath, clientStrings } from '../lib/i18n.js';
 import Header from '../components/Header.astro';
 import Shortcuts from '../components/Shortcuts.astro';
+import LanguageSheet from '../components/LanguageSheet.astro';
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import { BUILD } from '../lib/build.js';
@@ -67,6 +68,7 @@ const strings = JSON.stringify(clientStrings(lang, groups)).replace(/</g, '\\u00
     <main id="main" tabindex="-1">
       <slot />
     </main>
+    <LanguageSheet lang={lang} path={path} />
   </vf-app>
   <Shortcuts lang={lang} />
   <script>
