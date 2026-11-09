@@ -61,6 +61,12 @@
           "i": {
             "type": "string",
             "description": "Cover thumbnail URL (from the Discogs wantlist)"
+          },
+          "p": {
+            "type": "array",
+            "items": { "type": "string" },
+            "maxItems": 20,
+            "description": "at:// addresses of the Radio4000 tracks (radio.4000.track records) this record was found for"
           }
         }
       }

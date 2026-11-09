@@ -387,7 +387,9 @@
       "one": "{user}: 1 disco nella tua collezione, segnato «Ce l’ho» nella ricerca.",
       "other": "{user}: {count} dischi nella tua collezione, segnati «Ce l’ho» nella ricerca."
     },
-    "backupMove": "Spostare un profilo in un altro browser"
+    "backupMove": "Spostare un profilo in un altro browser",
+    "radioTracks": "Nella tua radio",
+    "listen": "Ascolta"
   },
   "navApp": "Principale",
   "navSite": "Esplora",

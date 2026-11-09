@@ -387,7 +387,9 @@
       "one": "{user}: 1 Platte in deiner Sammlung, in der Suche als „Hab ich“ markiert.",
       "other": "{user}: {count} Platten in deiner Sammlung, in der Suche als „Hab ich“ markiert."
     },
-    "backupMove": "Ein Profil in einen anderen Browser umziehen"
+    "backupMove": "Ein Profil in einen anderen Browser umziehen",
+    "radioTracks": "In deinem Radio",
+    "listen": "Anhören"
   },
   "navApp": "Haupt",
   "navSite": "Entdecken",

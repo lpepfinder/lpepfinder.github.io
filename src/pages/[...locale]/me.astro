@@ -114,6 +114,10 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
               <li><button type="button" name="remove" kind="text">{t(lang, 'watchPage.remove')}</button></li>
             </menu>
           </vf-watch-controls>
+          <vf-watch-tracks hidden>
+            <h3>{t(lang, 'watchPage.radioTracks')}</h3>
+            <ul></ul>
+          </vf-watch-tracks>
           <vf-detail></vf-detail>
           </vf-watch-record>
         </Sheet>

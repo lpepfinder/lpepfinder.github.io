@@ -8,7 +8,8 @@ import { toast } from './vf-toast.js';
 import { selected, select, unselect, forget } from './selection.js';
 import { comparable, region } from './viewer.js';
 import { t } from './i18n.js';
-import { el, listen } from './dom.js';
+import { el, attrs, listen } from './dom.js';
+import { findTrack } from '../lib/watch/radio-tracks.js';
 import './vf-sheet.js';
 import './vf-detail.js';
 
@@ -94,9 +95,12 @@ export class WatchRecordPane {
   }
 
   async draw(key, it) {
-    if (this.current === key) return;
+    // the record's own controls and tracks always reflect it; its copies are looked up once
+    const same = this.current === key;
     this.current = key;
     this.showControls(it);
+    this.showTracks(key, it);
+    if (same) return;
     this.detail.setAttribute('status', 'loading');
     this.detail.replaceChildren(el('p', { textContent: t('watchPage.loadingCopies') }));
     const group = await lookup(key, it).catch(() => null);
@@ -122,6 +126,19 @@ export class WatchRecordPane {
     const field = this.controls.querySelector('input[name="max"]');
     const value = it?.m == null ? null : cur === 'EUR' ? it.m : convert(it.m, 'EUR', cur, this.page.rates);
     field.value = value == null ? '' : String(Math.round(value) / 100);
+  }
+
+  /** The radio tracks the record was found for (it.p), each with a link to listen to it where it is hosted (http(s) only: the url is the radio's data). */
+  async showTracks(key, it) {
+    const box = this.sheet.querySelector('vf-watch-tracks');
+    box.hidden = true;
+    if (!it?.p?.length) return;
+    const tracks = (await Promise.all(it.p.map(findTrack))).filter(Boolean);
+    if (this.current !== key || !tracks.length) return;
+    box.querySelector('ul').replaceChildren(...tracks.map((tr) => el('li', {},
+      el('span', { textContent: tr.title }),
+      /^https?:\/\//i.test(tr.url) ? attrs(el('a', { href: tr.url, target: '_blank', rel: 'noopener', textContent: t('watchPage.listen') }), { kind: 'secondary' }) : null)));
+    box.hidden = false;
   }
 
   setMax() {

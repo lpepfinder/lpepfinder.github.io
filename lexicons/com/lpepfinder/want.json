@@ -14,6 +14,7 @@
           "catno": { "type": "string", "maxLength": 100, "description": "Catalog number, when known" },
           "discogsRelease": { "type": "integer", "minimum": 1, "description": "Discogs release id, when known" },
           "maxPrice": { "type": "integer", "minimum": 0, "description": "Highest price wanted, in euro cents" },
+          "tracks": { "type": "array", "maxLength": 20, "items": { "type": "string", "format": "at-uri" }, "description": "Radio4000 tracks (radio.4000.track records) this record was found for: the record plays them" },
           "createdAt": { "type": "string", "format": "datetime" }
         }
       }

@@ -25,7 +25,7 @@ What's saved in your Bluesky account, where it is **public** like everything in 
 
 | Record | What |
 | --- | --- |
-| `com.lpepfinder.want` | each record you watch from this site (search, Dig, a radio), with its max price; its key is the record's release key |
+| `com.lpepfinder.want` | each record you watch from this site (search, Dig, a radio), with its max price and, for a radio's, the tracks it was found for (`tracks`, their at:// addresses); its key is the record's release key |
 | `com.lpepfinder.profile` | your Discogs username, so any device can read your Discogs wantlist and collection again |
 | `com.lpepfinder.list` | only if you publish them: your whole wantlist (key `wants`) and your collection (key `collection`), each as one JSON file |
 

@@ -16,7 +16,9 @@ The watchlist is part of your profile, on the **Me** tab (`/me/`). It answers on
 
 ## From a Radio4000 radio
 
-A [Radio4000](https://4000.radio) radio lives on Bluesky (atproto): type its handle under "From a Radio4000 radio" and its latest 200 tracks are matched to records in stock. A track with a Discogs link is matched exactly and ticked; for the others, records whose title holds the artist and the song are a guess, not ticked. You choose what to add.
+A [Radio4000](https://4000.radio) radio lives on Bluesky (atproto): type its handle under "From a Radio4000 radio" and its tracks are matched to records in stock. The tracks are kept in your browser: the first time the whole radio is read (up to 5,000 tracks), then only the tracks added since, and in full again once a month. A track with a Discogs link is matched exactly and ticked; for the others, records whose title holds the artist and the song are a guess, not ticked. You choose what to add.
+
+A record added from the radio remembers the tracks it was found for (their atproto address, `at://…/radio.4000.track/…`): its detail on the Me page shows them under "On your radio", each with **Listen**, which opens the track where it is hosted (YouTube, SoundCloud…). Signed in, the link is synced with the record.
 
 Signed in with Bluesky, the field already holds your handle, and the sources rows tell you when your radio has tracks you haven't matched yet (**Find records**), or new tracks since the last time (**Resync**): the page asks the radio for its newest track once a day, one light request.
 

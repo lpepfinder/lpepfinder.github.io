@@ -364,7 +364,9 @@
     "collectionDone": {
       "other": "{user}：コレクション{count}件。検索で「所有」と表示します。"
     },
-    "backupMove": "プロフィールを別のブラウザに移す"
+    "backupMove": "プロフィールを別のブラウザに移す",
+    "radioTracks": "あなたのラジオで",
+    "listen": "聴く"
   },
   "navApp": "メイン",
   "navSite": "探す",

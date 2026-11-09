@@ -387,7 +387,9 @@
       "one": "{user}: 1 disco en tu colección, marcado «Lo tengo» en la búsqueda.",
       "other": "{user}: {count} discos en tu colección, marcados «Lo tengo» en la búsqueda."
     },
-    "backupMove": "Mover un perfil a otro navegador"
+    "backupMove": "Mover un perfil a otro navegador",
+    "radioTracks": "En tu radio",
+    "listen": "Escuchar"
   },
   "navApp": "Principal",
   "navSite": "Explorar",

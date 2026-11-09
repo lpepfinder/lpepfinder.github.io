@@ -31,6 +31,7 @@ export function wantRecord(it) {
   return {
     $type: WANT, title: (it.t || '').slice(0, 1000), createdAt: `${it.a || new Date().toISOString().slice(0, 10)}T00:00:00.000Z`,
     ...(it.c ? { catno: it.c } : {}), ...(it.w ? { discogsRelease: it.w } : {}), ...(it.m != null ? { maxPrice: it.m } : {}),
+    ...(it.p?.length ? { tracks: it.p } : {}),
   };
 }
 const hash = (r) => JSON.stringify({ ...r, createdAt: undefined });
@@ -82,7 +83,7 @@ export async function pull() {
   update((list) => {
     for (const [key, v] of server) {
       if (list.items[key] || key in synced) continue;
-      list.items[key] = { t: v.title, a: (v.createdAt || '').slice(0, 10), ...(v.catno ? { c: v.catno } : {}), ...(v.discogsRelease ? { w: v.discogsRelease } : {}), ...(v.maxPrice != null ? { m: v.maxPrice } : {}) };
+      list.items[key] = { t: v.title, a: (v.createdAt || '').slice(0, 10), ...(v.catno ? { c: v.catno } : {}), ...(v.discogsRelease ? { w: v.discogsRelease } : {}), ...(v.maxPrice != null ? { m: v.maxPrice } : {}), ...(Array.isArray(v.tracks) && v.tracks.length ? { p: v.tracks.filter((u) => typeof u === 'string' && u.startsWith('at://')).slice(0, 20) } : {}) };
     }
     // written from here before, gone from the account now: removed on another device
     for (const key of Object.keys(synced)) if (!server.has(key) && list.items[key] && !list.items[key].d) delete list.items[key];

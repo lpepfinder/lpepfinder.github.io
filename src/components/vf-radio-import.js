@@ -1,4 +1,5 @@
-import { resolve, latestTracks, handleOf } from '../lib/watch/radio.js';
+import { resolve, handleOf } from '../lib/watch/radio.js';
+import { syncTracks } from '../lib/watch/radio-tracks.js';
 import { matchRadio } from '../lib/watch/radio-match.js';
 import { fetchRelease } from '../lib/watch/discogs.js';
 import { wantRecords } from '../lib/watch/wants.js';
@@ -17,7 +18,9 @@ const page = () => document.querySelector('vf-watch-page');
 /**
  * <vf-radio-import status="idle|loading|review|done|error">: a radio's latest tracks (radio.js) matched to records
  * in stock (radio-match.js), listed with checkboxes: exact matches (a Discogs link) ticked, records found by the
- * song's title not ticked, since they're a guess. "Add" puts the ticked ones in the watchlist. Signed in with
+ * song's title not ticked, since they're a guess. "Add" puts the ticked ones in the watchlist, each with the
+ * at:// address of the tracks it was found for (store.js `p`: the watchlist links back to them). The tracks are
+ * kept in the browser (radio-tracks.js): a radio read before is read again only for its new tracks. Signed in with
  * Bluesky, the field starts with the account's handle; the reading is kept in sources.js.
  */
 export class VfRadioImport extends HTMLElement {
@@ -57,7 +60,7 @@ export class VfRadioImport extends HTMLElement {
     this.addButton.hidden = true;
     this.live.textContent = t('radio.reading', { handle });
     try {
-      const tracks = await latestTracks(await resolve(handle));
+      const { tracks } = await syncTracks(handle, await resolve(handle));
       if (!tracks.length) throw new Error('empty');
       radioRead(handle, tracks.length, tracks[0].uri);
       const found = await matchRadio(tracks, {
@@ -89,7 +92,7 @@ export class VfRadioImport extends HTMLElement {
   row({ want, group, track, exact }, rates) {
     const title = want ? [want.artist, want.title].filter(Boolean).join(' – ') : group.title;
     const box = el('input', { type: 'checkbox', checked: exact });
-    box.dataset.record = JSON.stringify(want ? { want } : { key: group.key, title: group.title });
+    box.dataset.record = JSON.stringify(want ? { want, track: track.uri } : { key: group.key, title: group.title, track: track.uri });
     const cheapest = group?.offers.reduce((a, b) => ((b.price ?? Infinity) < (a.price ?? Infinity) ? b : a));
     return el('li', {}, attrs(el('vf-radio-match', {},
       el('label', {}, box, el('span', { textContent: title })),
@@ -106,9 +109,11 @@ export class VfRadioImport extends HTMLElement {
 
   add() {
     const picked = [...this.list.querySelectorAll('input:checked')].map((b) => JSON.parse(b.dataset.record));
+    const played = (p) => (p.track ? { p: [p.track] } : {});
+    const wants = picked.filter((p) => p.want);
     const records = [
-      ...wantRecords(picked.filter((p) => p.want).map((p) => p.want)),
-      ...picked.filter((p) => p.key).map((p) => ({ key: p.key, title: p.title })),
+      ...wantRecords(wants.map((p) => p.want)).map((r, i) => ({ ...r, fields: { ...r.fields, ...played(wants[i]) } })),
+      ...picked.filter((p) => p.key).map((p) => ({ key: p.key, title: p.title, fields: played(p) })),
     ];
     const n = add(records);
     if (n) afterWatch();

@@ -1,5 +1,5 @@
 {
-  "description": "Browser watchlist. Editable: limits and the format rules that decide what counts as vinyl. discogsCheckHours: how often the watch page asks Discogs whether an imported list changed (one light request per list); discogsStaleDays: after this, an unchanged list is still offered a resync.",
+  "description": "Browser watchlist. Editable: limits and the format rules that decide what counts as vinyl. discogsCheckHours: how often the watch page asks Discogs whether an imported list changed (one light request per list); discogsStaleDays: after this, an unchanged list is still offered a resync. radio: a Radio4000 radio's tracks are kept in the browser (maxTracks at most) and read again only from the newest, in full every fullEveryDays; maxCandidates records per track to review.",
   "installHintAfter": 3,
   "toastSeconds": 12,
   "nowConcurrency": 8,
@@ -16,7 +16,8 @@
     "plcDirectory": "https://plc.directory"
   },
   "radio": {
-    "maxTracks": 200,
+    "maxTracks": 5000,
+    "fullEveryDays": 30,
     "maxCandidates": 3
   }
 }

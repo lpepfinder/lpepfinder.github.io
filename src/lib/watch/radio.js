@@ -6,7 +6,7 @@
  */
 import config from '../../../data/watch.json' with { type: 'json' };
 
-const COLLECTION = 'radio.4000.track';
+export const COLLECTION = 'radio.4000.track';
 const json = async (url) => {
   const res = await fetch(url);
   if (!res.ok) throw new Error(String(res.status));
@@ -19,6 +19,11 @@ export const handleOf = (input) => String(input || '').trim()
 
 export async function resolve(handle) {
   const { did } = await json(`${config.atproto.appview}/xrpc/com.atproto.identity.resolveHandle?handle=${encodeURIComponent(handle)}`);
+  return resolveDid(did);
+}
+
+/** A DID -> { did, pds } (its DID document). */
+export async function resolveDid(did) {
   const doc = did.startsWith('did:web:')
     ? await json(`https://${did.slice(8)}/.well-known/did.json`)
     : await json(`${config.atproto.plcDirectory}/${did}`);
@@ -27,17 +32,33 @@ export async function resolve(handle) {
   return { did, pds };
 }
 
-/** The radio's latest tracks (newest first), at most `limit`. */
-export async function latestTracks({ did, pds }, limit = config.radio.maxTracks) {
+/**
+ * The radio's tracks, newest first, at most `limit`; reading stops at the first track `stop(rkey)` says is
+ * known already (radio-tracks.js keeps the rest). A track: { rkey, uri, title, url, discogsUrl }.
+ */
+export async function listTracks({ did, pds }, { limit = config.radio.maxTracks, stop = () => false } = {}) {
   const tracks = [];
   let cursor = '';
   while (tracks.length < limit) {
-    const page = await json(`${pds}/xrpc/com.atproto.repo.listRecords?repo=${did}&collection=${COLLECTION}&limit=100&reverse=false${cursor ? `&cursor=${cursor}` : ''}`);
-    for (const r of page.records || []) tracks.push({ uri: r.uri, title: r.value.title || '', url: r.value.url || '', discogsUrl: r.value.discogsUrl || '' });
+    const page = await json(`${pds}/xrpc/com.atproto.repo.listRecords?repo=${did}&collection=${COLLECTION}&limit=100${cursor ? `&cursor=${cursor}` : ''}`);
+    for (const r of page.records || []) {
+      const rkey = r.uri.split('/').pop();
+      if (stop(rkey)) return tracks;
+      tracks.push({ rkey, uri: r.uri, title: r.value.title || '', url: r.value.url || '', discogsUrl: r.value.discogsUrl || '' });
+    }
     cursor = page.cursor;
     if (!cursor || !page.records?.length) break;
   }
   return tracks.slice(0, limit);
+}
+
+/** One track by its at:// uri, from the radio's own PDS: { uri, title, url, discogsUrl }. */
+export async function getTrack(uri) {
+  const [, did, , rkey] = /^at:\/\/([^/]+)\/([^/]+)\/([^/]+)$/.exec(uri) || [];
+  if (!did) throw new Error('uri');
+  const { pds } = await resolveDid(did);
+  const r = await json(`${pds}/xrpc/com.atproto.repo.getRecord?repo=${did}&collection=${COLLECTION}&rkey=${rkey}`);
+  return { uri, title: r.value?.title || '', url: r.value?.url || '', discogsUrl: r.value?.discogsUrl || '' };
 }
 
 /** The uri of the radio's newest track, or null: one light request, to tell whether tracks were added. */

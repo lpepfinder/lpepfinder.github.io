@@ -387,7 +387,9 @@
       "one": "{user} : 1 disque dans votre collection, marqué « À moi » dans la recherche.",
       "other": "{user} : {count} disques dans votre collection, marqués « À moi » dans la recherche."
     },
-    "backupMove": "Déplacer un profil vers un autre navigateur"
+    "backupMove": "Déplacer un profil vers un autre navigateur",
+    "radioTracks": "Sur votre radio",
+    "listen": "Écouter"
   },
   "navApp": "Principal",
   "navSite": "Explorer",

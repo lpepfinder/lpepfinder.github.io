@@ -387,7 +387,9 @@
       "one": "{user}: 1 record in your collection, marked Owned in search.",
       "other": "{user}: {count} records in your collection, marked Owned in search."
     },
-    "backupMove": "Move a profile to another browser"
+    "backupMove": "Move a profile to another browser",
+    "radioTracks": "On your radio",
+    "listen": "Listen"
   },
   "navApp": "Main",
   "navSite": "Explore",

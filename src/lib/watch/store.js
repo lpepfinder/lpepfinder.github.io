@@ -4,7 +4,8 @@
  *              a: "YYYY-MM-DD" added, s: [inStock, soldOut, minCents, currency],
  *              f: "YYYY-MM-DD" found in stock (after being out of stock), x: extra release keys found by catalog number,
  *              n: release keys marked "not this record", m: max price (euro cents),
- *              w, c, r: Discogs release id, catalog number, rating (src/lib/watch/wants.js) } }
+ *              w, c, r: Discogs release id, catalog number, rating (src/lib/watch/wants.js),
+ *              p: at:// addresses of the Radio4000 tracks it was found for (radio-tracks.js), at most MAX_TRACKS } }
  *            The `now` shards carry counts only: title, url and shop come from the card watched or from events.
  *   last     newest data date whose events were applied; day: UTC day of the last check
  *   changes  unseen changes, rows like the daily event files plus their date; past: seen ones
@@ -15,6 +16,9 @@ import { scoped } from './profiles.js';
 // the current profile's list (profiles.js): "vf.watch.v1", or "vf.watch.v1:<profile>"
 const KEY = () => scoped('vf.watch.v1');
 export const EVENT = 'vf-watch-change';
+const MAX_TRACKS = 20;
+/** Fields given again for a record watched already: the radio tracks add up, the rest replaces. */
+const merge = (item, fields) => Object.assign(item, fields, fields.p ? { p: [...new Set([...(item.p || []), ...fields.p])].slice(0, MAX_TRACKS) } : {});
 export const today = () => new Date().toISOString().slice(0, 10);
 
 let cache = null;
@@ -52,7 +56,7 @@ export function add(records) {
     for (const { key, title, url, offer, state, fields } of records) {
       if (!key) continue;
       // a record watched again (a Discogs import over the same list) keeps its state and gets the new fields
-      if (list.items[key]) { if (fields) Object.assign(list.items[key], fields); continue; }
+      if (list.items[key]) { if (fields) merge(list.items[key], fields); continue; }
       list.items[key] = { t: title || '', a: today(), ...(url ? { u: url } : {}), ...(offer ? { o: offer } : {}), ...(state ? { s: state } : {}), ...fields };
       added++;
     }

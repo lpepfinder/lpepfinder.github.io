@@ -224,6 +224,13 @@ vf-watch-page > nav li { flex: none; }
 vf-watch-record { display: grid; align-content: start; }
 vf-watch-controls { display: grid; gap: var(--space-2); padding-block: var(--space-3); border-block-end: var(--line) solid var(--c-line); font-size: var(--size-s); }
 vf-watch-controls[hidden] { display: none; }
+/* the radio tracks a record was found for, each with Listen */
+vf-watch-tracks { display: grid; gap: var(--space-1); padding-block: var(--space-3); border-block-end: var(--line) solid var(--c-line); font-size: var(--size-s); }
+vf-watch-tracks[hidden] { display: none; }
+vf-watch-tracks h3 { margin: 0; font-size: var(--size-s); color: var(--c-muted); font-weight: var(--weight-semi); }
+vf-watch-tracks ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); }
+vf-watch-tracks li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+vf-watch-tracks li > span { min-inline-size: 0; overflow-wrap: anywhere; }
 vf-watch-controls form { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 vf-watch-controls label { display: inline-flex; align-items: center; gap: var(--space-1); }
 vf-watch-controls input { font: inherit; font-size: max(16px, var(--size-s)); inline-size: 7ch; min-block-size: var(--tap); padding-inline: var(--space-2); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
