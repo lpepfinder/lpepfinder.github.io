@@ -191,7 +191,7 @@
     "keepDays": 60
   },
   "enrich": {
-    "description": "Artist profiles from open sources (scripts/enrich, docs/sources.md), run daily by the Enrich workflow. Each run reads the artists of the live site (/api/artists.json) and profiles at most `artistsPerRun` of them, for at most `maxMinutes`: new ones first, then the oldest after `refreshDays` (`retryNoneDays` for one not found). An artist is matched on MusicBrainz only through one of its records in stock (`titlesPerArtist` titles tried), never by name alone. Requests are one at a time per host, at least `paceMs` apart (MusicBrainz asks for one a second). Wikipedia summaries in `wikipediaLanguages`; `genres`: most-voted MusicBrainz genres kept; `imageWidth`: Wikimedia Commons thumbnail width. `leadChars`: the summary's first sentences shown up to this length, the rest under \"Read more\". `paceMs` also paces the social job (scripts/social): the relay, plc.directory and the Bluesky app view; any other host (a collector's account server) gets one request a second.",
+    "description": "Artist profiles from open sources (scripts/enrich, docs/sources.md), run daily by the Enrich workflow. Each run reads the artists of the live site (/api/artists.json) and profiles at most `artistsPerRun` of them, for at most `maxMinutes`: new ones first, then the oldest after `refreshDays` (`retryNoneDays` for one not found). An artist is matched on MusicBrainz only through one of its records in stock (`titlesPerArtist` titles tried), never by name alone. Requests are one at a time per host, at least `paceMs` apart (MusicBrainz asks for one a second). Wikipedia summaries in `wikipediaLanguages`; `genres`: most-voted MusicBrainz genres kept; `imageWidth`: Wikimedia Commons thumbnail width. `leadChars`: the summary's first sentences shown up to this length, the rest under \"Read more\". `paceMs` also paces the social job (scripts/social): the relay, plc.directory and the Bluesky app view; any other host (a collector's account server) gets one request a second. It also paces Nominatim for npm run locate (scripts/discover/locate.js), which asks for one request a second.",
     "artistsPerRun": 400,
     "maxMinutes": 40,
     "refreshDays": 30,
@@ -204,7 +204,8 @@
       "wikipedia.org": 300,
       "plc.directory": 200,
       "bsky.network": 500,
-      "public.api.bsky.app": 200
+      "public.api.bsky.app": 200,
+      "nominatim.openstreetmap.org": 1100
     },
     "wikipediaLanguages": [
       "en"

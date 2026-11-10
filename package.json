@@ -12,6 +12,7 @@
     "check": "node scripts/check/index.js",
     "crawl": "node scripts/crawl/index.js",
     "discover": "node scripts/discover/index.js",
+    "locate": "node scripts/discover/locate.js",
     "index": "node scripts/index/build.js",
     "refresh": "npm run check && npm run crawl",
     "dev": "astro dev",

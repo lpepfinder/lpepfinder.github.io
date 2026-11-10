@@ -7,6 +7,7 @@ import { pool } from '../lib/pool.js';
 import { checkShop } from '../check/shop.js';
 import { osmCandidates } from './osm.js';
 import { countryCode } from '../lib/country.js';
+import { locate, save } from './locate.js';
 
 const regions = new Intl.DisplayNames(['en'], { type: 'region' });
 
@@ -49,5 +50,8 @@ if (write) {
     const shop = { url: c.url, name: c.name, country, city: c.city, osm: c.osm, source: 'osm' };
     writeJson(file, shop, true);
   }
-  console.log('written to data/shops/');
+  // OpenStreetMap often has a place but no address tags: the country and city from Nominatim
+  const { found } = await locate(loadShops({ withCandidates: false }));
+  save(found);
+  console.log(`written to data/shops/ (${found.length} located)`);
 }

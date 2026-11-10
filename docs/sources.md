@@ -15,6 +15,7 @@ Record listings come from the independent shops themselves (see [How it works](/
 | [Wikidata](https://www.wikidata.org/) | Wikipedia pages, official website, YouTube channel, Bluesky handle, Discogs id, photo | CC0 | one request per artist |
 | [Wikipedia](https://www.wikipedia.org/) | the first paragraph, quoted, with a link to the article | CC BY-SA 4.0 | the [REST summary](https://en.wikipedia.org/api/rest_v1/), one request per artist |
 | [Wikimedia Commons](https://commons.wikimedia.org/) | a photo, shown with its author and licence | as each file says (CC BY, CC BY-SA, public domain…) | one request per photo; the page loads the thumbnail from Wikimedia |
+| [OpenStreetMap](https://www.openstreetmap.org/) | new shops (record shops with a website, `npm run discover`), and a shop's country and city when its file has none (`npm run locate`) | ODbL, © OpenStreetMap contributors | [Overpass](https://overpass-api.de/), one query a month; [Nominatim](https://nominatim.org/) `lookup`, 50 places per request, one request a second |
 
 Discogs, YouTube and Bluesky are linked, not read: the addresses come from MusicBrainz and Wikidata.
 
