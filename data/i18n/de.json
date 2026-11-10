@@ -556,7 +556,6 @@
     "emptyMine": "Keine deiner beobachteten Platten ist diese Woche neu, wieder da oder günstiger.",
     "hideOwned": "Ausblenden, was ich habe"
   },
-  "moreBrowse": "Stöbern",
   "moreShop": "Dein Plattenladen",
   "moreAbout": "Über",
   "homeWantsTitle": "Deine Wantlist, auf Lager",
@@ -806,5 +805,15 @@
     "lists": "Deine Listen",
     "empty": "Noch nichts beobachtet. Verbinde oben eine Liste oder",
     "emptySearch": "beobachte Platten aus der Suche (☆)."
+  },
+  "explore": {
+    "intro": "Alles auf LP/EP Finder außer der Suche: Neues in den Läden, Läden nach Land, Künstler, Sammler und die offenen Daten. {records} Platten auf Lager in {shops} Läden.",
+    "formats": "Neuheiten nach Format",
+    "collectors": "Was Sammler suchen und haben, aus den Listen, die sie auf Bluesky veröffentlichen, und die meistgesuchten Platten.",
+    "collectorsLink": "Listen der Sammler und meistgesucht",
+    "data": "Die Daten",
+    "dataIntro": "Jeden Tag neu aus den öffentlichen Katalogen der Läden erstellt, und offen: als JSON lesen, im Feedreader folgen oder sehen, wie aktuell sie sind.",
+    "api": "Offene Daten (JSON)",
+    "agents": "Für KI-Agenten (llms.txt)"
   }
 }

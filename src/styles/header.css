@@ -49,7 +49,7 @@ vf-tabbar a {
   display: grid; justify-items: center; align-content: center; gap: var(--space-0); position: relative;
   min-block-size: var(--tabbar-h); color: var(--c-muted); text-decoration: none; font-size: var(--size-xs); font-weight: var(--weight-semi);
 }
-vf-tabbar a[aria-current="page"] { color: var(--c-accent); }
+vf-tabbar a[aria-current] { color: var(--c-accent); }
 vf-tabbar :is(vf-icon, vf-logo) { --icon-size: 1.5rem; }
 vf-tabbar vf-logo svg { inline-size: var(--icon-size); block-size: var(--icon-size); }
 vf-tabbar :is(vf-watch-count, vf-sync-count) { position: absolute; inset-block-start: var(--space-1); inset-inline-start: calc(50% + 0.5rem); }
@@ -115,7 +115,7 @@ vf-icon[name="play"] { --icon: var(--icon-play); }
   vf-tabbar { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; align-content: start; gap: var(--space-1); }
   vf-tabbar a { min-block-size: var(--rail-item-h); border-radius: var(--radius); }
   vf-tabbar a:hover { background: var(--c-hover); }
-  vf-tabbar a[aria-current="page"] { background: var(--c-chip); }
+  vf-tabbar a[aria-current] { background: var(--c-chip); }
   header > button[name="language"] {
     position: fixed; inset-block-end: var(--space-3); inset-inline-start: var(--space-2); z-index: 3; inline-size: calc(var(--rail-w) - 2 * var(--space-2));
     display: grid; justify-items: center; gap: var(--space-0); min-block-size: var(--rail-item-h); padding: 0 var(--space-1);

@@ -9,16 +9,11 @@ import { pageTitle } from '../../lib/seo.js';
 /**
  * The Settings tab (/settings/, was /more/), as an app screen like joblist's Menu: the settings of this browser
  * first (account, profile, language, prices in, moving to another device: rows that open their sheet), then
- * browse (shops, artists, collectors), a shop to add, and about (help, privacy, data status, source).
+ * a shop to add, and about (help, privacy, data status, source).
  */
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 const groups = [
-  { title: 'moreBrowse', links: [
-    { href: localPath(lang, '/shops/'), key: 'navShops', icon: 'store' },
-    { href: '/artists/', key: 'navArtists', icon: 'person' },
-    { href: localPath(lang, '/u/'), key: 'user.title', icon: 'person' },
-  ] },
   { title: 'moreShop', links: [
     { href: localPath(lang, '/submit/'), key: 'aboutSuggestAction', icon: 'plus' },
   ] },

@@ -1,0 +1,79 @@
+---
+import Base from '../../layouts/Base.astro';
+import CountryTiles from '../../components/CountryTiles.astro';
+import { t, localeParams, localPath, number, date } from '../../lib/i18n.js';
+import { catalog } from '../../lib/catalog.js';
+import { newArrivals } from '../../lib/new-arrivals.js';
+import { pageTitle } from '../../lib/seo.js';
+import { FORMAT_IDS } from '../../lib/search/format.js';
+
+/**
+ * The Explore tab: the way into everything the site has, besides searching. Dig (new, back in stock, cheaper,
+ * your records), shops by country, artists, new arrivals by format, collectors, and the data itself (status,
+ * open JSON, llms.txt, docs). Each section links to its own pages; this one only points.
+ */
+export const getStaticPaths = localeParams;
+const { lang } = Astro.props;
+const c = catalog();
+const n = newArrivals();
+const vars = { records: number(lang, c.totalRecords), shops: number(lang, c.visible.length), countries: number(lang, c.countries.length) };
+const crates = [['new', 'sparkle'], ['restock', 'refresh'], ['drop', 'trend-down'], ['mine', 'star']];
+const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
+const data = [
+  { href: '/status/', key: 'navStatus', icon: 'pulse' },
+  { href: '/api/index.json', key: 'explore.api', icon: 'code' },
+  { href: '/llms.txt', key: 'explore.agents', icon: 'info' },
+  { href: '/feed/new.xml', key: 'newFeed', icon: 'rss' },
+  { href: '/docs/', key: 'moreHelp', icon: 'book' },
+];
+---
+<Base lang={lang} path="/explore/" title={pageTitle(t(lang, 'tabExplore'))} description={t(lang, 'explore.intro', vars)}>
+  <vf-explore>
+    <hgroup>
+      <h1>{t(lang, 'tabExplore')}</h1>
+      <p>{t(lang, 'stats', vars)} · <time datetime={c.builtAt}>{t(lang, 'updated', { date: date(lang, c.builtAt) })}</time></p>
+    </hgroup>
+
+    <section aria-labelledby="explore-dig">
+      <h2 id="explore-dig">{t(lang, 'dig.title')}</h2>
+      <p>{t(lang, 'dig.intro')}</p>
+      <vf-doors><ul>{crates.map(([crate, icon]) => (
+        <li><a href={`/new/?crate=${crate}`}><vf-icon name={icon}></vf-icon><span>{t(lang, `dig.crate.${crate}`)}</span>
+          {crate === 'new' && n.all().count > 0 && <data value={n.all().count}>{number(lang, n.all().count)}</data>}</a></li>
+      ))}</ul></vf-doors>
+    </section>
+
+    <section aria-labelledby="explore-shops">
+      <h2 id="explore-shops">{t(lang, 'homeCountriesTitle')}</h2>
+      <CountryTiles lang={lang} countries={c.countries} shown={6} />
+      <p><a href={localPath(lang, '/shops/')}>{t(lang, 'homeAllShops', vars)}</a></p>
+    </section>
+
+    {c.artists.length > 0 && (
+      <section aria-labelledby="explore-artists">
+        <h2 id="explore-artists">{t(lang, 'homeArtistsTitle')}</h2>
+        <vf-chips><ul>{c.artists.slice(0, 24).map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a></li>)}</ul></vf-chips>
+        <p><a href="/artists/">{t(lang, 'homeAllArtists')}</a></p>
+      </section>
+    )}
+
+    {formats.length > 0 && (
+      <section aria-labelledby="explore-formats">
+        <h2 id="explore-formats">{t(lang, 'explore.formats')}</h2>
+        <vf-chips><ul>{formats.map((f) => <li><a href={`/new/format/${f}/`}>{t(lang, `formats.${f}`)} ({number(lang, n.formats[f].count)})</a></li>)}</ul></vf-chips>
+      </section>
+    )}
+
+    <section aria-labelledby="explore-collectors">
+      <h2 id="explore-collectors">{t(lang, 'user.title')}</h2>
+      <p>{t(lang, 'explore.collectors')}</p>
+      <vf-doors><ul><li><a href={localPath(lang, '/u/')}><vf-icon name="person"></vf-icon><span>{t(lang, 'explore.collectorsLink')}</span></a></li></ul></vf-doors>
+    </section>
+
+    <section aria-labelledby="explore-data">
+      <h2 id="explore-data">{t(lang, 'explore.data')}</h2>
+      <p>{t(lang, 'explore.dataIntro')}</p>
+      <vf-doors><ul>{data.map((d) => <li><a href={d.href}><vf-icon name={d.icon}></vf-icon><span>{t(lang, d.key)}</span></a></li>)}</ul></vf-doors>
+    </section>
+  </vf-explore>
+</Base>

@@ -197,3 +197,16 @@ vf-languages a:hover { background: var(--c-hover); }
 vf-languages a small { color: var(--c-muted); font-size: var(--size-s); }
 vf-languages a[aria-current="true"] { background: var(--c-chip); }
 vf-languages a[aria-current="true"] strong { color: var(--c-accent); }
+
+/* <vf-explore>: the Explore tab, sections that each point to their pages; <vf-doors> a row of link cards */
+vf-explore { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
+vf-explore hgroup p, vf-explore section > p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-explore section { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
+vf-explore h2 { margin: 0; }
+vf-explore section > p:last-child:has(a) { font-size: var(--size-0); }
+/* two to a row on phones, as many as fit from tablets up */
+vf-doors > ul, vf-explore vf-countries > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(var(--tile-min), calc(50% - var(--space-1))), 1fr)); gap: var(--space-2); }
+vf-doors a { display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--row-h); padding-inline: var(--space-4); border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); color: var(--c-fg); font-weight: var(--weight-semi); text-decoration: none; }
+vf-doors vf-icon { flex: none; }
+vf-doors a:hover { border-color: var(--c-border); background: var(--c-hover); }
+vf-doors data { margin-inline-start: auto; color: var(--c-muted); font-weight: normal; font-size: var(--size-s); }

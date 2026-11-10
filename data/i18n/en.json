@@ -556,7 +556,6 @@
     "emptyMine": "None of your watched records is new, back or cheaper this week.",
     "hideOwned": "Hide what I own"
   },
-  "moreBrowse": "Browse",
   "moreShop": "Your record shop",
   "moreAbout": "About",
   "homeWantsTitle": "Your wantlist, in stock",
@@ -806,5 +805,15 @@
     "lists": "Your lists",
     "empty": "Nothing watched yet. Connect a list above, or",
     "emptySearch": "watch records from the search (☆)."
+  },
+  "explore": {
+    "intro": "Everything on LP/EP Finder besides the search: what's new in the shops, shops by country, artists, collectors and the open data. {records} records in stock at {shops} shops.",
+    "formats": "New arrivals by format",
+    "collectors": "What collectors want and have, from the lists they publish on Bluesky, and the records most wanted.",
+    "collectorsLink": "Collectors' lists and most wanted",
+    "data": "The data",
+    "dataIntro": "Rebuilt every day from the shops' public catalogs, and open: read it as JSON, follow it in a feed reader, or see how fresh it is.",
+    "api": "Open data (JSON)",
+    "agents": "For AI agents (llms.txt)"
   }
 }

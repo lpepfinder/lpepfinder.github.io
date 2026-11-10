@@ -3,7 +3,7 @@ import fr from '../data/i18n/fr.json' with { type: 'json' };
 
 /** Tabs of the app, in order: path, and an element only that page has. */
 const TABS = [
-  ['/new/', 'vf-dig'],
+  ['/explore/', 'vf-explore'],
   ['/me/', 'vf-watch-page'],
   ['/settings/', 'vf-settings-rows'],
   ['/', 'vf-results'],
@@ -22,6 +22,12 @@ test('tab bar: client-side navigation without reloads, no raw i18n keys; languag
     expect(await page.locator('main').innerText(), `raw i18n key on ${path}`).not.toMatch(RAW_KEY);
     expect(await marked(page), `${path} was a full page load`).toBe(true);
   }
+
+  // Explore leads to the pages it points to, and its tab stays lit there
+  await page.locator('vf-tabbar a[href="/explore/"]').click();
+  await page.locator('vf-explore vf-doors a[href="/new/?crate=restock"]').click();
+  await expect(page.locator('vf-dig')).toHaveAttribute('crate', 'restock');
+  await expect(page.locator('vf-tabbar a[href="/explore/"]')).toHaveAttribute('aria-current', 'true');
 
   await page.locator('vf-tabbar a[href="/settings/"]').click();
   await page.locator('vf-settings-rows button[value="language"]').click();

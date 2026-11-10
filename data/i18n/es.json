@@ -556,7 +556,6 @@
     "emptyMine": "Ninguno de tus discos seguidos es nuevo, ha vuelto o está más barato esta semana.",
     "hideOwned": "Ocultar lo que tengo"
   },
-  "moreBrowse": "Explorar",
   "moreShop": "Tu tienda de discos",
   "moreAbout": "Acerca de",
   "homeWantsTitle": "Tu wantlist, en stock",
@@ -806,5 +805,15 @@
     "lists": "Tus listas",
     "empty": "Aún no sigues nada. Conecta una lista arriba, o",
     "emptySearch": "sigue discos desde la búsqueda (☆)."
+  },
+  "explore": {
+    "intro": "Todo LP/EP Finder además de la búsqueda: lo nuevo en las tiendas, tiendas por país, artistas, coleccionistas y los datos abiertos. {records} discos en stock en {shops} tiendas.",
+    "formats": "Novedades por formato",
+    "collectors": "Lo que los coleccionistas buscan y tienen, según las listas que publican en Bluesky, y los discos más buscados.",
+    "collectorsLink": "Listas de coleccionistas y más buscados",
+    "data": "Los datos",
+    "dataIntro": "Se rehacen cada día a partir de los catálogos públicos de las tiendas, y son abiertos: léelos en JSON, síguelos en un lector de feeds o mira lo recientes que son.",
+    "api": "Datos abiertos (JSON)",
+    "agents": "Para agentes de IA (llms.txt)"
   }
 }

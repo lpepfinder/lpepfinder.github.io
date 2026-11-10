@@ -5,7 +5,7 @@ order: 2
 audience: users
 ---
 
-Dig is the record bin of the whole network: this week's records, as covers to flip through. Tap a cover to go to the record at its shop.
+Dig is the record bin of the whole network: this week's records, as covers to flip through. Tap a cover to go to the record at its shop. Its crates are the first thing on the Explore tab, next to shops by country, artists, collectors and the open data.
 
 ## The crates
 
