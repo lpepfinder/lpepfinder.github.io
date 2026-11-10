@@ -1,6 +1,7 @@
 {
   "url": "https://homerulerecords.com",
   "name": "Home Rule Records",
+  "country": "US",
   "city": "Washington",
   "osm": "node/11810140562",
   "source": "osm"

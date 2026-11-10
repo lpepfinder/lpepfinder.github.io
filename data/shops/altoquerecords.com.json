@@ -1,6 +1,8 @@
 {
   "url": "https://altoquerecords.com",
   "name": "Altoque Records",
+  "country": "VE",
+  "city": "Caracas",
   "osm": "node/13930051501",
   "source": "osm"
 }

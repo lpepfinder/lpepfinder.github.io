@@ -1,6 +1,7 @@
 {
   "url": "https://tbonescafe.com",
   "name": "T-Bones Records and Cafe",
+  "country": "US",
   "city": "Hattiesburg",
   "osm": "node/3497595781",
   "source": "osm"

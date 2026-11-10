@@ -1,6 +1,7 @@
 {
   "url": "https://wuxtryrecords.com",
   "name": "Wuxtry Records",
+  "country": "US",
   "city": "Athens",
   "osm": "node/9686180202",
   "source": "osm"

@@ -1,6 +1,8 @@
 {
   "url": "https://www.academy-records.com",
   "name": "Academy Records & CDs",
+  "country": "US",
+  "city": "New York",
   "osm": "node/13173866901",
   "source": "osm"
 }

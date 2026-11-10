@@ -1,6 +1,7 @@
 {
   "url": "https://evilgreed.net",
   "name": "EG Distribution GmbH",
+  "country": "DE",
   "city": "Berlin",
   "osm": "node/12265507112",
   "source": "osm"

@@ -1,6 +1,8 @@
 {
   "url": "https://curiouscollectionstx.com",
   "name": "Curious Collections Vinyl Records & More",
+  "country": "US",
+  "city": "Bryan",
   "osm": "node/10571510290",
   "source": "osm"
 }

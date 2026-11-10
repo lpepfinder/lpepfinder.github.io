@@ -1,6 +1,8 @@
 {
   "url": "https://verbenavinyl.com",
   "name": "Verbena Vinyl",
+  "country": "US",
+  "city": "Northfield",
   "osm": "node/14134143847",
   "source": "osm"
 }

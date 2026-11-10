@@ -1,6 +1,7 @@
 {
   "url": "https://www.landspeed.com.au",
   "name": "Landspeed Records",
+  "city": "North Canberra",
   "osm": "node/10679626475",
   "source": "osm",
   "country": "AU"

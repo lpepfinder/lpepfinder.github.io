@@ -1,6 +1,7 @@
 {
   "url": "https://vinylcup.com",
   "name": "Marv's Record Shop",
+  "country": "US",
   "city": "Des Moines",
   "osm": "node/9458924187",
   "source": "osm",

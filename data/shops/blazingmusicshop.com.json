@@ -1,6 +1,8 @@
 {
   "url": "https://blazingmusicshop.com",
   "name": "Blazing",
+  "country": "FR",
+  "city": "Paris",
   "osm": "node/14024800091",
   "source": "osm"
 }

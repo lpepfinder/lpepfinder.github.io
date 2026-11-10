@@ -1,6 +1,8 @@
 {
   "url": "https://encorerecordsa2.com",
   "name": "Encore Records",
+  "country": "US",
+  "city": "Ann Arbor",
   "osm": "node/7080710081",
   "source": "osm"
 }

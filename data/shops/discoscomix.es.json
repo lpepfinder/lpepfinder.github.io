@@ -1,6 +1,7 @@
 {
   "url": "https://www.discoscomix.es",
   "name": "Discos Comix",
+  "city": "Murcia",
   "osm": "node/12468687104",
   "source": "osm",
   "country": "ES"

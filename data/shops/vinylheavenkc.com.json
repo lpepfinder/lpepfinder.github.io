@@ -1,6 +1,8 @@
 {
   "url": "https://vinylheavenkc.com",
   "name": "Vinyl Heaven",
+  "country": "US",
+  "city": "Overland Park",
   "osm": "node/13364377402",
   "source": "osm"
 }

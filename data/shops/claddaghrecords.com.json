@@ -1,6 +1,7 @@
 {
   "url": "https://claddaghrecords.com",
   "name": "Claddagh Records",
+  "country": "IE",
   "city": "Dublin",
   "osm": "node/5864341571",
   "source": "osm"

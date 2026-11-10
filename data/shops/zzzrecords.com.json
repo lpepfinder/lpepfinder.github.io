@@ -1,6 +1,8 @@
 {
   "url": "https://www.zzzrecords.com",
   "name": "Zzz Records",
+  "country": "US",
+  "city": "Des Moines",
   "osm": "way/156269224",
   "source": "osm",
   "store": "https://zzzrecords.square.site"

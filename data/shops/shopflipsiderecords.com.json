@@ -1,6 +1,7 @@
 {
   "url": "https://www.shopflipsiderecords.com",
   "name": "Flipside Records",
+  "country": "US",
   "city": "Berkley",
   "osm": "way/228763469",
   "source": "osm"

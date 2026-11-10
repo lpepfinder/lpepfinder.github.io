@@ -1,6 +1,7 @@
 {
   "url": "https://dixons.com.au",
   "name": "Dixons Recycled",
+  "city": "Melbourne",
   "osm": "node/12245773032",
   "source": "osm",
   "country": "AU"

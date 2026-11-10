@@ -1,6 +1,8 @@
 {
   "url": "https://shopcreep.com",
   "name": "Creep Records",
+  "country": "US",
+  "city": "Philadelphia",
   "osm": "node/13765688501",
   "source": "osm"
 }

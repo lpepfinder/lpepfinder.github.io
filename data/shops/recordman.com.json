@@ -1,6 +1,7 @@
 {
   "url": "http://www.recordman.com",
   "name": "The Record Man",
+  "country": "US",
   "city": "Redwood City",
   "osm": "node/1671339326",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "http://www.discoclub65.it",
   "name": "Disco Club",
+  "city": "Genova",
   "osm": "node/4589224909",
   "source": "osm",
   "country": "IT"

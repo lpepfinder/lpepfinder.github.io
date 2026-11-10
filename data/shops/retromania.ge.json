@@ -1,6 +1,8 @@
 {
   "url": "https://retromania.ge",
   "name": "Arrivals to Retromania Records",
+  "country": "GE",
+  "city": "თბილისი",
   "osm": "node/13190939801",
   "source": "osm"
 }

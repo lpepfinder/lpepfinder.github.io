@@ -1,6 +1,7 @@
 {
   "url": "https://canterburyrecords.com",
   "name": "Canterbury Records",
+  "country": "US",
   "city": "Pasadena",
   "osm": "node/2001906745",
   "source": "osm"

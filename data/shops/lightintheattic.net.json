@@ -1,6 +1,7 @@
 {
   "url": "https://lightintheattic.net",
   "name": "Light in the Attic Records",
+  "country": "US",
   "city": "Seattle",
   "osm": "node/4321475709",
   "source": "osm"

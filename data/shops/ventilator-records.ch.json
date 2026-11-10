@@ -1,6 +1,7 @@
 {
   "url": "https://www.ventilator-records.ch",
   "name": "Ventilator Records",
+  "city": "Winterthur",
   "osm": "node/3305700719",
   "source": "osm",
   "country": "CH"

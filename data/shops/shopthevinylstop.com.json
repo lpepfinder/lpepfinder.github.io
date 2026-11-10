@@ -1,6 +1,7 @@
 {
   "url": "https://www.shopthevinylstop.com",
   "name": "The Vinyl Stop",
+  "country": "US",
   "city": "Grinnell",
   "osm": "node/14111669935",
   "source": "osm"

@@ -1,6 +1,8 @@
 {
   "url": "https://gellbornrecords.com",
   "name": "Gellborn Records",
+  "country": "SE",
+  "city": "Stockholm",
   "osm": "node/5825287524",
   "source": "osm"
 }

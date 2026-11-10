@@ -1,6 +1,7 @@
 {
   "url": "http://www.hippieshakerecords.com",
   "name": "Hippie Shake Records",
+  "country": "FI",
   "city": "Helsinki",
   "osm": "node/9362566473",
   "source": "osm"

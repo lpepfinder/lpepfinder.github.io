@@ -1,6 +1,8 @@
 {
   "url": "http://secondtimearound.com",
   "name": "Second Time Around Records",
+  "country": "US",
+  "city": "Dayton",
   "osm": "node/5558030541",
   "source": "osm"
 }

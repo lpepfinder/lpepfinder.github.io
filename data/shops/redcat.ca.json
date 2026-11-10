@@ -1,6 +1,7 @@
 {
   "url": "https://redcat.ca",
   "name": "Red Cat Records",
+  "city": "Vancouver",
   "osm": "node/10991245509",
   "source": "osm",
   "country": "CA"

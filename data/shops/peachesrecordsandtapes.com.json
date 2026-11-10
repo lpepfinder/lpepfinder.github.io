@@ -1,6 +1,7 @@
 {
   "url": "https://www.peachesrecordsandtapes.com",
   "name": "Peaches Records",
+  "country": "US",
   "city": "New Orleans",
   "osm": "node/3346669732",
   "source": "osm"

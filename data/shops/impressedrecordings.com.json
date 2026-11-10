@@ -1,6 +1,8 @@
 {
   "url": "https://impressedrecordings.com",
   "name": "Impressed Recordings",
+  "country": "AU",
+  "city": "Sydney",
   "osm": "node/12874131317",
   "source": "osm"
 }

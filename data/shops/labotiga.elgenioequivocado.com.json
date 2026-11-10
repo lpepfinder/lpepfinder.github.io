@@ -1,6 +1,8 @@
 {
   "url": "https://labotiga.elgenioequivocado.com",
   "name": "El genio equivocado",
+  "country": "ES",
+  "city": "Barcelona",
   "osm": "node/11295384269",
   "source": "osm"
 }

@@ -1,6 +1,7 @@
 {
   "url": "https://www.neontasterecords.ca",
   "name": "Neon Taste Records",
+  "city": "Calgary",
   "osm": "node/12992105947",
   "source": "osm",
   "country": "CA"

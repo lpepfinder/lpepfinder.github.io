@@ -1,6 +1,8 @@
 {
   "url": "https://denkirecords.com",
   "name": "Denki Records",
+  "country": "CR",
+  "city": "Área Metropolitana de San José",
   "osm": "node/12434675134",
   "source": "osm"
 }

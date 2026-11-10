@@ -1,6 +1,8 @@
 {
   "url": "https://mostlymusic.com",
   "name": "Mostly Music",
+  "country": "US",
+  "city": "New York",
   "osm": "node/12228583511",
   "source": "osm"
 }

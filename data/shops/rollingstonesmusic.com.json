@@ -1,6 +1,7 @@
 {
   "url": "https://www.rollingstonesmusic.com",
   "name": "Rolling Stone Records",
+  "country": "US",
   "city": "Norridge",
   "osm": "way/906417557",
   "source": "osm"

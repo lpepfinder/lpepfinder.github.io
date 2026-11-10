@@ -1,6 +1,7 @@
 {
   "url": "https://www.jdcrecordstore.com",
   "name": "JDC Records",
+  "country": "US",
   "city": "San Pedro",
   "osm": "node/10863409577",
   "source": "osm"

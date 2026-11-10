@@ -1,6 +1,8 @@
 {
   "url": "https://www.soundpollution.se",
   "name": "Sound Pollution",
+  "country": "SE",
+  "city": "Stockholm",
   "osm": "node/4751475660",
   "source": "osm"
 }

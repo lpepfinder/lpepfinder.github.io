@@ -1,6 +1,7 @@
 {
   "url": "https://www.bigstarrecords.fr",
   "name": "Big Star Records",
+  "city": "Arras",
   "osm": "node/7072977041",
   "source": "osm",
   "country": "FR"

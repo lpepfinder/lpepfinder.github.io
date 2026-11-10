@@ -1,6 +1,7 @@
 {
   "url": "https://www.fye.com",
   "name": "f.y.e.",
+  "country": "US",
   "city": "Escondido",
   "osm": "node/1426522888",
   "source": "osm"

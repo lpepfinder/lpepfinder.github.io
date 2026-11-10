@@ -1,6 +1,8 @@
 {
   "url": "https://biit.me",
   "name": "Biit",
+  "country": "EE",
+  "city": "Tallinn",
   "osm": "node/1823921324",
   "source": "osm"
 }

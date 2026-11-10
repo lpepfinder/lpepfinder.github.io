@@ -1,6 +1,8 @@
 {
   "url": "https://snickarsrecords.com",
   "name": "Snickars Records",
+  "country": "SE",
+  "city": "Stockholm",
   "osm": "node/7687446266",
   "source": "osm"
 }

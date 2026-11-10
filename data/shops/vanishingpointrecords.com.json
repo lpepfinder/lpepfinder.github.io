@@ -1,6 +1,8 @@
 {
   "url": "https://www.vanishingpointrecords.com",
   "name": "Vanishing Point Records",
+  "country": "GB",
+  "city": "Chesterfield",
   "osm": "node/9624090798",
   "source": "osm",
   "bluesky": {

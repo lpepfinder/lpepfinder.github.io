@@ -1,6 +1,8 @@
 {
   "url": "https://mono-tontraeger.de",
   "name": "Mono",
+  "country": "DE",
+  "city": "Freiburg im Breisgau",
   "osm": "node/2832174309",
   "source": "osm"
 }

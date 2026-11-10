@@ -1,6 +1,7 @@
 {
   "url": "http://www.discostores.com",
   "name": "Disco Stores",
+  "country": "IT",
   "city": "Legnano",
   "osm": "node/4350239201",
   "source": "osm"

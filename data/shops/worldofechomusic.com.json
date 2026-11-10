@@ -1,6 +1,7 @@
 {
   "url": "https://worldofechomusic.com",
   "name": "World of Echo",
+  "country": "GB",
   "city": "London",
   "osm": "node/10056572726",
   "source": "osm"

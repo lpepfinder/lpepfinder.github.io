@@ -1,6 +1,7 @@
 {
   "url": "https://www.musikversorgung.at",
   "name": "Musikversorgung Steiner",
+  "city": "Wien",
   "osm": "node/14016768801",
   "source": "osm",
   "country": "AT"

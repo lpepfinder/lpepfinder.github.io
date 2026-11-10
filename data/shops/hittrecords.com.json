@@ -1,6 +1,7 @@
 {
   "url": "https://hittrecords.com",
   "name": "Hitt Records",
+  "country": "US",
   "city": "Columbia",
   "osm": "node/9960762066",
   "source": "osm"

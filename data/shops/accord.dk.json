@@ -1,6 +1,7 @@
 {
   "url": "https://accord.dk",
   "name": "Accord Lagersalg",
+  "city": "København",
   "osm": "node/12060498740",
   "source": "osm",
   "country": "DK"

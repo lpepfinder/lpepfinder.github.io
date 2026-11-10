@@ -1,6 +1,8 @@
 {
   "url": "https://www.skydiverrecords.com",
   "name": "Skydiver Records",
+  "country": "AU",
+  "city": "Melbourne",
   "osm": "node/9094506621",
   "source": "osm"
 }

@@ -1,6 +1,7 @@
 {
   "url": "https://www.drumnstrum.com",
   "name": "Drum & Strum Music Center",
+  "country": "US",
   "city": "Warrenton",
   "osm": "node/5604986644",
   "source": "osm"

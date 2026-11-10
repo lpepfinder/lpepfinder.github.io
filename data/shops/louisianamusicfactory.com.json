@@ -1,6 +1,8 @@
 {
   "url": "https://www.louisianamusicfactory.com",
   "name": "Louisiana Music Factory",
+  "country": "US",
+  "city": "New Orleans",
   "osm": "way/370788966",
   "source": "osm"
 }

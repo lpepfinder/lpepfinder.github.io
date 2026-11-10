@@ -1,6 +1,7 @@
 {
   "url": "https://poohbah.com",
   "name": "Poo-Bah Record Shop",
+  "country": "US",
   "city": "Pasadena",
   "osm": "node/5859490686",
   "source": "osm"

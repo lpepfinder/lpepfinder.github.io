@@ -1,6 +1,8 @@
 {
   "url": "https://www.patate-records.com",
   "name": "Patate Records",
+  "country": "FR",
+  "city": "Paris",
   "osm": "node/1311951914",
   "source": "osm"
 }

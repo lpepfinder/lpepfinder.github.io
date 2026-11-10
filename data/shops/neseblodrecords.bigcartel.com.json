@@ -1,6 +1,8 @@
 {
   "url": "https://neseblodrecords.bigcartel.com",
   "name": "Neseblod Records",
+  "country": "NO",
+  "city": "Oslo",
   "osm": "node/2847570870",
   "source": "osm"
 }

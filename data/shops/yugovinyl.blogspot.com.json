@@ -1,6 +1,8 @@
 {
   "url": "https://yugovinyl.blogspot.com",
   "name": "Југовинил",
+  "country": "RS",
+  "city": "Београд",
   "osm": "node/5834350903",
   "source": "osm"
 }

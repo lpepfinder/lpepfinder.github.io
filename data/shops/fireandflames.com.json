@@ -1,6 +1,7 @@
 {
   "url": "https://www.fireandflames.com",
   "name": "Fire and Flames",
+  "country": "DE",
   "city": "Kiel",
   "osm": "node/8742417964",
   "source": "osm"

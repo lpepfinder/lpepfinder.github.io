@@ -1,6 +1,7 @@
 {
   "url": "https://compactmusic.ca",
   "name": "Compact Music",
+  "city": "Ottawa",
   "osm": "node/2930393023",
   "source": "osm",
   "country": "CA"

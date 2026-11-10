@@ -1,6 +1,7 @@
 {
   "url": "https://alienrecordsotr.com",
   "name": "Alien Records",
+  "country": "US",
   "city": "Cincinnati",
   "osm": "node/3498091893",
   "source": "osm"

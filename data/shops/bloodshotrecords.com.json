@@ -1,6 +1,7 @@
 {
   "url": "https://www.bloodshotrecords.com",
   "name": "Bloodshot Records",
+  "country": "US",
   "city": "Chicago",
   "osm": "node/4666490092",
   "source": "osm",

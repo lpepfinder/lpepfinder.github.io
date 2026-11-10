@@ -1,6 +1,7 @@
 {
   "url": "https://erodingwinds.com",
   "name": "Eroding Winds",
+  "country": "US",
   "city": "Oshkosh",
   "osm": "node/11124177813",
   "source": "osm"

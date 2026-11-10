@@ -1,6 +1,8 @@
 {
   "url": "https://discos-revolver.com",
   "name": "Discos Revolver",
+  "country": "ES",
+  "city": "Barcelona",
   "osm": "node/12883049786",
   "source": "osm"
 }

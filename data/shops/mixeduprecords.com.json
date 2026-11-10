@@ -1,6 +1,7 @@
 {
   "url": "https://www.mixeduprecords.com",
   "name": "Mixed Up Records",
+  "country": "GB",
   "city": "Glasgow",
   "osm": "node/6878204156",
   "source": "osm"

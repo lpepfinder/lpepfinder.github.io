@@ -1,6 +1,7 @@
 {
   "url": "https://www.vinyloveplatne.sk",
   "name": "Music record shop",
+  "city": "Bratislava",
   "osm": "node/8587965885",
   "source": "osm",
   "country": "SK"

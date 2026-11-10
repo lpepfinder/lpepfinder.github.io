@@ -1,6 +1,7 @@
 {
   "url": "https://dgr.se",
   "name": "Delicious Goldfish Records",
+  "country": "SE",
   "city": "Solna",
   "osm": "node/13381833910",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.palenmusic.com",
   "name": "Palen Music",
+  "country": "US",
   "city": "Liberty",
   "osm": "node/13608566257",
   "source": "osm"

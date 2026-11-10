@@ -1,6 +1,8 @@
 {
   "url": "https://daddyrichrecords.com",
   "name": "Daddy Rich Records",
+  "country": "AU",
+  "city": "Sydney",
   "osm": "node/11091444178",
   "source": "osm"
 }

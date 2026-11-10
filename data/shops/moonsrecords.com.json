@@ -1,6 +1,8 @@
 {
   "url": "https://moonsrecords.com",
   "name": "Moon's Records",
+  "country": "CA",
+  "city": "Cumberland",
   "osm": "node/12898164265",
   "source": "osm"
 }

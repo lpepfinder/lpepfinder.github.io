@@ -1,6 +1,7 @@
 {
   "url": "https://tototorecords.jp",
   "name": "Tototo records",
+  "city": "大阪市",
   "osm": "node/11741477295",
   "source": "osm",
   "country": "JP"

@@ -1,6 +1,8 @@
 {
   "url": "https://alfforecords.net",
   "name": "Alffo Recordss",
+  "country": "JP",
+  "city": "大阪市",
   "osm": "node/11741477296",
   "source": "osm"
 }

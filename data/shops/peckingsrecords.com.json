@@ -1,6 +1,8 @@
 {
   "url": "https://www.peckingsrecords.com",
   "name": "Peckings Records",
+  "country": "GB",
+  "city": "Greater London",
   "osm": "node/8805728904",
   "source": "osm"
 }

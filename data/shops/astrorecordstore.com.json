@@ -1,6 +1,7 @@
 {
   "url": "https://www.astrorecordstore.com",
   "name": "Astro Record Store",
+  "country": "US",
   "city": "Bastrop",
   "osm": "way/1180553745",
   "source": "osm"

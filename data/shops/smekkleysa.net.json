@@ -1,6 +1,7 @@
 {
   "url": "https://smekkleysa.net",
   "name": "Smekkleysa",
+  "country": "IS",
   "city": "Reykjavík",
   "osm": "node/6308668350",
   "source": "osm"

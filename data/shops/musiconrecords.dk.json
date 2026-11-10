@@ -1,6 +1,7 @@
 {
   "url": "http://www.musiconrecords.dk",
   "name": "Musicon Records",
+  "city": "Roskilde",
   "osm": "node/13842301885",
   "source": "osm",
   "country": "DK"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.kanaga-records.com",
   "name": "Kanaga Records",
+  "country": "FR",
   "city": "Paris",
   "osm": "node/11432131394",
   "source": "osm"

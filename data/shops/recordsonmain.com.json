@@ -1,6 +1,8 @@
 {
   "url": "https://recordsonmain.com",
   "name": "Records on Main",
+  "country": "US",
+  "city": "Littleton",
   "osm": "node/12988712460",
   "source": "osm"
 }

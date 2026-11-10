@@ -1,6 +1,7 @@
 {
   "url": "http://www.rootdownrecords.jp",
   "name": "Root Down Records",
+  "city": "大阪市",
   "osm": "node/11860327314",
   "source": "osm",
   "country": "JP"

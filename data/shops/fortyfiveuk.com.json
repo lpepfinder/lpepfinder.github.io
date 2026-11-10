@@ -1,6 +1,7 @@
 {
   "url": "https://www.fortyfiveuk.com",
   "name": "FortyFive Cafe",
+  "country": "GB",
   "city": "York",
   "osm": "node/5073603342",
   "source": "osm"

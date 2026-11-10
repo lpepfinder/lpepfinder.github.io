@@ -1,6 +1,7 @@
 {
   "url": "https://www.recordconnectionpa.com",
   "name": "Record Connection",
+  "country": "US",
   "city": "Ephrata",
   "osm": "way/412083558",
   "source": "osm"

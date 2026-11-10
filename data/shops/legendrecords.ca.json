@@ -1,6 +1,7 @@
 {
   "url": "https://www.legendrecords.ca",
   "name": "Legend Records",
+  "city": "Ottawa",
   "osm": "node/13113052314",
   "source": "osm",
   "country": "CA"

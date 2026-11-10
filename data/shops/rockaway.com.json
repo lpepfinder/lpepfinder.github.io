@@ -1,6 +1,8 @@
 {
   "url": "https://www.rockaway.com",
   "name": "Rockaway Records",
+  "country": "US",
+  "city": "Los Angeles",
   "osm": "node/3119815053",
   "source": "osm"
 }

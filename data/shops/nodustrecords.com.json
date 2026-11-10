@@ -1,6 +1,7 @@
 {
   "url": "https://nodustrecords.com",
   "name": "No Dust Records",
+  "country": "NL",
   "city": "Wezep",
   "osm": "node/2765228778",
   "source": "osm"

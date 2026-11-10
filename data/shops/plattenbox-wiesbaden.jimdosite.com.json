@@ -1,6 +1,8 @@
 {
   "url": "https://plattenbox-wiesbaden.jimdosite.com",
   "name": "Plattenbox",
+  "country": "DE",
+  "city": "Wiesbaden",
   "osm": "node/6352870061",
   "source": "osm"
 }

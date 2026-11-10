@@ -1,6 +1,7 @@
 {
   "url": "https://www.recordswap.com",
   "name": "Record Swap",
+  "country": "US",
   "city": "Urbana",
   "osm": "node/8033525670",
   "source": "osm"

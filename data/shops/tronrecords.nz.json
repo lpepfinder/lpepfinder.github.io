@@ -1,6 +1,7 @@
 {
   "url": "https://tronrecords.nz",
   "name": "Tron Records",
+  "city": "Hamilton City",
   "osm": "node/11919003469",
   "source": "osm",
   "country": "NZ"

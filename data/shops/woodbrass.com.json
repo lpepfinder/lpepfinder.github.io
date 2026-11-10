@@ -1,6 +1,7 @@
 {
   "url": "https://www.woodbrass.com",
   "name": "Station Music",
+  "country": "FR",
   "city": "Montgermont",
   "osm": "node/6978051761",
   "source": "osm"

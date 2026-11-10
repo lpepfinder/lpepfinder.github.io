@@ -1,6 +1,7 @@
 {
   "url": "https://recordkrate.com",
   "name": "Record Krate",
+  "country": "US",
   "city": "Wake Forest",
   "osm": "node/12789093526",
   "source": "osm"

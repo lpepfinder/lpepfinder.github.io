@@ -1,6 +1,8 @@
 {
   "url": "https://www.zudrangmarecords.com",
   "name": "สุดแรงม้า",
+  "country": "TH",
+  "city": "กรุงเทพมหานคร",
   "osm": "node/4781368623",
   "source": "osm"
 }

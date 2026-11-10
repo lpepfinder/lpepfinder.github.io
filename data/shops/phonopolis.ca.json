@@ -1,6 +1,7 @@
 {
   "url": "https://phonopolis.ca",
   "name": "Phonopolis",
+  "city": "Montréal",
   "osm": "node/2434008344",
   "source": "osm",
   "country": "CA"

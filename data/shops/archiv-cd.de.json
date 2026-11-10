@@ -1,6 +1,7 @@
 {
   "url": "http://www.archiv-cd.de",
   "name": "Archiv",
+  "city": "Dortmund",
   "osm": "node/3465793754",
   "source": "osm",
   "country": "DE"

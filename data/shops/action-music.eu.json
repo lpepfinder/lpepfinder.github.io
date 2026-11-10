@@ -1,6 +1,8 @@
 {
   "url": "https://www.action-music.eu",
   "name": "Action Music",
+  "country": "DE",
+  "city": "Schemmerhofen",
   "osm": "node/372446431",
   "source": "osm"
 }

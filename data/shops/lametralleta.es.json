@@ -1,6 +1,7 @@
 {
   "url": "https://lametralleta.es",
   "name": "Discos La Metralleta",
+  "city": "Madrid",
   "osm": "node/9887098239",
   "source": "osm",
   "country": "ES"

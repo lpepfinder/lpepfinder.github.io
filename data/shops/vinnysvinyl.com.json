@@ -1,6 +1,8 @@
 {
   "url": "http://vinnysvinyl.com",
   "name": "Vinny’s Vinyl",
+  "country": "US",
+  "city": "Newport News",
   "osm": "node/14036302301",
   "source": "osm"
 }

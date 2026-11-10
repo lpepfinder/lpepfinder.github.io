@@ -1,6 +1,8 @@
 {
   "url": "https://stumbletownrecords.com",
   "name": "Stumbletown Records",
+  "country": "US",
+  "city": "Seattle",
   "osm": "node/11852830609",
   "source": "osm"
 }

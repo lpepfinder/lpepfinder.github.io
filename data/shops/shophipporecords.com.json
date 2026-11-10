@@ -1,6 +1,7 @@
 {
   "url": "http://shophipporecords.com",
   "name": "Hippo Records",
+  "country": "US",
   "city": "Greensboro",
   "osm": "node/7785945381",
   "source": "osm"

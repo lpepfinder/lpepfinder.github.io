@@ -1,6 +1,8 @@
 {
   "url": "https://www.lmi-partitions.com",
   "name": "La Librairie Musicale",
+  "country": "FR",
+  "city": "Aix-en-Provence",
   "osm": "node/11919588738",
   "source": "osm"
 }

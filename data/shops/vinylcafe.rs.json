@@ -1,6 +1,7 @@
 {
   "url": "https://www.vinylcafe.rs",
   "name": "Vinyl Cafe",
+  "city": "Ниш",
   "osm": "node/12385216396",
   "source": "osm",
   "country": "RS"

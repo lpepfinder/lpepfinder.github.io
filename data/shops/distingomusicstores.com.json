@@ -1,6 +1,8 @@
 {
   "url": "https://distingomusicstores.com",
   "name": "Distingo",
+  "country": "EG",
+  "city": "القاهرة",
   "osm": "node/817061969",
   "source": "osm"
 }

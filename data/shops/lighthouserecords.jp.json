@@ -1,6 +1,7 @@
 {
   "url": "https://lighthouserecords.jp",
   "name": "Lighthouse Records",
+  "city": "渋谷区",
   "osm": "node/11764192919",
   "source": "osm",
   "country": "JP"

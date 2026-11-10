@@ -1,6 +1,8 @@
 {
   "url": "https://www.recordsandmore.de",
   "name": "Q-Records & more",
+  "country": "DE",
+  "city": "Lüneburg",
   "osm": "node/1246666700",
   "source": "osm"
 }

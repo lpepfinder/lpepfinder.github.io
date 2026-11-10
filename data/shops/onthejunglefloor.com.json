@@ -1,6 +1,8 @@
 {
   "url": "https://onthejunglefloor.com",
   "name": "On The Jungle Floor",
+  "country": "IN",
+  "city": "Bengaluru",
   "osm": "node/13432353305",
   "source": "osm"
 }

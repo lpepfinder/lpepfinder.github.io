@@ -1,6 +1,7 @@
 {
   "url": "https://villagevinylhifi.com",
   "name": "Village Vinyl",
+  "country": "US",
   "city": "Brookline",
   "osm": "node/13157035970",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.rickrollrecords.ca",
   "name": "Rick Roll Records",
+  "city": "Burnaby",
   "osm": "node/11885827286",
   "source": "osm",
   "country": "CA"

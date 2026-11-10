@@ -1,6 +1,8 @@
 {
   "url": "https://www.recollectrecords.com",
   "name": "Recollect Records",
+  "country": "US",
+  "city": "Denver",
   "osm": "node/14116804601",
   "source": "osm"
 }

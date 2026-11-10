@@ -1,6 +1,7 @@
 {
   "url": "http://www.vinylbox.ru",
   "name": "Vinylbox",
+  "city": "Санкт-Петербург",
   "osm": "node/8142187922",
   "source": "osm",
   "country": "RU"

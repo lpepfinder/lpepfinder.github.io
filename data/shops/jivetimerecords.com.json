@@ -1,6 +1,7 @@
 {
   "url": "https://jivetimerecords.com",
   "name": "Jive Time Records",
+  "country": "US",
   "city": "Seattle",
   "osm": "node/2106696962",
   "source": "osm"

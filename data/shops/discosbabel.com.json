@@ -1,6 +1,7 @@
 {
   "url": "https://discosbabel.com",
   "name": "Discos Babel",
+  "country": "ES",
   "city": "Madrid",
   "osm": "node/4009528499",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://fortherecordnyc.com",
   "name": "For the Record",
+  "country": "US",
   "city": "Brooklyn",
   "osm": "node/9501235662",
   "source": "osm"

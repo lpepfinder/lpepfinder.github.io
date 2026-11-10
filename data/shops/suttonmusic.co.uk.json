@@ -1,6 +1,7 @@
 {
   "url": "https://suttonmusic.co.uk",
   "name": "Sutton Music Centre",
+  "city": "Greater London",
   "osm": "node/266739707",
   "source": "osm",
   "country": "GB"

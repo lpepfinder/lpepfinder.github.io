@@ -1,6 +1,7 @@
 {
   "url": "https://sounddevices.com.au",
   "name": "Sound Devices",
+  "city": "Parramatta",
   "osm": "node/12203598366",
   "source": "osm",
   "country": "AU"

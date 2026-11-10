@@ -1,6 +1,8 @@
 {
   "url": "https://recordrecycler.com",
   "name": "Record Recycler",
+  "country": "US",
+  "city": "Torrance",
   "osm": "node/9941161419",
   "source": "osm"
 }

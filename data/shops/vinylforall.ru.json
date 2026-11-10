@@ -1,6 +1,7 @@
 {
   "url": "http://www.vinylforall.ru",
   "name": "VinylForAll",
+  "city": "Санкт-Петербург",
   "osm": "node/2283447470",
   "source": "osm",
   "country": "RU"

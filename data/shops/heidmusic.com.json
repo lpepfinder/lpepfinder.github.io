@@ -1,6 +1,7 @@
 {
   "url": "https://www.heidmusic.com",
   "name": "Heid Music",
+  "country": "US",
   "city": "Appleton",
   "osm": "way/577758661",
   "source": "osm"

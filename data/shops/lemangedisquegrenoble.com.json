@@ -1,6 +1,8 @@
 {
   "url": "https://www.lemangedisquegrenoble.com",
   "name": "Le Mange Disque",
+  "country": "FR",
+  "city": "Grenoble",
   "osm": "node/311317280",
   "source": "osm"
 }

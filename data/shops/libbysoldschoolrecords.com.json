@@ -1,6 +1,8 @@
 {
   "url": "https://www.libbysoldschoolrecords.com",
   "name": "Libby’s Old School Records",
+  "country": "US",
+  "city": "Frisco",
   "osm": "node/13979072595",
   "source": "osm"
 }

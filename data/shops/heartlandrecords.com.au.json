@@ -1,6 +1,7 @@
 {
   "url": "https://www.heartlandrecords.com.au",
   "name": "Heartland Records",
+  "city": "Melbourne",
   "osm": "way/844223125",
   "source": "osm",
   "country": "AU"

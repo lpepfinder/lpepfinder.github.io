@@ -1,6 +1,8 @@
 {
   "url": "https://frozen-records.com",
   "name": "Frozen Records",
+  "country": "FR",
+  "city": "Nantes",
   "osm": "node/2844603280",
   "source": "osm"
 }

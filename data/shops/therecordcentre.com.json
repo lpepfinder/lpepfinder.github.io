@@ -1,6 +1,8 @@
 {
   "url": "https://therecordcentre.com",
   "name": "The Record Centre",
+  "country": "CA",
+  "city": "Ottawa",
   "osm": "node/5862345758",
   "source": "osm"
 }

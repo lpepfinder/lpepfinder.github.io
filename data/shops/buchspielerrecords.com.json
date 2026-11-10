@@ -1,6 +1,8 @@
 {
   "url": "https://www.buchspielerrecords.com",
   "name": "Buch Spieler Records",
+  "country": "US",
+  "city": "Montpelier",
   "osm": "node/12583396101",
   "source": "osm"
 }

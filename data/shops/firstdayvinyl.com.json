@@ -1,6 +1,7 @@
 {
   "url": "https://www.firstdayvinyl.com",
   "name": "First Day Vinyl",
+  "country": "US",
   "city": "Lincoln",
   "osm": "node/13930392418",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "http://www.arcd.com",
   "name": "Arkansas Record & CD Exchange",
+  "country": "US",
   "city": "North Little Rock",
   "osm": "node/6297858682",
   "source": "osm"

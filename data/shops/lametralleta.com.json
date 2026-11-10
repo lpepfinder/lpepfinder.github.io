@@ -1,6 +1,8 @@
 {
   "url": "https://www.lametralleta.com",
   "name": "Discos La Metralleta",
+  "country": "ES",
+  "city": "Alcorcón",
   "osm": "node/13798067178",
   "source": "osm"
 }

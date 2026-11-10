@@ -1,6 +1,7 @@
 {
   "url": "https://spintimerecords.com",
   "name": "Spin Time Records",
+  "country": "US",
   "city": "Washington",
   "osm": "node/12518378105",
   "source": "osm"

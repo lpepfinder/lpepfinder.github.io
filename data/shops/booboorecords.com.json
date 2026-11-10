@@ -1,6 +1,7 @@
 {
   "url": "https://booboorecords.com",
   "name": "Boo Boo Records",
+  "country": "US",
   "city": "San Luis Obispo",
   "osm": "node/3857898557",
   "source": "osm"

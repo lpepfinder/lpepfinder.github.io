@@ -1,6 +1,7 @@
 {
   "url": "https://www.mintgalleryrecords.com",
   "name": "Mint Gallery Records",
+  "country": "US",
   "city": "Portland",
   "osm": "node/5125898294",
   "source": "osm"

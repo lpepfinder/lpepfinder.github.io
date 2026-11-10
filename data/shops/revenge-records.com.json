@@ -1,6 +1,8 @@
 {
   "url": "http://revenge-records.com",
   "name": "Revenge records",
+  "country": "JP",
+  "city": "大阪市",
   "osm": "node/6334876685",
   "source": "osm"
 }

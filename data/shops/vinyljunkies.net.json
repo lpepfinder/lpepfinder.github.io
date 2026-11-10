@@ -1,6 +1,8 @@
 {
   "url": "https://vinyljunkies.net",
   "name": "Vinyl Junkies Record shack",
+  "country": "US",
+  "city": "San Diego",
   "osm": "node/14005680501",
   "source": "osm"
 }

@@ -1,6 +1,8 @@
 {
   "url": "https://www.blackmandarin.ch",
   "name": "Black Mandarin",
+  "country": "CH",
+  "city": "Bern",
   "osm": "node/6958532165",
   "source": "osm"
 }

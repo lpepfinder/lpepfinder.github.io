@@ -1,6 +1,7 @@
 {
   "url": "http://logo-records.de",
   "name": "Logo Records",
+  "city": "Berlin",
   "osm": "node/7289162249",
   "source": "osm",
   "country": "DE"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.vinil.rs",
   "name": "Vinil",
+  "city": "Градска општина Палилула",
   "osm": "node/11251520975",
   "source": "osm",
   "country": "RS"

@@ -1,6 +1,7 @@
 {
   "url": "https://recordarchive.com",
   "name": "Record Archive",
+  "country": "US",
   "city": "Rochester",
   "osm": "way/505220735",
   "source": "osm"

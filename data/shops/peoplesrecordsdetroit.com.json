@@ -1,6 +1,8 @@
 {
   "url": "https://peoplesrecordsdetroit.com",
   "name": "Peoples Records",
+  "country": "US",
+  "city": "Detroit",
   "osm": "node/12099075983",
   "source": "osm"
 }

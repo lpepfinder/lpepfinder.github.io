@@ -1,6 +1,8 @@
 {
   "url": "https://naimarecords.com",
   "name": "Naima Records",
+  "country": "ES",
+  "city": "Barcelona",
   "osm": "node/10180795556",
   "source": "osm"
 }

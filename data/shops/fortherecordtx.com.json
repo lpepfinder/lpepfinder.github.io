@@ -1,6 +1,7 @@
 {
   "url": "https://fortherecordtx.com",
   "name": "For The Record",
+  "country": "US",
   "city": "Beaumont",
   "osm": "way/607455192",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.discotecalaziale.com",
   "name": "Discoteca Laziale",
+  "country": "IT",
   "city": "Roma",
   "osm": "node/8894860918",
   "source": "osm"

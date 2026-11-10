@@ -1,6 +1,8 @@
 {
   "url": "https://www.deathofvinyl.com",
   "name": "La Fin du Vinyle",
+  "country": "CA",
+  "city": "Montréal",
   "osm": "node/6034609112",
   "source": "osm"
 }

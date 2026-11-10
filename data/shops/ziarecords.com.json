@@ -1,6 +1,7 @@
 {
   "url": "https://www.ziarecords.com",
   "name": "Zia Records",
+  "country": "US",
   "city": "Las Vegas",
   "osm": "node/11496532323",
   "source": "osm"

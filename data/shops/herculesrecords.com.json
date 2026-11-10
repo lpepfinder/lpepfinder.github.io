@@ -1,6 +1,8 @@
 {
   "url": "https://www.herculesrecords.com",
   "name": "Hercules Records",
+  "country": "US",
+  "city": "Berkeley",
   "osm": "node/12596389143",
   "source": "osm"
 }

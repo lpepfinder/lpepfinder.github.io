@@ -1,6 +1,8 @@
 {
   "url": "https://discoskillers.com",
   "name": "Killer's discos",
+  "country": "ES",
+  "city": "Madrid",
   "osm": "node/5290127121",
   "source": "osm"
 }

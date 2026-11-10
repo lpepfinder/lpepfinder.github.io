@@ -1,6 +1,7 @@
 {
   "url": "https://www.bridge9.com",
   "name": "Bridge Nine Records",
+  "country": "US",
   "city": "Beverly",
   "osm": "node/14218527676",
   "source": "osm"

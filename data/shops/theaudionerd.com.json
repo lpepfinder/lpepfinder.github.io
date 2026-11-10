@@ -1,6 +1,8 @@
 {
   "url": "https://www.theaudionerd.com",
   "name": "The Audio Nerd",
+  "country": "US",
+  "city": "Rocklin",
   "osm": "way/1532613178",
   "source": "osm"
 }

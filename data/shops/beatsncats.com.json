@@ -1,6 +1,7 @@
 {
   "url": "https://beatsncats.com",
   "name": "Beats N' Cats Records",
+  "country": "US",
   "city": "Bremerton",
   "osm": "node/13525434501",
   "source": "osm"

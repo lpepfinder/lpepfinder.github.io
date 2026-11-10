@@ -1,6 +1,7 @@
 {
   "url": "https://www.lostweekendrecords.com",
   "name": "Lost Weekend Records",
+  "country": "US",
   "city": "Columbus",
   "osm": "node/12919585334",
   "source": "osm"

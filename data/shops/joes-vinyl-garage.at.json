@@ -1,6 +1,7 @@
 {
   "url": "https://joes-vinyl-garage.at",
   "name": "Joe's Vinyl Garage",
+  "city": "Villach",
   "osm": "node/13752857702",
   "source": "osm",
   "country": "AT"

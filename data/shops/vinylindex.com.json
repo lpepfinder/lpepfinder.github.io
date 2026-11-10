@@ -1,6 +1,7 @@
 {
   "url": "https://www.vinylindex.com",
   "name": "vinyl index.",
+  "country": "US",
   "city": "Somerville",
   "osm": "node/13954677536",
   "source": "osm"

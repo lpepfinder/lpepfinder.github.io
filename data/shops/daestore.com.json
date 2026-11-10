@@ -1,6 +1,7 @@
 {
   "url": "https://daestore.com",
   "name": "Daestore",
+  "country": "FR",
   "city": "Lyon",
   "osm": "node/11035255128",
   "source": "osm"

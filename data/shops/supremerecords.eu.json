@@ -1,6 +1,8 @@
 {
   "url": "https://supremerecords.eu",
   "name": "Supreme Records",
+  "country": "BG",
+  "city": "София",
   "osm": "node/7623488600",
   "source": "osm"
 }

@@ -1,6 +1,7 @@
 {
   "url": "https://krmerchs.com",
   "name": "krmerch",
+  "country": "SG",
   "city": "Singapore",
   "osm": "node/10808393882",
   "source": "osm"

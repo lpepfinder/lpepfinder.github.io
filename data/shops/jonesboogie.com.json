@@ -1,6 +1,7 @@
 {
   "url": "https://www.jonesboogie.com",
   "name": "Jonesboogie Records",
+  "country": "US",
   "city": "Jonesboro",
   "osm": "node/13807222928",
   "source": "osm"

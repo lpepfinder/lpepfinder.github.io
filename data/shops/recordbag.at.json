@@ -1,6 +1,7 @@
 {
   "url": "http://www.recordbag.at",
   "name": "Recordbag",
+  "city": "Wien",
   "osm": "node/10697410957",
   "source": "osm",
   "country": "AT"

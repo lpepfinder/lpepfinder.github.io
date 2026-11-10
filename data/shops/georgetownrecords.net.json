@@ -1,6 +1,7 @@
 {
   "url": "http://georgetownrecords.net",
   "name": "Georgetown Records",
+  "country": "US",
   "city": "Seattle",
   "osm": "node/2396891149",
   "source": "osm"

@@ -1,6 +1,8 @@
 {
   "url": "https://blackdotsbuffalo.shop",
   "name": "Black Dots",
+  "country": "US",
+  "city": "Buffalo",
   "osm": "node/8243944629",
   "source": "osm"
 }

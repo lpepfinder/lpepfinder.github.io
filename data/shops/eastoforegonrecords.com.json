@@ -1,6 +1,7 @@
 {
   "url": "https://www.eastoforegonrecords.com",
   "name": "East of Oregon Vinyl Records",
+  "country": "US",
   "city": "Cornwall",
   "osm": "node/8788827960",
   "source": "osm"

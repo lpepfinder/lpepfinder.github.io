@@ -1,6 +1,8 @@
 {
   "url": "https://www.thepearlrecords.com",
   "name": "Pearl Records",
+  "country": "US",
+  "city": "Damariscotta",
   "osm": "node/14138681801",
   "source": "osm"
 }

@@ -1,6 +1,7 @@
 {
   "url": "https://discosborabora.com",
   "name": "Discos Bora-Bora",
+  "country": "ES",
   "city": "Granada",
   "osm": "node/6257688586",
   "source": "osm"

@@ -1,6 +1,8 @@
 {
   "url": "https://www.tropicallrecords.be",
   "name": "The Tropicall records",
+  "country": "BE",
+  "city": "Bruxelles - Brussel",
   "osm": "node/10079845260",
   "source": "osm"
 }

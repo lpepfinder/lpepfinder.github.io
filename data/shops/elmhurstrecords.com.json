@@ -1,6 +1,7 @@
 {
   "url": "https://elmhurstrecords.com",
   "name": "Elmhurst Records",
+  "country": "US",
   "city": "Elmhurst",
   "osm": "node/13702408760",
   "source": "osm"

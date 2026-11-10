@@ -1,6 +1,7 @@
 {
   "url": "https://www.discomane.com",
   "name": "Discomane",
+  "country": "IT",
   "city": "Milano",
   "osm": "node/5376873621",
   "source": "osm"

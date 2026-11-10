@@ -1,6 +1,7 @@
 {
   "url": "https://www.artistic-recordstore.com",
   "name": "Artistic Recordstore",
+  "country": "NL",
   "city": "Grou",
   "osm": "node/2954215075",
   "source": "osm"

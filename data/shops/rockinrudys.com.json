@@ -1,6 +1,7 @@
 {
   "url": "https://www.rockinrudys.com",
   "name": "Rockin' Rudy's",
+  "country": "US",
   "city": "Missoula",
   "osm": "way/824692175",
   "source": "osm"

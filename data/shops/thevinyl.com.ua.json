@@ -1,6 +1,7 @@
 {
   "url": "https://thevinyl.com.ua",
   "name": "The Vinyl",
+  "city": "Київ",
   "osm": "node/4876781444",
   "source": "osm",
   "country": "UA"

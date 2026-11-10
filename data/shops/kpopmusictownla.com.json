@@ -1,6 +1,7 @@
 {
   "url": "https://kpopmusictownla.com",
   "name": "K-Pop Music Town",
+  "country": "US",
   "city": "Los Angeles",
   "osm": "node/10301708326",
   "source": "osm"

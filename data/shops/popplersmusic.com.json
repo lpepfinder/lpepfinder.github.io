@@ -1,6 +1,8 @@
 {
   "url": "https://www.popplersmusic.com",
   "name": "Popplers Music, Inc.",
+  "country": "US",
+  "city": "Grand Forks",
   "osm": "way/182055716",
   "source": "osm"
 }

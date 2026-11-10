@@ -1,6 +1,8 @@
 {
   "url": "https://voxmusicweb.com",
   "name": "Vox music",
+  "country": "JP",
+  "city": "大阪市",
   "osm": "node/11741477302",
   "source": "osm"
 }

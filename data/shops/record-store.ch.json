@@ -1,6 +1,7 @@
 {
   "url": "https://www.record-store.ch",
   "name": "MusikLaden Record Store",
+  "city": "Wahlern",
   "osm": "node/11749597820",
   "source": "osm",
   "country": "CH"

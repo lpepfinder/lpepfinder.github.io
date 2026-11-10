@@ -1,6 +1,8 @@
 {
   "url": "https://cafesuspiro.com",
   "name": "café suspiro",
+  "country": "US",
+  "city": "San Francisco",
   "osm": "node/3789688057",
   "source": "osm"
 }

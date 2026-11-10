@@ -1,6 +1,8 @@
 {
   "url": "https://tunnelrecordssf.com",
   "name": "Tunnel Records",
+  "country": "US",
+  "city": "San Francisco",
   "osm": "node/12769361898",
   "source": "osm"
 }

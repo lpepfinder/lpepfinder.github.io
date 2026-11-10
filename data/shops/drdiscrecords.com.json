@@ -1,6 +1,7 @@
 {
   "url": "https://www.drdiscrecords.com",
   "name": "Dr. Disc Records",
+  "country": "CA",
   "city": "Windsor",
   "osm": "node/9793575887",
   "source": "osm"

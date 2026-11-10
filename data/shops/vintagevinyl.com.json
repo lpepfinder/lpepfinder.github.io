@@ -1,6 +1,8 @@
 {
   "url": "https://vintagevinyl.com",
   "name": "Vintage Vinyl",
+  "country": "US",
+  "city": "University City",
   "osm": "node/3189069514",
   "source": "osm"
 }

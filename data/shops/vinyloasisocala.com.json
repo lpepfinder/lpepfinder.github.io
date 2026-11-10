@@ -1,6 +1,8 @@
 {
   "url": "http://vinyloasisocala.com",
   "name": "Vinyl Oasis",
+  "country": "US",
+  "city": "Ocala",
   "osm": "node/14341780701",
   "source": "osm"
 }

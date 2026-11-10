@@ -1,6 +1,7 @@
 {
   "url": "https://recordhead.biz",
   "name": "Record Head",
+  "country": "US",
   "city": "West Allis",
   "osm": "node/10246719086",
   "source": "osm"

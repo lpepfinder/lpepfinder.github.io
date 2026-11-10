@@ -1,6 +1,7 @@
 {
   "url": "https://www.hayesmusic.co.uk",
   "name": "Hayes Music",
+  "city": "Test Valley",
   "osm": "way/908484374",
   "source": "osm",
   "country": "GB"

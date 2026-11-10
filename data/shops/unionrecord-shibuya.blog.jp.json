@@ -1,6 +1,7 @@
 {
   "url": "https://unionrecord-shibuya.blog.jp",
   "name": "Union Record Shibuya Parco",
+  "city": "渋谷区",
   "osm": "node/11764192916",
   "source": "osm",
   "country": "JP"

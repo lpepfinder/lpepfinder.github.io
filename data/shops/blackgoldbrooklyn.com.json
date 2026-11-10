@@ -1,6 +1,7 @@
 {
   "url": "https://blackgoldbrooklyn.com",
   "name": "Black Gold Records",
+  "country": "US",
   "city": "Brooklyn",
   "osm": "node/6314812052",
   "source": "osm"

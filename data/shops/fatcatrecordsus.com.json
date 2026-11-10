@@ -1,6 +1,7 @@
 {
   "url": "https://www.fatcatrecordsus.com",
   "name": "Fat Cat Records",
+  "country": "US",
   "city": "Seattle",
   "osm": "node/3383174586",
   "source": "osm"

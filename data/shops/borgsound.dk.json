@@ -1,6 +1,8 @@
 {
   "url": "https://borgsound.dk",
   "name": "Borg Sound",
+  "country": "DK",
+  "city": "Kongens Lyngby",
   "osm": "node/6700012953",
   "source": "osm"
 }

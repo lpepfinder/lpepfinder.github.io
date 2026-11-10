@@ -1,6 +1,7 @@
 {
   "url": "https://royalcatrecords.blogspot.com",
   "name": "Royal Cat Records",
+  "country": "CA",
   "city": "Guelph",
   "osm": "node/12155566983",
   "source": "osm"

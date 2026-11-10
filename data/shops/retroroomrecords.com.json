@@ -1,6 +1,8 @@
 {
   "url": "https://retroroomrecords.com",
   "name": "Retro Room Records and oddities",
+  "country": "US",
+  "city": "Klamath Falls",
   "osm": "node/12865140401",
   "source": "osm"
 }

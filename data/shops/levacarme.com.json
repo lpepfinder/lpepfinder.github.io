@@ -1,6 +1,7 @@
 {
   "url": "https://levacarme.com",
   "name": "Le Vacarme",
+  "country": "CA",
   "city": "Montréal",
   "osm": "node/12195217476",
   "source": "osm"

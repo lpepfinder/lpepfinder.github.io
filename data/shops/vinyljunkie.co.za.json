@@ -1,6 +1,7 @@
 {
   "url": "https://vinyljunkie.co.za",
   "name": "Vinyl Junkie",
+  "city": "Randburg",
   "osm": "node/14068550482",
   "source": "osm",
   "country": "ZA"

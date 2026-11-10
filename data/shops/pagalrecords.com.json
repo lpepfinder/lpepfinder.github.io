@@ -1,6 +1,8 @@
 {
   "url": "https://pagalrecords.com",
   "name": "Pagal Records Store",
+  "country": "IN",
+  "city": "Delhi",
   "osm": "node/10578840743",
   "source": "osm"
 }

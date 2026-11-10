@@ -1,6 +1,8 @@
 {
   "url": "https://www.wuxtry-records.com",
   "name": "Wuxtry Records",
+  "country": "US",
+  "city": "North Decatur",
   "osm": "node/1197161364",
   "source": "osm"
 }

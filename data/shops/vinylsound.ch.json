@@ -1,6 +1,7 @@
 {
   "url": "https://vinylsound.ch",
   "name": "Vinyl Sound",
+  "city": "Bern",
   "osm": "node/14075085320",
   "source": "osm",
   "country": "CH"

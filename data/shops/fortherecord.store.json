@@ -1,6 +1,8 @@
 {
   "url": "https://fortherecord.store",
   "name": "For The Record",
+  "country": "DE",
+  "city": "Mönchengladbach",
   "osm": "node/11346349616",
   "source": "osm"
 }

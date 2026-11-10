@@ -1,6 +1,8 @@
 {
   "url": "https://tinyvinylshop.com",
   "name": "Tiny Vinyl Shop",
+  "country": "US",
+  "city": "Washington",
   "osm": "node/12047552944",
   "source": "osm"
 }

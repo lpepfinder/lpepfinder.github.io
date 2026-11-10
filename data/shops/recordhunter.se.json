@@ -1,6 +1,8 @@
 {
   "url": "https://recordhunter.se",
   "name": "Record Hunter",
+  "country": "SE",
+  "city": "Stockholm",
   "osm": "node/13023093373",
   "source": "osm"
 }

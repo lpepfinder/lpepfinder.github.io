@@ -1,6 +1,8 @@
 {
   "url": "http://heartbeatvinyl.com",
   "name": "Heartbeat Vinyl",
+  "country": "FR",
+  "city": "Paris",
   "osm": "node/4784221122",
   "source": "osm"
 }

@@ -1,6 +1,7 @@
 {
   "url": "https://www.heysuburbiarecords.com",
   "name": "Hey Suburbia Records",
+  "country": "US",
   "city": "Mason",
   "osm": "node/8618370168",
   "source": "osm"

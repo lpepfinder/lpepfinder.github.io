@@ -1,6 +1,8 @@
 {
   "url": "https://www.especial-records.com",
   "name": "Especial Records",
+  "country": "JP",
+  "city": "大阪市",
   "osm": "node/11741477298",
   "source": "osm"
 }

@@ -1,6 +1,8 @@
 {
   "url": "https://conceptkart.com",
   "name": "Concept Kart",
+  "country": "IN",
+  "city": "Delhi",
   "osm": "node/12964373466",
   "source": "osm"
 }

@@ -1,6 +1,7 @@
 {
   "url": "https://www.goldminerecords.com.au",
   "name": "Goldmine Records",
+  "city": "Melbourne",
   "osm": "node/632244266",
   "source": "osm",
   "country": "AU"

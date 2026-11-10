@@ -1,6 +1,8 @@
 {
   "url": "https://gordyboyrecords.com",
   "name": "Gordy Boy Records",
+  "country": "AU",
+  "city": "Adelaide",
   "osm": "node/12094828211",
   "source": "osm"
 }

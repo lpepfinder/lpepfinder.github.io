@@ -1,6 +1,7 @@
 {
   "url": "https://waxtraxrecords.com",
   "name": "Wax Trax Records",
+  "country": "US",
   "city": "Denver",
   "osm": "node/3421443128",
   "source": "osm"

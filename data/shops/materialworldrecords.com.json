@@ -1,6 +1,8 @@
 {
   "url": "https://materialworldrecords.com",
   "name": "Material World Records & Tapes",
+  "country": "US",
+  "city": "New York",
   "osm": "node/5741641846",
   "source": "osm"
 }

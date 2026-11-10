@@ -1,6 +1,8 @@
 {
   "url": "https://discodue.com",
   "name": "Disco Due In",
+  "country": "IT",
+  "city": "Milano",
   "osm": "node/12639173401",
   "source": "osm"
 }

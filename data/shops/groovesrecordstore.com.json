@@ -1,6 +1,7 @@
 {
   "url": "https://groovesrecordstore.com",
   "name": "Grooves Records",
+  "country": "CA",
   "city": "London",
   "osm": "node/12943943642",
   "source": "osm",

@@ -1,6 +1,8 @@
 {
   "url": "https://www.vinyldazerecords.com",
   "name": "Vinyl Daze Records",
+  "country": "US",
+  "city": "Virginia Beach",
   "osm": "node/14035284601",
   "source": "osm"
 }

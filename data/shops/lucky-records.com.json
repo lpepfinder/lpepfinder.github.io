@@ -1,6 +1,8 @@
 {
   "url": "https://www.lucky-records.com",
   "name": "Lucky Records",
+  "country": "FR",
+  "city": "Paris",
   "osm": "node/4685038393",
   "source": "osm"
 }

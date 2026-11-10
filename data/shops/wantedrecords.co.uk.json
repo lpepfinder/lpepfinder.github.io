@@ -1,6 +1,7 @@
 {
   "url": "https://www.wantedrecords.co.uk",
   "name": "Wanted Records",
+  "city": "Bristol",
   "osm": "way/280997090",
   "source": "osm",
   "country": "GB"

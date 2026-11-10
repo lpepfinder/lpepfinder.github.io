@@ -1,6 +1,7 @@
 {
   "url": "http://disque-vinyle.fr",
   "name": "Paul Emile Vinyls",
+  "city": "Toulouse",
   "osm": "node/2474616548",
   "source": "osm",
   "country": "FR"

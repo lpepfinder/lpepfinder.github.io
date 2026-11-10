@@ -1,6 +1,7 @@
 {
   "url": "http://allagesrecords.com",
   "name": "All Ages Records",
+  "country": "GB",
   "city": "London",
   "osm": "way/458856245",
   "source": "osm",

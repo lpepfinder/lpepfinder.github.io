@@ -1,6 +1,7 @@
 {
   "url": "http://www.bowierecords.com",
   "name": "Bowie Records",
+  "country": "PE",
   "city": "San Martín de Porres",
   "osm": "node/1884657168",
   "source": "osm"

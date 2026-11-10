@@ -1,6 +1,7 @@
 {
   "url": "https://therecordpub.com",
   "name": "The Record Pub",
+  "country": "US",
   "city": "Portland",
   "osm": "node/6546847191",
   "source": "osm"

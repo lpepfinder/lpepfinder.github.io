@@ -1,6 +1,8 @@
 {
   "url": "https://www.yardelephantrecords.com",
   "name": "Yard Elephant Records",
+  "country": "US",
+  "city": "Sumner",
   "osm": "node/13462293701",
   "source": "osm"
 }

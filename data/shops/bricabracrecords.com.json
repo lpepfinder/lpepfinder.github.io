@@ -1,6 +1,7 @@
 {
   "url": "https://www.bricabracrecords.com",
   "name": "Bric-a-Brac Records",
+  "country": "US",
   "city": "Chicago",
   "osm": "node/9490899406",
   "source": "osm"

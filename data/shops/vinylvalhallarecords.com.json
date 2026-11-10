@@ -1,6 +1,7 @@
 {
   "url": "https://www.vinylvalhallarecords.com",
   "name": "Vinyl Valhalla",
+  "country": "US",
   "osm": "node/13523112401",
   "source": "osm"
 }

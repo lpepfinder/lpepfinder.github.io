@@ -1,6 +1,7 @@
 {
   "url": "https://www.rocktherapyrecords.com.au",
   "name": "Rocktherapy Records",
+  "city": "Adelaide",
   "osm": "node/14177465989",
   "source": "osm",
   "country": "AU"

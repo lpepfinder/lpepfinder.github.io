@@ -1,6 +1,8 @@
 {
   "url": "https://lousrecords.com",
   "name": "Lou's Records",
+  "country": "US",
+  "city": "Encinitas",
   "osm": "node/14225517301",
   "source": "osm"
 }

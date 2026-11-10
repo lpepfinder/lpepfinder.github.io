@@ -1,6 +1,7 @@
 {
   "url": "https://djcity.com.au",
   "name": "DJ City",
+  "city": "Brisbane",
   "osm": "node/14295578627",
   "source": "osm",
   "country": "AU"

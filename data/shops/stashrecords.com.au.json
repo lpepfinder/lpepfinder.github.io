@@ -1,6 +1,7 @@
 {
   "url": "https://www.stashrecords.com.au",
   "name": "Stash Records",
+  "city": "Brisbane",
   "osm": "node/10220861937",
   "source": "osm",
   "country": "AU"

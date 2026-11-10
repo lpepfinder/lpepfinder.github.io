@@ -1,6 +1,7 @@
 {
   "url": "https://www.recordoutlet.com",
   "name": "Record Outlet",
+  "country": "US",
   "city": "Thousand Oaks",
   "osm": "node/12068909102",
   "source": "osm"

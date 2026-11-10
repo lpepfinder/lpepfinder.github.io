@@ -1,6 +1,7 @@
 {
   "url": "https://www.whatsleftrec.com",
   "name": "What's Left Records",
+  "country": "US",
   "city": "Colorado Springs",
   "osm": "way/199756705",
   "source": "osm"

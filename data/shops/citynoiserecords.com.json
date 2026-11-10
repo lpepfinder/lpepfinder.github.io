@@ -1,6 +1,8 @@
 {
   "url": "https://citynoiserecords.com",
   "name": "City Noise Records",
+  "country": "US",
+  "city": "Portland",
   "osm": "node/13626306555",
   "source": "osm"
 }

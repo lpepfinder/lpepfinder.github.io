@@ -1,6 +1,7 @@
 {
   "url": "https://www.yoyorecordslondon.com",
   "name": "Yo Yo Records London",
+  "country": "GB",
   "city": "London",
   "osm": "node/13592253180",
   "source": "osm"

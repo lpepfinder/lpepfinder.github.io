@@ -1,6 +1,7 @@
 {
   "url": "https://atomicmusic.com",
   "name": "Atomic Music",
+  "country": "US",
   "city": "Beltsville",
   "osm": "node/3181355132",
   "source": "osm"

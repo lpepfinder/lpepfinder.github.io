@@ -1,6 +1,7 @@
 {
   "url": "https://www.recordcollectorsheffield.com",
   "name": "Record Collector",
+  "country": "GB",
   "city": "Sheffield",
   "osm": "way/1080642669",
   "source": "osm"

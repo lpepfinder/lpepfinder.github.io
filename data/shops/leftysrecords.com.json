@@ -1,6 +1,7 @@
 {
   "url": "https://www.leftysrecords.com",
   "name": "Lefty's Records",
+  "country": "US",
   "city": "Lincoln",
   "osm": "node/11358486122",
   "source": "osm"

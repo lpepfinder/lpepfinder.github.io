@@ -1,6 +1,7 @@
 {
   "url": "https://www.georgesmusic.com",
   "name": "George's Music",
+  "country": "US",
   "city": "North Wales",
   "osm": "node/2000395027",
   "source": "osm"

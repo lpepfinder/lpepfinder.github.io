@@ -1,6 +1,7 @@
 {
   "url": "https://miniwax.club",
   "name": "Miniwax",
+  "country": "FR",
   "city": "Paris",
   "osm": "node/10933560127",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.bluesoulrecords.jp",
   "name": "Bluesoul records",
+  "city": "大阪市",
   "osm": "node/11741477297",
   "source": "osm",
   "country": "JP"

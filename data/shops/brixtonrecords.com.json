@@ -1,6 +1,7 @@
 {
   "url": "https://brixtonrecords.com",
   "name": "Brixton",
+  "country": "ES",
   "city": "Bilbao",
   "osm": "node/4708519052",
   "source": "osm"

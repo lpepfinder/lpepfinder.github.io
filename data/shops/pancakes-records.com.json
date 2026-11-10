@@ -1,6 +1,7 @@
 {
   "url": "https://pancakes-records.com",
   "name": "Pancakes Records",
+  "country": "US",
   "city": "Astoria",
   "osm": "node/13300652360",
   "source": "osm"

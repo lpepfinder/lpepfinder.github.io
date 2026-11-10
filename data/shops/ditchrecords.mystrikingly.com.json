@@ -1,6 +1,8 @@
 {
   "url": "https://ditchrecords.mystrikingly.com",
   "name": "Ditch Records & CD's",
+  "country": "CA",
+  "city": "Victoria",
   "osm": "node/11639091997",
   "source": "osm"
 }

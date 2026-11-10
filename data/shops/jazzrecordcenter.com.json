@@ -1,6 +1,8 @@
 {
   "url": "https://jazzrecordcenter.com",
   "name": "Jazz Record Center",
+  "country": "US",
+  "city": "New York",
   "osm": "node/14101143863",
   "source": "osm"
 }

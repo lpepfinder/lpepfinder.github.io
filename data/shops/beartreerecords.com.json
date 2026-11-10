@@ -1,6 +1,7 @@
 {
   "url": "https://www.beartreerecords.com",
   "name": "Bear Tree Records",
+  "country": "GB",
   "city": "Sheffield",
   "osm": "node/9052466319",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://mygeneration.be",
   "name": "Pop-up MyGeneration",
+  "city": "Halle",
   "osm": "node/5615287669",
   "source": "osm",
   "country": "BE"

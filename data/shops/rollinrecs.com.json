@@ -1,6 +1,7 @@
 {
   "url": "https://rollinrecs.com",
   "name": "Rollin' Records",
+  "country": "US",
   "city": "Boise",
   "osm": "node/8331534383",
   "source": "osm"

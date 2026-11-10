@@ -1,6 +1,7 @@
 {
   "url": "https://dig-vinyl.com",
   "name": "Dig Vinyl",
+  "country": "US",
   "city": "Portland",
   "osm": "way/351734744",
   "source": "osm"

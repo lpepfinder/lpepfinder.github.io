@@ -1,6 +1,7 @@
 {
   "url": "https://www.echobeat-records.de",
   "name": "Echobeat Records",
+  "city": "Aschaffenburg",
   "osm": "node/2798948826",
   "source": "osm",
   "country": "DE"

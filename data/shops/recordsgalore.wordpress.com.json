@@ -1,6 +1,7 @@
 {
   "url": "https://recordsgalore.wordpress.com",
   "name": "Records Galore",
+  "country": "US",
   "city": "Clarkston",
   "osm": "node/9951786910",
   "source": "osm"

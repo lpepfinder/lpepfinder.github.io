@@ -1,6 +1,8 @@
 {
   "url": "https://www.revinylizevintageaudio.com",
   "name": "ReVinylize Vintage Audio",
+  "country": "US",
+  "city": "Mineola",
   "osm": "node/13477647855",
   "source": "osm"
 }

@@ -1,6 +1,7 @@
 {
   "url": "https://wyrdbyrdypsi.com",
   "name": "Wyrd Byrd",
+  "country": "US",
   "city": "Ypsilanti",
   "osm": "node/12111585211",
   "source": "osm"

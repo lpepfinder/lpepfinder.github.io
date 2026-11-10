@@ -1,6 +1,7 @@
 {
   "url": "https://www.boeijengamusic.com",
   "name": "Boeijenga muziek",
+  "country": "NL",
   "city": "Leeuwarden",
   "osm": "node/3064545674",
   "source": "osm"

@@ -1,6 +1,8 @@
 {
   "url": "https://www.cigaretterecords.co.uk",
   "name": "Cigarette Records",
+  "country": "GB",
+  "city": "Greater London",
   "osm": "node/6611030054",
   "source": "osm"
 }

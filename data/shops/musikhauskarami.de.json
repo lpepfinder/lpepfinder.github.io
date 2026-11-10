@@ -1,6 +1,7 @@
 {
   "url": "https://www.musikhauskarami.de",
   "name": "Musikhaus Karami",
+  "city": "Hamburg",
   "osm": "node/10221437173",
   "source": "osm",
   "country": "DE"

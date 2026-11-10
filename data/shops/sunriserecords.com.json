@@ -1,6 +1,7 @@
 {
   "url": "https://www.sunriserecords.com",
   "name": "Sunrise Records",
+  "country": "CA",
   "city": "Burnaby",
   "osm": "node/6597812005",
   "source": "osm"

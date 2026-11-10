@@ -1,6 +1,8 @@
 {
   "url": "http://westsiderrecords.com",
   "name": "Westsider Records",
+  "country": "US",
+  "city": "New York",
   "osm": "node/4587578096",
   "source": "osm"
 }

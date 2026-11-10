@@ -1,6 +1,8 @@
 {
   "url": "https://www.redonionrecordsandbooks.com",
   "name": "Red Onion Records & Books",
+  "country": "US",
+  "city": "Washington",
   "osm": "node/3667337928",
   "source": "osm"
 }

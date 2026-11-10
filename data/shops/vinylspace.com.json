@@ -1,6 +1,8 @@
 {
   "url": "https://www.vinylspace.com",
   "name": "Vinyl Space",
+  "country": "AU",
+  "city": "Melbourne",
   "osm": "node/9097507475",
   "source": "osm"
 }

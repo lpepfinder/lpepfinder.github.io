@@ -1,6 +1,7 @@
 {
   "url": "https://www.hydeparkrecords.com",
   "name": "Hyde Park Records",
+  "country": "US",
   "city": "Chicago",
   "osm": "way/211223147",
   "source": "osm"

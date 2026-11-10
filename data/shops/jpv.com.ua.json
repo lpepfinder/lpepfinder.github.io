@@ -1,6 +1,8 @@
 {
   "url": "https://jpv.com.ua",
   "name": "Just Punk Vinyl",
+  "country": "UA",
+  "city": "Київ",
   "osm": "node/14245896501",
   "source": "osm"
 }

@@ -1,6 +1,8 @@
 {
   "url": "https://www.thornburyrecords.com",
   "name": "Thornbury Records",
+  "country": "AU",
+  "city": "Melbourne",
   "osm": "node/5806706885",
   "source": "osm"
 }

@@ -1,6 +1,8 @@
 {
   "url": "https://www.oso-records.fr",
   "name": "Oso Records",
+  "country": "FR",
+  "city": "Pau",
   "osm": "node/6779374787",
   "source": "osm"
 }

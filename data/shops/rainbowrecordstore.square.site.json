@@ -1,6 +1,7 @@
 {
   "url": "https://rainbowrecordstore.square.site",
   "name": "Rainbow Records",
+  "country": "US",
   "city": "Albany",
   "osm": "node/13535262167",
   "source": "osm"

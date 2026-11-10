@@ -1,6 +1,8 @@
 {
   "url": "https://grooveattackrs.bigcartel.com",
   "name": "Groove Attack Record Store",
+  "country": "DE",
+  "city": "Köln",
   "osm": "node/2812839763",
   "source": "osm"
 }

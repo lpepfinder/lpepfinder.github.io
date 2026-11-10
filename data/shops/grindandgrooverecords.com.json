@@ -1,6 +1,8 @@
 {
   "url": "https://grindandgrooverecords.com",
   "name": "Grind and Groove Records",
+  "country": "GB",
+  "city": "Bradford",
   "osm": "node/8633753075",
   "source": "osm"
 }

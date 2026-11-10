@@ -1,6 +1,7 @@
 {
   "url": "https://offcenterrecords.com",
   "name": "Off-Center Records",
+  "country": "US",
   "city": "Utica",
   "osm": "node/7080201530",
   "source": "osm"

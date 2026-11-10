@@ -1,6 +1,7 @@
 {
   "url": "https://www.dooganrecords.com",
   "name": "Doogan Records",
+  "country": "NL",
   "city": "'s-Hertogenbosch",
   "osm": "node/3618182417",
   "source": "osm"

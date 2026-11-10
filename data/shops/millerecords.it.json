@@ -1,6 +1,7 @@
 {
   "url": "https://www.millerecords.it",
   "name": "Millerecords",
+  "city": "Roma",
   "osm": "node/12987293502",
   "source": "osm",
   "country": "IT"

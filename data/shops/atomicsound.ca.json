@@ -1,6 +1,7 @@
 {
   "url": "http://atomicsound.ca",
   "name": "Atomic Sound",
+  "city": "London",
   "osm": "node/14270891601",
   "source": "osm",
   "country": "CA"

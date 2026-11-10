@@ -1,6 +1,7 @@
 {
   "url": "https://revolverrecordsinc.com",
   "name": "Revolver Records",
+  "country": "US",
   "city": "Buffalo",
   "osm": "node/9288817749",
   "source": "osm"

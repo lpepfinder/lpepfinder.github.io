@@ -1,6 +1,7 @@
 {
   "url": "http://www.casadeldisco.it",
   "name": "Casa del Disco De Fazio",
+  "country": "IT",
   "city": "Taranto",
   "osm": "node/11114525868",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://musicologyco.com",
   "name": "Musicology Co",
+  "country": "US",
   "city": "Edmonds",
   "osm": "node/3771382848",
   "source": "osm"

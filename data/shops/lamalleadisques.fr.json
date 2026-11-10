@@ -1,6 +1,7 @@
 {
   "url": "https://www.lamalleadisques.fr",
   "name": "La Malle à Disques",
+  "city": "Amiens",
   "osm": "node/3106173440",
   "source": "osm",
   "country": "FR"

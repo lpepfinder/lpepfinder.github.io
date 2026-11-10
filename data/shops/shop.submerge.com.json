@@ -1,6 +1,8 @@
 {
   "url": "https://shop.submerge.com",
   "name": "Somewhere in Detroit",
+  "country": "US",
+  "city": "Detroit",
   "osm": "node/9671108420",
   "source": "osm"
 }

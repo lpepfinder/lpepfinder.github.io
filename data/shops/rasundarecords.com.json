@@ -1,6 +1,8 @@
 {
   "url": "https://rasundarecords.com",
   "name": "Råsunda Records",
+  "country": "SE",
+  "city": "Solna",
   "osm": "node/12049093620",
   "source": "osm"
 }

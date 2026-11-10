@@ -1,6 +1,8 @@
 {
   "url": "https://www.raindogrecords.net",
   "name": "Rain Dog Records",
+  "country": "US",
+  "city": "Petaluma",
   "osm": "node/14250380101",
   "source": "osm"
 }

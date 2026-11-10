@@ -1,6 +1,7 @@
 {
   "url": "https://www.newburycomics.com",
   "name": "Newbury Comics",
+  "country": "US",
   "city": "Nashua",
   "osm": "node/4305086551",
   "source": "osm"

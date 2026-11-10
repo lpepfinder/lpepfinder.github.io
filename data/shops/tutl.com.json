@@ -1,6 +1,8 @@
 {
   "url": "http://www.tutl.com",
   "name": "Tutl",
+  "country": "FO",
+  "city": "Tórshavn",
   "osm": "node/1198412010",
   "source": "osm"
 }

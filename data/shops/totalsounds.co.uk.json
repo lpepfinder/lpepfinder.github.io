@@ -1,6 +1,7 @@
 {
   "url": "https://totalsounds.co.uk",
   "name": "Total Sounds",
+  "city": "Reading",
   "osm": "node/5175013141",
   "source": "osm",
   "country": "GB"

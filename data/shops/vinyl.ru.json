@@ -1,6 +1,8 @@
 {
   "url": "https://vinyl.ru",
   "name": "Vinyl.ru",
+  "country": "RU",
+  "city": "Москва",
   "osm": "node/6390838639",
   "source": "osm"
 }

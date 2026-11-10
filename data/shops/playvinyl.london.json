@@ -1,6 +1,7 @@
 {
   "url": "https://playvinyl.london",
   "name": "Play Vinyl",
+  "country": "GB",
   "city": "London",
   "osm": "node/10235916966",
   "source": "osm"

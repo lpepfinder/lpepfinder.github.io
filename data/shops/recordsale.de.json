@@ -1,6 +1,7 @@
 {
   "url": "https://recordsale.de",
   "name": "recordsale.de",
+  "city": "Berlin",
   "osm": "node/13734245465",
   "source": "osm",
   "country": "DE"

@@ -1,6 +1,8 @@
 {
   "url": "https://vinylconflict.com",
   "name": "Vinyl Conflict",
+  "country": "US",
+  "city": "Richmond",
   "osm": "node/10178419141",
   "source": "osm"
 }

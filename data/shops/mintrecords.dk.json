@@ -1,6 +1,7 @@
 {
   "url": "http://mintrecords.dk",
   "name": "Mint Records",
+  "city": "Frederiksberg",
   "osm": "node/5731624884",
   "source": "osm",
   "country": "DK"

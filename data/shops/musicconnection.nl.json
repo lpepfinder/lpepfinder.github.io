@@ -1,6 +1,7 @@
 {
   "url": "https://www.musicconnection.nl",
   "name": "Music Connection",
+  "city": "Maastricht",
   "osm": "node/14246438949",
   "source": "osm",
   "country": "NL"

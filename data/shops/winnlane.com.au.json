@@ -1,6 +1,8 @@
 {
   "url": "http://www.winnlane.com.au",
   "name": "Tyms Guitar + Recording Studios",
+  "country": "AU",
+  "city": "Brisbane",
   "osm": "node/3006154940",
   "source": "osm"
 }

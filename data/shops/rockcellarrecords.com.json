@@ -1,6 +1,8 @@
 {
   "url": "https://rockcellarrecords.com",
   "name": "Rock Cellar Records",
+  "country": "US",
+  "city": "Truckee",
   "osm": "node/11099462528",
   "source": "osm"
 }

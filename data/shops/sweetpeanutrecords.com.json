@@ -1,6 +1,8 @@
 {
   "url": "https://sweetpeanutrecords.com",
   "name": "Sweet Peanut Records",
+  "country": "US",
+  "city": "New York",
   "osm": "node/14121374257",
   "source": "osm"
 }

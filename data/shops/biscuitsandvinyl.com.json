@@ -1,6 +1,7 @@
 {
   "url": "https://biscuitsandvinyl.com",
   "name": "Biscuits and Vinyl",
+  "country": "US",
   "city": "Talent",
   "osm": "node/13168939201",
   "source": "osm"

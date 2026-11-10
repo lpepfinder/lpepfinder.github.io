@@ -1,6 +1,8 @@
 {
   "url": "https://www.highrhodesrecords.com",
   "name": "High Rhodes Records",
+  "country": "US",
+  "city": "Frisco",
   "osm": "node/13979084371",
   "source": "osm"
 }

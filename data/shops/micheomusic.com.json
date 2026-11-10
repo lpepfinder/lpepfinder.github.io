@@ -1,6 +1,7 @@
 {
   "url": "https://www.micheomusic.com",
   "name": "Micheo Music",
+  "country": "US",
   "city": "Guaynabo",
   "osm": "way/404320109",
   "source": "osm"

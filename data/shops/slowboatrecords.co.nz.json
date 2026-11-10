@@ -1,6 +1,7 @@
 {
   "url": "https://www.slowboatrecords.co.nz",
   "name": "Slow Boat Records",
+  "city": "Wellington",
   "osm": "node/5428969832",
   "source": "osm",
   "country": "NZ"

@@ -1,6 +1,7 @@
 {
   "url": "https://holyshitrecords.de",
   "name": "Holy’s Hit Records",
+  "city": "Berlin",
   "osm": "node/14100681101",
   "source": "osm",
   "country": "DE"

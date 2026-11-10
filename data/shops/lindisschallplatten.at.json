@@ -1,6 +1,7 @@
 {
   "url": "http://www.lindisschallplatten.at",
   "name": "Lindi’s Schallplattenladen",
+  "city": "Wien",
   "osm": "node/10262577918",
   "source": "osm",
   "country": "AT"

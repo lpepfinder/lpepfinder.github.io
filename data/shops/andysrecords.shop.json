@@ -1,6 +1,8 @@
 {
   "url": "https://andysrecords.shop",
   "name": "Andy's Records",
+  "country": "US",
+  "city": "Grayslake",
   "osm": "node/12806110102",
   "source": "osm"
 }

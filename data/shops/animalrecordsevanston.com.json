@@ -1,6 +1,7 @@
 {
   "url": "https://animalrecordsevanston.com",
   "name": "Animal Records",
+  "country": "US",
   "city": "Evanston",
   "osm": "node/2295226684",
   "source": "osm"

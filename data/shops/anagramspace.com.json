@@ -1,6 +1,8 @@
 {
   "url": "https://anagramspace.com",
   "name": "Anagram Space",
+  "country": "DE",
+  "city": "Berlin",
   "osm": "node/13198720001",
   "source": "osm"
 }

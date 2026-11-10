@@ -1,6 +1,7 @@
 {
   "url": "https://www.diversevinyl.com",
   "name": "Diverse Vinyl",
+  "country": "GB",
   "city": "Newport",
   "osm": "node/6874316041",
   "source": "osm"

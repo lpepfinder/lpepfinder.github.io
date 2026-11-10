@@ -1,6 +1,7 @@
 {
   "url": "http://buddyrecords.at",
   "name": "Buddy Records",
+  "city": "Wien",
   "osm": "node/12163550601",
   "source": "osm",
   "country": "AT"

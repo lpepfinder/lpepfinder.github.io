@@ -1,6 +1,7 @@
 {
   "url": "https://lowportmusic.co.uk",
   "name": "Lowport Music",
+  "city": "Linlithgow",
   "osm": "node/12666435575",
   "source": "osm",
   "country": "GB"

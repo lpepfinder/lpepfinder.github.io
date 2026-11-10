@@ -1,6 +1,7 @@
 {
   "url": "https://thirdmanrecords.com",
   "name": "Third Man Records",
+  "country": "GB",
   "city": "London",
   "osm": "way/1432731228",
   "source": "osm"

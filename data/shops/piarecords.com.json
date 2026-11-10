@@ -1,6 +1,7 @@
 {
   "url": "https://www.piarecords.com",
   "name": "Play It Again Records",
+  "country": "GB",
   "city": "Glasgow",
   "osm": "node/9777568214",
   "source": "osm"

@@ -1,6 +1,8 @@
 {
   "url": "https://www.simpatyrecords.com",
   "name": "Sympaty Record's",
+  "country": "IT",
+  "city": "Asola",
   "osm": "node/13206596459",
   "source": "osm"
 }

@@ -1,6 +1,8 @@
 {
   "url": "https://mickes-cdvinyl.se",
   "name": "Mickes Serier, CD & Vinyl",
+  "country": "SE",
+  "city": "Stockholm",
   "osm": "node/12458767177",
   "source": "osm"
 }

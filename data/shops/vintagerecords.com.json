@@ -1,6 +1,7 @@
 {
   "url": "https://vintagerecords.com",
   "name": "Yesterday and Today Records",
+  "country": "US",
   "city": "Miami",
   "osm": "node/6019609900",
   "source": "osm"

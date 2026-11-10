@@ -1,6 +1,8 @@
 {
   "url": "https://bowsforstrings.com",
   "name": "Bows For Strings",
+  "country": "AU",
+  "city": "Melbourne",
   "osm": "node/603998962",
   "source": "osm"
 }

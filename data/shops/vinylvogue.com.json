@@ -1,6 +1,7 @@
 {
   "url": "https://vinylvogue.com",
   "name": "Vinyl Vogue",
+  "country": "US",
   "city": "Ellsworth",
   "osm": "node/13394116538",
   "source": "osm"

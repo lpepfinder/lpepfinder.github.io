@@ -1,6 +1,7 @@
 {
   "url": "https://torontorecordstores.com",
   "name": "Beach Sound Records",
+  "country": "CA",
   "city": "Toronto",
   "osm": "node/7528906436",
   "source": "osm"

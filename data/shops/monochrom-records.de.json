@@ -1,6 +1,7 @@
 {
   "url": "https://www.monochrom-records.de",
   "name": "Monochrom Records",
+  "city": "Bamberg",
   "osm": "node/7101764722",
   "source": "osm",
   "country": "DE"

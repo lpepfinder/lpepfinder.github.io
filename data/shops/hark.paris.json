@@ -1,6 +1,8 @@
 {
   "url": "https://hark.paris",
   "name": "HARK Records",
+  "country": "FR",
+  "city": "Paris",
   "osm": "node/11017515304",
   "source": "osm"
 }

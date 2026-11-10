@@ -1,6 +1,8 @@
 {
   "url": "https://academy-lps.com",
   "name": "Academy Records Annex",
+  "country": "US",
+  "city": "New York",
   "osm": "node/13990167501",
   "source": "osm"
 }

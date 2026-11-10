@@ -1,6 +1,8 @@
 {
   "url": "https://blackgluerecords.com",
   "name": "Black Glue Records",
+  "country": "TW",
+  "city": "臺北市",
   "osm": "node/14081877101",
   "source": "osm"
 }

@@ -1,6 +1,7 @@
 {
   "url": "http://rauterecords.de",
   "name": "RauteRecords",
+  "country": "DE",
   "city": "Braunschweig",
   "osm": "node/8636525963",
   "source": "osm"

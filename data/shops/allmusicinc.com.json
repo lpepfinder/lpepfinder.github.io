@@ -1,6 +1,7 @@
 {
   "url": "https://www.allmusicinc.com",
   "name": "All Music Inc",
+  "country": "US",
   "city": "Plainview",
   "osm": "node/2659924077",
   "source": "osm"

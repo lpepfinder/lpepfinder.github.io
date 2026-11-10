@@ -1,6 +1,8 @@
 {
   "url": "https://peckhamsoul.com",
   "name": "Peckham Soul",
+  "country": "SE",
+  "city": "Göteborg",
   "osm": "node/13272799307",
   "source": "osm"
 }

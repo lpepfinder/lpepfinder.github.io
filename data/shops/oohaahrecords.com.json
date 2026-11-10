@@ -1,6 +1,8 @@
 {
   "url": "https://www.oohaahrecords.com",
   "name": "Ooh aah records",
+  "country": "DK",
+  "city": "København",
   "osm": "node/5289877004",
   "source": "osm"
 }

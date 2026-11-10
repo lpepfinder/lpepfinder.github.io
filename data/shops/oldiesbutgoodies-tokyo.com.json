@@ -1,6 +1,8 @@
 {
   "url": "https://oldiesbutgoodies-tokyo.com",
   "name": "Oldies But Goodies Records",
+  "country": "JP",
+  "city": "台東区",
   "osm": "node/11764192917",
   "source": "osm"
 }

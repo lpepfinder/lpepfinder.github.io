@@ -1,6 +1,8 @@
 {
   "url": "https://www.aftermath-music.com",
   "name": "Aftermath Music",
+  "country": "NO",
+  "city": "Trondheim",
   "osm": "node/3080917759",
   "source": "osm"
 }

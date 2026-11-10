@@ -1,6 +1,7 @@
 {
   "url": "https://portlandmusiccompany.com",
   "name": "Portland Music Company",
+  "country": "US",
   "city": "Portland",
   "osm": "node/471782303",
   "source": "osm"

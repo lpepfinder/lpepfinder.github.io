@@ -1,6 +1,7 @@
 {
   "url": "http://www.tactilemusic.de",
   "name": "Tactile Record Store",
+  "country": "DE",
   "city": "Frankfurt am Main",
   "osm": "node/4221158664",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "http://www.das-schallplatte.de",
   "name": "Lost & Found Schallplatten",
+  "city": "Kassel",
   "osm": "node/556665412",
   "source": "osm",
   "country": "DE"

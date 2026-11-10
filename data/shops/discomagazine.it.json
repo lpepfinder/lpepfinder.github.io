@@ -1,6 +1,7 @@
 {
   "url": "https://www.discomagazine.it",
   "name": "Disco Magazine",
+  "country": "IT",
   "city": "Este",
   "osm": "node/951396811",
   "source": "osm"

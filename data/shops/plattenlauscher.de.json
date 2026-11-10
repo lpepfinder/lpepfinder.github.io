@@ -1,6 +1,7 @@
 {
   "url": "http://www.plattenlauscher.de",
   "name": "Plattenlauscher",
+  "city": "Wismar",
   "osm": "node/4331325120",
   "source": "osm",
   "country": "DE"

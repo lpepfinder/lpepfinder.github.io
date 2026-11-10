@@ -1,6 +1,8 @@
 {
   "url": "https://dissonance.shop",
   "name": "Dissonance Vinyl Store",
+  "country": "RU",
+  "city": "Санкт-Петербург",
   "osm": "node/9900581217",
   "source": "osm"
 }

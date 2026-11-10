@@ -1,6 +1,7 @@
 {
   "url": "https://www.dellasoulrecords.com",
   "name": "Della Soul Records",
+  "country": "US",
   "city": "Grand Rapids",
   "osm": "node/11379605917",
   "source": "osm"

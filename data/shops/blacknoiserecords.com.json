@@ -1,6 +1,7 @@
 {
   "url": "https://www.blacknoiserecords.com",
   "name": "Black Noise Records",
+  "country": "US",
   "city": "Bellingham",
   "osm": "node/6231306018",
   "source": "osm"

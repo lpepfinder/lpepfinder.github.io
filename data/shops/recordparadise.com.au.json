@@ -1,6 +1,7 @@
 {
   "url": "https://recordparadise.com.au",
   "name": "Record Paradise",
+  "city": "Melbourne",
   "osm": "node/6507557579",
   "source": "osm",
   "country": "AU"

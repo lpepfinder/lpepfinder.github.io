@@ -1,6 +1,7 @@
 {
   "url": "https://wcmusicstore.com",
   "name": "West Chester Music",
+  "country": "US",
   "city": "West Chester",
   "osm": "node/6434717477",
   "source": "osm"

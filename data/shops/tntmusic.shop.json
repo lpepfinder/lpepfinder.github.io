@@ -1,6 +1,7 @@
 {
   "url": "https://tntmusic.shop",
   "name": "TNT Music",
+  "country": "US",
   "city": "Edmonds",
   "osm": "node/13176582624",
   "source": "osm"

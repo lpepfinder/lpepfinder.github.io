@@ -1,6 +1,7 @@
 {
   "url": "http://www.bpmderby.com",
   "name": "BPM Records",
+  "country": "GB",
   "city": "Derby",
   "osm": "way/130580497",
   "source": "osm"

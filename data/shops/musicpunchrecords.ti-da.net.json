@@ -1,6 +1,8 @@
 {
   "url": "https://musicpunchrecords.ti-da.net",
   "name": "Music Punch RECORDS",
+  "country": "JP",
+  "city": "那覇市",
   "osm": "node/11771851447",
   "source": "osm"
 }

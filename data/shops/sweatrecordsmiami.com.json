@@ -1,6 +1,7 @@
 {
   "url": "https://sweatrecordsmiami.com",
   "name": "Sweat Records",
+  "country": "US",
   "city": "Miami",
   "osm": "way/311489890",
   "source": "osm"

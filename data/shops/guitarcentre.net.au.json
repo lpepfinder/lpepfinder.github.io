@@ -1,6 +1,8 @@
 {
   "url": "https://guitarcentre.net.au",
   "name": "The Guitar Centre at the Gabba",
+  "country": "AU",
+  "city": "Brisbane",
   "osm": "node/1240869502",
   "source": "osm"
 }

@@ -1,6 +1,7 @@
 {
   "url": "https://bigfootrecordsspokane.com",
   "name": "Bigfoot Records",
+  "country": "US",
   "city": "Spokane",
   "osm": "node/9469727816",
   "source": "osm"

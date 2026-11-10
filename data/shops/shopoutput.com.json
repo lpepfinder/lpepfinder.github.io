@@ -1,6 +1,7 @@
 {
   "url": "https://shopoutput.com",
   "name": "Output Records",
+  "country": "US",
   "city": "Lincoln City",
   "osm": "way/313485474",
   "source": "osm"

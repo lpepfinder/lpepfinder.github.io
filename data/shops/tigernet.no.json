@@ -1,6 +1,7 @@
 {
   "url": "https://tigernet.no",
   "name": "Tiger Records",
+  "city": "Oslo",
   "osm": "node/4736654462",
   "source": "osm",
   "country": "NO"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.bigdigrecords.com",
   "name": "Big Dig Records",
+  "country": "US",
   "city": "Cambridge",
   "osm": "node/11613369025",
   "source": "osm"

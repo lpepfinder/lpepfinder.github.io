@@ -1,6 +1,8 @@
 {
   "url": "https://bohemianamigos.com",
   "name": "Bohemian Amigos Record Shop",
+  "country": "US",
+  "city": "Hampton",
   "osm": "node/14036003201",
   "source": "osm"
 }

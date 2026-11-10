@@ -1,6 +1,7 @@
 {
   "url": "https://www.thefeatherstar.co.uk",
   "name": "The Feather Star",
+  "country": "GB",
   "city": "Matlock",
   "osm": "node/8730900278",
   "source": "osm"

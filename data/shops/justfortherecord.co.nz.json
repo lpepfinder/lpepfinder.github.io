@@ -1,6 +1,7 @@
 {
   "url": "https://justfortherecord.co.nz",
   "name": "Just For The Record",
+  "city": "Napier",
   "osm": "node/5662310779",
   "source": "osm",
   "country": "NZ"

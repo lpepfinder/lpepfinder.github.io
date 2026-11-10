@@ -1,6 +1,7 @@
 {
   "url": "http://deepgroovevinyl.com",
   "name": "Deep Groove Records",
+  "country": "US",
   "city": "Richmond",
   "osm": "node/3715937824",
   "source": "osm"

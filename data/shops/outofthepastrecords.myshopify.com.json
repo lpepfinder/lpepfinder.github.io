@@ -1,6 +1,7 @@
 {
   "url": "https://outofthepastrecords.myshopify.com",
   "name": "Out of the Past Records",
+  "country": "US",
   "city": "Chicago",
   "osm": "node/12108400447",
   "source": "osm"

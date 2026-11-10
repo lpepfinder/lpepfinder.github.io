@@ -1,6 +1,8 @@
 {
   "url": "http://www.hals-jazz.com",
   "name": "Hal's Record",
+  "country": "JP",
+  "city": "新宿区",
   "osm": "node/11741212629",
   "source": "osm"
 }

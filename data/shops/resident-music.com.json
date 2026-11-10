@@ -1,6 +1,7 @@
 {
   "url": "https://www.resident-music.com",
   "name": "Resident Records",
+  "country": "GB",
   "city": "Brighton",
   "osm": "node/4866289406",
   "source": "osm",

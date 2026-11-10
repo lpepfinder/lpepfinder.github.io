@@ -1,6 +1,7 @@
 {
   "url": "https://raysboutique.nl",
   "name": "Ray's Boutique",
+  "country": "NL",
   "city": "Vlissingen",
   "osm": "node/2815177504",
   "source": "osm"

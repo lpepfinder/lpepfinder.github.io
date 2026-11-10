@@ -1,6 +1,8 @@
 {
   "url": "https://vinyl-garage.com",
   "name": "Vinylgarage",
+  "country": "DE",
+  "city": "Mönchengladbach",
   "osm": "node/6176429998",
   "source": "osm"
 }

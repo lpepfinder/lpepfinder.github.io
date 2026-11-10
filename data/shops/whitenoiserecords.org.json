@@ -1,6 +1,8 @@
 {
   "url": "https://whitenoiserecords.org",
   "name": "White Noise Records",
+  "country": "CN",
+  "city": "香港 Hong Kong",
   "osm": "node/9451908596",
   "source": "osm"
 }

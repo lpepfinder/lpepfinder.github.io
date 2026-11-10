@@ -1,6 +1,7 @@
 {
   "url": "https://www.bluescentric.com",
   "name": "B Side Records",
+  "country": "US",
   "city": "Columbia",
   "osm": "node/12696852251",
   "source": "osm"

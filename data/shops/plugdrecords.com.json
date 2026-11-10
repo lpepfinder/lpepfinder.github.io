@@ -1,6 +1,7 @@
 {
   "url": "https://plugdrecords.com",
   "name": "Plugd Records",
+  "country": "IE",
   "city": "Cork",
   "osm": "node/10252900070",
   "source": "osm"

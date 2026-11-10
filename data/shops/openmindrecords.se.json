@@ -1,6 +1,7 @@
 {
   "url": "https://www.openmindrecords.se",
   "name": "Open Mind Records",
+  "city": "Uppsala",
   "country": "SE",
   "osm": "node/7579698849",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.rcrdsnstff.se",
   "name": "Örebro Records & Stuff",
+  "city": "Örebro",
   "country": "SE",
   "osm": "node/10240451957",
   "source": "osm"

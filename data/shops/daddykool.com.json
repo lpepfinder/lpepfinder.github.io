@@ -1,6 +1,7 @@
 {
   "url": "https://www.daddykool.com",
   "name": "Daddy Kool Records",
+  "country": "US",
   "city": "Saint Petersburg",
   "osm": "node/2130270199",
   "source": "osm"

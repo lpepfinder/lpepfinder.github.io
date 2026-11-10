@@ -1,6 +1,7 @@
 {
   "url": "https://seattlerecords.net",
   "name": "Seattle Records",
+  "country": "US",
   "city": "Seattle",
   "osm": "node/2464040322",
   "source": "osm"

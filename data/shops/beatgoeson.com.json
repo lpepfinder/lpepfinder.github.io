@@ -1,6 +1,7 @@
 {
   "url": "https://www.beatgoeson.com",
   "name": "The Beat Goes On",
+  "country": "CA",
   "city": "Guelph",
   "osm": "node/9592745422",
   "source": "osm"

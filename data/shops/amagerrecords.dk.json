@@ -1,6 +1,7 @@
 {
   "url": "https://www.amagerrecords.dk",
   "name": "Amager Records",
+  "city": "Sundbyerne",
   "osm": "node/13089304864",
   "source": "osm",
   "country": "DK"

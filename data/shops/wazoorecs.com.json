@@ -1,6 +1,8 @@
 {
   "url": "http://wazoorecs.com",
   "name": "Wazoo Records",
+  "country": "US",
+  "city": "Ann Arbor",
   "osm": "node/5009753000",
   "source": "osm"
 }

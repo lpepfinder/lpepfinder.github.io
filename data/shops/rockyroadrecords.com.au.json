@@ -1,6 +1,7 @@
 {
   "url": "https://rockyroadrecords.com.au",
   "name": "Rocky Road Records",
+  "city": "Sydney",
   "osm": "node/13752288304",
   "source": "osm",
   "country": "AU"

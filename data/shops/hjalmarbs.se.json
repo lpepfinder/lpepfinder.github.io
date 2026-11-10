@@ -1,6 +1,8 @@
 {
   "url": "https://hjalmarbs.se",
   "name": "Hjalmar B:s skivbörs",
+  "country": "SE",
+  "city": "Uppsala",
   "osm": "node/8996363372",
   "source": "osm"
 }

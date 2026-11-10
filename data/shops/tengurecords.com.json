@@ -1,6 +1,8 @@
 {
   "url": "https://tengurecords.com",
   "name": "Tengu Records",
+  "country": "AU",
+  "city": "Sydney",
   "osm": "node/14038553596",
   "source": "osm"
 }

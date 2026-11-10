@@ -1,6 +1,8 @@
 {
   "url": "https://vinyla.com",
   "name": "Vinyla",
+  "country": "UA",
+  "city": "Київ",
   "osm": "node/13027960101",
   "source": "osm"
 }

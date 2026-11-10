@@ -1,6 +1,7 @@
 {
   "url": "https://www.cafe-riptide.de",
   "name": "Riptide",
+  "city": "Braunschweig",
   "osm": "node/3067837639",
   "source": "osm",
   "country": "DE"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.burlingtonrecords.com",
   "name": "Burlington Records",
+  "country": "US",
   "city": "Burlington",
   "osm": "node/13271021621",
   "source": "osm"

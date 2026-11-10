@@ -1,6 +1,7 @@
 {
   "url": "https://levyikkuna.info",
   "name": "Levyikkuna",
+  "country": "FI",
   "city": "Helsinki",
   "osm": "node/13695327532",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.johnpacker.co.uk",
   "name": "John Packer",
+  "country": "GB",
   "city": "Taunton",
   "osm": "node/2619536739",
   "source": "osm"

@@ -1,6 +1,8 @@
 {
   "url": "https://www.discostesla.com",
   "name": "Discos Tesla",
+  "country": "ES",
+  "city": "Barcelona",
   "osm": "node/7003432531",
   "source": "osm"
 }

@@ -1,6 +1,7 @@
 {
   "url": "https://www.pecknelmusic.com",
   "name": "Pecknel Music",
+  "country": "US",
   "city": "Lexington",
   "osm": "node/9849482612",
   "source": "osm"

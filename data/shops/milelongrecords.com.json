@@ -1,6 +1,8 @@
 {
   "url": "http://www.milelongrecords.com",
   "name": "Mile Long Records",
+  "country": "US",
+  "city": "Wheaton",
   "osm": "node/12701487646",
   "source": "osm"
 }

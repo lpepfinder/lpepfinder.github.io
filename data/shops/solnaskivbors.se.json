@@ -1,6 +1,8 @@
 {
   "url": "https://solnaskivbors.se",
   "name": "Solna Skivbörs",
+  "country": "SE",
+  "city": "Solna",
   "osm": "node/12049093621",
   "source": "osm"
 }

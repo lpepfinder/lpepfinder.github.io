@@ -1,6 +1,7 @@
 {
   "url": "https://proprecords.com.au",
   "name": "Prop Records",
+  "city": "Sydney",
   "osm": "node/14105465508",
   "source": "osm",
   "country": "AU"

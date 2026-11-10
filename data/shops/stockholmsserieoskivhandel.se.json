@@ -1,6 +1,8 @@
 {
   "url": "https://www.stockholmsserieoskivhandel.se",
   "name": "Stockholms serie- och skivhandel",
+  "country": "SE",
+  "city": "Stockholm",
   "osm": "node/12106294748",
   "source": "osm"
 }

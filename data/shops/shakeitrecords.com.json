@@ -1,6 +1,7 @@
 {
   "url": "https://www.shakeitrecords.com",
   "name": "Shake It Records",
+  "country": "US",
   "city": "Cincinnati",
   "osm": "node/2711112022",
   "source": "osm"

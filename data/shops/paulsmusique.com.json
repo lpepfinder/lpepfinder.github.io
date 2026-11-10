@@ -1,6 +1,7 @@
 {
   "url": "https://paulsmusique.com",
   "name": "Pauls Musique Records",
+  "country": "DE",
   "city": "Stuttgart",
   "osm": "node/3754044065",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.rockstockstore.com",
   "name": "Rockstock",
+  "country": "US",
   "city": "Des Plaines",
   "osm": "node/13191805829",
   "source": "osm"

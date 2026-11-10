@@ -1,6 +1,7 @@
 {
   "url": "https://www.beatstreet.ca",
   "name": "Beat Street Records",
+  "city": "Vancouver",
   "osm": "node/3945297417",
   "source": "osm",
   "country": "CA"

@@ -1,6 +1,7 @@
 {
   "url": "http://www.demonfuzz.com",
   "name": "Demonfuzz Records",
+  "country": "NL",
   "city": "Rotterdam",
   "osm": "node/2610275536",
   "source": "osm"

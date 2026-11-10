@@ -1,6 +1,7 @@
 {
   "url": "https://raginrecordsfresno.com",
   "name": "Ragin' Records",
+  "country": "US",
   "city": "Fresno",
   "osm": "node/11982446784",
   "source": "osm"

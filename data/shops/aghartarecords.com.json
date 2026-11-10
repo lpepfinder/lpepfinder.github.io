@@ -1,6 +1,7 @@
 {
   "url": "https://www.aghartarecords.com",
   "name": "Agharta Records",
+  "country": "US",
   "city": "Saint Paul",
   "osm": "node/4416336349",
   "source": "osm"

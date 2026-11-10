@@ -1,6 +1,7 @@
 {
   "url": "https://wonderlandrecords.wordpress.com",
   "name": "Wonderland Records",
+  "country": "US",
   "city": "Newark",
   "osm": "way/1111709111",
   "source": "osm"

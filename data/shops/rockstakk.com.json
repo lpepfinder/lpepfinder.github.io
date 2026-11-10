@@ -1,6 +1,7 @@
 {
   "url": "http://www.rockstakk.com",
   "name": "Rock Stakk Records",
+  "country": "JP",
   "city": "大阪市",
   "osm": "node/10600405643",
   "source": "osm"

@@ -1,6 +1,8 @@
 {
   "url": "https://groovenutrecords.stores.jp",
   "name": "Groovenut Records",
+  "country": "JP",
+  "city": "大阪市",
   "osm": "node/11860327318",
   "source": "osm"
 }

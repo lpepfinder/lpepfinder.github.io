@@ -1,6 +1,7 @@
 {
   "url": "https://www.bigfootsvinyl.com",
   "name": "Bigfoot's House of Vinyl",
+  "country": "US",
   "city": "Bremerton",
   "osm": "node/12372599630",
   "source": "osm"

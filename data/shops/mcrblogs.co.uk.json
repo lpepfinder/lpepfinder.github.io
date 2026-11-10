@@ -1,6 +1,7 @@
 {
   "url": "http://mcrblogs.co.uk",
   "name": "Planet rock records",
+  "city": "Manchester",
   "osm": "node/5371180721",
   "source": "osm",
   "country": "GB"

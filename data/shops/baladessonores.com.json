@@ -1,6 +1,8 @@
 {
   "url": "https://www.baladessonores.com",
   "name": "Balades Sonores",
+  "country": "FR",
+  "city": "Paris",
   "osm": "node/12232432862",
   "source": "osm"
 }

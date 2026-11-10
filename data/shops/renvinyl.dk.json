@@ -1,6 +1,7 @@
 {
   "url": "https://renvinyl.dk",
   "name": "RenMusik",
+  "city": "Gladsaxe Kommune",
   "osm": "node/13025579478",
   "source": "osm",
   "country": "DK"

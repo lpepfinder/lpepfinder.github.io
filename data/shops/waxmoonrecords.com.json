@@ -1,6 +1,7 @@
 {
   "url": "https://www.waxmoonrecords.com",
   "name": "Wax Moon",
+  "country": "US",
   "city": "Richmond",
   "osm": "node/9983420942",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://recordlandcalgary.com",
   "name": "Recordland",
+  "country": "CA",
   "city": "Calgary",
   "osm": "way/778398677",
   "source": "osm"

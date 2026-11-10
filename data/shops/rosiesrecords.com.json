@@ -1,6 +1,8 @@
 {
   "url": "https://www.rosiesrecords.com",
   "name": "Rosie's Records",
+  "country": "US",
+  "city": "Pittsburgh",
   "osm": "node/14186981301",
   "source": "osm"
 }

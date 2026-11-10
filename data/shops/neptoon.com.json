@@ -1,6 +1,7 @@
 {
   "url": "https://neptoon.com",
   "name": "Neptoon Records",
+  "country": "CA",
   "city": "Vancouver",
   "osm": "node/8322370247",
   "source": "osm"

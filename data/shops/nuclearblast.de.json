@@ -1,5 +1,7 @@
 {
   "url": "https://www.nuclearblast.de",
+  "country": "DE",
+  "city": "Donzdorf",
   "osm": "node/3511681202",
   "source": "osm"
 }

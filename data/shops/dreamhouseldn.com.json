@@ -1,6 +1,7 @@
 {
   "url": "https://dreamhouseldn.com",
   "name": "Dreamhouse Records",
+  "country": "GB",
   "city": "London",
   "osm": "node/9028281082",
   "source": "osm"

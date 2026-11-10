@@ -1,6 +1,7 @@
 {
   "url": "https://beatdownrecords.org",
   "name": "Beatdown Records",
+  "country": "GB",
   "city": "Newcastle upon Tyne",
   "osm": "node/5120602421",
   "source": "osm"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.vprecords.com",
   "name": "VP Records",
+  "country": "US",
   "city": "Jamaica",
   "osm": "node/6297954339",
   "source": "osm"

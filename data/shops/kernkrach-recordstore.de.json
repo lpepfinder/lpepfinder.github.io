@@ -1,6 +1,8 @@
 {
   "url": "https://www.kernkrach-recordstore.de",
   "name": "Kernkrach Schallplatten",
+  "country": "DE",
+  "city": "Münster",
   "osm": "node/8695228720",
   "source": "osm"
 }

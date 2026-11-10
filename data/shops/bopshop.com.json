@@ -1,6 +1,7 @@
 {
   "url": "https://bopshop.com",
   "name": "Bop Shop Records",
+  "country": "US",
   "city": "Rochester",
   "osm": "node/8786009801",
   "source": "osm"

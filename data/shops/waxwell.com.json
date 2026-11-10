@@ -1,6 +1,7 @@
 {
   "url": "https://waxwell.com",
   "name": "Waxwell Records",
+  "country": "NL",
   "city": "Amsterdam",
   "osm": "node/2722192587",
   "source": "osm"

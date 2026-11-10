@@ -1,6 +1,8 @@
 {
   "url": "https://www.gunesmuzik.com",
   "name": "Güneş Müzik",
+  "country": "TR",
+  "city": "Pendik",
   "osm": "node/12462726318",
   "source": "osm"
 }

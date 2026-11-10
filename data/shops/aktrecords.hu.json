@@ -1,6 +1,7 @@
 {
   "url": "https://aktrecords.hu",
   "name": "akt records",
+  "city": "Budapest",
   "osm": "node/6442626010",
   "source": "osm",
   "country": "HU"

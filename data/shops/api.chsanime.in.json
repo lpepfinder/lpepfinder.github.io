@@ -1,6 +1,7 @@
 {
   "url": "https://api.chsanime.in",
   "name": "Hip! Handel in Platen",
+  "country": "NL",
   "city": "Baarn",
   "osm": "node/2740354319",
   "source": "osm"

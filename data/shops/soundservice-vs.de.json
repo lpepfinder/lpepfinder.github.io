@@ -1,6 +1,7 @@
 {
   "url": "https://soundservice-vs.de",
   "name": "soundservice",
+  "city": "Villingen-Schwenningen",
   "osm": "node/3518352102",
   "source": "osm",
   "country": "DE"

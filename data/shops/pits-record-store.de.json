@@ -1,6 +1,7 @@
 {
   "url": "https://pits-record-store.de",
   "name": "Pit‘s Record Store",
+  "country": "DE",
   "city": "Augsburg",
   "osm": "node/12022589650",
   "source": "osm"

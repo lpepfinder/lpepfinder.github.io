@@ -1,6 +1,7 @@
 {
   "url": "https://longhairrecords.com",
   "name": "Longhair Records",
+  "country": "US",
   "city": "Albuquerque",
   "osm": "node/7100284933",
   "source": "osm"

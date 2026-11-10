@@ -1,6 +1,7 @@
 {
   "url": "https://vinyles61.fr",
   "name": "Vinyles 61",
+  "city": "Alençon",
   "osm": "node/13104025888",
   "source": "osm",
   "country": "FR"

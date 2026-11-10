@@ -1,6 +1,7 @@
 {
   "url": "https://lovevinyl.net",
   "name": "Love Vinyl",
+  "country": "GB",
   "city": "London",
   "osm": "node/4556240190",
   "source": "osm"

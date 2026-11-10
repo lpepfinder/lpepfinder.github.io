@@ -1,6 +1,7 @@
 {
   "url": "https://exiledrecords.com",
   "name": "Exiled Records",
+  "country": "US",
   "city": "Portland",
   "osm": "way/256873874",
   "source": "osm"

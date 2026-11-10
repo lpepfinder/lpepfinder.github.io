@@ -1,6 +1,7 @@
 {
   "url": "https://www.bridgeportrecords.com",
   "name": "Bridgeport Records",
+  "country": "US",
   "city": "Chicago",
   "osm": "node/12288565935",
   "source": "osm"

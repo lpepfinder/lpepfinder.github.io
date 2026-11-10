@@ -1,6 +1,8 @@
 {
   "url": "https://theyetee.com",
   "name": "SuperJumbo Records and Arcade",
+  "country": "US",
+  "city": "Aurora",
   "osm": "node/14141139701",
   "source": "osm",
   "bluesky": {

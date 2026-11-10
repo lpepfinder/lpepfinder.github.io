@@ -1,6 +1,7 @@
 {
   "url": "http://www.failurecore.com",
   "name": "The Record Farm",
+  "country": "US",
   "city": "Logansport",
   "osm": "node/10153744633",
   "source": "osm"

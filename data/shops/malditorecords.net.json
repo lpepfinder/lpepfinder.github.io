@@ -1,6 +1,7 @@
 {
   "url": "https://www.malditorecords.net",
   "name": "Maldito Records",
+  "country": "ES",
   "city": "Tavernes Blanques",
   "osm": "node/11371220050",
   "source": "osm",

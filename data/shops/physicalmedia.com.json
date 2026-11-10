@@ -1,6 +1,7 @@
 {
   "url": "https://physicalmedia.com",
   "name": "Your Media Exchange",
+  "country": "US",
   "city": "Ann Arbor",
   "osm": "node/13550849784",
   "source": "osm"

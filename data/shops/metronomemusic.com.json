@@ -1,6 +1,7 @@
 {
   "url": "https://www.metronomemusic.com",
   "name": "Metronome Music",
+  "country": "US",
   "city": "Mansfield",
   "osm": "way/871965404",
   "source": "osm"

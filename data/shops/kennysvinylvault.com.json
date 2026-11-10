@@ -1,6 +1,7 @@
 {
   "url": "https://kennysvinylvault.com",
   "name": "Kenny's Vinyl Vault",
+  "country": "GB",
   "city": "Abertillery",
   "osm": "node/11278023085",
   "source": "osm"

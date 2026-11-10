@@ -1,6 +1,8 @@
 {
   "url": "https://art-sonique.com",
   "name": "Haute Fidélité by Art Sonique",
+  "country": "FR",
+  "city": "Hérouville-Saint-Clair",
   "osm": "node/13282955085",
   "source": "osm",
   "disabled": true,

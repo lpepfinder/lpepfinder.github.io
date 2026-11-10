@@ -1,6 +1,8 @@
 {
   "url": "https://glocalrecords.com",
   "name": "Glocal Records",
+  "country": "JP",
+  "city": "渋谷区",
   "osm": "node/11764192921",
   "source": "osm"
 }

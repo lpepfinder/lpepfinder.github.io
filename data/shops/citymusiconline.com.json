@@ -1,6 +1,8 @@
 {
   "url": "https://citymusiconline.com",
   "name": "City Music",
+  "country": "US",
+  "city": "Leominster",
   "osm": "node/13457320881",
   "source": "osm"
 }

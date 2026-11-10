@@ -1,6 +1,8 @@
 {
   "url": "https://www.kspaceproject.com",
   "name": "KSPACE.",
+  "country": "CZ",
+  "city": "Brno",
   "osm": "node/13665149087",
   "source": "osm"
 }

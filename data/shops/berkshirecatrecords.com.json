@@ -1,6 +1,7 @@
 {
   "url": "https://www.berkshirecatrecords.com",
   "name": "Berkshirecat Records",
+  "country": "US",
   "city": "Dalton",
   "osm": "node/13300664000",
   "source": "osm"

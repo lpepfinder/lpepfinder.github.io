@@ -1,6 +1,8 @@
 {
   "url": "https://blackwaverecords.wordpress.com",
   "name": "Black Wave Records",
+  "country": "DE",
+  "city": "München",
   "osm": "node/2845112755",
   "source": "osm"
 }

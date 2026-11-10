@@ -1,6 +1,8 @@
 {
   "url": "https://groovezonerecords.com",
   "name": "Groove Zone Records",
+  "country": "DE",
+  "city": "Koblenz",
   "osm": "node/11742070665",
   "source": "osm"
 }

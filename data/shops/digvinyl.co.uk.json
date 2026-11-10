@@ -1,6 +1,7 @@
 {
   "url": "https://digvinyl.co.uk",
   "name": "Dig Vinyl",
+  "city": "Liverpool",
   "osm": "node/4515387444",
   "source": "osm",
   "country": "GB"

@@ -1,6 +1,7 @@
 {
   "url": "https://www.on-and-on.at",
   "name": "ON & ON Vinyl Wohnen",
+  "city": "Wien",
   "osm": "node/12495919701",
   "source": "osm",
   "country": "AT"

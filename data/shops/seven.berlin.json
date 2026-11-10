@@ -1,6 +1,7 @@
 {
   "url": "https://www.seven.berlin",
   "name": "SEVEN Community Record Store",
+  "country": "DE",
   "city": "Berlin",
   "osm": "node/13830085189",
   "source": "osm"

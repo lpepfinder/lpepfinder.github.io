@@ -1,6 +1,7 @@
 {
   "url": "https://slothrecords.wordpress.com",
   "name": "Sloth Records",
+  "country": "CA",
   "city": "Calgary",
   "osm": "node/4946539844",
   "source": "osm"

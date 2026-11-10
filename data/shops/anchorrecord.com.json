@@ -1,6 +1,7 @@
 {
   "url": "https://www.anchorrecord.com",
   "name": "Anchor Records",
+  "country": "JP",
   "city": "Shinjuku",
   "osm": "node/11741212625",
   "source": "osm"

@@ -1,6 +1,8 @@
 {
   "url": "https://smeltrecords.be",
   "name": "Smelt Records",
+  "country": "BE",
+  "city": "Mechelen",
   "osm": "node/14110783202",
   "source": "osm"
 }

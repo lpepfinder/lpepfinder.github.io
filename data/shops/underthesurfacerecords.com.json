@@ -1,6 +1,8 @@
 {
   "url": "https://www.underthesurfacerecords.com",
   "name": "Under The Surface Records",
+  "country": "US",
+  "city": "Tiffin",
   "osm": "node/12712162601",
   "source": "osm"
 }

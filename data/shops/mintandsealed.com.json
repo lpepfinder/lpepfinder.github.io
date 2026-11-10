@@ -1,6 +1,7 @@
 {
   "url": "https://www.mintandsealed.com",
   "name": "Mint and Sealed",
+  "country": "GB",
   "city": "Newport",
   "osm": "node/9604060798",
   "source": "osm"

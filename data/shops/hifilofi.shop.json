@@ -1,6 +1,7 @@
 {
   "url": "https://hifilofi.shop",
   "name": "HiFi LoFi",
+  "country": "US",
   "city": "Seattle",
   "osm": "node/2323794537",
   "source": "osm"

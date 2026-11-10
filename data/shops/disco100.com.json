@@ -1,6 +1,7 @@
 {
   "url": "https://www.disco100.com",
   "name": "Disco100",
+  "country": "ES",
   "city": "Barcelona",
   "osm": "node/5068911740",
   "source": "osm"

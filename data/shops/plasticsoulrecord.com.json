@@ -1,6 +1,8 @@
 {
   "url": "https://www.plasticsoulrecord.com",
   "name": "Plastic Soul Records",
+  "country": "JP",
+  "city": "京都市",
   "osm": "node/11761482219",
   "source": "osm"
 }
