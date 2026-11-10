@@ -25,7 +25,6 @@ vf-result vf-title { display: block; font-weight: var(--weight-semi); }
 vf-price { grid-area: price; font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--c-price); }
 vf-price data { color: inherit; }
 vf-result dl { grid-area: meta; display: flex; flex-wrap: wrap; gap: 0 var(--space-2); margin: 0; color: var(--c-muted); font-size: var(--size-s); }
-vf-result dt { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 vf-result dd { margin: 0; }
 vf-result dd + dt + dd::before { content: "· "; }
 vf-result abbr { text-decoration: none; }

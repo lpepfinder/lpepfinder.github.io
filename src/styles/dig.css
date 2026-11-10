@@ -24,7 +24,7 @@ vf-dig > form label:has(input:checked) { background: var(--c-chip-on); color: va
 vf-dig > form input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
 vf-dig > form label:has(input:focus-visible), vf-dig > form select:focus-visible { outline: var(--focus-ring); }
 vf-dig > form label > span { opacity: var(--busy-opacity); }
-vf-dig > form select { font: inherit; font-size: max(16px, var(--size-s)); min-block-size: var(--chip-h); border: 0; background: transparent; color: inherit; padding: 0; }
+vf-dig > form select { font-size: max(var(--size-input-min), var(--size-s)); min-block-size: var(--chip-h); border: 0; background: transparent; color: inherit; padding: 0; }
 @media (min-width: 40rem) { vf-dig > form { flex-wrap: wrap; overflow: visible; } }
 
 /* the grid: two covers across on phones, more as the screen grows */

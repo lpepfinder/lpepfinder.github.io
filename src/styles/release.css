@@ -14,7 +14,7 @@ vf-release > a > :is(img, vf-cover) { grid-area: cover; display: block; inline-s
 
 vf-release vf-name { display: contents; }
 /* the separator is for the link's name only: absolutely placed, it takes no grid cell */
-vf-release vf-name > span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: pre; }
+vf-release vf-name > span { white-space: pre; }
 vf-release :is(vf-title, vf-artist) { min-inline-size: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 vf-release vf-title { grid-area: title; font-weight: var(--weight-bold); line-height: var(--leading-tight); }
 vf-release vf-artist { grid-area: artist; color: var(--c-muted); font-size: var(--size-s); }

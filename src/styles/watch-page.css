@@ -51,7 +51,7 @@ vf-watch-now vf-split > vf-sheet[name="watch-shop"][docked] { position: sticky; 
 vf-watch-all > *, vf-watch-page > * { min-inline-size: 0; }
 vf-watch-all search { display: grid; gap: var(--space-1); }
 vf-watch-all search label { font-weight: var(--weight-semi); }
-vf-watch-all input[type="search"] { font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); min-inline-size: 0; padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
+vf-watch-all input[type="search"] { min-inline-size: 0; }
 vf-watch-all nav ul { display: flex; flex-wrap: wrap; gap: var(--space-1); }
 vf-watch-all nav button { min-inline-size: var(--tap); padding-inline: var(--space-2); }
 vf-watch-showing { display: block; color: var(--c-muted); font-size: var(--size-s); }
@@ -91,7 +91,7 @@ vf-watch-backup menu { display: flex; flex-wrap: wrap; gap: var(--space-2); marg
 vf-watch-backup > p { color: var(--c-muted); font-size: var(--size-s); }
 vf-watch-backup > p:has(input) { display: grid; gap: var(--space-1); }
 vf-watch-backup > p[hidden] { display: none; }
-:is(vf-watch-backup) input[type="url"] { font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); min-inline-size: 0; padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
+vf-watch-backup input[type="url"] { min-inline-size: 0; }
 
 @media (max-width: 40rem) {
   /* the jump bar is one scrolling row on phones */
@@ -155,7 +155,7 @@ vf-field > button { flex: none; }
 vf-watch-import label:has(> input[type="file"]) { white-space: normal; max-inline-size: 100%; }
 /* the field takes what the button leaves, at least --field-min, else the button goes under it; inline-size 0
    drops the field's built-in ~20 characters, which would widen the page */
-vf-field input { flex: 1 1 var(--field-min); inline-size: 0; min-inline-size: 0; font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
+vf-field input { flex: 1 1 var(--field-min); inline-size: 0; min-inline-size: 0; }
 vf-watch-import[status="loading"] button[type="submit"] { opacity: var(--busy-opacity); pointer-events: none; }
 vf-watch-import output { display: block; font-size: var(--size-s); }
 vf-watch-import[status="error"] output { color: var(--c-error); }
@@ -172,7 +172,7 @@ vf-watch-filters label:has(input:checked) { background: var(--c-chip-on); color:
 vf-watch-filters input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
 vf-watch-filters label:has(input[type="checkbox"]:focus-visible), vf-watch-filters :is(select, input[type="text"]):focus-visible { outline: var(--focus-ring); }
 vf-watch-filters label > span { color: var(--c-muted); }
-vf-watch-filters :is(select, input[type="text"]) { font: inherit; font-size: max(16px, var(--size-s)); min-block-size: var(--chip-h); border: 0; background: transparent; color: inherit; padding: 0; }
+vf-watch-filters :is(select, input[type="text"]) { font-size: max(var(--size-input-min), var(--size-s)); min-block-size: var(--chip-h); border: 0; background: transparent; color: inherit; padding: 0; }
 vf-watch-filters input[type="text"] { inline-size: 5ch; text-align: end; }
 @media (min-width: 40rem) { vf-watch-filters form { flex-wrap: wrap; overflow: visible; } }
 vf-watch-page:is([view="changes"], [view="all"]) > vf-watch-filters { display: none; }
@@ -180,7 +180,6 @@ vf-watch-page:is([view="changes"], [view="all"]) > vf-watch-filters { display: n
 vf-watch-page[view="now"] vf-watch-filters label:has(select) { display: none; }
 
 /* in stock: search rows (release.css), new ones in their own section, copies in the detail pane */
-:is(vf-watch-available, vf-watch-now) > h2 { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 vf-watch-hits { display: grid; gap: var(--space-2); align-content: start; min-inline-size: 0; }
 vf-watch-hits section { display: grid; }
 vf-watch-hits section[hidden], vf-watch-hits h3[hidden] { display: none; }
@@ -214,7 +213,6 @@ vf-watch-shop[reach="no"] h3 { color: var(--c-muted); }
 vf-watch-all > vf-watch-backup { margin-block-start: var(--space-6); }
 
 /* the status line is for screen readers: the summary and the progress bar say it on screen */
-vf-watch-page > output { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 /* tabs: one line on phones, scrolling sideways if needed */
 vf-watch-page > nav ul { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
 vf-watch-page > nav li { flex: none; }
@@ -233,7 +231,7 @@ vf-watch-tracks li { display: flex; align-items: center; justify-content: space-
 vf-watch-tracks li > span { min-inline-size: 0; overflow-wrap: anywhere; }
 vf-watch-controls form { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 vf-watch-controls label { display: inline-flex; align-items: center; gap: var(--space-1); }
-vf-watch-controls input { font: inherit; font-size: max(16px, var(--size-s)); inline-size: 7ch; min-block-size: var(--tap); padding-inline: var(--space-2); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
+vf-watch-controls input { font-size: max(var(--size-input-min), var(--size-s)); inline-size: 7ch; padding: 0 var(--space-2); }
 vf-watch-controls menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
 
 /* icons in tabs and chips: a little smaller than the words' line */

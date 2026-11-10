@@ -12,6 +12,7 @@
   --weight-semi: 600;
   --leading: 1.5;
   --leading-tight: 1.2;
+  --space-0: 0.125rem;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -22,6 +23,8 @@
   --radius: 0.5rem;
   --radius-pill: 999px;
   --line: 1px;
+  --key-edge: 2px;        /* the bottom edge of a <kbd> key */
+  --size-input-min: 16px; /* the smallest text in a field: iOS zooms the page into anything smaller */
   --tap: 2.75rem;
   --thumb: 3.5rem;
   --card-h: 5.5rem;

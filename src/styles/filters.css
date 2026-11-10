@@ -17,7 +17,6 @@ vf-filters input { inline-size: var(--icon-size); block-size: var(--icon-size); 
 vf-filters data { color: inherit; font-size: var(--size-xs); }
 /* the currency menu: its legend names it */
 vf-filters vf-currency { inline-size: 100%; }
-vf-filters vf-currency label { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 vf-filters vf-currency select { flex: 1 1 auto; }
 
 /* the docked rail (from 110rem): one column, sticky */
@@ -33,7 +32,6 @@ vf-results-bar > button { grid-column: 2; grid-row: 1 / span 2; font-size: var(-
 vf-results-bar p:empty { display: none; }
 vf-note p { margin: 0; color: var(--c-muted); }
 /* the live status is for screen readers once results show: the count line or the empty heading says the same */
-vf-results:is([status="done"], [status="empty"]) > output { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* phones: the Filters pill floats in the thumb zone, above the tab bar */
 vf-results-actions { position: fixed; inset-inline: 0; inset-block-end: calc(var(--tabbar-h) + var(--space-3) + env(safe-area-inset-bottom)); z-index: var(--layer-header); display: flex; justify-content: center; pointer-events: none; transition: translate var(--duration) var(--ease); }

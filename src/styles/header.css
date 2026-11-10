@@ -10,7 +10,6 @@ header {
   background: var(--c-bg); border-block-end: var(--line) solid var(--c-line);
 }
 /* the brand link: read by screen readers on phones and tablets, shown at the top of the sidebar */
-header > a[rel="home"] { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 header > vf-search { grid-area: search; }
 
 /* <vf-logo>: magnifier with a record in the lens, in the brand color; the record turns at 33⅓ rpm (1.8 s a turn)
@@ -31,7 +30,6 @@ vf-logo [part="disc"] { transform-box: fill-box; transform-origin: center; }
 }
 
 /* the search label is announced, not shown; the button is an icon */
-header vf-search label { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 header vf-search form { position: relative; gap: 0; }
 header vf-search input { border-radius: var(--radius-pill); padding-inline: var(--space-4) calc(var(--tap) + var(--space-1)); background: var(--c-surface); }
 header vf-search button { position: absolute; inset-block: 0; inset-inline-end: 0; inline-size: var(--tap); padding: 0; display: grid; place-items: center; border-radius: var(--radius-pill); background: none; color: var(--c-muted); }
@@ -48,7 +46,7 @@ vf-tabbar :is(vf-watchlist, vf-shell-account) { display: contents; }
 vf-tabbar a { min-inline-size: 0; }
 vf-tabbar a > span { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 vf-tabbar a {
-  display: grid; justify-items: center; align-content: center; gap: 2px; position: relative;
+  display: grid; justify-items: center; align-content: center; gap: var(--space-0); position: relative;
   min-block-size: var(--tabbar-h); color: var(--c-muted); text-decoration: none; font-size: var(--size-xs); font-weight: var(--weight-semi);
 }
 vf-tabbar a[aria-current="page"] { color: var(--c-accent); }
@@ -120,7 +118,7 @@ vf-icon[name="play"] { --icon: var(--icon-play); }
   vf-tabbar a[aria-current="page"] { background: var(--c-chip); }
   header > button[name="language"] {
     position: fixed; inset-block-end: var(--space-3); inset-inline-start: var(--space-2); z-index: 3; inline-size: calc(var(--rail-w) - 2 * var(--space-2));
-    display: grid; justify-items: center; gap: 2px; min-block-size: var(--rail-item-h); padding: 0 var(--space-1);
+    display: grid; justify-items: center; gap: var(--space-0); min-block-size: var(--rail-item-h); padding: 0 var(--space-1);
     color: var(--c-muted); font-size: var(--size-xs); font-weight: var(--weight-semi);
   }
   header > button[name="language"] > span { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

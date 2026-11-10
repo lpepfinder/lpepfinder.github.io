@@ -122,7 +122,7 @@ vf-shortcuts dd { margin: 0; }
 vf-shortcuts ul { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; }
 vf-shortcuts ul a { display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--tap); color: inherit; text-decoration: none; }
 vf-shortcuts ul a:hover span { text-decoration: underline; }
-kbd { display: inline-block; min-inline-size: 1.6em; padding: 0 var(--space-1); border: var(--line) solid var(--c-border); border-block-end-width: 2px; border-radius: var(--radius); background: var(--c-bg); font: inherit; font-size: var(--size-s); text-align: center; }
+kbd { display: inline-block; min-inline-size: 1.6em; padding: 0 var(--space-1); border: var(--line) solid var(--c-border); border-block-end-width: var(--key-edge); border-radius: var(--radius); background: var(--c-bg); font: inherit; font-size: var(--size-s); text-align: center; }
 /* touch screens have no keyboard shortcuts to show */
 @media (pointer: coarse) { vf-shortcuts { display: none; } }
 
@@ -190,7 +190,6 @@ vf-account[busy] form button { opacity: var(--busy-opacity); pointer-events: non
 /* <vf-languages>: every language in its own name, its name in the page's language below; a filter from ten on */
 vf-languages search { display: grid; gap: var(--space-1); margin-block-end: var(--space-3); }
 vf-languages search label { font-size: var(--size-s); color: var(--c-muted); }
-vf-languages input[type="search"] { font: inherit; font-size: max(16px, var(--size-0)); min-block-size: var(--tap); padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-border); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
 vf-languages ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--lang-min), 1fr)); gap: var(--space-1); }
 vf-languages li[hidden] { display: none; }
 vf-languages a { display: grid; align-content: center; min-block-size: var(--row-h); padding-inline: var(--space-3); border-radius: var(--radius); color: inherit; text-decoration: none; }
