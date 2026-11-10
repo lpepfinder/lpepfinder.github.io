@@ -1,0 +1,16 @@
+---
+import { t, tn } from '../lib/i18n.js';
+
+/** A list of shops as cards (country and city pages): name, Bluesky mark, records in stock or "listed". */
+const { lang, shops } = Astro.props;
+---
+<ul>
+  {shops.map((s) => (
+    <li>
+      <vf-shop-card searchable={s.records > 0 ? 'true' : 'false'}>
+        <a href={`/shop/${s.id}/`}>{s.name}{s.bluesky && <vf-icon name="bluesky" role="img" aria-label={t(lang, 'shopOnBluesky')} verified={String(!!s.bluesky.verified)}></vf-icon>}</a>
+        <span>{s.records > 0 ? tn(lang, 'shopRecordsShort', s.records) : t(lang, 'shopListedShort')}</span>
+      </vf-shop-card>
+    </li>
+  ))}
+</ul>

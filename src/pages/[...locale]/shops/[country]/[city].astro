@@ -1,0 +1,51 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ShopList from '../../../../components/ShopList.astro';
+import { t, tn, localeParams, localPath, number, countryName } from '../../../../lib/i18n.js';
+import { pageTitle, breadcrumbLd } from '../../../../lib/seo.js';
+import { catalog } from '../../../../lib/catalog.js';
+import { cityName } from '../../../../lib/cities.js';
+
+/**
+ * /shops/<country>/<city>/: the record shops of a city with at least seo.cityMinShops of them (catalog.js
+ * `pages`, data/cities.json), searchable shops first, and the country's other cities.
+ */
+export function getStaticPaths() {
+  return localeParams().flatMap(({ params, props }) => catalog().countries.flatMap((country) => country.pages.map((city) => ({
+    params: { ...params, country: country.code.toLowerCase(), city: city.slug },
+    props: { ...props, country, city },
+  }))));
+}
+const { lang, country, city } = Astro.props;
+const cc = country.code.toLowerCase();
+const name = cityName(lang, country.code, city.name);
+const vars = { city: name, country: countryName(lang, country.code), shops: number(lang, city.shops.length), records: number(lang, city.records) };
+const shops = [...city.shops].sort((a, b) => (b.records > 0) - (a.records > 0) || b.records - a.records || a.name.localeCompare(b.name));
+const others = country.pages.filter((c) => c !== city);
+const crumbs = [
+  { name: t(lang, 'breadcrumbHome'), href: localPath(lang, '/') },
+  { name: t(lang, 'navShops'), href: localPath(lang, '/shops/') },
+  { name: vars.country, href: localPath(lang, `/shops/${cc}/`) },
+  { name, href: localPath(lang, `/shops/${cc}/${city.slug}/`) },
+];
+const ld = [{
+  '@context': 'https://schema.org', '@type': 'CollectionPage', name: t(lang, 'cityTitle', vars), inLanguage: lang,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: shops.map((s, i) => ({ '@type': 'ListItem', position: i + 1, url: new URL(`/shop/${s.id}/`, Astro.site).href, name: s.name })),
+  },
+}, breadcrumbLd(crumbs, Astro.site)];
+---
+<Base lang={lang} path={`/shops/${cc}/${city.slug}/`} title={pageTitle(tn(lang, 'citySeoTitle', city.shops.length, vars))} description={tn(lang, 'cityDescription', city.shops.length, vars)} ld={ld}>
+  <Breadcrumbs lang={lang} items={crumbs} />
+  <h1>{t(lang, 'cityTitle', vars)}</h1>
+  <p>{tn(lang, 'cityDescription', city.shops.length, vars)}</p>
+  <vf-grid flow="columns"><section><ShopList lang={lang} shops={shops} /></section></vf-grid>
+  {others.length > 0 && (
+    <section>
+      <h2>{t(lang, 'cityOthers', vars)}</h2>
+      <vf-chips><ul>{others.map((c) => <li><a href={localPath(lang, `/shops/${cc}/${c.slug}/`)}>{cityName(lang, country.code, c.name)} ({number(lang, c.shops.length)})</a></li>)}</ul></vf-chips>
+    </section>
+  )}
+</Base>

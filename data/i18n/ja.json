@@ -443,6 +443,15 @@
     "remove": "「{query}」を最近の検索から削除"
   },
   "citiesNav": "都市",
+  "cityTitle": "{city}のレコード店",
+  "citySeoTitle": {
+    "other": "{city}（{country}）のレコード店：インディペンデント{shops}店"
+  },
+  "cityDescription": {
+    "other": "{city}（{country}）のインディペンデントのレコード店{shops}店、在庫レコード{records}枚を検索できます。毎日更新。"
+  },
+  "cityOthers": "{country}のほかの都市",
+  "exploreCities": "レコード店の多い都市",
   "cityUnknown": "その他の地域",
   "shopListedShort": "掲載のみ（検索未対応）",
   "shopRecordsShort": {

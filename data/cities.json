@@ -1,0 +1,614 @@
+{
+  "description": "Cities of the shops (src/lib/cities.js): each city's name in English (its URL, /shops/<country>/<city>/), the spellings shops and OpenStreetMap use for it (`aliases`: local names, districts and wards counted with the city), and its name in other languages (`names`). A city not listed here keeps the shop's spelling. A city page needs seo.cityMinShops shops.",
+  "cities": {
+    "AT": {
+      "Vienna": {
+        "aliases": [
+          "Wien"
+        ],
+        "names": {
+          "fr": "Vienne",
+          "de": "Wien",
+          "es": "Viena",
+          "ja": "ウィーン"
+        }
+      }
+    },
+    "AU": {
+      "Melbourne": {
+        "aliases": [
+          "Fitzroy",
+          "St Kilda",
+          "Brunswick",
+          "Brunswick East",
+          "Collingwood",
+          "Northcote"
+        ],
+        "names": {
+          "ja": "メルボルン"
+        }
+      },
+      "Brisbane": {
+        "aliases": [
+          "Fortitude Valley"
+        ],
+        "names": {
+          "ja": "ブリスベン"
+        }
+      },
+      "Sydney": {
+        "names": {
+          "ja": "シドニー"
+        }
+      }
+    },
+    "BE": {
+      "Ghent": {
+        "aliases": [
+          "Gent"
+        ],
+        "names": {
+          "fr": "Gand",
+          "de": "Gent",
+          "es": "Gante",
+          "it": "Gand",
+          "ja": "ゲント"
+        }
+      }
+    },
+    "BG": {
+      "Sofia": {
+        "aliases": [
+          "София"
+        ],
+        "names": {
+          "es": "Sofía",
+          "ja": "ソフィア"
+        }
+      },
+      "Varna": {
+        "aliases": [
+          "Варна"
+        ],
+        "names": {
+          "ja": "ヴァルナ"
+        }
+      }
+    },
+    "CA": {
+      "Toronto": {
+        "names": {
+          "ja": "トロント"
+        }
+      },
+      "Montréal": {
+        "aliases": [
+          "Montreal"
+        ],
+        "names": {
+          "de": "Montreal",
+          "ja": "モントリオール"
+        }
+      },
+      "Vancouver": {
+        "names": {
+          "ja": "バンクーバー"
+        }
+      }
+    },
+    "CH": {
+      "Zurich": {
+        "aliases": [
+          "Zürich"
+        ],
+        "names": {
+          "de": "Zürich",
+          "es": "Zúrich",
+          "it": "Zurigo",
+          "ja": "チューリッヒ"
+        }
+      }
+    },
+    "DE": {
+      "Berlin": {
+        "names": {
+          "es": "Berlín",
+          "it": "Berlino",
+          "ja": "ベルリン"
+        }
+      },
+      "Munich": {
+        "aliases": [
+          "München"
+        ],
+        "names": {
+          "de": "München",
+          "es": "Múnich",
+          "it": "Monaco di Baviera",
+          "ja": "ミュンヘン"
+        }
+      },
+      "Cologne": {
+        "aliases": [
+          "Köln"
+        ],
+        "names": {
+          "de": "Köln",
+          "es": "Colonia",
+          "it": "Colonia",
+          "ja": "ケルン"
+        }
+      },
+      "Hamburg": {
+        "names": {
+          "fr": "Hambourg",
+          "es": "Hamburgo",
+          "it": "Amburgo",
+          "ja": "ハンブルク"
+        }
+      }
+    },
+    "DK": {
+      "Copenhagen": {
+        "aliases": [
+          "København"
+        ],
+        "names": {
+          "fr": "Copenhague",
+          "de": "Kopenhagen",
+          "es": "Copenhague",
+          "it": "Copenaghen",
+          "ja": "コペンハーゲン"
+        }
+      }
+    },
+    "EG": {
+      "Cairo": {
+        "aliases": [
+          "القاهرة"
+        ],
+        "names": {
+          "fr": "Le Caire",
+          "de": "Kairo",
+          "es": "El Cairo",
+          "it": "Il Cairo",
+          "ja": "カイロ"
+        }
+      }
+    },
+    "ES": {
+      "Barcelona": {
+        "names": {
+          "fr": "Barcelone",
+          "ja": "バルセロナ"
+        }
+      },
+      "Madrid": {
+        "names": {
+          "ja": "マドリード"
+        }
+      }
+    },
+    "FI": {
+      "Helsinki": {
+        "names": {
+          "ja": "ヘルシンキ"
+        }
+      }
+    },
+    "FR": {
+      "Paris": {
+        "names": {
+          "es": "París",
+          "it": "Parigi",
+          "ja": "パリ"
+        }
+      },
+      "Lyon": {
+        "names": {
+          "it": "Lione",
+          "ja": "リヨン"
+        }
+      },
+      "Bordeaux": {
+        "names": {
+          "ja": "ボルドー"
+        }
+      }
+    },
+    "GB": {
+      "London": {
+        "aliases": [
+          "Greater London"
+        ],
+        "names": {
+          "fr": "Londres",
+          "es": "Londres",
+          "it": "Londra",
+          "ja": "ロンドン"
+        }
+      },
+      "Portsmouth": {
+        "aliases": [
+          "Southsea"
+        ]
+      },
+      "Glasgow": {
+        "names": {
+          "fr": "Glasgow",
+          "ja": "グラスゴー"
+        }
+      },
+      "Edinburgh": {
+        "names": {
+          "fr": "Édimbourg",
+          "de": "Edinburgh",
+          "es": "Edimburgo",
+          "it": "Edimburgo",
+          "ja": "エディンバラ"
+        }
+      }
+    },
+    "GE": {
+      "Tbilisi": {
+        "aliases": [
+          "თბილისი"
+        ],
+        "names": {
+          "fr": "Tbilissi",
+          "de": "Tiflis",
+          "es": "Tiflis",
+          "ja": "トビリシ"
+        }
+      }
+    },
+    "GR": {
+      "Athens": {
+        "aliases": [
+          "Αθήνα"
+        ],
+        "names": {
+          "fr": "Athènes",
+          "de": "Athen",
+          "es": "Atenas",
+          "it": "Atene",
+          "ja": "アテネ"
+        }
+      },
+      "Thessaloniki": {
+        "aliases": [
+          "Θεσσαλονίκη",
+          "Καλαμαριά"
+        ],
+        "names": {
+          "fr": "Thessalonique",
+          "es": "Tesalónica",
+          "it": "Salonicco",
+          "ja": "テッサロニキ"
+        }
+      },
+      "Volos": {
+        "aliases": [
+          "Δήμος Βόλου"
+        ]
+      }
+    },
+    "HK": {
+      "Hong Kong": {
+        "aliases": [
+          "香港 Hong Kong",
+          "香港"
+        ],
+        "names": {
+          "ja": "香港"
+        }
+      }
+    },
+    "IE": {
+      "Dublin": {
+        "names": {
+          "es": "Dublín",
+          "it": "Dublino",
+          "ja": "ダブリン"
+        }
+      }
+    },
+    "IL": {
+      "Tel Aviv": {
+        "aliases": [
+          "תל אביב-יפו"
+        ],
+        "names": {
+          "ja": "テルアビブ"
+        }
+      }
+    },
+    "IT": {
+      "Milan": {
+        "aliases": [
+          "Milano"
+        ],
+        "names": {
+          "de": "Mailand",
+          "es": "Milán",
+          "it": "Milano",
+          "ja": "ミラノ"
+        }
+      },
+      "Rome": {
+        "aliases": [
+          "Roma"
+        ],
+        "names": {
+          "de": "Rom",
+          "es": "Roma",
+          "it": "Roma",
+          "ja": "ローマ"
+        }
+      }
+    },
+    "JP": {
+      "Tokyo": {
+        "aliases": [
+          "東京都",
+          "渋谷区",
+          "新宿区",
+          "Shinjuku",
+          "世田谷区",
+          "台東区",
+          "杉並区"
+        ],
+        "names": {
+          "fr": "Tokyo",
+          "es": "Tokio",
+          "ja": "東京"
+        }
+      },
+      "Osaka": {
+        "aliases": [
+          "大阪市",
+          "大阪"
+        ],
+        "names": {
+          "ja": "大阪"
+        }
+      },
+      "Kyoto": {
+        "aliases": [
+          "京都市",
+          "京都市上京区"
+        ],
+        "names": {
+          "ja": "京都"
+        }
+      },
+      "Kobe": {
+        "aliases": [
+          "神戸市中央区",
+          "神戸市"
+        ],
+        "names": {
+          "ja": "神戸"
+        }
+      },
+      "Nagoya": {
+        "aliases": [
+          "名古屋市"
+        ],
+        "names": {
+          "ja": "名古屋"
+        }
+      },
+      "Fukuoka": {
+        "aliases": [
+          "Fukuoka city",
+          "福岡市"
+        ],
+        "names": {
+          "ja": "福岡"
+        }
+      },
+      "Sapporo": {
+        "aliases": [
+          "札幌市"
+        ],
+        "names": {
+          "ja": "札幌"
+        }
+      },
+      "Naha": {
+        "aliases": [
+          "那覇市"
+        ],
+        "names": {
+          "ja": "那覇"
+        }
+      },
+      "Okaya": {
+        "aliases": [
+          "岡谷市"
+        ],
+        "names": {
+          "ja": "岡谷"
+        }
+      },
+      "Koriyama": {
+        "aliases": [
+          "郡山市"
+        ],
+        "names": {
+          "ja": "郡山"
+        }
+      }
+    },
+    "LT": {
+      "Vilnius": {
+        "names": {
+          "fr": "Vilnius",
+          "ja": "ヴィリニュス"
+        }
+      }
+    },
+    "NL": {
+      "Amsterdam": {
+        "names": {
+          "ja": "アムステルダム"
+        }
+      }
+    },
+    "NO": {
+      "Oslo": {
+        "names": {
+          "ja": "オスロ"
+        }
+      }
+    },
+    "PT": {
+      "Lisbon": {
+        "aliases": [
+          "Lisboa"
+        ],
+        "names": {
+          "fr": "Lisbonne",
+          "de": "Lissabon",
+          "es": "Lisboa",
+          "it": "Lisbona",
+          "ja": "リスボン"
+        }
+      }
+    },
+    "RS": {
+      "Belgrade": {
+        "aliases": [
+          "Београд",
+          "Градска општина Палилула"
+        ],
+        "names": {
+          "de": "Belgrad",
+          "es": "Belgrado",
+          "it": "Belgrado",
+          "ja": "ベオグラード"
+        }
+      },
+      "Niš": {
+        "aliases": [
+          "Ниш"
+        ],
+        "names": {
+          "ja": "ニシュ"
+        }
+      }
+    },
+    "RU": {
+      "Saint Petersburg": {
+        "aliases": [
+          "Санкт-Петербург"
+        ],
+        "names": {
+          "fr": "Saint-Pétersbourg",
+          "de": "Sankt Petersburg",
+          "es": "San Petersburgo",
+          "it": "San Pietroburgo",
+          "ja": "サンクトペテルブルク"
+        }
+      },
+      "Moscow": {
+        "aliases": [
+          "Москва"
+        ],
+        "names": {
+          "fr": "Moscou",
+          "de": "Moskau",
+          "es": "Moscú",
+          "it": "Mosca",
+          "ja": "モスクワ"
+        }
+      }
+    },
+    "SE": {
+      "Stockholm": {
+        "names": {
+          "es": "Estocolmo",
+          "it": "Stoccolma",
+          "ja": "ストックホルム"
+        }
+      }
+    },
+    "TH": {
+      "Bangkok": {
+        "aliases": [
+          "กรุงเทพมหานคร"
+        ],
+        "names": {
+          "ja": "バンコク"
+        }
+      }
+    },
+    "TW": {
+      "Taipei": {
+        "aliases": [
+          "臺北市",
+          "台北市"
+        ],
+        "names": {
+          "ja": "台北"
+        }
+      }
+    },
+    "UA": {
+      "Kyiv": {
+        "aliases": [
+          "Київ"
+        ],
+        "names": {
+          "de": "Kyjiw",
+          "es": "Kiev",
+          "it": "Kiev",
+          "ja": "キーウ"
+        }
+      }
+    },
+    "US": {
+      "New York": {
+        "aliases": [
+          "Brooklyn",
+          "Manhattan",
+          "Queens",
+          "New York City",
+          "The Bronx",
+          "Bronx",
+          "Staten Island"
+        ],
+        "names": {
+          "es": "Nueva York",
+          "ja": "ニューヨーク"
+        }
+      },
+      "Chicago": {
+        "names": {
+          "ja": "シカゴ"
+        }
+      },
+      "Los Angeles": {
+        "names": {
+          "ja": "ロサンゼルス"
+        }
+      },
+      "San Francisco": {
+        "names": {
+          "ja": "サンフランシスコ"
+        }
+      },
+      "Seattle": {
+        "names": {
+          "ja": "シアトル"
+        }
+      },
+      "Washington": {
+        "names": {
+          "ja": "ワシントン"
+        }
+      }
+    }
+  }
+}

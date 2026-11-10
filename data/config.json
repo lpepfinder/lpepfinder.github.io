@@ -60,12 +60,13 @@
     "strictBelowRatio": 0.5
   },
   "seo": {
-    "description": "Static pages for search engines (scripts/index/site-data.js, src/pages): an artist gets a page with at least `artistMinRecords` records in `artistMinShops` shops, for at most `artistMaxPages` artists and `artistMaxRecordsPerPage` records each, `artistLdOffers` of them in its structured data; a shop page shows its `shopLatestRecords` newest.",
+    "description": "Static pages for search engines (scripts/index/site-data.js, src/pages): an artist gets a page with at least `artistMinRecords` records in `artistMinShops` shops, for at most `artistMaxPages` artists and `artistMaxRecordsPerPage` records each, `artistLdOffers` of them in its structured data; a shop page shows its `shopLatestRecords` newest; a city gets a page (/shops/<country>/<city>/, data/cities.json) with at least `cityMinShops` shops.",
     "artistMinRecords": 3,
     "artistMinShops": 2,
     "artistMaxPages": 3000,
     "artistMaxRecordsPerPage": 60,
     "shopLatestRecords": 24,
+    "cityMinShops": 3,
     "artistLdOffers": 12
   },
   "search": {

@@ -472,6 +472,17 @@
     "remove": "Remove “{query}” from recent searches"
   },
   "citiesNav": "Cities",
+  "cityTitle": "Record shops in {city}",
+  "citySeoTitle": {
+    "one": "Record shops in {city}, {country}: 1 independent store",
+    "other": "Record shops in {city}, {country}: {shops} independent stores"
+  },
+  "cityDescription": {
+    "one": "1 independent record shop in {city}, {country}, {records} vinyl records in stock to search. Updated daily.",
+    "other": "{shops} independent record shops in {city}, {country}, {records} vinyl records in stock to search. Updated daily."
+  },
+  "cityOthers": "Other cities in {country}",
+  "exploreCities": "Cities with the most shops",
   "cityUnknown": "Other places",
   "shopListedShort": "listed, not searchable yet",
   "shopRecordsShort": {

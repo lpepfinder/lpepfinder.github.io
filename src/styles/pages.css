@@ -58,7 +58,7 @@ main > section > ul { list-style: none; margin: 0; padding: 0; display: grid; }
 
 /* a shop: name, then its count right after it (not at the far edge) */
 vf-shop-card { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); min-block-size: var(--tap); border-block-end: var(--line) solid var(--c-line); }
-vf-shop-card a { font-weight: var(--weight-semi); }
+vf-shop-card a { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); font-weight: var(--weight-semi); }
 vf-shop-card span { color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
 vf-shop-card span::before { content: var(--count-separator); }
 vf-shop-card[searchable="false"] a { font-weight: normal; }

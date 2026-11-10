@@ -472,6 +472,17 @@
     "remove": "Quitar «{query}» de las búsquedas recientes"
   },
   "citiesNav": "Ciudades",
+  "cityTitle": "Tiendas de discos en {city}",
+  "citySeoTitle": {
+    "one": "Tiendas de discos en {city} ({country}): 1 independiente",
+    "other": "Tiendas de discos en {city} ({country}): {shops} independientes"
+  },
+  "cityDescription": {
+    "one": "1 tienda de discos independiente en {city} ({country}), {records} vinilos en stock para buscar. Actualizado cada día.",
+    "other": "{shops} tiendas de discos independientes en {city} ({country}), {records} vinilos en stock para buscar. Actualizado cada día."
+  },
+  "cityOthers": "Otras ciudades: {country}",
+  "exploreCities": "Ciudades con más tiendas",
   "cityUnknown": "Otros lugares",
   "shopListedShort": "en la lista, aún no buscable",
   "shopRecordsShort": {

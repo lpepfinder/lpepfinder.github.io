@@ -1,10 +1,12 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ShopList from '../../../components/ShopList.astro';
 import { t, tn, localeParams, localPath, number, countryName } from '../../../lib/i18n.js';
 import { pageTitle, breadcrumbLd } from '../../../lib/seo.js';
 import { catalog } from '../../../lib/catalog.js';
 import { byName, groupBy } from '../../../lib/sort.js';
+import { cityName } from '../../../lib/cities.js';
 
 export function getStaticPaths() {
   return localeParams().flatMap(({ params, props }) => catalog().countries.map((country) => ({
@@ -15,11 +17,14 @@ export function getStaticPaths() {
 const { lang, country } = Astro.props;
 const name = countryName(lang, country.code);
 const vars = { country: name, shops: number(lang, country.shops.length), records: number(lang, country.records) };
-// grouped by city, cities A–Z; shops without a city come last; searchable shops first, then A–Z
+// grouped by city (data/cities.json), cities A–Z in the page's language, those with a page linked; shops without
+// a city come last; searchable shops first, then A–Z
 const NONE = '';
 const shopName = byName(lang, (s) => s.name);
-const cities = groupBy(country.shops, (s) => s.city?.trim() || NONE,
-  (a, b) => (a === NONE) - (b === NONE) || byName(lang)(a, b), (a, b) => (b.records > 0) - (a.records > 0) || shopName(a, b));
+const label = (city) => (city === NONE ? t(lang, 'cityUnknown') : cityName(lang, country.code, city));
+const pages = new Map(country.pages.map((c) => [c.name, localPath(lang, `/shops/${country.code.toLowerCase()}/${c.slug}/`)]));
+const cities = groupBy(country.shops, (s) => s.city || NONE,
+  (a, b) => (a === NONE) - (b === NONE) || byName(lang)(label(a), label(b)), (a, b) => (b.records > 0) - (a.records > 0) || shopName(a, b));
 const crumbs = [
   { name: t(lang, 'breadcrumbHome'), href: localPath(lang, '/') },
   { name: t(lang, 'navShops'), href: localPath(lang, '/shops/') },
@@ -39,23 +44,14 @@ const ld = [{
   <p>{tn(lang, 'countryDescription', country.shops.length, vars)}</p>
   {cities.length > 1 && (
     <nav aria-label={t(lang, 'citiesNav')} sticky="phone">
-      <ul>{cities.map(([city], i) => <li><a href={`#city-${i}`}>{city || t(lang, 'cityUnknown')}</a></li>)}</ul>
+      <ul>{cities.map(([city], i) => <li><a href={`#city-${i}`}>{label(city)}</a></li>)}</ul>
     </nav>
   )}
   <vf-grid flow="columns">
   {cities.map(([city, shops], i) => (
     <section id={`city-${i}`}>
-      <h2>{city || t(lang, 'cityUnknown')} <data value={shops.length}>{number(lang, shops.length)}</data></h2>
-      <ul>
-        {shops.map((s) => (
-          <li>
-            <vf-shop-card searchable={s.records > 0 ? 'true' : 'false'}>
-              <a href={`/shop/${s.id}/`}>{s.name}{s.bluesky && <vf-icon name="bluesky" role="img" aria-label={t(lang, 'shopOnBluesky')} verified={String(!!s.bluesky.verified)}></vf-icon>}</a>
-              <span>{s.records > 0 ? tn(lang, 'shopRecordsShort', s.records) : t(lang, 'shopListedShort')}</span>
-            </vf-shop-card>
-          </li>
-        ))}
-      </ul>
+      <h2>{pages.has(city) ? <a href={pages.get(city)}>{label(city)}</a> : label(city)} <data value={shops.length}>{number(lang, shops.length)}</data></h2>
+      <ShopList lang={lang} shops={shops} />
     </section>
   ))}
   </vf-grid>

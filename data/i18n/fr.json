@@ -472,6 +472,17 @@
     "remove": "Retirer « {query} » des recherches récentes"
   },
   "citiesNav": "Villes",
+  "cityTitle": "Disquaires à {city}",
+  "citySeoTitle": {
+    "one": "Disquaires à {city} ({country}) : 1 boutique indépendante",
+    "other": "Disquaires à {city} ({country}) : {shops} boutiques indépendantes"
+  },
+  "cityDescription": {
+    "one": "1 disquaire indépendant à {city} ({country}), {records} vinyles en stock à chercher. Mis à jour chaque jour.",
+    "other": "{shops} disquaires indépendants à {city} ({country}), {records} vinyles en stock à chercher. Mis à jour chaque jour."
+  },
+  "cityOthers": "Autres villes : {country}",
+  "exploreCities": "Les villes qui ont le plus de disquaires",
   "cityUnknown": "Autres lieux",
   "shopListedShort": "référencé, pas encore consultable",
   "shopRecordsShort": {

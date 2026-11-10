@@ -472,6 +472,17 @@
     "remove": "„{query}“ aus den letzten Suchen entfernen"
   },
   "citiesNav": "Städte",
+  "cityTitle": "Plattenläden in {city}",
+  "citySeoTitle": {
+    "one": "Plattenläden in {city} ({country}): 1 unabhängiger Laden",
+    "other": "Plattenläden in {city} ({country}): {shops} unabhängige Läden"
+  },
+  "cityDescription": {
+    "one": "1 unabhängiger Plattenladen in {city} ({country}), {records} Schallplatten auf Lager zum Durchsuchen. Täglich aktualisiert.",
+    "other": "{shops} unabhängige Plattenläden in {city} ({country}), {records} Schallplatten auf Lager zum Durchsuchen. Täglich aktualisiert."
+  },
+  "cityOthers": "Weitere Städte: {country}",
+  "exploreCities": "Städte mit den meisten Läden",
   "cityUnknown": "Weitere Orte",
   "shopListedShort": "gelistet, noch nicht durchsuchbar",
   "shopRecordsShort": {
