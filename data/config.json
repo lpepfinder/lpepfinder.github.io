@@ -17,12 +17,14 @@
   "defaultLanguage": "en",
   "repository": "https://github.com/lpepfinder/lpepfinder.github.io",
   "analytics": {
+    "description": "Umami, cookieless page counts (docs/accounts.md): `umamiScript` and `umamiWebsiteId` load it on every page; `publicDashboard` is the open dashboard linked from the site.",
     "umamiScript": "https://eu.umami.is/script.js",
     "umamiWebsiteId": "0c19139a-e4c0-4c1b-a355-f6403ac4bed8",
     "publicDashboard": "https://cloud.umami.is/share/wBkkWGbqqdhXx84J/vinyl-finder.gitlab.io"
   },
   "googleSiteVerification": "aukgbRTrzBy5qk-pjUQ6R8RRhjZ8RY5eRT2Jazp4-nk",
   "crawl": {
+    "description": "The platform crawler (scripts/crawl, npm run crawl) for Shopify and WooCommerce catalogs, and the bot's identity for every request (`userAgent`; `botNames`: the names a robots.txt may address it by). `concurrency` shops at once, at most `platformConcurrency` per platform, requests `delayMs` apart per shop (more if robots.txt asks; a shop asking over `maxCrawlDelaySeconds` is marked slow). Per shop: at most `maxPages` catalog pages, `maxRequestsPerShop` requests and `maxMinutesPerShop`; the whole run stops at `maxTotalMinutes` and saves; failed shops are retried once, `retryPassConcurrency` at a time. `timeoutMs`: per request. `inStockOnly`: skip sold-out products. `shards`: the crawl data release files.",
     "userAgent": "LPEPFinderBot/2.0 (+https://lpepfinder.com/about/)",
     "timeoutMs": 20000,
     "concurrency": 24,
@@ -51,12 +53,14 @@
     "shards": 4
   },
   "products": {
+    "description": "Which products are records (scripts/lib, the crawlers and the index): a title or type matching `include` and not `exclude`. A shop whose sampled catalog has under `minShopMusicRatio` records is marked not-music; under `strictBelowRatio`, its products must match `include` to count.",
     "include": "vinyl|\\blp\\b|\\d?lp\\b|\\bep\\b|12\\s?(\"|”|inch|in\\b)|10\\s?(\"|”|inch)|7\\s?(\"|”|inch)|\\bsingle\\b|album|schallplatte|disque|vinile|vinilo|vinyle|レコード|record|\\bcds?\\b|cassette|\\bk7\\b|\\bcd\\b|compact disc|maxi",
     "exclude": "t-?shirt|hoodie|sweatshirt|tote|\\bmug\\b|gift card|gift ?(voucher|certificate)|geschenkgutschein|carte cadeau|poster|slipmat|turntable|stylus|cartridge|needle|record cleaner|cleaning|inner sleeves?|outer sleeves?|storage|crate|\\bcap\\b|beanie|sticker|button|badge|book\\b|magazine|dvd|blu-?ray|vhs|guitar (picks|strings?|straps?)\\b|drum ?sticks|audio interface|keyboard stand|digital piano|clavinova|clarinet reeds|\\bsocks\\b(?!.*\\b(cassette|vinyl|lp|cd)\\b)|\\bpostage\\b|^\\W*(\\d+\"?\\s*)?((white|black|plain|clear)\\s+)?(poly|paper|card|plastic|pvc|outer|inner|record)[- ]?(lined\\s+)?(paper\\s+)?sleeves?\\b|\\b(box|pack) of \\d+\\b",
     "minShopMusicRatio": 0.05,
     "strictBelowRatio": 0.5
   },
   "seo": {
+    "description": "Static pages for search engines (scripts/index/site-data.js, src/pages): an artist gets a page with at least `artistMinRecords` records in `artistMinShops` shops, for at most `artistMaxPages` artists and `artistMaxRecordsPerPage` records each, `artistLdOffers` of them in its structured data; a shop page shows its `shopLatestRecords` newest.",
     "artistMinRecords": 3,
     "artistMinShops": 2,
     "artistMaxPages": 3000,
@@ -65,15 +69,15 @@
     "artistLdOffers": 12
   },
   "search": {
-    "resultsPerPage": 30,
+    "description": "The search index and search box: `docsPerChunk` records per index file (scripts/index); `maxArtists` artists in public/search/artists.json for suggestions. In the browser, results come as you type after `typeDelayMs`, from `typeMinChars` characters, and a typed search is kept in history once it settles `typeSettleMs`.",
     "docsPerChunk": 64,
-    "maxPrefixExpansions": 64,
     "maxArtists": 4000,
     "typeDelayMs": 250,
     "typeMinChars": 2,
     "typeSettleMs": 2000
   },
   "ledger": {
+    "description": "The offer ledger (scripts/ledger, docs/ledger.md): every offer seen, day by day. Events (new, restock, sold out, price drop) are kept `eventDays` days; a shop's first `newShopCrawls` crawls make no \"new\" events (its whole catalog would be new). Prices are logged `lowPriceDays` days; a price drop counts for `priceDropDays` days and up to `maxDrop` (a bigger drop is a pricing error). Gone offers stay searchable as sold out for `goneSearchDays` and in the ledger for `goneKeepDays`. A watch file lists at most `watchShops` shops per record.",
     "eventDays": 14,
     "newShopCrawls": 2,
     "lowPriceDays": 90,
@@ -84,6 +88,7 @@
     "maxDrop": 0.7
   },
   "newArrivals": {
+    "description": "New arrivals (scripts/ledger/new-arrivals.js, /new/ pages, Atom feeds): records new in the last `days` days, at most `pageItems` per page, `homeItems` on the home page, `stripItems` in a strip, `shopItems` on a shop page and `feedItems` per feed.",
     "days": 7,
     "pageItems": 120,
     "homeItems": 6,
@@ -92,6 +97,7 @@
     "feedItems": 50
   },
   "site": {
+    "description": "The site crawler (scripts/sources/site, npm run site) for shops on every other platform, in `shards` parallel jobs of at most `maxMinutes`. Per shop: `concurrency` shops at once, requests `delayMs` apart, `timeoutMs` and `maxBytes` per page, `pagesPerDay` pages a day (a `productLaneShare` of them for product pages), at most `maxMinutesPerShop`, `maxUrls` known URLs, `maxDepth` links from the home page. Sitemaps (read on `sitemapPlatforms`, `sitemapFiles` files every `sitemapDays` days) and `revisit` days per page kind decide what is read again; a record not seen for `recordMaxAgeDays` is dropped. A shop with under `minProductRatio` product pages in its first `evaluateAfterPages` is parked and re-checked after `reevaluateDays`; its reading method is probed again after `reprobeDays`, or when `readersVersion` goes up. `maxRetryAfterSeconds`: the longest Retry-After obeyed; `checkpointMinutes`: how often state is saved. `magentoPageSize`, `squareOnlinePageSize`: API page sizes. `commonCrawl`: URLs seeded from the `latest` Common Crawl indexes (or `crawls`), every `refreshDays`, at most `maxBlocksPerShop` index blocks per shop, `delayMs` apart, for `maxMinutes`.",
     "shards": 8,
     "maxMinutes": 290,
     "concurrency": 8,
@@ -145,6 +151,7 @@
     }
   },
   "manifest": {
+    "description": "The web app manifest (manifest.webmanifest): installed app name, display mode, colours and icon.",
     "shortName": "LP/EP Finder",
     "display": "standalone",
     "themeColor": "#b3261e",
@@ -153,6 +160,7 @@
     "iconSize": "192x192"
   },
   "rates": {
+    "description": "Exchange rates (scripts/rates, npm run rates): the European Central Bank daily reference rates at `url`, saved to data/rates.json for \"Prices in\" and the quality checks.",
     "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
   },
   "dig": {

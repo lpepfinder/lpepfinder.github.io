@@ -52,6 +52,11 @@ for (const lang of config.languages) {
   for (const key of Object.keys(en)) if (!(key in strings)) errors.push(`i18n/${lang}.json: missing "${key}"`);
 }
 
+// every settings section says what it is for (AGENTS.md)
+for (const [key, value] of Object.entries(config)) {
+  if (value && typeof value === 'object' && !Array.isArray(value) && typeof value.description !== 'string') errors.push(`config.json: "${key}" has no description`);
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   console.error(`${errors.length} data errors`);

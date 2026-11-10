@@ -28,9 +28,12 @@ export function imports(entry, seen = new Set()) {
   return seen;
 }
 export const SECTIONS = ['products', 'search', 'ledger', 'quality', 'dig', 'newArrivals', 'seo'];
-/** Of these sections, only these settings shape the index (the others are read by the pages). */
+/** Of these sections, only these settings shape the index (the others are read by the pages). A `description` never does. */
 export const PICK = { seo: ['artistMinRecords', 'artistMinShops', 'artistMaxPages', 'artistMaxRecordsPerPage', 'shopLatestRecords'] };
-const section = (s) => (PICK[s] ? Object.fromEntries(PICK[s].map((k) => [k, config[s][k]])) : config[s]);
+const section = (s) => {
+  const { description, ...settings } = config[s];
+  return PICK[s] ? Object.fromEntries(PICK[s].map((k) => [k, settings[k]])) : settings;
+};
 
 export function indexKey() {
   const hash = crypto.createHash('sha256');
