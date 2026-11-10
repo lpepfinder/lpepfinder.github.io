@@ -37,6 +37,16 @@ The CSS switches layout at 40, 48, 64, 75, 90 and 110rem; the rail starts at 48r
 
 Shops (`data/shops/`), settings (`data/config.json`), translations (`data/i18n/`) and artist corrections (`data/enrich/artists.json`) are data files without an editor. Add Sveltia CMS at `/admin/` (`sveltia-setup`), shops first, with the config generated from `data/schemas/` so they can't drift (`schema-and-cms-in-sync`).
 
+## Code cleanup
+
+From the 2026-11-10 review, not urgent; each one is a separate commit.
+
+- One safe `localStorage` helper (`src/lib/storage.js`: read a key with a fallback, write it, never throw). About ten modules wrap it in their own try/catch today (`watch/sources.js`, `watch/now-cache.js`, `atproto/sync.js`, `components/viewer.js`, `components/recent.js`…).
+- One price and country-name formatter for the build (`src/lib/i18n.js`, takes `lang`) and the browser (`src/components/i18n.js`, page language). Today each has its own copy, and they fall back differently when the currency is missing: one assumes EUR, the other prints a bare number.
+- `src/components/` mixes Astro components, `vf-*` custom elements and plain helpers (`dom`, `price`, `viewer`, `router`, `i18n`, `watch-*`). Move the helpers to `src/lib/ui/`, so there's one kind of file per folder.
+- Workflows: `setup-node` + `npm ci` is repeated about 10 times and `gh release download data` about 15. Use a local composite action (`.github/actions/setup`) and one script to fetch crawl data.
+- After 2027-02-01: remove `legacy()` from `src/lib/watch/sources.js` and the `vf.discogs.user` key it reads (lists saved before sources existed, 2026-11-07).
+
 ## Smaller
 
 - The artists page is one 268 KB page of 3,000 links: heavy on a phone, and too slow for the quality gate. One page per letter (`/artists/a/`), with the letters on top; the old URL keeps the letters (ask before changing URLs).
