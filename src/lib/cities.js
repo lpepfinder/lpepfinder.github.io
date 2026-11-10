@@ -22,6 +22,12 @@ export const cityOf = (cc, city) => (city?.trim() ? canonical.get(key(cc, city))
 /** The city's name in `lang`: "AT", "Vienna", "de" -> "Wien". */
 export const cityName = (lang, cc, name) => names.get(`${cc}|${name}`)?.[lang] || name;
 
+/** For the search (places.json): [{ en, fr…: name }, [local spellings]] of a city. */
+export const cityNames = (cc, name) => {
+  const city = data.cities[cc]?.[name] || {};
+  return [{ en: name, ...city.names }, city.aliases || []];
+};
+
 /** "Saint Petersburg" -> "saint-petersburg", "Montréal" -> "montreal"; "" for a name with no Latin letters. */
-export const citySlug = (name) => String(name).normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase()
+export const citySlug = (name) => String(name).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
   .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

@@ -42,6 +42,14 @@ test('a country named in the search links to its page, in the reader language or
   await expect(page).toHaveURL(/\/fr\/shops\/de\/$/);
 });
 
+test('a city named in the search, in a local spelling, links to its page in the reader language', async ({ page }) => {
+  await page.goto('/de/');
+  await search(page, 'wien');
+  const link = page.locator('vf-places a[href="/de/shops/at/vienna/"]');
+  await expect(link).toBeVisible();
+  await expect(link).toContainText('Wien');
+});
+
 test('an artist named in the search links to the artist page', async ({ page }) => {
   await page.goto('/');
   await search(page, 'pink floyd');

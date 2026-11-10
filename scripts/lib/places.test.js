@@ -57,3 +57,13 @@ test('names that only start with the query show when nothing matches better', ()
   assert.deepEqual(findA('queen'), ['queen']);
   assert.deepEqual(findA('quee'), ['queen', 'queens-of-the-stone-age']);
 });
+
+test('cities: by their name in any language or a local spelling, after countries', () => {
+  const withCities = { ...places, cities: [['AT', 'vienna', 8, { en: 'Vienna', de: 'Wien', fr: 'Vienne' }, ['Wien']], ['JP', 'tokyo', 10, { en: 'Tokyo', ja: '東京' }, ['渋谷区']]] };
+  const findC = (q) => findPlaces(q, withCities, countryNames).map((p) => p.code || p.slug || p.id);
+  assert.deepEqual(findC('wien'), ['vienna']);
+  assert.deepEqual(findC('vienne'), ['vienna']);
+  assert.deepEqual(findC('records vienna'), ['vienna']);
+  assert.deepEqual(findC('渋谷区'), ['tokyo']);
+  assert.deepEqual(findC('france vienna'), ['FR', 'vienna']);
+});

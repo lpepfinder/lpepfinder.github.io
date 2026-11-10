@@ -13,7 +13,7 @@ Type what you know into the search box: an artist, a title, a label, a catalog n
 - **Catalog numbers**: `KDJ-38`, `KDJ 38` and `kdj38` all find the same record. Shops often put the catalog number in the title or the product code, so it's the most precise search there is.
 - **Labels**: `planet e`, `warp`. Shops don't always name the label, so a label search finds part of its catalog.
 - **Typos**: when nothing matches, the search suggests the closest spelling, or the search without the word that matched nothing.
-- **Shops, artists and countries**: a shop's name (`red eye records`), an artist with a page (`pink floyd animals`) or a country, in your language or in English (`allemagne`, `germany`), adds a link to its page above the records.
+- **Shops, artists, cities and countries**: a shop's name (`red eye records`), an artist with a page (`pink floyd animals`), a city with a page (`wien`, `londres`) or a country, in your language or in English (`allemagne`, `germany`), adds a link to its page above the records.
 
 ## Reading the results
 

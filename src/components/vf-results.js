@@ -1,4 +1,4 @@
-import { t, tn, formatNumber, countryName } from './i18n.js';
+import { t, tn, formatNumber, countryName, lang } from './i18n.js';
 import { localPath } from './social.js';
 import { addToGroups, groupView, orderGroups, totals } from '../lib/search/group.js';
 import { region, rates, comparable, currency, CURRENCY_EVENT } from './viewer.js';
@@ -153,12 +153,13 @@ export class VfResults extends HTMLElement {
     this.showButton.textContent = tn('results.showRecords', records);
   }
 
-  /** Links to the country, artist and shop pages named like the query (vf-search.js), or none. */
+  /** Links to the country, city, artist and shop pages named like the query (vf-search.js), or none. */
   places(list) {
     const box = this.querySelector('vf-places');
     const card = (href, icon, name, note) => el('a', { href }, attrs(el('vf-icon'), { name: icon }), el('span', { textContent: name }), el('small', { textContent: note }));
     const link = (p) => ({
       country: () => card(localPath(`/shops/${p.code.toLowerCase()}/`), 'globe', countryName(p.code), tn('results.shops', p.shops)),
+      city: () => card(localPath(`/shops/${p.country.toLowerCase()}/${p.slug}/`), 'explore', p.names[lang] || p.names.en, [tn('results.shops', p.shops), countryName(p.country)].join(' · ')),
       artist: () => card(`/artist/${p.slug}/`, 'person', p.name, t('results.artist')),
       shop: () => card(`/shop/${p.id}/`, 'store', p.name, [t('results.shop'), p.country && countryName(p.country)].filter(Boolean).join(' · ')),
     })[p.kind]();

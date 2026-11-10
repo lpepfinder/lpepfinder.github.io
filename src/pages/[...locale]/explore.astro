@@ -6,10 +6,11 @@ import { catalog } from '../../lib/catalog.js';
 import { newArrivals } from '../../lib/new-arrivals.js';
 import { pageTitle } from '../../lib/seo.js';
 import { FORMAT_IDS } from '../../lib/search/format.js';
+import { cityName } from '../../lib/cities.js';
 
 /**
  * The Explore tab: the way into everything the site has, besides searching. Dig (new, back in stock, cheaper,
- * your records), shops by country, artists, new arrivals by format, collectors, and the data itself (status,
+ * your records), shops by country and city, artists, new arrivals by format, collectors, and the data itself (status,
  * open JSON, llms.txt, docs). Each section links to its own pages; this one only points.
  */
 export const getStaticPaths = localeParams;
@@ -18,6 +19,8 @@ const c = catalog();
 const n = newArrivals();
 const vars = { records: number(lang, c.totalRecords), shops: number(lang, c.visible.length), countries: number(lang, c.countries.length) };
 const crates = [['new', 'sparkle'], ['restock', 'refresh'], ['drop', 'trend-down'], ['mine', 'star']];
+const cities = c.countries.flatMap((x) => x.pages.map((city) => ({ ...city, country: x.code })))
+  .sort((a, b) => b.shops.length - a.shops.length).slice(0, 18);
 const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
 const data = [
   { href: '/status/', key: 'navStatus', icon: 'pulse' },
@@ -48,6 +51,13 @@ const data = [
       <CountryTiles lang={lang} countries={c.countries} shown={6} />
       <p><a href={localPath(lang, '/shops/')}>{t(lang, 'homeAllShops', vars)}</a></p>
     </section>
+
+    {cities.length > 0 && (
+      <section aria-labelledby="explore-cities">
+        <h2 id="explore-cities">{t(lang, 'exploreCities')}</h2>
+        <vf-chips><ul>{cities.map((x) => <li><a href={localPath(lang, `/shops/${x.country.toLowerCase()}/${x.slug}/`)}>{cityName(lang, x.country, x.name)} ({number(lang, x.shops.length)})</a></li>)}</ul></vf-chips>
+      </section>
+    )}
 
     {c.artists.length > 0 && (
       <section aria-labelledby="explore-artists">
