@@ -250,6 +250,9 @@ vf-radio-import[status="error"] output { color: var(--c-error); }
 vf-radio-import[status="loading"] button[type="submit"] { opacity: var(--busy-opacity); pointer-events: none; }
 vf-radio-import ol { list-style: none; margin: 0; padding: 0; display: grid; max-block-size: var(--sheet-max); overflow: auto; }
 vf-radio-import ol:empty { display: none; }
+vf-radio-import ol ol { display: block; max-block-size: none; overflow: visible; }
+vf-radio-import ol > li > label { display: flex; gap: var(--space-2); align-items: center; min-block-size: var(--tap); padding-block: var(--space-2); border-block-end: var(--line) solid var(--c-line); background: var(--c-bg); font-weight: var(--weight-bold); cursor: pointer; position: sticky; inset-block-start: 0; z-index: 1; }
+vf-radio-import ol > li > label input { inline-size: var(--space-4); block-size: var(--space-4); accent-color: var(--c-accent); flex: none; }
 vf-radio-match { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 var(--space-3); align-items: center; padding-block: var(--space-2); border-block-end: var(--line) solid var(--c-line); }
 vf-radio-match label { display: flex; gap: var(--space-2); align-items: start; font-weight: var(--weight-semi); cursor: pointer; }
 vf-radio-match input { margin-block-start: 0.2em; inline-size: var(--space-4); block-size: var(--space-4); accent-color: var(--c-accent); flex: none; }

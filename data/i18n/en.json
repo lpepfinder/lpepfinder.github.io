@@ -631,6 +631,8 @@
     "error": "The radio of {handle} couldn't be read. Check the handle.",
     "exact": "Discogs link of “{track}”",
     "guess": "Has “{track}”? Check before adding.",
+    "allExact": {"one": "The exact match", "other": "All {count} exact matches"},
+    "allGuesses": {"one": "The guess, from the song title", "other": "All {count} guesses, from the song titles"},
     "add": {
       "one": "Add 1 to my watchlist",
       "other": "Add {count} to my watchlist"

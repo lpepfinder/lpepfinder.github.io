@@ -96,3 +96,41 @@ test('sources: a radio read once shows its tracks, and offers Resync when tracks
   await expect(row).toHaveAttribute('state', 'changed');
   await expect(row).toContainText(en.sources.radioAdded);
 });
+
+test('radio review: exact matches and guesses in two groups, each ticked or cleared at once', async ({ page }) => {
+  const DID = 'did:plc:e2egroups';
+  const PDS = 'https://pds.groups.test';
+  const songs = wantsFromSite(40).filter((w) => / - /.test(w.title)).slice(0, 2);
+  const records = [
+    { uri: `at://${DID}/radio.4000.track/1`, value: { title: 'Linked Artist - Linked Song', url: '', discogsUrl: 'https://www.discogs.com/release/123-x' } },
+    ...songs.map((w, i) => ({ uri: `at://${DID}/radio.4000.track/${i + 2}`, value: { title: w.title, url: '' } })),
+  ];
+  await page.route(/resolveHandle/, (r) => r.fulfill({ json: { did: DID } }));
+  await page.route(`https://plc.directory/${DID}`, (r) => r.fulfill({ json: { id: DID, service: [{ id: '#atproto_pds', type: 'AtprotoPersonalDataServer', serviceEndpoint: PDS }] } }));
+  await page.route(`${PDS}/**`, (r) => r.fulfill({ json: { records: new URL(r.request().url()).searchParams.get('limit') === '1' ? records.slice(0, 1) : records } }));
+  await page.route('https://api.discogs.com/**', (r) => r.fulfill({ json: { id: 123, title: 'Linked Song', artists: [{ name: 'Linked Artist' }], labels: [] } }));
+
+  await page.goto('/me/');
+  await page.locator('vf-source[kind="radio"] button[name="connect"]').click();
+  const sheet = page.locator('vf-sheet[name="radio"] vf-radio-import');
+  await sheet.locator('input[name="handle"]').fill('groups.test');
+  await sheet.locator('button[type="submit"]').click();
+  await expect(sheet).toHaveAttribute('status', 'review', { timeout: 30_000 });
+
+  const [exact, guesses] = [sheet.locator(':scope > ol > li').nth(0), sheet.locator(':scope > ol > li').nth(1)];
+  await expect(exact.locator(':scope > label input')).toBeChecked();
+  await expect(guesses.locator(':scope > label input')).not.toBeChecked();
+  const add = sheet.locator('button[name="add"]');
+  await expect(add).toHaveText(en.radio.add.one);
+
+  await guesses.locator(':scope > label').click();
+  for (const box of await guesses.locator('input[name="record"]').all()) await expect(box).toBeChecked();
+  const n = 1 + await guesses.locator('input[name="record"]').count();
+  await expect(add).toHaveText(en.radio.add.other.replace('{count}', n));
+
+  // one guess cleared: its group is mixed
+  await guesses.locator('vf-radio-match label').first().click();
+  expect(await guesses.locator(':scope > label input').evaluate((b) => b.indeterminate)).toBe(true);
+  await exact.locator(':scope > label').click();
+  await expect(add).toHaveText(en.radio.add.other.replace('{count}', n - 2));
+});

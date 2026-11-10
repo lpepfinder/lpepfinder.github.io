@@ -631,6 +631,8 @@
     "error": "No se pudo leer la radio de {handle}. Revisa el usuario.",
     "exact": "Enlace de Discogs de «{track}»",
     "guess": "¿Incluye «{track}»? Compruébalo antes de añadir.",
+    "allExact": {"one": "La coincidencia exacta", "other": "Las {count} coincidencias exactas"},
+    "allGuesses": {"one": "La suposición, por el título", "other": "Las {count} suposiciones, por los títulos"},
     "add": {
       "one": "Añadir 1 a mi lista",
       "other": "Añadir {count} a mi lista"

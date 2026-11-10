@@ -595,6 +595,8 @@
     "error": "{handle}のラジオを読み込めませんでした。ハンドルを確認してください。",
     "exact": "「{track}」のDiscogsリンク",
     "guess": "「{track}」を収録？追加する前に確認してください。",
+    "allExact": {"one": "完全一致", "other": "完全一致 {count} 件すべて"},
+    "allGuesses": {"one": "曲名からの推測", "other": "曲名からの推測 {count} 件すべて"},
     "add": {
       "other": "{count}件をリストに追加"
     }

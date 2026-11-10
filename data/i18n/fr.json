@@ -631,6 +631,8 @@
     "error": "La radio de {handle} n’a pas pu être lue. Vérifiez l’identifiant.",
     "exact": "Lien Discogs de « {track} »",
     "guess": "Contient « {track} » ? À vérifier avant d’ajouter.",
+    "allExact": {"one": "La correspondance exacte", "other": "Les {count} correspondances exactes"},
+    "allGuesses": {"one": "La supposition, d’après le titre", "other": "Les {count} suppositions, d’après les titres"},
     "add": {
       "one": "Ajouter 1 à ma liste",
       "other": "Ajouter {count} à ma liste"

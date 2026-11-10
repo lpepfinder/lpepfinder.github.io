@@ -631,6 +631,8 @@
     "error": "Impossibile leggere la radio di {handle}. Controlla l’handle.",
     "exact": "Link Discogs di «{track}»",
     "guess": "Contiene «{track}»? Verifica prima di aggiungere.",
+    "allExact": {"one": "La corrispondenza esatta", "other": "Tutte le {count} corrispondenze esatte"},
+    "allGuesses": {"one": "L’ipotesi, dal titolo", "other": "Tutte le {count} ipotesi, dai titoli"},
     "add": {
       "one": "Aggiungi 1 alla mia lista",
       "other": "Aggiungi {count} alla mia lista"

@@ -631,6 +631,8 @@
     "error": "Das Radio von {handle} konnte nicht gelesen werden. Prüfe das Handle.",
     "exact": "Discogs-Link von „{track}“",
     "guess": "Enthält „{track}“? Vor dem Hinzufügen prüfen.",
+    "allExact": {"one": "Der genaue Treffer", "other": "Alle {count} genauen Treffer"},
+    "allGuesses": {"one": "Die Vermutung nach dem Songtitel", "other": "Alle {count} Vermutungen nach den Songtiteln"},
     "add": {
       "one": "1 zur Liste hinzufügen",
       "other": "{count} zur Liste hinzufügen"

@@ -17,8 +17,9 @@ const page = () => document.querySelector('vf-watch-page');
 
 /**
  * <vf-radio-import status="idle|loading|review|done|error">: a radio's latest tracks (radio.js) matched to records
- * in stock (radio-match.js), listed with checkboxes: exact matches (a Discogs link) ticked, records found by the
- * song's title not ticked, since they're a guess. "Add" puts the ticked ones in the watchlist, each with the
+ * in stock (radio-match.js), listed with checkboxes in two groups: exact matches (a Discogs link), ticked, then
+ * records found by the song's title, not ticked since they're a guess. Each group has a checkbox that ticks or
+ * clears all of it (mixed when only some are ticked). "Add" puts the ticked ones in the watchlist, each with the
  * at:// address of the tracks it was found for (store.js `p`: the watchlist links back to them). The tracks are
  * kept in the browser (radio-tracks.js): a radio read before is read again only for its new tracks. Signed in with
  * Bluesky, the field starts with the account's handle; the reading is kept in sources.js.
@@ -31,7 +32,10 @@ export class VfRadioImport extends HTMLElement {
     this.addButton = this.querySelector('button[name="add"]');
     this.progress = this.querySelector('vf-progress');
     this.form.addEventListener('submit', (e) => { e.preventDefault(); this.find(); });
-    this.list.addEventListener('change', () => this.count());
+    this.list.addEventListener('change', (e) => {
+      if (e.target.name === 'all') for (const box of this.boxes(e.target.closest('li'))) box.checked = e.target.checked;
+      this.count();
+    });
     this.addButton.addEventListener('click', () => this.add());
     // signed in with Bluesky: the radio is most likely the account's own
     const input = this.form.elements.handle;
@@ -68,18 +72,20 @@ export class VfRadioImport extends HTMLElement {
         onProgress: (done, total) => this.step(done, total, t('radio.matching', { done: formatNumber(done), total: formatNumber(total) })),
       });
       const rates = await page()?.rates ?? {};
-      const rows = [];
+      const exact = [];
+      const guesses = [];
       for (const [i, m] of found.entries()) {
         if (m.ref) {
           const want = await fetchRelease(m.ref);
-          if (want) rows.push(this.row({ want, track: m.track, exact: true }, rates));
+          if (want) exact.push(this.row({ want, track: m.track, exact: true }, rates));
           await wait(config.discogsPaceMs);
-        } else for (const g of m.groups) rows.push(this.row({ group: g, track: m.track, exact: false }, rates));
+        } else for (const g of m.groups) guesses.push(this.row({ group: g, track: m.track, exact: false }, rates));
         this.step(i + 1, found.length, t('radio.checking'));
       }
-      this.list.replaceChildren(...rows);
-      this.setAttribute('status', rows.length ? 'review' : 'done');
-      this.live.textContent = rows.length ? tn('radio.found', rows.length, { tracks: formatNumber(tracks.length) }) : t('radio.none', { tracks: formatNumber(tracks.length) });
+      const n = exact.length + guesses.length;
+      this.list.replaceChildren(...[this.group('allExact', exact), this.group('allGuesses', guesses)].filter(Boolean));
+      this.setAttribute('status', n ? 'review' : 'done');
+      this.live.textContent = n ? tn('radio.found', n, { tracks: formatNumber(tracks.length) }) : t('radio.none', { tracks: formatNumber(tracks.length) });
       this.count();
     } catch (e) {
       this.setAttribute('status', 'error');
@@ -88,10 +94,22 @@ export class VfRadioImport extends HTMLElement {
     this.progress.hidden = true;
   }
 
+  /** A group of candidates (exact or guesses) under a checkbox that ticks or clears them all; null when empty. */
+  group(key, rows) {
+    if (!rows.length) return null;
+    const all = el('input', { type: 'checkbox', name: 'all' });
+    return el('li', {}, el('label', {}, all, el('span', { textContent: tn(`radio.${key}`, rows.length) })), el('ol', {}, ...rows));
+  }
+
+  /** The candidates' checkboxes, in `within` (a group) or the whole list. */
+  boxes(within = this.list) {
+    return [...within.querySelectorAll('input[name="record"]')];
+  }
+
   /** One candidate: a checkbox, the record, its cheapest copy, and the track it comes from. */
   row({ want, group, track, exact }, rates) {
     const title = want ? [want.artist, want.title].filter(Boolean).join(' – ') : group.title;
-    const box = el('input', { type: 'checkbox', checked: exact });
+    const box = el('input', { type: 'checkbox', name: 'record', checked: exact });
     box.dataset.record = JSON.stringify(want ? { want, track: track.uri } : { key: group.key, title: group.title, track: track.uri });
     const cheapest = group?.offers.reduce((a, b) => ((b.price ?? Infinity) < (a.price ?? Infinity) ? b : a));
     return el('li', {}, attrs(el('vf-radio-match', {},
@@ -101,14 +119,20 @@ export class VfRadioImport extends HTMLElement {
   }
 
   count() {
-    const n = this.list.querySelectorAll('input:checked').length;
+    for (const all of this.list.querySelectorAll('input[name="all"]')) {
+      const boxes = this.boxes(all.closest('li'));
+      const ticked = boxes.filter((b) => b.checked).length;
+      all.checked = ticked === boxes.length;
+      all.indeterminate = ticked > 0 && ticked < boxes.length;
+    }
+    const n = this.boxes().filter((b) => b.checked).length;
     this.addButton.hidden = !this.list.children.length;
     this.addButton.disabled = !n;
     this.addButton.textContent = tn('radio.add', n);
   }
 
   add() {
-    const picked = [...this.list.querySelectorAll('input:checked')].map((b) => JSON.parse(b.dataset.record));
+    const picked = this.boxes().filter((b) => b.checked).map((b) => JSON.parse(b.dataset.record));
     const played = (p) => (p.track ? { p: [p.track] } : {});
     const wants = picked.filter((p) => p.want);
     const records = [
