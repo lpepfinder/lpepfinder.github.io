@@ -22,9 +22,10 @@ and on a push only when the code that shapes it changed.
   which records the **index key** it was built with. Saved before anything else runs, so a failing test or deploy
   never costs a rebuild.
 - **Index key** (`scripts/ci/index-key.js`): a hash of only what the index depends on: `scripts/index`, `ledger`,
-  `quality`, `lib` and the search code (not their tests), the data files it reads, and the config sections
-  `products`, `search`, `ledger`, `quality`, `dig`, `newArrivals`, `seo`. Crawl data, shops, rates and other settings
-  don't count: a shop change reaches the search with the next daily index.
+  `quality`, `lib` and the search code (not their tests), the data files it reads, and the settings it reads from
+  `products`, `search`, `ledger`, `quality`, `dig`, `newArrivals`, `seo` (`PICK` lists them where a section also holds
+  browser, page or crawler settings). Crawl data, shops, rates, other settings and `description`s don't count: a shop
+  change reaches the search with the next daily index, and tuning the search box doesn't rebuild it.
 - **Deploy** (`.github/workflows/deploy.yml`) runs on every push to `main` (and after Refresh): a `check` job compares
   the index key of the code with the bundle's; only when they differ does it run **Index** first. Then it downloads
   the bundle, the profiles and the feed, builds the site, runs the end-to-end tests and publishes to GitHub Pages,
