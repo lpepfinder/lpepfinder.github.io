@@ -1,6 +1,7 @@
 import { tokenize, normalize, shardKey, shardFile } from './tokenize.js';
 import { pickWindow, diversify } from './rank.js';
 import { closest } from './suggest.js';
+import { findPlaces } from './places.js';
 import { decodeShard, postingIds, decodeChunk, isGzip } from './codec.js';
 
 /** Browser side of the static index built by src/index/search-index.js. */
@@ -76,6 +77,11 @@ export class SearchClient {
     const seen = new Set(top);
     const order = [...top, ...ids.filter((id) => !seen.has(id))];
     return [...order.filter((id) => !isOut(id)), ...order.filter(isOut)];
+  }
+
+  /** Shops and countries whose name matches the query (places.js); countryNames(code) -> [names]. */
+  async places(query, countryNames) {
+    return findPlaces(query, await this.json('places.json'), countryNames);
   }
 
   /**

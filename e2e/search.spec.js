@@ -31,3 +31,13 @@ test('search, open a record, Back closes it and keeps the results', async ({ pag
   await expect(rows).toHaveCount(count);
   expect(await marked(page), 'Back reloaded the page').toBe(true);
 });
+
+test('a country named in the search links to its page, in the reader language or in English', async ({ page }) => {
+  await page.goto('/fr/');
+  await search(page, 'germany');
+  const link = page.locator('vf-places a[href="/fr/shops/de/"]');
+  await expect(link).toBeVisible();
+  await expect(link).toContainText('Allemagne');
+  await link.click();
+  await expect(page).toHaveURL(/\/fr\/shops\/de\/$/);
+});

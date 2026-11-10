@@ -435,7 +435,9 @@
       "one": "1 Platte zeigen",
       "other": "{count} Platten zeigen"
     },
-    "owned": "Hab ich"
+    "owned": "Hab ich",
+    "places": "Seiten",
+    "shop": "Laden"
   },
   "statusReason": {
     "dns": "Die Webadresse gibt es nicht mehr",

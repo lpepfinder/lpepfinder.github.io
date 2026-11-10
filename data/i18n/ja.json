@@ -406,7 +406,9 @@
     "showRecords": {
       "other": "{count}タイトルを表示"
     },
-    "owned": "所有"
+    "owned": "所有",
+    "places": "ページ",
+    "shop": "店舗"
   },
   "statusReason": {
     "dns": "このウェブアドレスはもう存在しません",

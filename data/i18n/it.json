@@ -435,7 +435,9 @@
       "one": "Mostra 1 disco",
       "other": "Mostra {count} dischi"
     },
-    "owned": "Ce l’ho"
+    "owned": "Ce l’ho",
+    "places": "Pagine",
+    "shop": "Negozio"
   },
   "statusReason": {
     "dns": "L’indirizzo web non esiste più",

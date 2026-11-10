@@ -1,7 +1,8 @@
-import { t, tn, formatNumber } from './i18n.js';
+import { t, tn, formatNumber, countryName } from './i18n.js';
+import { localPath } from './social.js';
 import { addToGroups, groupView, orderGroups, totals } from '../lib/search/group.js';
 import { region, rates, comparable, currency, CURRENCY_EVENT } from './viewer.js';
-import { el, listen, unlisten } from './dom.js';
+import { el, attrs, listen, unlisten } from './dom.js';
 import './vf-filters.js';
 import './vf-release.js';
 import { ReleaseDetail } from './release-detail.js';
@@ -72,6 +73,7 @@ export class VfResults extends HTMLElement {
     this.list.replaceChildren();
     this.details.reset();
     this.querySelector('vf-suggest').hidden = true;
+    this.places([]);
     this.heading.textContent = t('results.heading', { query });
     this.empty.textContent = t('emptyTitle', { query });
     this.live.textContent = total ? '' : this.empty.textContent;
@@ -149,6 +151,17 @@ export class VfResults extends HTMLElement {
     bar.querySelector('span').textContent = [t('results.filters'), active && formatNumber(active)].filter(Boolean).join(' · ');
     pill.querySelector('span').textContent = [t('results.filters'), active && formatNumber(active), currency()].filter(Boolean).join(' · ');
     this.showButton.textContent = tn('results.showRecords', records);
+  }
+
+  /** Links to the shop and country pages named like the query (vf-search.js), or none. */
+  places(list) {
+    const box = this.querySelector('vf-places');
+    const icon = (name) => attrs(el('vf-icon'), { name });
+    const link = (p) => (p.kind === 'country'
+      ? el('a', { href: localPath(`/shops/${p.code.toLowerCase()}/`) }, icon('globe'), el('span', { textContent: countryName(p.code) }), el('small', { textContent: tn('results.shops', p.shops) }))
+      : el('a', { href: `/shop/${p.id}/` }, icon('store'), el('span', { textContent: p.name }), el('small', { textContent: [t('results.shop'), p.country && countryName(p.country)].filter(Boolean).join(' · ') })));
+    box.querySelector('ul').replaceChildren(...list.map((p) => el('li', {}, link(p))));
+    box.hidden = !list.length;
   }
 
   /** On an empty result: "Did you mean <a>tatsuro yamashita</a>?" and "Without “x”: <a>12 copies</a>". */

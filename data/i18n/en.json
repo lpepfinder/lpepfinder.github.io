@@ -435,7 +435,9 @@
       "one": "Show 1 record",
       "other": "Show {count} records"
     },
-    "owned": "Owned"
+    "owned": "Owned",
+    "places": "Pages",
+    "shop": "Shop"
   },
   "statusReason": {
     "dns": "The web address no longer exists",

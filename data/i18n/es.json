@@ -435,7 +435,9 @@
       "one": "Ver 1 disco",
       "other": "Ver {count} discos"
     },
-    "owned": "Lo tengo"
+    "owned": "Lo tengo",
+    "places": "Páginas",
+    "shop": "Tienda"
   },
   "statusReason": {
     "dns": "La dirección web ya no existe",

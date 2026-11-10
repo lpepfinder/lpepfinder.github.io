@@ -1,5 +1,5 @@
 import { SearchClient } from '../lib/search/client.js';
-import { t } from './i18n.js';
+import { t, countryName } from './i18n.js';
 import { addRecent } from './recent.js';
 import './vf-results.js';
 import { listen, unlisten } from './dom.js';
@@ -7,6 +7,8 @@ import config from '../../data/config.json' with { type: 'json' };
 
 /** Slices one page may load at most, so a query of one record in thousands of copies stays bounded. */
 const MAX_SLICES = 10;
+/** Country names in English too, so "germany" finds Germany on every language's page. */
+const english = new Intl.DisplayNames(['en'], { type: 'region' });
 
 /**
  * <vf-search> enhances a server-rendered GET form. When the page has a
@@ -80,6 +82,8 @@ export class VfSearch extends HTMLElement {
       this.shown = 0;
       this.results.checked = this.client.meta?.builtAt;
       this.results.start(q, this.ids.length);
+      // shops and countries named like the query: links to their pages, above the records (or the empty state)
+      this.client.places(q, (cc) => [countryName(cc), english.of(cc)]).then((p) => { if (current()) this.results.places(p); }, () => {});
       if (this.ids.length) {
         await this.more(false);
         await this.results.restore(() => this.more(false), () => this.shown < this.ids.length);

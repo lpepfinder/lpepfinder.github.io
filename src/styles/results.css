@@ -39,6 +39,14 @@ vf-result a:focus-visible { outline: none; }
 @media (min-width: 40rem) {
   vf-record-list ol { grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); column-gap: var(--space-6); }
 }
+/* the shop and country pages named like the query: a row of links above the records */
+vf-places[hidden], vf-results[status="loading"] > vf-places { display: none; }
+vf-places ul { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+vf-places a { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--space-2); align-items: center; min-block-size: var(--tap); max-inline-size: 100%; padding: var(--space-1) var(--space-3); border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); box-shadow: inset 0 0 0 var(--line) var(--c-border); text-decoration: none; }
+vf-places a:hover { background: var(--c-hover); }
+vf-places vf-icon { grid-row: span 2; }
+vf-places span { font-weight: var(--weight-semi); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+vf-places small { color: var(--c-muted); font-size: var(--size-xs); }
 vf-suggest { display: grid; gap: var(--space-1); margin-block: var(--space-2); font-size: var(--size-1); }
 vf-suggest[hidden] { display: none; }
 vf-suggest p { margin: 0; }

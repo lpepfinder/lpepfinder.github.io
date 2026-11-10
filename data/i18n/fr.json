@@ -435,7 +435,9 @@
       "one": "Voir 1 disque",
       "other": "Voir {count} disques"
     },
-    "owned": "À moi"
+    "owned": "À moi",
+    "places": "Pages",
+    "shop": "Disquaire"
   },
   "statusReason": {
     "dns": "L’adresse web n’existe plus",
