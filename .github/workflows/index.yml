@@ -16,7 +16,8 @@ jobs:
   index:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
-    # one build at a time (a push during a refresh waits, then finds the bundle up to date or builds once)
+    # one build at a time; a newer one waiting replaces an older one waiting (GitHub keeps one pending run per group),
+    # and when it starts it skips if the run before it already built this code from this crawl data
     concurrency:
       group: index
       cancel-in-progress: false
@@ -33,33 +34,51 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
+      # an index is its code and its crawl data: when the bundle was already built from both (by a run this one
+      # waited behind), there is nothing to do. The crawl data's version: when each crawl file was last uploaded.
+      - name: Up to date?
+        id: fresh
+        run: |
+          key=$(node scripts/ci/index-key.js)
+          data=$(gh release view data --json assets --jq '[.assets[] | select(.name | test("^(generated|site-[0-9]+)\\.tar\\.gz$")) | "\(.name)@\(.updatedAt)"] | sort | join(" ")' | sha256sum | cut -c1-16)
+          have=$(gh release download data --pattern index-manifest.json -O - 2>/dev/null | node -p "const m = JSON.parse(require('fs').readFileSync(0)); m.key + ' ' + m.data" 2>/dev/null || echo none)
+          echo "code $key, crawl data $data; bundle built from $have"
+          echo "data=$data" >> "$GITHUB_OUTPUT"
+          if [ "$have" = "$key $data" ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; echo "the bundle is up to date"; fi
+      - if: steps.fresh.outputs.skip != 'true'
+        run: npm ci
       # no crawl data yet = no index, so the live site is never replaced by an empty one
       - name: Crawl data
+        if: steps.fresh.outputs.skip != 'true'
         run: |
           gh release download data --pattern generated.tar.gz && tar xzf generated.tar.gz
           # site crawler shards (only those of the current shard count)
           for k in $(node -p "[...Array(require('./data/config.json').site.shards).keys()].join(' ')"); do
             gh release download data --pattern "site-$k.tar.gz" --clobber && tar xzf "site-$k.tar.gz" || echo "no site-$k.tar.gz yet"
           done
-      - run: npm run validate && npm run rates
+      - if: steps.fresh.outputs.skip != 'true'
+        run: npm run validate && npm run rates
       # offer ledger: today's state and the one before it (a second build on the same day starts from that)
       - name: Offer ledger
+        if: steps.fresh.outputs.skip != 'true'
         run: gh release download data --pattern "ledger*.ndjson.gz" --dir generated --clobber || echo "no ledger yet, starting one"
       - name: Search index
+        if: steps.fresh.outputs.skip != 'true'
         run: npm run index
       - name: Save the offer ledger
+        if: steps.fresh.outputs.skip != 'true'
         run: |
           files=generated/ledger.ndjson.gz
           if [ -f generated/ledger-prev.ndjson.gz ]; then files="$files generated/ledger-prev.ndjson.gz"; fi
           gh release upload data $files --clobber
       - name: Save the index bundle
+        if: steps.fresh.outputs.skip != 'true'
         run: |
           tar czf index.tar.gz public/search public/w public/dig.json public/regions.json \
             generated/site-data.json generated/new-arrivals.json generated/quality-report.json \
             generated/shops-state.json generated/candidates.json generated/crawl-report.json
-          node -e "console.log(JSON.stringify({ key: process.argv[1], builtAt: new Date().toISOString(), commit: process.argv[2] }))" \
-            "$(node scripts/ci/index-key.js)" "$(git rev-parse --short=12 HEAD)" > index-manifest.json
+          node -e "console.log(JSON.stringify({ key: process.argv[1], data: process.argv[2], builtAt: new Date().toISOString(), commit: process.argv[3] }))" \
+            "$(node scripts/ci/index-key.js)" "${{ steps.fresh.outputs.data }}" "$(git rev-parse --short=12 HEAD)" > index-manifest.json
           cat index-manifest.json
           ls -la index.tar.gz
           # the bundle first, its manifest last: a manifest never names a bundle that isn't there

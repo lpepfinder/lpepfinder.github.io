@@ -19,8 +19,9 @@ and on a push only when the code that shapes it changed.
 - **Index** (`.github/workflows/index.yml`): downloads the crawl data and the offer ledger, runs `npm run index`, and
   saves the result at once as the **index bundle** in the `data` release: `index.tar.gz` (`public/search`, `public/w`,
   `dig.json`, and the crawl files the pages read: `site-data.json`, `shops-state.json`…) and `index-manifest.json`,
-  which records the **index key** it was built with. Saved before anything else runs, so a failing test or deploy
-  never costs a rebuild.
+  which records the **index key** and the crawl data it was built from. Saved before anything else runs, so a failing
+  test or deploy never costs a rebuild. One build runs at a time and at most one waits (a newer one replaces it); a
+  build that finds the bundle already made from the same code and the same crawl data stops at once.
 - **Index key** (`scripts/ci/index-key.js`): a hash of only what the index depends on: `scripts/index`, `ledger`,
   `quality`, `lib` and the search code (not their tests), the data files it reads, and the settings it reads from
   `products`, `search`, `ledger`, `quality`, `dig`, `newArrivals`, `seo` (`PICK` lists them where a section also holds
