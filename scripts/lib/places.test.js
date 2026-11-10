@@ -41,3 +41,19 @@ test('exact first, then countries, then shops with the most records; short queri
   assert.deepEqual(find('jazz'), []);
   assert.equal(findPlaces('germany', null, countryNames).length, 0);
 });
+
+const artists = [['pink-floyd', 'Pink Floyd', 60], ['queen', 'Queen', 60], ['pink', 'Pink', 20], ['queens-of-the-stone-age', 'Queens Of The Stone Age', 40], ['love', 'Love', 12]];
+const findA = (q) => findPlaces(q, places, countryNames, artists).map((p) => p.code || p.id || p.slug);
+
+test('artists: by name or as words of the query; a one-word artist only as the whole query', () => {
+  assert.deepEqual(findA('pink floyd'), ['pink-floyd']);
+  assert.deepEqual(findA('pink floyd animals'), ['pink-floyd']);
+  assert.deepEqual(findA('pink'), ['pink']);
+  assert.deepEqual(findA('love will tear us apart'), []);
+  assert.deepEqual(findA('france love'), ['FR']);
+});
+
+test('names that only start with the query show when nothing matches better', () => {
+  assert.deepEqual(findA('queen'), ['queen']);
+  assert.deepEqual(findA('quee'), ['queen', 'queens-of-the-stone-age']);
+});

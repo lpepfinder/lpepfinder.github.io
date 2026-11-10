@@ -153,13 +153,15 @@ export class VfResults extends HTMLElement {
     this.showButton.textContent = tn('results.showRecords', records);
   }
 
-  /** Links to the shop and country pages named like the query (vf-search.js), or none. */
+  /** Links to the country, artist and shop pages named like the query (vf-search.js), or none. */
   places(list) {
     const box = this.querySelector('vf-places');
-    const icon = (name) => attrs(el('vf-icon'), { name });
-    const link = (p) => (p.kind === 'country'
-      ? el('a', { href: localPath(`/shops/${p.code.toLowerCase()}/`) }, icon('globe'), el('span', { textContent: countryName(p.code) }), el('small', { textContent: tn('results.shops', p.shops) }))
-      : el('a', { href: `/shop/${p.id}/` }, icon('store'), el('span', { textContent: p.name }), el('small', { textContent: [t('results.shop'), p.country && countryName(p.country)].filter(Boolean).join(' · ') })));
+    const card = (href, icon, name, note) => el('a', { href }, attrs(el('vf-icon'), { name: icon }), el('span', { textContent: name }), el('small', { textContent: note }));
+    const link = (p) => ({
+      country: () => card(localPath(`/shops/${p.code.toLowerCase()}/`), 'globe', countryName(p.code), tn('results.shops', p.shops)),
+      artist: () => card(`/artist/${p.slug}/`, 'person', p.name, t('results.artist')),
+      shop: () => card(`/shop/${p.id}/`, 'store', p.name, [t('results.shop'), p.country && countryName(p.country)].filter(Boolean).join(' · ')),
+    })[p.kind]();
     box.querySelector('ul').replaceChildren(...list.map((p) => el('li', {}, link(p))));
     box.hidden = !list.length;
   }

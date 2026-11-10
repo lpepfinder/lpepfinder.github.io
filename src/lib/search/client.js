@@ -81,7 +81,8 @@ export class SearchClient {
 
   /** Shops and countries whose name matches the query (places.js); countryNames(code) -> [names]. */
   async places(query, countryNames) {
-    return findPlaces(query, await this.json('places.json'), countryNames);
+    const [places, artists] = await Promise.all([this.json('places.json'), this.json('artists.json')]);
+    return findPlaces(query, places, countryNames, artists);
   }
 
   /**

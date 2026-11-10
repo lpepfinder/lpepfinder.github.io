@@ -69,7 +69,7 @@
     "artistLdOffers": 12
   },
   "search": {
-    "description": "The search index and search box: `docsPerChunk` records per index file (scripts/index); `maxArtists` artists in public/search/artists.json for suggestions. In the browser, results come as you type after `typeDelayMs`, from `typeMinChars` characters, and a typed search is kept in history once it settles `typeSettleMs`.",
+    "description": "The search index and search box: `docsPerChunk` records per index file (scripts/index); `maxArtists` artists in public/search/artists.json, linked above the results when the search names one. In the browser, results come as you type after `typeDelayMs`, from `typeMinChars` characters, and a typed search is kept in history once it settles `typeSettleMs`.",
     "docsPerChunk": 64,
     "maxArtists": 4000,
     "typeDelayMs": 250,

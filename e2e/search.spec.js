@@ -41,3 +41,9 @@ test('a country named in the search links to its page, in the reader language or
   await link.click();
   await expect(page).toHaveURL(/\/fr\/shops\/de\/$/);
 });
+
+test('an artist named in the search links to the artist page', async ({ page }) => {
+  await page.goto('/');
+  await search(page, 'pink floyd');
+  await expect(page.locator('vf-places a[href="/artist/pink-floyd/"]')).toBeVisible();
+});
