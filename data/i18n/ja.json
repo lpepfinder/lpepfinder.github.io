@@ -15,12 +15,6 @@
   "navStatus": "データの状態",
   "navLanguage": "言語",
   "languageFilter": "言語を検索",
-  "homeWhyTitle": "LP/EP Finder とは",
-  "homeWhy": [
-    "マーケットプレイスではなく、独立系レコード店のオンラインカタログをまとめて検索できます。",
-    "在庫のあるレコードだけを、価格と販売店への直接リンク付きで表示します。",
-    "店舗は毎日チェック・巡回され、新しい店舗も自動で追加されます。"
-  ],
   "homeCountriesTitle": "国別のレコード店",
   "homeArtistsTitle": "在庫の多い人気アーティスト",
   "shopsTitle": "独立系レコード店",
@@ -317,7 +311,7 @@
       "other": "新着{count}件"
     },
     "discogsTitle": "Discogsのウォントリストを読み込む",
-    "discogsIntro": "探しているレコードのうち、いま独立系レコード店に在庫があるものがわかります。カタログ番号とアーティスト名・タイトルで照合し、毎日チェックします。",
+    "discogsIntro": "ウォントはカタログ番号と、アーティスト名・タイトルで毎日照合します。",
     "discogsUser": "Discogsのユーザー名",
     "discogsUserPlaceholder": "your-username",
     "discogsImport": "読み込む",
@@ -542,9 +536,6 @@
   },
   "moreShop": "あなたのレコード店",
   "moreAbout": "概要",
-  "homeWantsTitle": "ウォントリストの在庫",
-  "homeWantsBody": "Discogsのウォントリストを持ち込んで、独立系レコード店にいま在庫があるレコードと毎日の新入荷を確認。",
-  "homeWantsAction": "ウォントリストを読み込む",
   "shopsNear": "お近くのショップ",
   "navDocs": "ドキュメント",
   "docsUsers": "LP/EP Finderの使い方",
@@ -759,8 +750,6 @@
     "feedTop": "人気のウォント",
     "feedCollectors": "コレクター",
     "feedWants": "が探しています:",
-    "feedJoin": "あなたのウォントリストもここに載せられます。ショップに入荷したレコードと一緒に:",
-    "feedJoinLink": "Bluesky アカウントから公開する",
     "feedNone": "まだリストを公開したコレクターはいません。"
   },
   "noscriptSearch": "検索はブラウザで動作し、JavaScript が必要です。JavaScript なしでは、アーティスト別・ショップ別にご覧ください:",

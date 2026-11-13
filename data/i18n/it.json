@@ -15,12 +15,6 @@
   "navStatus": "Stato dei dati",
   "navLanguage": "Lingua",
   "languageFilter": "Cerca una lingua",
-  "homeWhyTitle": "Perché LP/EP Finder",
-  "homeWhy": [
-    "Una sola ricerca nei cataloghi online dei negozi di dischi indipendenti, non nei marketplace.",
-    "Solo dischi disponibili, con il prezzo e un link diretto al negozio.",
-    "I negozi vengono controllati e letti ogni giorno, e i nuovi vengono aggiunti automaticamente."
-  ],
   "homeCountriesTitle": "Negozi di dischi per paese",
   "homeArtistsTitle": "Artisti popolari disponibili",
   "shopsTitle": "Negozi di dischi indipendenti",
@@ -335,7 +329,7 @@
       "other": "{count} nuovi"
     },
     "discogsTitle": "Importa la tua wantlist di Discogs",
-    "discogsIntro": "Scopri quali dei dischi che cerchi sono disponibili ora nei negozi indipendenti. Abbinati per numero di catalogo e per artista e titolo, controllati ogni giorno.",
+    "discogsIntro": "I desideri sono abbinati per numero di catalogo, e per artista e titolo, ogni giorno.",
     "discogsUser": "Nome utente Discogs",
     "discogsUserPlaceholder": "il-tuo-nome",
     "discogsImport": "Importa",
@@ -577,9 +571,6 @@
   },
   "moreShop": "Il tuo negozio di dischi",
   "moreAbout": "Informazioni",
-  "homeWantsTitle": "La tua wantlist, disponibile",
-  "homeWantsBody": "Porta la tua wantlist di Discogs: scopri quali dischi hanno ora i negozi indipendenti e cosa c'è di nuovo ogni giorno.",
-  "homeWantsAction": "Importa la mia wantlist",
   "shopsNear": "Vicino a te",
   "navDocs": "Docs",
   "docsUsers": "Usare LP/EP Finder",
@@ -809,8 +800,6 @@
     "feedTop": "I più cercati",
     "feedCollectors": "Collezionisti",
     "feedWants": "cerca",
-    "feedJoin": "Anche la tua wantlist potrebbe essere qui, con ogni disco che un negozio ha per te:",
-    "feedJoinLink": "pubblicala dal tuo account Bluesky",
     "feedNone": "Nessun collezionista ha ancora pubblicato una lista."
   },
   "noscriptSearch": "La ricerca funziona nel browser e ha bisogno di JavaScript. Senza, sfoglia per artista o per negozio:",

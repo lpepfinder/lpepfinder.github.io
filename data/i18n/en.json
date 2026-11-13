@@ -15,12 +15,6 @@
   "navStatus": "Data status",
   "navLanguage": "Language",
   "languageFilter": "Find a language",
-  "homeWhyTitle": "Why LP/EP Finder",
-  "homeWhy": [
-    "One search across the online catalogs of independent record shops, not marketplaces.",
-    "Only records in stock, with the price and a direct link to the shop that sells it.",
-    "Shops are checked and crawled every day, and new shops are added automatically."
-  ],
   "homeCountriesTitle": "Record shops by country",
   "homeArtistsTitle": "Popular artists in stock",
   "shopsTitle": "Independent record shops",
@@ -335,7 +329,7 @@
       "other": "{count} new"
     },
     "discogsTitle": "Import your Discogs wantlist",
-    "discogsIntro": "See which of your wants are in stock at independent shops right now. Matched by catalog number and by artist and title, checked every day.",
+    "discogsIntro": "Wants are matched by catalog number, and by artist and title, every day.",
     "discogsUser": "Discogs username",
     "discogsUserPlaceholder": "your-username",
     "discogsImport": "Import",
@@ -577,9 +571,6 @@
   },
   "moreShop": "Your record shop",
   "moreAbout": "About",
-  "homeWantsTitle": "Your wantlist, in stock",
-  "homeWantsBody": "Bring your Discogs wantlist: see which of your records independent shops have right now, and what's new every day.",
-  "homeWantsAction": "Import my wantlist",
   "shopsNear": "Near you",
   "navDocs": "Docs",
   "docsUsers": "Using LP/EP Finder",
@@ -809,8 +800,6 @@
     "feedTop": "Most wanted",
     "feedCollectors": "Collectors",
     "feedWants": "wants",
-    "feedJoin": "Your wantlist could be here too, with every record a shop gets for you:",
-    "feedJoinLink": "publish it from your Bluesky account",
     "feedNone": "No collector has published a list yet."
   },
   "noscriptSearch": "Search runs in your browser and needs JavaScript. Without it, browse by artist or by shop:",

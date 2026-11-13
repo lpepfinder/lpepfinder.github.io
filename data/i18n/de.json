@@ -15,12 +15,6 @@
   "navStatus": "Datenstatus",
   "navLanguage": "Sprache",
   "languageFilter": "Sprache suchen",
-  "homeWhyTitle": "Warum LP/EP Finder",
-  "homeWhy": [
-    "Eine Suche über die Onlinekataloge unabhängiger Plattenläden, keine Marktplätze.",
-    "Nur Platten auf Lager, mit Preis und direktem Link zum Laden.",
-    "Die Läden werden täglich geprüft und erfasst, neue Läden kommen automatisch hinzu."
-  ],
   "homeCountriesTitle": "Plattenläden nach Land",
   "homeArtistsTitle": "Beliebte Künstler auf Lager",
   "shopsTitle": "Unabhängige Plattenläden",
@@ -335,7 +329,7 @@
       "other": "{count} neu"
     },
     "discogsTitle": "Deine Discogs-Wantlist importieren",
-    "discogsIntro": "Sieh, welche deiner gesuchten Platten gerade bei unabhängigen Plattenläden auf Lager sind. Abgeglichen über Katalognummer sowie Künstler und Titel, täglich geprüft.",
+    "discogsIntro": "Wünsche werden täglich über die Katalognummer sowie Künstler und Titel abgeglichen.",
     "discogsUser": "Discogs-Benutzername",
     "discogsUserPlaceholder": "dein-name",
     "discogsImport": "Importieren",
@@ -577,9 +571,6 @@
   },
   "moreShop": "Dein Plattenladen",
   "moreAbout": "Über",
-  "homeWantsTitle": "Deine Wantlist, auf Lager",
-  "homeWantsBody": "Bring deine Discogs-Wantlist mit: Sieh, welche deiner Platten unabhängige Läden gerade haben, und was täglich neu ist.",
-  "homeWantsAction": "Meine Wantlist importieren",
   "shopsNear": "In deiner Nähe",
   "navDocs": "Doku",
   "docsUsers": "LP/EP Finder nutzen",
@@ -809,8 +800,6 @@
     "feedTop": "Am meisten gesucht",
     "feedCollectors": "Sammler:innen",
     "feedWants": "sucht",
-    "feedJoin": "Deine Wunschliste könnte auch hier sein, mit jeder Platte, die ein Laden für dich hat:",
-    "feedJoinLink": "veröffentliche sie über dein Bluesky-Konto",
     "feedNone": "Noch hat niemand eine Liste veröffentlicht."
   },
   "noscriptSearch": "Die Suche läuft in deinem Browser und braucht JavaScript. Ohne JavaScript stöbere nach Künstler oder nach Laden:",

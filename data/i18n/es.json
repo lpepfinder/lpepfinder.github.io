@@ -15,12 +15,6 @@
   "navStatus": "Estado de los datos",
   "navLanguage": "Idioma",
   "languageFilter": "Buscar un idioma",
-  "homeWhyTitle": "Por qué LP/EP Finder",
-  "homeWhy": [
-    "Una sola búsqueda en los catálogos en línea de tiendas de discos independientes, no en marketplaces.",
-    "Solo discos en stock, con el precio y un enlace directo a la tienda.",
-    "Las tiendas se revisan y recorren cada día, y las nuevas se añaden automáticamente."
-  ],
   "homeCountriesTitle": "Tiendas de discos por país",
   "homeArtistsTitle": "Artistas populares en stock",
   "shopsTitle": "Tiendas de discos independientes",
@@ -335,7 +329,7 @@
       "other": "{count} nuevos"
     },
     "discogsTitle": "Importar tu wantlist de Discogs",
-    "discogsIntro": "Mira cuáles de los discos que buscas están en stock en tiendas independientes ahora mismo. Emparejados por número de catálogo y por artista y título, revisados cada día.",
+    "discogsIntro": "Los deseos se emparejan por número de catálogo, y por artista y título, cada día.",
     "discogsUser": "Usuario de Discogs",
     "discogsUserPlaceholder": "tu-usuario",
     "discogsImport": "Importar",
@@ -577,9 +571,6 @@
   },
   "moreShop": "Tu tienda de discos",
   "moreAbout": "Acerca de",
-  "homeWantsTitle": "Tu wantlist, en stock",
-  "homeWantsBody": "Trae tu wantlist de Discogs: mira qué discos tienen ahora las tiendas independientes y qué hay nuevo cada día.",
-  "homeWantsAction": "Importar mi wantlist",
   "shopsNear": "Cerca de ti",
   "navDocs": "Docs",
   "docsUsers": "Usar LP/EP Finder",
@@ -809,8 +800,6 @@
     "feedTop": "Los más buscados",
     "feedCollectors": "Coleccionistas",
     "feedWants": "busca",
-    "feedJoin": "Tu lista también podría estar aquí, con cada disco que una tienda tenga para ti:",
-    "feedJoinLink": "publícala desde tu cuenta de Bluesky",
     "feedNone": "Ningún coleccionista ha publicado una lista todavía."
   },
   "noscriptSearch": "La búsqueda funciona en tu navegador y necesita JavaScript. Sin él, explora por artista o por tienda:",

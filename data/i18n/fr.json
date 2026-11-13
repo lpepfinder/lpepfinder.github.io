@@ -15,12 +15,6 @@
   "navStatus": "État des données",
   "navLanguage": "Langue",
   "languageFilter": "Trouver une langue",
-  "homeWhyTitle": "Pourquoi LP/EP Finder",
-  "homeWhy": [
-    "Une seule recherche dans les catalogues en ligne des disquaires indépendants, pas des places de marché.",
-    "Uniquement les disques en stock, avec le prix et un lien direct vers le disquaire.",
-    "Les disquaires sont vérifiés et parcourus chaque jour, et les nouveaux sont ajoutés automatiquement."
-  ],
   "homeCountriesTitle": "Disquaires par pays",
   "homeArtistsTitle": "Artistes populaires en stock",
   "shopsTitle": "Disquaires indépendants",
@@ -335,7 +329,7 @@
       "other": "{count} nouveaux"
     },
     "discogsTitle": "Importer votre wantlist Discogs",
-    "discogsIntro": "Voyez lesquels de vos disques recherchés sont en stock chez des disquaires indépendants, maintenant. Rapprochés par numéro de catalogue et par artiste et titre, vérifiés chaque jour.",
+    "discogsIntro": "Les disques recherchés sont rapprochés par numéro de catalogue, et par artiste et titre, chaque jour.",
     "discogsUser": "Nom d’utilisateur Discogs",
     "discogsUserPlaceholder": "votre-pseudo",
     "discogsImport": "Importer",
@@ -577,9 +571,6 @@
   },
   "moreShop": "Votre disquaire",
   "moreAbout": "À propos",
-  "homeWantsTitle": "Votre wantlist, en stock",
-  "homeWantsBody": "Apportez votre wantlist Discogs : voyez quels disques les disquaires indépendants ont maintenant, et les nouveautés chaque jour.",
-  "homeWantsAction": "Importer ma wantlist",
   "shopsNear": "Près de chez vous",
   "navDocs": "Docs",
   "docsUsers": "Utiliser LP/EP Finder",
@@ -809,8 +800,6 @@
     "feedTop": "Les plus recherchés",
     "feedCollectors": "Collectionneurs",
     "feedWants": "cherche",
-    "feedJoin": "Votre liste pourrait être ici aussi, avec chaque disque qu’une boutique trouve pour vous :",
-    "feedJoinLink": "publiez-la depuis votre compte Bluesky",
     "feedNone": "Aucun collectionneur n’a encore publié de liste."
   },
   "noscriptSearch": "La recherche fonctionne dans votre navigateur et a besoin de JavaScript. Sans lui, parcourez par artiste ou par boutique :",

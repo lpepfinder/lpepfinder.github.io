@@ -27,9 +27,10 @@ const ld = [{
 }];
 ---
 <Base lang={lang} path="/" mode="home" title={pageTitle(t(lang, 'homeSeoTitle'))} description={t(lang, 'description', vars)} ld={ld}>
+  <!-- the numbers, not a pitch: what is in the shops today -->
   <hgroup>
-    <h1>{t(lang, 'homeTitle')}</h1>
-    <p>{t(lang, 'stats', vars)} · <time datetime={c.builtAt}>{t(lang, 'updated', { date: date(lang, c.builtAt) })}</time></p>
+    <h1>{t(lang, 'stats', vars)}</h1>
+    <p><time datetime={c.builtAt}>{t(lang, 'updated', { date: date(lang, c.builtAt) })}</time></p>
   </hgroup>
   <vf-recent hidden>
     <h2 id="recent-title">{t(lang, 'recent.title')}</h2>
@@ -47,11 +48,6 @@ const ld = [{
       document.querySelector('vf-results').setAttribute('status', 'loading');
     }
   </script>
-  <vf-home-card>
-    <h2>{t(lang, 'homeWantsTitle')}</h2>
-    <p>{t(lang, 'homeWantsBody')}</p>
-    <a href={localPath(lang, '/me/')} kind="strong"><vf-icon name="download"></vf-icon>{t(lang, 'homeWantsAction')}</a>
-  </vf-home-card>
   {strip.count > 0 && (
     <section aria-labelledby="home-new">
       <h2 id="home-new">{t(lang, strip.fresh ? 'homeNewTitle' : 'homeLatestTitle')}</h2>
@@ -71,10 +67,4 @@ const ld = [{
       <p><a href="/artists/">{t(lang, 'homeAllArtists')}</a></p>
     </section>
   )}
-  <section aria-labelledby="home-why">
-    <details>
-      <summary><h2 id="home-why">{t(lang, 'homeWhyTitle')}</h2></summary>
-      <ol>{t(lang, 'homeWhy').map((s) => <li>{s}</li>)}</ol>
-    </details>
-  </section>
 </Base>

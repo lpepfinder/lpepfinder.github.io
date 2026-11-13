@@ -30,11 +30,6 @@ vf-app[mode="home"] main > :is(vf-recent, section:has(> vf-chips)) { padding: 0;
   vf-app[mode="home"] main > :is(vf-recent, section:has(> vf-chips)) vf-chips > ul { justify-content: center; }
   vf-app[mode="home"] main > :is(vf-recent, section:has(> vf-chips)) > h2 { font-size: var(--size-s); color: var(--c-muted); font-weight: var(--weight-semi); }
 }
-vf-app[mode="home"] main > section details > summary { list-style: none; cursor: pointer; }
-vf-app[mode="home"] main > section details > summary::-webkit-details-marker { display: none; }
-vf-app[mode="home"] main > section details > summary > h2::after { content: var(--disclosure); margin-inline-start: var(--space-2); color: var(--c-muted); }
-vf-app[mode="home"] main > section details[open] > summary > h2::after { content: var(--disclosure-open); }
-vf-app[mode="home"] main > section details > ol { margin: var(--space-3) 0 0; max-inline-size: var(--measure); }
 
 /* recent searches: chips with a small × each, then a quiet "Clear" */
 vf-app[mode="home"] main > vf-recent:not([hidden]) { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
@@ -87,9 +82,3 @@ vf-country-tile[local="true"] > a { border-color: var(--c-fg); }
 /* popular artists: a dense list in columns */
 vf-grid[density="dense"] > ul { columns: var(--dense-col); }
 vf-grid[density="dense"] li > a { min-block-size: var(--tap); font-size: var(--size-s); }
-
-/* the collector's way in: a Discogs wantlist, checked against every shop */
-vf-home-card { display: grid; gap: var(--space-2); justify-items: start; padding: var(--space-4); border-radius: var(--radius); background: var(--c-chip); }
-vf-home-card h2 { margin: 0; font-size: var(--size-1); }
-vf-home-card p { margin: 0; color: var(--c-muted); max-inline-size: var(--measure); }
-vf-app[mode="results"] vf-home-card { display: none; }
