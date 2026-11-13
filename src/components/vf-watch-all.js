@@ -1,4 +1,5 @@
 import { load, remove } from '../lib/watch/store.js';
+import { itemsFrom } from '../lib/watch/source.js';
 import config from '../../data/watch.json' with { type: 'json' };
 import { item } from './watch-render.js';
 import { t, tn, formatNumber } from './i18n.js';
@@ -15,7 +16,7 @@ const letterOf = (title) => {
 /**
  * <vf-watch-all count="13000">: every watched record, A–Z, never all at once: pages of
  * config.pageSize with "Show more", a search box that filters, and a jump bar of the letters present.
- * Set `search` (home path) before `refresh()`. Remove buttons remove a record and keep the focus nearby.
+ * Set `search` (home path) and `source` (all, or one source: source.js) before `refresh()`. Remove buttons remove a record and keep the focus nearby.
  */
 export class VfWatchAll extends HTMLElement {
   connectedCallback() {
@@ -44,7 +45,7 @@ export class VfWatchAll extends HTMLElement {
 
   /** Re-read the list (after a check, an import or a removal), keeping the query. */
   refresh() {
-    const items = load().items;
+    const items = itemsFrom(load().items, this.getAttribute('source'));
     this.sorted = Object.entries(items).map(([key, it]) => ({ key, it, title: it.t || '', folded: fold(it.t) }))
       .sort((a, b) => collator.compare(a.title, b.title));
     this.setAttribute('count', this.sorted.length);

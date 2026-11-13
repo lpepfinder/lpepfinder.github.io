@@ -6,6 +6,7 @@ import { origin } from './release-parts.js';
 import { hrefFor } from './selection.js';
 import { cover } from './cover.js';
 import { splitTitle } from '../lib/search/title.js';
+import { sourceBadges } from './watch-render.js';
 
 /**
  * The views of the watch page, as DOM: changes by day, records in stock (hits.js) and shops
@@ -28,11 +29,12 @@ export function changesByDay({ changes, past }, shops, rates) {
     el('ol', {}, ...items)));
 }
 
-/** Labels of a hit: new, only copy, the collector's Discogs rating. */
+/** Labels of a hit: new, only copy, where it comes from (Discogs, a radio), the collector's Discogs rating. */
 function badges(h, isNew) {
   const out = [];
   if (isNew) out.push(attrs(el('vf-badge', { textContent: t('watchPage.badgeNew') }), { kind: 'new' }));
   if (h.copies === 1) out.push(attrs(el('vf-badge', { textContent: t('watchPage.badgeOnly') }), { kind: 'rare' }));
+  out.push(...sourceBadges(h.it));
   if (h.it.r) out.push(attrs(el('vf-badge', { textContent: '★'.repeat(h.it.r), title: t('watchPage.rating', { rating: h.it.r }) }), { kind: 'rating' }));
   return out;
 }

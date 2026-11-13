@@ -314,6 +314,10 @@
     "filterMax": "Bis",
     "badgeNew": "Neu",
     "badgeOnly": "Einziges Exemplar",
+    "badgeDiscogs": "Discogs",
+    "badgeRadio": "Radio",
+    "sourceLabel": "Zeigen",
+    "source": {"all": "Alle", "discogs": "Discogs-Wünsche", "radio": "Radio", "search": "Aus der Suche"},
     "rating": "Deine Bewertung: {rating} von 5",
     "moreShops": {
       "one": "1 weiterer Shop",

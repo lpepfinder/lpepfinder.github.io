@@ -104,3 +104,46 @@ test('watchlist: a record found for a radio track shows the track, with Listen',
   await expect(tracks).toContainText('Some Artist - Some Song');
   await expect(tracks.getByRole('link', { name: en.watchPage.listen })).toHaveAttribute('href', 'https://media.example/1');
 });
+
+test('watchlist: where records come from, Discogs or a radio: labels on the rows, chips and the lists\' cards show one source', async ({ page }) => {
+  // half the records from a Discogs wantlist, half found for a radio's tracks; both lists connected
+  const items = {};
+  wants.forEach((w, i) => { items[w.key] = { t: w.title, a: '2026-01-01', ...(i % 2 ? { p: [`at://did:plc:e2e/radio.4000.track/${i}`] } : { d: 1, w: w.id }) }; });
+  const radio = Object.keys(items).filter((k) => items[k].p).length;
+  await page.addInitScript(([items, now]) => {
+    if (sessionStorage.getItem('e2e-sources')) return;
+    sessionStorage.setItem('e2e-sources', '1');
+    localStorage.setItem('vf.watch.v1', JSON.stringify({ items, changes: [], past: [] }));
+    localStorage.setItem('vf.discogs.user', 'e2e-collector');
+    localStorage.setItem('vf.sources', JSON.stringify({ discogs: { user: 'e2e-collector', wants: { n: 3, at: now, remote: 3, checkedAt: now } }, radio: { handle: 'dj.test', n: 3, at: now, newest: 'x', remote: 'x', checkedAt: now } }));
+  }, [items, new Date().toISOString()]);
+  await page.route('https://api.discogs.com/**', (route) => route.fulfill({ json: {} }));
+  await page.goto('/me/');
+  const watch = page.locator('vf-watch-page');
+  await expect(watch).toHaveAttribute('status', 'done');
+  const ships = page.locator('vf-watch-filters input[name="ships"]');
+  if (await ships.isChecked()) await page.locator('vf-watch-filters label', { has: page.locator('input[name="ships"]') }).click();
+
+  const rows = page.locator('vf-watch-available vf-watch-hits vf-release');
+  await expect(rows.locator('vf-badge[kind="discogs"]').first()).toHaveText(en.watchPage.badgeDiscogs);
+  await expect(rows.locator('vf-badge[kind="radio"]').first()).toHaveText(en.watchPage.badgeRadio);
+
+  // the Radio chip: only the radio's records, in every tab
+  const chips = page.locator('vf-watch-from');
+  await expect(chips).toBeVisible();
+  await chips.locator('label[source="radio"]').click();
+  await expect(page).toHaveURL(/source=radio/);
+  await expect(rows.first()).toBeVisible();
+  for (const row of await rows.all()) await expect(row.locator('vf-badge[kind="radio"]')).toBeVisible();
+  await page.locator('vf-watch-page > nav a[view="all"]').click();
+  await expect(page).toHaveURL(/view=all&source=radio|source=radio&view=all/);
+  await expect(page.locator('vf-watch-all ol > li')).toHaveCount(radio);
+
+  // the wantlist's card shows the Discogs wants; All shows everything again
+  await page.locator('vf-source[kind="wants"] strong a').click();
+  await expect(page).toHaveURL(/source=discogs/);
+  await expect(page.locator('vf-watch-all ol > li')).toHaveCount(Object.keys(items).length - radio);
+  await chips.locator('label[source="all"]').click();
+  await expect(page).not.toHaveURL(/source=/);
+  await expect(page.locator('vf-watch-all ol > li')).toHaveCount(Object.keys(items).length);
+});

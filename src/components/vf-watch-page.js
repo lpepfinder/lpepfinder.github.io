@@ -13,6 +13,7 @@ import { t, tn, formatNumber, formatDay } from './i18n.js';
 import { rates, currency, region, comparable, CURRENCY_EVENT } from './viewer.js';
 import { convert } from '../lib/currency.js';
 import { readFilters, saveFilters } from './watch-filters.js';
+import { SOURCES, countSources, fromSource, itemsFrom } from '../lib/watch/source.js';
 import './vf-watch-all.js';
 import './vf-watch-import.js';
 import './vf-watch-sources.js';
@@ -30,6 +31,8 @@ const VIEWS = ['available', 'now', 'changes', 'all'];
  * records in stock (<vf-watch-available>, new ones first, a record's copies open in the detail pane),
  * shops by how many of your records they have (<vf-watch-now>, a shop opens in a sheet or the right pane),
  * changes by day, and every record (<vf-watch-all>, with backup and share).
+ * Chips above the tabs show the records of one source (?source=discogs|radio|search, source.js) in every view;
+ * the Discogs wantlist and radio cards of the lists link to theirs. Rows say where a record comes from.
  * Wants imported from Discogs also match by catalog number (wants.js).
  * Current states come from the `now` shards, fetched once per data build with a progress bar.
  * Changes are marked seen when the page is left.
@@ -45,6 +48,16 @@ export class VfWatchPage extends HTMLElement {
     this.progress = this.querySelector(':scope > vf-progress');
     this.views = Object.fromEntries(VIEWS.map((v) => [v, this.querySelector(`vf-watch-${v}`)]));
     this.form = this.querySelector('vf-watch-filters form');
+    this.from = this.querySelector(':scope > vf-watch-from');
+    this.from.addEventListener('change', (e) => this.go({ source: e.target.value }));
+    // a list's card (vf-watch-sources) shows its records
+    this.querySelector('vf-watch-sources').addEventListener('click', (e) => {
+      const a = e.target.closest('a[source]');
+      if (!a || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      this.go({ source: a.getAttribute('source') });
+      this.querySelector(':scope > vf-watch-head').scrollIntoView({ block: 'start' });
+    });
     this.search = this.getAttribute('search') || '/';
     this.views.all.setAttribute('search', this.search);
     this.shops = new Map();
@@ -67,8 +80,7 @@ export class VfWatchPage extends HTMLElement {
       const a = e.target.closest('a[href]');
       if (!a) return;
       e.preventDefault();
-      history.pushState(null, '', a.href);
-      this.show(true);
+      this.go({ view: a.getAttribute('view') }, true);
     });
     listen(this, window, 'vf-popstate', () => this.show(false));
     listen(this, window, data.PROGRESS, (e) => this.step(e.detail));
@@ -122,11 +134,37 @@ export class VfWatchPage extends HTMLElement {
     this.form.querySelector('vf-currency-code').textContent = currency() || 'EUR';
   }
 
+  /** The records' source in the URL: all, or one of SOURCES. */
+  source() {
+    const source = new URLSearchParams(location.search).get('source');
+    return SOURCES.includes(source) ? source : 'all';
+  }
+
+  /** Another view or source: in the URL (the other parameters kept, a record or shop pane closed), then shown. */
+  go({ view, source }, focus = false) {
+    const url = new URL(location.href);
+    if (view) url.searchParams.set('view', view);
+    if (source) {
+      if (source === 'all') url.searchParams.delete('source'); else url.searchParams.set('source', source);
+    }
+    url.searchParams.delete('record');
+    url.searchParams.delete('shop');
+    history.pushState(null, '', url);
+    this.show(focus);
+  }
+
   /** The view in the URL; focus its heading when the reader picked it. */
   show(focus) {
     const view = new URLSearchParams(location.search).get('view');
     const current = VIEWS.includes(view) ? view : VIEWS[0];
     this.setAttribute('view', current);
+    const source = this.source();
+    if (source !== this.shownSource) {
+      this.shownSource = source;
+      this.views.all.setAttribute('source', source);
+      // on the first call the data isn't there yet: run() draws everything
+      if (this.hits) { this.renderHits(); this.renderChanges(); this.views.all.refresh(); this.renderFrom(); }
+    }
     for (const v of VIEWS) this.views[v].hidden = v !== current;
     for (const a of this.querySelectorAll(':scope > nav a')) {
       if (new URL(a.href).searchParams.get('view') === current) a.setAttribute('aria-current', 'page');
@@ -202,7 +240,7 @@ export class VfWatchPage extends HTMLElement {
     const f = this.filterValues();
     this.labelMax();
     const list = hits({
-      items: load().items, rows: this.rows, shopIds: this.shopIds, shops: this.shops,
+      items: itemsFrom(load().items, this.source()), rows: this.rows, shopIds: this.shopIds, shops: this.shops,
       value: (cents, cur) => comparable(cents, cur, this.rates),
       reachOf: (shop) => reach(shop, region, this.zones),
       filters: { ships: f.ships, customs: f.customs, max: this.maxValue(f.max) },
@@ -248,15 +286,45 @@ export class VfWatchPage extends HTMLElement {
     else this.record.set([...fresh, ...rest].map((h) => h.key));
   }
 
-  /** Counts on the tabs: records in stock, shops, unseen changes, everything watched. */
+  /** Counts on the tabs: records in stock, shops, unseen changes, everything watched (of the source shown). */
   renderTabs(shops) {
     const { items, changes } = load();
-    const counts = { available: this.hits?.length, now: shops, changes: changes.length || null, all: Object.keys(items).length };
+    const source = this.source();
+    const counts = {
+      available: this.hits?.length, now: shops,
+      changes: changes.filter((c) => this.fromSource(items, c, source)).length || null,
+      all: Object.keys(itemsFrom(items, source)).length,
+    };
     for (const a of this.querySelectorAll(':scope > nav a[view]')) {
       const n = counts[a.getAttribute('view')];
       const data = a.querySelector('data');
       data.value = n ?? '';
       data.textContent = n ? formatNumber(n) : '';
+    }
+  }
+
+  /** A change of the source shown (a removed record only under "all"). */
+  fromSource(items, change, source) {
+    return source === 'all' || (!!items[change[0]] && fromSource(items[change[0]], source));
+  }
+
+  /**
+   * The source chips with their counts: shown when the records come from two sources or more (or one is picked,
+   * to go back to all of them); a source without records is left out.
+   */
+  renderFrom() {
+    const items = load().items;
+    const counts = { all: Object.keys(items).length, ...countSources(items) };
+    const source = this.source();
+    const present = SOURCES.filter((s) => counts[s]);
+    this.from.hidden = present.length < 2 && source === 'all';
+    for (const label of this.from.querySelectorAll('label[source]')) {
+      const s = label.getAttribute('source');
+      label.hidden = s !== 'all' && !counts[s] && s !== source;
+      label.querySelector('input').checked = s === source;
+      const data = label.querySelector('data');
+      data.value = counts[s];
+      data.textContent = formatNumber(counts[s]);
     }
   }
 
@@ -274,11 +342,15 @@ export class VfWatchPage extends HTMLElement {
     else if (changes.length && since) parts.push(tn('watchPage.summaryChanges', changes.length, { date: formatDay(since.slice(0, 10)) }));
     this.summary.textContent = parts.join(' · ');
     this.toggleAttribute('empty', !n);
+    this.renderFrom();
     this.renderTabs(this.views.now.getAttribute('count') * 1 || null);
   }
 
   renderChanges() {
-    const list = load();
+    const { items, changes, past } = load();
+    const source = this.source();
+    const keep = (c) => this.fromSource(items, c, source);
+    const list = { changes: changes.filter(keep), past: past.filter(keep) };
     const box = this.views.changes;
     box.querySelector('vf-watch-days').replaceChildren(...changesByDay(list, this.shops, this.rates));
     box.setAttribute('count', list.changes.length + list.past.length);

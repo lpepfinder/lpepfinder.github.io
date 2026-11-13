@@ -18,7 +18,7 @@ img { max-inline-size: 100%; block-size: auto; }
   header > a[rel="home"], header vf-search label, vf-app[mode="results"] main > hgroup,
   vf-filters vf-currency label, vf-results:is([status="done"], [status="empty"]) > output, vf-result dt,
   vf-strip-card > a > span, vf-release vf-name > span,
-  :is(vf-watch-available, vf-watch-now) > h2, vf-watch-page > output
+  :is(vf-watch-available, vf-watch-now) > h2, vf-watch-page > output, vf-watch-from legend
 ) { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 data { font-variant-numeric: tabular-nums; color: var(--c-muted); }

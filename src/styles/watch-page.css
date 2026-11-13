@@ -130,8 +130,13 @@ vf-watch-sources > ul { list-style: none; margin: 0; padding: 0; display: grid; 
 vf-source { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "icon name action" "icon note action"; align-items: center; column-gap: var(--space-3); min-block-size: var(--row-h); padding: var(--space-2) var(--space-3); border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); font-size: var(--size-s); }
 vf-source > vf-icon { grid-area: icon; color: var(--c-muted); }
 vf-source > strong { grid-area: name; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* a connected wantlist or radio: the whole card links to its records */
+vf-source:has(> strong a) { position: relative; }
+vf-source > strong a { color: inherit; }
+vf-source > strong a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+vf-source:has(> strong a:hover) { border-color: var(--c-fg); }
 vf-source > small { grid-area: note; color: var(--c-muted); font-size: var(--size-xs); }
-vf-source > :is(button, a) { grid-area: action; display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--size-s); }
+vf-source > :is(button, a) { grid-area: action; position: relative; z-index: 1; display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--size-s); }
 vf-source[kind="bluesky"] > vf-icon { color: var(--c-bluesky); }
 vf-source:is([state="changed"], [state="new"], [state="offline"]) { border-color: var(--c-watching); }
 vf-source:is([state="changed"], [state="new"], [state="offline"]) > small { color: var(--c-watching); }
@@ -143,7 +148,7 @@ vf-source[state="syncing"] > small { color: var(--c-muted); font-style: italic; 
 vf-watch-start, vf-watch-start > *, vf-watch-import, vf-watch-import > * { min-inline-size: 0; }
 vf-watch-start { display: block; max-inline-size: var(--measure); color: var(--c-muted); }
 vf-watch-start p { margin: 0; }
-vf-watch-page:not([empty]) > vf-watch-start, vf-watch-page[empty] > :is(nav, vf-watch-filters, vf-watch-available, vf-watch-now, vf-watch-changes, vf-watch-all), vf-watch-page[empty] > vf-watch-head :is(menu, vf-watch-summary) { display: none; }
+vf-watch-page:not([empty]) > vf-watch-start, vf-watch-page[empty] > :is(nav, vf-watch-from, vf-watch-filters, vf-watch-available, vf-watch-now, vf-watch-changes, vf-watch-all), vf-watch-page[empty] > vf-watch-head :is(menu, vf-watch-summary) { display: none; }
 
 /* the import form (start screen and Discogs sheet) */
 vf-watch-import { display: grid; gap: var(--space-2); }
@@ -167,15 +172,20 @@ vf-watch-page > nav a data:empty { display: none; }
 
 /* filter chips: one row that scrolls sideways on phones, wraps from tablets */
 vf-watch-filters form { display: flex; gap: var(--space-2); overflow-x: auto; scrollbar-width: none; padding-block: var(--space-1); font-size: var(--size-s); }
-vf-watch-filters label { flex: none; display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--chip-h); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); white-space: nowrap; cursor: pointer; }
-vf-watch-filters label:has(input:checked) { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
-vf-watch-filters input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
-vf-watch-filters label:has(input[type="checkbox"]:focus-visible), vf-watch-filters :is(select, input[type="text"]):focus-visible { outline: var(--focus-ring); }
+:is(vf-watch-filters, vf-watch-from) label { flex: none; display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--chip-h); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); white-space: nowrap; cursor: pointer; }
+:is(vf-watch-filters, vf-watch-from) label:has(input:checked) { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
+vf-watch-filters input[type="checkbox"], vf-watch-from input { position: absolute; opacity: 0; pointer-events: none; }
+vf-watch-filters label:has(input[type="checkbox"]:focus-visible), vf-watch-from label:has(input:focus-visible), vf-watch-filters :is(select, input[type="text"]):focus-visible { outline: var(--focus-ring); }
 vf-watch-filters label > span { color: var(--c-muted); }
 vf-watch-filters :is(select, input[type="text"]) { font-size: max(var(--size-input-min), var(--size-s)); min-block-size: var(--chip-h); border: 0; background: transparent; color: inherit; padding: 0; }
 vf-watch-filters input[type="text"] { inline-size: 5ch; text-align: end; }
 @media (min-width: 40rem) { vf-watch-filters form { flex-wrap: wrap; overflow: visible; } }
 vf-watch-page:is([view="changes"], [view="all"]) > vf-watch-filters { display: none; }
+/* where the records come from: chips like the filters, in every view */
+vf-watch-from[hidden], vf-watch-from label[hidden] { display: none; }
+vf-watch-from fieldset { display: flex; gap: var(--space-2); overflow-x: auto; scrollbar-width: none; margin: 0; padding: var(--space-1) 0; border: 0; min-inline-size: 0; font-size: var(--size-s); }
+vf-watch-from data { font-size: var(--size-xs); color: inherit; opacity: 0.75; }
+@media (min-width: 40rem) { vf-watch-from fieldset { flex-wrap: wrap; overflow: visible; } }
 /* shops are ordered by how many of your records they have: the sort is for the list of records */
 vf-watch-page[view="now"] vf-watch-filters label:has(select) { display: none; }
 
@@ -199,6 +209,8 @@ vf-badge { flex: none; font-size: var(--size-xs); font-weight: var(--weight-bold
 vf-badge[kind="new"] { --badge-fg: var(--c-event-new); }
 vf-badge[kind="rare"] { --badge-fg: var(--c-event-restock); }
 vf-badge[kind="rating"] { --badge-fg: var(--c-fg); background: none; }
+vf-badge:is([kind="discogs"], [kind="radio"]) { --badge-fg: var(--c-fg); font-weight: var(--weight-semi); }
+vf-watch-item vf-badge { margin-inline-end: var(--space-1); }
 vf-watch-available vf-split > vf-sheet[name="watch-record"][docked] { position: sticky; inset-block-start: calc(var(--header-h) + var(--tap) + var(--space-4)); max-block-size: calc(100dvh - var(--header-h) - var(--tap) - var(--space-6)); overflow: auto; background: var(--c-surface); border: var(--line) solid var(--c-line); border-radius: var(--radius); }
 vf-watch-available vf-detail[status="loading"] { color: var(--c-muted); }
 vf-watch-available vf-detail[status="missing"] { display: grid; gap: var(--space-3); padding: var(--space-4); }
@@ -217,6 +229,8 @@ vf-watch-all > vf-watch-backup { margin-block-start: var(--space-6); }
 vf-watch-page > nav ul { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
 vf-watch-page > nav li { flex: none; }
 @media (max-width: 40rem) { vf-watch-page > nav a { padding-inline: var(--space-2); } }
+/* small phones: the four tabs fit without their icons */
+@media (max-width: 30rem) { vf-watch-page > nav a > vf-icon { display: none; } }
 
 /* the record's pane: its own settings (max price, Bought, Remove) above its copies, one scrolling body of the sheet */
 vf-watch-record { display: grid; align-content: start; }

@@ -314,6 +314,10 @@
     "filterMax": "Up to",
     "badgeNew": "New",
     "badgeOnly": "Only copy",
+    "badgeDiscogs": "Discogs",
+    "badgeRadio": "Radio",
+    "sourceLabel": "Show",
+    "source": {"all": "All", "discogs": "Discogs wants", "radio": "Radio", "search": "From the search"},
     "rating": "Your rating: {rating} of 5",
     "moreShops": {
       "one": "1 more shop",

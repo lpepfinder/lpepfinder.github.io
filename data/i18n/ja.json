@@ -298,6 +298,10 @@
     "filterMax": "上限",
     "badgeNew": "新着",
     "badgeOnly": "残り1枚",
+    "badgeDiscogs": "Discogs",
+    "badgeRadio": "ラジオ",
+    "sourceLabel": "表示",
+    "source": {"all": "すべて", "discogs": "Discogs ウォント", "radio": "ラジオ", "search": "検索から"},
     "rating": "あなたの評価：5点中{rating}点",
     "moreShops": {
       "other": "ほか{count}店"

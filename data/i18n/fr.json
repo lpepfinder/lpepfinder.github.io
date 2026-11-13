@@ -314,6 +314,10 @@
     "filterMax": "Jusqu’à",
     "badgeNew": "Nouveau",
     "badgeOnly": "Seul exemplaire",
+    "badgeDiscogs": "Discogs",
+    "badgeRadio": "Radio",
+    "sourceLabel": "Afficher",
+    "source": {"all": "Tous", "discogs": "Envies Discogs", "radio": "Radio", "search": "De la recherche"},
     "rating": "Votre note : {rating} sur 5",
     "moreShops": {
       "one": "1 autre boutique",

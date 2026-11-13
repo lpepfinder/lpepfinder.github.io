@@ -14,7 +14,8 @@ const icon = (name) => attrs(el('vf-icon'), { name });
  * Discogs lists show their count, when they were read and what changed on Discogs since (checked at most daily,
  * sources.js), with Resync when they changed or are old; a Radio4000 radio (the signed-in account's own, or the
  * last one read) offers to find records when it has tracks not read yet; the Bluesky account shows its last sync.
- * Resync runs the import of the Discogs sheet, opened so its progress shows.
+ * Resync runs the import of the Discogs sheet, opened so its progress shows. The name of a connected wantlist or radio
+ * links to its records in the watchlist (?source=discogs|radio, handled by vf-watch-page).
  */
 export class VfWatchSources extends HTMLElement {
   disconnectedCallback() { unlisten(this); this.checking?.abort(); }
@@ -65,7 +66,8 @@ export class VfWatchSources extends HTMLElement {
       f.n == null ? null : tn('sources.count', f.n), t('sources.read', { ago: formatAgo(f.at) }),
     ];
     return this.row(kind, f.state, kind === 'wants' ? 'star' : 'shelf', t(`sources.${kind}`, { user: s.discogs.user }), notes,
-      f.state === 'current' ? null : attrs(el('button', { type: 'button', name: 'resync', value: kind }, icon('refresh'), t('sources.resync')), { kind: 'secondary' }));
+      f.state === 'current' ? null : attrs(el('button', { type: 'button', name: 'resync', value: kind }, icon('refresh'), t('sources.resync')), { kind: 'secondary' }),
+      kind === 'wants' ? 'discogs' : null);
   }
 
   /** The radio: offered when it has tracks never read (a signed-in DJ's own), resync when tracks were added. */
@@ -76,7 +78,7 @@ export class VfWatchSources extends HTMLElement {
       : [f.state === 'changed' ? t('sources.radioAdded') : t('sources.current'), f.n == null ? null : tn('sources.tracks', f.n), t('sources.read', { ago: formatAgo(f.at) })];
     const action = f.state === 'current' ? null
       : attrs(el('button', { type: 'button', name: 'resync', value: 'radio' }, icon(f.state === 'new' ? 'search' : 'refresh'), t(f.state === 'new' ? 'radio.find' : 'sources.resync')), { kind: 'secondary' });
-    return this.row('radio', f.state, 'play', t('sources.radio', { handle: f.handle }), notes, action);
+    return this.row('radio', f.state, 'play', t('sources.radio', { handle: f.handle }), notes, action, f.state === 'new' ? null : 'radio');
   }
 
   /** The radio's reading in the sheet, with its matches to review. */
@@ -126,8 +128,10 @@ export class VfWatchSources extends HTMLElement {
     sheet?.querySelector('input:not([type="file"])')?.focus();
   }
 
-  row(kind, state, name, label, notes, action) {
-    return attrs(el('vf-source', {}, icon(name), el('strong', {}, label), el('small', {}, notes.filter(Boolean).join(' · ')), action), { kind, state });
+  /** One list; with `source`, its name links to its records in the watchlist. */
+  row(kind, state, name, label, notes, action, source = null) {
+    const title = source ? attrs(el('a', { href: `?source=${source}`, textContent: label }), { source }) : label;
+    return attrs(el('vf-source', {}, icon(name), el('strong', {}, title), el('small', {}, notes.filter(Boolean).join(' · ')), action), { kind, state });
   }
 
   /** The Discogs sheet's import, for the profile's username, with its progress in view. */

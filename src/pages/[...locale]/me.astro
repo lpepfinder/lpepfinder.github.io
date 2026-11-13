@@ -12,13 +12,16 @@ import { pageTitle } from '../../lib/seo.js';
  * Me (/me/, was /watch/): the profile in use. Its name and account first (<vf-me-head>, a link to the profiles in
  * Settings), then its lists and whether they are up to date (Discogs wantlist and collection, a Radio4000 radio,
  * the Bluesky sync), then the watchlist: empty, a start screen to bring a Discogs wantlist; otherwise a header
- * (summary, Discogs and "Prices in" in sheets), four tabs with counts (in stock, shops, activity, all), filter
- * chips, and the records in stock as search rows whose copies open in a detail pane.
+ * (summary, Discogs and "Prices in" in sheets), chips for where the records come from (Discogs, a radio, the search;
+ * shown once there are two), four tabs with counts (in stock, shops, activity, all), filter chips, and the records in
+ * stock as search rows whose copies open in a detail pane.
  */
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 const views = [['available', 'viewAvailable', 'bag'], ['now', 'viewShops', 'store'], ['changes', 'viewChanges', 'pulse'], ['all', 'viewAll', 'star']];
 const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
+// where the records come from (src/lib/watch/source.js): one at a time, in every view (?source=…)
+const sources = [['all', null], ['discogs', 'star'], ['radio', 'play'], ['search', 'search']];
 ---
 <Base lang={lang} path="/me/" title={pageTitle(t(lang, 'tabMe'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'profiles', 'radio', 'sources', 'account']}>
   <vf-watch-shared hidden>
@@ -48,6 +51,12 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
         <li><button type="button" name="currency" kind="secondary"><vf-icon name="coin"></vf-icon><span>{t(lang, 'currency.label')}</span></button></li>
       </menu>
     </vf-watch-head>
+    <vf-watch-from hidden>
+      <fieldset>
+        <legend>{t(lang, 'watchPage.sourceLabel')}</legend>
+        {sources.map(([source, icon]) => <label source={source}><input type="radio" name="source" value={source} checked={source === 'all'}>{icon && <vf-icon name={icon}></vf-icon>}{t(lang, `watchPage.source.${source}`)} <data></data></label>)}
+      </fieldset>
+    </vf-watch-from>
     <!-- nothing watched yet: the lists above connect one; any record of the search can be watched too -->
     <vf-watch-start>
       <p>{t(lang, 'me.empty')} <a href={localPath(lang, '/')}>{t(lang, 'me.emptySearch')}</a></p>

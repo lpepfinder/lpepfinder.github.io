@@ -1,6 +1,7 @@
 import { t, tn, lang, formatPrice, formatNumber } from './i18n.js';
 import { el, attrs } from './dom.js';
 import { price as priceTag } from './price.js';
+import { sourcesOf } from '../lib/watch/source.js';
 
 /** DOM for the watch page: one change (<vf-change>), one watched record (<vf-watch-item>). */
 const day = new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'short' });
@@ -18,6 +19,10 @@ export function change(row, shops, seen, heading = 'h3', rates = {}) {
     el('p', {}, where && `${where} · `, el('time', { dateTime: date, textContent: day.format(new Date(date)) })),
   ), { event, seen: String(seen) }));
 }
+
+/** Where a watched record comes from: a label for Discogs and one for a radio; none for a record added from the search. */
+export const sourceBadges = (it) => sourcesOf(it).filter((s) => s !== 'search')
+  .map((s) => attrs(el('vf-badge', { textContent: t(s === 'discogs' ? 'watchPage.badgeDiscogs' : 'watchPage.badgeRadio') }), { kind: s }));
 
 /** Stock attribute of a stored state: in | out | none, or unknown before the first check. */
 export const stock = (s) => (!s ? 'unknown' : s[0] ? 'in' : s[1] ? 'out' : 'none');
@@ -37,7 +42,7 @@ function watched(it) {
   return el('p', {}, link(it.u, label, 'nofollow'), price != null ? ` · ${formatPrice(price, currency)}` : '');
 }
 
-/** A watched release: title linking to its detail in a search for every copy, its state, the copy watched, a Remove button (value = key). */
+/** A watched release: title linking to its detail in a search for every copy, where it comes from and its state, the copy watched, a Remove button (value = key). */
 export function item(key, it, search) {
   const title = it.t || t('watchPage.unknownTitle', { key });
   const remove = el('button', { type: 'button', name: 'remove', value: key, textContent: t('watchPage.remove') });
@@ -45,7 +50,7 @@ export function item(key, it, search) {
   remove.setAttribute('aria-label', t('watchPage.removeLabel', { title }));
   return el('li', {}, attrs(el('vf-watch-item', {},
     el('h3', {}, link(it.t && `${search}?q=${encodeURIComponent(it.t)}&r=${key}`, title)),
-    el('p', { textContent: stateText(it.s) }),
+    el('p', {}, ...sourceBadges(it), ' ', stateText(it.s)),
     watched(it),
     remove,
   ), { stock: stock(it.s) }));

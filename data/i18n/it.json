@@ -314,6 +314,10 @@
     "filterMax": "Fino a",
     "badgeNew": "Nuovo",
     "badgeOnly": "Unica copia",
+    "badgeDiscogs": "Discogs",
+    "badgeRadio": "Radio",
+    "sourceLabel": "Mostra",
+    "source": {"all": "Tutti", "discogs": "Wantlist Discogs", "radio": "Radio", "search": "Dalla ricerca"},
     "rating": "Il tuo voto: {rating} su 5",
     "moreShops": {
       "one": "1 altro negozio",
