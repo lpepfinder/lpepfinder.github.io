@@ -18,6 +18,8 @@ About 130 shops answer 403 or 429 to the check. Look at who protects them (Cloud
 
 Site on Cloudflare Workers static assets, index on R2 (`data.lpepfinder.com`, versioned folders and a `current.json` pointer), uploading only changed files to stay free. Waits on the owner: R2 enabled, an API token as a GitHub secret, DNS approval. Practice: `cloudflare-free-plan`, `zero-running-cost`.
 
+Decided 2026-11-13: stay on GitHub Pages until it is exhausted, then move the index (`search/`, `w/`) to R2 and keep the pages on GitHub Pages. The trigger is the `health` issue at 850 MB (`health.siteMaxMB`); the deploy stops at 900. On 2026-11-13 the site was ~850 MB with 3 days of watchlist events, growing ~11 MB a day with the records (~50,000 more a day). Before the move: chunk the search index by a hash of the record key instead of by position. Today one new record shifts every file, so all ~133,000 change daily: ~4M R2 writes a month, ~$13 beyond the free 1M. With stable chunks only the changed files are uploaded. Weighed and set aside: a Hetzner server (a fixed fee, upkeep, no CDN), a second GitHub Pages site (works around GitHub's limit), Cloudflare static assets alone (20,000 files per deployment).
+
 ## Income without AdSense
 
 AdSense was removed on 2026-11-08 (savoir `income-without-tracking`: no tracking ad network); nothing replaces it yet. Ideas, in order of effort:
