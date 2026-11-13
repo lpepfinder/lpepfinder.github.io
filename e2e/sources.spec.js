@@ -100,7 +100,8 @@ test('sources: a radio read once shows its tracks, and offers Resync when tracks
 test('radio review: exact matches and guesses in two groups, each ticked or cleared at once', async ({ page }) => {
   const DID = 'did:plc:e2egroups';
   const PDS = 'https://pds.groups.test';
-  const songs = wantsFromSite(40).filter((w) => / - /.test(w.title)).slice(0, 2);
+  // "Artist - Title" with words on both sides: "0 - 01" can't be searched as a song
+  const songs = wantsFromSite(80).filter((w) => /^\p{L}{3,}.* - \p{L}{3,}/u.test(w.title)).slice(0, 2);
   const records = [
     { uri: `at://${DID}/radio.4000.track/1`, value: { title: 'Linked Artist - Linked Song', url: '', discogsUrl: 'https://www.discogs.com/release/123-x' } },
     ...songs.map((w, i) => ({ uri: `at://${DID}/radio.4000.track/${i + 2}`, value: { title: w.title, url: '' } })),
