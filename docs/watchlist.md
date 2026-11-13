@@ -35,6 +35,8 @@ A want matches shop listings two ways:
 
 Each record says where it comes from: **Discogs** for a want, **Radio** for a record found for a radio's tracks (both when it's both); a record added from the search has no label. When the records come from more than one place, chips above the views show one source at a time (All, Discogs wants, Radio, From the search) in every view, and tapping your wantlist's or your radio's row under "Your lists" does the same. The source is in the address (`?source=discogs`, `radio` or `search`), so a filtered view can be bookmarked.
 
+Tap a record to see its copies. The detail starts with why it's on your list: your Discogs want (with your rating and **See on Discogs**, the release's page with its tracks and videos), the radio tracks it was found for (with **Listen**), or the day you added it from the search. Then its copies, cheapest first, and at the end your settings for it: a maximum price, **Bought it** and **Remove**.
+
 - **In stock**: your records in stock now, with the cheapest copy and how many shops have one. Records found since your last visit come first. Sort by newest, price, rarity (only copy), your Discogs rating, or A–Z; filter by shipping, customs and a maximum price.
 - **Shops**: shops by how many of your records they have, with the total: the best places to order several records at once and pay shipping once.
 - **Changes**: what changed day by day: new copies, back in stock, sold out, cheaper.

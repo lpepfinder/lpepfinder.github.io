@@ -146,4 +146,16 @@ test('watchlist: where records come from, Discogs or a radio: labels on the rows
   await chips.locator('label[source="all"]').click();
   await expect(page).not.toHaveURL(/source=/);
   await expect(page.locator('vf-watch-all ol > li')).toHaveCount(Object.keys(items).length);
+
+  // a record's detail says why it's on the list first: a Discogs want links to its release on Discogs
+  await page.locator('vf-watch-page > nav a[view="available"]').click();
+  const why = page.locator('vf-sheet[name="watch-record"] vf-watch-why');
+  await rows.filter({ has: page.locator('vf-badge[kind="discogs"]') }).first().locator(':scope > a').click();
+  await expect(why).toBeVisible();
+  await expect(why.getByRole('link', { name: en.watchPage.seeDiscogs })).toHaveAttribute('href', /^https:\/\/www\.discogs\.com\/release\/\d+$/);
+  await expect(why.locator('vf-watch-tracks')).toBeHidden();
+  await page.keyboard.press('Escape');
+  await rows.filter({ has: page.locator('vf-badge[kind="radio"]') }).first().locator(':scope > a').click();
+  await expect(why.locator('vf-watch-tracks')).toContainText(en.watchPage.radioTracks);
+  await expect(why.locator('p[source="discogs"]')).toBeHidden();
 });

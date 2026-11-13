@@ -7,7 +7,8 @@ import { formatPrice } from './i18n.js';
 import { toast } from './vf-toast.js';
 import { selected, select, unselect, forget } from './selection.js';
 import { comparable, region } from './viewer.js';
-import { t } from './i18n.js';
+import { t, formatDay } from './i18n.js';
+import { sourcesOf } from '../lib/watch/source.js';
 import { el, attrs, listen } from './dom.js';
 import { findTrack } from '../lib/watch/radio-tracks.js';
 import './vf-sheet.js';
@@ -99,6 +100,7 @@ export class WatchRecordPane {
     const same = this.current === key;
     this.current = key;
     this.showControls(it);
+    this.showWhy(it);
     this.showTracks(key, it);
     if (same) return;
     this.detail.setAttribute('status', 'loading');
@@ -128,10 +130,37 @@ export class WatchRecordPane {
     field.value = value == null ? '' : String(Math.round(value) / 100);
   }
 
-  /** The radio tracks the record was found for (it.p), each with a link to listen to it where it is hosted (http(s) only: the url is the radio's data). */
+  /**
+   * Why the record is on the list, above its copies: a Discogs want (its rating, a link to the release on Discogs),
+   * the radio tracks it was found for (showTracks), or the day it was added from the search.
+   */
+  showWhy(it) {
+    const why = this.sheet.querySelector('vf-watch-why');
+    why.hidden = !it;
+    if (!it) return;
+    const from = sourcesOf(it);
+    const discogs = why.querySelector('p[source="discogs"]');
+    discogs.hidden = !from.includes('discogs');
+    const link = discogs.querySelector('a');
+    link.hidden = !it.w;
+    if (it.w) link.href = `https://www.discogs.com/release/${encodeURIComponent(it.w)}`;
+    const rating = discogs.querySelector('vf-badge[kind="rating"]');
+    rating.hidden = !it.r;
+    rating.textContent = it.r ? '★'.repeat(it.r) : '';
+    rating.title = it.r ? t('watchPage.rating', { rating: it.r }) : '';
+    const search = why.querySelector('p[source="search"]');
+    search.hidden = !from.includes('search') || !it.a;
+    search.textContent = it.a ? t('watchPage.whySearch', { date: formatDay(it.a) }) : '';
+  }
+
+  /**
+   * The radio tracks the record was found for (it.p), each with a link to listen to it where it is hosted (http(s) only:
+   * the url is the radio's data). The heading shows even when the radio's tracks aren't kept in this browser.
+   */
   async showTracks(key, it) {
     const box = this.sheet.querySelector('vf-watch-tracks');
-    box.hidden = true;
+    box.hidden = !it?.p?.length;
+    box.querySelector('ul').replaceChildren();
     if (!it?.p?.length) return;
     const tracks = (await Promise.all(it.p.map(findTrack))).filter(Boolean);
     if (this.current !== key || !tracks.length) return;

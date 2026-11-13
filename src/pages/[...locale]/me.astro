@@ -113,6 +113,22 @@ const sources = [['all', null], ['discogs', 'star'], ['radio', 'play'], ['search
         </vf-watch-hits>
         <Sheet lang={lang} name="watch-record" mode="adaptive" dock="(min-width: 64rem)" labelledby="detail-title" back={t(lang, 'watchPage.backRecords')} expandable>
           <vf-watch-record>
+          <!-- why the record is on the list: a Discogs want, a radio's tracks, or added from the search -->
+          <vf-watch-why hidden>
+            <h3>{t(lang, 'watchPage.whyHeading')}</h3>
+            <p source="discogs" hidden>
+              <vf-badge kind="discogs">{t(lang, 'watchPage.badgeDiscogs')}</vf-badge>
+              <span>{t(lang, 'watchPage.whyDiscogs')}</span>
+              <vf-badge kind="rating"></vf-badge>
+              <a target="_blank" rel="noopener nofollow" hidden><vf-icon name="external"></vf-icon>{t(lang, 'watchPage.seeDiscogs')}</a>
+            </p>
+            <vf-watch-tracks hidden>
+              <h4><vf-badge kind="radio">{t(lang, 'watchPage.badgeRadio')}</vf-badge> {t(lang, 'watchPage.radioTracks')}</h4>
+              <ul></ul>
+            </vf-watch-tracks>
+            <p source="search" hidden></p>
+          </vf-watch-why>
+          <vf-detail></vf-detail>
           <vf-watch-controls hidden>
             <form>
               <label>{t(lang, 'watchPage.maxPrice')} <input type="text" name="max" inputmode="decimal" size="5" autocomplete="off"> <vf-currency-code>EUR</vf-currency-code></label>
@@ -123,11 +139,6 @@ const sources = [['all', null], ['discogs', 'star'], ['radio', 'play'], ['search
               <li><button type="button" name="remove" kind="text">{t(lang, 'watchPage.remove')}</button></li>
             </menu>
           </vf-watch-controls>
-          <vf-watch-tracks hidden>
-            <h3>{t(lang, 'watchPage.radioTracks')}</h3>
-            <ul></ul>
-          </vf-watch-tracks>
-          <vf-detail></vf-detail>
           </vf-watch-record>
         </Sheet>
       </vf-split>
