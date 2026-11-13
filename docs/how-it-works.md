@@ -37,7 +37,7 @@ data/shops/*.json ──▶ Refresh (daily)      ──▶ "data" release ──
    (`LEDGER_DATE=YYYY-MM-DD` overrides it) is diffed against the day before into events: `new`, `restock`,
    `soldout`, `price-down`, `gone`. A shop's first two crawls emit no `new`. Deploy keeps
    `generated/ledger.ndjson.gz` and `ledger-prev.ndjson.gz` (the day before, for a second build on the same day)
-   in the `data` release. Outputs: `public/w/` (watchlist data: `now/<abc>.json`, `d/<day>.json` for 14 days,
+   in the `data` release. Outputs: `public/w/` (watchlist data: `now/<abc>.json`, `d/<day>.json` for the last few days,
    `index.json`) and `generated/new-arrivals.json` for `/new/` pages and `/feed/*.xml` Atom feeds.
 7. **Build** (`npm run build`): writes a static, sharded search index to `public/search/` and builds the
    Astro site (search, shops by country, shop pages, artist pages, sitemap) into `dist/`.

@@ -41,3 +41,16 @@ test('watch files: shards, daily events and index', () => {
     fs.rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test('watch files: only the last watchDays days of events', () => {
+  const ledger = settled([offer('a.com', '/1')]);
+  run(ledger, [offer('a.com', '/1'), offer('a.com', '/2')], '2026-11-03');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'w-'));
+  try {
+    writeWatchFiles({ ledger, shops, outDir: dir, settings: { ...settings, watchDays: 2 } });
+    assert.deepEqual(JSON.parse(fs.readFileSync(path.join(dir, 'index.json'), 'utf8')).dates, ['2026-11-02', '2026-11-03']);
+    assert.deepEqual(fs.readdirSync(path.join(dir, 'd')).sort(), ['2026-11-02.json', '2026-11-03.json']);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});

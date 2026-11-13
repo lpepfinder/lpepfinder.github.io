@@ -3,7 +3,8 @@ import { clearPrice, trackPrice, trimPriceLog } from './price.js';
 
 /**
  * The offer ledger: one row per offer (one shop's listing of one record).
- *   meta    { day, shops: { [shopId]: { crawls, lastCrawl } } }   crawls: distinct crawl-data days of the shop
+ *   meta    { day, shops: { [shopId]: { crawls, lastCrawl, short? } } }   crawls: distinct crawl-data days of the shop;
+ *           short: short crawls in a row (shortCrawls)
  *   rows    Map offerKey -> { offerKey, releaseKey, shop, path, title, firstSeen, lastSeen, lastInStock,
  *           price, currency, lowPrice90, status: in|out|gone, discogsRelease?, priceLog? }
  *   events  [{ day, list: [[releaseKey, offerKey, event, priceCents, currency, title, url, shopId], ...] }]
@@ -28,6 +29,25 @@ const newRow = (o, day) => ({
 });
 
 /**
+ * Shops whose crawl today is short: it lists less than `shortCrawl` of the offers the shop listed at its last crawl
+ * (at least `shortCrawlMin` of them), for at most `shortCrawlDays` crawls in a row; after that the shop has really
+ * shrunk and its missing offers are gone.
+ */
+function shortCrawls(rows, today, shops, { shortCrawl, shortCrawlMin = 0, shortCrawlDays = 0 }) {
+  const result = new Set();
+  if (!shortCrawl) return result;
+  const listed = new Map();
+  const seen = new Map();
+  for (const row of rows.values()) if (row.status !== 'gone') listed.set(row.shop, (listed.get(row.shop) || 0) + 1);
+  for (const o of today.values()) seen.set(o.shop, (seen.get(o.shop) || 0) + 1);
+  for (const [id, n] of seen) {
+    const before = listed.get(id) || 0;
+    if (before >= shortCrawlMin && n < shortCrawl * before && (shops[id]?.short || 0) < shortCrawlDays) result.add(id);
+  }
+  return result;
+}
+
+/**
  * Apply one day's crawl to the ledger (in place) and return that day's events:
  *   new        first seen, in stock (not during a shop's first `newShopCrawls` crawls: days of crawl
  *              data, so a build that reruns on old data, e.g. a push before the daily crawl, doesn't count)
@@ -35,7 +55,9 @@ const newRow = (o, day) => ({
  *   soldout    was in stock, now listed as unavailable
  *   price-down in stock both days, cheaper today (same currency)
  *   gone       listing missing from a shop that was crawled today
- * Shops without any record today (not crawled, failed) keep their rows as they are.
+ * Shops without any record today (not crawled, failed) keep their rows as they are, and so do the rows missing
+ * from a short crawl (shortCrawls): a crawl cut off halfway would make thousands of "gone" events, then as
+ * many "restock" events the next day.
  * offers: [{ offerKey, releaseKey, shop, path, title, price, currency, available, priceFlag? }]
  * priceFlag: the quality gate removed the offer's price as wrong (scripts/quality): the row forgets its price too,
  * so a wrong price is not kept for the watchlist or compared with tomorrow's for a price drop.
@@ -48,12 +70,15 @@ export function applyDay(ledger, offers, day, { settings, urlOf, crawlDays = new
   if (meta.day && meta.day >= day) throw new Error(`ledger is already at ${meta.day}; cannot apply ${day}`);
   const today = byKey(offers);
   const crawled = new Set([...today.values()].map((o) => o.shop));
+  const short = shortCrawls(rows, today, meta.shops, settings);
   // crawl count per shop including today's data, counted once per crawl-data day
   const crawls = new Map([...crawled].map((id) => {
     const had = meta.shops[id] || { crawls: 0, lastCrawl: null };
     const on = crawlDays.has(id) ? crawlDays.get(id) : day;
     const fresh = on && (!had.lastCrawl || on > had.lastCrawl);
-    return [id, fresh ? { crawls: had.crawls + 1, lastCrawl: on } : had];
+    if (!fresh) return [id, had];
+    const next = { crawls: had.crawls + 1, lastCrawl: on };
+    return [id, short.has(id) ? { ...next, short: (had.short || 0) + 1 } : next];
   }));
   const events = [];
   const emit = (row, event) => events.push([row.releaseKey, row.offerKey, event, row.price, row.currency, row.title, urlOf(row.shop, row.path), row.shop]);
@@ -82,7 +107,7 @@ export function applyDay(ledger, offers, day, { settings, urlOf, crawlDays = new
   for (const [key, row] of rows) {
     if (today.has(key)) continue;
     if (row.lastSeen < keepFrom) { rows.delete(key); continue; }
-    if (row.status !== 'gone' && crawled.has(row.shop)) {
+    if (row.status !== 'gone' && crawled.has(row.shop) && !short.has(row.shop)) {
       row.status = 'gone';
       emit(row, 'gone');
     }

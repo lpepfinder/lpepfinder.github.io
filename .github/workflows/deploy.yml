@@ -96,7 +96,9 @@ jobs:
       # GitHub Pages sites may be 1 GB: stop at 900 MB so a growth spike never takes the site down
       - name: Size budget
         run: |
-          du -sm --apparent-size dist dist/search dist/w dist/new dist/feed 2>/dev/null || true
+          # each part on its own line (du lists a folder once: dist first would hide the rest)
+          du -sm --apparent-size dist/* dist/w/* | sort -rn | head -12
+          du -sm --apparent-size dist
           test "$(du -sm --apparent-size dist | cut -f1)" -le 900
       # the built site in a browser, as readers use it: a failing test stops here, the live site keeps the previous build
       - name: Browser for the end-to-end tests

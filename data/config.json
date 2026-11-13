@@ -78,13 +78,17 @@
     "typeSettleMs": 2000
   },
   "ledger": {
-    "description": "The offer ledger (scripts/ledger, docs/ledger.md): every offer seen, day by day. Events (new, restock, sold out, price drop) are kept `eventDays` days; a shop's first `newShopCrawls` crawls make no \"new\" events (its whole catalog would be new). Prices are logged `lowPriceDays` days; a price drop counts for `priceDropDays` days and up to `maxDrop` (a bigger drop is a pricing error). Gone offers stay searchable as sold out for `goneSearchDays` and in the ledger for `goneKeepDays`. A watch file lists at most `watchShops` shops per record.",
+    "description": "The offer ledger (scripts/ledger, docs/ledger.md): every offer seen, day by day. Events (new, restock, sold out, price drop) are kept `eventDays` days; a shop's first `newShopCrawls` crawls make no \"new\" events (its whole catalog would be new). Prices are logged `lowPriceDays` days; a price drop counts for `priceDropDays` days and up to `maxDrop` (a bigger drop is a pricing error). Gone offers stay searchable as sold out for `goneSearchDays` and in the ledger for `goneKeepDays`. A crawl that lists less than `shortCrawl` of a shop's offers (shops of `shortCrawlMin` offers or more) is short: its missing offers are not gone, for `shortCrawlDays` crawls in a row. A watch file lists at most `watchShops` shops per record; the site publishes the events of the last `watchDays` days (they weigh 20 to 40 MB a day, GitHub Pages holds 1 GB).",
     "eventDays": 14,
     "newShopCrawls": 2,
     "lowPriceDays": 90,
     "goneSearchDays": 90,
     "goneKeepDays": 365,
     "watchShops": 12,
+    "watchDays": 3,
+    "shortCrawl": 0.8,
+    "shortCrawlMin": 100,
+    "shortCrawlDays": 3,
     "priceDropDays": 14,
     "maxDrop": 0.7
   },

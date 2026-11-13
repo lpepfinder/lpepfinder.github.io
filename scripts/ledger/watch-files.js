@@ -12,6 +12,7 @@ import { catnosIn, catShard, firstWordTag } from '../../src/lib/watch/catno.js';
  *                                         at most `watchShops` shops (index into shops.json)
  *   shops.json                            [shopId, …] for the shop indexes of the `now` files (same build)
  *   d/<YYYY-MM-DD>.json                   [[releaseKey, offerKey, event, priceCents, currency, title, url, shopId], ...]
+ *                                         the last `watchDays` days of events (a browser away longer reads `now`)
  *   index.json                            { dates: ["YYYY-MM-DD", ...] oldest first, builtAt }
  *   cat/<first 2 chars>.json              { catno: ["releaseKey:tag", ...] } catalog numbers (src/lib/watch/catno.js) found
  *                                         in titles and SKUs of offers in stock; tag: 4 hex of the listing's first word,
@@ -74,7 +75,7 @@ export function writeWatchFiles({ ledger, shops, outDir, settings, docs = [] }) 
   for (const [shard, obj] of shards) write(path.join(outDir, 'now', `${shard}.json`), obj);
   write(path.join(outDir, 'shops.json'), shopIds);
   // releases without a key (too short titles) can't be watched
-  const days = [...ledger.events].sort((a, b) => a.day.localeCompare(b.day));
+  const days = [...ledger.events].sort((a, b) => a.day.localeCompare(b.day)).slice(-(settings.watchDays || Infinity));
   for (const e of days) write(path.join(outDir, 'd', `${e.day}.json`), e.list.filter((x) => x[0]));
   write(path.join(outDir, 'index.json'), { dates: days.map((e) => e.day), builtAt: new Date().toISOString() });
   const catnos = writeCatalogNumbers(docs, path.join(outDir, 'cat'));

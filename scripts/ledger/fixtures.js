@@ -2,7 +2,7 @@
 import { applyDay, emptyLedger } from './diff.js';
 import { offerKey } from './keys.js';
 
-export const settings = { eventDays: 14, newShopCrawls: 2, lowPriceDays: 90, goneSearchDays: 90, goneKeepDays: 365, priceDropDays: 14 };
+export const settings = { eventDays: 14, newShopCrawls: 2, lowPriceDays: 90, goneSearchDays: 90, goneKeepDays: 365, priceDropDays: 14, shortCrawl: 0.8, shortCrawlMin: 100, shortCrawlDays: 3 };
 export const urlOf = (shop, p) => `https://${shop}${p}`;
 export const offer = (shop, p, extra = {}) => ({
   offerKey: offerKey(shop, p), releaseKey: 'abcdef123456', shop, path: p, title: `Artist – ${p}`,

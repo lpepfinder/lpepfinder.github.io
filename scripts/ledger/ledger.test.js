@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { emptyLedger } from './diff.js';
+import { applyDay, emptyLedger } from './diff.js';
 import { addDays } from './day.js';
 import { offerKey } from './keys.js';
 import { updateLedger } from './update.js';
@@ -50,6 +50,26 @@ test('sold out, restock, price down and gone', () => {
   const back = run(ledger, [offer('a.com', '/r1'), offer('a.com', '/r2', { price: 1500 }), offer('a.com', '/r4', { available: false })], '2026-11-04');
   assert.deepEqual(kinds(back), ['gone:a.com/r3', 'restock:a.com/r1']);
   assert.equal(ledger.rows.get(offerKey('a.com', '/r4')).status, 'out');
+});
+
+test('a short crawl keeps the missing offers, for shortCrawlDays crawls in a row', () => {
+  const opts = { settings: { ...settings, shortCrawl: 0.8, shortCrawlMin: 5, shortCrawlDays: 2 }, urlOf: (s, p) => `https://${s}${p}` };
+  const all = Array.from({ length: 10 }, (_, i) => offer('a.com', `/r${i}`));
+  const ledger = emptyLedger();
+  for (const day of ['2026-11-01', '2026-11-02']) applyDay(ledger, all, day, opts);
+  // 5 of 10: cut off halfway, nothing is gone and nothing comes back the next day
+  assert.deepEqual(applyDay(ledger, all.slice(0, 5), '2026-11-03', opts), []);
+  assert.equal(ledger.rows.get(offerKey('a.com', '/r9')).status, 'in');
+  assert.equal(ledger.meta.shops['a.com'].short, 1);
+  assert.deepEqual(applyDay(ledger, all, '2026-11-04', opts), []);
+  assert.equal(ledger.meta.shops['a.com'].short, undefined);
+  // 9 of 10 is a normal crawl
+  assert.deepEqual(kinds(applyDay(ledger, all.slice(0, 9), '2026-11-05', opts)), ['gone:a.com/r9']);
+  // a shop that really shrank: held twice, gone the third time
+  const half = all.slice(0, 4);
+  assert.deepEqual(applyDay(ledger, half, '2026-11-06', opts), []);
+  assert.deepEqual(applyDay(ledger, half, '2026-11-07', opts), []);
+  assert.equal(applyDay(ledger, half, '2026-11-08', opts).filter((e) => e[2] === 'gone').length, 5);
 });
 
 test('a shop without records today keeps its rows', () => {
