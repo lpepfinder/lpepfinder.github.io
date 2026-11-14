@@ -124,6 +124,8 @@ export class VfWatchSources extends HTMLElement {
     const page = this.closest('vf-watch-page') || document;
     if (kind === 'collection' && sources().discogs?.user) return this.resync('collection');
     const sheet = page.querySelector(`vf-sheet[name="${kind === 'radio' ? 'radio' : 'discogs'}"]`);
+    const importer = sheet?.querySelector('vf-watch-import');
+    if (importer) importer.kind = kind;
     sheet?.open();
     sheet?.querySelector('input:not([type="file"])')?.focus();
   }
@@ -141,6 +143,7 @@ export class VfWatchSources extends HTMLElement {
     const importer = sheet?.querySelector('vf-watch-import');
     if (!importer) return;
     importer.user.value = sources().discogs?.user || importer.user.value;
+    importer.kind = kind === 'collection' ? 'collection' : 'wants';
     sheet.open();
     if (kind === 'collection') importer.fromCollection(); else importer.fromDiscogs();
   }

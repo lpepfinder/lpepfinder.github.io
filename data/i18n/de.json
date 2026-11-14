@@ -315,7 +315,12 @@
     "badgeDiscogs": "Discogs",
     "badgeRadio": "Radio",
     "sourceLabel": "Zeigen",
-    "source": {"all": "Alle", "discogs": "Discogs-Wünsche", "radio": "Radio", "search": "Aus der Suche"},
+    "source": {
+      "all": "Alle",
+      "discogs": "Discogs-Wünsche",
+      "radio": "Radio",
+      "search": "Aus der Suche"
+    },
     "rating": "Deine Bewertung: {rating} von 5",
     "moreShops": {
       "one": "1 weiterer Shop",
@@ -329,12 +334,13 @@
       "other": "{count} neu"
     },
     "discogsTitle": "Deine Discogs-Wantlist importieren",
-    "discogsIntro": "Wünsche werden täglich über die Katalognummer sowie Künstler und Titel abgeglichen.",
+    "collectionTitle": "Deine Discogs-Sammlung importieren",
     "discogsUser": "Discogs-Benutzername",
     "discogsUserPlaceholder": "dein-name",
     "discogsImport": "Importieren",
-    "discogsPublic": "Deine Wantlist muss auf Discogs öffentlich sein. Dieser Browser liest sie bei Discogs und speichert sie nur hier.",
-    "csvLabel": "Oder lade eine CSV-Datei von Discogs hoch (Wantlist oder Collection → Export):",
+    "discogsPublic": "Deine Wantlist muss auf Discogs öffentlich sein.",
+    "collectionPublic": "Deine Sammlung muss auf Discogs öffentlich sein.",
+    "csvLabel": "Privat? Lade den CSV-Export hoch",
     "discogsLoading": "Wantlist von {user} wird bei Discogs gelesen…",
     "discogsProgress": "Wantlist wird gelesen… {count} Platten",
     "discogsDone": {
@@ -372,7 +378,6 @@
     "maxSet": "Höchstpreis {price}: teurere Exemplare werden ausgeblendet.",
     "maxCleared": "Kein Höchstpreis.",
     "undo": "Rückgängig",
-    "collectionImport": "Auch meine Sammlung importieren",
     "collectionLoading": "Sammlung von {user} wird bei Discogs gelesen…",
     "collectionDone": {
       "one": "{user}: 1 Platte in deiner Sammlung, in der Suche als „Hab ich“ markiert.",
@@ -627,7 +632,6 @@
     "label": "Radio (Bluesky-Handle)",
     "placeholder": "jemand.bsky.social",
     "find": "Platten finden",
-    "intro": "Die neuesten Tracks deines Radios, mit Platten auf Lager abgeglichen: exakt bei Tracks mit Discogs-Link, sonst eine Vermutung nach dem Songtitel. Du wählst, was hinzukommt.",
     "reading": "Radio von {handle} wird gelesen…",
     "matching": "Suche nach Platten… {done} / {total} Tracks",
     "checking": "Discogs-Links werden geprüft…",
@@ -640,8 +644,14 @@
     "error": "Das Radio von {handle} konnte nicht gelesen werden. Prüfe das Handle.",
     "exact": "Discogs-Link von „{track}“",
     "guess": "Enthält „{track}“? Vor dem Hinzufügen prüfen.",
-    "allExact": {"one": "Der genaue Treffer", "other": "Alle {count} genauen Treffer"},
-    "allGuesses": {"one": "Die Vermutung nach dem Songtitel", "other": "Alle {count} Vermutungen nach den Songtiteln"},
+    "allExact": {
+      "one": "Der genaue Treffer",
+      "other": "Alle {count} genauen Treffer"
+    },
+    "allGuesses": {
+      "one": "Die Vermutung nach dem Songtitel",
+      "other": "Alle {count} Vermutungen nach den Songtiteln"
+    },
     "add": {
       "one": "1 zur Liste hinzufügen",
       "other": "{count} zur Liste hinzufügen"

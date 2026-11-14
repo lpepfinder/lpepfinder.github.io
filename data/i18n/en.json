@@ -315,7 +315,12 @@
     "badgeDiscogs": "Discogs",
     "badgeRadio": "Radio",
     "sourceLabel": "Show",
-    "source": {"all": "All", "discogs": "Discogs wants", "radio": "Radio", "search": "From the search"},
+    "source": {
+      "all": "All",
+      "discogs": "Discogs wants",
+      "radio": "Radio",
+      "search": "From the search"
+    },
     "rating": "Your rating: {rating} of 5",
     "moreShops": {
       "one": "1 more shop",
@@ -329,12 +334,13 @@
       "other": "{count} new"
     },
     "discogsTitle": "Import your Discogs wantlist",
-    "discogsIntro": "Wants are matched by catalog number, and by artist and title, every day.",
+    "collectionTitle": "Import your Discogs collection",
     "discogsUser": "Discogs username",
     "discogsUserPlaceholder": "your-username",
     "discogsImport": "Import",
-    "discogsPublic": "Your wantlist must be public on Discogs. It is read from Discogs by this browser and kept here only.",
-    "csvLabel": "Or upload a CSV file from Discogs (Wantlist or Collection → Export):",
+    "discogsPublic": "Your wantlist must be public on Discogs.",
+    "collectionPublic": "Your collection must be public on Discogs.",
+    "csvLabel": "Private? Upload the CSV export",
     "discogsLoading": "Reading the wantlist of {user} from Discogs…",
     "discogsProgress": "Reading your wantlist… {count} records",
     "discogsDone": {
@@ -372,7 +378,6 @@
     "maxSet": "Max price {price}: copies above it are hidden.",
     "maxCleared": "No max price.",
     "undo": "Undo",
-    "collectionImport": "Import my collection too",
     "collectionLoading": "Reading the collection of {user} from Discogs…",
     "collectionDone": {
       "one": "{user}: 1 record in your collection, marked Owned in search.",
@@ -627,7 +632,6 @@
     "label": "Radio (Bluesky handle)",
     "placeholder": "someone.bsky.social",
     "find": "Find records",
-    "intro": "Your radio's latest tracks, matched to records in stock: exact for tracks with a Discogs link, a guess from the song's title otherwise. You choose what to add.",
     "reading": "Reading the radio of {handle}…",
     "matching": "Looking for records… {done} / {total} tracks",
     "checking": "Checking Discogs links…",
@@ -640,8 +644,14 @@
     "error": "The radio of {handle} couldn't be read. Check the handle.",
     "exact": "Discogs link of “{track}”",
     "guess": "Has “{track}”? Check before adding.",
-    "allExact": {"one": "The exact match", "other": "All {count} exact matches"},
-    "allGuesses": {"one": "The guess, from the song title", "other": "All {count} guesses, from the song titles"},
+    "allExact": {
+      "one": "The exact match",
+      "other": "All {count} exact matches"
+    },
+    "allGuesses": {
+      "one": "The guess, from the song title",
+      "other": "All {count} guesses, from the song titles"
+    },
     "add": {
       "one": "Add 1 to my watchlist",
       "other": "Add {count} to my watchlist"

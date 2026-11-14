@@ -2,12 +2,12 @@
 import { t } from '../lib/i18n.js';
 
 /**
- * <vf-watch-import>: a Discogs wantlist by username, or its CSV export (vf-watch-import.js).
- * Used twice on the watch page: the start screen of an empty list, and the Discogs sheet. id: prefix of field ids.
+ * <vf-watch-import kind="wants|collection">: a Discogs wantlist or collection by username, or its CSV export
+ * (vf-watch-import.js), in the Discogs sheet of the watch page. id: prefix of field ids.
  */
 const { lang, id } = Astro.props;
 ---
-<vf-watch-import status="idle">
+<vf-watch-import status="idle" kind="wants">
   <form>
     <label for={`${id}-discogs-user`}>{t(lang, 'watchPage.discogsUser')}</label>
     <vf-field>
@@ -15,9 +15,7 @@ const { lang, id } = Astro.props;
       <button type="submit">{t(lang, 'watchPage.discogsImport')}</button>
     </vf-field>
   </form>
-  <p><button type="button" name="collection" kind="secondary">{t(lang, 'watchPage.collectionImport')}</button></p>
-  <p>{t(lang, 'watchPage.discogsPublic')}</p>
-  <p><label>{t(lang, 'watchPage.csvLabel')} <input type="file" name="csv" accept=".csv,text/csv"></label></p>
+  <p><span>{t(lang, 'watchPage.discogsPublic')}</span> <label>{t(lang, 'watchPage.csvLabel')}<input type="file" name="csv" accept=".csv,text/csv"></label></p>
   <vf-progress hidden>
     <label for={`${id}-discogs-progress`}></label>
     <progress id={`${id}-discogs-progress`}></progress>

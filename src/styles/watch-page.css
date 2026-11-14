@@ -157,7 +157,8 @@ vf-watch-import form { display: grid; gap: var(--space-1); }
 vf-watch-import form label { font-weight: var(--weight-semi); }
 vf-field { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 vf-field > button { flex: none; }
-vf-watch-import label:has(> input[type="file"]) { white-space: normal; max-inline-size: 100%; }
+/* the CSV upload, for a private list: a link in the hint line, not a second button */
+vf-watch-import p > label:has(> input[type="file"]) { display: inline; min-block-size: 0; padding: 0; background: none; box-shadow: none; font-weight: inherit; color: var(--c-link); text-decoration: underline; }
 /* the field takes what the button leaves, at least --field-min, else the button goes under it; inline-size 0
    drops the field's built-in ~20 characters, which would widen the page */
 vf-field input { flex: 1 1 var(--field-min); inline-size: 0; min-inline-size: 0; }

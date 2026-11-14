@@ -62,10 +62,7 @@ const sources = [['all', null], ['discogs', 'star'], ['radio', 'play'], ['search
       <p>{t(lang, 'me.empty')} <a href={localPath(lang, '/')}>{t(lang, 'me.emptySearch')}</a></p>
     </vf-watch-start>
     <Sheet lang={lang} name="discogs" mode="bottom" title={t(lang, 'watchPage.discogsTitle')}>
-      <vf-sheet-body>
-        <p>{t(lang, 'watchPage.discogsIntro')}</p>
-        <WatchImport lang={lang} id="sheet" />
-      </vf-sheet-body>
+      <vf-sheet-body><WatchImport lang={lang} id="sheet" /></vf-sheet-body>
     </Sheet>
     <Sheet lang={lang} name="radio" mode="bottom" title={t(lang, 'radio.title')}>
       <vf-sheet-body><RadioImport lang={lang} id="sheet" /></vf-sheet-body>

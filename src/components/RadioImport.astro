@@ -12,10 +12,9 @@ const { lang, id } = Astro.props;
     <label for={`${id}-radio`}>{t(lang, 'radio.label')}</label>
     <vf-field>
       <input id={`${id}-radio`} name="handle" autocomplete="off" autocapitalize="off" spellcheck="false" required placeholder={t(lang, 'radio.placeholder')}>
-      <button type="submit" kind="secondary">{t(lang, 'radio.find')}</button>
+      <button type="submit">{t(lang, 'radio.find')}</button>
     </vf-field>
   </form>
-  <p>{t(lang, 'radio.intro')}</p>
   <vf-progress hidden><label for={`${id}-radio-progress`}></label><progress id={`${id}-radio-progress`}></progress></vf-progress>
   <output aria-live="polite"></output>
   <ol></ol>

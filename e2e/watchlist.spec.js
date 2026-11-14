@@ -15,7 +15,13 @@ test('watchlist: Discogs import, copies of a record, max price, Bought and Undo'
   const watch = page.locator('vf-watch-page');
   await expect(watch).toHaveAttribute('empty');
 
+  // one sheet for both Discogs lists: its title says which one the username is for
+  const title = page.locator('vf-sheet[name="discogs"] header h2');
+  await page.locator('vf-source[kind="collection"] button[name="connect"]').click();
+  await expect(title).toHaveText(en.watchPage.collectionTitle);
+  await page.keyboard.press('Escape');
   await page.locator('vf-source[kind="wants"] button[name="connect"]').click();
+  await expect(title).toHaveText(en.watchPage.discogsTitle);
   const start = page.locator('vf-sheet[name="discogs"] vf-watch-import');
   await start.locator('input[name="user"]').fill(USER);
   await start.locator('button[type="submit"]').click();

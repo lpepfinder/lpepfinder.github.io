@@ -15,8 +15,9 @@ const remember = (u) => { try { localStorage.setItem(USER(), u); } catch {} };
 const page = () => document.querySelector('vf-watch-page');
 
 /**
- * <vf-watch-import status="idle|loading|done|error">: a Discogs wantlist into the watchlist, by
- * username (public wantlist, read page by page, usable while it loads) or from the CSV export.
+ * <vf-watch-import kind="wants|collection" status="idle|loading|done|error">: a Discogs wantlist into the
+ * watchlist, or a collection marked Owned, by username (public list, read page by page, usable while it loads)
+ * or from the CSV export (either kind, told apart by its columns). Set `kind` to switch the sheet's title and hint.
  * Importing the same username again syncs: wants removed on Discogs leave the watchlist.
  * Fires "vf-watch-imported" on window when a username was imported (the page labels its Discogs button).
  */
@@ -31,9 +32,18 @@ export class VfWatchImport extends HTMLElement {
     this.user.value = read();
     // the page has two import forms (start screen, Discogs sheet): a username imported in one fills the other
     listen(this, window, 'vf-watch-imported', () => { if (!this.user.value) this.user.value = read(); });
-    this.form.addEventListener('submit', (e) => { e.preventDefault(); this.fromDiscogs(); });
-    this.querySelector('button[name="collection"]').addEventListener('click', () => this.fromCollection());
+    this.form.addEventListener('submit', (e) => { e.preventDefault(); if (this.kind === 'collection') this.fromCollection(); else this.fromDiscogs(); });
     this.querySelector('input[name="csv"]').addEventListener('change', (e) => this.fromFile(e.target));
+  }
+
+  get kind() { return this.getAttribute('kind') || 'wants'; }
+
+  /** The wantlist or the collection: the sheet's title and the hint follow. */
+  set kind(kind) {
+    this.setAttribute('kind', kind);
+    const title = this.closest('dialog')?.querySelector('header h2');
+    if (title) title.textContent = t(kind === 'collection' ? 'watchPage.collectionTitle' : 'watchPage.discogsTitle');
+    this.querySelector('p > span').textContent = t(kind === 'collection' ? 'watchPage.collectionPublic' : 'watchPage.discogsPublic');
   }
 
   /** Add one batch of wants; returns how many were new. */

@@ -315,7 +315,12 @@
     "badgeDiscogs": "Discogs",
     "badgeRadio": "Radio",
     "sourceLabel": "Mostra",
-    "source": {"all": "Tutti", "discogs": "Wantlist Discogs", "radio": "Radio", "search": "Dalla ricerca"},
+    "source": {
+      "all": "Tutti",
+      "discogs": "Wantlist Discogs",
+      "radio": "Radio",
+      "search": "Dalla ricerca"
+    },
     "rating": "Il tuo voto: {rating} su 5",
     "moreShops": {
       "one": "1 altro negozio",
@@ -329,12 +334,13 @@
       "other": "{count} nuovi"
     },
     "discogsTitle": "Importa la tua wantlist di Discogs",
-    "discogsIntro": "I desideri sono abbinati per numero di catalogo, e per artista e titolo, ogni giorno.",
+    "collectionTitle": "Importa la tua collezione di Discogs",
     "discogsUser": "Nome utente Discogs",
     "discogsUserPlaceholder": "il-tuo-nome",
     "discogsImport": "Importa",
-    "discogsPublic": "La tua wantlist deve essere pubblica su Discogs. Questo browser la legge da Discogs e la conserva solo qui.",
-    "csvLabel": "Oppure carica un file CSV di Discogs (Wantlist o Collection → Export):",
+    "discogsPublic": "La tua wantlist deve essere pubblica su Discogs.",
+    "collectionPublic": "La tua collezione deve essere pubblica su Discogs.",
+    "csvLabel": "Privata? Carica l’export CSV",
     "discogsLoading": "Lettura della wantlist di {user} da Discogs…",
     "discogsProgress": "Lettura della tua wantlist… {count} dischi",
     "discogsDone": {
@@ -372,7 +378,6 @@
     "maxSet": "Prezzo massimo {price}: le copie più care sono nascoste.",
     "maxCleared": "Nessun prezzo massimo.",
     "undo": "Annulla",
-    "collectionImport": "Importa anche la mia collezione",
     "collectionLoading": "Lettura della collezione di {user} da Discogs…",
     "collectionDone": {
       "one": "{user}: 1 disco nella tua collezione, segnato «Ce l’ho» nella ricerca.",
@@ -627,7 +632,6 @@
     "label": "Radio (handle Bluesky)",
     "placeholder": "qualcuno.bsky.social",
     "find": "Trova dischi",
-    "intro": "Le ultime tracce della tua radio, abbinate ai dischi disponibili: esatto per quelle con un link Discogs, altrimenti un’ipotesi dal titolo. Scegli tu cosa aggiungere.",
     "reading": "Lettura della radio di {handle}…",
     "matching": "Ricerca dei dischi… {done} / {total} tracce",
     "checking": "Controllo dei link Discogs…",
@@ -640,8 +644,14 @@
     "error": "Impossibile leggere la radio di {handle}. Controlla l’handle.",
     "exact": "Link Discogs di «{track}»",
     "guess": "Contiene «{track}»? Verifica prima di aggiungere.",
-    "allExact": {"one": "La corrispondenza esatta", "other": "Tutte le {count} corrispondenze esatte"},
-    "allGuesses": {"one": "L’ipotesi, dal titolo", "other": "Tutte le {count} ipotesi, dai titoli"},
+    "allExact": {
+      "one": "La corrispondenza esatta",
+      "other": "Tutte le {count} corrispondenze esatte"
+    },
+    "allGuesses": {
+      "one": "L’ipotesi, dal titolo",
+      "other": "Tutte le {count} ipotesi, dai titoli"
+    },
     "add": {
       "one": "Aggiungi 1 alla mia lista",
       "other": "Aggiungi {count} alla mia lista"

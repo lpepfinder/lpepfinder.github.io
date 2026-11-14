@@ -315,7 +315,12 @@
     "badgeDiscogs": "Discogs",
     "badgeRadio": "Radio",
     "sourceLabel": "Afficher",
-    "source": {"all": "Tous", "discogs": "Envies Discogs", "radio": "Radio", "search": "De la recherche"},
+    "source": {
+      "all": "Tous",
+      "discogs": "Envies Discogs",
+      "radio": "Radio",
+      "search": "De la recherche"
+    },
     "rating": "Votre note : {rating} sur 5",
     "moreShops": {
       "one": "1 autre boutique",
@@ -329,12 +334,13 @@
       "other": "{count} nouveaux"
     },
     "discogsTitle": "Importer votre wantlist Discogs",
-    "discogsIntro": "Les disques recherchés sont rapprochés par numéro de catalogue, et par artiste et titre, chaque jour.",
+    "collectionTitle": "Importer votre collection Discogs",
     "discogsUser": "Nom d’utilisateur Discogs",
     "discogsUserPlaceholder": "votre-pseudo",
     "discogsImport": "Importer",
-    "discogsPublic": "Votre wantlist doit être publique sur Discogs. Ce navigateur la lit sur Discogs et la garde ici uniquement.",
-    "csvLabel": "Ou chargez un fichier CSV de Discogs (Wantlist ou Collection → Export) :",
+    "discogsPublic": "Votre wantlist doit être publique sur Discogs.",
+    "collectionPublic": "Votre collection doit être publique sur Discogs.",
+    "csvLabel": "Privée ? Chargez l’export CSV",
     "discogsLoading": "Lecture de la wantlist de {user} sur Discogs…",
     "discogsProgress": "Lecture de votre wantlist… {count} disques",
     "discogsDone": {
@@ -372,7 +378,6 @@
     "maxSet": "Prix max {price} : les exemplaires plus chers sont masqués.",
     "maxCleared": "Pas de prix max.",
     "undo": "Annuler",
-    "collectionImport": "Importer aussi ma collection",
     "collectionLoading": "Lecture de la collection de {user} sur Discogs…",
     "collectionDone": {
       "one": "{user} : 1 disque dans votre collection, marqué « À moi » dans la recherche.",
@@ -627,7 +632,6 @@
     "label": "Radio (identifiant Bluesky)",
     "placeholder": "quelquun.bsky.social",
     "find": "Trouver les disques",
-    "intro": "Les derniers morceaux de votre radio, rapprochés des disques en stock : exact pour ceux avec un lien Discogs, une supposition d’après le titre sinon. Vous choisissez quoi ajouter.",
     "reading": "Lecture de la radio de {handle}…",
     "matching": "Recherche de disques… {done} / {total} morceaux",
     "checking": "Vérification des liens Discogs…",
@@ -640,8 +644,14 @@
     "error": "La radio de {handle} n’a pas pu être lue. Vérifiez l’identifiant.",
     "exact": "Lien Discogs de « {track} »",
     "guess": "Contient « {track} » ? À vérifier avant d’ajouter.",
-    "allExact": {"one": "La correspondance exacte", "other": "Les {count} correspondances exactes"},
-    "allGuesses": {"one": "La supposition, d’après le titre", "other": "Les {count} suppositions, d’après les titres"},
+    "allExact": {
+      "one": "La correspondance exacte",
+      "other": "Les {count} correspondances exactes"
+    },
+    "allGuesses": {
+      "one": "La supposition, d’après le titre",
+      "other": "Les {count} suppositions, d’après les titres"
+    },
     "add": {
       "one": "Ajouter 1 à ma liste",
       "other": "Ajouter {count} à ma liste"
