@@ -9,6 +9,16 @@ import { qualityTests } from './quality.js';
  */
 test.beforeEach(({}, info) => test.skip(info.project.name !== 'desktop', 'the gate sizes its own viewports'));
 
+// nothing from outside the site (shop covers, analytics), as in fixtures.js: one cover host that never answers kept
+// the page's load event from firing and failed every screen with covers (2026-11-14). Images get a 1×1 PNG, so the
+// layout is the one readers see; anything else is aborted.
+const PIXEL = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64');
+test.beforeEach(async ({ page, baseURL }) => {
+  const site = new URL(baseURL).host;
+  await page.route((url) => url.host !== site && url.protocol.startsWith('http'), (route) => (route.request().resourceType() === 'image'
+    ? route.fulfill({ contentType: 'image/png', body: PIXEL }) : route.abort()));
+});
+
 const DIST = path.resolve(import.meta.dirname, '../dist');
 const { artists } = JSON.parse(fs.readFileSync(path.join(DIST, 'api/artists.json'), 'utf8'));
 const { shops } = JSON.parse(fs.readFileSync(path.join(DIST, 'api/shops.json'), 'utf8'));
