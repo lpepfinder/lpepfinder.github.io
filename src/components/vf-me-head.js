@@ -1,5 +1,5 @@
 import { currentAccount } from '../lib/atproto/accounts.js';
-import { currentProfile } from '../lib/watch/profiles.js';
+import { currentProfile, scoped } from '../lib/watch/profiles.js';
 import { SYNC_EVENT, syncState } from './atproto-boot.js';
 import { t, tn } from './i18n.js';
 import { listen, unlisten } from './dom.js';
@@ -8,7 +8,9 @@ import config from '../../data/atproto.json' with { type: 'json' };
 /**
  * <vf-me-head>: the top of /me/: the profile's picture (its account's Bluesky avatar, read once from the public
  * app view; else its initial), the profile in use as the title, and under it its account and sync state
- * ("@you · synced · 3 changes waiting") or "Local, in this browser". The link opens the profiles in Settings.
+ * ("@you · synced · 3 changes waiting") or "Local, in this browser". Its ⋯ menu (vf-menu): Prices in and Share
+ * (vf-watch-page opens their sheets), the profiles in Settings, Sync with Bluesky while signed out, and the public
+ * page once a list is published.
  */
 export class VfMeHead extends HTMLElement {
   connectedCallback() {
@@ -41,6 +43,15 @@ export class VfMeHead extends HTMLElement {
       ? [`@${account.handle}`, sync ? t(`account.sync.${sync.state}`) : null, sync?.waiting ? tn('account.waiting', sync.waiting) : null].filter(Boolean).join(' · ')
       : t('profiles.local');
     this.setAttribute('state', sync?.state || (account ? 'synced' : 'local'));
+    const signIn = this.querySelector('a[name="sign-in"]')?.closest('li');
+    if (signIn) signIn.hidden = !!account;
+    let published = {};
+    try { published = JSON.parse(localStorage.getItem(scoped('vf.publish'))) || {}; } catch {}
+    const page = this.querySelector('a[name="public"]');
+    if (page) {
+      page.closest('li').hidden = !account || !Object.values(published).some(Boolean);
+      if (account) page.search = `?h=${encodeURIComponent(account.handle)}`;
+    }
   }
 }
 customElements.define('vf-me-head', VfMeHead);

@@ -207,7 +207,6 @@
     }
   },
   "watchPage": {
-    "title": "ウォッチリスト",
     "description": "独立系レコード店でウォッチしているレコードと、前回の訪問からの変化。",
     "noChanges": "前回の訪問から変化はありません。",
     "event": {
@@ -232,7 +231,6 @@
     "unknownTitle": "レコード {key}",
     "checking": "店舗を確認中… {done} / {total}",
     "checked": "最新です。",
-    "backupTitle": "共有",
     "backupIntro": "ウォッチリストをリンクで共有できます。",
     "imported": {
       "other": "{count} 枚を追加しました。"
@@ -251,9 +249,6 @@
     },
     "summaryAvailable": {
       "other": "{shops}で{count}件が購入可能"
-    },
-    "summaryChanges": {
-      "other": "{date}以降の変更{count}件"
     },
     "views": "ウォッチリストの表示",
     "viewChanges": "変更",
@@ -298,13 +293,6 @@
     "whySearch": "{date} に検索から追加",
     "badgeDiscogs": "Discogs",
     "badgeRadio": "ラジオ",
-    "sourceLabel": "表示",
-    "source": {
-      "all": "すべて",
-      "discogs": "Discogs ウォント",
-      "radio": "ラジオ",
-      "search": "検索から"
-    },
     "rating": "あなたの評価：5点中{rating}点",
     "moreShops": {
       "other": "ほか{count}店"
@@ -346,9 +334,6 @@
     "copiesMissing": "今日の検索インデックスにこのレコードの在庫はありません。検索してショップの今の在庫を確認してください。",
     "searchIt": "検索する",
     "backRecords": "レコード",
-    "summaryStock": {
-      "other": "{count}件中{available}件が{shops}で在庫あり"
-    },
     "maxPrice": "上限価格",
     "maxSave": "保存",
     "bought": "購入済み",
@@ -653,10 +638,8 @@
     "signInShort": "サインイン"
   },
   "sources": {
-    "label": "リストの取得元",
     "wants": "Discogs ウォントリスト · {user}",
     "collection": "Discogs コレクション · {user}",
-    "bluesky": "Bluesky · @{handle}",
     "radio": "Radio4000 · @{handle}",
     "radioNew": "まだ照合していないラジオの曲があります",
     "radioAdded": "ラジオに新しい曲",
@@ -667,7 +650,6 @@
       "other": "{count} 枚"
     },
     "read": "{ago}に取得",
-    "synced": "{ago}に同期",
     "current": "最新",
     "more": {
       "other": "Discogs で {count} 件増加"
@@ -676,16 +658,17 @@
       "other": "Discogs で {count} 件減少"
     },
     "resync": "再同期",
-    "publicPage": "公開ページ",
     "wantsNone": "Discogsのウォントリスト",
     "wantsHint": "ほしいレコードの在庫を確認",
     "collectionNone": "Discogsのコレクション",
     "collectionHint": "持っているレコードに印を付ける",
     "radioHint": "ラジオの曲を在庫のレコードと照合",
-    "blueskyNone": "Bluesky",
-    "blueskyHint": "サインインすると、すべての端末で同じリストを使えます",
     "connect": "接続",
-    "import": "読み込む"
+    "import": "読み込む",
+    "all": "すべてのレコード",
+    "search": "検索から追加",
+    "inStock": "在庫 {count}",
+    "add": "リストを追加"
   },
   "profile": {
     "type": {
@@ -772,7 +755,11 @@
     "profiles": "プロフィール",
     "lists": "あなたのリスト",
     "empty": "まだ何もウォッチしていません。上のリストを接続するか、",
-    "emptySearch": "検索からレコードをウォッチ（☆）できます。"
+    "emptySearch": "検索からレコードをウォッチ（☆）できます。",
+    "menu": "その他",
+    "share": "ウォッチリストを共有",
+    "signIn": "Blueskyと同期",
+    "publicPage": "公開ページ"
   },
   "explore": {
     "intro": "検索以外の LP/EP Finder のすべて：お店の新入荷、国別のお店、アーティスト、コレクター、オープンデータ。{shops} 店に {records} 枚の在庫。",

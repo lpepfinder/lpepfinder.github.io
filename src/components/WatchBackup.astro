@@ -5,7 +5,6 @@ import { t, localPath } from '../lib/i18n.js';
 const { lang } = Astro.props;
 ---
 <vf-watch-backup>
-  <h2>{t(lang, 'watchPage.backupTitle')}</h2>
   <p>{t(lang, 'watchPage.backupIntro')} <a href={localPath(lang, '/settings/') + '#transfer'}>{t(lang, 'watchPage.backupMove')}</a></p>
   <menu>
     <li><button type="button" name="share" kind="secondary">{t(lang, 'watchPage.share')}</button></li>

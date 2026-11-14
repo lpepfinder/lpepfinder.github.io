@@ -215,7 +215,6 @@
     }
   },
   "watchPage": {
-    "title": "I dischi che segui",
     "description": "I dischi che segui nei negozi di dischi indipendenti e cosa è cambiato dalla tua ultima visita.",
     "noChanges": "Nessuna novità dalla tua ultima visita.",
     "event": {
@@ -242,7 +241,6 @@
     "unknownTitle": "Disco {key}",
     "checking": "Controllo dei negozi… {done} / {total}",
     "checked": "Aggiornato.",
-    "backupTitle": "Condividi",
     "backupIntro": "Condividi la tua lista con un link.",
     "imported": {
       "one": "1 disco aggiunto.",
@@ -265,10 +263,6 @@
     "summaryAvailable": {
       "one": "1 disponibile ora in {shops}",
       "other": "{count} disponibili ora in {shops}"
-    },
-    "summaryChanges": {
-      "one": "1 cambiamento dal {date}",
-      "other": "{count} cambiamenti dal {date}"
     },
     "views": "Viste della lista",
     "viewChanges": "Cambiamenti",
@@ -314,13 +308,6 @@
     "whySearch": "Aggiunto dalla ricerca il {date}",
     "badgeDiscogs": "Discogs",
     "badgeRadio": "Radio",
-    "sourceLabel": "Mostra",
-    "source": {
-      "all": "Tutti",
-      "discogs": "Wantlist Discogs",
-      "radio": "Radio",
-      "search": "Dalla ricerca"
-    },
     "rating": "Il tuo voto: {rating} su 5",
     "moreShops": {
       "one": "1 altro negozio",
@@ -367,10 +354,6 @@
     "copiesMissing": "Le sue copie non sono nell'indice di ricerca di oggi. Cercalo per vedere cosa hanno ora i negozi.",
     "searchIt": "Cercalo",
     "backRecords": "Dischi",
-    "summaryStock": {
-      "one": "{available} di 1 disco disponibili in {shops}",
-      "other": "{available} di {count} dischi disponibili in {shops}"
-    },
     "maxPrice": "Prezzo massimo",
     "maxSave": "Salva",
     "bought": "L’ho comprato",
@@ -693,10 +676,8 @@
     "signInShort": "Accedi"
   },
   "sources": {
-    "label": "Da dove vengono le tue liste",
     "wants": "Wantlist Discogs · {user}",
     "collection": "Collezione Discogs · {user}",
-    "bluesky": "Bluesky · @{handle}",
     "radio": "Radio4000 · @{handle}",
     "radioNew": "brani della tua radio, non ancora cercati",
     "radioAdded": "nuovi brani nella radio",
@@ -709,7 +690,6 @@
       "other": "{count} dischi"
     },
     "read": "letta {ago}",
-    "synced": "sincronizzato {ago}",
     "current": "aggiornata",
     "more": {
       "one": "1 in più su Discogs",
@@ -720,16 +700,17 @@
       "other": "{count} in meno su Discogs"
     },
     "resync": "Risincronizza",
-    "publicPage": "Pagina pubblica",
     "wantsNone": "Wantlist Discogs",
     "wantsHint": "Scopri quali dei tuoi desideri sono disponibili",
     "collectionNone": "Collezione Discogs",
     "collectionHint": "Segna i dischi che hai già",
     "radioHint": "Trova dischi per i brani della tua radio",
-    "blueskyNone": "Bluesky",
-    "blueskyHint": "Accedi per avere le tue liste su tutti i dispositivi",
     "connect": "Collega",
-    "import": "Importa"
+    "import": "Importa",
+    "all": "Tutti i tuoi dischi",
+    "search": "Aggiunti dalla ricerca",
+    "inStock": "{count} disponibili",
+    "add": "Aggiungi una lista"
   },
   "profile": {
     "type": {
@@ -822,7 +803,11 @@
     "profiles": "Profili",
     "lists": "Le tue liste",
     "empty": "Ancora niente da seguire. Collega una lista qui sopra, o",
-    "emptySearch": "segui dischi dalla ricerca (☆)."
+    "emptySearch": "segui dischi dalla ricerca (☆).",
+    "menu": "Altro",
+    "share": "Condividi la mia lista",
+    "signIn": "Sincronizza con Bluesky",
+    "publicPage": "La mia pagina pubblica"
   },
   "explore": {
     "intro": "Tutto LP/EP Finder oltre alla ricerca: le novità nei negozi, i negozi per paese, gli artisti, i collezionisti e i dati aperti. {records} dischi disponibili in {shops} negozi.",

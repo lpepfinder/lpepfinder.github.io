@@ -84,6 +84,7 @@ vf-icon[name="shield"] { --icon: var(--icon-shield); }
 vf-icon[name="pulse"] { --icon: var(--icon-pulse); }
 vf-icon[name="chat"] { --icon: var(--icon-chat); }
 vf-icon[name="plus"] { --icon: var(--icon-plus); }
+vf-icon[name="more"] { --icon: var(--icon-more); }
 vf-icon[name="download"] { --icon: var(--icon-download); }
 vf-icon[name="coin"] { --icon: var(--icon-coin); }
 vf-icon[name="bag"] { --icon: var(--icon-bag); }

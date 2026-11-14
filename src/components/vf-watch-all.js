@@ -14,8 +14,8 @@ const letterOf = (title) => {
 };
 
 /**
- * <vf-watch-all count="13000">: every watched record, A–Z, never all at once: pages of
- * config.pageSize with "Show more", a search box that filters, and a jump bar of the letters present.
+ * <vf-watch-all count="13000" long>: every watched record, A–Z, never all at once: pages of
+ * config.pageSize with "Show more", a search box that filters, and (long: more than a page) a jump bar of the letters present.
  * Set `search` (home path) and `source` (all, or one source: source.js) before `refresh()`. Remove buttons remove a record and keep the focus nearby.
  */
 export class VfWatchAll extends HTMLElement {
@@ -49,6 +49,7 @@ export class VfWatchAll extends HTMLElement {
     this.sorted = Object.entries(items).map(([key, it]) => ({ key, it, title: it.t || '', folded: fold(it.t) }))
       .sort((a, b) => collator.compare(a.title, b.title));
     this.setAttribute('count', this.sorted.length);
+    this.toggleAttribute('long', this.sorted.length > config.pageSize);
     this.filter();
   }
 

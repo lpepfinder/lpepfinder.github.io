@@ -39,9 +39,9 @@ test('watchlist: Discogs import, copies of a record, max price, Bought and Undo'
   await expect(rows.first()).toBeVisible();
   const inStock = await rows.count();
   expect(inStock).toBeGreaterThan(0);
-  // "6 watched, 6 in stock at 4 shops"-like summary
-  const summary = page.locator('vf-watch-summary');
-  await expect(summary).toContainText(String(inStock));
+  // the overview: "6 in stock · 6 watched · 4 shops" on the card of all records
+  const summary = page.locator('vf-watch-sources vf-source[kind="all"]');
+  await expect(summary).toContainText(en.sources.inStock.replace('{count}', String(inStock)));
   expect(await page.locator('main').innerText()).not.toMatch(RAW_KEY);
 
   // a record's copies, in the sheet (phone) or the pane (desktop)
@@ -111,7 +111,7 @@ test('watchlist: a record found for a radio track shows the track, with Listen',
   await expect(tracks.getByRole('link', { name: en.watchPage.listen })).toHaveAttribute('href', 'https://media.example/1');
 });
 
-test('watchlist: where records come from, Discogs or a radio: labels on the rows, chips and the lists\' cards show one source', async ({ page }) => {
+test('watchlist: where records come from, Discogs or a radio: labels on the rows, the overview cards show one source', async ({ page }) => {
   // half the records from a Discogs wantlist, half found for a radio's tracks; both lists connected
   const items = {};
   wants.forEach((w, i) => { items[w.key] = { t: w.title, a: '2026-01-01', ...(i % 2 ? { p: [`at://did:plc:e2e/radio.4000.track/${i}`] } : { d: 1, w: w.id }) }; });
@@ -134,10 +134,10 @@ test('watchlist: where records come from, Discogs or a radio: labels on the rows
   await expect(rows.locator('vf-badge[kind="discogs"]').first()).toHaveText(en.watchPage.badgeDiscogs);
   await expect(rows.locator('vf-badge[kind="radio"]').first()).toHaveText(en.watchPage.badgeRadio);
 
-  // the Radio chip: only the radio's records, in every tab
-  const chips = page.locator('vf-watch-from');
-  await expect(chips).toBeVisible();
-  await chips.locator('label[source="radio"]').click();
+  // the radio's card: only the radio's records, in every tab
+  const cards = page.locator('vf-watch-sources');
+  await expect(cards.locator('vf-source[kind="radio"]')).toContainText(en.sources.inStock.replace('{count}', ''));
+  await cards.locator('vf-source[source="radio"] > label').click();
   await expect(page).toHaveURL(/source=radio/);
   await expect(rows.first()).toBeVisible();
   for (const row of await rows.all()) await expect(row.locator('vf-badge[kind="radio"]')).toBeVisible();
@@ -145,11 +145,11 @@ test('watchlist: where records come from, Discogs or a radio: labels on the rows
   await expect(page).toHaveURL(/view=all&source=radio|source=radio&view=all/);
   await expect(page.locator('vf-watch-all ol > li')).toHaveCount(radio);
 
-  // the wantlist's card shows the Discogs wants; All shows everything again
-  await page.locator('vf-source[kind="wants"] strong a').click();
+  // the wantlist's card shows the Discogs wants; the card of all records shows everything again
+  await cards.locator('vf-source[source="discogs"] > label').click();
   await expect(page).toHaveURL(/source=discogs/);
   await expect(page.locator('vf-watch-all ol > li')).toHaveCount(Object.keys(items).length - radio);
-  await chips.locator('label[source="all"]').click();
+  await cards.locator('vf-source[source="all"] > label').click();
   await expect(page).not.toHaveURL(/source=/);
   await expect(page.locator('vf-watch-all ol > li')).toHaveCount(Object.keys(items).length);
 
@@ -164,4 +164,10 @@ test('watchlist: where records come from, Discogs or a radio: labels on the rows
   await rows.filter({ has: page.locator('vf-badge[kind="radio"]') }).first().locator(':scope > a').click();
   await expect(why.locator('vf-watch-tracks')).toContainText(en.watchPage.radioTracks);
   await expect(why.locator('p[source="discogs"]')).toBeHidden();
+  await page.keyboard.press('Escape');
+
+  // the ⋯ menu: Share opens its sheet
+  await page.locator('vf-me-head vf-menu > button').click();
+  await page.locator('#me-menu button[name="share"]').click();
+  await expect(page.locator('vf-sheet[name="share"]')).toHaveAttribute('open', '');
 });

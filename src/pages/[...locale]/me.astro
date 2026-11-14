@@ -9,19 +9,16 @@ import { t, localeParams, localPath } from '../../lib/i18n.js';
 import { pageTitle } from '../../lib/seo.js';
 
 /**
- * Me (/me/, was /watch/): the profile in use. Its name and account first (<vf-me-head>, a link to the profiles in
- * Settings), then its lists and whether they are up to date (Discogs wantlist and collection, a Radio4000 radio,
- * the Bluesky sync), then the watchlist: empty, a start screen to bring a Discogs wantlist; otherwise a header
- * (summary, Discogs and "Prices in" in sheets), chips for where the records come from (Discogs, a radio, the search;
- * shown once there are two), four tabs with counts (in stock, shops, activity, all), filter chips, and the records in
- * stock as search rows whose copies open in a detail pane.
+ * Me (/me/, was /watch/), mobile first: the profile in use with a ⋯ menu (Prices in, Share, Profiles, Bluesky), then
+ * the overview: one card per place the records come from (all of them, the Discogs wantlist, a radio, the search),
+ * each with how many are watched and in stock, picked to show only its records in every view, and "Add a list" for
+ * the lists not connected (all of them as cards while nothing is watched); then four tabs with counts (in stock,
+ * shops, changes, all), filter chips, and the records in stock as search rows whose copies open in a detail pane.
  */
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 const views = [['available', 'viewAvailable', 'bag'], ['now', 'viewShops', 'store'], ['changes', 'viewChanges', 'pulse'], ['all', 'viewAll', 'star']];
 const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
-// where the records come from (src/lib/watch/source.js): one at a time, in every view (?source=…)
-const sources = [['all', null], ['discogs', 'star'], ['radio', 'play'], ['search', 'search']];
 ---
 <Base lang={lang} path="/me/" title={pageTitle(t(lang, 'tabMe'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'profiles', 'radio', 'sources', 'account']}>
   <vf-watch-shared hidden>
@@ -35,28 +32,22 @@ const sources = [['all', null], ['discogs', 'star'], ['radio', 'play'], ['search
       <h1>{t(lang, 'profiles.default')}</h1>
       <p>{t(lang, 'profiles.local')}</p>
     </hgroup>
-    <a href={localPath(lang, '/settings/') + '#profiles'} kind="secondary"><vf-icon name="person"></vf-icon><span>{t(lang, 'me.profiles')}</span></a>
+    <vf-menu>
+      <button type="button" popovertarget="me-menu" aria-haspopup="menu" aria-expanded="false" kind="secondary" aria-label={t(lang, 'me.menu')} title={t(lang, 'me.menu')}><vf-icon name="more"></vf-icon></button>
+      <menu popover id="me-menu">
+        <li><button type="button" name="currency"><vf-icon name="coin"></vf-icon><span>{t(lang, 'currency.label')}</span> <data></data></button></li>
+        <li><button type="button" name="share"><vf-icon name="share"></vf-icon><span>{t(lang, 'me.share')}</span></button></li>
+        <li><a href={localPath(lang, '/settings/') + '#profiles'}><vf-icon name="person"></vf-icon><span>{t(lang, 'me.profiles')}</span></a></li>
+        <li><a href={localPath(lang, '/settings/') + '#account'} name="sign-in"><vf-icon name="bluesky"></vf-icon><span>{t(lang, 'me.signIn')}</span></a></li>
+        <li hidden><a href={localPath(lang, '/u/')} name="public"><vf-icon name="person"></vf-icon><span>{t(lang, 'me.publicPage')}</span></a></li>
+      </menu>
+    </vf-menu>
   </vf-me-head>
   <vf-watch-page status="idle" view="available" search={localPath(lang, '/')} empty>
-    <vf-watch-sources user-page={localPath(lang, '/u/')} settings={localPath(lang, '/settings/')}>
+    <vf-watch-sources>
       <h2 id="my-lists">{t(lang, 'me.lists')}</h2>
       <ul aria-labelledby="my-lists"></ul>
     </vf-watch-sources>
-    <vf-watch-head>
-      <hgroup>
-        <h2>{t(lang, 'watchPage.title')}</h2>
-        <vf-watch-summary></vf-watch-summary>
-      </hgroup>
-      <menu>
-        <li><button type="button" name="currency" kind="secondary"><vf-icon name="coin"></vf-icon><span>{t(lang, 'currency.label')}</span></button></li>
-      </menu>
-    </vf-watch-head>
-    <vf-watch-from hidden>
-      <fieldset>
-        <legend>{t(lang, 'watchPage.sourceLabel')}</legend>
-        {sources.map(([source, icon]) => <label source={source}><input type="radio" name="source" value={source} checked={source === 'all'}>{icon && <vf-icon name={icon}></vf-icon>}{t(lang, `watchPage.source.${source}`)} <data></data></label>)}
-      </fieldset>
-    </vf-watch-from>
     <!-- nothing watched yet: the lists above connect one; any record of the search can be watched too -->
     <vf-watch-start>
       <p>{t(lang, 'me.empty')} <a href={localPath(lang, '/')}>{t(lang, 'me.emptySearch')}</a></p>
@@ -66,6 +57,9 @@ const sources = [['all', null], ['discogs', 'star'], ['radio', 'play'], ['search
     </Sheet>
     <Sheet lang={lang} name="radio" mode="bottom" title={t(lang, 'radio.title')}>
       <vf-sheet-body><RadioImport lang={lang} id="sheet" /></vf-sheet-body>
+    </Sheet>
+    <Sheet lang={lang} name="share" mode="bottom" title={t(lang, 'me.share')}>
+      <vf-sheet-body><WatchBackup lang={lang} /></vf-sheet-body>
     </Sheet>
     <Sheet lang={lang} name="currency" mode="bottom" title={t(lang, 'currency.label')}>
       <vf-sheet-body><CurrencySelect lang={lang} id="currency-watch" /></vf-sheet-body>
@@ -166,13 +160,13 @@ const sources = [['all', null], ['discogs', 'star'], ['radio', 'play'], ['search
       <ol aria-labelledby="watch-all"></ol>
       <vf-watch-showing></vf-watch-showing>
       <button type="button" name="more" kind="secondary" hidden></button>
-      <WatchBackup lang={lang} />
     </vf-watch-all>
   </vf-watch-page>
 </Base>
 <script>
   import '../../components/vf-watch-page.js';
   import '../../components/vf-me-head.js';
+  import '../../components/vf-menu.js';
   import '../../components/vf-watch-backup.js';
   import '../../components/vf-radio-import.js';
 </script>
