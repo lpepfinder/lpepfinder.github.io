@@ -12,9 +12,10 @@
 
 vf-app[mode="home"] main { grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--home-col)), 1fr)); gap: var(--space-6); }
 vf-app[mode="home"] main > * { grid-column: 1 / -1; }
-@media (min-width: 90rem) {
+/* countries and artists side by side once two cards fit */
+@media (min-width: 64rem) {
   vf-app[mode="home"] main { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  vf-app[mode="home"] main > section:is(:has(vf-countries), :has(vf-grid[density])) { grid-column: auto; }
+  vf-app[mode="home"] main > section:is([aria-labelledby="home-countries"], [aria-labelledby="home-artists"]) { grid-column: auto; }
 }
 vf-app[mode="home"] main > hgroup p { font-size: var(--size-s); }
 
@@ -23,12 +24,12 @@ vf-app[mode="home"] main > :is(section, vf-recent) { display: grid; gap: var(--s
 vf-app[mode="home"] main > :is(section, vf-recent) h2 { margin: 0; font-size: var(--size-1); }
 vf-app[mode="home"] main > section > p { margin: 0; font-size: var(--size-s); }
 vf-app[mode="home"] main > vf-recent[hidden] { display: none; }
-/* Try and Recent sit with the search: chips without a card, centered on wide screens */
-vf-app[mode="home"] main > :is(vf-recent, section:has(> vf-chips)) { padding: 0; background: none; border: 0; }
+/* Recent sits with the search: chips without a card, centered on wide screens */
+vf-app[mode="home"] main > vf-recent { padding: 0; background: none; border: 0; }
 @media (min-width: 48rem) {
-  vf-app[mode="home"] main > :is(vf-recent, section:has(> vf-chips)) { justify-self: center; justify-items: center; max-inline-size: var(--hero-w); }
-  vf-app[mode="home"] main > :is(vf-recent, section:has(> vf-chips)) vf-chips > ul { justify-content: center; }
-  vf-app[mode="home"] main > :is(vf-recent, section:has(> vf-chips)) > h2 { font-size: var(--size-s); color: var(--c-muted); font-weight: var(--weight-semi); }
+  vf-app[mode="home"] main > vf-recent { justify-self: center; justify-items: center; max-inline-size: var(--hero-w); }
+  vf-app[mode="home"] main > vf-recent vf-chips > ul { justify-content: center; }
+  vf-app[mode="home"] main > vf-recent > h2 { font-size: var(--size-s); color: var(--c-muted); font-weight: var(--weight-semi); }
 }
 
 /* recent searches: chips with a small × each, then a quiet "Clear" */
