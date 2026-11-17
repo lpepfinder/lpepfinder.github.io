@@ -4,7 +4,7 @@ description: "How LP/EP Finder works, for people digging for records, for record
 order: 0
 ---
 
-LP/EP Finder searches the catalogs of independent record shops: millions of records in stock, in one search, with prices in your currency and a link to the shop that sells each copy. No account, no tracking cookies, no marketplace: you buy from the shop.
+LP/EP Finder searches the catalogs of independent record shops: millions of records in stock, in one search, with prices in your currency and a link to the shop that sells each copy. No account, no marketplace: you buy from the shop.
 
 ## Using LP/EP Finder
 

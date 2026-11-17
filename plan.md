@@ -20,16 +20,14 @@ Site on Cloudflare Workers static assets, index on R2 (`data.lpepfinder.com`, ve
 
 Decided 2026-11-13: stay on GitHub Pages until it is exhausted, then move the index (`search/`, `w/`) to R2 and keep the pages on GitHub Pages. The trigger is the `health` issue at 850 MB (`health.siteMaxMB`); the deploy stops at 900. On 2026-11-13 the site was ~850 MB with 3 days of watchlist events, growing ~11 MB a day with the records (~50,000 more a day). Before the move: chunk the search index by a hash of the record key instead of by position. Today one new record shifts every file, so all ~133,000 change daily: ~4M R2 writes a month, ~$13 beyond the free 1M. With stable chunks only the changed files are uploaded. Weighed and set aside: a Hetzner server (a fixed fee, upkeep, no CDN), a second GitHub Pages site (works around GitHub's limit), Cloudflare static assets alone (20,000 files per deployment).
 
-## Income without AdSense
+## Income beyond AdSense
 
-AdSense was removed on 2026-11-08 (savoir `income-without-tracking`: no tracking ad network); nothing replaces it yet. Ideas, in order of effort:
+AdSense auto ads came back on 2026-11-17 (removed 2026-11-08; the owner wants the site to earn something, see AGENTS.md). Other income, in order of effort:
 
 1. Donations: a page and a footer link to Liberapay or Open Collective; free, and tells us whether the daily users care.
 2. A sponsor slot, sold directly to a record shop or a label: a static image and a link, kept as CMS content (see the CMS item), no script.
 3. Partner links where a shop runs a partner programme: a tagged link to the offer, paid per sale, no tracking on our pages.
 4. Paid extras for heavy collectors (alerts by email, exports): needs accounts and payments, last.
-
-Also: remove the site from the AdSense account, so Google stops expecting `ads.txt`.
 
 ## One app-shell switch
 

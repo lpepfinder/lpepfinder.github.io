@@ -1,0 +1,30 @@
+---
+import config from '../../data/config.json';
+
+/**
+ * Google AdSense auto ads (config.ads). With ads.lazy the script is added on the
+ * first user interaction, or ads.delayMs after the page load, whichever comes
+ * first, then at the next idle period: it never delays the first paint or the
+ * first search.
+ */
+const { enabled, lazy, delayMs = 0, adsenseClient } = config.ads;
+const src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`;
+---
+{enabled && !lazy && <script is:inline async src={src} crossorigin="anonymous"></script>}
+{enabled && lazy && (
+  <script is:inline type="module" data-src={src} data-delay={delayMs}>
+    const { src, delay } = document.querySelector('script[data-src]').dataset;
+    const events = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+    let queued = false;
+    const load = () => document.head.append(Object.assign(document.createElement('script'), { src, async: true, crossOrigin: 'anonymous' }));
+    const idle = () => {
+      if (queued) return;
+      queued = true;
+      events.forEach((e) => removeEventListener(e, idle));
+      'requestIdleCallback' in window ? requestIdleCallback(load) : setTimeout(load);
+    };
+    events.forEach((e) => addEventListener(e, idle, { once: true, passive: true }));
+    const later = () => setTimeout(idle, Number(delay));
+    if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
+  </script>
+)}

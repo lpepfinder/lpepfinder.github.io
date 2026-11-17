@@ -16,6 +16,13 @@
   ],
   "defaultLanguage": "en",
   "repository": "https://github.com/lpepfinder/lpepfinder.github.io",
+  "ads": {
+    "description": "Google AdSense auto ads (src/components/Ads.astro), with the consent message set in AdSense (Privacy & messaging) for the EEA, UK and Switzerland. `enabled` loads them on every page; `lazy` adds the script on the first interaction or `delayMs` after load, so it never delays the first paint or search; `adsenseClient` is the publisher id, also written to /ads.txt.",
+    "enabled": true,
+    "lazy": true,
+    "delayMs": 4000,
+    "adsenseClient": "ca-pub-7578240828852744"
+  },
   "analytics": {
     "description": "Umami, cookieless page counts (docs/accounts.md): `umamiScript` and `umamiWebsiteId` load it on every page; `publicDashboard` is the open dashboard linked from the site.",
     "umamiScript": "https://eu.umami.is/script.js",

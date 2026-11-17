@@ -8,7 +8,7 @@ https://lpepfinder.com (formerly Vinyl Finder, vinyl-finder.gitlab.io).
 - Publish your lists on Bluesky if you want: collectors' pages and a feed of what people want and have.
 - Artist profiles from open data (MusicBrainz, Wikidata, Wikipedia, Wikimedia Commons), with every source credited.
 
-No server, no database, no tracker: GitHub Actions builds everything and GitHub Pages serves it.
+No server, no database: GitHub Actions builds everything and GitHub Pages serves it.
 
 ```
 data/shops/*.json ─▶ Refresh (daily) ──────────────────────────────▶ "data" release ─▶ Deploy (each push) ─▶ lpepfinder.com
