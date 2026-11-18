@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-18",
+  "shops": 2387,
+  "statuses": {
+    "dead": 118,
+    "listed": 1561,
+    "duplicate": 39,
+    "ok": 650,
+    "not-music": 12,
+    "blocked": 7
+  },
+  "crawledRecords": 5555257,
+  "sourceBytes": {
+    "shops": 453871509
+  }
+}
