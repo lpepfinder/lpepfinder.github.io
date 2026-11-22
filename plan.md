@@ -14,22 +14,23 @@ The owner finds the site messy and wants it to lean toward diggers: people explo
 
 The idea: the site answers "where can I find records like this, near me or shipping to me?" The place comes first, then the crate, then the record.
 
-### Four tabs: Dig, Search, Shops, Me
+### Three tabs: Search, Shops, Me
+
+Dig as it is (every new record, back in stock or cheaper, in every shop, as a cover grid) is not for people: on a phone it's an endless grid of unknown records with repeats and noisy shop titles. The owner, 2026-11-22: "nobody will use the dig tabs, maybe just crawlers". What a digger wants from "new" is new *for them*: on their list, at the shops they follow, near them. So the new-arrivals data moves to where it means something, and stays whole for robots.
 
 | Tab | What it is | Takes from today |
 |---|---|---|
-| **Dig** (home) | Crates to flip through: New, Back in stock, Price drops, Your records. The place you dig in sits on top as one chip: near me, a city, a country, ships to me, or anywhere. Format and price chips sit under it. | `/new/` (Dig), the home page's latest strip |
-| **Search** | The field, as today. Results lead with the place: the nearest shop, or "ships to you", then the price. Empty, it shows recent searches, popular artists and shops near you. | Popular artists (from home and Explore) |
-| **Shops** | Where the shops are: near me (a list by distance; a map later, see below), then by city and by country. A shop's page is a crate: what's new there this week, then everything in stock, with **Follow**. | Shops by country, cities (from home and Explore) |
+| **Search** (home) | The field on top. Empty, it shows what's new for you (records from your lists in stock, new at the shops you follow, new near you), recent searches and popular artists. Results lead with the place: the nearest shop, or "ships to you", then the price. | Home, popular artists, Dig's "Your records" |
+| **Shops** | Where the shops are: near me (a list by distance; a map later, see below), then by city and by country. A shop's page leads with what's new there this week, then everything in stock, with **Follow**. | Shops by country, cities, Dig's new arrivals per shop |
 | **Me** | Your lists, as today, plus the shops you follow. Settings, profiles and language go in its ⋯ menu. | Settings tab, Collectors |
 
-Explore goes away, redirected to Dig, like `/more/` and `/watch/` before. Its data links (status, JSON, llms.txt, Atom, docs) move to one footer line on every page and to About.
+Explore goes away, redirected to Search like `/more/` and `/watch/` before. The Dig crates leave the navigation, but the new arrivals stay whole for robots and agents: `dig.json`, the Atom feeds, and the static `/new/` pages per country and format, which search engines index, linked from the footer instead of a tab. Their data links (status, JSON, llms.txt, Atom, docs) move to one footer line on every page and to About.
 
 ### New things a digger needs
 
-1. **One "where I dig" setting**, kept in this browser: near me (asked once with the browser's geolocation, the position never leaves the browser), a city, a country, ships to me (from the currency and region already kept), or anywhere. Dig, Search and Shops all read it, so it's chosen once, not per page.
+1. **One "where I dig" setting**, kept in this browser: near me (the browser's position, asked only when "near me" is tapped; it never leaves the browser), a city, a country, ships to me (from the currency and region already kept), or anywhere. Search, Shops and Me all read it, so it's chosen once, not per page.
 2. **Shop places**: latitude and longitude per shop, at build time. They come from OpenStreetMap for the shops found there, and from Nominatim, paced, for the others, the way discovery already does it (`scripts/discover`). Today no shop has coordinates and 863 of 2,401 have a city: this is the first data job, and "near me" waits for it.
-3. **Follow a shop**: its new records join a "Followed shops" crate in Dig. It's kept like the watchlist (in this browser, synced to Bluesky when signed in). The data is already in `dig.json`, per shop.
+3. **Follow a shop**: its new records show in Search's "new for you" and on Me. It's kept like the watchlist (in this browser, synced to Bluesky when signed in). The data is already in `dig.json`, per shop.
 4. **A map, later**: the shops near you on a map needs map tiles, and tiles fetched per visitor go against "open data at build time, never per visitor". Either draw a simple static map at build time, or show tiles only after a tap, like the YouTube player. Not in the first steps.
 
 ### OpenStreetMap as the source of shops
@@ -44,19 +45,19 @@ OpenStreetMap already brings 718 of the 2,399 shops (monthly discovery, `scripts
 ### Order
 
 0. **Before anything: the index to R2.** The site is 853 MB (health issue #9). Deploys stop at 900 MB, and the site grows about 11 MB a day, so that's a few days away. The steps are in "Hosting" below and wait on the owner: R2 enabled, an API token, DNS. A stopgap meanwhile: `ledger.watchDays` 3 → 2 frees 20–40 MB.
-1. **Tabs and pages**: Dig as home, a Shops tab, Settings into Me, Explore redirected, the footer line. This step is mostly moving what exists: no new data.
-2. **"Where I dig" without the map**: country, region and ships-to-me, which the browser already knows. Search results lead with the place.
-3. **Shop coordinates**, then "near me" in Dig, Search and Shops.
-4. **Follow a shop**, and the shop page as a crate.
+1. **Tabs and pages**: Search as home with "new for you" (the watchlist's records in stock and new), a Shops tab with "new this week" on each shop's page, Settings into Me, Explore redirected, `/new/` out of the navigation, the footer line. This step is mostly moving what exists: no new data.
+2. **"Where I dig" without the map**: country, region and ships-to-me, which the browser already knows. Search results and "new for you" lead with the place.
+3. **Shop coordinates**, then "near me" in Search, Shops and "new for you".
+4. **Follow a shop**, its new records in "new for you".
 5. **OpenStreetMap first**: the "add your shop" page, then the daily read.
 
 Each step is its own set of commits, with the quality gate and browser tests updated, and screenshots at 320px and 1440px before it ships.
 
-### To decide
+### Decided (2026-11-22)
 
-- Dig as the home page, or a home that is Dig plus the search field on top (today's home with Dig in place of the country list)?
-- "Near me" asks the browser for a position once. Is that acceptable for a site that doesn't track anyone? The position stays in the browser.
-- Keep Collectors (published lists, most wanted) in Me, or give it its own place in Dig as a crate ("most wanted")?
+- No Dig tab: Search is home, and "new" is new for you (above). The full new arrivals stay for robots.
+- "Near me" asks the browser for a position only when tapped; the position stays in the browser.
+- Collectors: publishing your lists stays in Me; "most wanted" shows in Search's empty state with the popular artists.
 
 ## Crawl every shop every day, sooner
 
