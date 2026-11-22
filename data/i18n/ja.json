@@ -669,7 +669,28 @@
     "all": "すべてのレコード",
     "search": "検索から追加",
     "inStock": "在庫 {count}",
-    "add": "リストを追加"
+    "add": "リストを追加",
+    "menu": "{name} のその他の操作",
+    "syncNow": "今すぐ同期",
+    "disconnect": "接続を解除",
+    "disconnectHint": "レコードはリストに残ります",
+    "forget": "このリストのレコードを削除",
+    "forgetHint": "検索から追加したレコードは残ります",
+    "forgetOwned": "「所有」マークを削除",
+    "disconnected": "{name} の接続を解除しました。レコードは残ります。",
+    "forgotten": {
+      "one": "{name} を削除しました（1 枚）。",
+      "other": "{name} を削除しました（{count} 枚）。"
+    },
+    "syncing": "同期中…",
+    "syncingCount": "同期中… これまでに {count} 枚",
+    "reading": "ラジオを読み込み中…",
+    "toReview": {
+      "one": "確認待ち 1 枚",
+      "other": "確認待ち {count} 枚"
+    },
+    "show": "表示",
+    "review": "確認"
   },
   "profile": {
     "type": {

@@ -135,3 +135,56 @@ test('radio review: exact matches and guesses in two groups, each ticked or clea
   await exact.locator(':scope > label').click();
   await expect(add).toHaveText(en.radio.add.other.replace('{count}', n - 2));
 });
+
+test('sources: an import shows its progress on the card with the sheet closed; the ⋯ menu disconnects or removes a list, undone from the toast', async ({ page }) => {
+  // Discogs answers once the test lets it, so the import is still running when the sheet closes
+  let answer;
+  const held = new Promise((resolve) => { answer = resolve; });
+  await page.route('https://api.discogs.com/**', async (route) => {
+    const url = new URL(route.request().url());
+    if (url.pathname !== `/users/${USER}/wants`) return route.fulfill({ status: 404, json: {} });
+    if (url.searchParams.get('per_page') !== '1') await held;
+    return route.fulfill({ json: discogsPage(wants) });
+  });
+  await page.goto('/me/');
+  await page.locator('vf-source[kind="wants"] button[name="connect"]').click();
+  const sheet = page.locator('vf-sheet[name="discogs"]');
+  await sheet.locator('input[name="user"]').fill(USER);
+  await sheet.locator('button[type="submit"]').click();
+  await page.keyboard.press('Escape');
+  await expect(sheet).not.toHaveAttribute('open');
+
+  // the import goes on: the card says so, and Show opens the sheet on it
+  const card = page.locator('vf-watch-sources vf-source[kind="wants"]');
+  await expect(card).toHaveAttribute('busy', 'loading');
+  await expect(card.locator('vf-progress')).toContainText(en.sources.syncing);
+  answer();
+  await expect(card).not.toHaveAttribute('busy');
+  await expect(card).toHaveAttribute('state', 'current');
+
+  const all = page.locator('vf-watch-sources vf-source[kind="all"]');
+  const watched = en.watchPage.summaryWatched.other.replace('{count}', String(wants.length));
+  await expect(all).toContainText(watched);
+  const toast = page.locator('vf-toast');
+
+  // Disconnect: the list goes to "Add a list", its records stay; Undo brings it back
+  await card.locator('vf-menu > button').click();
+  await card.getByRole('button', { name: en.sources.disconnect }).click();
+  await expect(toast).toContainText(en.sources.disconnected.replace('{name}', `Discogs wantlist · ${USER}`));
+  // its records still have their card, without the list's menu; the wantlist can be added again
+  await expect(card.locator('vf-menu')).toHaveCount(0);
+  await expect(page.locator('vf-source[kind="add"] button[name="connect"][value="wants"]')).toHaveCount(1);
+  await expect(all).toContainText(watched);
+  await toast.getByRole('button', { name: en.watchPage.undo }).click();
+  await expect(card).toHaveAttribute('state', 'current');
+
+  // Remove its records: they leave the list; Undo puts them back
+  await card.locator('vf-menu > button').click();
+  await card.getByRole('button', { name: en.sources.forget }).click();
+  await expect(toast).toContainText(en.sources.forgotten.other.replace('{count}', String(wants.length)).replace('{name}', `Discogs wantlist · ${USER}`));
+  // nothing left: the start screen, where the wantlist offers Connect again
+  await expect(card.locator('button[name="connect"]')).toBeVisible();
+  await toast.getByRole('button', { name: en.watchPage.undo }).click();
+  await expect(card).toHaveAttribute('state', 'current');
+  await expect(all).toContainText(watched);
+});

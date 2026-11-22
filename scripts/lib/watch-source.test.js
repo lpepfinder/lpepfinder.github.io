@@ -23,3 +23,17 @@ test('records of one source, and counts per source', () => {
   assert.ok(fromSource(items.d, undefined));
   assert.deepEqual(countSources(items), { discogs: 2, radio: 2, search: 1 });
 });
+
+test('forgetting a list removes its records, keeps the other list\'s and the search\'s', async () => {
+  const { forget } = await import('../../src/lib/watch/source.js');
+  const discogs = forget(items, 'discogs');
+  assert.deepEqual(Object.keys(discogs.items), ['b', 'c', 'd']);
+  assert.equal(discogs.removed, 1);
+  const radio = forget(items, 'radio');
+  assert.deepEqual(Object.keys(radio.items), ['a', 'c', 'd']);
+  assert.equal(radio.removed, 1);
+  // a record from both keeps its Discogs id when the radio goes
+  assert.deepEqual(radio.items.c, { t: 'Both', w: 456 });
+  // the input is left as it was
+  assert.deepEqual(items.c.p, ['at://x/radio.4000.track/2']);
+});

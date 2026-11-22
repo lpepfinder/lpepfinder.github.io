@@ -3,7 +3,7 @@ import { scoped } from '../lib/watch/profiles.js';
 import { listen, unlisten } from './dom.js';
 import { fetchWantlist, fetchCollection, fromCsv, isCollectionCsv, DiscogsError } from '../lib/watch/discogs.js';
 import { setOwned } from '../lib/watch/owned.js';
-import { imported } from '../lib/watch/sources.js';
+import { imported, report } from '../lib/watch/sources.js';
 import { wantRecords } from '../lib/watch/wants.js';
 import { afterWatch } from './vf-toast.js';
 import { t, tn, formatNumber } from './i18n.js';
@@ -58,6 +58,7 @@ export class VfWatchImport extends HTMLElement {
     const user = this.user.value.trim();
     if (!user || this.getAttribute('status') === 'loading') return;
     this.setAttribute('status', 'loading');
+    report('wants', 'loading');
     this.live.textContent = t('watchPage.discogsLoading', { user });
     const ids = new Set();
     let added = 0;
@@ -87,6 +88,7 @@ export class VfWatchImport extends HTMLElement {
       this.live.textContent = t(`watchPage.discogsError.${code}`, { user });
     }
     this.progress.hidden = true;
+    report('wants', this.getAttribute('status'));
     page()?.refresh();
   }
 
@@ -96,6 +98,7 @@ export class VfWatchImport extends HTMLElement {
     if (!user) { this.user.focus(); this.user.reportValidity(); return; }
     if (this.getAttribute('status') === 'loading') return;
     this.setAttribute('status', 'loading');
+    report('collection', 'loading');
     this.live.textContent = t('watchPage.collectionLoading', { user });
     let count = 0;
     try {
@@ -115,6 +118,7 @@ export class VfWatchImport extends HTMLElement {
       this.live.textContent = t(`watchPage.discogsError.${code}`, { user });
     }
     this.progress.hidden = true;
+    report('collection', this.getAttribute('status'));
   }
 
   step(n, pages, count) {
@@ -123,6 +127,8 @@ export class VfWatchImport extends HTMLElement {
     bar.max = pages;
     bar.value = n;
     this.progress.querySelector('label').textContent = t('watchPage.discogsProgress', { count: formatNumber(count) });
+    // the list's card on the page follows, for when the sheet is closed
+    report(this.kind, 'loading', n, pages, count);
   }
 
   async fromFile(input) {

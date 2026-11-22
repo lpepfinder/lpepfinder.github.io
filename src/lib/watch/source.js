@@ -25,3 +25,25 @@ export function countSources(items) {
 /** The items of one source, as an object like `items`. */
 export const itemsFrom = (items, source) => (!source || source === 'all' ? items
   : Object.fromEntries(Object.entries(items).filter(([, it]) => fromSource(it, source))));
+
+/**
+ * The items without one list's records (`source` "discogs" or "radio"): a record that came only from that list
+ * goes; one that came from both keeps the other's fields; records added from the search stay. Returns
+ * { items, removed }, without changing `items`.
+ */
+export function forget(items, source) {
+  const out = {};
+  let removed = 0;
+  for (const [key, it] of Object.entries(items)) {
+    const from = sourcesOf(it);
+    if (!from.includes(source)) { out[key] = it; continue; }
+    if (from.length === 1) { removed++; continue; }
+    const kept = { ...it };
+    // from both: a radio's exact match carries a Discogs id (w) as well, so only Discogs' own mark (d) goes
+    if (source === 'discogs') delete kept.d; else delete kept.p;
+    // nothing else ties it to Discogs: then it only stays for the radio
+    if (source === 'discogs' && !kept.p?.length) { removed++; continue; }
+    out[key] = kept;
+  }
+  return { items: out, removed };
+}

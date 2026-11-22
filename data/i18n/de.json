@@ -711,7 +711,28 @@
     "all": "Alle deine Platten",
     "search": "Aus der Suche hinzugefügt",
     "inStock": "{count} vorrätig",
-    "add": "Liste hinzufügen"
+    "add": "Liste hinzufügen",
+    "menu": "Mehr zu {name}",
+    "syncNow": "Jetzt synchronisieren",
+    "disconnect": "Trennen",
+    "disconnectHint": "Die Platten bleiben in deiner Liste",
+    "forget": "Platten dieser Liste entfernen",
+    "forgetHint": "Aus der Suche hinzugefügte Platten bleiben",
+    "forgetOwned": "Markierungen „Hab ich“ entfernen",
+    "disconnected": "{name} getrennt. Die Platten bleiben.",
+    "forgotten": {
+      "one": "{name} entfernt, mit 1 Platte.",
+      "other": "{name} entfernt, mit {count} Platten."
+    },
+    "syncing": "Wird synchronisiert …",
+    "syncingCount": "Wird synchronisiert … bisher {count} Platten",
+    "reading": "Radio wird gelesen …",
+    "toReview": {
+      "one": "1 Platte zu prüfen",
+      "other": "{count} Platten zu prüfen"
+    },
+    "show": "Anzeigen",
+    "review": "Prüfen"
   },
   "profile": {
     "type": {

@@ -711,7 +711,28 @@
     "all": "Todos tus discos",
     "search": "Añadidos desde la búsqueda",
     "inStock": "{count} en stock",
-    "add": "Añadir una lista"
+    "add": "Añadir una lista",
+    "menu": "Más para {name}",
+    "syncNow": "Sincronizar ahora",
+    "disconnect": "Desconectar",
+    "disconnectHint": "Sus discos se quedan en tu lista",
+    "forget": "Quitar sus discos",
+    "forgetHint": "Los discos añadidos desde la búsqueda se quedan",
+    "forgetOwned": "Quitar las marcas «Lo tengo»",
+    "disconnected": "{name} desconectado. Sus discos se quedan.",
+    "forgotten": {
+      "one": "{name} quitado, con 1 disco.",
+      "other": "{name} quitado, con {count} discos."
+    },
+    "syncing": "Sincronizando…",
+    "syncingCount": "Sincronizando… {count} discos por ahora",
+    "reading": "Leyendo la radio…",
+    "toReview": {
+      "one": "1 disco por revisar",
+      "other": "{count} discos por revisar"
+    },
+    "show": "Mostrar",
+    "review": "Revisar"
   },
   "profile": {
     "type": {

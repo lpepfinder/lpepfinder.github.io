@@ -73,3 +73,26 @@ test('another username starts over', () => {
   assert.equal(sources().discogs.user, 'b');
   assert.equal(freshness('wants'), null);
 });
+
+test('disconnecting a list forgets it; a radio turned off stays off; Undo puts everything back', async () => {
+  store.clear();
+  const { disconnect, restore, radioRead, radioFreshness, checkRadio } = await import('../../src/lib/watch/sources.js');
+  imported('wants', 'digger', 10);
+  imported('collection', 'digger', 4);
+  radioRead('dj.test', 30, 'at://dj/radio.4000.track/1');
+  const saved = structuredClone(sources());
+  disconnect('wants');
+  assert.equal(freshness('wants'), null);
+  assert.equal(freshness('collection').state, 'current');
+  disconnect('collection');
+  assert.equal(sources().discogs, undefined);
+  disconnect('radio');
+  assert.equal(radioFreshness(), null);
+  // the signed-in account's own radio isn't offered again by itself
+  calls.length = 0;
+  await checkRadio({ handle: 'dj.test', force: true });
+  assert.equal(calls.length, 0);
+  assert.equal(radioFreshness(), null);
+  restore(saved);
+  assert.deepEqual(sources(), saved);
+});

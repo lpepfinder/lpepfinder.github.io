@@ -151,6 +151,13 @@ vf-source:is([state="changed"], [state="new"], [state="offline"]) { border-color
 vf-source:is([state="changed"], [state="new"], [state="offline"]) > small { color: var(--color-watching); }
 vf-source[state="error"] > small { color: var(--color-danger); }
 vf-source[state="syncing"] > small { color: var(--color-muted); font-style: italic; }
+/* a connected list's ⋯ menu, in the card's top corner, above the card-wide label; the name leaves it room */
+vf-source:not([kind="add"]) > vf-menu { position: absolute; inset-block-start: 0; inset-inline-end: 0; z-index: 1; }
+vf-source:not([kind="add"]) > vf-menu > button { inline-size: var(--tap); block-size: var(--tap); padding: 0; display: grid; place-items: center; color: var(--color-muted); }
+vf-source:has(> vf-menu) > :is(label, div) { padding-inline-end: var(--tap); }
+/* an import running (sheet open or closed): its progress across the card */
+vf-source > vf-progress { inline-size: 100%; font-size: var(--size-xs); }
+vf-source[busy="review"] > small { color: var(--color-watching); }
 @media (min-width: 48rem) { vf-watch-sources > ul { grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--source-min)), 1fr)); } }
 
 /* empty list: the start screen alone, with the import form */

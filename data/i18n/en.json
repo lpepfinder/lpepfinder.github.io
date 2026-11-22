@@ -711,7 +711,28 @@
     "all": "All your records",
     "search": "Added from the search",
     "inStock": "{count} in stock",
-    "add": "Add a list"
+    "add": "Add a list",
+    "menu": "More for {name}",
+    "syncNow": "Sync now",
+    "disconnect": "Disconnect",
+    "disconnectHint": "Its records stay in your list",
+    "forget": "Remove its records",
+    "forgetHint": "Records added from the search stay",
+    "forgetOwned": "Remove the Owned marks",
+    "disconnected": "{name} disconnected. Its records stay.",
+    "forgotten": {
+      "one": "{name} removed, with 1 record.",
+      "other": "{name} removed, with {count} records."
+    },
+    "syncing": "Syncing…",
+    "syncingCount": "Syncing… {count} records so far",
+    "reading": "Reading the radio…",
+    "toReview": {
+      "one": "1 record to review",
+      "other": "{count} records to review"
+    },
+    "show": "Show",
+    "review": "Review"
   },
   "profile": {
     "type": {

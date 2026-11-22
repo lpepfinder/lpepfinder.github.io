@@ -9,7 +9,7 @@ import { t, tn, formatNumber } from './i18n.js';
 import { price } from './price.js';
 import { el, attrs } from './dom.js';
 import { afterWatch } from './vf-toast.js';
-import { radioRead } from '../lib/watch/sources.js';
+import { radioRead, report } from '../lib/watch/sources.js';
 import { currentAccount } from '../lib/atproto/accounts.js';
 
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -54,6 +54,8 @@ export class VfRadioImport extends HTMLElement {
     bar.max = total;
     bar.value = done;
     this.progress.querySelector('label').textContent = label;
+    // the radio's card on the page follows, for when the sheet is closed
+    report('radio', 'loading', done, total);
   }
 
   async find() {
@@ -62,6 +64,7 @@ export class VfRadioImport extends HTMLElement {
     this.setAttribute('status', 'loading');
     this.list.replaceChildren();
     this.addButton.hidden = true;
+    report('radio', 'loading');
     this.live.textContent = t('radio.reading', { handle });
     try {
       const { tracks } = await syncTracks(handle, await resolve(handle));
@@ -92,6 +95,9 @@ export class VfRadioImport extends HTMLElement {
       this.live.textContent = t(e.message === 'empty' ? 'radio.empty' : 'radio.error', { handle });
     }
     this.progress.hidden = true;
+    // matches to review: the card says so, and its button opens the sheet on them
+    const status = this.getAttribute('status');
+    report('radio', status, 0, 0, status === 'review' ? this.boxes().length : 0);
   }
 
   /** A group of candidates (exact or guesses) under a checkbox that ticks or clears them all; null when empty. */
@@ -145,6 +151,7 @@ export class VfRadioImport extends HTMLElement {
     this.list.replaceChildren();
     this.addButton.hidden = true;
     this.setAttribute('status', 'done');
+    report('radio', 'done');
     page()?.refresh();
   }
 }

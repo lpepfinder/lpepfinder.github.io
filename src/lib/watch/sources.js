@@ -58,6 +58,36 @@ export const imported = (kind, user, n) => change((s) => {
   s.discogs = d;
 });
 
+/**
+ * Stop following a list (`kind` "wants", "collection" or "radio"); its records are another matter (source.js forget).
+ * A radio is remembered as turned off, so the signed-in account's own radio isn't offered again by itself.
+ */
+export const disconnect = (kind) => change((s) => {
+  if (kind === 'radio') { if (s.radio) s.radio = { handle: s.radio.handle, off: true }; return; }
+  if (!s.discogs) return;
+  delete s.discogs[kind];
+  if (s.discogs.remote) delete s.discogs.remote[kind];
+  if (!s.discogs.wants && !s.discogs.collection) delete s.discogs;
+});
+
+/** Put back the sources as they were (Undo). */
+export const restore = (saved) => change((s) => { for (const k of Object.keys(s)) delete s[k]; Object.assign(s, structuredClone(saved)); });
+
+/**
+ * What an import is doing now, per list, for the overview cards while its sheet is closed (in memory only):
+ *   { wants|collection|radio: { status: "loading"|"review", done, total, n } }
+ * A new status re-renders the cards (EVENT); a step only moves their progress bar (STEP, detail: kind).
+ */
+export const STEP = 'vf-sources-step';
+const busy = {};
+export const activity = () => busy;
+export function report(kind, status, done = 0, total = 0, n = 0) {
+  const was = busy[kind]?.status;
+  if (status === 'loading' || status === 'review') busy[kind] = { status, done, total, n };
+  else delete busy[kind];
+  dispatchEvent(was === busy[kind]?.status ? new CustomEvent(STEP, { detail: kind }) : new Event(EVENT));
+}
+
 export const synced = () => change((s) => { s.bluesky = { at: new Date().toISOString() }; });
 
 /**
@@ -107,7 +137,7 @@ export const radioRead = (handle, n, newest) => change((s) => {
 export async function checkRadio({ handle: own, force = false, signal } = {}) {
   const r = sources().radio;
   const handle = r?.handle || own;
-  if (!handle) return sources();
+  if (!handle || r?.off) return sources();
   if (!force && r?.handle === handle && r.checkedAt && Date.now() - Date.parse(r.checkedAt) < config.discogsCheckHours * HOUR) return sources();
   const uri = await resolve(handle).then(newestTrack).catch(() => undefined);
   if (signal?.aborted || uri === undefined) return sources();
@@ -121,7 +151,7 @@ export async function checkRadio({ handle: own, force = false, signal } = {}) {
 /** "new" (tracks never read), "changed" (tracks added since), "current", or null (no radio, or no tracks). */
 export function radioFreshness(s = sources()) {
   const r = s.radio;
-  if (!r || (!r.at && !r.remote)) return null;
+  if (!r || r.off || (!r.at && !r.remote)) return null;
   const state = !r.at ? 'new' : r.remote && r.remote !== r.newest ? 'changed' : 'current';
   return { state, handle: r.handle, n: r.n ?? null, at: r.at || null };
 }

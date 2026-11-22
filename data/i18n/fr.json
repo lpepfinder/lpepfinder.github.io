@@ -711,7 +711,28 @@
     "all": "Tous vos disques",
     "search": "Ajoutés depuis la recherche",
     "inStock": "{count} en stock",
-    "add": "Ajouter une liste"
+    "add": "Ajouter une liste",
+    "menu": "Plus pour {name}",
+    "syncNow": "Synchroniser",
+    "disconnect": "Déconnecter",
+    "disconnectHint": "Ses disques restent dans votre liste",
+    "forget": "Retirer ses disques",
+    "forgetHint": "Les disques ajoutés depuis la recherche restent",
+    "forgetOwned": "Retirer les marques « À moi »",
+    "disconnected": "{name} déconnecté. Ses disques restent.",
+    "forgotten": {
+      "one": "{name} retiré, avec 1 disque.",
+      "other": "{name} retiré, avec {count} disques."
+    },
+    "syncing": "Synchronisation…",
+    "syncingCount": "Synchronisation… {count} disques pour l’instant",
+    "reading": "Lecture de la radio…",
+    "toReview": {
+      "one": "1 disque à vérifier",
+      "other": "{count} disques à vérifier"
+    },
+    "show": "Afficher",
+    "review": "Vérifier"
   },
   "profile": {
     "type": {
