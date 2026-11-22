@@ -37,7 +37,7 @@ Explore goes away, redirected to Search like `/more/` and `/watch/` before. The 
 
 OpenStreetMap already brings 718 of the 2,399 shops (monthly discovery, `scripts/discover/osm.js`). The proposal: OpenStreetMap becomes *the* place where a shop says it exists.
 
-- **For shops**: a page explaining how to add your shop on OpenStreetMap (a `shop=music` place with a `website` tag, and its address), with links to the OpenStreetMap editor and its wiki. It replaces the GitHub form as the first answer. The form stays for what OpenStreetMap can't describe: an online-only shop, or a store hosted on another site.
+- **For shops**: done 2026-11-22: /submit/ ("Add a shop" on the Shops tab) leads with OpenStreetMap in three steps, the GitHub form second; `docs/for-shops.md` says the same.
 - **Read it daily**, not monthly: one Overpass request a day (light, within its usage policy), so a shop added on OpenStreetMap appears the next day.
 - **The other ~1,700 shops** stay. Their files gain a `osm` link when someone maps them; a shop that disappears from OpenStreetMap is checked, not removed.
 - **Credit**: ODbL, already in `docs/sources.md`; the "for shops" page says it too.
@@ -49,7 +49,7 @@ OpenStreetMap already brings 718 of the 2,399 shops (monthly discovery, `scripts
 2. **"Where I dig" without the map**: country, region and ships-to-me, which the browser already knows. Search results and "new for you" lead with the place.
 3. **Shop coordinates**, then "near me" in Search, Shops and "new for you".
 4. **Follow a shop**, its new records in "new for you".
-5. **OpenStreetMap first**: the "add your shop" page, then the daily read.
+5. **OpenStreetMap daily**: the discovery every day instead of the 1st of the month (the "add your shop" page is done; it says "from the 1st of next month" until then).
 
 Each step is its own set of commits, with the quality gate and browser tests updated, and screenshots at 320px and 1440px before it ships.
 

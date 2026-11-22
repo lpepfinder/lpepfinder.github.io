@@ -200,3 +200,13 @@ vf-languages a small { color: var(--color-muted); font-size: var(--size-sm); }
 vf-languages a[aria-current="true"] { background: var(--color-chip); }
 vf-languages a[aria-current="true"] strong { color: var(--color-accent); }
 
+
+/* <vf-add-shop>: the two ways to add a shop as cards, stacked on phones, side by side once both fit (intrinsic) */
+vf-add-shop { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--source-min)), 1fr)); gap: var(--space-m); align-items: start; }
+vf-add-shop > section { display: grid; gap: var(--space-sm); padding: var(--space-m); border: var(--hairline) solid var(--color-line); border-radius: var(--radius); background: var(--color-surface); }
+vf-add-shop h2 { display: flex; align-items: center; gap: var(--space-s); margin: 0; font-size: var(--size-lg); }
+vf-add-shop :is(p, ol) { margin: 0; }
+vf-add-shop ol { display: grid; gap: var(--space-s); padding-inline-start: var(--space-l); }
+vf-add-shop small { color: var(--color-muted); }
+vf-add-shop menu { display: flex; flex-wrap: wrap; gap: var(--space-s); margin: 0; padding: 0; list-style: none; }
+vf-add-shop code { overflow-wrap: anywhere; }

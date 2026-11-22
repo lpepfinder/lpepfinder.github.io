@@ -57,7 +57,7 @@
   "aboutData": "Lista de tiendas: comunidad de LP/EP Finder, directorio de tiendas de Discogs y colaboradores de OpenStreetMap (ODbL). Productos: catálogo público de cada tienda. Perfiles de artistas de MusicBrainz, Wikidata, Wikipedia y Wikimedia Commons, citados en cada página.",
   "aboutContactTitle": "Contacto",
   "submitTitle": "Añadir una tienda de discos",
-  "submitBody": "Cualquier tienda en línea que venda discos puede aparecer. Las tiendas en Shopify o WooCommerce tienen todo su catálogo buscable; las demás aparecen con un enlace.",
+  "submitBody": "Cualquier tienda independiente con su propia tienda en línea de discos. Dos formas de añadirla:",
   "submitAction": "Proponer una tienda en GitHub",
   "statusTitle": "Estado de los datos",
   "statusBody": "Cada tienda se revisa cada día: si la web responde, si robots.txt lo permite, si sigue vendiendo discos y si su catálogo se puede leer.",
@@ -843,5 +843,18 @@
     "dataIntro": "Se rehacen cada día a partir de los catálogos públicos de las tiendas, y son abiertos: léelos en JSON, síguelos en un lector de feeds o mira lo recientes que son.",
     "api": "Datos abiertos (JSON)",
     "agents": "Para agentes de IA (llms.txt)"
-  }
+  },
+  "submitOsmTitle": "Ponla en OpenStreetMap",
+  "submitOsmWhy": "El mapa libre que cualquiera puede editar: la tienda aparece en muchos mapas y apps, y aquí a partir del día 1 del mes siguiente.",
+  "submitOsmStep1": "Abre OpenStreetMap en la dirección de la tienda y pulsa Editar.",
+  "submitOsmStep2": "Añade una Tienda de música con su nombre y dirección.",
+  "submitOsmStep3": "Rellena su Sitio web: es donde leemos sus discos.",
+  "submitOsmAlready": "¿Ya está en el mapa? Basta con añadir el sitio web.",
+  "submitOsmAction": "Abrir OpenStreetMap",
+  "submitOsmHelp": "Cómo mapear una tienda de música",
+  "submitFormTitle": "O propónnosla",
+  "submitFormWhy": "Para una tienda solo en línea, o para aparecer antes: comprobada automáticamente en minutos, con una cuenta de GitHub.",
+  "submitRead": "Qué leemos: en una tienda Shopify o WooCommerce, todo el catálogo se puede buscar al día siguiente. En las demás, leemos sus páginas de discos poco a poco, cuando su sitio lo permite.",
+  "submitOwner": "¿Tu tienda? Cómo lee tu sitio nuestro bot",
+  "shopsAdd": "Añadir una tienda"
 }

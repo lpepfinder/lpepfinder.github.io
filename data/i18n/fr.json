@@ -57,7 +57,7 @@
   "aboutData": "Liste des disquaires : communauté LP/EP Finder, annuaire des disquaires de Discogs et contributeurs OpenStreetMap (ODbL). Produits : catalogue public de chaque disquaire. Profils d’artistes issus de MusicBrainz, Wikidata, Wikipédia et Wikimedia Commons, crédités sur chaque page.",
   "aboutContactTitle": "Contact",
   "submitTitle": "Ajouter un disquaire",
-  "submitBody": "Toute boutique en ligne qui vend des disques peut être référencée. Les boutiques Shopify ou WooCommerce ont tout leur catalogue consultable ; les autres sont référencées avec un lien.",
+  "submitBody": "Tout disquaire indépendant avec sa propre boutique en ligne. Deux façons de l’ajouter :",
   "submitAction": "Proposer un disquaire sur GitHub",
   "statusTitle": "État des données",
   "statusBody": "Chaque disquaire est vérifié chaque jour : le site répond-il, robots.txt nous autorise-t-il, vend-il encore des disques, peut-on lire son catalogue.",
@@ -843,5 +843,18 @@
     "dataIntro": "Reconstruites chaque jour à partir des catalogues publics des disquaires, et ouvertes : lisez-les en JSON, suivez-les dans un lecteur de flux, ou voyez leur fraîcheur.",
     "api": "Données ouvertes (JSON)",
     "agents": "Pour les agents IA (llms.txt)"
-  }
+  },
+  "submitOsmTitle": "L’ajouter sur OpenStreetMap",
+  "submitOsmWhy": "La carte libre que chacun peut modifier : le disquaire apparaît sur de nombreuses cartes et applis, et ici dès le 1er du mois suivant.",
+  "submitOsmStep1": "Ouvrez OpenStreetMap à l’adresse du disquaire, puis Modifier.",
+  "submitOsmStep2": "Ajoutez un Magasin de musique avec son nom et son adresse.",
+  "submitOsmStep3": "Renseignez son Site web : c’est là que nous lisons ses disques.",
+  "submitOsmAlready": "Déjà sur la carte ? Ajouter le site web suffit.",
+  "submitOsmAction": "Ouvrir OpenStreetMap",
+  "submitOsmHelp": "Comment cartographier un magasin de musique",
+  "submitFormTitle": "Ou nous le proposer",
+  "submitFormWhy": "Pour une boutique uniquement en ligne, ou pour être listé plus vite : vérifié automatiquement en quelques minutes, avec un compte GitHub.",
+  "submitRead": "Ce que nous lisons : le catalogue entier d’une boutique Shopify ou WooCommerce est consultable le lendemain. Pour les autres, leurs pages de disques sont lues petit à petit, quand leur site le permet.",
+  "submitOwner": "Votre boutique ? Comment notre robot lit votre site",
+  "shopsAdd": "Ajouter un disquaire"
 }

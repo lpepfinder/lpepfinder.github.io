@@ -9,7 +9,12 @@ LP/EP Finder sends buyers to independent record shops: every record links to the
 
 ## Get listed
 
-[Suggest your shop](https://github.com/lpepfinder/lpepfinder.github.io/issues/new?template=shop.yml) (a short form on GitHub), or ask a regular to do it. New shops are also found on OpenStreetMap and Record Store Day lists every month.
+Two ways, both on [Add a record shop](https://lpepfinder.com/submit/):
+
+1. **Put your shop on [OpenStreetMap](https://www.openstreetmap.org/)**, the open map anyone can edit. Open it at your address, choose Edit, add a *Music Store* (`shop=music`) with your shop's name and address, and fill in its *Website* (`website=https://…`). Already on the map? Adding the website is enough. On the 1st of each month we read every `shop=music` place with a website, so your shop appears here then, and on every other map and app that uses OpenStreetMap. See [Tag:shop=music](https://wiki.openstreetmap.org/wiki/Tag:shop%3Dmusic).
+2. **[Suggest your shop](https://github.com/lpepfinder/lpepfinder.github.io/issues/new?template=shop.yml)** (a short form on GitHub, checked automatically within minutes): for a shop that only sells online, or to be listed sooner. A regular can do it for you.
+
+New shops are also found on Record Store Day lists every month.
 
 - **Shopify and WooCommerce shops** get their whole catalog searchable: we read the public catalog these platforms publish for every shop.
 - **Square Online shops** are searchable too (the same public product list as their storefront).

@@ -3,13 +3,43 @@ import Base from '../../layouts/Base.astro';
 import config from '../../../data/config.json';
 import { t, localeParams } from '../../lib/i18n.js';
 
+/**
+ * Add a record shop: two ways, side by side once both fit. OpenStreetMap first (the shop helps every map, and the
+ * monthly discovery, scripts/discover/osm.js, finds a shop=music place with a website), in three steps with the tag
+ * to use; then the GitHub form (an online-only shop, or sooner). Last, what is read from which shop, and the page
+ * for shop owners.
+ */
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
 ---
-<Base layout="prose" lang={lang} path="/submit/" title={`${t(lang, 'submitTitle')} · ${config.name}`} description={t(lang, 'submitBody')}>
-  <article>
+<Base lang={lang} path="/submit/" title={`${t(lang, 'submitTitle')} · ${config.name}`} description={t(lang, 'submitBody')}>
+  <hgroup>
     <h1>{t(lang, 'submitTitle')}</h1>
     <p>{t(lang, 'submitBody')}</p>
-    <p><a href={`${config.repository}/issues/new?template=shop.yml`} kind="strong"><vf-icon name="plus"></vf-icon>{t(lang, 'submitAction')}</a></p>
-  </article>
+  </hgroup>
+  <vf-add-shop>
+    <section aria-labelledby="add-osm">
+      <h2 id="add-osm"><vf-icon name="globe"></vf-icon>{t(lang, 'submitOsmTitle')}</h2>
+      <p>{t(lang, 'submitOsmWhy')}</p>
+      <ol>
+        <li>{t(lang, 'submitOsmStep1')}</li>
+        <li>{t(lang, 'submitOsmStep2')} <code>shop=music</code></li>
+        <li>{t(lang, 'submitOsmStep3')} <code>website=https://…</code></li>
+      </ol>
+      <p><small>{t(lang, 'submitOsmAlready')}</small></p>
+      <menu>
+        <li><a href="https://www.openstreetmap.org/" kind="strong"><vf-icon name="external"></vf-icon>{t(lang, 'submitOsmAction')}</a></li>
+        <li><a href="https://wiki.openstreetmap.org/wiki/Tag:shop%3Dmusic" kind="secondary">{t(lang, 'submitOsmHelp')}</a></li>
+      </menu>
+    </section>
+    <section aria-labelledby="add-form">
+      <h2 id="add-form"><vf-icon name="plus"></vf-icon>{t(lang, 'submitFormTitle')}</h2>
+      <p>{t(lang, 'submitFormWhy')}</p>
+      <menu>
+        <li><a href={`${config.repository}/issues/new?template=shop.yml`} kind="secondary"><vf-icon name="external"></vf-icon>{t(lang, 'submitAction')}</a></li>
+      </menu>
+    </section>
+  </vf-add-shop>
+  <p>{t(lang, 'submitRead')}</p>
+  <p><a href="/docs/for-shops/">{t(lang, 'submitOwner')}</a></p>
 </Base>

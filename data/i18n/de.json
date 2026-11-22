@@ -57,7 +57,7 @@
   "aboutData": "Ladenliste: LP/EP-Finder-Community, Discogs-Plattenladenverzeichnis und OpenStreetMap-Mitwirkende (ODbL). Produktdaten: öffentlicher Katalog jedes Ladens. Künstlerprofile aus MusicBrainz, Wikidata, Wikipedia und Wikimedia Commons, auf jeder Seite genannt.",
   "aboutContactTitle": "Kontakt",
   "submitTitle": "Plattenladen hinzufügen",
-  "submitBody": "Jeder Onlineshop, der Platten verkauft, kann gelistet werden. Bei Shopify- oder WooCommerce-Shops ist der ganze Katalog durchsuchbar, andere werden mit Link gelistet.",
+  "submitBody": "Jeder unabhängige Laden mit eigenem Onlineshop für Platten. Zwei Wege, ihn hinzuzufügen:",
   "submitAction": "Laden auf GitHub vorschlagen",
   "statusTitle": "Datenstatus",
   "statusBody": "Jeder Laden wird täglich geprüft: Ist die Seite erreichbar, erlaubt robots.txt den Zugriff, verkauft er noch Platten, ist der Katalog lesbar.",
@@ -843,5 +843,18 @@
     "dataIntro": "Jeden Tag neu aus den öffentlichen Katalogen der Läden erstellt, und offen: als JSON lesen, im Feedreader folgen oder sehen, wie aktuell sie sind.",
     "api": "Offene Daten (JSON)",
     "agents": "Für KI-Agenten (llms.txt)"
-  }
+  },
+  "submitOsmTitle": "Auf OpenStreetMap eintragen",
+  "submitOsmWhy": "Die freie Karte, die jeder bearbeiten kann: Der Laden erscheint auf vielen Karten und Apps, und hier ab dem 1. des nächsten Monats.",
+  "submitOsmStep1": "OpenStreetMap an der Adresse des Ladens öffnen, dann Bearbeiten.",
+  "submitOsmStep2": "Ein Musikgeschäft mit Name und Adresse des Ladens hinzufügen.",
+  "submitOsmStep3": "Die Website eintragen: Dort lesen wir seine Platten.",
+  "submitOsmAlready": "Schon auf der Karte? Die Website zu ergänzen reicht.",
+  "submitOsmAction": "OpenStreetMap öffnen",
+  "submitOsmHelp": "Wie man ein Musikgeschäft einträgt",
+  "submitFormTitle": "Oder uns vorschlagen",
+  "submitFormWhy": "Für einen reinen Onlineshop oder um schneller gelistet zu werden: in wenigen Minuten automatisch geprüft, mit einem GitHub-Konto.",
+  "submitRead": "Was wir lesen: Bei Shopify- oder WooCommerce-Läden ist am nächsten Tag der ganze Katalog durchsuchbar. Bei anderen Läden lesen wir die Plattenseiten nach und nach, wenn die Website es erlaubt.",
+  "submitOwner": "Dein Laden? Wie unser Bot deine Website liest",
+  "shopsAdd": "Laden hinzufügen"
 }

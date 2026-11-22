@@ -54,7 +54,7 @@
   "aboutData": "店舗リスト：LP/EP Finder コミュニティ、Discogs のレコード店一覧、OpenStreetMap 協力者（ODbL）。商品データ：各店舗の公開カタログ。 アーティストのプロフィールは MusicBrainz、Wikidata、Wikipedia、Wikimedia Commons から(各ページに出典を記載)。",
   "aboutContactTitle": "お問い合わせ",
   "submitTitle": "レコード店を追加",
-  "submitBody": "レコードを販売しているオンラインストアなら掲載できます。Shopify または WooCommerce の店舗はカタログ全体を検索でき、それ以外はリンク付きで掲載されます。",
+  "submitBody": "レコードを販売する自社オンラインストアを持つ独立系ショップなら掲載できます。追加の方法は2つ：",
   "submitAction": "GitHub で店舗を提案",
   "statusTitle": "データの状態",
   "statusBody": "すべての店舗を毎日チェックしています：サイトに接続できるか、robots.txt で許可されているか、まだレコードを販売しているか、カタログを読み込めるか。",
@@ -795,5 +795,18 @@
     "dataIntro": "お店の公開カタログから毎日作り直され、オープンです：JSON で読む、フィードリーダーで追う、鮮度を確かめる。",
     "api": "オープンデータ（JSON）",
     "agents": "AI エージェント向け（llms.txt）"
-  }
+  },
+  "submitOsmTitle": "OpenStreetMap に登録する",
+  "submitOsmWhy": "誰でも編集できるオープンな地図です。多くの地図やアプリに表示され、ここには翌月1日から載ります。",
+  "submitOsmStep1": "ショップの住所で OpenStreetMap を開き、「編集」を選びます。",
+  "submitOsmStep2": "ショップ名と住所で「音楽店」を追加します。",
+  "submitOsmStep3": "「ウェブサイト」を入力します。そこからレコードを読み取ります。",
+  "submitOsmAlready": "すでに地図にありますか？ウェブサイトを追加するだけで十分です。",
+  "submitOsmAction": "OpenStreetMap を開く",
+  "submitOsmHelp": "音楽店の登録方法",
+  "submitFormTitle": "または私たちに提案する",
+  "submitFormWhy": "オンライン専業のショップ、または早く掲載したい場合に。GitHub アカウントで、数分以内に自動チェックされます。",
+  "submitRead": "読み取る内容：Shopify または WooCommerce のショップは、翌日にカタログ全体が検索できます。その他のショップは、サイトが許可していれば、レコードのページを少しずつ読み取ります。",
+  "submitOwner": "あなたのショップですか？ボットがサイトを読む方法",
+  "shopsAdd": "ショップを追加"
 }

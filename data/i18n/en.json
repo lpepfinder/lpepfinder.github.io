@@ -57,7 +57,7 @@
   "aboutData": "Shop list from the LP/EP Finder community, Discogs record store listings and OpenStreetMap contributors (ODbL). Product data from each shop's public catalog. Artist profiles from MusicBrainz, Wikidata, Wikipedia and Wikimedia Commons, credited on each page.",
   "aboutContactTitle": "Contact",
   "submitTitle": "Add a record shop",
-  "submitBody": "Any shop with an online store selling records can be listed. Shops on Shopify or WooCommerce get their full catalog searchable; others are listed with a link.",
+  "submitBody": "Any independent shop with its own online store selling records. Two ways to add one:",
   "submitAction": "Suggest a shop on GitHub",
   "statusTitle": "Data status",
   "statusBody": "Every shop is checked daily: is the site up, does robots.txt allow us, does it still sell records, can we read its catalog.",
@@ -843,5 +843,18 @@
     "dataIntro": "Rebuilt every day from the shops' public catalogs, and open: read it as JSON, follow it in a feed reader, or see how fresh it is.",
     "api": "Open data (JSON)",
     "agents": "For AI agents (llms.txt)"
-  }
+  },
+  "submitOsmTitle": "Put it on OpenStreetMap",
+  "submitOsmWhy": "The open map anyone can edit: the shop shows on many maps and apps, and here from the 1st of next month.",
+  "submitOsmStep1": "Open OpenStreetMap at the shop’s address, then Edit.",
+  "submitOsmStep2": "Add a Music Store with the shop’s name and address.",
+  "submitOsmStep3": "Fill in its Website: that’s where we read its records.",
+  "submitOsmAlready": "Already on the map? Adding the website is enough.",
+  "submitOsmAction": "Open OpenStreetMap",
+  "submitOsmHelp": "How to map a music shop",
+  "submitFormTitle": "Or suggest it to us",
+  "submitFormWhy": "For a shop that only sells online, or to be listed sooner: checked automatically within minutes, with a GitHub account.",
+  "submitRead": "What we read: a Shopify or WooCommerce shop has its whole catalog searchable the next day. Other shops have their record pages read a few at a time, when their site allows it.",
+  "submitOwner": "Your shop? How our bot reads your site",
+  "shopsAdd": "Add a shop"
 }

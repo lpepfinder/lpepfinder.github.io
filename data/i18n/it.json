@@ -57,7 +57,7 @@
   "aboutData": "Elenco negozi: comunità di LP/EP Finder, elenco negozi di Discogs e contributori di OpenStreetMap (ODbL). Prodotti: catalogo pubblico di ogni negozio. Profili degli artisti da MusicBrainz, Wikidata, Wikipedia e Wikimedia Commons, citati su ogni pagina.",
   "aboutContactTitle": "Contatti",
   "submitTitle": "Aggiungi un negozio di dischi",
-  "submitBody": "Qualsiasi negozio online che vende dischi può essere aggiunto. I negozi su Shopify o WooCommerce hanno tutto il catalogo consultabile; gli altri sono elencati con un link.",
+  "submitBody": "Qualsiasi negozio indipendente con un proprio negozio online di dischi. Due modi per aggiungerlo:",
   "submitAction": "Proponi un negozio su GitHub",
   "statusTitle": "Stato dei dati",
   "statusBody": "Ogni negozio viene controllato ogni giorno: il sito risponde, robots.txt lo consente, vende ancora dischi, il catalogo è leggibile.",
@@ -843,5 +843,18 @@
     "dataIntro": "Ricostruiti ogni giorno dai cataloghi pubblici dei negozi, e aperti: leggili in JSON, seguili in un lettore di feed o guarda quanto sono aggiornati.",
     "api": "Dati aperti (JSON)",
     "agents": "Per agenti IA (llms.txt)"
-  }
+  },
+  "submitOsmTitle": "Mettilo su OpenStreetMap",
+  "submitOsmWhy": "La mappa libera che chiunque può modificare: il negozio compare su molte mappe e app, e qui dal 1° del mese successivo.",
+  "submitOsmStep1": "Apri OpenStreetMap all’indirizzo del negozio, poi Modifica.",
+  "submitOsmStep2": "Aggiungi un Negozio di musica con nome e indirizzo.",
+  "submitOsmStep3": "Inserisci il suo Sito web: è lì che leggiamo i suoi dischi.",
+  "submitOsmAlready": "È già sulla mappa? Basta aggiungere il sito web.",
+  "submitOsmAction": "Apri OpenStreetMap",
+  "submitOsmHelp": "Come mappare un negozio di musica",
+  "submitFormTitle": "Oppure suggeriscilo a noi",
+  "submitFormWhy": "Per un negozio solo online, o per comparire prima: controllato automaticamente in pochi minuti, con un account GitHub.",
+  "submitRead": "Cosa leggiamo: per un negozio Shopify o WooCommerce l’intero catalogo è cercabile il giorno dopo. Per gli altri leggiamo le pagine dei dischi un po’ alla volta, quando il sito lo consente.",
+  "submitOwner": "Il tuo negozio? Come il nostro bot legge il tuo sito",
+  "shopsAdd": "Aggiungi un negozio"
 }

@@ -43,6 +43,7 @@ qualityTests([
   { name: 'settings', path: '/settings/', touch: 44 },
   { name: 'docs', path: '/docs/' },
   { name: 'about', path: '/about/' },
+  { name: 'add a shop', path: '/submit/', touch: 44 },
   { name: 'french home', path: '/fr/' },
   {
     name: 'release sheet', touch: 44,
