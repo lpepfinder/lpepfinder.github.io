@@ -2,7 +2,6 @@ import { sources, checkDiscogs, freshness, checkRadio, radioFreshness, disconnec
 import { forget } from '../lib/watch/source.js';
 import { load, update } from '../lib/watch/store.js';
 import { toast } from './vf-toast.js';
-import { currentAccount } from '../lib/atproto/accounts.js';
 import { el, attrs, listen, unlisten } from './dom.js';
 import { t, tn, formatAgo, formatNumber } from './i18n.js';
 import './vf-menu.js';
@@ -58,7 +57,7 @@ export class VfWatchSources extends HTMLElement {
     const { signal } = this.checking;
     await Promise.all([
       checkDiscogs({ signal }).catch(() => {}),
-      checkRadio({ handle: currentAccount()?.handle, signal }).catch(() => {}),
+      checkRadio({ signal }).catch(() => {}),
     ]);
   }
 

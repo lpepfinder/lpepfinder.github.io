@@ -1,5 +1,4 @@
 import { add, update } from '../lib/watch/store.js';
-import { scoped } from '../lib/watch/profiles.js';
 import { listen, unlisten } from './dom.js';
 import { fetchWantlist, fetchCollection, fromCsv, isCollectionCsv, DiscogsError } from '../lib/watch/discogs.js';
 import { setOwned } from '../lib/watch/owned.js';
@@ -8,8 +7,8 @@ import { wantRecords } from '../lib/watch/wants.js';
 import { afterWatch } from './vf-toast.js';
 import { t, tn, formatNumber } from './i18n.js';
 
-// the Discogs account of the current profile (profiles.js)
-const USER = () => scoped('vf.discogs.user');
+// the Discogs account whose lists were imported
+const USER = () => 'vf.discogs.user';
 const read = () => { try { return localStorage.getItem(USER()) || ''; } catch { return ''; } };
 const remember = (u) => { try { localStorage.setItem(USER(), u); } catch {} };
 const page = () => document.querySelector('vf-watch-page');

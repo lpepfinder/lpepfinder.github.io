@@ -49,7 +49,7 @@ const ld = [{
     <section aria-labelledby="home-artists">
       <h2 id="home-artists">{t(lang, 'homeArtistsTitle')}</h2>
       <vf-chips><ul>{c.artists.slice(0, 24).map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a></li>)}</ul></vf-chips>
-      <p><a href="/artists/">{t(lang, 'homeAllArtists')}</a> · <a href={localPath(lang, '/u/')}>{t(lang, 'explore.collectorsLink')}</a></p>
+      <p><a href="/artists/">{t(lang, 'homeAllArtists')}</a></p>
     </section>
   )}
 </Base>

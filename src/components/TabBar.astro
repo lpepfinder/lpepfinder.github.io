@@ -4,16 +4,15 @@ import Logo from './Logo.astro';
 
 /**
  * The app's three tabs (savoir app-shell): Search (its icon is the brand; home), Shops (/shops/: where the shops are,
- * current on the pages about shops, places, artists and new arrivals), and Me (the profile in use: its lists, and
- * Settings in its ⋯ menu), labelled with the profile's name and carrying the badge of changes waiting to reach the
- * account. vf-shell-account.js names the profile tab and sets the badge.
+ * current on the pages about shops, places, artists and new arrivals), and Me (the lists and records watched, with
+ * their count of changes; Settings in its ⋯ menu).
  */
 const { lang, current } = Astro.props;
 const search = localPath(lang, '/');
 const shops = localPath(lang, '/shops/');
 const me = localPath(lang, '/me/');
 const here = (href) => (href === current ? 'page' : undefined);
-const inShops = (href) => (href === current ? 'page' : /^(\/[a-z]{2})?\/(shops|shop|new|artists|artist|u)\//.test(current || '') ? 'true' : undefined);
+const inShops = (href) => (href === current ? 'page' : /^(\/[a-z]{2})?\/(shops|shop|new|artists|artist)\//.test(current || '') ? 'true' : undefined);
 // Settings belongs to Me: the tab stays current there
 const inMe = (href) => (href === current ? 'page' : /^(\/[a-z]{2})?\/settings\//.test(current || '') ? 'true' : undefined);
 ---
@@ -21,14 +20,11 @@ const inMe = (href) => (href === current ? 'page' : /^(\/[a-z]{2})?\/settings\//
   <vf-tabbar>
     <a href={search} aria-current={here(search)} title={t(lang, 'tabSearch')}><Logo /><span>{t(lang, 'tabSearch')}</span></a>
     <a href={shops} aria-current={inShops(shops)} title={t(lang, 'tabShops')}><vf-icon name="store"></vf-icon><span>{t(lang, 'tabShops')}</span></a>
-    <vf-shell-account>
-      <vf-watchlist>
-        <a href={me} aria-current={inMe(me)} title={t(lang, 'tabMe')} rel="me"><vf-icon name="person"></vf-icon><span>{t(lang, 'tabMe')}</span> <vf-watch-count count="0"></vf-watch-count> <vf-sync-count hidden></vf-sync-count></a>
-      </vf-watchlist>
-    </vf-shell-account>
+    <vf-watchlist>
+      <a href={me} aria-current={inMe(me)} title={t(lang, 'tabMe')} rel="me"><vf-icon name="person"></vf-icon><span>{t(lang, 'tabMe')}</span> <vf-watch-count count="0"></vf-watch-count></a>
+    </vf-watchlist>
   </vf-tabbar>
 </nav>
 <script>
   import './vf-watchlist.js';
-  import './vf-shell-account.js';
 </script>

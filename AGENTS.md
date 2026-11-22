@@ -4,7 +4,7 @@ A free search engine for vinyl records in stock at independent record shops, reb
 
 Objectives: find any record in stock at an independent shop in seconds, on a phone; match a collector's Discogs wantlist (10,000 records) against every shop every day; run with almost no running cost.
 Never: a marketplace or an aggregator of big resellers (no Bandcamp, eBay or Discogs marketplace as sources; importing a Discogs wantlist or collection is wanted); a tracker; a paid service for its users; a burden on small shops' servers.
-People: the casual searcher (one record, now), the digger (what's new and cheap, Dig), the collector (a big wantlist, the watchlist, publishing lists), the DJ (a Radio4000 radio's tracks matched to records), the shop owner (their shop page, how the bot reads them), robots and agents (llms.txt, JSON next to each page). Contact goes through GitHub issues only.
+People: the casual searcher (one record, now), the digger (what's new and cheap, Dig), the collector (a big wantlist, the watchlist), the DJ (a Radio4000 radio's tracks matched to records), the shop owner (their shop page, how the bot reads them), robots and agents (llms.txt, JSON next to each page). Contact goes through GitHub issues only.
 
 Follows https://hwww.gitlab.io/savoir/agents.md (local: ~/src/hwww/savoir). Exceptions, on purpose:
 - sveltekit-static, sveltekit-3, paraglide-routing: Astro 7 with custom elements and our own i18n (`data/i18n/`), because it builds ~10,000 static pages from one data file and moving would cost weeks for no visible gain.
@@ -28,7 +28,6 @@ npm run crawl      # Shopify and WooCommerce catalogs (Refresh)
 npm run site       # the site crawler, in shards (Refresh)
 npm run index      # search index, watch files, Dig (Index workflow)
 npm run enrich     # artist profiles from open data (Refresh)
-npm run social     # the collectors feed (Refresh)
 ```
 
 ## Rules that are easy to get wrong
@@ -36,10 +35,10 @@ npm run social     # the collectors feed (Refresh)
 - Classless: no `class`; semantic elements and `vf-*` custom elements, state in attributes; every value a token in `src/styles/tokens.css`, named as in savoir-faire ui (`--color-*`, `--space-xs…xl`, `--size-sm…xxl`; `~/src/hwww/savoir-faire-ui/ui/tokens.css`) so its `ui/` can be dropped in later.
 - No hardcoded strings: UI text in `data/i18n/<lang>.json` for all six languages; settings in `data/config.json` (each section has a `description`).
 - Other people's servers: the bot names itself, obeys robots.txt and Crawl-delay, spaces its requests (`crawl.delayMs`, `enrich.paceMs`), and fetches open data at build time, never per visitor. Credit every source (`docs/sources.md`).
-- Personal data stays in the browser or in the person's own Bluesky account (`docs/accounts.md`); publishing a list is opt-in.
+- Personal data stays in the browser: no accounts, no profiles (removed 2026-11-22, `docs/accounts.md`); a list moves between devices as a file or a link.
 - The index is built once a day; a push rebuilds it only when the code it imports changes (`scripts/ci/index-key.js`, `docs/ci.md`). Keep index code out of modules the crawlers share, so crawler changes don't rebuild it.
 - Commit on `main` in atomic commits and push: a push deploys in about three minutes.
 
 ## Docs
 
-`docs/` is published at /docs/: how-it-works, ci, data-formats, sources, accounts, feed, agents, for-shops, development. `plan.md` lists what's planned.
+`docs/` is published at /docs/: how-it-works, ci, data-formats, sources, accounts (your data), agents, for-shops, development. `plan.md` lists what's planned.

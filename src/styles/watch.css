@@ -19,6 +19,3 @@ vf-toast menu { display: flex; flex-wrap: wrap; justify-content: end; gap: var(-
   vf-watch-count, vf-toast { border: var(--hairline) solid CanvasText; }
 }
 @media (min-width: 48rem) { vf-toast { inset-block-end: max(var(--space-m), env(safe-area-inset-bottom)); } }
-/* changes waiting to reach the account, on the More tab (vf-shell-account.js); a dot while offline with none counted */
-vf-sync-count { min-inline-size: var(--badge-size); block-size: var(--badge-size); padding-inline: var(--space-xs); display: inline-grid; place-items: center; border-radius: var(--radius-pill); background: var(--color-watching); color: var(--color-badge-fg); font-size: var(--size-xs); font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; }
-vf-sync-count[hidden] { display: none; }

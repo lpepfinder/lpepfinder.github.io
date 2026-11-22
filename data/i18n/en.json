@@ -113,7 +113,7 @@
     "LP/EP Finder does not ask for an account and does not store personal data on its servers. Searches run in your browser.",
     "Advertising: this site shows ads from Google AdSense. Google and its partners use cookies to show ads based on your visits to this and other websites. You can turn off personalised ads in Google's Ads Settings (adssettings.google.com). Visitors in the European Economic Area, the UK and Switzerland are asked for consent first.",
     "Analytics: we count visits with Umami, which uses no cookies and collects no personal data. The statistics are public.",
-    "Optional Bluesky sign-in: the records you watch, and the lists you choose to publish, are saved in your own Bluesky account, where they are public; nothing is kept on our servers. Your Discogs lists are read from Discogs by your browser. Artist photos load from Wikimedia Commons.",
+    "Your list (the records you watch, your Discogs lists, your radio) stays in your browser; nothing is kept on our servers. Your Discogs lists and your Radio4000 radio are read by your browser from Discogs and Radio4000. Artist photos load from Wikimedia Commons. A YouTube video loads from youtube-nocookie.com only when you tap Play.",
     "Links to record shops take you to their websites, which have their own privacy policies.",
     "Questions, corrections or removal requests: open an issue on GitHub."
   ],
@@ -367,7 +367,7 @@
       "one": "{user}: 1 record in your collection, marked Owned in search.",
       "other": "{user}: {count} records in your collection, marked Owned in search."
     },
-    "backupMove": "Move a profile to another browser",
+    "backupMove": "Move your list to another browser",
     "radioTracks": "On your radio",
     "listen": "Listen",
     "play": "Play",
@@ -514,16 +514,7 @@
     "searchArtist": "Search all {artist}",
     "backList": "All records",
     "goTo": "Go to {shop}",
-    "goToPrice": "Go to {shop} · {price}",
-    "collectors": "Collectors",
-    "wantedBy": {
-      "one": "Wanted by 1 collector",
-      "other": "Wanted by {count} collectors"
-    },
-    "ownedBy": {
-      "one": "in 1 collection",
-      "other": "in {count} collections"
-    }
+    "goToPrice": "Go to {shop} · {price}"
   },
   "homeLatestTitle": "Latest in the shops",
   "homeStrip": {
@@ -584,36 +575,6 @@
   "shopOwnerTitle": "Is this your shop?",
   "shopOwnerBody": "Correct its details, get verified with Bluesky, or opt out.",
   "shopOwnerBodyListed": "See how to make its catalog searchable, correct its details, get verified with Bluesky, or opt out.",
-  "profiles": {
-    "title": "Profiles",
-    "default": "Me",
-    "rename": "Rename",
-    "remove": "Remove",
-    "renamePrompt": "New name",
-    "removeConfirm": "Remove the profile “{name}” and its lists from this browser?",
-    "add": "Add a profile",
-    "addPlaceholder": "Shop, gifts, a friend…",
-    "addButton": "Add",
-    "note": "Each profile has its own watchlist, Discogs lists, radio and filters, in this browser. A profile is local unless you sign in to a Bluesky account with it. Switching profile reloads the page. Anyone using this browser can open them.",
-    "cancel": "Cancel",
-    "renameTitle": "Rename “{name}”",
-    "local": "Local, in this browser",
-    "account": "Bluesky · @{handle}",
-    "transferTitle": "Move a profile",
-    "transferIntro": "Export the profile you are using as a file, then import it in another browser: no account needed. Importing adds its records to the profile in use.",
-    "export": "Export this profile",
-    "import": "Import a file",
-    "imported": {
-      "one": "1 record added.",
-      "other": "{count} records added."
-    },
-    "importError": "This file couldn’t be read.",
-    "row": "Profile",
-    "count": {
-      "one": "1 profile",
-      "other": "{count} profiles"
-    }
-  },
   "radio": {
     "title": "From a Radio4000 radio",
     "label": "Radio (Bluesky handle)",
@@ -643,41 +604,6 @@
       "one": "Add 1 to my watchlist",
       "other": "Add {count} to my watchlist"
     }
-  },
-  "account": {
-    "title": "Bluesky account",
-    "label": "Your Bluesky handle",
-    "placeholder": "you.bsky.social",
-    "signIn": "Sign in with Bluesky",
-    "signOut": "Sign out",
-    "note": "Signing in attaches your Bluesky account to the profile you are using (or opens the profile it already belongs to): its watchlist stays the same on all your devices. What is synced (the records you watch here and your Discogs username) is saved in your Bluesky account, where it is public. Without signing in, everything stays in this browser.",
-    "going": "Going to your Bluesky sign-in page…",
-    "error": "Couldn't start signing in with {handle}. Check the handle.",
-    "signedIn": "Signed in as @{handle}",
-    "signedOut": "Signed out of @{handle}. Its profile stays in this browser.",
-    "sync": {
-      "syncing": "syncing…",
-      "synced": "synced",
-      "error": "not synced, will retry",
-      "offline": "offline, changes will be sent when back online"
-    },
-    "publishTitle": "Public lists",
-    "publishWants": "Publish my wantlist",
-    "publishCollection": "Publish my collection",
-    "publishNote": "A published list is saved in your Bluesky account, where anyone can see it, here on your public page and elsewhere. Turning it off deletes it from your account.",
-    "publicPage": "Your public page",
-    "publishing": "Publishing…",
-    "unpublishing": "Taking it down…",
-    "published": "Published. It updates by itself when your list changes.",
-    "unpublished": "Deleted from your Bluesky account.",
-    "publishScope": "Your sign-in is from before publishing existed: sign out, then sign in again to allow it.",
-    "publishError": "Couldn't reach your Bluesky account. Try again in a minute.",
-    "waiting": {
-      "one": "1 change waiting",
-      "other": "{count} changes waiting"
-    },
-    "signedOutShort": "Not signed in",
-    "signInShort": "Sign in"
   },
   "sources": {
     "wants": "Discogs wantlist · {user}",
@@ -769,55 +695,6 @@
     "born": "born {year}",
     "more": "Read more"
   },
-  "user": {
-    "title": "Collectors",
-    "seoTitle": "A collector's lists",
-    "description": "What a collector wants and has, from the lists they publish on their Bluesky account, and which of their wants independent shops have now.",
-    "intro": "See what a collector wants and has, from the lists they publish on their Bluesky account, and which of their wants independent record shops have right now.",
-    "lookupLabel": "A collector's Bluesky handle",
-    "lookupPlaceholder": "someone.bsky.social",
-    "lookupButton": "Show",
-    "loading": "Reading the lists of @{handle}…",
-    "error": "Couldn't read @{handle}. Check the handle.",
-    "none": "@{handle} hasn't published a list on LP/EP Finder yet.",
-    "pageTitle": "{name}'s records",
-    "wants": {
-      "one": "1 want",
-      "other": "{count} wants"
-    },
-    "collection": {
-      "one": "1 record in the collection",
-      "other": "{count} records in the collection"
-    },
-    "inStock": {
-      "one": "1 in stock now",
-      "other": "{count} in stock now"
-    },
-    "stockHeading": {
-      "one": "In stock now: 1",
-      "other": "In stock now: {count}"
-    },
-    "wantsHeading": {
-      "one": "All wants: 1",
-      "other": "All wants: {count}"
-    },
-    "noneInStock": "None of these wants is in stock right now.",
-    "copies": {
-      "one": "1 in stock",
-      "other": "{count} in stock"
-    },
-    "outOfStock": "not in stock now",
-    "more": "Show more",
-    "bluesky": "Bluesky",
-    "discogs": "Discogs · {user}",
-    "source": "Published by @{handle} on their Bluesky account, updated {date}. Stock and prices from today's data.",
-    "checking": "Checking {done} of {total}…",
-    "feedEvents": "Wanted lately",
-    "feedTop": "Most wanted",
-    "feedCollectors": "Collectors",
-    "feedWants": "wants",
-    "feedNone": "No collector has published a list yet."
-  },
   "noscriptSearch": "Search runs in your browser and needs JavaScript. Without it, browse by artist or by shop:",
   "tabExplore": "Explore",
   "tabMe": "Me",
@@ -825,20 +702,15 @@
   "settingsTitle": "Settings",
   "settingsBrowser": "This browser",
   "me": {
-    "profiles": "Profiles",
     "lists": "Your lists",
     "empty": "Nothing watched yet. Connect a list above, or",
     "emptySearch": "watch records from the search (☆).",
     "menu": "More",
-    "share": "Share my watchlist",
-    "signIn": "Sync with Bluesky",
-    "publicPage": "My public page"
+    "share": "Share my watchlist"
   },
   "explore": {
     "intro": "Everything on LP/EP Finder besides the search: what's new in the shops, shops by country, artists, collectors and the open data. {records} records in stock at {shops} shops.",
     "formats": "New arrivals by format",
-    "collectors": "What collectors want and have, from the lists they publish on Bluesky, and the records most wanted.",
-    "collectorsLink": "Collectors' lists and most wanted",
     "data": "The data",
     "dataIntro": "Rebuilt every day from the shops' public catalogs, and open: read it as JSON, follow it in a feed reader, or see how fresh it is.",
     "api": "Open data (JSON)",
@@ -856,5 +728,29 @@
   "submitFormWhy": "For a shop that only sells online, or to be listed sooner: checked automatically within minutes, with a GitHub account.",
   "submitRead": "What we read: a Shopify or WooCommerce shop has its whole catalog searchable the next day. Other shops have their record pages read a few at a time, when their site allows it.",
   "submitOwner": "Your shop? How our bot reads your site",
-  "shopsAdd": "Add a shop"
+  "shopsAdd": "Add a shop",
+  "transfer": {
+    "title": "Move to another device",
+    "intro": "Download your list as a file, then open it in another browser: no account needed. Opening a file adds its records to your list.",
+    "download": "Download my list",
+    "open": "Import a file",
+    "imported": {
+      "one": "1 record added.",
+      "other": "{count} records added."
+    },
+    "importError": "This file couldn’t be read."
+  },
+  "legacy": {
+    "title": "Your other profiles",
+    "intro": "Profiles are gone: one list per browser now. Your other profiles are kept here until you choose what to do with each.",
+    "inUse": "in use until now",
+    "download": "Download",
+    "merge": "Merge into my list",
+    "remove": "Remove",
+    "merged": {
+      "one": "{name}: 1 record added to your list.",
+      "other": "{name}: {count} records added to your list."
+    },
+    "removed": "{name} removed from this browser."
+  }
 }

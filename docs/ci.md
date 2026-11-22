@@ -13,8 +13,8 @@ and on a push only when the code that shapes it changed.
   discover new shops), then the catalog `crawl` in `crawl.shards` parallel runners, each reading its share of the
   shops (the same split as the site crawler, `scripts/lib/shard.js`) at the same pace per shop; `refresh` joins the
   shards (`scripts/crawl/merge.js`: a missing shard merges nothing, so yesterday's data stays) and publishes
-  `generated.tar.gz`. Next to it: the site crawler shards, artist profiles (`enrich`) and the collectors feed
-  (`social`), each kept in the `data` release. Then **Index** builds the index from that day's data, then
+  `generated.tar.gz`. Next to it: the site crawler shards and artist profiles (`enrich`), each kept in the `data`
+  release. Then **Index** builds the index from that day's data, then
   **Deploy** publishes.
 - **Index** (`.github/workflows/index.yml`): downloads the crawl data and the offer ledger, runs `npm run index`, and
   saves the result at once as the **index bundle** in the `data` release: `index.tar.gz` (`public/search`, `public/w`,
@@ -29,7 +29,7 @@ and on a push only when the code that shapes it changed.
   change reaches the search with the next daily index, and tuning the search box doesn't rebuild it.
 - **Deploy** (`.github/workflows/deploy.yml`) runs on every push to `main` (and after Refresh): a `check` job compares
   the index key of the code with the bundle's; only when they differ does it run **Index** first. Then it downloads
-  the bundle, the profiles and the feed, builds the site, runs the end-to-end tests and publishes to GitHub Pages,
+  the bundle and the artist profiles, builds the site, runs the end-to-end tests and publishes to GitHub Pages,
   in a few minutes. Without a bundle, or when a test fails, it stops, so the live site keeps the previous build (the
   Playwright report is attached to the failed run).
 - **Health report** (`npm run health`, `scripts/health/`, a step of Deploy): compares the build with the last one of

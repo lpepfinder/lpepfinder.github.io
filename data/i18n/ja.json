@@ -110,7 +110,7 @@
     "LP/EP Finder はアカウント登録を求めず、サーバーに個人データを保存しません。検索はブラウザ内で行われます。",
     "広告：このサイトは Google AdSense の広告を表示します。Google とそのパートナーは Cookie を使い、このサイトや他のサイトへの訪問に基づいて広告を表示します。パーソナライズ広告は Google の広告設定（adssettings.google.com）で無効にできます。欧州経済領域・英国・スイスからの訪問者には事前に同意を求めます。",
     "アクセス解析：訪問数は Cookie を使わず個人データも収集しない Umami で計測しています。統計は公開されています。",
-    "Bluesky ログインは任意です。ウォッチしたレコードと、公開を選んだリストはあなた自身の Bluesky アカウントに保存され、公開されます。当サイトのサーバーには何も残りません。Discogs のリストはブラウザが Discogs から直接読み込みます。アーティスト写真は Wikimedia Commons から読み込まれます。",
+    "リスト（ウォッチ中のレコード、Discogs のリスト、ラジオ）はブラウザ内に保存され、私たちのサーバーには何も残りません。Discogs のリストと Radio4000 のラジオは、ブラウザが Discogs と Radio4000 から直接読み込みます。アーティスト写真は Wikimedia Commons から読み込まれます。YouTube の動画は「再生」をタップしたときだけ youtube-nocookie.com から読み込まれます。",
     "レコード店へのリンク先は各店舗のサイトで、それぞれのプライバシーポリシーが適用されます。",
     "ご質問・修正・掲載削除の依頼は GitHub の Issue でどうぞ。"
   ],
@@ -346,7 +346,7 @@
     "collectionDone": {
       "other": "{user}：コレクション{count}件。検索で「所有」と表示します。"
     },
-    "backupMove": "プロフィールを別のブラウザに移す",
+    "backupMove": "リストを別のブラウザに移す",
     "radioTracks": "あなたのラジオで",
     "listen": "聴く",
     "play": "再生",
@@ -483,14 +483,7 @@
     "searchArtist": "{artist}をすべて検索",
     "backList": "すべてのレコード",
     "goTo": "{shop} へ",
-    "goToPrice": "{shop} へ · {price}",
-    "collectors": "コレクター",
-    "wantedBy": {
-      "other": "{count} 人のコレクターが探しています"
-    },
-    "ownedBy": {
-      "other": "{count} 人のコレクションにあり"
-    }
+    "goToPrice": "{shop} へ · {price}"
   },
   "homeLatestTitle": "ショップの最新入荷",
   "homeStrip": {
@@ -551,34 +544,6 @@
   "shopOwnerTitle": "あなたのお店ですか？",
   "shopOwnerBody": "情報の修正、Blueskyでの確認、掲載の取り下げができます。",
   "shopOwnerBodyListed": "カタログを検索可能にする方法、情報の修正、Blueskyでの確認、掲載の取り下げについて。",
-  "profiles": {
-    "title": "プロフィール",
-    "default": "自分",
-    "rename": "名前を変更",
-    "remove": "削除",
-    "renamePrompt": "新しい名前",
-    "removeConfirm": "プロフィール「{name}」とそのリストをこのブラウザから削除しますか？",
-    "add": "プロフィールを追加",
-    "addPlaceholder": "お店、ギフト、友達…",
-    "addButton": "追加",
-    "note": "プロフィールごとに、ウォッチリスト、Discogsのリスト、ラジオ、フィルターがこのブラウザに保存されます。Blueskyアカウントでサインインしない限り、プロフィールはローカルです。プロフィールを切り替えるとページが再読み込みされます。このブラウザを使う人は誰でも開けます。",
-    "cancel": "キャンセル",
-    "renameTitle": "「{name}」の名前を変更",
-    "local": "ローカル（このブラウザ）",
-    "account": "Bluesky · @{handle}",
-    "transferTitle": "プロフィールを移す",
-    "transferIntro": "使用中のプロフィールをファイルに書き出し、別のブラウザで読み込めます。アカウントは不要です。読み込むと、そのレコードが使用中のプロフィールに追加されます。",
-    "export": "このプロフィールを書き出す",
-    "import": "ファイルを読み込む",
-    "imported": {
-      "other": "{count}枚追加しました。"
-    },
-    "importError": "このファイルを読み込めませんでした。",
-    "row": "プロフィール",
-    "count": {
-      "other": "{count}件のプロフィール"
-    }
-  },
   "radio": {
     "title": "Radio4000のラジオから",
     "label": "ラジオ（Blueskyハンドル）",
@@ -606,40 +571,6 @@
     "add": {
       "other": "{count}件をリストに追加"
     }
-  },
-  "account": {
-    "title": "Blueskyアカウント",
-    "label": "Blueskyハンドル",
-    "placeholder": "you.bsky.social",
-    "signIn": "Blueskyでサインイン",
-    "signOut": "サインアウト",
-    "note": "サインインすると、Blueskyアカウントが使用中のプロフィールに結び付きます（すでに結び付いたプロフィールがあればそれを開きます）。ウォッチリストはすべての端末で同じになります。同期される内容（ここでウォッチしているレコードとDiscogsのユーザー名）はBlueskyアカウントに保存され、公開されます。サインインしなければ、すべてこのブラウザに残ります。",
-    "going": "Blueskyのサインインページへ移動中…",
-    "error": "{handle}でサインインできませんでした。ハンドルを確認してください。",
-    "signedIn": "@{handle}としてサインイン中",
-    "signedOut": "@{handle}からサインアウトしました。プロフィールはこのブラウザに残ります。",
-    "sync": {
-      "syncing": "同期中…",
-      "synced": "同期済み",
-      "error": "未同期、再試行します",
-      "offline": "オフライン：接続が戻ると変更を送信します"
-    },
-    "publishTitle": "公開リスト",
-    "publishWants": "ウォントリストを公開する",
-    "publishCollection": "コレクションを公開する",
-    "publishNote": "公開したリストはあなたの Bluesky アカウントに保存され、ここの公開ページやほかの場所で誰でも見られます。オフにするとアカウントから削除されます。",
-    "publicPage": "あなたの公開ページ",
-    "publishing": "公開中…",
-    "unpublishing": "削除中…",
-    "published": "公開しました。リストが変わると自動で更新されます。",
-    "unpublished": "Bluesky アカウントから削除しました。",
-    "publishScope": "公開機能より前のログインです。ログアウトしてもう一度ログインすると許可できます。",
-    "publishError": "Bluesky アカウントに接続できませんでした。少ししてからもう一度お試しください。",
-    "waiting": {
-      "other": "{count}件の変更が送信待ち"
-    },
-    "signedOutShort": "未サインイン",
-    "signInShort": "サインイン"
   },
   "sources": {
     "wants": "Discogs ウォントリスト · {user}",
@@ -727,49 +658,6 @@
     "born": "{year}年生まれ",
     "more": "続きを読む"
   },
-  "user": {
-    "title": "コレクター",
-    "seoTitle": "コレクターのリスト",
-    "description": "コレクターが Bluesky アカウントで公開しているリストから、欲しいもの・持っているもの、そして今インディーショップにある欲しいレコード。",
-    "intro": "コレクターが Bluesky アカウントで公開しているリストから、欲しいもの・持っているものと、そのうち今インディーのレコード店にあるものを表示します。",
-    "lookupLabel": "コレクターの Bluesky ハンドル",
-    "lookupPlaceholder": "someone.bsky.social",
-    "lookupButton": "表示",
-    "loading": "@{handle} のリストを読み込み中…",
-    "error": "@{handle} を読み込めませんでした。ハンドルを確認してください。",
-    "none": "@{handle} はまだ LP/EP Finder にリストを公開していません。",
-    "pageTitle": "{name} のレコード",
-    "wants": {
-      "other": "欲しいもの {count} 枚"
-    },
-    "collection": {
-      "other": "コレクション {count} 枚"
-    },
-    "inStock": {
-      "other": "在庫あり {count} 枚"
-    },
-    "stockHeading": {
-      "other": "今の在庫: {count}"
-    },
-    "wantsHeading": {
-      "other": "欲しいものすべて: {count}"
-    },
-    "noneInStock": "今、在庫のあるものはありません。",
-    "copies": {
-      "other": "在庫 {count}"
-    },
-    "outOfStock": "現在在庫なし",
-    "more": "もっと見る",
-    "bluesky": "Bluesky",
-    "discogs": "Discogs · {user}",
-    "source": "@{handle} が Bluesky アカウントで公開、{date} 更新。在庫と価格は本日のデータ。",
-    "checking": "{total} 件中 {done} 件を確認中…",
-    "feedEvents": "最近のウォント",
-    "feedTop": "人気のウォント",
-    "feedCollectors": "コレクター",
-    "feedWants": "が探しています:",
-    "feedNone": "まだリストを公開したコレクターはいません。"
-  },
   "noscriptSearch": "検索はブラウザで動作し、JavaScript が必要です。JavaScript なしでは、アーティスト別・ショップ別にご覧ください:",
   "tabExplore": "探す",
   "tabMe": "マイページ",
@@ -777,20 +665,15 @@
   "settingsTitle": "設定",
   "settingsBrowser": "このブラウザ",
   "me": {
-    "profiles": "プロフィール",
     "lists": "あなたのリスト",
     "empty": "まだ何もウォッチしていません。上のリストを接続するか、",
     "emptySearch": "検索からレコードをウォッチ（☆）できます。",
     "menu": "その他",
-    "share": "ウォッチリストを共有",
-    "signIn": "Blueskyと同期",
-    "publicPage": "公開ページ"
+    "share": "ウォッチリストを共有"
   },
   "explore": {
     "intro": "検索以外の LP/EP Finder のすべて：お店の新入荷、国別のお店、アーティスト、コレクター、オープンデータ。{shops} 店に {records} 枚の在庫。",
     "formats": "フォーマット別の新入荷",
-    "collectors": "コレクターが Bluesky で公開しているリストから、探しているレコードと持っているレコード、そして最も求められているレコード。",
-    "collectorsLink": "コレクターのリストと人気のウォント",
     "data": "データ",
     "dataIntro": "お店の公開カタログから毎日作り直され、オープンです：JSON で読む、フィードリーダーで追う、鮮度を確かめる。",
     "api": "オープンデータ（JSON）",
@@ -808,5 +691,28 @@
   "submitFormWhy": "オンライン専業のショップ、または早く掲載したい場合に。GitHub アカウントで、数分以内に自動チェックされます。",
   "submitRead": "読み取る内容：Shopify または WooCommerce のショップは、翌日にカタログ全体が検索できます。その他のショップは、サイトが許可していれば、レコードのページを少しずつ読み取ります。",
   "submitOwner": "あなたのショップですか？ボットがサイトを読む方法",
-  "shopsAdd": "ショップを追加"
+  "shopsAdd": "ショップを追加",
+  "transfer": {
+    "title": "別の端末に移す",
+    "intro": "リストをファイルとしてダウンロードし、別のブラウザで開きます。アカウントは不要です。ファイルを開くと、そのレコードがリストに追加されます。",
+    "download": "リストをダウンロード",
+    "open": "ファイルを読み込む",
+    "imported": {
+      "other": "{count}枚追加しました。"
+    },
+    "importError": "このファイルを読み込めませんでした。"
+  },
+  "legacy": {
+    "title": "ほかのプロフィール",
+    "intro": "プロフィール機能は終了し、ブラウザごとに1つのリストになりました。ほかのプロフィールは、それぞれの扱いを選ぶまでここに残ります。",
+    "inUse": "これまで使用中",
+    "download": "ダウンロード",
+    "merge": "リストに統合",
+    "remove": "削除",
+    "merged": {
+      "one": "{name}：1 枚をリストに追加しました。",
+      "other": "{name}：{count} 枚をリストに追加しました。"
+    },
+    "removed": "{name} をこのブラウザから削除しました。"
+  }
 }

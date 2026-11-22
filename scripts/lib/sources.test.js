@@ -74,7 +74,7 @@ test('another username starts over', () => {
   assert.equal(freshness('wants'), null);
 });
 
-test('disconnecting a list forgets it; a radio turned off stays off; Undo puts everything back', async () => {
+test('disconnecting a list forgets it; a radio disconnected isn\'t checked again; Undo puts everything back', async () => {
   store.clear();
   const { disconnect, restore, radioRead, radioFreshness, checkRadio } = await import('../../src/lib/watch/sources.js');
   imported('wants', 'digger', 10);
@@ -88,9 +88,8 @@ test('disconnecting a list forgets it; a radio turned off stays off; Undo puts e
   assert.equal(sources().discogs, undefined);
   disconnect('radio');
   assert.equal(radioFreshness(), null);
-  // the signed-in account's own radio isn't offered again by itself
   calls.length = 0;
-  await checkRadio({ handle: 'dj.test', force: true });
+  await checkRadio({ force: true });
   assert.equal(calls.length, 0);
   assert.equal(radioFreshness(), null);
   restore(saved);

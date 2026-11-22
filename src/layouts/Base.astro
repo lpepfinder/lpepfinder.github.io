@@ -76,7 +76,9 @@ const strings = JSON.stringify(clientStrings(lang, groups)).replace(/</g, '\\u00
   <script>
     import '../components/vf-app.js';
     import '../components/router.js';
-    import '../components/atproto-boot.js';
+    // Bluesky accounts were removed on 2026-11-22: what a browser kept of them goes (legacy.js; until 2027-03-01)
+    import { cleanUpAccounts } from '../lib/watch/legacy.js';
+    cleanUpAccounts();
   </script>
 </body>
 </html>

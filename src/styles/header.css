@@ -42,7 +42,7 @@ header > nav {
   background: var(--color-surface); border-block-start: var(--hairline) solid var(--color-line);
 }
 vf-tabbar { display: grid; grid-template-columns: repeat(4, 1fr); }
-vf-tabbar :is(vf-watchlist, vf-shell-account) { display: contents; }
+vf-tabbar vf-watchlist { display: contents; }
 vf-tabbar a { min-inline-size: 0; }
 vf-tabbar a > span { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 vf-tabbar a {
@@ -52,8 +52,7 @@ vf-tabbar a {
 vf-tabbar a[aria-current] { color: var(--color-accent); }
 vf-tabbar :is(vf-icon, vf-logo) { --icon-size: 1.5rem; }
 vf-tabbar vf-logo svg { inline-size: var(--icon-size); block-size: var(--icon-size); }
-vf-tabbar :is(vf-watch-count, vf-sync-count) { position: absolute; inset-block-start: var(--space-xs); inset-inline-start: calc(50% + 0.5rem); }
-vf-tabbar a:has(vf-watch-count:not([count="0"])) vf-sync-count { display: none; }
+vf-tabbar vf-watch-count { position: absolute; inset-block-start: var(--space-xs); inset-inline-start: calc(50% + 0.5rem); }
 /* the language: at the foot of the side rail; on phones it is in Settings */
 header > button[name="language"] { display: none; }
 /* room for the fixed tab bar */
@@ -139,6 +138,5 @@ vf-icon[name="play"] { --icon: var(--icon-play); }
   vf-tabbar a { grid-auto-flow: column; justify-content: start; gap: var(--space-sm); min-block-size: var(--tap); padding-inline: var(--space-sm); font-size: var(--size-base); }
   vf-tabbar :is(vf-icon, vf-logo) { --icon-size: var(--icon-size-nav); }
   vf-tabbar vf-watch-count { position: static; }
-  vf-tabbar vf-sync-count { position: static; }
   header > button[name="language"] { inset-inline-start: var(--space-sm); inline-size: calc(var(--rail-w) - 2 * var(--space-sm)); grid-auto-flow: column; justify-content: start; gap: var(--space-sm); min-block-size: var(--tap); padding-inline: var(--space-sm); font-size: var(--size-base); font-weight: normal; }
 }

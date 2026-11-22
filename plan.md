@@ -22,7 +22,7 @@ Dig as it is (every new record, back in stock or cheaper, in every shop, as a co
 |---|---|---|
 | **Search** (home) | The field on top. Empty, it shows what's new for you (records from your lists in stock, new at the shops you follow, new near you), recent searches and popular artists. Results lead with the place: the nearest shop, or "ships to you", then the price. | Home, popular artists, Dig's "Your records" |
 | **Shops** | Where the shops are: near me (a list by distance; a map later, see below), then by city and by country. A shop's page leads with what's new there this week, then everything in stock, with **Follow**. | Shops by country, cities, Dig's new arrivals per shop |
-| **Me** | Your lists, as today, plus the shops you follow. Settings, profiles and language go in its ⋯ menu. | Settings tab, Collectors |
+| **Me** | Your lists, as today, plus the shops you follow. Settings go in its ⋯ menu. | Settings tab |
 
 Explore goes away, redirected to Search like `/more/` and `/watch/` before. The Dig crates leave the navigation, but the new arrivals stay whole for robots and agents: `dig.json`, the Atom feeds, and the static `/new/` pages per country and format, which search engines index, linked from the footer instead of a tab. Their data links (status, JSON, llms.txt, Atom, docs) move to one footer line on every page and to About.
 
@@ -30,7 +30,7 @@ Explore goes away, redirected to Search like `/more/` and `/watch/` before. The 
 
 1. **One "where I dig" setting**, kept in this browser: near me (the browser's position, asked only when "near me" is tapped; it never leaves the browser), a city, a country, ships to me (from the currency and region already kept), or anywhere. Search, Shops and Me all read it, so it's chosen once, not per page.
 2. **Shop places**: latitude and longitude per shop, at build time. They come from OpenStreetMap for the shops found there, and from Nominatim, paced, for the others, the way discovery already does it (`scripts/discover`). Today no shop has coordinates and 863 of 2,401 have a city: this is the first data job, and "near me" waits for it.
-3. **Follow a shop**: its new records show in Search's "new for you" and on Me. It's kept like the watchlist (in this browser, synced to Bluesky when signed in). The data is already in `dig.json`, per shop.
+3. **Follow a shop**: its new records show in Search's "new for you" and on Me. It's kept like the watchlist, in this browser. The data is already in `dig.json`, per shop.
 4. **A map, later**: the shops near you on a map needs map tiles, and tiles fetched per visitor go against "open data at build time, never per visitor". Either draw a simple static map at build time, or show tiles only after a tap, like the YouTube player. Not in the first steps.
 
 ### OpenStreetMap as the source of shops
@@ -57,7 +57,7 @@ Each step is its own set of commits, with the quality gate and browser tests upd
 
 - No Dig tab: Search is home, and "new" is new for you (above). The full new arrivals stay for robots.
 - "Near me" asks the browser for a position only when tapped; the position stays in the browser.
-- Collectors: publishing your lists stays in Me; "most wanted" shows in Search's empty state with the popular artists.
+- Collectors: publishing lists and the collectors feed were removed with Bluesky accounts and profiles (2026-11-22: nobody had published a list), so there is no "most wanted".
 
 ## Crawl every shop every day, sooner
 
@@ -98,7 +98,7 @@ Shops (`data/shops/`), settings (`data/config.json`), translations (`data/i18n/`
 
 From the 2026-11-10 review, not urgent; each one is a separate commit.
 
-- One safe `localStorage` helper (`src/lib/storage.js`: read a key with a fallback, write it, never throw). About ten modules wrap it in their own try/catch today (`watch/sources.js`, `watch/now-cache.js`, `atproto/sync.js`, `components/viewer.js`, `components/recent.js`…).
+- One safe `localStorage` helper (`src/lib/storage.js`: read a key with a fallback, write it, never throw). About ten modules wrap it in their own try/catch today (`watch/sources.js`, `watch/now-cache.js`, `components/viewer.js`, `components/recent.js`…).
 - One price and country-name formatter for the build (`src/lib/i18n.js`, takes `lang`) and the browser (`src/components/i18n.js`, page language). Today each has its own copy, and they fall back differently when the currency is missing: one assumes EUR, the other prints a bare number.
 - `src/components/` mixes Astro components, `vf-*` custom elements and plain helpers (`dom`, `price`, `viewer`, `router`, `i18n`, `watch-*`). Move the helpers to `src/lib/ui/`, so there's one kind of file per folder.
 - Workflows: `setup-node` + `npm ci` is repeated about 10 times and `gh release download data` about 15. Use a local composite action (`.github/actions/setup`) and one script to fetch crawl data.

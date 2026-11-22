@@ -9,7 +9,7 @@ import { t, localeParams, localPath } from '../../lib/i18n.js';
 import { pageTitle } from '../../lib/seo.js';
 
 /**
- * Me (/me/, was /watch/), mobile first: the profile in use with a ⋯ menu (Prices in, Share, Profiles, Bluesky, Settings), then
+ * Me (/me/, was /watch/), mobile first: the title with a ⋯ menu (Prices in, Share, Settings), then
  * the overview: one card per place the records come from (all of them, the Discogs wantlist, a radio, the search),
  * each with how many are watched and in stock, picked to show only its records in every view, and "Add a list" for
  * the lists not connected (all of them as cards while nothing is watched); then four tabs with counts (in stock,
@@ -20,30 +20,30 @@ const { lang } = Astro.props;
 const views = [['available', 'viewAvailable', 'bag'], ['now', 'viewShops', 'store'], ['changes', 'viewChanges', 'pulse'], ['all', 'viewAll', 'star']];
 const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
 ---
-<Base lang={lang} path="/me/" title={pageTitle(t(lang, 'tabMe'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'profiles', 'radio', 'sources', 'account']}>
+<Base lang={lang} path="/me/" title={pageTitle(t(lang, 'tabMe'))} description={t(lang, 'watchPage.description')} noindex strings={['watchPage', 'radio', 'sources', 'legacy']}>
   <vf-watch-shared hidden>
     <h2>{t(lang, 'watchPage.sharedTitle')}</h2>
     <p></p>
     <button type="button" name="add-shared" kind="secondary">{t(lang, 'watchPage.sharedAdd')}</button>
   </vf-watch-shared>
   <vf-me-head>
-    <vf-avatar aria-hidden="true"><span>M</span></vf-avatar>
-    <hgroup>
-      <h1>{t(lang, 'profiles.default')}</h1>
-      <p>{t(lang, 'profiles.local')}</p>
-    </hgroup>
+    <h1>{t(lang, 'tabMe')}</h1>
     <vf-menu>
       <button type="button" popovertarget="me-menu" aria-haspopup="menu" aria-expanded="false" kind="secondary" aria-label={t(lang, 'me.menu')} title={t(lang, 'me.menu')}><vf-icon name="more"></vf-icon></button>
       <menu popover id="me-menu">
         <li><button type="button" name="currency"><vf-icon name="coin"></vf-icon><span>{t(lang, 'currency.label')}</span> <data></data></button></li>
         <li><button type="button" name="share"><vf-icon name="share"></vf-icon><span>{t(lang, 'me.share')}</span></button></li>
-        <li><a href={localPath(lang, '/settings/') + '#profiles'}><vf-icon name="person"></vf-icon><span>{t(lang, 'me.profiles')}</span></a></li>
-        <li><a href={localPath(lang, '/settings/') + '#account'} name="sign-in"><vf-icon name="bluesky"></vf-icon><span>{t(lang, 'me.signIn')}</span></a></li>
-        <li hidden><a href={localPath(lang, '/u/')} name="public"><vf-icon name="person"></vf-icon><span>{t(lang, 'me.publicPage')}</span></a></li>
         <li><a href={localPath(lang, '/settings/')}><vf-icon name="settings"></vf-icon><span>{t(lang, 'settingsTitle')}</span></a></li>
       </menu>
     </vf-menu>
   </vf-me-head>
+  <!-- once, for browsers that had several profiles before 2026-11-22 (legacy.js): each one downloaded, merged or removed -->
+  <vf-legacy-profiles hidden>
+    <h2>{t(lang, 'legacy.title')}</h2>
+    <p>{t(lang, 'legacy.intro')}</p>
+    <ul></ul>
+    <output aria-live="polite"></output>
+  </vf-legacy-profiles>
   <vf-watch-page status="idle" view="available" search={localPath(lang, '/')} empty>
     <vf-watch-sources>
       <h2 id="my-lists">{t(lang, 'me.lists')}</h2>
@@ -166,7 +166,7 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
 </Base>
 <script>
   import '../../components/vf-watch-page.js';
-  import '../../components/vf-me-head.js';
+  import '../../components/vf-legacy-profiles.js';
   import '../../components/vf-menu.js';
   import '../../components/vf-watch-backup.js';
   import '../../components/vf-radio-import.js';

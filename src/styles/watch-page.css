@@ -106,13 +106,8 @@ vf-watch-backup input[type="url"] { min-inline-size: 0; }
 
 /* /me/: the profile in use and its account, then its lists, then the watchlist */
 vf-me-head { display: flex; align-items: center; gap: var(--space-sm); margin-block-end: var(--space-sm); }
-vf-me-head hgroup { display: grid; gap: var(--space-xs); min-inline-size: 0; flex: 1; }
 /* the profile's picture: the account's avatar, else its initial */
-vf-avatar { flex: none; display: grid; place-items: center; inline-size: var(--avatar-me); block-size: var(--avatar-me); border-radius: 50%; overflow: hidden; background: var(--color-chip); color: var(--color-muted); font-size: var(--size-xl); font-weight: var(--weight-bold); }
-vf-avatar > img { inline-size: 100%; block-size: 100%; object-fit: cover; }
-vf-me-head h1 { margin: 0; font-size: var(--size-xxl); line-height: var(--line-height-tight); overflow-wrap: anywhere; }
-vf-me-head p { margin: 0; color: var(--color-muted); font-size: var(--size-sm); }
-vf-me-head:is([state="offline"], [state="error"]) p { color: var(--color-watching); }
+vf-me-head h1 { flex: 1; min-inline-size: 0; margin: 0; font-size: var(--size-xxl); line-height: var(--line-height-tight); overflow-wrap: anywhere; }
 
 /* the overview: one card per source, a row that scrolls sideways on phones, wrapping from tablets; while nothing is
    watched, the lists to connect stack. Picking a card (its whole surface) shows its records. */
@@ -297,3 +292,14 @@ vf-radio-match > p { grid-column: 1 / -1; padding-inline-start: var(--space-l); 
 vf-radio-match[exact="true"] > p { color: var(--color-ok); }
 vf-radio-import > button[name="add"][hidden] { display: none; }
 vf-radio-import > button[name="add"] { justify-self: start; }
+
+/* <vf-legacy-profiles>: once, the profiles a browser kept before they were removed (legacy.js), each with its actions */
+vf-legacy-profiles { display: grid; gap: var(--space-s); padding: var(--space-m); border: var(--hairline) solid var(--color-watching); border-radius: var(--radius); background: var(--color-surface); }
+vf-legacy-profiles[hidden] { display: none; }
+vf-legacy-profiles :is(h2, p) { margin: 0; }
+vf-legacy-profiles h2 { font-size: var(--size-lg); }
+vf-legacy-profiles > p, vf-legacy-profiles small, vf-legacy-profiles > output { color: var(--color-muted); font-size: var(--size-sm); }
+vf-legacy-profiles > output:empty { display: none; }
+vf-legacy-profiles ul { display: grid; gap: var(--space-s); margin: 0; padding: 0; list-style: none; }
+vf-legacy-profiles li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-s); }
+vf-legacy-profiles li > span { flex: 1 1 var(--field-min); display: grid; }

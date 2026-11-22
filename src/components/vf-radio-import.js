@@ -10,7 +10,6 @@ import { price } from './price.js';
 import { el, attrs } from './dom.js';
 import { afterWatch } from './vf-toast.js';
 import { radioRead, report } from '../lib/watch/sources.js';
-import { currentAccount } from '../lib/atproto/accounts.js';
 
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 const page = () => document.querySelector('vf-watch-page');
@@ -21,8 +20,8 @@ const page = () => document.querySelector('vf-watch-page');
  * records found by the song's title, not ticked since they're a guess. Each group has a checkbox that ticks or
  * clears all of it (mixed when only some are ticked). "Add" puts the ticked ones in the watchlist, each with the
  * at:// address of the tracks it was found for (store.js `p`: the watchlist links back to them). The tracks are
- * kept in the browser (radio-tracks.js): a radio read before is read again only for its new tracks. Signed in with
- * Bluesky, the field starts with the account's handle; the reading is kept in sources.js.
+ * kept in the browser (radio-tracks.js): a radio read before is read again only for its new tracks; the reading is
+ * kept in sources.js.
  */
 export class VfRadioImport extends HTMLElement {
   connectedCallback() {
@@ -37,9 +36,6 @@ export class VfRadioImport extends HTMLElement {
       this.count();
     });
     this.addButton.addEventListener('click', () => this.add());
-    // signed in with Bluesky: the radio is most likely the account's own
-    const input = this.form.elements.handle;
-    if (!input.value) input.value = currentAccount()?.handle || '';
   }
 
   /** Read a radio now (from the sources list): `handle` in the field, then the same steps as the form. */

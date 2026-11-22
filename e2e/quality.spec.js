@@ -39,7 +39,6 @@ qualityTests([
   // one page per letter would fix it for phones too)
   { name: 'new arrivals', path: '/new/' },
   { name: 'watchlist', path: '/me/', touch: 44 },
-  { name: 'collectors', path: '/u/', touch: 44 },
   { name: 'settings', path: '/settings/', touch: 44 },
   { name: 'docs', path: '/docs/' },
   { name: 'about', path: '/about/' },

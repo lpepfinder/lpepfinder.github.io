@@ -113,7 +113,7 @@
     "LP/EP Finder ne demande pas de compte et ne conserve aucune donnée personnelle sur ses serveurs. Les recherches s'exécutent dans votre navigateur.",
     "Publicité : ce site affiche des annonces Google AdSense. Google et ses partenaires utilisent des cookies pour afficher des annonces selon vos visites sur ce site et d'autres. Vous pouvez désactiver les annonces personnalisées dans les paramètres des annonces de Google (adssettings.google.com). Dans l'Espace économique européen, au Royaume-Uni et en Suisse, votre consentement est demandé au préalable.",
     "Mesure d'audience : nous comptons les visites avec Umami, sans cookies ni données personnelles. Les statistiques sont publiques.",
-    "Connexion Bluesky facultative : les disques que vous suivez, et les listes que vous choisissez de publier, sont enregistrés dans votre propre compte Bluesky, où ils sont publics ; rien n’est gardé sur nos serveurs. Vos listes Discogs sont lues sur Discogs par votre navigateur. Les photos d’artistes viennent de Wikimedia Commons.",
+    "Votre liste (les disques que vous suivez, vos listes Discogs, votre radio) reste dans votre navigateur ; rien n’est gardé sur nos serveurs. Vos listes Discogs et votre radio Radio4000 sont lues par votre navigateur sur Discogs et Radio4000. Les photos d’artistes viennent de Wikimedia Commons. Une vidéo YouTube ne se charge depuis youtube-nocookie.com que quand vous appuyez sur Lire.",
     "Les liens vers les disquaires mènent à leurs sites, qui ont leur propre politique de confidentialité.",
     "Questions, corrections ou demandes de retrait : ouvrez un ticket sur GitHub."
   ],
@@ -367,7 +367,7 @@
       "one": "{user} : 1 disque dans votre collection, marqué « À moi » dans la recherche.",
       "other": "{user} : {count} disques dans votre collection, marqués « À moi » dans la recherche."
     },
-    "backupMove": "Déplacer un profil vers un autre navigateur",
+    "backupMove": "Passer votre liste à un autre navigateur",
     "radioTracks": "Sur votre radio",
     "listen": "Écouter",
     "play": "Lire",
@@ -514,16 +514,7 @@
     "searchArtist": "Chercher tout {artist}",
     "backList": "Tous les disques",
     "goTo": "Aller chez {shop}",
-    "goToPrice": "Aller chez {shop} · {price}",
-    "collectors": "Collectionneurs",
-    "wantedBy": {
-      "one": "Recherché par 1 collectionneur",
-      "other": "Recherché par {count} collectionneurs"
-    },
-    "ownedBy": {
-      "one": "dans 1 collection",
-      "other": "dans {count} collections"
-    }
+    "goToPrice": "Aller chez {shop} · {price}"
   },
   "homeLatestTitle": "Derniers arrivages en boutique",
   "homeStrip": {
@@ -584,36 +575,6 @@
   "shopOwnerTitle": "C’est votre boutique ?",
   "shopOwnerBody": "Corrigez ses informations, faites-la vérifier avec Bluesky, ou retirez-la.",
   "shopOwnerBodyListed": "Voyez comment rendre son catalogue cherchable, corriger ses informations, la faire vérifier avec Bluesky, ou la retirer.",
-  "profiles": {
-    "title": "Profils",
-    "default": "Moi",
-    "rename": "Renommer",
-    "remove": "Supprimer",
-    "renamePrompt": "Nouveau nom",
-    "removeConfirm": "Supprimer le profil « {name} » et ses listes de ce navigateur ?",
-    "add": "Ajouter un profil",
-    "addPlaceholder": "Boutique, cadeaux, un ami…",
-    "addButton": "Ajouter",
-    "note": "Chaque profil a sa liste, ses listes Discogs, sa radio et ses filtres, dans ce navigateur. Un profil reste local tant que vous n’y connectez pas de compte Bluesky. Changer de profil recharge la page. Toute personne utilisant ce navigateur peut les ouvrir.",
-    "cancel": "Annuler",
-    "renameTitle": "Renommer « {name} »",
-    "local": "Local, dans ce navigateur",
-    "account": "Bluesky · @{handle}",
-    "transferTitle": "Déplacer un profil",
-    "transferIntro": "Exportez le profil utilisé dans un fichier, puis importez-le dans un autre navigateur : aucun compte nécessaire. L’import ajoute ses disques au profil utilisé.",
-    "export": "Exporter ce profil",
-    "import": "Importer un fichier",
-    "imported": {
-      "one": "1 disque ajouté.",
-      "other": "{count} disques ajoutés."
-    },
-    "importError": "Ce fichier n’a pas pu être lu.",
-    "row": "Profil",
-    "count": {
-      "one": "1 profil",
-      "other": "{count} profils"
-    }
-  },
   "radio": {
     "title": "Depuis une radio Radio4000",
     "label": "Radio (identifiant Bluesky)",
@@ -643,41 +604,6 @@
       "one": "Ajouter 1 à ma liste",
       "other": "Ajouter {count} à ma liste"
     }
-  },
-  "account": {
-    "title": "Compte Bluesky",
-    "label": "Votre identifiant Bluesky",
-    "placeholder": "vous.bsky.social",
-    "signIn": "Se connecter avec Bluesky",
-    "signOut": "Se déconnecter",
-    "note": "Se connecter rattache votre compte Bluesky au profil utilisé (ou ouvre le profil auquel il appartient déjà) : sa liste est la même sur tous vos appareils. Ce qui est synchronisé (les disques que vous suivez ici et votre nom Discogs) est enregistré dans votre compte Bluesky, où il est public. Sans connexion, tout reste dans ce navigateur.",
-    "going": "Vers votre page de connexion Bluesky…",
-    "error": "Impossible de se connecter avec {handle}. Vérifiez l’identifiant.",
-    "signedIn": "Connecté en tant que @{handle}",
-    "signedOut": "Déconnecté de @{handle}. Son profil reste dans ce navigateur.",
-    "sync": {
-      "syncing": "synchronisation…",
-      "synced": "synchronisé",
-      "error": "non synchronisé, nouvel essai à venir",
-      "offline": "hors ligne, les changements partiront au retour du réseau"
-    },
-    "publishTitle": "Listes publiques",
-    "publishWants": "Publier mes disques recherchés",
-    "publishCollection": "Publier ma collection",
-    "publishNote": "Une liste publiée est enregistrée dans votre compte Bluesky, où tout le monde peut la voir, ici sur votre page publique et ailleurs. La désactiver la supprime de votre compte.",
-    "publicPage": "Votre page publique",
-    "publishing": "Publication…",
-    "unpublishing": "Retrait…",
-    "published": "Publiée. Elle se met à jour quand votre liste change.",
-    "unpublished": "Supprimée de votre compte Bluesky.",
-    "publishScope": "Votre connexion date d’avant la publication : déconnectez-vous puis reconnectez-vous pour l’autoriser.",
-    "publishError": "Impossible de joindre votre compte Bluesky. Réessayez dans une minute.",
-    "waiting": {
-      "one": "1 changement en attente",
-      "other": "{count} changements en attente"
-    },
-    "signedOutShort": "Non connecté",
-    "signInShort": "Se connecter"
   },
   "sources": {
     "wants": "Liste d’envies Discogs · {user}",
@@ -769,55 +695,6 @@
     "born": "né·e en {year}",
     "more": "Lire la suite"
   },
-  "user": {
-    "title": "Collectionneurs",
-    "seoTitle": "Les listes d’un collectionneur",
-    "description": "Ce qu’un collectionneur cherche et possède, d’après les listes qu’il publie sur son compte Bluesky, et ce que les disquaires indépendants en ont aujourd’hui.",
-    "intro": "Voyez ce qu’un collectionneur cherche et possède, d’après les listes publiées sur son compte Bluesky, et lesquels de ses disques recherchés les disquaires indépendants ont en ce moment.",
-    "lookupLabel": "Le pseudo Bluesky d’un collectionneur",
-    "lookupPlaceholder": "quelquun.bsky.social",
-    "lookupButton": "Afficher",
-    "loading": "Lecture des listes de @{handle}…",
-    "error": "Impossible de lire @{handle}. Vérifiez le pseudo.",
-    "none": "@{handle} n’a pas encore publié de liste sur LP/EP Finder.",
-    "pageTitle": "Les disques de {name}",
-    "wants": {
-      "one": "1 disque recherché",
-      "other": "{count} disques recherchés"
-    },
-    "collection": {
-      "one": "1 disque en collection",
-      "other": "{count} disques en collection"
-    },
-    "inStock": {
-      "one": "1 en stock",
-      "other": "{count} en stock"
-    },
-    "stockHeading": {
-      "one": "En stock maintenant : 1",
-      "other": "En stock maintenant : {count}"
-    },
-    "wantsHeading": {
-      "one": "Tous les disques recherchés : 1",
-      "other": "Tous les disques recherchés : {count}"
-    },
-    "noneInStock": "Aucun de ces disques n’est en stock pour l’instant.",
-    "copies": {
-      "one": "1 en stock",
-      "other": "{count} en stock"
-    },
-    "outOfStock": "pas en stock",
-    "more": "Voir plus",
-    "bluesky": "Bluesky",
-    "discogs": "Discogs · {user}",
-    "source": "Publié par @{handle} sur son compte Bluesky, mis à jour le {date}. Stocks et prix du jour.",
-    "checking": "Vérification : {done} sur {total}…",
-    "feedEvents": "Recherchés récemment",
-    "feedTop": "Les plus recherchés",
-    "feedCollectors": "Collectionneurs",
-    "feedWants": "cherche",
-    "feedNone": "Aucun collectionneur n’a encore publié de liste."
-  },
   "noscriptSearch": "La recherche fonctionne dans votre navigateur et a besoin de JavaScript. Sans lui, parcourez par artiste ou par boutique :",
   "tabExplore": "Explorer",
   "tabMe": "Moi",
@@ -825,20 +702,15 @@
   "settingsTitle": "Réglages",
   "settingsBrowser": "Ce navigateur",
   "me": {
-    "profiles": "Profils",
     "lists": "Vos listes",
     "empty": "Rien de suivi pour l’instant. Connectez une liste ci-dessus, ou",
     "emptySearch": "suivez des disques depuis la recherche (☆).",
     "menu": "Plus",
-    "share": "Partager ma liste",
-    "signIn": "Synchroniser avec Bluesky",
-    "publicPage": "Ma page publique"
+    "share": "Partager ma liste"
   },
   "explore": {
     "intro": "Tout LP/EP Finder hors recherche : les nouveautés des disquaires, les disquaires par pays, les artistes, les collectionneurs et les données ouvertes. {records} disques en stock chez {shops} disquaires.",
     "formats": "Nouveautés par format",
-    "collectors": "Ce que les collectionneurs cherchent et possèdent, d’après les listes qu’ils publient sur Bluesky, et les disques les plus recherchés.",
-    "collectorsLink": "Listes des collectionneurs et plus recherchés",
     "data": "Les données",
     "dataIntro": "Reconstruites chaque jour à partir des catalogues publics des disquaires, et ouvertes : lisez-les en JSON, suivez-les dans un lecteur de flux, ou voyez leur fraîcheur.",
     "api": "Données ouvertes (JSON)",
@@ -856,5 +728,29 @@
   "submitFormWhy": "Pour une boutique uniquement en ligne, ou pour être listé plus vite : vérifié automatiquement en quelques minutes, avec un compte GitHub.",
   "submitRead": "Ce que nous lisons : le catalogue entier d’une boutique Shopify ou WooCommerce est consultable le lendemain. Pour les autres, leurs pages de disques sont lues petit à petit, quand leur site le permet.",
   "submitOwner": "Votre boutique ? Comment notre robot lit votre site",
-  "shopsAdd": "Ajouter un disquaire"
+  "shopsAdd": "Ajouter un disquaire",
+  "transfer": {
+    "title": "Passer à un autre appareil",
+    "intro": "Téléchargez votre liste dans un fichier, puis ouvrez-le dans un autre navigateur : aucun compte nécessaire. Ouvrir un fichier ajoute ses disques à votre liste.",
+    "download": "Télécharger ma liste",
+    "open": "Importer un fichier",
+    "imported": {
+      "one": "1 disque ajouté.",
+      "other": "{count} disques ajoutés."
+    },
+    "importError": "Ce fichier n’a pas pu être lu."
+  },
+  "legacy": {
+    "title": "Vos autres profils",
+    "intro": "Les profils n’existent plus : une liste par navigateur désormais. Vos autres profils restent ici jusqu’à ce que vous choisissiez quoi faire de chacun.",
+    "inUse": "utilisé jusqu’ici",
+    "download": "Télécharger",
+    "merge": "Fusionner dans ma liste",
+    "remove": "Supprimer",
+    "merged": {
+      "one": "{name} : 1 disque ajouté à votre liste.",
+      "other": "{name} : {count} disques ajoutés à votre liste."
+    },
+    "removed": "{name} supprimé de ce navigateur."
+  }
 }

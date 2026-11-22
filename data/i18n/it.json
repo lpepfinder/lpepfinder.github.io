@@ -113,7 +113,7 @@
     "LP/EP Finder non richiede un account e non conserva dati personali sui suoi server. Le ricerche avvengono nel tuo browser.",
     "Pubblicità: questo sito mostra annunci di Google AdSense. Google e i suoi partner usano cookie per mostrare annunci in base alle tue visite a questo e ad altri siti. Puoi disattivare gli annunci personalizzati nelle impostazioni degli annunci di Google (adssettings.google.com). Nello Spazio economico europeo, nel Regno Unito e in Svizzera viene chiesto prima il consenso.",
     "Statistiche: contiamo le visite con Umami, senza cookie né dati personali. Le statistiche sono pubbliche.",
-    "Accesso con Bluesky facoltativo: i dischi che segui, e le liste che scegli di pubblicare, sono salvati nel tuo account Bluesky, dove sono pubblici; sui nostri server non resta nulla. Le tue liste Discogs sono lette da Discogs dal tuo browser. Le foto degli artisti arrivano da Wikimedia Commons.",
+    "La tua lista (i dischi che segui, le tue liste Discogs, la tua radio) resta nel tuo browser; niente viene conservato sui nostri server. Il tuo browser legge le liste Discogs e la radio Radio4000 direttamente da Discogs e Radio4000. Le foto degli artisti vengono da Wikimedia Commons. Un video YouTube si carica da youtube-nocookie.com solo quando tocchi Riproduci.",
     "I link ai negozi portano ai loro siti, che hanno una propria informativa sulla privacy.",
     "Domande, correzioni o richieste di rimozione: apri una issue su GitHub."
   ],
@@ -367,7 +367,7 @@
       "one": "{user}: 1 disco nella tua collezione, segnato «Ce l’ho» nella ricerca.",
       "other": "{user}: {count} dischi nella tua collezione, segnati «Ce l’ho» nella ricerca."
     },
-    "backupMove": "Spostare un profilo in un altro browser",
+    "backupMove": "Passare la tua lista a un altro browser",
     "radioTracks": "Nella tua radio",
     "listen": "Ascolta",
     "play": "Riproduci",
@@ -514,16 +514,7 @@
     "searchArtist": "Cerca tutto di {artist}",
     "backList": "Tutti i dischi",
     "goTo": "Vai da {shop}",
-    "goToPrice": "Vai da {shop} · {price}",
-    "collectors": "Collezionisti",
-    "wantedBy": {
-      "one": "Cercato da 1 collezionista",
-      "other": "Cercato da {count} collezionisti"
-    },
-    "ownedBy": {
-      "one": "in 1 collezione",
-      "other": "in {count} collezioni"
-    }
+    "goToPrice": "Vai da {shop} · {price}"
   },
   "homeLatestTitle": "Ultimi arrivi nei negozi",
   "homeStrip": {
@@ -584,36 +575,6 @@
   "shopOwnerTitle": "È il tuo negozio?",
   "shopOwnerBody": "Correggi i dati, fallo verificare con Bluesky o ritiralo.",
   "shopOwnerBodyListed": "Scopri come rendere il catalogo cercabile, correggi i dati, fallo verificare con Bluesky o ritiralo.",
-  "profiles": {
-    "title": "Profili",
-    "default": "Io",
-    "rename": "Rinomina",
-    "remove": "Rimuovi",
-    "renamePrompt": "Nuovo nome",
-    "removeConfirm": "Rimuovere il profilo «{name}» e le sue liste da questo browser?",
-    "add": "Aggiungi un profilo",
-    "addPlaceholder": "Negozio, regali, un amico…",
-    "addButton": "Aggiungi",
-    "note": "Ogni profilo ha la sua lista, le sue liste Discogs, la sua radio e i suoi filtri, in questo browser. Un profilo resta locale finché non vi colleghi un account Bluesky. Cambiare profilo ricarica la pagina. Chiunque usi questo browser può aprirli.",
-    "cancel": "Annulla",
-    "renameTitle": "Rinomina «{name}»",
-    "local": "Locale, in questo browser",
-    "account": "Bluesky · @{handle}",
-    "transferTitle": "Spostare un profilo",
-    "transferIntro": "Esporta il profilo in uso in un file, poi importalo in un altro browser: nessun account necessario. L’importazione aggiunge i suoi dischi al profilo in uso.",
-    "export": "Esporta questo profilo",
-    "import": "Importa un file",
-    "imported": {
-      "one": "1 disco aggiunto.",
-      "other": "{count} dischi aggiunti."
-    },
-    "importError": "Impossibile leggere questo file.",
-    "row": "Profilo",
-    "count": {
-      "one": "1 profilo",
-      "other": "{count} profili"
-    }
-  },
   "radio": {
     "title": "Da una radio Radio4000",
     "label": "Radio (handle Bluesky)",
@@ -643,41 +604,6 @@
       "one": "Aggiungi 1 alla mia lista",
       "other": "Aggiungi {count} alla mia lista"
     }
-  },
-  "account": {
-    "title": "Account Bluesky",
-    "label": "Il tuo handle Bluesky",
-    "placeholder": "tu.bsky.social",
-    "signIn": "Accedi con Bluesky",
-    "signOut": "Esci",
-    "note": "Accedendo, il tuo account Bluesky si collega al profilo in uso (o apre il profilo a cui appartiene già): la sua lista è la stessa su tutti i tuoi dispositivi. Ciò che viene sincronizzato (i dischi che segui qui e il tuo nome Discogs) è salvato nel tuo account Bluesky, dove è pubblico. Senza accesso, tutto resta in questo browser.",
-    "going": "Verso la pagina di accesso di Bluesky…",
-    "error": "Impossibile accedere con {handle}. Controlla l’handle.",
-    "signedIn": "Accesso come @{handle}",
-    "signedOut": "Uscito da @{handle}. Il profilo resta in questo browser.",
-    "sync": {
-      "syncing": "sincronizzazione…",
-      "synced": "sincronizzato",
-      "error": "non sincronizzato, nuovo tentativo",
-      "offline": "offline, le modifiche partiranno al ritorno della rete"
-    },
-    "publishTitle": "Liste pubbliche",
-    "publishWants": "Pubblica la mia wantlist",
-    "publishCollection": "Pubblica la mia collezione",
-    "publishNote": "Una lista pubblicata è salvata nel tuo account Bluesky, dove chiunque può vederla, qui sulla tua pagina pubblica e altrove. Disattivarla la elimina dal tuo account.",
-    "publicPage": "La tua pagina pubblica",
-    "publishing": "Pubblicazione…",
-    "unpublishing": "Rimozione…",
-    "published": "Pubblicata. Si aggiorna da sola quando la tua lista cambia.",
-    "unpublished": "Eliminata dal tuo account Bluesky.",
-    "publishScope": "Il tuo accesso è precedente alla pubblicazione: esci e accedi di nuovo per permetterla.",
-    "publishError": "Impossibile raggiungere il tuo account Bluesky. Riprova tra un minuto.",
-    "waiting": {
-      "one": "1 modifica in attesa",
-      "other": "{count} modifiche in attesa"
-    },
-    "signedOutShort": "Non connesso",
-    "signInShort": "Accedi"
   },
   "sources": {
     "wants": "Wantlist Discogs · {user}",
@@ -769,55 +695,6 @@
     "born": "nato/a nel {year}",
     "more": "Continua a leggere"
   },
-  "user": {
-    "title": "Collezionisti",
-    "seoTitle": "Le liste di un collezionista",
-    "description": "Cosa cerca e possiede un collezionista, dalle liste pubblicate sul suo account Bluesky, e quali dei suoi desideri hanno oggi i negozi indipendenti.",
-    "intro": "Guarda cosa cerca e possiede un collezionista, dalle liste pubblicate sul suo account Bluesky, e quali dei suoi desideri hanno adesso i negozi di dischi indipendenti.",
-    "lookupLabel": "L’handle Bluesky di un collezionista",
-    "lookupPlaceholder": "qualcuno.bsky.social",
-    "lookupButton": "Mostra",
-    "loading": "Lettura delle liste di @{handle}…",
-    "error": "Impossibile leggere @{handle}. Controlla l’handle.",
-    "none": "@{handle} non ha ancora pubblicato liste su LP/EP Finder.",
-    "pageTitle": "I dischi di {name}",
-    "wants": {
-      "one": "1 desiderato",
-      "other": "{count} desiderati"
-    },
-    "collection": {
-      "one": "1 disco in collezione",
-      "other": "{count} dischi in collezione"
-    },
-    "inStock": {
-      "one": "1 disponibile ora",
-      "other": "{count} disponibili ora"
-    },
-    "stockHeading": {
-      "one": "Disponibili ora: 1",
-      "other": "Disponibili ora: {count}"
-    },
-    "wantsHeading": {
-      "one": "Tutti i desiderati: 1",
-      "other": "Tutti i desiderati: {count}"
-    },
-    "noneInStock": "Nessuno di questi dischi è disponibile ora.",
-    "copies": {
-      "one": "1 disponibile",
-      "other": "{count} disponibili"
-    },
-    "outOfStock": "non disponibile ora",
-    "more": "Mostra altro",
-    "bluesky": "Bluesky",
-    "discogs": "Discogs · {user}",
-    "source": "Pubblicato da @{handle} sul suo account Bluesky, aggiornato il {date}. Disponibilità e prezzi di oggi.",
-    "checking": "Controllo {done} di {total}…",
-    "feedEvents": "Cercati di recente",
-    "feedTop": "I più cercati",
-    "feedCollectors": "Collezionisti",
-    "feedWants": "cerca",
-    "feedNone": "Nessun collezionista ha ancora pubblicato una lista."
-  },
   "noscriptSearch": "La ricerca funziona nel browser e ha bisogno di JavaScript. Senza, sfoglia per artista o per negozio:",
   "tabExplore": "Esplora",
   "tabMe": "Io",
@@ -825,20 +702,15 @@
   "settingsTitle": "Impostazioni",
   "settingsBrowser": "Questo browser",
   "me": {
-    "profiles": "Profili",
     "lists": "Le tue liste",
     "empty": "Ancora niente da seguire. Collega una lista qui sopra, o",
     "emptySearch": "segui dischi dalla ricerca (☆).",
     "menu": "Altro",
-    "share": "Condividi la mia lista",
-    "signIn": "Sincronizza con Bluesky",
-    "publicPage": "La mia pagina pubblica"
+    "share": "Condividi la mia lista"
   },
   "explore": {
     "intro": "Tutto LP/EP Finder oltre alla ricerca: le novità nei negozi, i negozi per paese, gli artisti, i collezionisti e i dati aperti. {records} dischi disponibili in {shops} negozi.",
     "formats": "Novità per formato",
-    "collectors": "Cosa cercano e hanno i collezionisti, dalle liste che pubblicano su Bluesky, e i dischi più cercati.",
-    "collectorsLink": "Liste dei collezionisti e più cercati",
     "data": "I dati",
     "dataIntro": "Ricostruiti ogni giorno dai cataloghi pubblici dei negozi, e aperti: leggili in JSON, seguili in un lettore di feed o guarda quanto sono aggiornati.",
     "api": "Dati aperti (JSON)",
@@ -856,5 +728,29 @@
   "submitFormWhy": "Per un negozio solo online, o per comparire prima: controllato automaticamente in pochi minuti, con un account GitHub.",
   "submitRead": "Cosa leggiamo: per un negozio Shopify o WooCommerce l’intero catalogo è cercabile il giorno dopo. Per gli altri leggiamo le pagine dei dischi un po’ alla volta, quando il sito lo consente.",
   "submitOwner": "Il tuo negozio? Come il nostro bot legge il tuo sito",
-  "shopsAdd": "Aggiungi un negozio"
+  "shopsAdd": "Aggiungi un negozio",
+  "transfer": {
+    "title": "Passare a un altro dispositivo",
+    "intro": "Scarica la tua lista come file, poi aprilo in un altro browser: nessun account necessario. Aprire un file aggiunge i suoi dischi alla tua lista.",
+    "download": "Scarica la mia lista",
+    "open": "Importa un file",
+    "imported": {
+      "one": "1 disco aggiunto.",
+      "other": "{count} dischi aggiunti."
+    },
+    "importError": "Impossibile leggere questo file."
+  },
+  "legacy": {
+    "title": "I tuoi altri profili",
+    "intro": "I profili non ci sono più: ora c’è una lista per browser. I tuoi altri profili restano qui finché non scegli cosa fare di ciascuno.",
+    "inUse": "in uso finora",
+    "download": "Scarica",
+    "merge": "Unisci alla mia lista",
+    "remove": "Rimuovi",
+    "merged": {
+      "one": "{name}: 1 disco aggiunto alla tua lista.",
+      "other": "{name}: {count} dischi aggiunti alla tua lista."
+    },
+    "removed": "{name} rimosso da questo browser."
+  }
 }

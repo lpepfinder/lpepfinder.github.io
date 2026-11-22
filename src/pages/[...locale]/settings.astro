@@ -8,7 +8,7 @@ import { pageTitle } from '../../lib/seo.js';
 
 /**
  * Settings (/settings/, was /more/; reached from Me's ⋯ menu), as an app screen like joblist's Menu: the settings of
- * this browser first (account, profile, language, prices in, moving to another device: rows that open their sheet),
+ * this browser first (language, prices in, moving to another device: rows that open their sheet),
  * then a shop to add, and about (help, privacy, data status, the open data for programs and agents, source).
  */
 export const getStaticPaths = localeParams;
@@ -24,6 +24,7 @@ const groups = [
     { href: '/status/', key: 'navStatus', icon: 'pulse' },
     { href: '/api/index.json', key: 'explore.api', icon: 'code' },
     { href: '/llms.txt', key: 'explore.agents', icon: 'info' },
+    { href: '/new/', key: 'dig.title', icon: 'sparkle' },
     { href: '/feed/new.xml', key: 'newFeed', icon: 'rss' },
     { href: config.repository, key: 'footerGithub', icon: 'code' },
     { href: `${config.repository}/issues`, key: 'contactGithub', icon: 'chat' },
@@ -31,7 +32,7 @@ const groups = [
   ] },
 ];
 ---
-<Base lang={lang} path="/settings/" title={pageTitle(t(lang, 'settingsTitle'))} description={t(lang, 'footerNote')} noindex strings={['profiles', 'account', 'currency']}>
+<Base lang={lang} path="/settings/" title={pageTitle(t(lang, 'settingsTitle'))} description={t(lang, 'footerNote')} noindex strings={['transfer', 'currency']}>
   <vf-settings>
     <h1>{t(lang, 'settingsTitle')}</h1>
     <!-- settings of this browser, as rows that open their sheet (savoir app-shell; joblist's Menu): each row shows its value -->
@@ -39,68 +40,21 @@ const groups = [
       <section>
         <h2>{t(lang, 'settingsBrowser')}</h2>
         <ul>
-          <li><button type="button" value="account"><vf-icon name="bluesky"></vf-icon><span>{t(lang, 'account.title')}</span><data>{t(lang, 'account.signedOutShort')}</data></button></li>
-          <li><button type="button" value="profiles"><vf-icon name="person"></vf-icon><span>{t(lang, 'profiles.row')}</span><data></data></button></li>
           <li><button type="button" value="language"><vf-icon name="globe"></vf-icon><span>{t(lang, 'navLanguage')}</span><data>{t(lang, 'langName')}</data></button></li>
           <li><button type="button" value="currency"><vf-icon name="coin"></vf-icon><span>{t(lang, 'currency.label')}</span><data></data></button></li>
-          <li><button type="button" value="transfer"><vf-icon name="download"></vf-icon><span>{t(lang, 'profiles.transferTitle')}</span><data></data></button></li>
+          <li><button type="button" value="transfer"><vf-icon name="download"></vf-icon><span>{t(lang, 'transfer.title')}</span><data></data></button></li>
         </ul>
       </section>
-      <Sheet lang={lang} name="account" mode="bottom" title={t(lang, 'account.title')}>
+      <Sheet lang={lang} name="transfer" mode="bottom" title={t(lang, 'transfer.title')}>
         <vf-sheet-body>
-          <vf-account state="out">
-            <vf-account-status></vf-account-status>
-            <form>
-              <label for="account-handle">{t(lang, 'account.label')}</label>
-              <vf-field>
-                <input id="account-handle" name="handle" autocomplete="username" autocapitalize="off" spellcheck="false" required placeholder={t(lang, 'account.placeholder')}>
-                <button type="submit"><vf-icon name="bluesky"></vf-icon><span>{t(lang, 'account.signIn')}</span></button>
-              </vf-field>
-            </form>
-            <p>{t(lang, 'account.note')}</p>
-            <fieldset name="publish">
-              <legend>{t(lang, 'account.publishTitle')}</legend>
-              <label><input type="checkbox" name="wants"> {t(lang, 'account.publishWants')}</label>
-              <label><input type="checkbox" name="collection"> {t(lang, 'account.publishCollection')}</label>
-              <p>{t(lang, 'account.publishNote')}</p>
-              <p><a href={localPath(lang, '/u/')}><vf-icon name="person"></vf-icon><span>{t(lang, 'account.publicPage')}</span></a></p>
-            </fieldset>
-            <button type="button" name="signout" kind="secondary">{t(lang, 'account.signOut')}</button>
-            <output aria-live="polite"></output>
-          </vf-account>
-        </vf-sheet-body>
-      </Sheet>
-      <Sheet lang={lang} name="profiles" mode="bottom" title={t(lang, 'profiles.title')}>
-        <vf-sheet-body>
-          <vf-profiles>
-            <ul></ul>
-            <form>
-              <label for="profile-name">{t(lang, 'profiles.add')}</label>
-              <vf-field>
-                <input id="profile-name" name="name" maxlength="40" autocomplete="off" placeholder={t(lang, 'profiles.addPlaceholder')}>
-                <button type="submit" kind="secondary">{t(lang, 'profiles.addButton')}</button>
-              </vf-field>
-            </form>
-            <p>{t(lang, 'profiles.note')}</p>
-            <h3>{t(lang, 'profiles.transferTitle')}</h3>
-            <p>{t(lang, 'profiles.transferIntro')}</p>
+          <vf-transfer>
+            <p>{t(lang, 'transfer.intro')}</p>
             <menu>
-              <li><button type="button" name="export" kind="secondary"><vf-icon name="download"></vf-icon><span>{t(lang, 'profiles.export')}</span></button></li>
-              <li><label><vf-icon name="plus"></vf-icon><span>{t(lang, 'profiles.import')}</span><input type="file" name="import" accept=".json,application/json"></label></li>
+              <li><button type="button" name="export" kind="secondary"><vf-icon name="download"></vf-icon><span>{t(lang, 'transfer.download')}</span></button></li>
+              <li><label><vf-icon name="plus"></vf-icon><span>{t(lang, 'transfer.open')}</span><input type="file" name="import" accept=".json,application/json"></label></li>
             </menu>
             <output aria-live="polite"></output>
-            <!-- rename or remove a profile: a native dialog that keeps the profile unless confirmed (Cancel is focused) -->
-            <dialog closedby="any" aria-labelledby="profile-dialog-title">
-              <form method="dialog">
-                <h2 id="profile-dialog-title"></h2>
-                <label><span>{t(lang, 'profiles.renamePrompt')}</span><input name="name" maxlength="40" autocomplete="off"></label>
-                <menu>
-                  <li><button value="cancel" kind="secondary" autofocus>{t(lang, 'profiles.cancel')}</button></li>
-                  <li><button value="ok"></button></li>
-                </menu>
-              </form>
-            </dialog>
-          </vf-profiles>
+          </vf-transfer>
         </vf-sheet-body>
       </Sheet>
       <Sheet lang={lang} name="currency" mode="bottom" title={t(lang, 'currency.label')}>
@@ -117,7 +71,6 @@ const groups = [
   </vf-settings>
 </Base>
 <script>
-  import '../../components/vf-profiles.js';
-  import '../../components/vf-account.js';
+  import '../../components/vf-transfer.js';
   import '../../components/vf-settings-rows.js';
 </script>

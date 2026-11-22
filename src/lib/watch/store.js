@@ -11,10 +11,9 @@
  *   changes  unseen changes, rows like the daily event files plus their date; past: seen ones
  * Storage can throw (private mode, blocked site data): every access is guarded.
  */
-import { scoped } from './profiles.js';
 
-// the current profile's list (profiles.js): "vf.watch.v1", or "vf.watch.v1:<profile>"
-const KEY = () => scoped('vf.watch.v1');
+// the list of this browser (before 2026-11-22, other profiles' lists were under "vf.watch.v1:<profile>": legacy.js)
+const KEY = () => 'vf.watch.v1';
 export const EVENT = 'vf-watch-change';
 const MAX_TRACKS = 20;
 /** Fields given again for a record watched already: the radio tracks add up, the rest replaces. */

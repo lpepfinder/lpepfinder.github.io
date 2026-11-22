@@ -1,22 +1,19 @@
 /**
- * Where the current profile's lists come from, and whether they are still up to date (docs/watchlist.md):
+ * Where the lists come from, and whether they are still up to date (docs/watchlist.md):
  *   discogs   { user, wants: { n, at }, collection: { n, at }, remote: { wants, collection }, checkedAt }
  *             n: records read at the last import; remote: the counts Discogs shows now (checked at most
  *             every config.discogsCheckHours, only for lists imported before, one light request each)
- *   bluesky   { at }: the last successful sync with the Bluesky account (sync.js)
- *   radio     { handle, n, at, newest, remote, checkedAt }: a Radio4000 radio (radio.js), the last one read or else
- *             the signed-in account's own; n tracks read at `at`, `newest` the newest track then, `remote` the
+ *   radio     { handle, n, at, newest, remote, checkedAt }: the Radio4000 radio read last (radio.js); n tracks read at `at`, `newest` the newest track then, `remote` the
  *             newest track now (checked at most every config.discogsCheckHours, one light request)
- * Kept per profile in localStorage ("vf.sources"); every access is guarded.
+ * Kept in localStorage ("vf.sources"); every access is guarded.
  */
-import { scoped } from './profiles.js';
 import { fetchCounts } from './discogs.js';
 import { resolve, newestTrack } from './radio.js';
 import { load } from './store.js';
 import config from '../../../data/watch.json' with { type: 'json' };
 
 export const EVENT = 'vf-sources-change';
-const KEY = () => scoped('vf.sources');
+const KEY = () => 'vf.sources';
 const HOUR = 36e5;
 const DAY = 24 * HOUR;
 
@@ -32,7 +29,7 @@ export function sources() {
  */
 function legacy() {
   let user = '';
-  try { user = localStorage.getItem(scoped('vf.discogs.user')) || ''; } catch {}
+  try { user = localStorage.getItem('vf.discogs.user') || ''; } catch {}
   if (!user) return {};
   const list = load();
   const wants = Object.values(list.items).filter((it) => it.d);
@@ -60,10 +57,9 @@ export const imported = (kind, user, n) => change((s) => {
 
 /**
  * Stop following a list (`kind` "wants", "collection" or "radio"); its records are another matter (source.js forget).
- * A radio is remembered as turned off, so the signed-in account's own radio isn't offered again by itself.
  */
 export const disconnect = (kind) => change((s) => {
-  if (kind === 'radio') { if (s.radio) s.radio = { handle: s.radio.handle, off: true }; return; }
+  if (kind === 'radio') { delete s.radio; return; }
   if (!s.discogs) return;
   delete s.discogs[kind];
   if (s.discogs.remote) delete s.discogs.remote[kind];
@@ -88,7 +84,6 @@ export function report(kind, status, done = 0, total = 0, n = 0) {
   dispatchEvent(was === busy[kind]?.status ? new CustomEvent(STEP, { detail: kind }) : new Event(EVENT));
 }
 
-export const synced = () => change((s) => { s.bluesky = { at: new Date().toISOString() }; });
 
 /**
  * Ask Discogs for the current counts of the lists imported before (not more often than config.discogsCheckHours,
@@ -130,14 +125,11 @@ export const radioRead = (handle, n, newest) => change((s) => {
   s.radio = { handle, n, at: now, newest, remote: newest, checkedAt: now };
 });
 
-/**
- * Whether the radio has tracks the last reading didn't see: the radio read before, or the signed-in account's own
- * (`handle`), so a signed-in DJ is offered their radio. At most every config.discogsCheckHours unless forced.
- */
-export async function checkRadio({ handle: own, force = false, signal } = {}) {
+/** Whether the radio read before has tracks that reading didn't see. At most every config.discogsCheckHours unless forced. */
+export async function checkRadio({ force = false, signal } = {}) {
   const r = sources().radio;
-  const handle = r?.handle || own;
-  if (!handle || r?.off) return sources();
+  const handle = r?.handle;
+  if (!handle) return sources();
   if (!force && r?.handle === handle && r.checkedAt && Date.now() - Date.parse(r.checkedAt) < config.discogsCheckHours * HOUR) return sources();
   const uri = await resolve(handle).then(newestTrack).catch(() => undefined);
   if (signal?.aborted || uri === undefined) return sources();
@@ -151,7 +143,7 @@ export async function checkRadio({ handle: own, force = false, signal } = {}) {
 /** "new" (tracks never read), "changed" (tracks added since), "current", or null (no radio, or no tracks). */
 export function radioFreshness(s = sources()) {
   const r = s.radio;
-  if (!r || r.off || (!r.at && !r.remote)) return null;
+  if (!r || (!r.at && !r.remote)) return null;
   const state = !r.at ? 'new' : r.remote && r.remote !== r.newest ? 'changed' : 'current';
   return { state, handle: r.handle, n: r.n ?? null, at: r.at || null };
 }

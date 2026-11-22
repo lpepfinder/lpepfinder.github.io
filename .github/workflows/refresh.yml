@@ -226,34 +226,6 @@ jobs:
           gh release view data > /dev/null 2>&1 || gh release create data --title "Crawl data" --notes "Latest output of the Refresh workflow, used by Deploy."
           gh release upload data enrich.json.gz --clobber
 
-  # the collectors feed (docs/feed.md): accounts that published a list, found through the Bluesky relay
-  social:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 30
-    permissions:
-      contents: write
-    env:
-      GH_TOKEN: ${{ github.token }}
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - name: Previous feed
-        run: |
-          mkdir -p generated
-          for f in social social-state; do
-            gh release download data --pattern "$f.json.gz" -O - | gunzip > "generated/$f.json" || { echo "no $f yet"; rm -f "generated/$f.json"; }
-          done
-      - run: npm run social
-      - name: Publish the feed
-        run: |
-          for f in social social-state; do gzip -c "generated/$f.json" > "$f.json.gz"; done
-          gh release view data > /dev/null 2>&1 || gh release create data --title "Crawl data" --notes "Latest output of the Refresh workflow, used by Deploy."
-          gh release upload data social.json.gz social-state.json.gz --clobber
-
   # the index from today's crawl data, once (index.yml); Deploy then finds it up to date
   index:
     needs: [refresh, site]
@@ -264,7 +236,7 @@ jobs:
       contents: write
 
   deploy:
-    needs: [index, enrich, social]
+    needs: [index, enrich]
     # a failed job keeps yesterday's data asset: deploy in any case, so one bad job never holds the site back
     if: ${{ !cancelled() }}
     uses: ./.github/workflows/deploy.yml

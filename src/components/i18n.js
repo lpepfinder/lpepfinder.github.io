@@ -1,3 +1,5 @@
+import config from '../../data/config.json' with { type: 'json' };
+
 /**
  * UI strings rendered by the page builder into <script type="application/json" data-i18n>, read again when
  * client-side navigation brings a page with other strings (each page carries the groups it needs).
@@ -11,6 +13,12 @@ const strings = () => {
 };
 
 export const lang = document.documentElement.lang || 'en';
+
+/** A page of this language ("/shops/" in English, "/fr/shops/" in French). */
+export const localPath = (path) => {
+  const current = document.documentElement.lang;
+  return !current || current === config.defaultLanguage ? path : `/${current}${path}`;
+};
 
 export function t(key, vars = {}) {
   const s = strings()[key] ?? key;

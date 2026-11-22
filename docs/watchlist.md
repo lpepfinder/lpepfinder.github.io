@@ -5,7 +5,7 @@ order: 3
 audience: users
 ---
 
-The watchlist is part of your profile, on the **Me** tab (`/me/`). It answers one question: which of the records I want can I buy now, and where? It's checked against every shop once a day.
+The watchlist is on the **Me** tab (`/me/`). It answers one question: which of the records I want can I buy now, and where? It's checked against every shop once a day.
 
 ## Bring your Discogs wantlist
 
@@ -18,9 +18,9 @@ The watchlist is part of your profile, on the **Me** tab (`/me/`). It answers on
 
 A [Radio4000](https://4000.radio) radio lives on Bluesky (atproto): type its handle under "From a Radio4000 radio" and its tracks are matched to records in stock. The tracks are kept in your browser: the first time the whole radio is read (up to 5,000 tracks), then only the tracks added since, and in full again once a month. A track with a Discogs link is matched exactly and ticked; for the others, records whose title holds the artist and the song are a guess, not ticked. You choose what to add.
 
-A record added from the radio remembers the tracks it was found for (their atproto address, `at://…/radio.4000.track/…`): its detail on the Me page shows them under "On your radio", each with **Listen**, which opens the track where it is hosted (YouTube, SoundCloud…). A YouTube track also has **Play**: the video plays right there, from youtube-nocookie.com. Nothing is loaded from YouTube until you tap Play; after that, YouTube sees that you watched it, as on its own site. Signed in, the link is synced with the record.
+A record added from the radio remembers the tracks it was found for (their atproto address, `at://…/radio.4000.track/…`): its detail on the Me page shows them under "On your radio", each with **Listen**, which opens the track where it is hosted (YouTube, SoundCloud…). A YouTube track also has **Play**: the video plays right there, from youtube-nocookie.com. Nothing is loaded from YouTube until you tap Play; after that, YouTube sees that you watched it, as on its own site.
 
-Signed in with Bluesky, the field already holds your handle, and the radio's card tells you when your radio has tracks you haven't matched yet (**Find records**), or new tracks since the last time (**Resync**): the page asks the radio for its newest track once a day, one light request.
+Once read, the radio's card tells you when it has tracks you haven't matched yet (**Find records**), or new tracks since the last time (**Resync**): the page asks the radio for its newest track once a day, one light request.
 
 You can also watch any record from the search: the ☆ Watch button in its detail.
 
@@ -35,7 +35,7 @@ A want matches shop listings two ways:
 
 The top of the page is one card per place your records come from: all your records, your Discogs wantlist, your radio, and the records you added from the search. Each says how many are in stock now and how many you watch; the card of all records adds how many shops have them and how many were found since your last visit. Tap a card to see only its records, in every view; the source is in the address (`?source=discogs`, `radio` or `search`), so a filtered view can be bookmarked. Lists you haven't connected are under **Add a list**. On a phone the cards are one row you swipe.
 
-The **⋯** button next to your profile holds the rest: Prices in (the currency), Share my watchlist, Profiles, and Sync with Bluesky.
+Each connected list has its own **⋯**: Sync now, Disconnect (its records stay) and Remove its records, each undone from the message that follows. While a list is being read, its card shows how far it got, even with its sheet closed. The **⋯** next to the page title holds the rest: Prices in (the currency), Share my watchlist, and Settings.
 
 ## The views
 
@@ -52,4 +52,4 @@ Open a record to see every copy, set a **max price** for it (copies above are hi
 
 ## Your data stays with you
 
-The watchlist lives in this browser only: no account, nothing stored on our side. Use **Settings → Profiles → Export this profile** to keep a copy or move it to another device ([profiles](accounts.md)), or **⋯ → Share my watchlist** to share it (the list is inside the link, after the #, never sent to the server). On iPhone, adding the site to the home screen keeps the browser from clearing it.
+The watchlist lives in this browser only: no account, nothing stored on our side. Use **Settings → Move to another device** to keep a copy as a file or move it to another device ([your data](accounts.md)), or **⋯ → Share my watchlist** to share it (the list is inside the link, after the #, never sent to the server). On iPhone, adding the site to the home screen keeps the browser from clearing it.

@@ -59,14 +59,16 @@ test('language: the rail globe opens the languages, centred; a language keeps th
   await expect(page.locator('html')).toHaveAttribute('lang', 'de');
 });
 
-test('moved pages: /more/, /watch/ and /explore/ (and their translations) send to /settings/, /me/ and Search, keeping the #hash', async ({ page }) => {
-  await page.goto('/more/#profiles');
-  await expect(page).toHaveURL(/\/settings\/#profiles$/);
-  await expect(page.locator('vf-sheet[name="profiles"]')).toHaveAttribute('open', '');
+test('moved pages: /more/, /watch/, /explore/ and /u/ (and their translations) send to /settings/, /me/ and Search, keeping the #hash', async ({ page }) => {
+  await page.goto('/more/#transfer');
+  await expect(page).toHaveURL(/\/settings\/#transfer$/);
+  await expect(page.locator('vf-sheet[name="transfer"]')).toHaveAttribute('open', '');
   await page.goto('/fr/watch/');
   await expect(page).toHaveURL(/\/fr\/me\/$/);
   await expect(page.locator('vf-me-head h1')).toBeVisible();
   await page.goto('/de/explore/');
   await expect(page).toHaveURL(/\/de\/$/);
   await expect(page.locator('vf-results')).toBeAttached();
+  await page.goto('/u/?h=someone.test');
+  await expect(page).toHaveURL(/\/\?h=someone\.test$/);
 });

@@ -143,51 +143,13 @@ vf-shop-owner a { display: flex; align-items: start; min-block-size: var(--tap);
 vf-shop-owner strong { color: var(--color-fg); }
 vf-shop-owner vf-icon { flex: none; --icon-size: var(--icon-size-nav); margin-block-start: 0.1em; }
 
-/* <vf-profiles>: local profiles in the More tab, renamed or removed in a native dialog */
-vf-profiles > dialog { inline-size: min(100% - 2 * var(--gutter), var(--dialog-width)); padding: var(--space-m); border: 0; border-radius: var(--radius); background: var(--color-surface); color: var(--color-fg); }
-vf-profiles > dialog::backdrop { background: var(--color-scrim); }
-vf-profiles > dialog form { display: grid; gap: var(--space-sm); }
-vf-profiles > dialog h2 { margin: 0; font-size: var(--size-lg); }
-vf-profiles > dialog label { display: grid; gap: var(--space-xs); }
-vf-profiles > dialog label[hidden] { display: none; }
-vf-profiles > dialog menu { display: flex; justify-content: end; gap: var(--space-s); margin: 0; padding: 0; list-style: none; }
-vf-profiles > dialog[action="remove"] button[value="ok"] { background: var(--color-bad); color: var(--color-on-accent); }
-vf-profiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
-vf-profiles ul li { display: block; }
-vf-profile { display: flex; align-items: center; gap: var(--space-s); padding-inline-end: var(--space-s); }
-vf-profile > button[name="use"] { flex: 1; min-inline-size: 0; display: grid; justify-content: start; justify-items: start; text-align: start; background: none; color: inherit; font-weight: normal; min-block-size: var(--row-h); padding-inline: var(--space-m); }
-vf-profile > button[name="use"] > span { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-vf-profile > button[name="use"] > small { color: var(--color-muted); font-size: var(--size-xs); font-weight: normal; }
-vf-profile[current="true"] > button[name="use"] > span { font-weight: var(--weight-semi); color: var(--color-accent); }
-vf-profile[current="true"] > button[name="use"] > span::before { content: "✓ "; }
-vf-profiles form { display: grid; gap: var(--space-xs); }
-vf-profiles form label { font-weight: var(--weight-semi); font-size: var(--size-sm); }
-vf-profiles > p { margin: 0; color: var(--color-muted); font-size: var(--size-sm); }
-vf-profiles > h3 { margin: var(--space-sm) 0 0; font-size: var(--size-sm); }
-vf-profiles > menu { display: flex; flex-wrap: wrap; gap: var(--space-s); margin: 0; padding: 0; list-style: none; }
-vf-profiles > menu :is(button, label) { gap: var(--space-xs); }
-vf-profiles > output { color: var(--color-muted); font-size: var(--size-sm); }
-vf-profiles > output:empty { display: none; }
-
-/* <vf-account>: sign in with Bluesky, or the account of the current profile */
-vf-account { display: grid; gap: var(--space-s); }
-vf-account form { display: grid; gap: var(--space-xs); }
-vf-account form label { font-weight: var(--weight-semi); font-size: var(--size-sm); }
-vf-account form button { display: inline-flex; align-items: center; gap: var(--space-s); }
-vf-account > p, vf-account > output { margin: 0; color: var(--color-muted); font-size: var(--size-sm); }
-vf-account > output:empty, vf-account-status:empty { display: none; }
-vf-account-status { display: block; font-weight: var(--weight-semi); }
-vf-account[state="in"] > :is(form, p), vf-account[state="out"] > button[name="signout"] { display: none; }
-vf-account > button[name="signout"] { justify-self: start; }
-/* lists published on the account (public), shown once signed in */
-vf-account[state="out"] > fieldset { display: none; }
-vf-account > fieldset { display: grid; gap: var(--space-s); margin: 0; padding: var(--space-sm); border: var(--hairline) solid var(--color-line); border-radius: var(--radius); }
-vf-account > fieldset > legend { padding-inline: var(--space-xs); font-weight: var(--weight-semi); font-size: var(--size-sm); }
-vf-account > fieldset > label { display: flex; align-items: center; gap: var(--space-s); min-block-size: var(--tap); }
-vf-account > fieldset > p { margin: 0; color: var(--color-muted); font-size: var(--size-sm); }
-vf-account > fieldset a { display: inline-flex; align-items: center; gap: var(--space-xs); }
-vf-account[sync="error"] vf-account-status { color: var(--color-danger); }
-vf-account[busy] form button { opacity: var(--busy-opacity); pointer-events: none; }
+/* <vf-transfer>: the list as a file (Settings › Move to another device) */
+vf-transfer { display: grid; gap: var(--space-sm); }
+vf-transfer > p { margin: 0; color: var(--color-muted); font-size: var(--size-sm); }
+vf-transfer > menu { display: flex; flex-wrap: wrap; gap: var(--space-s); margin: 0; padding: 0; list-style: none; }
+vf-transfer > menu :is(button, label) { gap: var(--space-xs); }
+vf-transfer > output { color: var(--color-muted); font-size: var(--size-sm); }
+vf-transfer > output:empty { display: none; }
 
 /* <vf-languages>: every language in its own name, its name in the page's language below; a filter from ten on */
 vf-languages search { display: grid; gap: var(--space-xs); margin-block-end: var(--space-sm); }

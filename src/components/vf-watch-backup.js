@@ -5,7 +5,7 @@ import { t, tn } from './i18n.js';
 
 const refreshPage = () => document.querySelector('vf-watch-page')?.refresh();
 
-/** <vf-watch-backup>: a share link with the keys in #w=… (moving a whole profile as a file: vf-profiles.js). */
+/** <vf-watch-backup>: a share link with the keys in #w=… (moving the whole list as a file: vf-transfer.js). */
 export class VfWatchBackup extends HTMLElement {
   connectedCallback() {
     this.live = this.querySelector('output');

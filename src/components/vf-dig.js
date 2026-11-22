@@ -6,13 +6,12 @@ import { rates, region, toViewer, currency, CURRENCY_EVENT } from './viewer.js';
 import { flag } from './release-parts.js';
 import { el, attrs, listen, unlisten } from './dom.js';
 import { load } from '../lib/watch/store.js';
-import { scoped } from '../lib/watch/profiles.js';
 import { ownedKeys } from '../lib/watch/owned.js';
 import { releaseKey } from '../lib/search/release-key.js';
 
 const CRATES = ['mine', 'new', 'restock', 'drop'];
 const PAGE = 48;
-const KEY = () => scoped('vf.dig');
+const KEY = () => 'vf.dig';
 const read = () => { try { return JSON.parse(localStorage.getItem(KEY())) || {}; } catch { return {}; } };
 const save = (v) => { try { localStorage.setItem(KEY(), JSON.stringify(v)); } catch {} };
 const ago = new Intl.RelativeTimeFormat(document.documentElement.lang || 'en', { numeric: 'auto' });

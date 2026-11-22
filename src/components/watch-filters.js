@@ -1,7 +1,6 @@
 /** Sort and filters of the watch page, kept in this browser ("vf.watch.filters"); every access guarded. */
-import { scoped } from '../lib/watch/profiles.js';
 
-const KEY = () => scoped('vf.watch.filters');
+const KEY = () => 'vf.watch.filters';
 const DEFAULTS = { sort: 'new', ships: true, customs: false, max: '' };
 
 export function readFilters() {

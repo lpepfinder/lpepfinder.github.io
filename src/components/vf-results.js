@@ -1,5 +1,4 @@
-import { t, tn, formatNumber, countryName, lang } from './i18n.js';
-import { localPath } from './social.js';
+import { t, tn, formatNumber, countryName, lang, localPath } from './i18n.js';
 import { addToGroups, groupView, orderGroups, totals } from '../lib/search/group.js';
 import { region, rates, comparable, currency, CURRENCY_EVENT } from './viewer.js';
 import { el, attrs, listen, unlisten } from './dom.js';

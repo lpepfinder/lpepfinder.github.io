@@ -1,5 +1,5 @@
 /**
- * A Radio4000 radio's tracks, kept in this browser (per profile, "vf.radio.tracks"), so a radio is read once
+ * A Radio4000 radio's tracks, kept in this browser ("vf.radio.tracks"), so a radio is read once
  * and then only for what was added: the first reading takes every track (up to config.radio.maxTracks); later
  * ones read from the newest until a track already kept. Every config.radio.fullEveryDays, or for another radio,
  * it is read in full again (tracks deleted on the radio go too).
@@ -8,10 +8,9 @@
  * link back to the track they were found for.
  */
 import { listTracks, getTrack, COLLECTION } from './radio.js';
-import { scoped } from './profiles.js';
 import config from '../../../data/watch.json' with { type: 'json' };
 
-const KEY = () => scoped('vf.radio.tracks');
+const KEY = () => 'vf.radio.tracks';
 const DAY = 86_400_000;
 
 export function kept() {
