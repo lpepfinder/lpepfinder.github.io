@@ -21,6 +21,7 @@ vf-filters vf-currency select { flex: 1 1 auto; }
 
 /* the docked rail (from 110rem): one column, sticky */
 vf-sheet[name="filters"][docked] vf-filters { grid-template-columns: minmax(0, 1fr); padding-block: var(--space-s); }
+vf-sheet[name="filters"][docked] { --sheet-bg: var(--color-bg); }
 vf-sheet[name="filters"][docked] > dialog > :is(header, footer) { padding-inline: 0; border: 0; }
 vf-sheet[name="filters"][docked] > dialog > :not(header, footer) { padding-inline: 0; }
 vf-sheet[name="filters"][docked] footer > button[value="close"] { display: none; }

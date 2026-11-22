@@ -113,7 +113,9 @@ vf-near a data { color: inherit; }
 /* <vf-shortcuts>: the keyboard shortcuts' help, a native dialog in the middle of the screen */
 vf-shortcuts dialog { inline-size: min(100% - 2 * var(--gutter), var(--sheet-wide)); padding: var(--space-m); border: 0; border-radius: var(--radius); background: var(--color-surface); color: var(--color-fg); }
 vf-shortcuts dialog::backdrop { background: var(--color-scrim); }
-vf-shortcuts header { display: flex; align-items: center; justify-content: space-between; }
+/* the dialog scrolls as a whole: its title and close button stay at the top (no top padding, so nothing shows above them) */
+vf-shortcuts dialog { padding-block-start: 0; }
+vf-shortcuts header { position: sticky; inset-block-start: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: var(--space-m) 0 var(--space-s); border: 0; background: var(--color-surface); }
 vf-shortcuts :is(h2, h3) { margin: 0; }
 vf-shortcuts h2 { font-size: var(--size-lg); }
 vf-shortcuts h3 { margin-block-start: var(--space-m); font-size: var(--size-sm); color: var(--color-muted); }
