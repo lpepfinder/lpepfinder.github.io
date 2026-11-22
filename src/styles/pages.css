@@ -200,15 +200,3 @@ vf-languages a small { color: var(--color-muted); font-size: var(--size-sm); }
 vf-languages a[aria-current="true"] { background: var(--color-chip); }
 vf-languages a[aria-current="true"] strong { color: var(--color-accent); }
 
-/* <vf-explore>: the Explore tab, sections that each point to their pages; <vf-doors> a row of link cards */
-vf-explore { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
-vf-explore hgroup p, vf-explore section > p { margin: 0; color: var(--color-muted); font-size: var(--size-sm); }
-vf-explore section { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
-vf-explore h2 { margin: 0; }
-vf-explore section > p:last-child:has(a) { font-size: var(--size-base); }
-/* two to a row on phones, as many as fit from tablets up */
-vf-doors > ul, vf-explore vf-countries > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(var(--tile-min), calc(50% - var(--space-xs))), 1fr)); gap: var(--space-s); }
-vf-doors a { display: flex; align-items: center; gap: var(--space-s); min-block-size: var(--row-h); padding-inline: var(--space-m); border-radius: var(--radius); background: var(--color-surface); border: var(--hairline) solid var(--color-line); color: var(--color-fg); font-weight: var(--weight-semi); text-decoration: none; }
-vf-doors vf-icon { flex: none; }
-@media (hover: hover) and (pointer: fine) { vf-doors a:hover { border-color: var(--color-border); background: var(--color-hover); } }
-vf-doors data { margin-inline-start: auto; color: var(--color-muted); font-weight: normal; font-size: var(--size-sm); }

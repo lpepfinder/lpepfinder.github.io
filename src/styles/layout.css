@@ -1,7 +1,8 @@
 /* Page frame: <vf-app> with header (the search and the tab bar) and main; no footer: its links, languages and prices are in Settings; mode="home|results|page". */
 vf-app { display: grid; grid-template-rows: auto 1fr auto; min-block-size: 100dvh; }
 vf-app > * { min-inline-size: 0; }
-vf-app > :is(main, footer) { inline-size: 100%; max-inline-size: var(--width-wide); margin-inline: auto; padding-inline: var(--gutter); }
+/* the whole width at every size (savoir radical-mobile-first): only running text keeps a measure, below */
+vf-app > :is(main, footer) { inline-size: 100%; padding-inline: var(--gutter); }
 /* lists use the full width, prose doesn't */
 vf-app[layout="prose"] > :is(main, footer) { max-inline-size: var(--width); }
 main > :is(p, hgroup), main > article > p, hgroup p { max-inline-size: var(--measure); }

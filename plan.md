@@ -45,7 +45,7 @@ OpenStreetMap already brings 718 of the 2,399 shops (monthly discovery, `scripts
 ### Order
 
 0. **Before anything: the index to R2.** The site is 853 MB (health issue #9). Deploys stop at 900 MB, and the site grows about 11 MB a day, so that's a few days away. The steps are in "Hosting" below and wait on the owner: R2 enabled, an API token, DNS. A stopgap meanwhile: `ledger.watchDays` 3 → 2 frees 20–40 MB.
-1. **Tabs and pages**: Search as home with "new for you" (the watchlist's records in stock and new), a Shops tab with "new this week" on each shop's page, Settings into Me, Explore redirected, `/new/` out of the navigation, the footer line. This step is mostly moving what exists: no new data.
+1. **New for you, new this week**: Search's empty state shows "new for you" (the watchlist's records in stock and new, then "most wanted"); a shop's page leads with what's new there this week. The tabs are done (2026-11-22: Search, Shops, Me; Settings in Me's ⋯ menu; Explore redirected to Search; its data links in Settings; no page max-width).
 2. **"Where I dig" without the map**: country, region and ships-to-me, which the browser already knows. Search results and "new for you" lead with the place.
 3. **Shop coordinates**, then "near me" in Search, Shops and "new for you".
 4. **Follow a shop**, its new records in "new for you".
@@ -107,7 +107,6 @@ From the 2026-11-10 review, not urgent; each one is a separate commit.
 ## Smaller
 
 - The artists page is one 268 KB page of 3,000 links: heavy on a phone, and too slow for the quality gate. One page per letter (`/artists/a/`), with the letters on top; the old URL keeps the letters (ask before changing URLs).
-- No page max-width (`radical-mobile-first`): `main` stops at 120rem (`--width-wide`); only running text needs a measure.
 - Artist pages exist in English only; their strings and the profile are translated, the routes aren't (`no-half-translation`).
 - Shop and record profiles from open data, like artists (OpenStreetMap opening hours and place, Bluesky profile).
 - Search Console for lpepfinder.com, then judge artist pages by the traffic they bring.

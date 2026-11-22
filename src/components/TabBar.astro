@@ -3,28 +3,28 @@ import { t, localPath } from '../lib/i18n.js';
 import Logo from './Logo.astro';
 
 /**
- * The app's tabs (savoir app-shell): Search (its icon is the brand); Explore (/explore/: Dig, shops, artists,
- * collectors and the data; current on the pages it leads to); the profile in use (/me/: its account and lists, the watchlist inside, with its change count), labelled
- * with the profile's name; and Settings (account, profiles, language, prices in, then browse and about; a badge
- * when changes wait to reach the account). vf-shell-account.js names the profile tab and sets the badge.
+ * The app's three tabs (savoir app-shell): Search (its icon is the brand; home), Shops (/shops/: where the shops are,
+ * current on the pages about shops, places, artists and new arrivals), and Me (the profile in use: its lists, and
+ * Settings in its ⋯ menu), labelled with the profile's name and carrying the badge of changes waiting to reach the
+ * account. vf-shell-account.js names the profile tab and sets the badge.
  */
 const { lang, current } = Astro.props;
 const search = localPath(lang, '/');
+const shops = localPath(lang, '/shops/');
 const me = localPath(lang, '/me/');
-const settings = localPath(lang, '/settings/');
-const explore = localPath(lang, '/explore/');
 const here = (href) => (href === current ? 'page' : undefined);
-const exploring = href => (href === current ? 'page' : /^(\/[a-z]{2})?\/(explore|new|shops|shop|artists|artist|u)\//.test(current || '') ? 'true' : undefined);
+const inShops = (href) => (href === current ? 'page' : /^(\/[a-z]{2})?\/(shops|shop|new|artists|artist|u)\//.test(current || '') ? 'true' : undefined);
+// Settings belongs to Me: the tab stays current there
+const inMe = (href) => (href === current ? 'page' : /^(\/[a-z]{2})?\/settings\//.test(current || '') ? 'true' : undefined);
 ---
 <nav aria-label={t(lang, 'navApp')}>
   <vf-tabbar>
     <a href={search} aria-current={here(search)} title={t(lang, 'tabSearch')}><Logo /><span>{t(lang, 'tabSearch')}</span></a>
-    <a href={explore} aria-current={exploring(explore)} title={t(lang, 'tabExplore')}><vf-icon name="explore"></vf-icon><span>{t(lang, 'tabExplore')}</span></a>
+    <a href={shops} aria-current={inShops(shops)} title={t(lang, 'tabShops')}><vf-icon name="store"></vf-icon><span>{t(lang, 'tabShops')}</span></a>
     <vf-shell-account>
       <vf-watchlist>
-        <a href={me} aria-current={here(me)} title={t(lang, 'tabMe')} rel="me"><vf-icon name="person"></vf-icon><span>{t(lang, 'tabMe')}</span> <vf-watch-count count="0"></vf-watch-count></a>
+        <a href={me} aria-current={inMe(me)} title={t(lang, 'tabMe')} rel="me"><vf-icon name="person"></vf-icon><span>{t(lang, 'tabMe')}</span> <vf-watch-count count="0"></vf-watch-count> <vf-sync-count hidden></vf-sync-count></a>
       </vf-watchlist>
-      <a href={settings} aria-current={here(settings)} title={t(lang, 'tabSettings')}><vf-icon name="settings"></vf-icon><span>{t(lang, 'tabSettings')}</span> <vf-sync-count hidden></vf-sync-count></a>
     </vf-shell-account>
   </vf-tabbar>
 </nav>

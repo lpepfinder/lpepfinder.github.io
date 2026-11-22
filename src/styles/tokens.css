@@ -34,7 +34,6 @@
    * Breakpoints (media queries can't read custom properties, so they are constants):
    * phone < 40rem · tablet 40–64rem · desktop ≥ 64rem (list + detail) · large ≥ 90rem (one-line rows) · ≥ 110rem filter rail too (the sidebar takes room).
    */
-  --width-wide: 120rem;
   --measure: 68ch;
   --row-h: 3.5rem;
   --source-min: 22rem;

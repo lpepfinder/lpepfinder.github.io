@@ -53,6 +53,7 @@ vf-tabbar a[aria-current] { color: var(--color-accent); }
 vf-tabbar :is(vf-icon, vf-logo) { --icon-size: 1.5rem; }
 vf-tabbar vf-logo svg { inline-size: var(--icon-size); block-size: var(--icon-size); }
 vf-tabbar :is(vf-watch-count, vf-sync-count) { position: absolute; inset-block-start: var(--space-xs); inset-inline-start: calc(50% + 0.5rem); }
+vf-tabbar a:has(vf-watch-count:not([count="0"])) vf-sync-count { display: none; }
 /* the language: at the foot of the side rail; on phones it is in Settings */
 header > button[name="language"] { display: none; }
 /* room for the fixed tab bar */

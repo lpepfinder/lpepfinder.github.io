@@ -1,11 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Results from '../../components/Results.astro';
-import CountryTiles from '../../components/CountryTiles.astro';
-import HomeStrip from '../../components/HomeStrip.astro';
-import { homeStrip } from '../../lib/home-strip.js';
 import config from '../../../data/config.json';
-import { t, tn, localeParams, localPath, number, date } from '../../lib/i18n.js';
+import { t, localeParams, localPath, number, date } from '../../lib/i18n.js';
 import { catalog } from '../../lib/catalog.js';
 import { pageTitle } from '../../lib/seo.js';
 
@@ -18,7 +15,6 @@ const vars = {
   recordsShort: new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 2 }).format(c.totalRecords),
 };
 const home = new URL(localPath(lang, '/'), Astro.site).href;
-const strip = homeStrip(c, config.newArrivals.stripItems ?? config.newArrivals.homeItems);
 const ld = [{
   '@context': 'https://schema.org', '@type': 'WebSite', name: config.name, alternateName: config.formerNames, url: home, inLanguage: lang,
   potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${home}?q={search_term_string}` }, 'query-input': 'required name=search_term_string' },
@@ -29,7 +25,8 @@ const ld = [{
 <Base lang={lang} path="/" mode="home" title={pageTitle(t(lang, 'homeSeoTitle'))} description={t(lang, 'description', vars)} ld={ld}>
   <!-- the numbers, not a pitch: what is in the shops today -->
   <hgroup>
-    <h1>{t(lang, 'stats', vars)}</h1>
+    <!-- a line may break after a "·", never before it -->
+    <h1>{t(lang, 'stats', vars).replaceAll(' · ', '\u00a0· ')}</h1>
     <p><time datetime={c.builtAt}>{t(lang, 'updated', { date: date(lang, c.builtAt) })}</time></p>
   </hgroup>
   <vf-recent hidden>
@@ -48,23 +45,11 @@ const ld = [{
       document.querySelector('vf-results').setAttribute('status', 'loading');
     }
   </script>
-  {strip.count > 0 && (
-    <section aria-labelledby="home-new">
-      <h2 id="home-new">{t(lang, strip.fresh ? 'homeNewTitle' : 'homeLatestTitle')}</h2>
-      <HomeStrip lang={lang} records={strip.records} shopsById={c.shopsById} labelledby="home-new" />
-      {strip.fresh && <p><a href="/new/">{tn(lang, 'homeNewAll', strip.count)}</a></p>}
-    </section>
-  )}
-  <section aria-labelledby="home-countries">
-    <h2 id="home-countries">{t(lang, 'homeCountriesTitle')}</h2>
-    <CountryTiles lang={lang} countries={c.countries} />
-    <p><a href={localPath(lang, '/shops/')}>{t(lang, 'homeAllShops', vars)}</a></p>
-  </section>
   {c.artists.length > 0 && (
     <section aria-labelledby="home-artists">
       <h2 id="home-artists">{t(lang, 'homeArtistsTitle')}</h2>
       <vf-chips><ul>{c.artists.slice(0, 24).map((a) => <li><a href={`/artist/${a.slug}/`}>{a.name}</a></li>)}</ul></vf-chips>
-      <p><a href="/artists/">{t(lang, 'homeAllArtists')}</a></p>
+      <p><a href="/artists/">{t(lang, 'homeAllArtists')}</a> · <a href={localPath(lang, '/u/')}>{t(lang, 'explore.collectorsLink')}</a></p>
     </section>
   )}
 </Base>

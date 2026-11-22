@@ -9,7 +9,7 @@ import { t, localeParams, localPath } from '../../lib/i18n.js';
 import { pageTitle } from '../../lib/seo.js';
 
 /**
- * Me (/me/, was /watch/), mobile first: the profile in use with a ⋯ menu (Prices in, Share, Profiles, Bluesky), then
+ * Me (/me/, was /watch/), mobile first: the profile in use with a ⋯ menu (Prices in, Share, Profiles, Bluesky, Settings), then
  * the overview: one card per place the records come from (all of them, the Discogs wantlist, a radio, the search),
  * each with how many are watched and in stock, picked to show only its records in every view, and "Add a list" for
  * the lists not connected (all of them as cards while nothing is watched); then four tabs with counts (in stock,
@@ -40,6 +40,7 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
         <li><a href={localPath(lang, '/settings/') + '#profiles'}><vf-icon name="person"></vf-icon><span>{t(lang, 'me.profiles')}</span></a></li>
         <li><a href={localPath(lang, '/settings/') + '#account'} name="sign-in"><vf-icon name="bluesky"></vf-icon><span>{t(lang, 'me.signIn')}</span></a></li>
         <li hidden><a href={localPath(lang, '/u/')} name="public"><vf-icon name="person"></vf-icon><span>{t(lang, 'me.publicPage')}</span></a></li>
+        <li><a href={localPath(lang, '/settings/')}><vf-icon name="settings"></vf-icon><span>{t(lang, 'settingsTitle')}</span></a></li>
       </menu>
     </vf-menu>
   </vf-me-head>

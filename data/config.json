@@ -100,11 +100,9 @@
     "maxDrop": 0.7
   },
   "newArrivals": {
-    "description": "New arrivals (scripts/ledger/new-arrivals.js, /new/ pages, Atom feeds): records new in the last `days` days, at most `pageItems` per page, `homeItems` on the home page, `stripItems` in a strip, `shopItems` on a shop page and `feedItems` per feed.",
+    "description": "New arrivals (scripts/ledger/new-arrivals.js, /new/ pages, Atom feeds): records new in the last `days` days, at most `pageItems` per page, `shopItems` on a shop page and `feedItems` per feed.",
     "days": 7,
     "pageItems": 120,
-    "homeItems": 6,
-    "stripItems": 16,
     "shopItems": 24,
     "feedItems": 50
   },

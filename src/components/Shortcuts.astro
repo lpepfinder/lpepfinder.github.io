@@ -8,7 +8,7 @@ import { t, localPath } from '../lib/i18n.js';
 const { lang } = Astro.props;
 const go = [
   ['s', localPath(lang, '/'), 'tabSearch'],
-  ['e', '/new/', 'tabExplore'],
+  ['r', localPath(lang, '/shops/'), 'tabShops'],
   ['m', localPath(lang, '/me/'), 'tabMe'],
   [',', localPath(lang, '/settings/'), 'tabSettings'],
   ['h', '/docs/', 'navDocs'],

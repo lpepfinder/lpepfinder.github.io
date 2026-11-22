@@ -2,7 +2,8 @@
 import Base from '../../../layouts/Base.astro';
 import CountryList from '../../../components/CountryList.astro';
 import { pageTitle } from '../../../lib/seo.js';
-import { t, localeParams, number, countryName } from '../../../lib/i18n.js';
+import { t, localeParams, localPath, number, countryName } from '../../../lib/i18n.js';
+import { cityName } from '../../../lib/cities.js';
 import { byName } from '../../../lib/sort.js';
 import { catalog } from '../../../lib/catalog.js';
 
@@ -12,6 +13,9 @@ const c = catalog();
 // people look for their country by name: A–Z in the page's language
 const countries = [...c.countries].sort(byName(lang, (x) => countryName(lang, x.code)));
 const vars = { shops: number(lang, c.visible.length), countries: number(lang, c.countries.length) };
+// the cities with the most shops: the places diggers travel to
+const cities = c.countries.flatMap((x) => x.pages.map((city) => ({ ...city, country: x.code })))
+  .sort((a, b) => b.shops.length - a.shops.length).slice(0, 18);
 ---
 <Base lang={lang} path="/shops/" title={pageTitle(t(lang, 'shopsSeoTitle'))} description={t(lang, 'shopsIntro', vars)} data="/api/shops.json">
   <h1>{t(lang, 'shopsTitle')}</h1>
@@ -20,7 +24,16 @@ const vars = { shops: number(lang, c.visible.length), countries: number(lang, c.
     <h2>{t(lang, 'shopsNear')}</h2>
     <a href="#"><vf-near-name></vf-near-name> <data></data></a>
   </vf-near>
-  <CountryList lang={lang} countries={countries} />
+  {cities.length > 0 && (
+    <section aria-labelledby="shops-cities">
+      <h2 id="shops-cities">{t(lang, 'exploreCities')}</h2>
+      <vf-chips><ul>{cities.map((x) => <li><a href={localPath(lang, `/shops/${x.country.toLowerCase()}/${x.slug}/`)}>{cityName(lang, x.country, x.name)} ({number(lang, x.shops.length)})</a></li>)}</ul></vf-chips>
+    </section>
+  )}
+  <section aria-labelledby="shops-countries">
+    <h2 id="shops-countries">{t(lang, 'homeCountriesTitle')}</h2>
+    <CountryList lang={lang} countries={countries} />
+  </section>
 </Base>
 <script>
   import '../../../components/vf-near.js';

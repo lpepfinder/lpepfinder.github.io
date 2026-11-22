@@ -5,7 +5,7 @@ import { t, tn } from './i18n.js';
 
 /**
  * <vf-shell-account> in the tab bar (savoir app-shell: one account control): the profile tab carries the name of
- * the profile in use ("Me" for a single local profile) and its account's icon; the Settings tab's <vf-sync-count>
+ * the profile in use ("Me" for a single local profile) and its account's icon; its <vf-sync-count>
  * shows the changes waiting to reach the account, or a dot while offline.
  */
 export class VfShellAccount extends HTMLElement {

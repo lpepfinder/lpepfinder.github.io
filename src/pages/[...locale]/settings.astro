@@ -7,9 +7,9 @@ import { t, languages, localeParams, localPath } from '../../lib/i18n.js';
 import { pageTitle } from '../../lib/seo.js';
 
 /**
- * The Settings tab (/settings/, was /more/), as an app screen like joblist's Menu: the settings of this browser
- * first (account, profile, language, prices in, moving to another device: rows that open their sheet), then
- * a shop to add, and about (help, privacy, data status, source).
+ * Settings (/settings/, was /more/; reached from Me's ⋯ menu), as an app screen like joblist's Menu: the settings of
+ * this browser first (account, profile, language, prices in, moving to another device: rows that open their sheet),
+ * then a shop to add, and about (help, privacy, data status, the open data for programs and agents, source).
  */
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
@@ -22,6 +22,9 @@ const groups = [
     { href: localPath(lang, '/about/'), key: 'navAbout', icon: 'info' },
     { href: localPath(lang, '/privacy/'), key: 'navPrivacy', icon: 'shield' },
     { href: '/status/', key: 'navStatus', icon: 'pulse' },
+    { href: '/api/index.json', key: 'explore.api', icon: 'code' },
+    { href: '/llms.txt', key: 'explore.agents', icon: 'info' },
+    { href: '/feed/new.xml', key: 'newFeed', icon: 'rss' },
     { href: config.repository, key: 'footerGithub', icon: 'code' },
     { href: `${config.repository}/issues`, key: 'contactGithub', icon: 'chat' },
     { href: config.analytics.publicDashboard, key: 'footerAnalytics', icon: 'chart' },

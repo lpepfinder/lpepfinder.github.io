@@ -1,12 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
-import { t, defaultLanguage as lang } from '../lib/i18n.js';
+import { t, localPath, defaultLanguage as lang } from '../lib/i18n.js';
 ---
 <Base layout="prose" lang={lang} title={t(lang, 'notFoundTitle')} description={t(lang, 'notFoundBody')} noindex>
   <h1>{t(lang, 'notFoundTitle')}</h1>
   <p>{t(lang, 'notFoundBody')}</p>
   <menu>
     <li><a href="/" kind="strong"><vf-icon name="search"></vf-icon>{t(lang, 'navSearch')}</a></li>
-    <li><a href="/new/" kind="secondary"><vf-icon name="explore"></vf-icon>{t(lang, 'tabExplore')}</a></li>
+    <li><a href={localPath(lang, '/shops/')} kind="secondary"><vf-icon name="store"></vf-icon>{t(lang, 'tabShops')}</a></li>
   </menu>
 </Base>
