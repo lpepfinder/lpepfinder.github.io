@@ -35,6 +35,13 @@ export default defineConfig({
   },
   // docs/*.md link to each other as "page.md": on the site, /docs/page/
   markdown: { processor: satteri({ mdastPlugins: [docsLinks] }) },
+  // The generated search index (public/search, public/w: ~61,000 files) is served but not
+  // watched, nor agents' worktrees (.claude/): watching them used nearly all of Linux's file
+  // watchers (65,536 per user), so other dev servers failed with ENOSPC. Reload by hand after
+  // rebuilding the index.
+  vite: {
+    server: { watch: { ignored: ['**/public/search/**', '**/public/w/**', '**/.claude/**'] } },
+  },
   integrations: [
     sitemap({
       i18n: { defaultLocale: config.defaultLanguage, locales },
