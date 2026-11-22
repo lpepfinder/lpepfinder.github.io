@@ -92,7 +92,7 @@
     "goneSearchDays": 90,
     "goneKeepDays": 365,
     "watchShops": 12,
-    "watchDays": 3,
+    "watchDays": 2,
     "shortCrawl": 0.8,
     "shortCrawlMin": 100,
     "shortCrawlDays": 3,
