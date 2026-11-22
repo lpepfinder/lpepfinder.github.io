@@ -26,7 +26,7 @@ vf-progress progress { inline-size: 100%; }
 vf-watch-shops > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); column-gap: var(--space-6); }
 vf-watch-shop { display: block; border-block-end: var(--line) solid var(--c-line); }
 vf-watch-shop > a { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); min-block-size: var(--row-h); padding-inline: var(--space-1); color: inherit; text-decoration: none; border-radius: var(--radius); }
-vf-watch-shop > a:hover { background: var(--c-hover); }
+@media (hover: hover) and (pointer: fine) { vf-watch-shop > a:hover { background: var(--c-hover); } }
 vf-watch-shop[aria-current="true"] { background: var(--c-selected); }
 vf-watch-shop h3 { font-size: var(--size-0); }
 vf-watch-shop span, vf-watch-shop vf-origin { color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
@@ -83,7 +83,7 @@ vf-watch-item[stock="in"] p { color: var(--c-fg); font-weight: var(--weight-semi
 vf-watch-item > :is(h3, p) { margin: 0; }
 /* titles read as a list, not as a page of links */
 vf-watch-item h3 a { color: inherit; text-decoration: none; }
-vf-watch-item h3 a:hover { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) { vf-watch-item h3 a:hover { text-decoration: underline; } }
 vf-watch-item > button { font-size: var(--size-s); color: var(--c-muted); }
 
 /* file pickers styled as secondary buttons (the input stays focusable) */
@@ -135,7 +135,7 @@ vf-source b { font-weight: var(--weight-semi); white-space: nowrap; overflow: hi
 vf-source > :is(label, div) > span { color: var(--c-muted); font-variant-numeric: tabular-nums; }
 vf-source > :is(label, div) > span strong { color: var(--c-fg); }
 vf-source input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
-vf-source:has(> label:hover) { border-color: var(--c-border); }
+@media (hover: hover) and (pointer: fine) { vf-source:has(> label:hover) { border-color: var(--c-border); } }
 vf-source:has(input:checked) { border-color: var(--c-fg); box-shadow: inset 0 0 0 var(--line) var(--c-fg); }
 vf-source:has(input:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 vf-source > small { color: var(--c-muted); font-size: var(--size-xs); }

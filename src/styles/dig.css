@@ -40,7 +40,7 @@ vf-dig-card[crate="drop"] vf-price data { color: var(--c-event-price-down); }
 vf-dig-card vf-title { font-weight: var(--weight-semi); line-height: var(--leading-tight); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 vf-dig-card vf-artist { color: var(--c-muted); font-size: var(--size-s); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 vf-dig-card vf-shop { color: var(--c-muted); font-size: var(--size-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-vf-dig-card > a:hover vf-title { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) { vf-dig-card > a:hover vf-title { text-decoration: underline; } }
 vf-dig > button { justify-self: center; }
 vf-dig > button[hidden] { display: none; }
 vf-dig-status { display: block; color: var(--c-muted); }

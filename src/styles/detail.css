@@ -53,7 +53,7 @@ vf-offer > vf-offer-notes:empty { display: none; }
 vf-offer > a:last-child { grid-area: info; position: relative; z-index: 1; display: grid; place-items: center; inline-size: var(--tap); block-size: var(--tap); color: var(--c-muted); }
 vf-offer[condition="used"][stock="in"] > p { color: var(--c-used); }
 vf-offer[stock="out"] > vf-price { color: var(--c-muted); font-weight: normal; }
-vf-offer:hover { background: var(--c-hover); }
+@media (hover: hover) and (pointer: fine) { vf-offer:hover { background: var(--c-hover); } }
 vf-offer:has(a[rel]:focus-visible) { outline: var(--focus-ring); outline-offset: calc(-1 * var(--focus-offset)); }
 vf-offer a[rel]:focus-visible { outline: none; }
 vf-origin abbr { text-decoration: none; }

@@ -7,7 +7,7 @@ vf-chips > ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wra
 /* compact (--chip-h) on a neutral surface; the hit area still reaches --tap through an invisible extension */
 vf-chips a { position: relative; display: inline-flex; align-items: center; min-block-size: var(--chip-h); padding-inline: var(--space-3); border: var(--line) solid var(--c-line); border-radius: var(--radius-pill); background: var(--c-chip-surface); color: var(--c-fg); font-size: var(--size-s); text-decoration: none; }
 vf-chips a::before { content: ""; position: absolute; inset: calc((var(--chip-h) - var(--tap)) / 2) 0; }
-vf-chips a:hover { border-color: var(--c-border); }
+@media (hover: hover) and (pointer: fine) { vf-chips a:hover { border-color: var(--c-border); } }
 vf-chips a[aria-current] { background: var(--c-chip-on); color: var(--c-chip-on-fg); border-color: var(--c-chip-on); }
 
 /* <vf-grid>: directory lists (countries, cities, shops, artists) in columns */
@@ -74,7 +74,7 @@ vf-settings li + li { border-block-start: var(--line) solid var(--c-line); }
 vf-settings ul a, vf-settings-rows section > ul > li > button { display: flex; align-items: center; gap: var(--space-3); min-block-size: var(--row-h); padding-inline: var(--space-4); color: inherit; text-decoration: none; }
 /* a settings row: icon, label, its value, chevron (vf-settings-rows.js) */
 vf-settings-rows > section > ul > li > button { inline-size: 100%; background: none; border-radius: 0; font: inherit; font-weight: normal; text-align: start; justify-content: start; box-shadow: none; }
-vf-settings-rows > section > ul > li > button:hover { background: var(--c-hover); }
+@media (hover: hover) and (pointer: fine) { vf-settings-rows > section > ul > li > button:hover { background: var(--c-hover); } }
 vf-settings-rows > section > ul > li > button > vf-icon { color: var(--c-muted); }
 vf-settings-rows > section > ul > li > button > span { flex: 1; }
 vf-settings-rows > section > ul > li > button > data { min-inline-size: 0; max-inline-size: 50%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--c-muted); font-size: var(--size-s); }
@@ -84,7 +84,7 @@ vf-settings-rows { display: contents; }
 vf-settings ul a > vf-icon { color: var(--c-muted); }
 vf-settings ul a > span { flex: 1; }
 vf-settings section > ul a::after { content: ""; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--c-muted); mask: var(--icon-next) center / contain no-repeat; }
-vf-settings ul a:hover { background: var(--c-hover); }
+@media (hover: hover) and (pointer: fine) { vf-settings ul a:hover { background: var(--c-hover); } }
 vf-settings ul a[aria-current="true"] { font-weight: var(--weight-semi); color: var(--c-accent); }
 vf-settings > p { color: var(--c-muted); font-size: var(--size-s); }
 /* phones: the More tab has all of the footer; only the browse links stay at the end of pages */
@@ -121,7 +121,7 @@ vf-shortcuts dl { display: grid; grid-template-columns: auto 1fr; gap: var(--spa
 vf-shortcuts dd { margin: 0; }
 vf-shortcuts ul { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; }
 vf-shortcuts ul a { display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--tap); color: inherit; text-decoration: none; }
-vf-shortcuts ul a:hover span { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) { vf-shortcuts ul a:hover span { text-decoration: underline; } }
 kbd { display: inline-block; min-inline-size: 1.6em; padding: 0 var(--space-1); border: var(--line) solid var(--c-border); border-block-end-width: var(--key-edge); border-radius: var(--radius); background: var(--c-bg); font: inherit; font-size: var(--size-s); text-align: center; }
 /* touch screens have no keyboard shortcuts to show */
 @media (pointer: coarse) { vf-shortcuts { display: none; } }
@@ -137,7 +137,7 @@ article > menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0;
 /* <vf-shop-owner>: one quiet line for the shop's owner at the end of its page */
 vf-shop-owner { display: block; margin-block-start: var(--space-8); padding-block-start: var(--space-4); border-block-start: var(--line) solid var(--c-line); font-size: var(--size-s); color: var(--c-muted); }
 vf-shop-owner a { display: flex; align-items: start; min-block-size: var(--tap); padding-block: var(--space-2); gap: var(--space-2); color: inherit; text-decoration: none; }
-vf-shop-owner a:hover span { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) { vf-shop-owner a:hover span { text-decoration: underline; } }
 vf-shop-owner strong { color: var(--c-fg); }
 vf-shop-owner vf-icon { flex: none; --icon-size: var(--icon-size-nav); margin-block-start: 0.1em; }
 
@@ -193,7 +193,7 @@ vf-languages search label { font-size: var(--size-s); color: var(--c-muted); }
 vf-languages ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--lang-min), 1fr)); gap: var(--space-1); }
 vf-languages li[hidden] { display: none; }
 vf-languages a { display: grid; align-content: center; min-block-size: var(--row-h); padding-inline: var(--space-3); border-radius: var(--radius); color: inherit; text-decoration: none; }
-vf-languages a:hover { background: var(--c-hover); }
+@media (hover: hover) and (pointer: fine) { vf-languages a:hover { background: var(--c-hover); } }
 vf-languages a small { color: var(--c-muted); font-size: var(--size-s); }
 vf-languages a[aria-current="true"] { background: var(--c-chip); }
 vf-languages a[aria-current="true"] strong { color: var(--c-accent); }
@@ -208,5 +208,5 @@ vf-explore section > p:last-child:has(a) { font-size: var(--size-0); }
 vf-doors > ul, vf-explore vf-countries > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(var(--tile-min), calc(50% - var(--space-1))), 1fr)); gap: var(--space-2); }
 vf-doors a { display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--row-h); padding-inline: var(--space-4); border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); color: var(--c-fg); font-weight: var(--weight-semi); text-decoration: none; }
 vf-doors vf-icon { flex: none; }
-vf-doors a:hover { border-color: var(--c-border); background: var(--c-hover); }
+@media (hover: hover) and (pointer: fine) { vf-doors a:hover { border-color: var(--c-border); background: var(--c-hover); } }
 vf-doors data { margin-inline-start: auto; color: var(--c-muted); font-weight: normal; font-size: var(--size-s); }

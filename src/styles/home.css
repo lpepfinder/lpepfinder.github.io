@@ -68,13 +68,13 @@ vf-strip-card > vf-price { justify-items: start; text-align: start; }
 vf-strip-card > p { margin: 0; color: var(--c-muted); font-size: var(--size-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 vf-strip-card:has(a:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); border-radius: var(--radius); }
 vf-strip-card a:focus-visible { outline: none; }
-vf-strip-card:hover vf-title { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) { vf-strip-card:hover vf-title { text-decoration: underline; } }
 
 /* country tiles: flag, name, shop count; the viewer's country first */
 vf-countries > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--tile-min), 1fr)); gap: var(--space-2); }
 vf-countries li[hidden] { display: none; }
 vf-country-tile > a { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "flag name" "flag count"; column-gap: var(--space-3); align-items: center; min-block-size: var(--row-h); padding: var(--space-2) var(--space-3); border: var(--line) solid var(--c-line); border-radius: var(--radius); background: var(--c-bg); color: var(--c-fg); text-decoration: none; }
-vf-country-tile > a:hover { border-color: var(--c-border); }
+@media (hover: hover) and (pointer: fine) { vf-country-tile > a:hover { border-color: var(--c-border); } }
 vf-country-tile > a > span { grid-area: flag; font-size: var(--size-2); line-height: 1; }
 vf-country-tile vf-name { grid-area: name; font-weight: var(--weight-semi); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 vf-country-tile data { grid-area: count; font-size: var(--size-xs); }

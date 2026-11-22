@@ -29,7 +29,7 @@ vf-sheet[docked]:not([expanded]) > dialog > header:not(:has(h2, button[value="ex
 vf-sheet[docked]:not([expanded]) > dialog > header > button[back] { display: none; }
 vf-sheet[docked]:not([expanded]) > dialog > header { justify-content: end; border: 0; padding-block: 0; }
 vf-sheet > dialog > header > button[value="expand"] { inline-size: var(--tap); padding: 0; display: grid; place-items: center; margin-inline-start: auto; color: var(--c-muted); text-decoration: none; }
-vf-sheet > dialog > header > button[value="expand"]:hover { color: var(--c-fg); }
+@media (hover: hover) and (pointer: fine) { vf-sheet > dialog > header > button[value="expand"]:hover { color: var(--c-fg); } }
 /* phones: the sheet is already the whole screen; expanded: the Full screen button has done its work */
 @media (max-width: 40rem) { vf-sheet > dialog > header > button[value="expand"] { display: none; } }
 vf-sheet[expanded] > dialog > header > button[value="expand"] { display: none; }
