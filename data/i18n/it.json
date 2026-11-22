@@ -369,7 +369,9 @@
     },
     "backupMove": "Spostare un profilo in un altro browser",
     "radioTracks": "Nella tua radio",
-    "listen": "Ascolta"
+    "listen": "Ascolta",
+    "play": "Riproduci",
+    "playerTitle": "{title}, su YouTube"
   },
   "navApp": "Principale",
   "navSite": "Esplora",

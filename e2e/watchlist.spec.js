@@ -80,8 +80,11 @@ test('watchlist: Discogs import, copies of a record, max price, Bought and Undo'
   await expect(rows).toHaveCount(inStock);
 });
 
-test('watchlist: a record found for a radio track shows the track, with Listen', async ({ page }) => {
+test('watchlist: a record found for a radio track shows the track, with Listen; a YouTube one plays in the pane, loaded only on Play', async ({ page }) => {
   const DID = 'did:plc:e2eradio';
+  // nothing goes to YouTube until Play; then a blank page stands in for the player
+  const youtube = [];
+  await page.route('https://www.youtube-nocookie.com/**', (route) => { youtube.push(route.request().url()); return route.fulfill({ contentType: 'text/html', body: '<!doctype html><title>player</title>' }); });
   await page.route('https://api.discogs.com/**', (route) => route.fulfill({ json: discogsPage(wants) }));
   await page.goto('/me/');
   await page.locator('vf-source[kind="wants"] button[name="connect"]').click();
@@ -93,12 +96,13 @@ test('watchlist: a record found for a radio track shows the track, with Listen',
   // every record linked to a track of a radio kept in this browser (radio-tracks.js); written before the
   // page's scripts run, since the open page keeps its own copy of the list and saves it
   await page.addInitScript((did) => {
-    if (sessionStorage.getItem('e2e-linked')) return;
+    // only the site's own pages (not the player's frame), once
+    if (!localStorage.getItem('vf.watch.v1') || sessionStorage.getItem('e2e-linked')) return;
     sessionStorage.setItem('e2e-linked', '1');
     const list = JSON.parse(localStorage.getItem('vf.watch.v1'));
-    for (const it of Object.values(list.items)) it.p = [`at://${did}/radio.4000.track/1`];
+    for (const it of Object.values(list.items)) it.p = [`at://${did}/radio.4000.track/1`, `at://${did}/radio.4000.track/2`];
     localStorage.setItem('vf.watch.v1', JSON.stringify(list));
-    localStorage.setItem('vf.radio.tracks', JSON.stringify({ handle: 'dj.test', did, at: new Date().toISOString(), tracks: [['1', 'Some Artist - Some Song', 'https://media.example/1']] }));
+    localStorage.setItem('vf.radio.tracks', JSON.stringify({ handle: 'dj.test', did, at: new Date().toISOString(), tracks: [['1', 'Some Artist - Some Song', 'https://media.example/1'], ['2', 'Other Artist - On Video', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ']] }));
   }, DID);
   await page.reload();
   const ships = page.locator('vf-watch-filters input[name="ships"]');
@@ -108,7 +112,17 @@ test('watchlist: a record found for a radio track shows the track, with Listen',
   const tracks = page.locator('vf-sheet[name="watch-record"] vf-watch-tracks');
   await expect(tracks).toBeVisible();
   await expect(tracks).toContainText('Some Artist - Some Song');
-  await expect(tracks.getByRole('link', { name: en.watchPage.listen })).toHaveAttribute('href', 'https://media.example/1');
+  await expect(tracks.getByRole('link', { name: en.watchPage.listen }).first()).toHaveAttribute('href', 'https://media.example/1');
+
+  // the YouTube track: Play beside Listen, and only it
+  const video = tracks.locator('li', { hasText: 'On Video' });
+  await expect(tracks.getByRole('button', { name: en.watchPage.play })).toHaveCount(1);
+  expect(youtube).toEqual([]);
+  await video.getByRole('button', { name: en.watchPage.play }).click();
+  const frame = video.locator('vf-player iframe');
+  await expect(frame).toHaveAttribute('src', 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0');
+  await expect(frame).toHaveAttribute('title', en.watchPage.playerTitle.replace('{title}', 'Other Artist - On Video'));
+  await expect.poll(() => youtube.length).toBeGreaterThan(0);
 });
 
 test('watchlist: where records come from, Discogs or a radio: labels on the rows, the overview cards show one source', async ({ page }) => {

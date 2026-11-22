@@ -348,7 +348,9 @@
     },
     "backupMove": "プロフィールを別のブラウザに移す",
     "radioTracks": "あなたのラジオで",
-    "listen": "聴く"
+    "listen": "聴く",
+    "play": "再生",
+    "playerTitle": "{title}（YouTube）"
   },
   "navApp": "メイン",
   "navSite": "探す",

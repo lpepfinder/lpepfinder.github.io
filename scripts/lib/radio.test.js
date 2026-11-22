@@ -21,3 +21,10 @@ test('radio matching: a listing counts when it holds the artist and the song', a
   assert.equal(holds('The Alan Parsons Project – The Instrumental Works', { artist: 'Q Project', song: 'The Instrumental' }), false);
   assert.equal(holds("Pulp – Spike Island; Single 7″", { artist: 'Pulp', song: 'Spike Island' }), true);
 });
+
+test('a YouTube video id from a track url, or null', async () => {
+  const { youtubeId } = await import('../../src/lib/watch/radio.js');
+  const id = 'dQw4w9WgXcQ';
+  for (const url of [`https://www.youtube.com/watch?v=${id}&t=10`, `https://youtu.be/${id}?si=x`, `https://m.youtube.com/watch?v=${id}`, `https://music.youtube.com/watch?v=${id}`, `https://youtube.com/shorts/${id}`, `https://www.youtube-nocookie.com/embed/${id}`]) assert.equal(youtubeId(url), id, url);
+  for (const url of ['https://soundcloud.com/a/b', 'https://youtube.com/watch?v=short', 'https://evil.test/watch?v=dQw4w9WgXcQ', `https://youtu.be/${id}"><script>`, 'not a url', '']) assert.equal(youtubeId(url), null, url);
+});

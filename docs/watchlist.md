@@ -18,7 +18,7 @@ The watchlist is part of your profile, on the **Me** tab (`/me/`). It answers on
 
 A [Radio4000](https://4000.radio) radio lives on Bluesky (atproto): type its handle under "From a Radio4000 radio" and its tracks are matched to records in stock. The tracks are kept in your browser: the first time the whole radio is read (up to 5,000 tracks), then only the tracks added since, and in full again once a month. A track with a Discogs link is matched exactly and ticked; for the others, records whose title holds the artist and the song are a guess, not ticked. You choose what to add.
 
-A record added from the radio remembers the tracks it was found for (their atproto address, `at://…/radio.4000.track/…`): its detail on the Me page shows them under "On your radio", each with **Listen**, which opens the track where it is hosted (YouTube, SoundCloud…). Signed in, the link is synced with the record.
+A record added from the radio remembers the tracks it was found for (their atproto address, `at://…/radio.4000.track/…`): its detail on the Me page shows them under "On your radio", each with **Listen**, which opens the track where it is hosted (YouTube, SoundCloud…). A YouTube track also has **Play**: the video plays right there, from youtube-nocookie.com. Nothing is loaded from YouTube until you tap Play; after that, YouTube sees that you watched it, as on its own site. Signed in, the link is synced with the record.
 
 Signed in with Bluesky, the field already holds your handle, and the radio's card tells you when your radio has tracks you haven't matched yet (**Find records**), or new tracks since the last time (**Resync**): the page asks the radio for its newest track once a day, one light request.
 
@@ -41,7 +41,7 @@ The **⋯** button next to your profile holds the rest: Prices in (the currency)
 
 Each record says where it comes from: **Discogs** for a want, **Radio** for a record found for a radio's tracks (both when it's both); a record added from the search has no label.
 
-Tap a record to see its copies. The detail starts with why it's on your list: your Discogs want (with your rating and **See on Discogs**, the release's page with its tracks and videos), the radio tracks it was found for (with **Listen**), or the day you added it from the search. Then its copies, cheapest first, and at the end your settings for it: a maximum price, **Bought it** and **Remove**.
+Tap a record to see its copies. The detail starts with why it's on your list: your Discogs want (with your rating and **See on Discogs**, the release's page with its tracks and videos), the radio tracks it was found for (with **Listen**, and **Play** for a YouTube video), or the day you added it from the search. Then its copies, cheapest first, and at the end your settings for it: a maximum price, **Bought it** and **Remove**.
 
 - **In stock**: your records in stock now, with the cheapest copy and how many shops have one. Records found since your last visit come first. Sort by newest, price, rarity (only copy), your Discogs rating, or A–Z; filter by shipping, customs and a maximum price.
 - **Shops**: shops by how many of your records they have, with the total: the best places to order several records at once and pay shipping once.

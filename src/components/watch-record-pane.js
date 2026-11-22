@@ -11,6 +11,7 @@ import { t, formatDay } from './i18n.js';
 import { sourcesOf } from '../lib/watch/source.js';
 import { el, attrs, listen } from './dom.js';
 import { findTrack } from '../lib/watch/radio-tracks.js';
+import { youtubeId } from '../lib/watch/radio.js';
 import './vf-sheet.js';
 import './vf-detail.js';
 
@@ -155,7 +156,9 @@ export class WatchRecordPane {
 
   /**
    * The radio tracks the record was found for (it.p), each with a link to listen to it where it is hosted (http(s) only:
-   * the url is the radio's data). The heading shows even when the radio's tracks aren't kept in this browser.
+   * the url is the radio's data), and for a YouTube video, Play: the video in the pane, from youtube-nocookie.com,
+   * loaded only on that tap (nothing reaches YouTube before). The heading shows even when the radio's tracks aren't
+   * kept in this browser.
    */
   async showTracks(key, it) {
     const box = this.sheet.querySelector('vf-watch-tracks');
@@ -164,9 +167,20 @@ export class WatchRecordPane {
     if (!it?.p?.length) return;
     const tracks = (await Promise.all(it.p.map(findTrack))).filter(Boolean);
     if (this.current !== key || !tracks.length) return;
-    box.querySelector('ul').replaceChildren(...tracks.map((tr) => el('li', {},
-      el('span', { textContent: tr.title }),
-      /^https?:\/\//i.test(tr.url) ? attrs(el('a', { href: tr.url, target: '_blank', rel: 'noopener', textContent: t('watchPage.listen') }), { kind: 'secondary' }) : null)));
+    box.querySelector('ul').replaceChildren(...tracks.map((tr) => {
+      const video = youtubeId(tr.url);
+      const play = video ? attrs(el('button', { type: 'button', textContent: t('watchPage.play') }), { kind: 'secondary' }) : null;
+      const li = el('li', {},
+        el('span', { textContent: tr.title }),
+        play,
+        /^https?:\/\//i.test(tr.url) ? attrs(el('a', { href: tr.url, target: '_blank', rel: 'noopener', textContent: t('watchPage.listen') }), { kind: 'secondary' }) : null);
+      play?.addEventListener('click', () => {
+        // one video at a time in the pane
+        for (const other of box.querySelectorAll('vf-player')) other.remove();
+        li.append(el('vf-player', {}, attrs(el('iframe', { src: `https://www.youtube-nocookie.com/embed/${video}?autoplay=1&rel=0`, title: t('watchPage.playerTitle', { title: tr.title }), allowFullscreen: true }), { allow: 'autoplay; encrypted-media; picture-in-picture; fullscreen', referrerpolicy: 'strict-origin-when-cross-origin' })));
+      });
+      return li;
+    }));
     box.hidden = false;
   }
 

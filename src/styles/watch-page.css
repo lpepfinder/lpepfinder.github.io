@@ -258,10 +258,14 @@ vf-watch-controls[hidden] { display: none; }
 /* the radio tracks a record was found for, each with Listen */
 vf-watch-tracks { display: grid; gap: var(--space-xs); padding-block: var(--space-sm); border-block-end: var(--hairline) solid var(--color-line); font-size: var(--size-sm); }
 vf-watch-tracks[hidden] { display: none; }
+/* a track's video, played in the pane (only after Play): the whole row's width, 16:9 */
+vf-watch-tracks li > vf-player { flex-basis: 100%; }
+vf-player { display: block; inline-size: 100%; }
+vf-player > iframe { display: block; inline-size: 100%; aspect-ratio: var(--ratio-video); border: 0; border-radius: var(--radius); }
 vf-watch-tracks h4 { margin: 0; font-size: var(--size-sm); color: var(--color-muted); font-weight: var(--weight-semi); }
 vf-watch-tracks ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-xs); }
-vf-watch-tracks li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-s); }
-vf-watch-tracks li > span { min-inline-size: 0; overflow-wrap: anywhere; }
+vf-watch-tracks li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-s); }
+vf-watch-tracks li > span { flex: 1 1 0; min-inline-size: 0; overflow-wrap: anywhere; }
 vf-watch-controls form { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-s); }
 vf-watch-controls label { display: inline-flex; align-items: center; gap: var(--space-xs); }
 vf-watch-controls input { font-size: max(var(--size-input-min), var(--size-sm)); inline-size: 7ch; padding: 0 var(--space-s); }

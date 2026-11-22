@@ -73,6 +73,20 @@ export function discogsRef(url) {
   return m ? { kind: m[1].toLowerCase(), id: Number(m[2]) } : null;
 }
 
+/**
+ * A YouTube video's id from a track's url (watch?v=, youtu.be/, shorts/, embed/, music.youtube.com), or null:
+ * 11 characters of [A-Za-z0-9_-], so it can go into an embed address as it is.
+ */
+export function youtubeId(url) {
+  let u;
+  try { u = new URL(url); } catch { return null; }
+  const host = u.hostname.replace(/^(www|m|music)\./, '');
+  const id = host === 'youtu.be' ? u.pathname.slice(1)
+    : host === 'youtube.com' || host === 'youtube-nocookie.com' ? (u.searchParams.get('v') || /^\/(?:shorts|embed|live)\/([^/?#]+)/.exec(u.pathname)?.[1])
+    : null;
+  return /^[\w-]{11}$/.test(id || '') ? id : null;
+}
+
 /** "Artist - Song (2019 Remaster)" -> { artist, song }, the song without bracketed versions; null without a separator. */
 export function songOf(title) {
   const m = /^(.+?)\s+[-–—]\s+(.+)$/.exec(String(title || ''));
