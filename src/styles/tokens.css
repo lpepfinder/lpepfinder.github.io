@@ -66,7 +66,7 @@
   --dialog-max: 80dvh;
   --layer-header: 2;
   --layer-sheet: 4;
-  --color-scrim: rgb(0 0 0 / 0.45);
+  --color-scrim: light-dark(rgb(0 0 0 / 0.45), rgb(0 0 0 / 0.6));
   --color-selected: var(--color-chip);
   --duration-quick: 160ms;
   --ease: cubic-bezier(.2, .8, .2, 1);
@@ -152,32 +152,32 @@
   --lang-min: 8rem;
   --docs-nav-w: 15rem;
 
-  --color-bg: #f7f6f2;
-  --color-surface: #ffffff;
-  --color-fg: #15161a;
-  --color-muted: #565961;
-  --color-line: #e3e2dc;
-  --color-border: #8a8c93;
-  --color-accent: #b3261e;
-  --color-on-accent: #ffffff;
-  --color-link: #1a4fb4;
-  --color-brand: #1340ff;
+  --color-bg: light-dark(#f7f6f2, #111214);
+  --color-surface: light-dark(#ffffff, #1a1b1e);
+  --color-fg: light-dark(#15161a, #ecebe6);
+  --color-muted: light-dark(#565961, #a6a7ab);
+  --color-line: light-dark(#e3e2dc, #2a2c31);
+  --color-border: light-dark(#8a8c93, #6e7078);
+  --color-accent: light-dark(#b3261e, #ef6f5f);
+  --color-on-accent: light-dark(#ffffff, #111214);
+  --color-link: light-dark(#1a4fb4, #8fb3ff);
+  --color-brand: light-dark(#1340ff, #8fb3ff);
   --spin-33: 1.8s;
-  --color-focus: #1a4fb4;
-  --color-chip: #efeee8;
+  --color-focus: light-dark(#1a4fb4, #8fb3ff);
+  --color-chip: light-dark(#efeee8, #24262a);
   --color-chip-surface: var(--color-bg);
-  --color-chip-on: #15161a;
-  --color-chip-on-fg: #ffffff;
+  --color-chip-on: light-dark(#15161a, #ecebe6);
+  --color-chip-on-fg: light-dark(#ffffff, #111214);
   --color-price: var(--color-fg);
-  --color-used: #7a4a00;
-  --color-skeleton: #ecebe5;
-  --color-hover: #efeee8;
+  --color-used: light-dark(#7a4a00, #f0b45a);
+  --color-skeleton: light-dark(#ecebe5, #222429);
+  --color-hover: light-dark(#efeee8, #1f2024);
   --color-ok: var(--color-link);
   --color-bad: var(--color-accent);
-  --color-watching: #8a5a00;
+  --color-watching: light-dark(#8a5a00, #f0b45a);
   --color-event-new: var(--color-link);
-  --color-event-restock: #1d6b34;
-  --color-event-price-down: #1d6b34;
+  --color-event-restock: light-dark(#1d6b34, #6fd08c);
+  --color-event-price-down: light-dark(#1d6b34, #6fd08c);
   --color-event-soldout: var(--color-muted);
   --color-event-gone: var(--color-muted);
   --color-danger: var(--color-accent);
@@ -189,29 +189,4 @@
 }
 @media (min-width: 48rem) {
   :root { --header-h: 4rem; }
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #111214;
-    --color-surface: #1a1b1e;
-    --color-fg: #ecebe6;
-    --color-muted: #a6a7ab;
-    --color-line: #2a2c31;
-    --color-border: #6e7078;
-    --color-accent: #ef6f5f;
-    --color-on-accent: #111214;
-    --color-link: #8fb3ff;
-    --color-brand: #8fb3ff;
-    --color-focus: #8fb3ff;
-    --color-chip: #24262a;
-    --color-chip-on: #ecebe6;
-    --color-chip-on-fg: #111214;
-    --color-used: #f0b45a;
-    --color-skeleton: #222429;
-    --color-hover: #1f2024;
-    --color-watching: #f0b45a;
-    --color-event-restock: #6fd08c;
-    --color-event-price-down: #6fd08c;
-    --color-scrim: rgb(0 0 0 / 0.6);
-  }
 }
