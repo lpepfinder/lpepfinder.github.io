@@ -242,15 +242,10 @@
     "unknownTitle": "Disque {key}",
     "checking": "Vérification des disquaires… {done} / {total}",
     "checked": "À jour.",
-    "backupIntro": "Partagez votre liste par un lien.",
     "imported": {
       "one": "{count} disque ajouté.",
       "other": "{count} disques ajoutés."
     },
-    "share": "Copier le lien de partage",
-    "shareLabel": "Lien de partage",
-    "shareCopied": "Lien copié.",
-    "shareHint": "La liste est dans le lien, après le # : elle n'est jamais envoyée à notre serveur.",
     "sharedTitle": "Liste partagée",
     "sharedBody": {
       "one": "Ce lien contient {count} disque.",
@@ -367,7 +362,6 @@
       "one": "{user} : 1 disque dans votre collection, marqué « À moi » dans la recherche.",
       "other": "{user} : {count} disques dans votre collection, marqués « À moi » dans la recherche."
     },
-    "backupMove": "Passer votre liste à un autre navigateur",
     "radioTracks": "Sur votre radio",
     "listen": "Écouter",
     "play": "Lire",
@@ -704,9 +698,7 @@
   "me": {
     "lists": "Vos listes",
     "empty": "Rien de suivi pour l’instant. Connectez une liste ci-dessus, ou",
-    "emptySearch": "suivez des disques depuis la recherche (☆).",
-    "menu": "Plus",
-    "share": "Partager ma liste"
+    "emptySearch": "suivez des disques depuis la recherche (☆)."
   },
   "explore": {
     "intro": "Tout LP/EP Finder hors recherche : les nouveautés des disquaires, les disquaires par pays, les artistes, les collectionneurs et les données ouvertes. {records} disques en stock chez {shops} disquaires.",

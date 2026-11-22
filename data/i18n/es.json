@@ -242,15 +242,10 @@
     "unknownTitle": "Disco {key}",
     "checking": "Comprobando tiendas… {done} / {total}",
     "checked": "Al día.",
-    "backupIntro": "Comparte tu lista con un enlace.",
     "imported": {
       "one": "1 disco añadido.",
       "other": "{count} discos añadidos."
     },
-    "share": "Copiar enlace para compartir",
-    "shareLabel": "Enlace para compartir",
-    "shareCopied": "Enlace copiado.",
-    "shareHint": "La lista va dentro del enlace, después del #: nunca se envía a nuestro servidor.",
     "sharedTitle": "Lista compartida",
     "sharedBody": {
       "one": "Este enlace contiene 1 disco.",
@@ -367,7 +362,6 @@
       "one": "{user}: 1 disco en tu colección, marcado «Lo tengo» en la búsqueda.",
       "other": "{user}: {count} discos en tu colección, marcados «Lo tengo» en la búsqueda."
     },
-    "backupMove": "Pasar tu lista a otro navegador",
     "radioTracks": "En tu radio",
     "listen": "Escuchar",
     "play": "Reproducir",
@@ -704,9 +698,7 @@
   "me": {
     "lists": "Tus listas",
     "empty": "Aún no sigues nada. Conecta una lista arriba, o",
-    "emptySearch": "sigue discos desde la búsqueda (☆).",
-    "menu": "Más",
-    "share": "Compartir mi lista"
+    "emptySearch": "sigue discos desde la búsqueda (☆)."
   },
   "explore": {
     "intro": "Todo LP/EP Finder además de la búsqueda: lo nuevo en las tiendas, tiendas por país, artistas, coleccionistas y los datos abiertos. {records} discos en stock en {shops} tiendas.",

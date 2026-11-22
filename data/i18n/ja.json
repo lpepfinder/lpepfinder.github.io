@@ -232,14 +232,9 @@
     "unknownTitle": "レコード {key}",
     "checking": "店舗を確認中… {done} / {total}",
     "checked": "最新です。",
-    "backupIntro": "ウォッチリストをリンクで共有できます。",
     "imported": {
       "other": "{count} 枚を追加しました。"
     },
-    "share": "共有リンクをコピー",
-    "shareLabel": "共有リンク",
-    "shareCopied": "リンクをコピーしました。",
-    "shareHint": "リストはリンクの # 以降に含まれ、サーバーには送信されません。",
     "sharedTitle": "共有されたウォッチリスト",
     "sharedBody": {
       "other": "このリンクには {count} 枚のレコードが含まれています。"
@@ -346,7 +341,6 @@
     "collectionDone": {
       "other": "{user}：コレクション{count}件。検索で「所有」と表示します。"
     },
-    "backupMove": "リストを別のブラウザに移す",
     "radioTracks": "あなたのラジオで",
     "listen": "聴く",
     "play": "再生",
@@ -667,9 +661,7 @@
   "me": {
     "lists": "あなたのリスト",
     "empty": "まだ何もウォッチしていません。上のリストを接続するか、",
-    "emptySearch": "検索からレコードをウォッチ（☆）できます。",
-    "menu": "その他",
-    "share": "ウォッチリストを共有"
+    "emptySearch": "検索からレコードをウォッチ（☆）できます。"
   },
   "explore": {
     "intro": "検索以外の LP/EP Finder のすべて：お店の新入荷、国別のお店、アーティスト、コレクター、オープンデータ。{shops} 店に {records} 枚の在庫。",

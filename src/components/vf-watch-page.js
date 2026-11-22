@@ -32,7 +32,7 @@ const VIEWS = ['available', 'now', 'changes', 'all'];
  * shops by how many of your records they have (<vf-watch-now>, a shop opens in a sheet or the right pane),
  * changes by day, and every record (<vf-watch-all>).
  * Picking a card shows the records of one source (?source=discogs|radio|search, source.js) in every view.
- * Rows say where a record comes from. The ⋯ menu of <vf-me-head> opens the "Prices in" and Share sheets.
+ * Rows say where a record comes from. <vf-me-head> links to Settings (prices in, language, moving the list).
  * Wants imported from Discogs also match by catalog number (wants.js).
  * Current states come from the `now` shards, fetched once per data build with a progress bar.
  * Changes are marked seen when the page is left.
@@ -60,11 +60,6 @@ export class VfWatchPage extends HTMLElement {
     this.limit = config.pageSize;
     this.pane = new WatchShopPane(this.views.now, this);
     this.record = new WatchRecordPane(this.views.available, this);
-    // the ⋯ menu at the top of the page
-    this.currencyButton = document.querySelector('#me-menu button[name="currency"]');
-    this.currencyButton?.addEventListener('click', () => this.querySelector('vf-sheet[name="currency"]').open());
-    document.querySelector('#me-menu button[name="share"]')?.addEventListener('click', () => this.querySelector('vf-sheet[name="share"]').open());
-    this.labelCurrency();
     this.setupFilters();
     this.views.available.querySelector('vf-watch-hits > button[name="more"]').addEventListener('click', () => {
       this.limit += config.pageSize;
@@ -78,7 +73,7 @@ export class VfWatchPage extends HTMLElement {
     });
     listen(this, window, 'vf-popstate', () => this.show(false));
     listen(this, window, data.PROGRESS, (e) => this.step(e.detail));
-    listen(this, window, CURRENCY_EVENT, () => { this.labelCurrency(); this.renderChanges(); this.renderHits(); });
+    listen(this, window, CURRENCY_EVENT, () => { this.renderChanges(); this.renderHits(); });
     const leave = () => this.markSeen();
     listen(this, window, 'pagehide', leave);
     listen(this, document, 'visibilitychange', () => { if (document.visibilityState === 'hidden') leave(); });
@@ -332,12 +327,6 @@ export class VfWatchPage extends HTMLElement {
     const box = this.views.changes;
     box.querySelector('vf-watch-days').replaceChildren(...changesByDay(list, this.shops, this.rates));
     box.setAttribute('count', list.changes.length + list.past.length);
-  }
-
-  /** The menu's currency item: "Prices in EUR". */
-  labelCurrency() {
-    const code = this.currencyButton?.querySelector('data');
-    if (code) code.textContent = currency() || t('currency.shop');
   }
 
   markSeen() {

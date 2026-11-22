@@ -28,10 +28,9 @@ test('tab bar: client-side navigation without reloads, no raw i18n keys; languag
   await expect(page).toHaveURL(/\/shops\/[a-z]{2}\/$/);
   await expect(page.locator('vf-tabbar a[href="/shops/"]')).toHaveAttribute('aria-current', 'true');
 
-  // Settings is in Me's ⋯ menu, and Me stays lit there
+  // Settings is a button next to Me's title, and Me stays lit there
   await page.locator('vf-tabbar a[href="/me/"]').click();
-  await page.locator('vf-me-head vf-menu > button').click();
-  await page.locator('#me-menu a[href="/settings/"]').click();
+  await page.locator('vf-me-head a[href="/settings/"]').click();
   await expect(page.locator('vf-tabbar a[href="/me/"]')).toHaveAttribute('aria-current', 'true');
   await page.locator('vf-settings-rows button[value="language"]').click();
   await expect(page.locator('vf-languages a[hreflang="fr"]')).toBeVisible();

@@ -35,7 +35,7 @@ A want matches shop listings two ways:
 
 The top of the page is one card per place your records come from: all your records, your Discogs wantlist, your radio, and the records you added from the search. Each says how many are in stock now and how many you watch; the card of all records adds how many shops have them and how many were found since your last visit. Tap a card to see only its records, in every view; the source is in the address (`?source=discogs`, `radio` or `search`), so a filtered view can be bookmarked. Lists you haven't connected are under **Add a list**. On a phone the cards are one row you swipe.
 
-Each connected list has its own **⋯**: Sync now, Disconnect (its records stay) and Remove its records, each undone from the message that follows. While a list is being read, its card shows how far it got, even with its sheet closed. The **⋯** next to the page title holds the rest: Prices in (the currency), Share my watchlist, and Settings.
+Each connected list has its own **⋯**: Sync now, Disconnect (its records stay) and Remove its records, each undone from the message that follows. While a list is being read, its card shows how far it got, even with its sheet closed. The gear next to the page title opens Settings: language, prices in (the currency), moving the list to another device.
 
 ## The views
 
@@ -52,4 +52,4 @@ Open a record to see every copy, set a **max price** for it (copies above are hi
 
 ## Your data stays with you
 
-The watchlist lives in this browser only: no account, nothing stored on our side. Use **Settings → Move to another device** to keep a copy as a file or move it to another device ([your data](accounts.md)), or **⋯ → Share my watchlist** to share it (the list is inside the link, after the #, never sent to the server). On iPhone, adding the site to the home screen keeps the browser from clearing it.
+The watchlist lives in this browser only: no account, nothing stored on our side. Use **Settings → Move to another device** to keep a copy as a file or move it to another device ([your data](accounts.md)). A share link made before 22 November 2026 still adds its records when opened. On iPhone, adding the site to the home screen keeps the browser from clearing it.

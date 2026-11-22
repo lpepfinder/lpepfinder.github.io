@@ -242,15 +242,10 @@
     "unknownTitle": "Record {key}",
     "checking": "Checking shops… {done} / {total}",
     "checked": "Up to date.",
-    "backupIntro": "Share your watchlist as a link.",
     "imported": {
       "one": "1 record added.",
       "other": "{count} records added."
     },
-    "share": "Copy share link",
-    "shareLabel": "Share link",
-    "shareCopied": "Link copied.",
-    "shareHint": "The list is inside the link, after the #: it is never sent to our server.",
     "sharedTitle": "Shared watchlist",
     "sharedBody": {
       "one": "This link holds 1 record.",
@@ -367,7 +362,6 @@
       "one": "{user}: 1 record in your collection, marked Owned in search.",
       "other": "{user}: {count} records in your collection, marked Owned in search."
     },
-    "backupMove": "Move your list to another browser",
     "radioTracks": "On your radio",
     "listen": "Listen",
     "play": "Play",
@@ -704,9 +698,7 @@
   "me": {
     "lists": "Your lists",
     "empty": "Nothing watched yet. Connect a list above, or",
-    "emptySearch": "watch records from the search (☆).",
-    "menu": "More",
-    "share": "Share my watchlist"
+    "emptySearch": "watch records from the search (☆)."
   },
   "explore": {
     "intro": "Everything on LP/EP Finder besides the search: what's new in the shops, shops by country, artists, collectors and the open data. {records} records in stock at {shops} shops.",

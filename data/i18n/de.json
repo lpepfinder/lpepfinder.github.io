@@ -242,15 +242,10 @@
     "unknownTitle": "Platte {key}",
     "checking": "Läden werden geprüft… {done} / {total}",
     "checked": "Aktuell.",
-    "backupIntro": "Teile deine Merkliste als Link.",
     "imported": {
       "one": "1 Platte hinzugefügt.",
       "other": "{count} Platten hinzugefügt."
     },
-    "share": "Link zum Teilen kopieren",
-    "shareLabel": "Link zum Teilen",
-    "shareCopied": "Link kopiert.",
-    "shareHint": "Die Liste steckt im Link, nach dem #: Sie wird nie an unseren Server gesendet.",
     "sharedTitle": "Geteilte Merkliste",
     "sharedBody": {
       "one": "Dieser Link enthält 1 Platte.",
@@ -367,7 +362,6 @@
       "one": "{user}: 1 Platte in deiner Sammlung, in der Suche als „Hab ich“ markiert.",
       "other": "{user}: {count} Platten in deiner Sammlung, in der Suche als „Hab ich“ markiert."
     },
-    "backupMove": "Deine Liste in einen anderen Browser umziehen",
     "radioTracks": "In deinem Radio",
     "listen": "Anhören",
     "play": "Abspielen",
@@ -704,9 +698,7 @@
   "me": {
     "lists": "Deine Listen",
     "empty": "Noch nichts beobachtet. Verbinde oben eine Liste oder",
-    "emptySearch": "beobachte Platten aus der Suche (☆).",
-    "menu": "Mehr",
-    "share": "Meine Merkliste teilen"
+    "emptySearch": "beobachte Platten aus der Suche (☆)."
   },
   "explore": {
     "intro": "Alles auf LP/EP Finder außer der Suche: Neues in den Läden, Läden nach Land, Künstler, Sammler und die offenen Daten. {records} Platten auf Lager in {shops} Läden.",

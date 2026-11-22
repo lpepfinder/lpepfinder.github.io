@@ -179,9 +179,4 @@ test('watchlist: where records come from, Discogs or a radio: labels on the rows
   await expect(why.locator('vf-watch-tracks')).toContainText(en.watchPage.radioTracks);
   await expect(why.locator('p[source="discogs"]')).toBeHidden();
   await page.keyboard.press('Escape');
-
-  // the ⋯ menu: Share opens its sheet
-  await page.locator('vf-me-head vf-menu > button').click();
-  await page.locator('#me-menu button[name="share"]').click();
-  await expect(page.locator('vf-sheet[name="share"]')).toHaveAttribute('open', '');
 });

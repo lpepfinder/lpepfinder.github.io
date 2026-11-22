@@ -11,7 +11,6 @@ LP/EP Finder has no accounts. Your list (the records you watch, your Discogs lis
 
 - **Another device**: **Settings › Move to another device › Download my list** makes a file; open it in the other browser with **Open a file**. Opening a file adds its records to the list there.
 - **A Discogs wantlist** can also be imported again by its username on any device.
-- **Share my watchlist** (Me › ⋯) makes a link with your records, for someone else or another device.
 - **Clearing your browser's site data** clears the list: download it first if you want to keep it.
 
 ## Profiles and Bluesky, until 2026-11-22

@@ -1,9 +1,9 @@
 /* /me/ page (the profile in use, its lists and watchlist; was /watch/): start screen (empty list), header, tabs with counts, filter chips, views (in stock, shops, activity, all). State in attributes. */
-:is(vf-watch-page, vf-watch-available, vf-watch-changes, vf-watch-now, vf-watch-all, vf-watch-backup, vf-watch-shared) { display: grid; gap: var(--space-s); align-content: start; }
+:is(vf-watch-page, vf-watch-available, vf-watch-changes, vf-watch-now, vf-watch-all, vf-watch-shared) { display: grid; gap: var(--space-s); align-content: start; }
 :is(vf-watch-shared, vf-progress, vf-watch-available, vf-watch-changes, vf-watch-now, vf-watch-all)[hidden] { display: none; }
-:is(vf-watch-page, vf-watch-backup, vf-watch-shared) :is(h2, h3, h4, p) { margin: 0; }
-:is(vf-watch-page, vf-watch-backup) > output { color: var(--color-muted); font-size: var(--size-sm); }
-:is(vf-watch-page, vf-watch-backup) > output:empty { display: none; }
+:is(vf-watch-page, vf-watch-shared) :is(h2, h3, h4, p) { margin: 0; }
+vf-watch-page > output { color: var(--color-muted); font-size: var(--size-sm); }
+vf-watch-page > output:empty { display: none; }
 vf-watch-page ol, vf-watch-shop ul { list-style: none; margin: 0; padding: 0; display: grid; }
 vf-watch-shared { padding: var(--space-m); border-radius: var(--radius); background: var(--color-chip); justify-items: start; }
 
@@ -91,11 +91,6 @@ label:has(> input[type="file"]) { background: var(--color-surface); color: var(-
 label:has(> input[type="file"]) { display: inline-flex; align-items: center; min-block-size: var(--tap); padding: var(--space-s) var(--space-m); border-radius: var(--radius); font-weight: var(--weight-semi); cursor: pointer; justify-self: start; }
 label:has(> input[type="file"]:focus-visible) { outline: var(--focus); outline-offset: var(--focus-offset); }
 label > input[type="file"] { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
-vf-watch-backup menu { display: flex; flex-wrap: wrap; gap: var(--space-s); margin: 0; padding: 0; list-style: none; }
-vf-watch-backup > p { color: var(--color-muted); font-size: var(--size-sm); }
-vf-watch-backup > p:has(input) { display: grid; gap: var(--space-xs); }
-vf-watch-backup > p[hidden] { display: none; }
-vf-watch-backup input[type="url"] { min-inline-size: 0; }
 
 @media (max-width: 40rem) {
   /* the jump bar is one scrolling row on phones */
@@ -104,9 +99,10 @@ vf-watch-backup input[type="url"] { min-inline-size: 0; }
 }
 
 
-/* /me/: the profile in use and its account, then its lists, then the watchlist */
+/* /me/: the title and Settings, then the lists, then the watchlist */
 vf-me-head { display: flex; align-items: center; gap: var(--space-sm); margin-block-end: var(--space-sm); }
-/* the profile's picture: the account's avatar, else its initial */
+vf-me-head > a { display: grid; place-items: center; inline-size: var(--tap); block-size: var(--tap); border-radius: var(--radius); color: var(--color-muted); }
+@media (hover: hover) and (pointer: fine) { vf-me-head > a:hover { background: var(--color-hover); color: var(--color-fg); } }
 vf-me-head h1 { flex: 1; min-inline-size: 0; margin: 0; font-size: var(--size-xxl); line-height: var(--line-height-tight); overflow-wrap: anywhere; }
 
 /* the overview: one card per source, a row that scrolls sideways on phones, wrapping from tablets; while nothing is
@@ -229,8 +225,7 @@ vf-watch-available vf-detail[status="missing"] { display: grid; gap: var(--space
 }
 vf-watch-shop vf-price { margin-inline-start: auto; font-size: var(--size-sm); }
 vf-watch-shop[reach="no"] h3 { color: var(--color-muted); }
-vf-watch-all > vf-watch-backup { margin-block-start: var(--space-l); }
-
+vf-watch-all > 
 /* the status line is for screen readers: the summary and the progress bar say it on screen */
 /* tabs: one line on phones, scrolling sideways if needed */
 vf-watch-page > nav ul { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
