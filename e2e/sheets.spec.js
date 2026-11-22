@@ -29,6 +29,9 @@ test('a sheet keeps its header and footer in view when its content scrolls', asy
   if (!isPhone(testInfo)) return;
   // the filters sheet: its footer (the actions) stays at the bottom
   await page.goBack();
+  // the pill hides while the page scrolls down, which Back's restored scroll can leave behind: back to the top
+  await page.evaluate(() => scrollTo(0, 0));
+  await expect(page.locator('vf-app')).not.toHaveAttribute('scroll', 'down');
   await page.locator('vf-results-actions button').click();
   const filters = page.locator('vf-sheet[name="filters"]');
   await expect(filters).toHaveAttribute('open');
