@@ -6,21 +6,21 @@
 header {
   position: sticky; inset-block-start: 0; z-index: var(--layer-header);
   display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "search";
-  align-items: center; padding: var(--space-2) var(--gutter);
-  background: var(--c-bg); border-block-end: var(--line) solid var(--c-line);
+  align-items: center; padding: var(--space-s) var(--gutter);
+  background: var(--color-bg); border-block-end: var(--hairline) solid var(--color-line);
 }
 /* the brand link: read by screen readers on phones and tablets, shown at the top of the sidebar */
 header > vf-search { grid-area: search; }
 
 /* <vf-logo>: magnifier with a record in the lens, in the brand color; the record turns at 33⅓ rpm (1.8 s a turn)
    while the pointer is on the logo and while a search loads */
-vf-logo { display: inline-grid; color: var(--c-brand); }
+vf-logo { display: inline-grid; color: var(--color-brand); }
 vf-logo svg { display: block; overflow: visible; }
 vf-logo [part="handle"], vf-logo [part="vinyl"] { fill: currentColor; }
 vf-logo [part="ring"] { fill: none; stroke: currentColor; stroke-width: 3; }
-vf-logo [part="groove"] { fill: none; stroke: var(--c-bg); stroke-opacity: 0.3; stroke-width: 0.5; }
-vf-logo [part="sheen"] { fill: none; stroke: var(--c-bg); stroke-opacity: 0.7; stroke-width: 1; stroke-linecap: round; }
-vf-logo [part="label"] { fill: var(--c-bg); }
+vf-logo [part="groove"] { fill: none; stroke: var(--color-bg); stroke-opacity: 0.3; stroke-width: 0.5; }
+vf-logo [part="sheen"] { fill: none; stroke: var(--color-bg); stroke-opacity: 0.7; stroke-width: 1; stroke-linecap: round; }
+vf-logo [part="label"] { fill: var(--color-bg); }
 vf-logo [part="hole"] { fill: currentColor; }
 vf-logo [part="disc"] { transform-box: fill-box; transform-origin: center; }
 @keyframes vf-spin { to { rotate: 1turn; } }
@@ -31,28 +31,28 @@ vf-logo [part="disc"] { transform-box: fill-box; transform-origin: center; }
 
 /* the search label is announced, not shown; the button is an icon */
 header vf-search form { position: relative; gap: 0; }
-header vf-search input { border-radius: var(--radius-pill); padding-inline: var(--space-4) calc(var(--tap) + var(--space-1)); background: var(--c-surface); }
-header vf-search button { position: absolute; inset-block: 0; inset-inline-end: 0; inline-size: var(--tap); padding: 0; display: grid; place-items: center; border-radius: var(--radius-pill); background: none; color: var(--c-muted); }
-@media (hover: hover) and (pointer: fine) { header vf-search button:hover { color: var(--c-fg); } }
+header vf-search input { border-radius: var(--radius-pill); padding-inline: var(--space-m) calc(var(--tap) + var(--space-xs)); background: var(--color-surface); }
+header vf-search button { position: absolute; inset-block: 0; inset-inline-end: 0; inline-size: var(--tap); padding: 0; display: grid; place-items: center; border-radius: var(--radius-pill); background: none; color: var(--color-muted); }
+@media (hover: hover) and (pointer: fine) { header vf-search button:hover { color: var(--color-fg); } }
 
 /* tab bar */
 header > nav {
   position: fixed; inset-inline: 0; inset-block-end: 0; z-index: 2;
   padding-block-end: env(safe-area-inset-bottom);
-  background: var(--c-surface); border-block-start: var(--line) solid var(--c-line);
+  background: var(--color-surface); border-block-start: var(--hairline) solid var(--color-line);
 }
 vf-tabbar { display: grid; grid-template-columns: repeat(4, 1fr); }
 vf-tabbar :is(vf-watchlist, vf-shell-account) { display: contents; }
 vf-tabbar a { min-inline-size: 0; }
 vf-tabbar a > span { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 vf-tabbar a {
-  display: grid; justify-items: center; align-content: center; gap: var(--space-0); position: relative;
-  min-block-size: var(--tabbar-h); color: var(--c-muted); text-decoration: none; font-size: var(--size-xs); font-weight: var(--weight-semi);
+  display: grid; justify-items: center; align-content: center; gap: var(--space-xxs); position: relative;
+  min-block-size: var(--tabbar-h); color: var(--color-muted); text-decoration: none; font-size: var(--size-xs); font-weight: var(--weight-semi);
 }
-vf-tabbar a[aria-current] { color: var(--c-accent); }
+vf-tabbar a[aria-current] { color: var(--color-accent); }
 vf-tabbar :is(vf-icon, vf-logo) { --icon-size: 1.5rem; }
 vf-tabbar vf-logo svg { inline-size: var(--icon-size); block-size: var(--icon-size); }
-vf-tabbar :is(vf-watch-count, vf-sync-count) { position: absolute; inset-block-start: var(--space-1); inset-inline-start: calc(50% + 0.5rem); }
+vf-tabbar :is(vf-watch-count, vf-sync-count) { position: absolute; inset-block-start: var(--space-xs); inset-inline-start: calc(50% + 0.5rem); }
 /* the language: at the foot of the side rail; on phones it is in Settings */
 header > button[name="language"] { display: none; }
 /* room for the fixed tab bar */
@@ -102,42 +102,42 @@ vf-icon[name="play"] { --icon: var(--icon-play); }
 /* phones with results: one compact row (the logo's name stays its accessible name), tucked away while reading down */
 @media (max-width: 40rem) {
   vf-app[mode="results"] { --header-h: var(--header-compact-h); }
-  vf-app[mode="results"] header { transition: inset-block-start var(--duration) var(--ease); }
+  vf-app[mode="results"] header { transition: inset-block-start var(--duration-quick) var(--ease); }
   /* sticky with a negative offset, not a transform: a transformed header would carry the fixed tab bar along */
-  vf-app[mode="results"][scroll="down"] header:not(:focus-within) { inset-block-start: calc(-1 * var(--header-compact-h) - var(--line)); }
-  vf-app[mode="results"][scroll="down"] vf-results-actions { translate: 0 calc(100% + var(--tabbar-h) + var(--space-3)); }
+  vf-app[mode="results"][scroll="down"] header:not(:focus-within) { inset-block-start: calc(-1 * var(--header-compact-h) - var(--hairline)); }
+  vf-app[mode="results"][scroll="down"] vf-results-actions { translate: 0 calc(100% + var(--tabbar-h) + var(--space-sm)); }
 }
 
 /* tablets: an icon column on the left, the whole height */
 @media (min-width: 48rem) {
   vf-app { padding-inline-start: var(--rail-w); padding-block-end: 0; }
   header { grid-template-columns: minmax(0, var(--search-max)); }
-  header > nav { inset: 0 auto 0 0; inline-size: var(--rail-w); padding: var(--space-3) var(--space-2); border-block-start: 0; border-inline-end: var(--line) solid var(--c-line); }
-  vf-tabbar { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; align-content: start; gap: var(--space-1); }
+  header > nav { inset: 0 auto 0 0; inline-size: var(--rail-w); padding: var(--space-sm) var(--space-s); border-block-start: 0; border-inline-end: var(--hairline) solid var(--color-line); }
+  vf-tabbar { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; align-content: start; gap: var(--space-xs); }
   vf-tabbar a { min-block-size: var(--rail-item-h); border-radius: var(--radius); }
-  @media (hover: hover) and (pointer: fine) { vf-tabbar a:hover { background: var(--c-hover); } }
-  vf-tabbar a[aria-current] { background: var(--c-chip); }
+  @media (hover: hover) and (pointer: fine) { vf-tabbar a:hover { background: var(--color-hover); } }
+  vf-tabbar a[aria-current] { background: var(--color-chip); }
   header > button[name="language"] {
-    position: fixed; inset-block-end: var(--space-3); inset-inline-start: var(--space-2); z-index: 3; inline-size: calc(var(--rail-w) - 2 * var(--space-2));
-    display: grid; justify-items: center; gap: var(--space-0); min-block-size: var(--rail-item-h); padding: 0 var(--space-1);
-    color: var(--c-muted); font-size: var(--size-xs); font-weight: var(--weight-semi);
+    position: fixed; inset-block-end: var(--space-sm); inset-inline-start: var(--space-s); z-index: 3; inline-size: calc(var(--rail-w) - 2 * var(--space-s));
+    display: grid; justify-items: center; gap: var(--space-xxs); min-block-size: var(--rail-item-h); padding: 0 var(--space-xs);
+    color: var(--color-muted); font-size: var(--size-xs); font-weight: var(--weight-semi);
   }
   header > button[name="language"] > span { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  @media (hover: hover) and (pointer: fine) { header > button[name="language"]:hover { color: var(--c-fg); background: var(--c-hover); } }
+  @media (hover: hover) and (pointer: fine) { header > button[name="language"]:hover { color: var(--color-fg); background: var(--color-hover); } }
 }
 /* wide screens: a sidebar with the brand at the top and each tab's name beside its icon */
 @media (min-width: 75rem) {
   :root { --rail-w: var(--sidebar-w); }
   header > a[rel="home"] {
-    position: fixed; inset-block-start: var(--space-3); inset-inline-start: var(--space-4); z-index: 3;
+    position: fixed; inset-block-start: var(--space-sm); inset-inline-start: var(--space-m); z-index: 3;
     inline-size: auto; block-size: auto; overflow: visible; clip-path: none;
-    display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: var(--tap);
-    font-weight: var(--weight-bold); font-size: var(--size-1); color: inherit; text-decoration: none;
+    display: inline-flex; align-items: center; gap: var(--space-s); min-block-size: var(--tap);
+    font-weight: var(--weight-bold); font-size: var(--size-lg); color: inherit; text-decoration: none;
   }
-  header > nav { padding-block-start: calc(var(--tap) + var(--space-6)); padding-inline: var(--space-3); }
-  vf-tabbar a { grid-auto-flow: column; justify-content: start; gap: var(--space-3); min-block-size: var(--tap); padding-inline: var(--space-3); font-size: var(--size-0); }
+  header > nav { padding-block-start: calc(var(--tap) + var(--space-l)); padding-inline: var(--space-sm); }
+  vf-tabbar a { grid-auto-flow: column; justify-content: start; gap: var(--space-sm); min-block-size: var(--tap); padding-inline: var(--space-sm); font-size: var(--size-base); }
   vf-tabbar :is(vf-icon, vf-logo) { --icon-size: var(--icon-size-nav); }
   vf-tabbar vf-watch-count { position: static; }
   vf-tabbar vf-sync-count { position: static; }
-  header > button[name="language"] { inset-inline-start: var(--space-3); inline-size: calc(var(--rail-w) - 2 * var(--space-3)); grid-auto-flow: column; justify-content: start; gap: var(--space-3); min-block-size: var(--tap); padding-inline: var(--space-3); font-size: var(--size-0); font-weight: normal; }
+  header > button[name="language"] { inset-inline-start: var(--space-sm); inline-size: calc(var(--rail-w) - 2 * var(--space-sm)); grid-auto-flow: column; justify-content: start; gap: var(--space-sm); min-block-size: var(--tap); padding-inline: var(--space-sm); font-size: var(--size-base); font-weight: normal; }
 }

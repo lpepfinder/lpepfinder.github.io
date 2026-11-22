@@ -1,24 +1,24 @@
 /* Watchlist on every page: <vf-watch-count> on the Watchlist tab (tab bar in header.css), <vf-watch> toggles, <vf-toast>. */
-vf-watch-count { min-inline-size: var(--badge-size); block-size: var(--badge-size); padding-inline: var(--space-1); display: inline-grid; place-items: center; border-radius: var(--radius-pill); background: var(--c-badge); color: var(--c-badge-fg); font-size: var(--size-xs); font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; }
+vf-watch-count { min-inline-size: var(--badge-size); block-size: var(--badge-size); padding-inline: var(--space-xs); display: inline-grid; place-items: center; border-radius: var(--radius-pill); background: var(--color-badge); color: var(--color-badge-fg); font-size: var(--size-xs); font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; }
 vf-watch-count[count="0"] { display: none; }
 
 /* toggle: same text, the star fills when watching */
 vf-watch { display: block; }
-vf-watch button, vf-toast button { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--size-s); padding-inline: var(--space-3); }
-vf-watch[watching="true"] button { color: var(--c-watching); }
+vf-watch button, vf-toast button { display: inline-flex; align-items: center; gap: var(--space-xs); font-size: var(--size-sm); padding-inline: var(--space-sm); }
+vf-watch[watching="true"] button { color: var(--color-watching); }
 vf-watch[watching="true"] vf-icon { --icon: var(--icon-star-on); }
 vf-result > vf-watch { grid-area: watch; position: relative; z-index: 1; justify-self: end; }
-td > vf-watch { margin-block-start: var(--space-1); }
+td > vf-watch { margin-block-start: var(--space-xs); }
 
-vf-toast { position: fixed; z-index: var(--layer-toast); inset-inline: var(--gutter); inset-block-end: calc(var(--tabbar-h) + var(--space-3) + env(safe-area-inset-bottom)); max-inline-size: var(--toast-width); margin-inline: auto; display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); border-radius: var(--radius); background: var(--c-toast); color: var(--c-toast-fg); }
+vf-toast { position: fixed; z-index: var(--layer-toast); inset-inline: var(--gutter); inset-block-end: calc(var(--tabbar-h) + var(--space-sm) + env(safe-area-inset-bottom)); max-inline-size: var(--toast-width); margin-inline: auto; display: grid; gap: var(--space-s); padding: var(--space-sm) var(--space-m); border-radius: var(--radius); background: var(--color-toast); color: var(--color-toast-fg); }
 vf-toast p { margin: 0; }
-vf-toast a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-3); color: inherit; font-weight: var(--weight-semi); }
-vf-toast menu { display: flex; flex-wrap: wrap; justify-content: end; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+vf-toast a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-sm); color: inherit; font-weight: var(--weight-semi); }
+vf-toast menu { display: flex; flex-wrap: wrap; justify-content: end; gap: var(--space-s); margin: 0; padding: 0; list-style: none; }
 
 @media (forced-colors: active) {
-  vf-watch-count, vf-toast { border: var(--line) solid CanvasText; }
+  vf-watch-count, vf-toast { border: var(--hairline) solid CanvasText; }
 }
-@media (min-width: 48rem) { vf-toast { inset-block-end: max(var(--space-4), env(safe-area-inset-bottom)); } }
+@media (min-width: 48rem) { vf-toast { inset-block-end: max(var(--space-m), env(safe-area-inset-bottom)); } }
 /* changes waiting to reach the account, on the More tab (vf-shell-account.js); a dot while offline with none counted */
-vf-sync-count { min-inline-size: var(--badge-size); block-size: var(--badge-size); padding-inline: var(--space-1); display: inline-grid; place-items: center; border-radius: var(--radius-pill); background: var(--c-watching); color: var(--c-badge-fg); font-size: var(--size-xs); font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; }
+vf-sync-count { min-inline-size: var(--badge-size); block-size: var(--badge-size); padding-inline: var(--space-xs); display: inline-grid; place-items: center; border-radius: var(--radius-pill); background: var(--color-watching); color: var(--color-badge-fg); font-size: var(--size-xs); font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; }
 vf-sync-count[hidden] { display: none; }

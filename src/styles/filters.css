@@ -1,46 +1,46 @@
 /* <vf-filters> in the filters sheet (sheet.css): sections of toggles and format chips; checked chips keep their check mark.
    The Filters buttons: in the results bar (tablets, desktop), a floating pill on phones; none beside the docked rail. */
-vf-filters { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); gap: var(--space-4) var(--space-6); padding-block: var(--space-4); align-content: start; }
+vf-filters { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); gap: var(--space-m) var(--space-l); padding-block: var(--space-m); align-content: start; }
 vf-results:not([status="done"]) vf-note { display: none; }
-vf-filters fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; }
-vf-filters legend { inline-size: 100%; margin-block-end: var(--space-2); padding: 0; color: var(--c-muted); font-size: var(--size-s); font-weight: var(--weight-semi); }
+vf-filters fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-s); margin: 0; padding: 0; border: 0; min-inline-size: 0; }
+vf-filters legend { inline-size: 100%; margin-block-end: var(--space-s); padding: 0; color: var(--color-muted); font-size: var(--size-sm); font-weight: var(--weight-semi); }
 vf-filters :is(fieldset, label)[hidden], vf-note[hidden] { display: none; }
 vf-filters label {
-  display: inline-flex; align-items: center; gap: var(--space-2);
-  min-block-size: var(--tap); padding-inline: var(--space-3);
-  border: var(--line) solid var(--c-line); border-radius: var(--radius-pill);
-  background: var(--c-chip); color: var(--c-fg); font-size: var(--size-s); cursor: pointer;
+  display: inline-flex; align-items: center; gap: var(--space-s);
+  min-block-size: var(--tap); padding-inline: var(--space-sm);
+  border: var(--hairline) solid var(--color-line); border-radius: var(--radius-pill);
+  background: var(--color-chip); color: var(--color-fg); font-size: var(--size-sm); cursor: pointer;
 }
-vf-filters label:has(:checked) { background: var(--c-chip-on); color: var(--c-chip-on-fg); border-color: var(--c-chip-on); }
-vf-filters label:has(:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
-vf-filters input { inline-size: var(--icon-size); block-size: var(--icon-size); margin: 0; accent-color: var(--c-accent); }
+vf-filters label:has(:checked) { background: var(--color-chip-on); color: var(--color-chip-on-fg); border-color: var(--color-chip-on); }
+vf-filters label:has(:focus-visible) { outline: var(--focus); outline-offset: var(--focus-offset); }
+vf-filters input { inline-size: var(--icon-size); block-size: var(--icon-size); margin: 0; accent-color: var(--color-accent); }
 vf-filters data { color: inherit; font-size: var(--size-xs); }
 /* the currency menu: its legend names it */
 vf-filters vf-currency { inline-size: 100%; }
 vf-filters vf-currency select { flex: 1 1 auto; }
 
 /* the docked rail (from 110rem): one column, sticky */
-vf-sheet[name="filters"][docked] vf-filters { grid-template-columns: minmax(0, 1fr); padding-block: var(--space-2); }
+vf-sheet[name="filters"][docked] vf-filters { grid-template-columns: minmax(0, 1fr); padding-block: var(--space-s); }
 vf-sheet[name="filters"][docked] > dialog > :is(header, footer) { padding-inline: 0; border: 0; }
 vf-sheet[name="filters"][docked] > dialog > :not(header, footer) { padding-inline: 0; }
 vf-sheet[name="filters"][docked] footer > button[value="close"] { display: none; }
 
-vf-results-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-1) var(--space-3); align-items: center; }
+vf-results-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-xs) var(--space-sm); align-items: center; }
 vf-results-bar > h2 { grid-column: 1; }
-vf-results-bar > p { grid-column: 1; margin: 0; color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
-vf-results-bar > button { grid-column: 2; grid-row: 1 / span 2; font-size: var(--size-s); }
+vf-results-bar > p { grid-column: 1; margin: 0; color: var(--color-muted); font-size: var(--size-sm); font-variant-numeric: tabular-nums; }
+vf-results-bar > button { grid-column: 2; grid-row: 1 / span 2; font-size: var(--size-sm); }
 vf-results-bar p:empty { display: none; }
-vf-note p { margin: 0; color: var(--c-muted); }
+vf-note p { margin: 0; color: var(--color-muted); }
 /* the live status is for screen readers once results show: the count line or the empty heading says the same */
 
 /* phones: the Filters pill floats in the thumb zone, above the tab bar */
-vf-results-actions { position: fixed; inset-inline: 0; inset-block-end: calc(var(--tabbar-h) + var(--space-3) + env(safe-area-inset-bottom)); z-index: var(--layer-header); display: flex; justify-content: center; pointer-events: none; transition: translate var(--duration) var(--ease); }
+vf-results-actions { position: fixed; inset-inline: 0; inset-block-end: calc(var(--tabbar-h) + var(--space-sm) + env(safe-area-inset-bottom)); z-index: var(--layer-header); display: flex; justify-content: center; pointer-events: none; transition: translate var(--duration-quick) var(--ease); }
 vf-results-actions > button { pointer-events: auto; border-radius: var(--radius-pill); box-shadow: var(--shadow-float); }
 vf-results:not([status="done"]) > vf-results-actions { display: none; }
 @media (max-width: 40rem) {
   vf-results-bar > button { display: none; }
   /* room under the last row for the pill */
-  vf-split > section { padding-block-end: calc(var(--tap) + var(--space-6)); }
+  vf-split > section { padding-block-end: calc(var(--tap) + var(--space-l)); }
 }
 @media (min-width: 40rem) {
   vf-results-actions { display: none; }

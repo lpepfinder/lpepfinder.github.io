@@ -6,10 +6,10 @@ vf-app > :is(main, footer) { inline-size: 100%; max-inline-size: var(--width-wid
 vf-app[layout="prose"] > :is(main, footer) { max-inline-size: var(--width); }
 main > :is(p, hgroup), main > article > p, hgroup p { max-inline-size: var(--measure); }
 
-main { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); align-content: start; padding-block: var(--space-4) var(--space-8); }
+main { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-m); align-content: start; padding-block: var(--space-m) var(--space-xl); }
 
-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 var(--space-4); }
-nav a[aria-current] { color: var(--c-fg); font-weight: var(--weight-semi); text-decoration: none; }
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 var(--space-m); }
+nav a[aria-current] { color: var(--color-fg); font-weight: var(--weight-semi); text-decoration: none; }
 
 
 /* results mode: home sections leave the layout, the H1 stays for assistive tech */

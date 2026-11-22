@@ -1,212 +1,212 @@
 /* Page content: home sections, link lists, status table values. */
-hgroup p { color: var(--c-muted); margin: var(--space-2) 0 0; }
-main > section > ol, article > ul { padding-inline-start: var(--space-6); }
+hgroup p { color: var(--color-muted); margin: var(--space-s) 0 0; }
+main > section > ol, article > ul { padding-inline-start: var(--space-l); }
 
 /* <vf-chips>: link lists that wrap as chips (home, new arrivals) */
-vf-chips > ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+vf-chips > ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-s); }
 /* compact (--chip-h) on a neutral surface; the hit area still reaches --tap through an invisible extension */
-vf-chips a { position: relative; display: inline-flex; align-items: center; min-block-size: var(--chip-h); padding-inline: var(--space-3); border: var(--line) solid var(--c-line); border-radius: var(--radius-pill); background: var(--c-chip-surface); color: var(--c-fg); font-size: var(--size-s); text-decoration: none; }
+vf-chips a { position: relative; display: inline-flex; align-items: center; min-block-size: var(--chip-h); padding-inline: var(--space-sm); border: var(--hairline) solid var(--color-line); border-radius: var(--radius-pill); background: var(--color-chip-surface); color: var(--color-fg); font-size: var(--size-sm); text-decoration: none; }
 vf-chips a::before { content: ""; position: absolute; inset: calc((var(--chip-h) - var(--tap)) / 2) 0; }
-@media (hover: hover) and (pointer: fine) { vf-chips a:hover { border-color: var(--c-border); } }
-vf-chips a[aria-current] { background: var(--c-chip-on); color: var(--c-chip-on-fg); border-color: var(--c-chip-on); }
+@media (hover: hover) and (pointer: fine) { vf-chips a:hover { border-color: var(--color-border); } }
+vf-chips a[aria-current] { background: var(--color-chip-on); color: var(--color-chip-on-fg); border-color: var(--color-chip-on); }
 
 /* <vf-grid>: directory lists (countries, cities, shops, artists) in columns */
-vf-grid > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); gap: 0 var(--space-6); }
+vf-grid > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); gap: 0 var(--space-l); }
 vf-grid li { break-inside: avoid; }
 vf-grid li > a { display: inline-flex; align-items: center; min-block-size: var(--tap); min-inline-size: var(--tap); }
 
 
 vf-crumbs { display: block; }
-main > nav ol, vf-crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); font-size: var(--size-s); color: var(--c-muted); }
-main > nav:not([sticky]) li + li::before, vf-crumbs li + li::before { content: var(--breadcrumb-separator); margin-inline-end: var(--space-2); }
+main > nav ol, vf-crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-s); font-size: var(--size-sm); color: var(--color-muted); }
+main > nav:not([sticky]) li + li::before, vf-crumbs li + li::before { content: var(--breadcrumb-separator); margin-inline-end: var(--space-s); }
 :is(main > nav, vf-crumbs) a { display: inline-flex; align-items: center; min-block-size: var(--tap); }
 /* phones: one back link to the parent page, like an app */
 @media (max-width: 40rem) {
   vf-crumbs li:not(:nth-last-child(2)) { display: none; }
   vf-crumbs li + li::before { content: none; }
-  vf-crumbs a { gap: var(--space-1); color: var(--c-fg); font-size: var(--size-0); text-decoration: none; }
-  vf-crumbs a::before { content: var(--back-mark); font-size: var(--size-1); line-height: 1; }
+  vf-crumbs a { gap: var(--space-xs); color: var(--color-fg); font-size: var(--size-base); text-decoration: none; }
+  vf-crumbs a::before { content: var(--back-mark); font-size: var(--size-lg); line-height: 1; }
 }
 
-vf-status[value="ok"] { color: var(--c-ok); font-weight: var(--weight-semi); }
-vf-status[value="dead"], vf-status[value="moved"] { color: var(--c-bad); }
+vf-status[value="ok"] { color: var(--color-ok); font-weight: var(--weight-semi); }
+vf-status[value="dead"], vf-status[value="moved"] { color: var(--color-bad); }
 
 @media (forced-colors: active) {
-  vf-chips a { border: var(--line) solid CanvasText; }
+  vf-chips a { border: var(--hairline) solid CanvasText; }
 }
 
 /* jump bars (cities, letters): chips; sticky under the header; one scrolling row on phones */
-main > nav[sticky] ul { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-2); }
-main > nav[sticky] a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); color: var(--c-fg); text-decoration: none; font-size: var(--size-s); }
-main > nav[sticky="always"] { position: sticky; inset-block-start: var(--header-h); z-index: 1; background: var(--c-bg); padding-block: var(--space-1); }
+main > nav[sticky] ul { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-s); }
+main > nav[sticky] a { display: inline-flex; align-items: center; min-block-size: var(--tap); padding-inline: var(--space-sm); border-radius: var(--radius-pill); background: var(--color-chip); color: var(--color-fg); text-decoration: none; font-size: var(--size-sm); }
+main > nav[sticky="always"] { position: sticky; inset-block-start: var(--header-h); z-index: 1; background: var(--color-bg); padding-block: var(--space-xs); }
 @media (max-width: 40rem) {
-  main > nav[sticky] { position: sticky; inset-block-start: var(--header-h); z-index: 1; background: var(--c-bg); padding-block: var(--space-1); }
+  main > nav[sticky] { position: sticky; inset-block-start: var(--header-h); z-index: 1; background: var(--color-bg); padding-block: var(--space-xs); }
   main > nav[sticky] ul { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scroll-snap-type: x proximity; padding-block: var(--focus-offset); }
   main > nav[sticky] li { flex: none; scroll-snap-align: start; }
 }
 
 /* columns that read down: cities (cards of shops) on the country page, artists of a letter */
-vf-grid[flow="columns"] { display: block; columns: var(--grid-min); column-gap: var(--space-6); }
-vf-grid[flow="columns"] > ul { display: block; columns: var(--grid-min); column-gap: var(--space-6); }
-vf-grid[flow="columns"] > section { padding-block-end: var(--space-4); }
+vf-grid[flow="columns"] { display: block; columns: var(--grid-min); column-gap: var(--space-l); }
+vf-grid[flow="columns"] > ul { display: block; columns: var(--grid-min); column-gap: var(--space-l); }
+vf-grid[flow="columns"] > section { padding-block-end: var(--space-m); }
 vf-grid[flow="columns"] > section > h2 { break-after: avoid; }
-vf-grid[flow="columns"] > section > h2 { margin-block-start: 0; font-size: var(--size-1); }
+vf-grid[flow="columns"] > section > h2 { margin-block-start: 0; font-size: var(--size-lg); }
 vf-grid[flow="columns"] > section > ul { list-style: none; margin: 0; padding: 0; }
-:is(vf-grid, main > section) h2 data, vf-grid li > data { color: var(--c-muted); font-size: var(--size-s); font-weight: normal; }
+:is(vf-grid, main > section) h2 data, vf-grid li > data { color: var(--color-muted); font-size: var(--size-sm); font-weight: normal; }
 vf-grid li > data::before { content: var(--count-separator); }
 main > section > ul { list-style: none; margin: 0; padding: 0; display: grid; }
 
 /* a shop: name, then its count right after it (not at the far edge) */
-vf-shop-card { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); min-block-size: var(--tap); border-block-end: var(--line) solid var(--c-line); }
-vf-shop-card a { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); font-weight: var(--weight-semi); }
-vf-shop-card span { color: var(--c-muted); font-size: var(--size-s); font-variant-numeric: tabular-nums; }
+vf-shop-card { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-s); min-block-size: var(--tap); border-block-end: var(--hairline) solid var(--color-line); }
+vf-shop-card a { display: inline-flex; align-items: center; gap: var(--space-xs); min-block-size: var(--tap); font-weight: var(--weight-semi); }
+vf-shop-card span { color: var(--color-muted); font-size: var(--size-sm); font-variant-numeric: tabular-nums; }
 vf-shop-card span::before { content: var(--count-separator); }
 vf-shop-card[searchable="false"] a { font-weight: normal; }
 
 /* <vf-settings>: the Settings tab, settings of this browser then links, as an app screen */
-vf-settings { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); max-inline-size: var(--menu-w); }
+vf-settings { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-l); max-inline-size: var(--menu-w); }
 vf-settings h1 { margin: 0; }
-vf-settings section { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
-vf-settings h2 { margin: 0; font-size: var(--size-s); font-weight: var(--weight-semi); color: var(--c-muted); }
-vf-settings h3 { margin: var(--space-2) 0 0; font-size: var(--size-0); }
-vf-settings ul { list-style: none; margin: 0; padding: 0; display: grid; border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); }
-vf-settings li + li { border-block-start: var(--line) solid var(--c-line); }
-vf-settings ul a, vf-settings-rows section > ul > li > button { display: flex; align-items: center; gap: var(--space-3); min-block-size: var(--row-h); padding-inline: var(--space-4); color: inherit; text-decoration: none; }
+vf-settings section { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-s); }
+vf-settings h2 { margin: 0; font-size: var(--size-sm); font-weight: var(--weight-semi); color: var(--color-muted); }
+vf-settings h3 { margin: var(--space-s) 0 0; font-size: var(--size-base); }
+vf-settings ul { list-style: none; margin: 0; padding: 0; display: grid; border-radius: var(--radius); background: var(--color-surface); border: var(--hairline) solid var(--color-line); }
+vf-settings li + li { border-block-start: var(--hairline) solid var(--color-line); }
+vf-settings ul a, vf-settings-rows section > ul > li > button { display: flex; align-items: center; gap: var(--space-sm); min-block-size: var(--row-h); padding-inline: var(--space-m); color: inherit; text-decoration: none; }
 /* a settings row: icon, label, its value, chevron (vf-settings-rows.js) */
 vf-settings-rows > section > ul > li > button { inline-size: 100%; background: none; border-radius: 0; font: inherit; font-weight: normal; text-align: start; justify-content: start; box-shadow: none; }
-@media (hover: hover) and (pointer: fine) { vf-settings-rows > section > ul > li > button:hover { background: var(--c-hover); } }
-vf-settings-rows > section > ul > li > button > vf-icon { color: var(--c-muted); }
+@media (hover: hover) and (pointer: fine) { vf-settings-rows > section > ul > li > button:hover { background: var(--color-hover); } }
+vf-settings-rows > section > ul > li > button > vf-icon { color: var(--color-muted); }
 vf-settings-rows > section > ul > li > button > span { flex: 1; }
-vf-settings-rows > section > ul > li > button > data { min-inline-size: 0; max-inline-size: 50%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--c-muted); font-size: var(--size-s); }
-vf-settings-rows > section > ul > li > button::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--c-muted); mask: var(--icon-next) center / contain no-repeat; }
+vf-settings-rows > section > ul > li > button > data { min-inline-size: 0; max-inline-size: 50%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-muted); font-size: var(--size-sm); }
+vf-settings-rows > section > ul > li > button::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--color-muted); mask: var(--icon-next) center / contain no-repeat; }
 vf-settings-rows { display: contents; }
 /* settings-list rows: icon, words, a chevron at the end */
-vf-settings ul a > vf-icon { color: var(--c-muted); }
+vf-settings ul a > vf-icon { color: var(--color-muted); }
 vf-settings ul a > span { flex: 1; }
-vf-settings section > ul a::after { content: ""; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--c-muted); mask: var(--icon-next) center / contain no-repeat; }
-@media (hover: hover) and (pointer: fine) { vf-settings ul a:hover { background: var(--c-hover); } }
-vf-settings ul a[aria-current="true"] { font-weight: var(--weight-semi); color: var(--c-accent); }
-vf-settings > p { color: var(--c-muted); font-size: var(--size-s); }
+vf-settings section > ul a::after { content: ""; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--color-muted); mask: var(--icon-next) center / contain no-repeat; }
+@media (hover: hover) and (pointer: fine) { vf-settings ul a:hover { background: var(--color-hover); } }
+vf-settings ul a[aria-current="true"] { font-weight: var(--weight-semi); color: var(--color-accent); }
+vf-settings > p { color: var(--color-muted); font-size: var(--size-sm); }
 /* phones: the More tab has all of the footer; only the browse links stay at the end of pages */
 
 /* <vf-near>: the viewer's country above the A–Z list of countries */
-vf-near { display: grid; gap: var(--space-1); }
+vf-near { display: grid; gap: var(--space-xs); }
 vf-near[hidden] { display: none; }
-vf-near h2 { margin: 0; font-size: var(--size-s); font-weight: var(--weight-semi); color: var(--c-muted); }
-vf-near a { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); min-block-size: var(--row-h); padding-inline: var(--space-4); border-radius: var(--radius); background: var(--c-chip-on); color: var(--c-chip-on-fg); font-weight: var(--weight-semi); text-decoration: none; }
+vf-near h2 { margin: 0; font-size: var(--size-sm); font-weight: var(--weight-semi); color: var(--color-muted); }
+vf-near a { display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); min-block-size: var(--row-h); padding-inline: var(--space-m); border-radius: var(--radius); background: var(--color-chip-on); color: var(--color-chip-on-fg); font-weight: var(--weight-semi); text-decoration: none; }
 vf-near a data { color: inherit; }
 
 /* phones: directory lists as app rows, the whole row tappable, the count at the end */
 @media (max-width: 40rem) {
-  vf-grid li { display: flex; align-items: center; gap: var(--space-2); border-block-end: var(--line) solid var(--c-line); }
-  vf-grid li > a { flex: 1; gap: var(--space-2); color: inherit; text-decoration: none; }
+  vf-grid li { display: flex; align-items: center; gap: var(--space-s); border-block-end: var(--hairline) solid var(--color-line); }
+  vf-grid li > a { flex: 1; gap: var(--space-s); color: inherit; text-decoration: none; }
   vf-grid li > data::before { content: none; }
-  vf-grid li::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--c-muted); mask: var(--icon-next) center / contain no-repeat; }
+  vf-grid li::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--color-muted); mask: var(--icon-next) center / contain no-repeat; }
   vf-grid li:has(vf-shop-card) { display: block; border: 0; }
   vf-grid li:has(vf-shop-card)::after { content: none; }
   vf-shop-card { flex-wrap: nowrap; min-block-size: var(--row-h); }
   vf-shop-card a { flex: 1; min-inline-size: 0; color: inherit; text-decoration: none; }
-  vf-shop-card::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--c-muted); mask: var(--icon-next) center / contain no-repeat; }
-  vf-shop-card[searchable="false"] a { color: var(--c-muted); font-weight: normal; }
+  vf-shop-card::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--color-muted); mask: var(--icon-next) center / contain no-repeat; }
+  vf-shop-card[searchable="false"] a { color: var(--color-muted); font-weight: normal; }
 }
 
 /* <vf-shortcuts>: the keyboard shortcuts' help, a native dialog in the middle of the screen */
-vf-shortcuts dialog { inline-size: min(100% - 2 * var(--gutter), var(--sheet-wide)); padding: var(--space-4); border: 0; border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
-vf-shortcuts dialog::backdrop { background: var(--c-scrim); }
+vf-shortcuts dialog { inline-size: min(100% - 2 * var(--gutter), var(--sheet-wide)); padding: var(--space-m); border: 0; border-radius: var(--radius); background: var(--color-surface); color: var(--color-fg); }
+vf-shortcuts dialog::backdrop { background: var(--color-scrim); }
 vf-shortcuts header { display: flex; align-items: center; justify-content: space-between; }
 vf-shortcuts :is(h2, h3) { margin: 0; }
-vf-shortcuts h2 { font-size: var(--size-1); }
-vf-shortcuts h3 { margin-block-start: var(--space-4); font-size: var(--size-s); color: var(--c-muted); }
-vf-shortcuts dl { display: grid; grid-template-columns: auto 1fr; gap: var(--space-2) var(--space-4); margin: var(--space-3) 0 0; }
+vf-shortcuts h2 { font-size: var(--size-lg); }
+vf-shortcuts h3 { margin-block-start: var(--space-m); font-size: var(--size-sm); color: var(--color-muted); }
+vf-shortcuts dl { display: grid; grid-template-columns: auto 1fr; gap: var(--space-s) var(--space-m); margin: var(--space-sm) 0 0; }
 vf-shortcuts dd { margin: 0; }
-vf-shortcuts ul { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; }
-vf-shortcuts ul a { display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--tap); color: inherit; text-decoration: none; }
+vf-shortcuts ul { list-style: none; margin: var(--space-s) 0 0; padding: 0; display: grid; }
+vf-shortcuts ul a { display: flex; align-items: center; gap: var(--space-s); min-block-size: var(--tap); color: inherit; text-decoration: none; }
 @media (hover: hover) and (pointer: fine) { vf-shortcuts ul a:hover span { text-decoration: underline; } }
-kbd { display: inline-block; min-inline-size: 1.6em; padding: 0 var(--space-1); border: var(--line) solid var(--c-border); border-block-end-width: var(--key-edge); border-radius: var(--radius); background: var(--c-bg); font: inherit; font-size: var(--size-s); text-align: center; }
+kbd { display: inline-block; min-inline-size: 1.6em; padding: 0 var(--space-xs); border: var(--hairline) solid var(--color-border); border-block-end-width: var(--key-edge); border-radius: var(--radius); background: var(--color-bg); font: inherit; font-size: var(--size-sm); text-align: center; }
 /* touch screens have no keyboard shortcuts to show */
 @media (pointer: coarse) { vf-shortcuts { display: none; } }
 
 /* a shop on Bluesky: the butterfly in Bluesky blue; "verified" when the shop's domain is its handle */
-vf-icon[name="bluesky"] { color: var(--c-bluesky); }
-vf-shop-card vf-icon[name="bluesky"] { --icon-size: 1em; margin-inline-start: var(--space-1); vertical-align: -0.1em; }
-vf-bluesky { display: block; color: var(--c-muted); font-size: var(--size-s); }
-vf-bluesky[verified="true"] { color: var(--c-ok); }
+vf-icon[name="bluesky"] { color: var(--color-bluesky); }
+vf-shop-card vf-icon[name="bluesky"] { --icon-size: 1em; margin-inline-start: var(--space-xs); vertical-align: -0.1em; }
+vf-bluesky { display: block; color: var(--color-muted); font-size: var(--size-sm); }
+vf-bluesky[verified="true"] { color: var(--color-ok); }
 vf-bluesky[verified="true"]::before { content: "✓ "; }
-article > menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+article > menu { display: flex; flex-wrap: wrap; gap: var(--space-s); margin: 0; padding: 0; list-style: none; }
 
 /* <vf-shop-owner>: one quiet line for the shop's owner at the end of its page */
-vf-shop-owner { display: block; margin-block-start: var(--space-8); padding-block-start: var(--space-4); border-block-start: var(--line) solid var(--c-line); font-size: var(--size-s); color: var(--c-muted); }
-vf-shop-owner a { display: flex; align-items: start; min-block-size: var(--tap); padding-block: var(--space-2); gap: var(--space-2); color: inherit; text-decoration: none; }
+vf-shop-owner { display: block; margin-block-start: var(--space-xl); padding-block-start: var(--space-m); border-block-start: var(--hairline) solid var(--color-line); font-size: var(--size-sm); color: var(--color-muted); }
+vf-shop-owner a { display: flex; align-items: start; min-block-size: var(--tap); padding-block: var(--space-s); gap: var(--space-s); color: inherit; text-decoration: none; }
 @media (hover: hover) and (pointer: fine) { vf-shop-owner a:hover span { text-decoration: underline; } }
-vf-shop-owner strong { color: var(--c-fg); }
+vf-shop-owner strong { color: var(--color-fg); }
 vf-shop-owner vf-icon { flex: none; --icon-size: var(--icon-size-nav); margin-block-start: 0.1em; }
 
 /* <vf-profiles>: local profiles in the More tab, renamed or removed in a native dialog */
-vf-profiles > dialog { inline-size: min(100% - 2 * var(--gutter), var(--dialog-w)); padding: var(--space-4); border: 0; border-radius: var(--radius); background: var(--c-surface); color: var(--c-fg); }
-vf-profiles > dialog::backdrop { background: var(--c-scrim); }
-vf-profiles > dialog form { display: grid; gap: var(--space-3); }
-vf-profiles > dialog h2 { margin: 0; font-size: var(--size-1); }
-vf-profiles > dialog label { display: grid; gap: var(--space-1); }
+vf-profiles > dialog { inline-size: min(100% - 2 * var(--gutter), var(--dialog-width)); padding: var(--space-m); border: 0; border-radius: var(--radius); background: var(--color-surface); color: var(--color-fg); }
+vf-profiles > dialog::backdrop { background: var(--color-scrim); }
+vf-profiles > dialog form { display: grid; gap: var(--space-sm); }
+vf-profiles > dialog h2 { margin: 0; font-size: var(--size-lg); }
+vf-profiles > dialog label { display: grid; gap: var(--space-xs); }
 vf-profiles > dialog label[hidden] { display: none; }
-vf-profiles > dialog menu { display: flex; justify-content: end; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
-vf-profiles > dialog[action="remove"] button[value="ok"] { background: var(--c-bad); color: var(--c-accent-fg); }
-vf-profiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
+vf-profiles > dialog menu { display: flex; justify-content: end; gap: var(--space-s); margin: 0; padding: 0; list-style: none; }
+vf-profiles > dialog[action="remove"] button[value="ok"] { background: var(--color-bad); color: var(--color-on-accent); }
+vf-profiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
 vf-profiles ul li { display: block; }
-vf-profile { display: flex; align-items: center; gap: var(--space-2); padding-inline-end: var(--space-2); }
-vf-profile > button[name="use"] { flex: 1; min-inline-size: 0; display: grid; justify-content: start; justify-items: start; text-align: start; background: none; color: inherit; font-weight: normal; min-block-size: var(--row-h); padding-inline: var(--space-4); }
+vf-profile { display: flex; align-items: center; gap: var(--space-s); padding-inline-end: var(--space-s); }
+vf-profile > button[name="use"] { flex: 1; min-inline-size: 0; display: grid; justify-content: start; justify-items: start; text-align: start; background: none; color: inherit; font-weight: normal; min-block-size: var(--row-h); padding-inline: var(--space-m); }
 vf-profile > button[name="use"] > span { max-inline-size: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-vf-profile > button[name="use"] > small { color: var(--c-muted); font-size: var(--size-xs); font-weight: normal; }
-vf-profile[current="true"] > button[name="use"] > span { font-weight: var(--weight-semi); color: var(--c-accent); }
+vf-profile > button[name="use"] > small { color: var(--color-muted); font-size: var(--size-xs); font-weight: normal; }
+vf-profile[current="true"] > button[name="use"] > span { font-weight: var(--weight-semi); color: var(--color-accent); }
 vf-profile[current="true"] > button[name="use"] > span::before { content: "✓ "; }
-vf-profiles form { display: grid; gap: var(--space-1); }
-vf-profiles form label { font-weight: var(--weight-semi); font-size: var(--size-s); }
-vf-profiles > p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
-vf-profiles > h3 { margin: var(--space-3) 0 0; font-size: var(--size-s); }
-vf-profiles > menu { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
-vf-profiles > menu :is(button, label) { gap: var(--space-1); }
-vf-profiles > output { color: var(--c-muted); font-size: var(--size-s); }
+vf-profiles form { display: grid; gap: var(--space-xs); }
+vf-profiles form label { font-weight: var(--weight-semi); font-size: var(--size-sm); }
+vf-profiles > p { margin: 0; color: var(--color-muted); font-size: var(--size-sm); }
+vf-profiles > h3 { margin: var(--space-sm) 0 0; font-size: var(--size-sm); }
+vf-profiles > menu { display: flex; flex-wrap: wrap; gap: var(--space-s); margin: 0; padding: 0; list-style: none; }
+vf-profiles > menu :is(button, label) { gap: var(--space-xs); }
+vf-profiles > output { color: var(--color-muted); font-size: var(--size-sm); }
 vf-profiles > output:empty { display: none; }
 
 /* <vf-account>: sign in with Bluesky, or the account of the current profile */
-vf-account { display: grid; gap: var(--space-2); }
-vf-account form { display: grid; gap: var(--space-1); }
-vf-account form label { font-weight: var(--weight-semi); font-size: var(--size-s); }
-vf-account form button { display: inline-flex; align-items: center; gap: var(--space-2); }
-vf-account > p, vf-account > output { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
+vf-account { display: grid; gap: var(--space-s); }
+vf-account form { display: grid; gap: var(--space-xs); }
+vf-account form label { font-weight: var(--weight-semi); font-size: var(--size-sm); }
+vf-account form button { display: inline-flex; align-items: center; gap: var(--space-s); }
+vf-account > p, vf-account > output { margin: 0; color: var(--color-muted); font-size: var(--size-sm); }
 vf-account > output:empty, vf-account-status:empty { display: none; }
 vf-account-status { display: block; font-weight: var(--weight-semi); }
 vf-account[state="in"] > :is(form, p), vf-account[state="out"] > button[name="signout"] { display: none; }
 vf-account > button[name="signout"] { justify-self: start; }
 /* lists published on the account (public), shown once signed in */
 vf-account[state="out"] > fieldset { display: none; }
-vf-account > fieldset { display: grid; gap: var(--space-2); margin: 0; padding: var(--space-3); border: var(--line) solid var(--c-line); border-radius: var(--radius); }
-vf-account > fieldset > legend { padding-inline: var(--space-1); font-weight: var(--weight-semi); font-size: var(--size-s); }
-vf-account > fieldset > label { display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--tap); }
-vf-account > fieldset > p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
-vf-account > fieldset a { display: inline-flex; align-items: center; gap: var(--space-1); }
-vf-account[sync="error"] vf-account-status { color: var(--c-error); }
+vf-account > fieldset { display: grid; gap: var(--space-s); margin: 0; padding: var(--space-sm); border: var(--hairline) solid var(--color-line); border-radius: var(--radius); }
+vf-account > fieldset > legend { padding-inline: var(--space-xs); font-weight: var(--weight-semi); font-size: var(--size-sm); }
+vf-account > fieldset > label { display: flex; align-items: center; gap: var(--space-s); min-block-size: var(--tap); }
+vf-account > fieldset > p { margin: 0; color: var(--color-muted); font-size: var(--size-sm); }
+vf-account > fieldset a { display: inline-flex; align-items: center; gap: var(--space-xs); }
+vf-account[sync="error"] vf-account-status { color: var(--color-danger); }
 vf-account[busy] form button { opacity: var(--busy-opacity); pointer-events: none; }
 
 /* <vf-languages>: every language in its own name, its name in the page's language below; a filter from ten on */
-vf-languages search { display: grid; gap: var(--space-1); margin-block-end: var(--space-3); }
-vf-languages search label { font-size: var(--size-s); color: var(--c-muted); }
-vf-languages ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--lang-min), 1fr)); gap: var(--space-1); }
+vf-languages search { display: grid; gap: var(--space-xs); margin-block-end: var(--space-sm); }
+vf-languages search label { font-size: var(--size-sm); color: var(--color-muted); }
+vf-languages ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--lang-min), 1fr)); gap: var(--space-xs); }
 vf-languages li[hidden] { display: none; }
-vf-languages a { display: grid; align-content: center; min-block-size: var(--row-h); padding-inline: var(--space-3); border-radius: var(--radius); color: inherit; text-decoration: none; }
-@media (hover: hover) and (pointer: fine) { vf-languages a:hover { background: var(--c-hover); } }
-vf-languages a small { color: var(--c-muted); font-size: var(--size-s); }
-vf-languages a[aria-current="true"] { background: var(--c-chip); }
-vf-languages a[aria-current="true"] strong { color: var(--c-accent); }
+vf-languages a { display: grid; align-content: center; min-block-size: var(--row-h); padding-inline: var(--space-sm); border-radius: var(--radius); color: inherit; text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { vf-languages a:hover { background: var(--color-hover); } }
+vf-languages a small { color: var(--color-muted); font-size: var(--size-sm); }
+vf-languages a[aria-current="true"] { background: var(--color-chip); }
+vf-languages a[aria-current="true"] strong { color: var(--color-accent); }
 
 /* <vf-explore>: the Explore tab, sections that each point to their pages; <vf-doors> a row of link cards */
-vf-explore { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
-vf-explore hgroup p, vf-explore section > p { margin: 0; color: var(--c-muted); font-size: var(--size-s); }
-vf-explore section { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
+vf-explore { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+vf-explore hgroup p, vf-explore section > p { margin: 0; color: var(--color-muted); font-size: var(--size-sm); }
+vf-explore section { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
 vf-explore h2 { margin: 0; }
-vf-explore section > p:last-child:has(a) { font-size: var(--size-0); }
+vf-explore section > p:last-child:has(a) { font-size: var(--size-base); }
 /* two to a row on phones, as many as fit from tablets up */
-vf-doors > ul, vf-explore vf-countries > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(var(--tile-min), calc(50% - var(--space-1))), 1fr)); gap: var(--space-2); }
-vf-doors a { display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--row-h); padding-inline: var(--space-4); border-radius: var(--radius); background: var(--c-surface); border: var(--line) solid var(--c-line); color: var(--c-fg); font-weight: var(--weight-semi); text-decoration: none; }
+vf-doors > ul, vf-explore vf-countries > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(var(--tile-min), calc(50% - var(--space-xs))), 1fr)); gap: var(--space-s); }
+vf-doors a { display: flex; align-items: center; gap: var(--space-s); min-block-size: var(--row-h); padding-inline: var(--space-m); border-radius: var(--radius); background: var(--color-surface); border: var(--hairline) solid var(--color-line); color: var(--color-fg); font-weight: var(--weight-semi); text-decoration: none; }
 vf-doors vf-icon { flex: none; }
-@media (hover: hover) and (pointer: fine) { vf-doors a:hover { border-color: var(--c-border); background: var(--c-hover); } }
-vf-doors data { margin-inline-start: auto; color: var(--c-muted); font-weight: normal; font-size: var(--size-s); }
+@media (hover: hover) and (pointer: fine) { vf-doors a:hover { border-color: var(--color-border); background: var(--color-hover); } }
+vf-doors data { margin-inline-start: auto; color: var(--color-muted); font-weight: normal; font-size: var(--size-sm); }

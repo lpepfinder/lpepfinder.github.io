@@ -33,7 +33,7 @@ npm run social     # the collectors feed (Refresh)
 
 ## Rules that are easy to get wrong
 
-- Classless: no `class`; semantic elements and `vf-*` custom elements, state in attributes; every value a token in `src/styles/tokens.css`.
+- Classless: no `class`; semantic elements and `vf-*` custom elements, state in attributes; every value a token in `src/styles/tokens.css`, named as in savoir-faire ui (`--color-*`, `--space-xs…xl`, `--size-sm…xxl`; `~/src/hwww/savoir-faire-ui/ui/tokens.css`) so its `ui/` can be dropped in later.
 - No hardcoded strings: UI text in `data/i18n/<lang>.json` for all six languages; settings in `data/config.json` (each section has a `description`).
 - Other people's servers: the bot names itself, obeys robots.txt and Crawl-delay, spaces its requests (`crawl.delayMs`, `enrich.paceMs`), and fetches open data at build time, never per visitor. Credit every source (`docs/sources.md`).
 - Personal data stays in the browser or in the person's own Bluesky account (`docs/accounts.md`); publishing a list is opt-in.

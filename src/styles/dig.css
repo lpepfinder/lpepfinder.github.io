@@ -1,49 +1,49 @@
 /* <vf-dig>: crates to flip through (new, back in stock, price drops) as a cover grid; the server-rendered list hides once it is ready. */
-vf-dig { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); min-inline-size: 0; }
+vf-dig { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); min-inline-size: 0; }
 vf-dig > * { min-inline-size: 0; }
 vf-dig[status="loading"] > :is(ol, button), vf-dig[status="error"] { display: none; }
 main:has(vf-dig[status="ready"]) > :is(vf-record-list, section), main:has(vf-dig[status="ready"]) > p:not(:has(a[type])) { display: none; }
 
 /* crates: tabs with counts, one line */
-vf-dig > nav ul { display: flex; flex-wrap: nowrap; gap: var(--space-1); margin: 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: none; border-block-end: var(--line) solid var(--c-line); }
+vf-dig > nav ul { display: flex; flex-wrap: nowrap; gap: var(--space-xs); margin: 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: none; border-block-end: var(--hairline) solid var(--color-line); }
 vf-dig > nav li { flex: none; }
 /* empty crates step aside (the one shown stays, with its empty message) */
 vf-dig[status="ready"] > nav li:has(data[value="0"]):not(:has([aria-current])) { display: none; }
 /* "Your records" only with a watchlist */
 vf-dig:not([watching]) > nav li:has(a[crate="mine"]) { display: none; }
-vf-dig > nav a[crate="mine"] data:not(:empty) { color: var(--c-accent); font-weight: var(--weight-bold); }
-vf-dig > nav a { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); padding-inline: var(--space-3); color: var(--c-muted); text-decoration: none; border-block-end: var(--tab-mark) solid transparent; white-space: nowrap; }
-vf-dig > nav a[aria-current="page"] { color: var(--c-fg); font-weight: var(--weight-semi); border-block-end-color: var(--c-accent); }
+vf-dig > nav a[crate="mine"] data:not(:empty) { color: var(--color-accent); font-weight: var(--weight-bold); }
+vf-dig > nav a { display: inline-flex; align-items: center; gap: var(--space-xs); min-block-size: var(--tap); padding-inline: var(--space-sm); color: var(--color-muted); text-decoration: none; border-block-end: var(--tab-mark) solid transparent; white-space: nowrap; }
+vf-dig > nav a[aria-current="page"] { color: var(--color-fg); font-weight: var(--weight-semi); border-block-end-color: var(--color-accent); }
 vf-dig > nav data { font-size: var(--size-xs); }
 vf-dig > nav data:empty { display: none; }
 
 /* filter chips, as on the watchlist */
-vf-dig > form { display: flex; gap: var(--space-2); overflow-x: auto; scrollbar-width: none; font-size: var(--size-s); }
-vf-dig > form label { flex: none; display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--chip-h); padding-inline: var(--space-3); border-radius: var(--radius-pill); background: var(--c-chip); white-space: nowrap; cursor: pointer; }
-vf-dig > form label:has(input:checked) { background: var(--c-chip-on); color: var(--c-chip-on-fg); }
+vf-dig > form { display: flex; gap: var(--space-s); overflow-x: auto; scrollbar-width: none; font-size: var(--size-sm); }
+vf-dig > form label { flex: none; display: inline-flex; align-items: center; gap: var(--space-xs); min-block-size: var(--chip-h); padding-inline: var(--space-sm); border-radius: var(--radius-pill); background: var(--color-chip); white-space: nowrap; cursor: pointer; }
+vf-dig > form label:has(input:checked) { background: var(--color-chip-on); color: var(--color-chip-on-fg); }
 vf-dig > form input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
-vf-dig > form label:has(input:focus-visible), vf-dig > form select:focus-visible { outline: var(--focus-ring); }
+vf-dig > form label:has(input:focus-visible), vf-dig > form select:focus-visible { outline: var(--focus); }
 vf-dig > form label > span { opacity: var(--busy-opacity); }
-vf-dig > form select { font-size: max(var(--size-input-min), var(--size-s)); min-block-size: var(--chip-h); border: 0; background: transparent; color: inherit; padding: 0; }
+vf-dig > form select { font-size: max(var(--size-input-min), var(--size-sm)); min-block-size: var(--chip-h); border: 0; background: transparent; color: inherit; padding: 0; }
 @media (min-width: 40rem) { vf-dig > form { flex-wrap: wrap; overflow: visible; } }
 
 /* the grid: two covers across on phones, more as the screen grows */
-vf-dig > ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--dig-card-min), 1fr)); gap: var(--space-4) var(--space-3); }
+vf-dig > ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--dig-card-min), 1fr)); gap: var(--space-m) var(--space-sm); }
 vf-dig-card { display: block; }
-vf-dig-card > a { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-1); color: inherit; text-decoration: none; }
+vf-dig-card > a { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xs); color: inherit; text-decoration: none; }
 vf-dig-card > a > * { grid-area: auto; grid-column: 1; }
-vf-dig-card :is(img, vf-cover) { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); background: var(--c-skeleton) var(--thumb-fallback) center / 50% no-repeat; }
-vf-dig-card vf-price { display: flex; gap: var(--space-2); align-items: baseline; justify-items: start; text-align: start; font-weight: var(--weight-bold); }
-vf-dig-card vf-price data { color: var(--c-fg); }
-vf-dig-card vf-price s { color: var(--c-muted); font-weight: normal; font-size: var(--size-s); }
-vf-dig-card[crate="drop"] vf-price data { color: var(--c-event-price-down); }
-vf-dig-card vf-title { font-weight: var(--weight-semi); line-height: var(--leading-tight); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-vf-dig-card vf-artist { color: var(--c-muted); font-size: var(--size-s); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-vf-dig-card vf-shop { color: var(--c-muted); font-size: var(--size-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+vf-dig-card :is(img, vf-cover) { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); background: var(--color-skeleton) var(--thumb-fallback) center / 50% no-repeat; }
+vf-dig-card vf-price { display: flex; gap: var(--space-s); align-items: baseline; justify-items: start; text-align: start; font-weight: var(--weight-bold); }
+vf-dig-card vf-price data { color: var(--color-fg); }
+vf-dig-card vf-price s { color: var(--color-muted); font-weight: normal; font-size: var(--size-sm); }
+vf-dig-card[crate="drop"] vf-price data { color: var(--color-event-price-down); }
+vf-dig-card vf-title { font-weight: var(--weight-semi); line-height: var(--line-height-tight); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+vf-dig-card vf-artist { color: var(--color-muted); font-size: var(--size-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+vf-dig-card vf-shop { color: var(--color-muted); font-size: var(--size-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @media (hover: hover) and (pointer: fine) { vf-dig-card > a:hover vf-title { text-decoration: underline; } }
 vf-dig > button { justify-self: center; }
 vf-dig > button[hidden] { display: none; }
-vf-dig-status { display: block; color: var(--c-muted); }
+vf-dig-status { display: block; color: var(--color-muted); }
 vf-dig-status:empty { display: none; }
 
 /* icons in tabs and chips: a little smaller than the words' line */
@@ -52,6 +52,6 @@ vf-dig > :is(nav, form) vf-icon { --icon-size: 1rem; flex: none; }
 /* phones: Dig is a top-level tab, its name in the tab bar: the covers come first, not an introduction */
 @media (max-width: 40rem) {
   main:has(vf-dig[status="ready"]) > hgroup > p { display: none; }
-  main:has(vf-dig) > hgroup h1 { font-size: var(--size-2); margin-block: var(--space-2) 0; }
+  main:has(vf-dig) > hgroup h1 { font-size: var(--size-xl); margin-block: var(--space-s) 0; }
 }
 vf-dig > form label[hidden] { display: none; }

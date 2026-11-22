@@ -1,5 +1,5 @@
 /* <vf-search>: the GET search form. */
-vf-search { display: grid; gap: var(--space-2); }
-vf-search form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-2); }
+vf-search { display: grid; gap: var(--space-s); }
+vf-search form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-s); }
 vf-search label { grid-column: 1 / -1; font-weight: var(--weight-semi); }
-vf-search input { font-size: max(var(--size-input-min), var(--size-1)); min-inline-size: 0; }
+vf-search input { font-size: max(var(--size-input-min), var(--size-lg)); min-inline-size: 0; }

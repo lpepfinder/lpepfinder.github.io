@@ -1,5 +1,5 @@
 /* <vf-currency>: "Prices in" menu with the date of the rates. */
-vf-currency { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-2); font-size: var(--size-s); }
-vf-currency select { max-inline-size: 100%; padding: 0 var(--space-2); }
-vf-currency small { color: var(--c-muted); font-size: var(--size-xs); }
+vf-currency { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-s); font-size: var(--size-sm); }
+vf-currency select { max-inline-size: 100%; padding: 0 var(--space-s); }
+vf-currency small { color: var(--color-muted); font-size: var(--size-xs); }
 vf-currency small:empty { display: none; }
