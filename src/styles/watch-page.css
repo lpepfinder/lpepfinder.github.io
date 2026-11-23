@@ -273,10 +273,11 @@ vf-radio-import output { display: block; font-size: var(--size-sm); }
 vf-radio-import output:empty { display: none; }
 vf-radio-import[status="error"] output { color: var(--color-danger); }
 vf-radio-import[status="loading"] button[type="submit"] { opacity: var(--busy-opacity); pointer-events: none; }
-vf-radio-import ol { list-style: none; margin: 0; padding: 0; display: grid; max-block-size: var(--sheet-max); overflow: auto; }
+/* the review scrolls with the sheet (one scroll bar): its group headings stick to the top, Add to the bottom */
+vf-radio-import ol { list-style: none; margin: 0; padding: 0; display: grid; }
 vf-radio-import ol:empty { display: none; }
-vf-radio-import ol ol { display: block; max-block-size: none; overflow: visible; }
-vf-radio-import ol > li > label { display: flex; gap: var(--space-s); align-items: center; min-block-size: var(--tap); padding-block: var(--space-s); border-block-end: var(--hairline) solid var(--color-line); background: var(--color-bg); font-weight: var(--weight-bold); cursor: pointer; position: sticky; inset-block-start: 0; z-index: 1; }
+vf-radio-import ol ol { display: block; }
+vf-radio-import ol > li > label { display: flex; gap: var(--space-s); align-items: center; min-block-size: var(--tap); padding-block: var(--space-s); border-block-end: var(--hairline) solid var(--color-line); background: var(--sheet-bg, var(--color-surface)); font-weight: var(--weight-bold); cursor: pointer; position: sticky; inset-block-start: 0; z-index: 1; }
 vf-radio-import ol > li > label input { inline-size: var(--space-m); block-size: var(--space-m); accent-color: var(--color-accent); flex: none; }
 vf-radio-match { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 var(--space-sm); align-items: center; padding-block: var(--space-s); border-block-end: var(--hairline) solid var(--color-line); }
 vf-radio-match label { display: flex; gap: var(--space-s); align-items: start; font-weight: var(--weight-semi); cursor: pointer; }
@@ -284,7 +285,7 @@ vf-radio-match input { margin-block-start: 0.2em; inline-size: var(--space-m); b
 vf-radio-match > p { grid-column: 1 / -1; padding-inline-start: var(--space-l); }
 vf-radio-match[exact="true"] > p { color: var(--color-ok); }
 vf-radio-import > button[name="add"][hidden] { display: none; }
-vf-radio-import > button[name="add"] { justify-self: start; }
+vf-radio-import > button[name="add"] { position: sticky; inset-block-end: 0; z-index: 1; justify-self: stretch; box-shadow: 0 var(--space-m) 0 var(--space-s) var(--sheet-bg, var(--color-surface)); }
 
 /* <vf-legacy-profiles>: once, the profiles a browser kept before they were removed (legacy.js), each with its actions */
 vf-legacy-profiles { display: grid; gap: var(--space-s); padding: var(--space-m); border: var(--hairline) solid var(--color-watching); border-radius: var(--radius); background: var(--color-surface); }

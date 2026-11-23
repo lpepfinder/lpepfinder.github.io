@@ -134,6 +134,18 @@ test('radio review: exact matches and guesses in two groups, each ticked or clea
   expect(await guesses.locator(':scope > label input').evaluate((b) => b.indeterminate)).toBe(true);
   await exact.locator(':scope > label').click();
   await expect(add).toHaveText(en.radio.add.other.replace('{count}', n - 2));
+
+  // on a short screen the review scrolls with the sheet (one scroll bar), Add stays at its bottom
+  await page.setViewportSize({ width: page.viewportSize().width, height: 420 });
+  const scrolling = await page.locator('vf-sheet[name="radio"] dialog').evaluate((d) => {
+    const all = [d, ...d.querySelectorAll('*')].filter((n) => n.scrollHeight > n.clientHeight + 1 && /auto|scroll/.test(getComputedStyle(n).overflowY));
+    all[0].scrollTop = all[0].scrollHeight / 2;
+    return all.length;
+  });
+  expect(scrolling).toBe(1);
+  const [box, dialog] = [await add.boundingBox(), await page.locator('vf-sheet[name="radio"] dialog').boundingBox()];
+  expect(box.y + box.height).toBeLessThanOrEqual(dialog.y + dialog.height + 1);
+  expect(box.y).toBeGreaterThan(dialog.y);
 });
 
 test('sources: an import shows its progress on the card with the sheet closed; the ⋯ menu disconnects or removes a list, undone from the toast', async ({ page }) => {
