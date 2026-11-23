@@ -53,7 +53,7 @@ vf-tabbar a[aria-current] { color: var(--color-accent); }
 vf-tabbar :is(vf-icon, vf-logo) { --icon-size: 1.5rem; }
 vf-tabbar vf-logo svg { inline-size: var(--icon-size); block-size: var(--icon-size); }
 vf-tabbar vf-watch-count { position: absolute; inset-block-start: var(--space-xs); inset-inline-start: calc(50% + 0.5rem); }
-/* the language: at the foot of the side rail; on phones it is in Settings */
+/* the language: at the foot of the side rail; on phones it is in the Settings tab */
 header > button[name="language"] { display: none; }
 /* room for the fixed tab bar */
 vf-app { padding-block-end: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }

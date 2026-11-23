@@ -32,7 +32,7 @@ const VIEWS = ['available', 'now', 'changes', 'all'];
  * shops by how many of your records they have (<vf-watch-now>, a shop opens in a sheet or the right pane),
  * changes by day, and every record (<vf-watch-all>).
  * Picking a card shows the records of one source (?source=discogs|radio|search, source.js) in every view.
- * Rows say where a record comes from. <vf-me-head> links to Settings (prices in, language, moving the list).
+ * Rows say where a record comes from.
  * Wants imported from Discogs also match by catalog number (wants.js).
  * Current states come from the `now` shards, fetched once per data build with a progress bar.
  * Changes are marked seen when the page is left.

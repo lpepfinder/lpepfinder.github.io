@@ -7,7 +7,7 @@ import { t, localeParams, localPath } from '../../lib/i18n.js';
 import { pageTitle } from '../../lib/seo.js';
 
 /**
- * Me (/me/, was /watch/), mobile first: the title with a link to Settings (language, prices in, moving the list), then
+ * Me (/me/, was /watch/), mobile first: the title, then
  * the overview: one card per place the records come from (all of them, the Discogs wantlist, a radio, the search),
  * each with how many are watched and in stock, picked to show only its records in every view, and "Add a list" for
  * the lists not connected (all of them as cards while nothing is watched); then four tabs with counts (in stock,
@@ -26,7 +26,6 @@ const sorts = ['new', 'price', 'price-desc', 'rare', 'rating', 'title'];
   </vf-watch-shared>
   <vf-me-head>
     <h1>{t(lang, 'tabMe')}</h1>
-    <a href={localPath(lang, '/settings/')} aria-label={t(lang, 'settingsTitle')} title={t(lang, 'settingsTitle')}><vf-icon name="settings"></vf-icon></a>
   </vf-me-head>
   <!-- once, for browsers that had several profiles before 2026-11-22 (legacy.js): each one downloaded, merged or removed -->
   <vf-legacy-profiles hidden>

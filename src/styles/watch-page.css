@@ -99,10 +99,8 @@ label > input[type="file"] { position: absolute; inline-size: 1px; block-size: 1
 }
 
 
-/* /me/: the title and Settings, then the lists, then the watchlist */
+/* /me/: the title, then the lists, then the watchlist */
 vf-me-head { display: flex; align-items: center; gap: var(--space-sm); margin-block-end: var(--space-sm); }
-vf-me-head > a { display: grid; place-items: center; inline-size: var(--tap); block-size: var(--tap); border-radius: var(--radius); color: var(--color-muted); }
-@media (hover: hover) and (pointer: fine) { vf-me-head > a:hover { background: var(--color-hover); color: var(--color-fg); } }
 vf-me-head h1 { flex: 1; min-inline-size: 0; margin: 0; font-size: var(--size-xxl); line-height: var(--line-height-tight); overflow-wrap: anywhere; }
 
 /* the overview: one card per source, a row that scrolls sideways on phones, wrapping from tablets; while nothing is
