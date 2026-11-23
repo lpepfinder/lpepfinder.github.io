@@ -110,7 +110,9 @@ vf-settings ul a[aria-current="true"] { font-weight: var(--weight-semi); color: 
 vf-settings > p { color: var(--color-muted); font-size: var(--size-sm); }
 
 /* <vf-near>: the viewer's country above the A–Z list of countries */
-vf-near { display: grid; gap: var(--space-xs); }
+/* one card the size of a country's, on the same columns */
+vf-near { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--grid-min)), 1fr)); gap: var(--space-xs) var(--space-s); }
+vf-near > h2 { grid-column: 1 / -1; }
 vf-near[hidden] { display: none; }
 vf-near h2 { margin: 0; font-size: var(--size-sm); font-weight: var(--weight-semi); color: var(--color-muted); }
 /* the same card as a country's below, picked out by its border */
