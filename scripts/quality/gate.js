@@ -5,7 +5,7 @@ import { REASONS, checkDoc, priceEur, suspectShops } from './checks.js';
  * (price: null, priceFlag: reason, so the ledger forgets the price too) and keeps counts and samples for the report.
  * Suspect shops are found once, from the docs given here (today's catalog); filter() can then run on more
  * docs (the ledger's gone offers) with the same rules.
- * ctx: { rates, settings (config.quality), currencyOf(doc), isMusic(text) }
+ * ctx: { rates, settings (config.quality), currencyOf(doc), isMusic(text, type) }
  */
 export function qualityGate(docs, { rates, settings, currencyOf, isMusic }) {
   const suspect = suspectShops(docs, { rates, settings, currencyOf });

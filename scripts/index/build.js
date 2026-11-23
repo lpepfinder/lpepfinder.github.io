@@ -14,7 +14,7 @@ import { writeWatchFiles } from '../ledger/watch-files.js';
 import { buildNewArrivals } from '../ledger/new-arrivals.js';
 import { buildDig } from '../ledger/dig.js';
 import { qualityGate } from '../quality/gate.js';
-import { isMusicProduct } from '../platforms/filter.js';
+import { isMusicProduct, isMusicType } from '../platforms/filter.js';
 
 /**
  * Crawl output -> offer ledger, watchlist files in public/w, Dig crates in public/dig.json, static search index in public/search,
@@ -39,7 +39,7 @@ const loaded = await loadCatalog(productFiles);
 // forgets the price (priceFlag). Report in generated/quality-report.json, shown on /status/.
 const rates = readJson(path.join(DATA, 'rates.json')).rates;
 const currencyOf = (d) => d.currency || loaded.shops.get(d.shop)?.state.currency || null;
-const gate = qualityGate(loaded.docs, { rates, settings: config.quality, currencyOf, isMusic: isMusicProduct });
+const gate = qualityGate(loaded.docs, { rates, settings: config.quality, currencyOf, isMusic: (text, type) => isMusicProduct(text) && isMusicType(type) });
 const passed = new Set(gate.filter(loaded.docs));
 const catalog = {
   ...loaded,

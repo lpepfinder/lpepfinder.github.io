@@ -56,14 +56,14 @@ export function suspectShops(docs, { rates, settings, currencyOf }) {
 
 /**
  * Reason a doc is flagged (a key of REASONS), or null when it is fine. Listing rules first, then prices.
- * ctx: { rates, settings, currency (the doc's), suspect (from suspectShops), testTitle (RegExp), isMusic(text) }
+ * ctx: { rates, settings, currency (the doc's), suspect (from suspectShops), testTitle (RegExp), isMusic(text, type) }
  */
 export function checkDoc(doc, { rates, settings, currency, suspect, testTitle, isMusic }) {
   const title = String(doc.title || '').trim();
   // no letter or digit at all: empty, or an encoding that lost every character ("???? - ?? ???")
   if (!/[\p{L}\p{N}]/u.test(title)) return 'no-title';
   if (testTitle.test(title)) return 'test-listing';
-  if (!isMusic(`${title} ${doc.type || ''}`)) return 'not-record';
+  if (!isMusic(`${title} ${doc.type || ''}`, doc.type)) return 'not-record';
   if (doc.price == null) return null;
   if (suspect.has(doc.shop)) return suspect.get(doc.shop).reason;
   const eur = priceEur(doc.price, currency, rates);

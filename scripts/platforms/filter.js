@@ -2,9 +2,20 @@ import { config } from '../lib/config.js';
 
 const include = new RegExp(config.products.include, 'i');
 const exclude = new RegExp(config.products.exclude, 'i');
+const excludeTypes = new RegExp(config.products.excludeTypes, 'i');
+const keepTypes = new RegExp(config.products.keepTypes, 'i');
 
 /** Not merch, accessories or hardware. */
 export const isMusicProduct = (text) => !exclude.test(text);
+
+/**
+ * A shop's product type (its category) that isn't gear, merch, books, clothes or toys: "Guitars", "Movies & TV" or
+ * "Jewelry" are out, "Rock", "LP" or "Film Soundtracks" stay. No type: nothing to say, kept.
+ */
+export function isMusicType(type) {
+  const t = String(type || '').replace(/&amp;/g, '&').trim();
+  return !t || !excludeTypes.test(t) || keepTypes.test(t);
+}
 
 /** Explicitly mentions a music format, used to score how "record shop" a catalog is. */
 export const mentionsFormat = (text) => include.test(text);
