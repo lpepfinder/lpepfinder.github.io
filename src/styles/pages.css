@@ -10,10 +10,18 @@ vf-chips a::before { content: ""; position: absolute; inset: calc((var(--chip-h)
 @media (hover: hover) and (pointer: fine) { vf-chips a:hover { border-color: var(--color-border); } }
 vf-chips a[aria-current] { background: var(--color-chip-on); color: var(--color-chip-on-fg); border-color: var(--color-chip-on); }
 
-/* <vf-grid>: directory lists (countries, cities, shops, artists) in columns */
-vf-grid > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--grid-min), 1fr)); gap: 0 var(--space-l); }
+/* <vf-grid>: directory lists (countries, shops, artists) as cards in columns, the same at every width: each card
+   is one link (stretched over it), its name, then its count and a chevron at the end */
+vf-grid > ul, vf-grid > section > ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--grid-min)), 1fr)); gap: var(--space-s); }
 vf-grid li { break-inside: avoid; }
-vf-grid li > a { display: inline-flex; align-items: center; min-block-size: var(--tap); min-inline-size: var(--tap); }
+:is(vf-grid li:not(:has(vf-shop-card)), vf-shop-card) { position: relative; display: flex; align-items: center; gap: var(--space-s); min-block-size: var(--row-h); padding-inline: var(--space-m) var(--space-sm); border: var(--hairline) solid var(--color-line); border-radius: var(--radius); background: var(--color-surface); }
+:is(vf-grid li:not(:has(vf-shop-card)), vf-shop-card) > a { flex: 1; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: inherit; font-weight: var(--weight-semi); text-decoration: none; }
+:is(vf-grid li:not(:has(vf-shop-card)), vf-shop-card) > a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+:is(vf-grid li:not(:has(vf-shop-card)), vf-shop-card) > a:focus-visible { outline: none; }
+:is(vf-grid li:not(:has(vf-shop-card)), vf-shop-card):has(> a:focus-visible) { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+:is(vf-grid li:not(:has(vf-shop-card)), vf-shop-card) > :is(data, span) { flex: none; color: var(--color-muted); font-size: var(--size-sm); font-variant-numeric: tabular-nums; }
+:is(vf-grid li:not(:has(vf-shop-card)), vf-shop-card)::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--color-muted); mask: var(--icon-next) center / contain no-repeat; }
+@media (hover: hover) and (pointer: fine) { :is(vf-grid li:not(:has(vf-shop-card)), vf-shop-card):hover { border-color: var(--color-border); background: var(--color-hover); } }
 
 
 vf-crumbs { display: block; }
@@ -45,24 +53,23 @@ main > nav[sticky="always"] { position: sticky; inset-block-start: var(--header-
   main > nav[sticky] li { flex: none; scroll-snap-align: start; }
 }
 
-/* columns that read down: cities (cards of shops) on the country page, artists of a letter */
+/* columns that read down: cities (their shops' cards) on the country page, artists of a letter */
 vf-grid[flow="columns"] { display: block; columns: var(--grid-min); column-gap: var(--space-l); }
-vf-grid[flow="columns"] > ul { display: block; columns: var(--grid-min); column-gap: var(--space-l); }
+vf-grid[flow="columns"] > ul { display: block; columns: var(--grid-min); column-gap: var(--space-s); }
+vf-grid[flow="columns"] > ul > li, vf-grid[flow="columns"] > section > ul > li { margin-block-end: var(--space-s); }
+vf-grid[flow="columns"] > section > ul { display: block; }
 vf-grid[flow="columns"] > section { padding-block-end: var(--space-m); }
-vf-grid[flow="columns"] > section > h2 { break-after: avoid; }
-vf-grid[flow="columns"] > section > h2 { margin-block-start: 0; font-size: var(--size-lg); }
-vf-grid[flow="columns"] > section > ul { list-style: none; margin: 0; padding: 0; }
-:is(vf-grid, main > section) h2 data, vf-grid li > data { color: var(--color-muted); font-size: var(--size-sm); font-weight: normal; }
-vf-grid li > data::before { content: var(--count-separator); }
+vf-grid[flow="columns"] > section > h2 { break-after: avoid; margin-block: 0 var(--space-s); font-size: var(--size-lg); }
+:is(vf-grid, main > section) h2 data { color: var(--color-muted); font-size: var(--size-sm); font-weight: normal; }
 main > section > ul { list-style: none; margin: 0; padding: 0; display: grid; }
 
-/* a shop: name, then its count right after it (not at the far edge) */
-vf-shop-card { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-s); min-block-size: var(--tap); border-block-end: var(--hairline) solid var(--color-line); }
-vf-shop-card a { display: inline-flex; align-items: center; gap: var(--space-xs); min-block-size: var(--tap); font-weight: var(--weight-semi); }
-vf-shop-card span { color: var(--color-muted); font-size: var(--size-sm); font-variant-numeric: tabular-nums; }
-vf-shop-card span::before { content: var(--count-separator); }
-vf-shop-card[searchable="false"] a { font-weight: normal; }
-
+/* a shop: its name, its records (or "listed") under it, the chevron beside both; listed but not searchable yet,
+   its name in grey */
+vf-grid li > vf-shop-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name go" "meta go"; align-content: center; gap: 0 var(--space-s); padding-block: var(--space-xs); }
+vf-shop-card > a { grid-area: name; }
+vf-shop-card > span { grid-area: meta; }
+vf-grid li > vf-shop-card::after { grid-area: go; align-self: center; }
+vf-shop-card[searchable="false"] > a { color: var(--color-muted); font-weight: normal; }
 /* <vf-settings>: the Settings tab, settings of this browser then links, as an app screen; its groups side by side
    as the screen widens */
 vf-settings { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--menu-min)), 1fr)); gap: var(--space-l) var(--space-xl); align-items: start; }
@@ -89,7 +96,6 @@ vf-settings section > ul a::after { content: ""; inline-size: var(--icon-size); 
 @media (hover: hover) and (pointer: fine) { vf-settings ul a:hover { background: var(--color-hover); } }
 vf-settings ul a[aria-current="true"] { font-weight: var(--weight-semi); color: var(--color-accent); }
 vf-settings > p { color: var(--color-muted); font-size: var(--size-sm); }
-/* phones: the More tab has all of the footer; only the browse links stay at the end of pages */
 
 /* <vf-near>: the viewer's country above the A–Z list of countries */
 vf-near { display: grid; gap: var(--space-xs); }
@@ -97,20 +103,6 @@ vf-near[hidden] { display: none; }
 vf-near h2 { margin: 0; font-size: var(--size-sm); font-weight: var(--weight-semi); color: var(--color-muted); }
 vf-near a { display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); min-block-size: var(--row-h); padding-inline: var(--space-m); border-radius: var(--radius); background: var(--color-chip-on); color: var(--color-chip-on-fg); font-weight: var(--weight-semi); text-decoration: none; }
 vf-near a data { color: inherit; }
-
-/* phones: directory lists as app rows, the whole row tappable, the count at the end */
-@media (max-width: 40rem) {
-  vf-grid li { display: flex; align-items: center; gap: var(--space-s); border-block-end: var(--hairline) solid var(--color-line); }
-  vf-grid li > a { flex: 1; gap: var(--space-s); color: inherit; text-decoration: none; }
-  vf-grid li > data::before { content: none; }
-  vf-grid li::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--color-muted); mask: var(--icon-next) center / contain no-repeat; }
-  vf-grid li:has(vf-shop-card) { display: block; border: 0; }
-  vf-grid li:has(vf-shop-card)::after { content: none; }
-  vf-shop-card { flex-wrap: nowrap; min-block-size: var(--row-h); }
-  vf-shop-card a { flex: 1; min-inline-size: 0; color: inherit; text-decoration: none; }
-  vf-shop-card::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--color-muted); mask: var(--icon-next) center / contain no-repeat; }
-  vf-shop-card[searchable="false"] a { color: var(--color-muted); font-weight: normal; }
-}
 
 /* <vf-shortcuts>: the keyboard shortcuts' help, a native dialog in the middle of the screen */
 vf-shortcuts dialog { inline-size: min(100% - 2 * var(--gutter), var(--sheet-wide)); padding: var(--space-m); border: 0; border-radius: var(--radius); background: var(--color-surface); color: var(--color-fg); }
