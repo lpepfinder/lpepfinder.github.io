@@ -176,7 +176,6 @@
   "newByFormat": "By format",
   "newAllFormats": "All",
   "newByCountry": "By country",
-  "newFeed": "Follow in a feed reader (Atom)",
   "shopNewTitle": "New this week ({count})",
   "homeNewTitle": "New this week",
   "homeNewAll": {
@@ -186,7 +185,6 @@
   "resultAdded": "Added",
   "addedOn": "new {date}",
   "feedTitle": "New arrivals · LP/EP Finder",
-  "feedShopTitle": "New at {shop} · LP/EP Finder",
   "feedCountryTitle": "New arrivals in {country} · LP/EP Finder",
   "feedSubtitle": "Records new in stock at independent record shops. Updated daily.",
   "feedItemSummary": "{price} at {shop}",
@@ -566,7 +564,6 @@
   "shopBlueskyVerified": "Verified: the shop's own domain {domain} is its Bluesky handle.",
   "shopBlueskyLinked": "Linked from the shop's website.",
   "shopOnBluesky": "On Bluesky",
-  "feedShort": "Feed",
   "shopOwnerTitle": "Is this your shop?",
   "shopOwnerBody": "Correct its details, get verified with Bluesky, or opt out.",
   "shopOwnerBodyListed": "See how to make its catalog searchable, correct its details, get verified with Bluesky, or opt out.",

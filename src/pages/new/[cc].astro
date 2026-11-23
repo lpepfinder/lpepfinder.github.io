@@ -12,7 +12,7 @@ const { cc } = Astro.props;
 const name = countryName(lang, cc);
 const scope = {
   key: 'newCountry', vars: { country: name }, crumb: name, country: cc,
-  href: `/new/${cc.toLowerCase()}/`, feed: `/feed/country/${cc.toLowerCase()}.xml`,
+  href: `/new/${cc.toLowerCase()}/`,
   ...newArrivals().country(cc, config.newArrivals.pageItems),
 };
 ---

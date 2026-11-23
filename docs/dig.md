@@ -5,7 +5,7 @@ order: 2
 audience: users
 ---
 
-Dig is the record bin of the whole network: this week's records, as covers to flip through. Tap a cover to go to the record at its shop. It isn't a tab: it's at [/new/](https://lpepfinder.com/new/), in Settings, and in its feeds, mostly for search engines and feed readers. Your own records found new, back or cheaper are on **Me**.
+Dig is the record bin of the whole network: this week's records, as covers to flip through. Tap a cover to go to the record at its shop. It isn't a tab: it's at [/new/](https://lpepfinder.com/new/), linked from Settings, mostly for search engines. Your own records found new, back or cheaper are on **Me**.
 
 ## The crates
 

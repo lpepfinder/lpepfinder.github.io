@@ -26,7 +26,7 @@ The ledger feeds:
 
 - **The watchlist** (`public/w/`): the current state of each record (`now/`), the day's events (`d/<day>.json`, the last `ledger.watchDays` days: 20 to 40 MB a day; a browser away longer reads `now/`).
 - **Dig** (`public/dig.json`, `scripts/ledger/dig.js`): new arrivals (the ledger's `new` events, and the shops' own creation dates), back in stock, price drops.
-- **New arrivals pages and feeds** (`generated/new-arrivals.json`, `/new/`, `/feed/*.xml`).
+- **New arrivals pages** (`generated/new-arrivals.json`, `/new/`).
 - **The search index**: first seen, the price before a drop, the 90-day low.
 
 The ledger is kept in the `data` release (`ledger.ndjson.gz`, and `ledger-prev.ndjson.gz`, the day before, so a second build on the same day starts again from it).

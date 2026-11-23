@@ -172,7 +172,6 @@
   "newByFormat": "フォーマット別",
   "newAllFormats": "すべて",
   "newByCountry": "国別",
-  "newFeed": "フィードリーダーで購読（Atom）",
   "shopNewTitle": "今週の新着（{count}）",
   "homeNewTitle": "今週の新着",
   "homeNewAll": {
@@ -181,7 +180,6 @@
   "resultAdded": "入荷",
   "addedOn": "{date}入荷",
   "feedTitle": "新着 · LP/EP Finder",
-  "feedShopTitle": "{shop}の新着 · LP/EP Finder",
   "feedCountryTitle": "{country}の新着 · LP/EP Finder",
   "feedSubtitle": "インディペンデントのレコード店の新着レコード。毎日更新。",
   "feedItemSummary": "{shop}で{price}",
@@ -535,7 +533,6 @@
   "shopBlueskyVerified": "確認済み：ショップのドメイン {domain} が Bluesky のハンドルです。",
   "shopBlueskyLinked": "ショップのサイトからリンクされています。",
   "shopOnBluesky": "Bluesky",
-  "feedShort": "フィード",
   "shopOwnerTitle": "あなたのお店ですか？",
   "shopOwnerBody": "情報の修正、Blueskyでの確認、掲載の取り下げができます。",
   "shopOwnerBodyListed": "カタログを検索可能にする方法、情報の修正、Blueskyでの確認、掲載の取り下げについて。",

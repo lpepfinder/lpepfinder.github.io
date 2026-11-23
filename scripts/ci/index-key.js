@@ -35,7 +35,7 @@ export const SECTIONS = ['products', 'search', 'ledger', 'quality', 'dig', 'newA
 export const PICK = {
   products: ['include', 'exclude'],
   search: ['docsPerChunk', 'maxArtists'],
-  newArrivals: ['days', 'pageItems', 'shopItems', 'feedItems'],
+  newArrivals: ['days', 'pageItems', 'shopItems'],
   seo: ['artistMinRecords', 'artistMinShops', 'artistMaxPages', 'artistMaxRecordsPerPage', 'shopLatestRecords'],
 };
 const section = (s) => {

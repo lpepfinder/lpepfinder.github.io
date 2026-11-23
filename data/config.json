@@ -100,11 +100,10 @@
     "maxDrop": 0.7
   },
   "newArrivals": {
-    "description": "New arrivals (scripts/ledger/new-arrivals.js, /new/ pages, Atom feeds): records new in the last `days` days, at most `pageItems` per page, `shopItems` on a shop page and `feedItems` per feed.",
+    "description": "New arrivals (scripts/ledger/new-arrivals.js, /new/ pages): records new in the last `days` days, at most `pageItems` per page and `shopItems` on a shop page.",
     "days": 7,
     "pageItems": 120,
-    "shopItems": 24,
-    "feedItems": 50
+    "shopItems": 24
   },
   "site": {
     "description": "The site crawler (scripts/sources/site, npm run site) for shops on every other platform, in `shards` parallel jobs of at most `maxMinutes`. Per shop: `concurrency` shops at once, requests `delayMs` apart, `timeoutMs` and `maxBytes` per page, `pagesPerDay` pages a day (a `productLaneShare` of them for product pages), at most `maxMinutesPerShop`, `maxUrls` known URLs, `maxDepth` links from the home page. Sitemaps (read on `sitemapPlatforms`, `sitemapFiles` files every `sitemapDays` days) and `revisit` days per page kind decide what is read again; a record not seen for `recordMaxAgeDays` is dropped. A shop with under `minProductRatio` product pages in its first `evaluateAfterPages` is parked and re-checked after `reevaluateDays`; its reading method is probed again after `reprobeDays`, or when `readersVersion` goes up. `maxRetryAfterSeconds`: the longest Retry-After obeyed; `checkpointMinutes`: how often state is saved. `magentoPageSize`, `squareOnlinePageSize`: API page sizes. `commonCrawl`: URLs seeded from the `latest` Common Crawl indexes (or `crawls`), every `refreshDays`, at most `maxBlocksPerShop` index blocks per shop, `delayMs` apart, for `maxMinutes`.",

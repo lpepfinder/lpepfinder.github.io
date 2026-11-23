@@ -18,9 +18,8 @@ The pages are made for people; the same data is published as JSON for robots. Se
 - [Artists](${url('/api/artists.json')}): artists in stock at several shops; each has /artist/{slug}.json with every record, price and shop link, and who the artist is (open data, with sources and licences)
 - [Dig](${url('/dig.json')}): this week's records new in the shops, back in stock, and price drops
 
-## Feeds and pages
+## Pages
 
-- [New arrivals feed](${url('/feed/new.xml')}) (Atom); per shop: /feed/shop/{id}.xml
 - [Sitemap](${url('/sitemap-index.xml')})
 - [Docs for robots and agents](${url('/docs/agents/')}): formats, links between files, etiquette
 - [Docs](${url('/docs/')}): how the site works, for people and contributors

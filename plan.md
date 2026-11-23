@@ -24,7 +24,7 @@ Dig as it is (every new record, back in stock or cheaper, in every shop, as a co
 | **Shops** | Where the shops are: near me (a list by distance; a map later, see below), then by city and by country. A shop's page leads with what's new there this week, then everything in stock, with **Follow**. | Shops by country, cities, Dig's new arrivals per shop |
 | **Me** | Your lists, as today, plus the shops you follow. Settings go in its ⋯ menu. | Settings tab |
 
-Explore goes away, redirected to Search like `/more/` and `/watch/` before. The Dig crates leave the navigation, but the new arrivals stay whole for robots and agents: `dig.json`, the Atom feeds, and the static `/new/` pages per country and format, which search engines index, linked from the footer instead of a tab. Their data links (status, JSON, llms.txt, Atom, docs) move to one footer line on every page and to About.
+Explore goes away, redirected to Search like `/more/` and `/watch/` before. The Dig crates leave the navigation, but the new arrivals stay whole for robots and agents: `dig.json` and the static `/new/` pages per country and format, which search engines index, linked from the footer instead of a tab. Their data links (status, JSON, llms.txt, docs) move to one footer line on every page and to About.
 
 ### New things a digger needs
 

@@ -6,6 +6,6 @@ import { newArrivals } from '../../lib/new-arrivals.js';
 
 /** New arrivals at every shop, rolling: one URL, updated daily. Default language only, like shop pages. */
 const all = newArrivals().all(config.newArrivals.pageItems);
-const scope = { key: 'new', href: '/new/', feed: '/feed/new.xml', ...all };
+const scope = { key: 'new', href: '/new/', ...all };
 ---
 <NewArrivalsPage lang={lang} scope={scope} />

@@ -43,13 +43,13 @@ function group(order, key, cap) {
 }
 
 /**
- * New arrivals for the pages and feeds (generated/new-arrivals.json): records still in stock today that
+ * New arrivals for the pages (generated/new-arrivals.json): records still in stock today that
  * are new in the last `days` days, newest first. New means a `new` event of the offer ledger, or the day the
  * shop itself says it added the record (`created`, Shopify), which works from a shop's first crawl. Each item is stored once in `items`;
  * the scopes (all, countries, formats, byShop) give the total count and the indexes of the first items.
  */
 export function buildNewArrivals({ ledger, docs, shops, settings }) {
-  const { days, pageItems, shopItems, feedItems } = settings;
+  const { days, pageItems, shopItems } = settings;
   const day = ledger.meta.day;
   const from = addDays(day, -(days - 1));
   const inStock = new Map(docs.filter((d) => d.available !== false).map((d) => [d.offerKey, d]));
@@ -72,7 +72,7 @@ export function buildNewArrivals({ ledger, docs, shops, settings }) {
   }
   const items = interleave(found);
   const order = items.map((_, i) => i);
-  const cap = Math.max(pageItems, feedItems);
+  const cap = pageItems;
   return compact({
     day, days, builtAt: new Date().toISOString(), total: items.length,
     shops: new Set(items.map((it) => it.shop)).size,
@@ -80,7 +80,7 @@ export function buildNewArrivals({ ledger, docs, shops, settings }) {
     all: scope(order, cap),
     countries: group(order, (i) => items[i].country, cap),
     formats: group(order, (i) => items[i].format, cap),
-    byShop: group(order, (i) => items[i].shop, Math.max(shopItems, feedItems)),
+    byShop: group(order, (i) => items[i].shop, shopItems),
   });
 }
 

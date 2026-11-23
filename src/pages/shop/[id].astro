@@ -23,7 +23,6 @@ const vars = {
 };
 const key = shop.records ? 'shop' : 'shopListed';
 const fresh = newArrivals().shop(shop.id, config.newArrivals.shopItems);
-const feed = shop.records ? { href: `/feed/shop/${shop.id}.xml`, title: t(lang, 'feedShopTitle', { shop: shop.name }) } : undefined;
 const pageUrl = new URL(`/shop/${shop.id}/`, Astro.site).href;
 const crumbs = [
   { name: t(lang, 'breadcrumbHome'), href: '/' },
@@ -38,7 +37,7 @@ const ld = [{
   address: shop.country ? { '@type': 'PostalAddress', addressCountry: shop.country, addressLocality: shop.city || undefined } : undefined,
 }, breadcrumbLd(crumbs, Astro.site)];
 ---
-<Base lang={lang} title={pageTitle(t(lang, `${key}Title`, vars))} description={t(lang, `${key}Description`, vars)} ld={ld} feed={feed} noindex={!shop.records}>
+<Base lang={lang} title={pageTitle(t(lang, `${key}Title`, vars))} description={t(lang, `${key}Description`, vars)} ld={ld} noindex={!shop.records}>
   <Breadcrumbs lang={lang} items={crumbs} />
   <article>
     <h1>{shop.name}</h1>
@@ -50,7 +49,6 @@ const ld = [{
     <menu>
       <li><a href={shop.url} rel="noopener" kind="strong" aria-label={`${t(lang, 'shopVisit')}: ${host}`}><span>{host}</span><vf-icon name="external"></vf-icon></a></li>
       {bluesky && <li><a href={bluesky} rel="me noopener" kind="secondary"><vf-icon name="bluesky"></vf-icon><span>@{shop.bluesky.handle}</span></a></li>}
-      {feed && <li><a href={feed.href} type="application/atom+xml" kind="secondary" title={t(lang, 'newFeed')}><vf-icon name="rss"></vf-icon><span>{t(lang, 'feedShort')}</span></a></li>}
     </menu>
     {bluesky && <vf-bluesky verified={String(!!shop.bluesky.verified)}>{t(lang, shop.bluesky.verified ? 'shopBlueskyVerified' : 'shopBlueskyLinked', { domain: new URL(shop.url).hostname.replace(/^www\./, '') })}</vf-bluesky>}
     {fresh.count > 0 && (

@@ -90,7 +90,6 @@ vf-icon[name="coin"] { --icon: var(--icon-coin); }
 vf-icon[name="bag"] { --icon: var(--icon-bag); }
 vf-icon[name="shelf"] { --icon: var(--icon-shelf); }
 vf-icon[name="filter"] { --icon: var(--icon-filter); }
-vf-icon[name="rss"] { --icon: var(--icon-rss); }
 vf-icon[name="chevron-down"] { --icon: var(--icon-chevron-down); }
 vf-icon[name="home"] { --icon: var(--icon-home); }
 vf-icon[name="expand"] { --icon: var(--icon-expand); }

@@ -9,7 +9,7 @@ import { FORMAT_IDS } from '../lib/search/format.js';
 
 /**
  * Body of the /new/ pages. scope: { key: "new" | "newCountry" | "newFormat", vars, href, records, count,
- * crumb (name of the last breadcrumb, if not /new/ itself), feed (Atom URL, optional), country, format }.
+ * crumb (name of the last breadcrumb, if not /new/ itself), country, format }.
  */
 const { lang, scope } = Astro.props;
 const n = newArrivals();
@@ -20,13 +20,12 @@ const crumbs = [
   ...(scope.crumb ? [{ name: scope.crumb, href: scope.href }] : []),
 ];
 const ld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: t(lang, `${scope.key}Title`, vars), inLanguage: lang }, breadcrumbLd(crumbs, Astro.site)];
-const feed = scope.feed && { href: scope.feed, title: t(lang, 'newFeed') };
 const formats = FORMAT_IDS.filter((f) => n.formatIds.includes(f));
 // the Dig crates (vf-dig.js) on /new/ itself; the server-rendered list below stays for search engines and without scripts
 const crates = ['mine', 'new', 'restock', 'drop'];
 const crateIcons = { mine: 'star', new: 'sparkle', restock: 'refresh', drop: 'trend-down' };
 ---
-<Base lang={lang} title={pageTitle(t(lang, `${scope.key}SeoTitle`, vars))} description={t(lang, `${scope.key}Description`, vars)} ld={ld} feed={feed} noindex={!scope.count} strings={['dig']} data="/dig.json">
+<Base lang={lang} title={pageTitle(t(lang, `${scope.key}SeoTitle`, vars))} description={t(lang, `${scope.key}Description`, vars)} ld={ld} noindex={!scope.count} strings={['dig']} data="/dig.json">
   {scope.key !== 'new' && <Breadcrumbs lang={lang} items={crumbs} />}
   <hgroup>
     <h1 id="new-title">{scope.key === 'new' ? t(lang, 'dig.title') : t(lang, `${scope.key}Title`, vars)}</h1>
@@ -64,7 +63,6 @@ const crateIcons = { mine: 'star', new: 'sparkle', restock: 'refresh', drop: 'tr
   )}
   {scope.records.length > 0 && <RecordList lang={lang} records={scope.records} labelledby="new-title" />}
   {scope.count > scope.records.length && <p>{t(lang, 'newShowing', { ...vars, shown: number(lang, scope.records.length) })}</p>}
-  {feed && <p><a href={feed.href} type="application/atom+xml"><vf-icon name="rss"></vf-icon>{feed.title}</a></p>}
   {n.countryCodes.length > 0 && (
     <section>
       <h2>{t(lang, 'newByCountry')}</h2>

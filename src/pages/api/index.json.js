@@ -10,7 +10,6 @@ export const GET = ({ site }) => json({
     // URL templates: {slug} and {id} stand for the values from the lists
     artist: `${abs(site, '/artist/')}{slug}.json`,
     dig: abs(site, '/dig.json'),
-    feeds: { new: abs(site, '/feed/new.xml'), shop: `${abs(site, '/feed/shop/')}{id}.xml` },
     sitemap: abs(site, '/sitemap-index.xml'),
   },
   search: 'Searching any query runs in the browser on a static index (docs/data-formats.md); robots read the endpoints above instead.',

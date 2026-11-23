@@ -176,7 +176,6 @@
   "newByFormat": "Nach Format",
   "newAllFormats": "Alle",
   "newByCountry": "Nach Land",
-  "newFeed": "Im Feedreader abonnieren (Atom)",
   "shopNewTitle": "Neu diese Woche ({count})",
   "homeNewTitle": "Neu diese Woche",
   "homeNewAll": {
@@ -186,7 +185,6 @@
   "resultAdded": "Neu seit",
   "addedOn": "neu am {date}",
   "feedTitle": "Neuheiten · LP/EP Finder",
-  "feedShopTitle": "Neu bei {shop} · LP/EP Finder",
   "feedCountryTitle": "Neuheiten: {country} · LP/EP Finder",
   "feedSubtitle": "Neu eingetroffene Platten in unabhängigen Plattenläden. Täglich aktualisiert.",
   "feedItemSummary": "{price} bei {shop}",
@@ -566,7 +564,6 @@
   "shopBlueskyVerified": "Verifiziert: Die eigene Domain des Shops, {domain}, ist sein Bluesky-Handle.",
   "shopBlueskyLinked": "Von der Website des Shops verlinkt.",
   "shopOnBluesky": "Auf Bluesky",
-  "feedShort": "Feed",
   "shopOwnerTitle": "Ist das dein Laden?",
   "shopOwnerBody": "Korrigiere die Angaben, lass ihn mit Bluesky verifizieren oder melde ihn ab.",
   "shopOwnerBodyListed": "Sieh, wie sein Katalog durchsuchbar wird, korrigiere die Angaben, lass ihn mit Bluesky verifizieren oder melde ihn ab.",

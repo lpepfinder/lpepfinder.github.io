@@ -14,7 +14,7 @@ test('dig: new, back in stock and price drops, still in stock today', () => {
   const today = [offer('a.com', '/back'), offer('b.com', '/cheap', { price: 2000 }), offer('b.com', '/tiny', { price: 2900 }), offer('b.com', '/error', { price: 1699 }), offer('a.com', '/new 12"')];
   run(ledger, today, '2026-11-04');
   const docs = today.map((o) => ({ ...o, wasPrice: { '/cheap': 3000, '/tiny': 3000, '/error': 229900 }[o.path] ?? null }));
-  const arrivals = buildNewArrivals({ ledger, docs, shops, settings: { days: 7, pageItems: 10, shopItems: 10, feedItems: 10 } });
+  const arrivals = buildNewArrivals({ ledger, docs, shops, settings: { days: 7, pageItems: 10, shopItems: 10 } });
   const data = buildDig({ ledger, docs, shops, arrivals, settings: dig });
   const summary = data.items.map(([crate, , title, cents, , , , shop, format, was]) => [crate, title, cents, data.shops[shop][0], format, was]);
   assert.deepEqual(summary, [

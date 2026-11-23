@@ -8,7 +8,7 @@ const shops = new Map([
   ['a.com', { id: 'a.com', url: 'https://a.com', state: { country: 'de' } }],
   ['b.com', { id: 'b.com', url: 'https://b.com', state: { country: 'fr' } }],
 ]);
-const settings = { days: 7, pageItems: 3, shopItems: 2, feedItems: 2 };
+const settings = { days: 7, pageItems: 3, shopItems: 2 };
 const docsOf = (offers) => offers.map((o) => ({ ...o }));
 
 test('new arrivals: last 7 days, still in stock, newest first, shops take turns', () => {
