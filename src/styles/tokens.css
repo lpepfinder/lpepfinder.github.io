@@ -29,6 +29,7 @@
   --thumb: 3.5rem;
   --card-h: 5.5rem;
   --header-h: 3.75rem;
+  --jumpbar-h: 3.5rem;    /* the sticky bar of cities or letters under the header on phones */
   --width: 72rem;
   /*
    * Breakpoints (media queries can't read custom properties, so they are constants):

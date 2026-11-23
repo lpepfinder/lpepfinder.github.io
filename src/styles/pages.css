@@ -63,8 +63,11 @@ vf-grid[flow="columns"] > section > h2 { break-after: avoid; font-size: var(--si
 :is(vf-grid, main > section) h2 data { color: var(--color-muted); font-size: var(--size-sm); font-weight: normal; }
 /* a city on its country's page: one panel, never split across columns; its name and number of shops on top, its
    shops as rows inside (the city page's own list stays cards) */
-vf-grid[flow="columns"] > section:has(> h2) { break-inside: avoid; margin-block-end: var(--space-m); padding: 0; border: var(--hairline) solid var(--color-line); border-radius: var(--radius); background: var(--color-surface); overflow: hidden; }
-vf-grid[flow="columns"] > section > h2 { display: flex; align-items: baseline; gap: var(--space-s); margin: 0; padding: var(--space-s) var(--space-m); background: var(--color-chip); }
+vf-grid[flow="columns"] > section:has(> h2) { break-inside: avoid; margin-block-end: var(--space-m); padding: 0; border: var(--hairline) solid var(--color-line); border-radius: var(--radius); background: var(--color-surface); overflow: clip; }
+/* the city's name stays at the top of its column while its shops scroll by (under the header; on phones, under the
+   cities bar too) */
+vf-grid[flow="columns"] > section > h2 { position: sticky; inset-block-start: var(--header-h); z-index: 1; display: flex; align-items: baseline; gap: var(--space-s); margin: 0; padding: var(--space-s) var(--space-m); background: var(--color-chip); }
+@media (max-width: 40rem) { vf-grid[flow="columns"] > section > h2 { inset-block-start: calc(var(--header-h) + var(--jumpbar-h)); } }
 vf-grid[flow="columns"] > section > h2 > a { color: inherit; }
 vf-grid[flow="columns"] > section > h2 > data { margin-inline-start: auto; }
 vf-grid[flow="columns"] > section:has(> h2) > ul > li { margin: 0; }
