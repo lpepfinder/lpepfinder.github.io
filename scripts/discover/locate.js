@@ -7,12 +7,14 @@ import { json, count } from '../enrich/http.js';
 import { countryCode } from '../lib/country.js';
 
 /**
- * The country and city of shops that have an OpenStreetMap element but no country or city, from Nominatim (the
- * OpenStreetMap geocoder, ODbL): `lookup` takes 50 elements per request, spaced by enrich.paceMs. Fills only what
- * is missing, never overwrites a curated value. `npm run locate` writes data/shops; `npm run discover -- --write`
- * runs it after adding shops.
+ * The country and city of shops that have none, from Nominatim (the OpenStreetMap geocoder, ODbL): a shop with an
+ * OpenStreetMap element by `lookup` (50 elements per request), a shop with a street address (the Discogs listings)
+ * by `search` in its country (one request per shop), spaced by enrich.paceMs. Fills only what is missing, never
+ * overwrites a curated value; an address found in another country is ignored. `npm run locate` writes data/shops;
+ * `npm run discover -- --write` runs it after adding shops.
  */
 const NOMINATIM = 'https://nominatim.openstreetmap.org/lookup';
+const SEARCH = 'https://nominatim.openstreetmap.org/search';
 const BATCH = 50;
 const regions = new Intl.DisplayNames(['en'], { type: 'region' });
 
@@ -49,7 +51,14 @@ export async function locate(shops) {
       if (fill.country || fill.city) found.push(fill);
     }
   }
-  return { asked: todo.length, found };
+  // shops without an OpenStreetMap element: their street address, searched in their country
+  const byAddress = shops.filter((s) => !s.city && s.country && s.address?.trim() && !lookupId(s.osm));
+  for (const shop of byAddress) {
+    const url = `${SEARCH}?format=jsonv2&addressdetails=1&limit=1&countrycodes=${shop.country.toLowerCase()}&q=${encodeURIComponent(shop.address.trim())}`;
+    const p = place((await json(url))?.[0]?.address);
+    if (p.city && p.country === shop.country) found.push({ id: shop.id, city: p.city });
+  }
+  return { asked: todo.length + byAddress.length, found };
 }
 
 /** Writes the located fields into data/shops/<id>.json, keeping the file's field order (country, then city). */
