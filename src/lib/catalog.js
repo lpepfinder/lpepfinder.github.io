@@ -2,7 +2,7 @@ import path from 'node:path';
 import { loadShops, loadState } from '../../scripts/lib/shops.js';
 import { readJson } from '../../scripts/lib/json.js';
 import { GENERATED } from '../../scripts/lib/paths.js';
-import { cleanShopName } from '../../scripts/lib/text.js';
+import { cleanShopName, cleanTitle } from '../../scripts/lib/text.js';
 import { cityOf, citySlug } from './cities.js';
 import config from '../../data/config.json' with { type: 'json' };
 
@@ -23,7 +23,7 @@ export function catalog() {
     const country = (st.country || s.country || '').toUpperCase() || null;
     return {
       id: s.id,
-      name: s.name || cleanShopName(st.name || '') || s.id,
+      name: cleanTitle(s.name) || cleanShopName(st.name || '') || s.id,
       url: st.url || s.url,
       country,
       city: cityOf(country, s.city || st.city),

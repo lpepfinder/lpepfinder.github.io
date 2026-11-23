@@ -3,6 +3,7 @@ import path from 'node:path';
 import { SHOPS_DIR } from '../lib/paths.js';
 import { hostOf } from '../lib/shops.js';
 import { writeJson } from '../lib/json.js';
+import { cleanTitle } from '../lib/text.js';
 import { countryCode } from '../lib/country.js';
 import { checkShop } from '../check/shop.js';
 import { parseIssueForm, countryFrom } from './parse.js';
@@ -36,7 +37,7 @@ const finalId = hostOf(state.url || url);
 const country = countryFrom(fields.Country, (v) => (v.length === 2 ? (countryCode(v) ? v : null) : countryCode(v))) || state.country || undefined;
 writeJson(path.join(SHOPS_DIR, `${finalId}.json`), {
   url: state.url || url,
-  name: fields['Shop name'] || undefined,
+  name: cleanTitle(fields['Shop name']) || undefined,
   country,
   city: fields.City || undefined,
   source: 'submission',

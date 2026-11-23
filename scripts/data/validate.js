@@ -38,6 +38,8 @@ for (const f of files) {
   try { shop = JSON.parse(fs.readFileSync(path.join(SHOPS_DIR, f), 'utf8')); } catch (e) { errors.push(`${f}: invalid JSON`); continue; }
   check(shop, schema, f);
   if (shop.country && !isCountry(shop.country)) errors.push(`${f}: "${shop.country}" is not a country code`);
+  // names are plain text: "&amp;" or "&#8211;" would show as such on the site
+  if (/&(#\d+|#x[0-9a-f]+|[a-z]+);/i.test(shop.name || '')) errors.push(`${f}: the name has an HTML entity, write the character itself`);
   try {
     const host = new URL(shop.url).hostname.replace(/^www\./, '');
     if (host !== f.slice(0, -5)) errors.push(`${f}: file name must be the url host "${host}.json"`);

@@ -37,7 +37,8 @@ const GENERIC_NAME = /^(home|homepage|shop|store|online ?shop|welcome|index|star
 
 export function cleanShopName(name) {
   const decoded = decodeEntities(name).replace(/\s+/g, ' ').trim();
-  if (GENERIC_NAME.test(decoded)) return '';
+  // a page read in the wrong encoding ("vid\ufffdo"): no name rather than a broken one
+  if (GENERIC_NAME.test(decoded) || decoded.includes('\ufffd')) return '';
   // "Homepage: Record Shack -", "Dig Deep Records |": page-title words and dangling separators go
   const bare = decoded.replace(/^(?:home\s?page|home|welcome|start)\s*[:|–—-]\s*/i, '').replace(/\s*[–—|·•:-]+$/, '').trim();
   const first = bare.split(/\s+[–—|·•:]\s+|\s+-\s+/)[0].trim();
