@@ -113,8 +113,12 @@ vf-settings > p { color: var(--color-muted); font-size: var(--size-sm); }
 vf-near { display: grid; gap: var(--space-xs); }
 vf-near[hidden] { display: none; }
 vf-near h2 { margin: 0; font-size: var(--size-sm); font-weight: var(--weight-semi); color: var(--color-muted); }
-vf-near a { display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); min-block-size: var(--row-h); padding-inline: var(--space-m); border-radius: var(--radius); background: var(--color-chip-on); color: var(--color-chip-on-fg); font-weight: var(--weight-semi); text-decoration: none; }
-vf-near a data { color: inherit; }
+/* the same card as a country's below, picked out by its border */
+vf-near a { display: flex; align-items: center; gap: var(--space-s); min-block-size: var(--row-h); padding-inline: var(--space-m) var(--space-sm); border: var(--hairline) solid var(--color-accent); border-radius: var(--radius); background: var(--color-surface); color: var(--color-fg); font-weight: var(--weight-semi); text-decoration: none; }
+vf-near a > vf-near-name { flex: 1; }
+vf-near a data { color: var(--color-muted); font-size: var(--size-sm); font-weight: normal; }
+vf-near a::after { content: ""; flex: none; inline-size: var(--icon-size); block-size: var(--icon-size); background: var(--color-muted); mask: var(--icon-next) center / contain no-repeat; }
+@media (hover: hover) and (pointer: fine) { vf-near a:hover { background: var(--color-hover); } }
 
 /* <vf-shortcuts>: the keyboard shortcuts' help, a native dialog in the middle of the screen */
 vf-shortcuts dialog { inline-size: min(100% - 2 * var(--gutter), var(--sheet-wide)); padding: var(--space-m); border: 0; border-radius: var(--radius); background: var(--color-surface); color: var(--color-fg); }
