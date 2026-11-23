@@ -7,6 +7,7 @@ import { readJson } from '../../scripts/lib/json.js';
 import { GENERATED } from '../../scripts/lib/paths.js';
 import { catalog } from '../lib/catalog.js';
 import reasons from '../../data/status-reasons.json';
+import software from '../../data/platforms.json';
 
 /** Data validity report: status counts, recent changes and unreachable shops, from the daily check. */
 const c = catalog();
@@ -22,6 +23,11 @@ const rules = reasons.rules.map((r) => ({ ...r, re: new RegExp(r.pattern) }));
 // data-quality report of the index build (scripts/quality): records left out or shown without a price, per reason
 const quality = readJson(path.join(GENERATED, 'quality-report.json'), null);
 const checks = quality ? Object.entries(quality.counts).filter(([, n]) => n > 0) : [];
+// what the shops run on, from the daily check: software, then the themes of the two whose catalogs we read
+const usage = c.usage;
+const share = (n) => new Intl.NumberFormat(lang, { style: 'percent', maximumFractionDigits: 0 }).format(n / usage.known);
+const named = (p) => software.platforms[p]?.name || p;
+const themes = Object.entries(usage.themes).filter(([, list]) => list.length);
 /** Plain-language reason for a check error code (data/status-reasons.json). */
 const reason = (code) => t(lang, `statusReason.${rules.find((r) => r.re.test(String(code || '')))?.id || reasons.fallback}`);
 ---
@@ -36,6 +42,28 @@ const reason = (code) => t(lang, `statusReason.${rules.find((r) => r.re.test(Str
         <tbody>{order.map((s) => <tr><td><vf-status value={s}>{t(lang, `status.${s}`)}</vf-status></td><td><data value={c.statusCounts[s]}>{number(lang, c.statusCounts[s])}</data></td></tr>)}</tbody>
       </table>
     </figure>
+
+    {usage.known > 0 && (
+      <section aria-labelledby="usage">
+        <h2 id="usage">{t(lang, 'statusUsageTitle')}</h2>
+        <p>{t(lang, 'statusUsageBody', { known: number(lang, usage.known) })}</p>
+        <figure>
+          <table>
+            <thead><tr>{t(lang, 'statusUsageColumns').map((col) => <th scope="col">{col}</th>)}</tr></thead>
+            <tbody>{usage.platforms.map(([p, n]) => <tr><td>{named(p)}</td><td><data value={n}>{number(lang, n)}</data></td><td>{share(n)}</td></tr>)}</tbody>
+          </table>
+        </figure>
+        {themes.map(([p, list]) => (
+          <figure>
+            <figcaption>{t(lang, 'statusThemesTitle', { platform: named(p) })}</figcaption>
+            <table>
+              <thead><tr>{t(lang, 'statusThemeColumns').map((col) => <th scope="col">{col}</th>)}</tr></thead>
+              <tbody>{list.slice(0, 15).map(([theme, n]) => <tr><td>{theme}</td><td><data value={n}>{number(lang, n)}</data></td></tr>)}</tbody>
+            </table>
+          </figure>
+        ))}
+      </section>
+    )}
 
     {changes.length > 0 && <h2>{t(lang, 'statusChangesTitle')}</h2>}
     {changes.length > 0 && (

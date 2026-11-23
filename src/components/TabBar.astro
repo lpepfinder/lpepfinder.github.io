@@ -4,7 +4,7 @@ import Logo from './Logo.astro';
 
 /**
  * The app's four tabs (savoir app-shell): Search (its icon is the brand; home), Shops (/shops/: where the shops are,
- * current on the pages about shops, places, artists and new arrivals), Me (the lists and records watched, with
+ * current on the pages about shops, places, artists and new arrivals, and on adding or starting a shop), Me (the lists and records watched, with
  * their count of changes) and Settings (language, prices in, moving the list; then help and about).
  */
 const { lang, current } = Astro.props;
@@ -13,7 +13,7 @@ const shops = localPath(lang, '/shops/');
 const me = localPath(lang, '/me/');
 const settings = localPath(lang, '/settings/');
 const here = (href) => (href === current ? 'page' : undefined);
-const inShops = (href) => (href === current ? 'page' : /^(\/[a-z]{2})?\/(shops|shop|new|artists|artist)\//.test(current || '') ? 'true' : undefined);
+const inShops = (href) => (href === current ? 'page' : /^(\/[a-z]{2})?\/(shops|shop|new|artists|artist|submit|start)\//.test(current || '') ? 'true' : undefined);
 ---
 <nav aria-label={t(lang, 'navApp')}>
   <vf-tabbar>

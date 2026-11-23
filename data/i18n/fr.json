@@ -742,5 +742,30 @@
       "other": "{name} : {count} disques ajoutés à votre liste."
     },
     "removed": "{name} supprimé de ce navigateur."
+  },
+  "statusUsageTitle": "Ce qu'utilisent les boutiques",
+  "statusUsageBody": "Le logiciel des {known} boutiques listées dont le site le dit, d'après la vérification quotidienne. Les catalogues Shopify et WooCommerce sont consultables ici dès le lendemain.",
+  "statusUsageColumns": [
+    "Logiciel",
+    "Boutiques",
+    "Part"
+  ],
+  "statusThemesTitle": "Thèmes {platform}",
+  "statusThemeColumns": [
+    "Thème",
+    "Boutiques"
+  ],
+  "start": {
+    "title": "Ouvrir une boutique en ligne",
+    "intro": "Votre disquaire n'a pas encore de boutique en ligne ? Ce qu'utilisent les boutiques listées ici, et celles que nous savons fouiller.",
+    "measured": "Ce qu'utilisent les {known} boutiques listées",
+    "shopifyBody": "Hébergé : rien à installer ni à mettre à jour, un abonnement mensuel. Le plus simple pour démarrer, et tout le catalogue est consultable ici dès le lendemain.",
+    "wooBody": "Une extension de boutique gratuite pour WordPress, sur un hébergement que vous payez et tenez à jour. Tout le catalogue est consultable ici dès le lendemain.",
+    "otherTitle": "Autre chose",
+    "otherBody": "Squarespace, Wix, Big Cartel, Bandcamp… Nous listons la boutique et lisons ses pages de disques quelques-unes à la fois quand le site le permet : son catalogue apparaît plus lentement.",
+    "go": "Aller sur {platform}",
+    "referral": "Un lien de parrainage : si vous vous inscrivez, LP/EP Finder peut toucher une commission, sans frais pour vous.",
+    "then": "Une fois en ligne, ajoutez votre boutique ici",
+    "fromSubmit": "Pas encore de boutique en ligne ? Les solutions"
   }
 }

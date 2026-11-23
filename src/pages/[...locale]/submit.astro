@@ -1,13 +1,13 @@
 ---
 import Base from '../../layouts/Base.astro';
 import config from '../../../data/config.json';
-import { t, localeParams } from '../../lib/i18n.js';
+import { t, localeParams, localPath } from '../../lib/i18n.js';
 
 /**
  * Add a record shop: two ways, side by side once both fit. OpenStreetMap first (the shop helps every map, and the
  * monthly discovery, scripts/discover/osm.js, finds a shop=music place with a website), in three steps with the tag
- * to use; then the GitHub form (an online-only shop, or sooner). Last, what is read from which shop, and the page
- * for shop owners.
+ * to use; then the GitHub form (an online-only shop, or sooner). Last, what is read from which shop, the ways to
+ * open an online shop (/start/) and the page for shop owners.
  */
 export const getStaticPaths = localeParams;
 const { lang } = Astro.props;
@@ -41,5 +41,6 @@ const { lang } = Astro.props;
     </section>
   </vf-add-shop>
   <p>{t(lang, 'submitRead')}</p>
+  <p><a href={localPath(lang, '/start/')}>{t(lang, 'start.fromSubmit')}</a></p>
   <p><a href="/docs/for-shops/">{t(lang, 'submitOwner')}</a></p>
 </Base>

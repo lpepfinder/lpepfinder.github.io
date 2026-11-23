@@ -742,5 +742,30 @@
       "other": "{name}: {count} Platten zu deiner Liste hinzugefügt."
     },
     "removed": "{name} aus diesem Browser entfernt."
+  },
+  "statusUsageTitle": "Was die Läden nutzen",
+  "statusUsageBody": "Die Software der {known} gelisteten Läden, deren Website sie verrät, aus der täglichen Prüfung. Shopify- und WooCommerce-Kataloge sind hier ab dem nächsten Tag durchsuchbar.",
+  "statusUsageColumns": [
+    "Software",
+    "Läden",
+    "Anteil"
+  ],
+  "statusThemesTitle": "{platform}-Themes",
+  "statusThemeColumns": [
+    "Theme",
+    "Läden"
+  ],
+  "start": {
+    "title": "Einen Onlineshop starten",
+    "intro": "Dein Plattenladen hat noch keinen Onlineshop? Was die hier gelisteten Läden nutzen und welche wir durchsuchen können.",
+    "measured": "Was die {known} gelisteten Läden nutzen",
+    "shopifyBody": "Gehostet: nichts zu installieren oder zu aktualisieren, eine Monatsgebühr. Der einfachste Start, und der ganze Katalog ist hier ab dem nächsten Tag durchsuchbar.",
+    "wooBody": "Ein kostenloses Shop-Plugin für WordPress, auf Hosting, das du bezahlst und aktuell hältst. Der ganze Katalog ist hier ab dem nächsten Tag durchsuchbar.",
+    "otherTitle": "Etwas anderes",
+    "otherBody": "Squarespace, Wix, Big Cartel, Bandcamp… Wir listen den Laden und lesen seine Plattenseiten nach und nach, wenn die Website es erlaubt, daher erscheint der Katalog langsamer.",
+    "go": "Zu {platform}",
+    "referral": "Ein Empfehlungslink: Wenn du dich anmeldest, kann LP/EP Finder eine Provision erhalten, ohne Kosten für dich.",
+    "then": "Sobald er online ist, füge deinen Laden hier hinzu",
+    "fromSubmit": "Noch kein Onlineshop? Die Möglichkeiten"
   }
 }

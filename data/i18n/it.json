@@ -742,5 +742,30 @@
       "other": "{name}: {count} dischi aggiunti alla tua lista."
     },
     "removed": "{name} rimosso da questo browser."
+  },
+  "statusUsageTitle": "Cosa usano i negozi",
+  "statusUsageBody": "Il software dei {known} negozi elencati il cui sito lo indica, dal controllo quotidiano. I cataloghi Shopify e WooCommerce sono cercabili qui dal giorno dopo.",
+  "statusUsageColumns": [
+    "Software",
+    "Negozi",
+    "Quota"
+  ],
+  "statusThemesTitle": "Temi {platform}",
+  "statusThemeColumns": [
+    "Tema",
+    "Negozi"
+  ],
+  "start": {
+    "title": "Aprire un negozio online",
+    "intro": "Il tuo negozio di dischi non vende ancora online? Cosa usano i negozi elencati qui e quali possiamo cercare.",
+    "measured": "Cosa usano i {known} negozi elencati",
+    "shopifyBody": "In hosting: niente da installare o aggiornare, un canone mensile. Il modo più semplice per iniziare, e tutto il catalogo è cercabile qui dal giorno dopo.",
+    "wooBody": "Un plugin negozio gratuito per WordPress, su un hosting che paghi e tieni aggiornato. Tutto il catalogo è cercabile qui dal giorno dopo.",
+    "otherTitle": "Altro",
+    "otherBody": "Squarespace, Wix, Big Cartel, Bandcamp… Elenchiamo il negozio e leggiamo le sue pagine di dischi poche alla volta quando il sito lo consente, quindi il catalogo appare più lentamente.",
+    "go": "Vai su {platform}",
+    "referral": "Un link di affiliazione: se ti iscrivi, LP/EP Finder può ricevere una commissione, senza costi per te.",
+    "then": "Una volta online, aggiungi qui il tuo negozio",
+    "fromSubmit": "Ancora senza negozio online? Le opzioni"
   }
 }

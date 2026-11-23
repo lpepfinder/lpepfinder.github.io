@@ -742,5 +742,30 @@
       "other": "{name}: {count} records added to your list."
     },
     "removed": "{name} removed from this browser."
+  },
+  "statusUsageTitle": "What the shops use",
+  "statusUsageBody": "The software of the {known} listed shops whose site says it, from the daily check. Shopify and WooCommerce catalogs are searchable here the day after.",
+  "statusUsageColumns": [
+    "Software",
+    "Shops",
+    "Share"
+  ],
+  "statusThemesTitle": "{platform} themes",
+  "statusThemeColumns": [
+    "Theme",
+    "Shops"
+  ],
+  "start": {
+    "title": "Start an online shop",
+    "intro": "Your record shop has no online store yet? What the shops listed here use, and which ones we can search.",
+    "measured": "What the {known} listed shops use",
+    "shopifyBody": "Hosted: nothing to install or keep up to date, a monthly fee. The easiest to start, and the whole catalog is searchable here the day after.",
+    "wooBody": "A free shop plugin for WordPress, on hosting you pay for and keep up to date. The whole catalog is searchable here the day after.",
+    "otherTitle": "Something else",
+    "otherBody": "Squarespace, Wix, Big Cartel, Bandcamp… We list the shop and read its record pages a few at a time when the site allows it, so its catalog shows up more slowly.",
+    "go": "Go to {platform}",
+    "referral": "A referral link: if you sign up, LP/EP Finder may earn a commission, at no cost to you.",
+    "then": "Once it's online, add your shop here",
+    "fromSubmit": "No online shop yet? The options"
   }
 }

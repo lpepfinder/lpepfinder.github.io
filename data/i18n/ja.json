@@ -704,5 +704,30 @@
       "other": "{name}：{count} 枚をリストに追加しました。"
     },
     "removed": "{name} をこのブラウザから削除しました。"
+  },
+  "statusUsageTitle": "ショップが使っているもの",
+  "statusUsageBody": "毎日のチェックで分かった、掲載中の{known}店のソフトウェア。ShopifyとWooCommerceのカタログは翌日からここで検索できます。",
+  "statusUsageColumns": [
+    "ソフトウェア",
+    "ショップ",
+    "割合"
+  ],
+  "statusThemesTitle": "{platform}のテーマ",
+  "statusThemeColumns": [
+    "テーマ",
+    "ショップ"
+  ],
+  "start": {
+    "title": "オンラインショップを始める",
+    "intro": "レコード店にまだオンラインショップがない？ここに掲載されているショップが使っているもの、そして検索できるもの。",
+    "measured": "掲載中の{known}店が使っているもの",
+    "shopifyBody": "ホスティング型：インストールも更新も不要、月額料金。いちばん簡単に始められ、翌日からカタログ全体をここで検索できます。",
+    "wooBody": "WordPress用の無料ショッププラグイン。サーバーは自分で契約・更新します。翌日からカタログ全体をここで検索できます。",
+    "otherTitle": "その他",
+    "otherBody": "Squarespace、Wix、Big Cartel、Bandcamp… ショップは掲載し、サイトが許す範囲でレコードのページを少しずつ読むため、カタログの反映はゆっくりです。",
+    "go": "{platform}へ",
+    "referral": "紹介リンクです：登録すると、LP/EP Finderに手数料が入ることがあります（あなたの負担はありません）。",
+    "then": "公開したら、ここでショップを追加",
+    "fromSubmit": "まだオンラインショップがない？選択肢"
   }
 }

@@ -235,5 +235,9 @@
     "description": "How often shops are checked (scripts/check/plan.js): a full check (home page, robots.txt, platform probe, Bluesky) every `fullDays` days, the day after a failed crawl and when a shop's address changes; robots.txt alone on the days between, so an opt-out counts the next day. Dead shops are checked again after half the days they've been dead, at most every `deadMaxDays`.",
     "fullDays": 7,
     "deadMaxDays": 30
+  },
+  "startShop": {
+    "description": "The \"Start an online shop\" page (/start/): `shopifyReferral` is the owner's Shopify partner referral link; empty, the page links to Shopify's own site and says nothing about a commission.",
+    "shopifyReferral": ""
   }
 }

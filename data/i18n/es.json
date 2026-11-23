@@ -742,5 +742,30 @@
       "other": "{name}: {count} discos añadidos a tu lista."
     },
     "removed": "{name} eliminado de este navegador."
+  },
+  "statusUsageTitle": "Qué usan las tiendas",
+  "statusUsageBody": "El software de las {known} tiendas listadas cuyo sitio lo indica, según la comprobación diaria. Los catálogos de Shopify y WooCommerce se pueden buscar aquí al día siguiente.",
+  "statusUsageColumns": [
+    "Software",
+    "Tiendas",
+    "Porcentaje"
+  ],
+  "statusThemesTitle": "Temas de {platform}",
+  "statusThemeColumns": [
+    "Tema",
+    "Tiendas"
+  ],
+  "start": {
+    "title": "Abrir una tienda online",
+    "intro": "¿Tu tienda de discos aún no vende online? Qué usan las tiendas listadas aquí y cuáles podemos buscar.",
+    "measured": "Qué usan las {known} tiendas listadas",
+    "shopifyBody": "Alojado: nada que instalar ni actualizar, una cuota mensual. Lo más fácil para empezar, y todo el catálogo se puede buscar aquí al día siguiente.",
+    "wooBody": "Un plugin de tienda gratuito para WordPress, en un alojamiento que pagas y mantienes al día. Todo el catálogo se puede buscar aquí al día siguiente.",
+    "otherTitle": "Otra cosa",
+    "otherBody": "Squarespace, Wix, Big Cartel, Bandcamp… Listamos la tienda y leemos sus páginas de discos poco a poco cuando el sitio lo permite, así que su catálogo aparece más despacio.",
+    "go": "Ir a {platform}",
+    "referral": "Un enlace de referido: si te registras, LP/EP Finder puede recibir una comisión, sin coste para ti.",
+    "then": "Cuando esté online, añade tu tienda aquí",
+    "fromSubmit": "¿Aún sin tienda online? Las opciones"
   }
 }

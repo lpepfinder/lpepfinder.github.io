@@ -37,6 +37,9 @@ export function catalog() {
       latest: stats.latest,
       // { handle, did, verified } from the daily check, else as set in data/shops (scripts/check/bluesky.js)
       bluesky: st.bluesky || s.bluesky || null,
+      // the shop's software and theme as the daily check saw them (scripts/platforms/detect.js)
+      platform: st.platform || null,
+      theme: st.theme?.name || null,
     };
   });
   const unchecked = !Object.keys(state).length;
@@ -70,6 +73,19 @@ export function catalog() {
     artists: data.artists,
     totalRecords: data.totalRecords,
     builtAt: data.builtAt,
+    usage: usage(visible),
   };
   return cached;
+}
+
+/**
+ * What the listed shops run on: { known, platforms: [[platform, shops]], themes: { platform: [[theme, shops]] } },
+ * most used first; `known` counts the shops whose software the check could tell ("unknown" is left out of it).
+ */
+function usage(shops) {
+  const count = (list) => [...list.reduce((m, k) => m.set(k, (m.get(k) || 0) + 1), new Map())].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const known = shops.filter((s) => s.platform && s.platform !== 'unknown');
+  const themes = {};
+  for (const p of ['shopify', 'woocommerce']) themes[p] = count(known.filter((s) => s.platform === p && s.theme).map((s) => s.theme));
+  return { known: known.length, platforms: count(known.map((s) => s.platform)), themes };
 }

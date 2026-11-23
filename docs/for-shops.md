@@ -20,6 +20,10 @@ New shops are also found on Record Store Day lists every month.
 - **Square Online shops** are searchable too (the same public product list as their storefront).
 - **Other shops** are listed with a link, and become searchable as more platforms are supported. A shop whose online store lives on another site (Big Cartel, a `shop.` subdomain) can tell us its store's address in an issue.
 
+## No online shop yet?
+
+[Start an online shop](https://lpepfinder.com/start/) shows what the listed shops run on (from the daily check; the same numbers, with their themes, are on [/status/](https://lpepfinder.com/status/)) and the ways to sell online: Shopify and WooCommerce catalogs are searchable here the day after; with other software, the shop is listed and its record pages are read more slowly. When the owner's Shopify referral link is set (`startShop.shopifyReferral` in `data/config.json`), the Shopify button uses it and the page says so.
+
 ## What we read
 
 Once a day, slowly (one request at a time, at most one a second), our crawler `LPEPFinderBot` reads the public catalog: title, price, currency, stock, image and product link. Nothing else: no customer data, no orders, no checkout. Most shops get about a dozen requests a day, plus a look at `robots.txt`; the home page is checked once a week. It respects `robots.txt`, including a `Crawl-delay` to slow it down, and a `Disallow` for `LPEPFinderBot` takes effect the next day.

@@ -1,0 +1,51 @@
+{
+  "description": "Shop software the daily check recognises (scripts/platforms/detect.js): its name as shown, its site, and whether LP/EP Finder reads its whole catalog (`searchable`). Used by /status/ and /start/.",
+  "platforms": {
+    "shopify": {
+      "name": "Shopify",
+      "url": "https://www.shopify.com/",
+      "searchable": true
+    },
+    "woocommerce": {
+      "name": "WooCommerce",
+      "url": "https://woocommerce.com/",
+      "searchable": true
+    },
+    "wordpress": {
+      "name": "WordPress"
+    },
+    "wix": {
+      "name": "Wix"
+    },
+    "squarespace": {
+      "name": "Squarespace"
+    },
+    "square": {
+      "name": "Square Online"
+    },
+    "bandcamp": {
+      "name": "Bandcamp"
+    },
+    "ecwid": {
+      "name": "Ecwid"
+    },
+    "prestashop": {
+      "name": "PrestaShop"
+    },
+    "opencart": {
+      "name": "OpenCart"
+    },
+    "bigcartel": {
+      "name": "Big Cartel"
+    },
+    "bigcommerce": {
+      "name": "BigCommerce"
+    },
+    "magento": {
+      "name": "Magento"
+    },
+    "shopware": {
+      "name": "Shopware"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import config from '../../../data/config.json';
+import software from '../../../data/platforms.json';
+import { catalog } from '../../lib/catalog.js';
+import { t, localeParams, localPath, number } from '../../lib/i18n.js';
+
+/**
+ * Start an online shop (/start/), for a record shop without one: what the listed shops run on (the daily check,
+ * catalog().usage), then the ways to sell online as cards, the two whose whole catalog we read first (Shopify,
+ * WooCommerce), then the rest; last, the way to get listed. Shopify's link is the owner's referral link when
+ * config.startShop.shopifyReferral is set, and then the card says so.
+ */
+export const getStaticPaths = localeParams;
+const { lang } = Astro.props;
+const { usage } = catalog();
+const SHOWN = 6;
+const percent = new Intl.NumberFormat(lang, { style: 'percent', maximumFractionDigits: 0 });
+const rows = usage.platforms.slice(0, SHOWN).map(([p, n]) => ({ name: software.platforms[p]?.name || p, share: n / usage.known }));
+const referral = config.startShop.shopifyReferral;
+const options = [
+  { key: 'shopify', body: 'start.shopifyBody', href: referral || software.platforms.shopify.url, referral: !!referral },
+  { key: 'woocommerce', body: 'start.wooBody', href: software.platforms.woocommerce.url },
+];
+---
+<Base lang={lang} path="/start/" title={`${t(lang, 'start.title')} · ${config.name}`} description={t(lang, 'start.intro')}>
+  <hgroup>
+    <h1>{t(lang, 'start.title')}</h1>
+    <p>{t(lang, 'start.intro')}</p>
+  </hgroup>
+  {usage.known > 0 && (
+    <vf-usage>
+      <h2>{t(lang, 'start.measured', { known: number(lang, usage.known) })}</h2>
+      <ul>{rows.map((r) => <li><span>{r.name}</span><meter value={r.share} aria-label={r.name}></meter><data value={r.share}>{percent.format(r.share)}</data></li>)}</ul>
+    </vf-usage>
+  )}
+  <vf-add-shop>
+    {options.map((o) => (
+      <section aria-labelledby={`start-${o.key}`}>
+        <h2 id={`start-${o.key}`}>{software.platforms[o.key].name}</h2>
+        <p>{t(lang, o.body)}</p>
+        <menu>
+          <li><a href={o.href} rel={o.referral ? 'sponsored noopener' : 'noopener'} kind={o.key === 'shopify' ? 'strong' : 'secondary'}><vf-icon name="external"></vf-icon>{t(lang, 'start.go', { platform: software.platforms[o.key].name })}</a></li>
+        </menu>
+        {o.referral && <p><small>{t(lang, 'start.referral')}</small></p>}
+      </section>
+    ))}
+    <section aria-labelledby="start-other">
+      <h2 id="start-other">{t(lang, 'start.otherTitle')}</h2>
+      <p>{t(lang, 'start.otherBody')}</p>
+    </section>
+  </vf-add-shop>
+  <p><a href={localPath(lang, '/submit/')}>{t(lang, 'start.then')}</a></p>
+</Base>
