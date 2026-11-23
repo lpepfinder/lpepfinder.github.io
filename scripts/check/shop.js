@@ -2,7 +2,7 @@ import { get } from '../lib/http.js';
 import { parseRobots } from '../lib/robots.js';
 import { hostOf } from '../lib/shops.js';
 import { config } from '../lib/config.js';
-import { detectPlatform, pageTitle } from '../platforms/detect.js';
+import { detectPlatform, detectTheme, pageTitle } from '../platforms/detect.js';
 import { adapters } from '../platforms/index.js';
 import { mentionsFormat } from '../platforms/filter.js';
 import { blueskyOf } from './bluesky.js';
@@ -32,7 +32,7 @@ export async function checkShop(shop, previous = {}) {
   if ([401, 403, 429, 503].includes(home.status)) {
     await home.body?.cancel?.();
     const bluesky = await blueskyOf(shop.id, '', { fetchText }) || previous.bluesky || null;
-    return { ...state, url: new URL(home.url || shop.url).origin, status: 'listed', reason: `bot_protection_${home.status}`, platform: previous.platform || null, name: previous.name || null, bluesky };
+    return { ...state, url: new URL(home.url || shop.url).origin, status: 'listed', reason: `bot_protection_${home.status}`, platform: previous.platform || null, theme: previous.theme || null, name: previous.name || null, bluesky };
   }
   if (!home.ok) {
     const fails = (previous.fails || 0) + 1;
@@ -55,6 +55,7 @@ export async function checkShop(shop, previous = {}) {
   const robots = parseRobots(robotsRes.ok ? await robotsRes.text() : '', config.crawl.botNames);
   state.crawlDelay = robots.crawlDelay;
   state.platform = detectPlatform(html, home.headers);
+  state.theme = detectTheme(html);
   state.name = pageTitle(html);
   // the shop on Bluesky: its domain as handle (verified), or a profile its homepage links (scripts/check/bluesky.js)
   state.bluesky = await blueskyOf(shop.id, html, { fetchText });
