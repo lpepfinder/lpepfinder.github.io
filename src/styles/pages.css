@@ -59,8 +59,17 @@ vf-grid[flow="columns"] > ul { display: block; columns: var(--grid-min); column-
 vf-grid[flow="columns"] > ul > li, vf-grid[flow="columns"] > section > ul > li { margin-block-end: var(--space-s); }
 vf-grid[flow="columns"] > section > ul { display: block; }
 vf-grid[flow="columns"] > section { padding-block-end: var(--space-m); }
-vf-grid[flow="columns"] > section > h2 { break-after: avoid; margin-block: 0 var(--space-s); font-size: var(--size-lg); }
+vf-grid[flow="columns"] > section > h2 { break-after: avoid; font-size: var(--size-lg); }
 :is(vf-grid, main > section) h2 data { color: var(--color-muted); font-size: var(--size-sm); font-weight: normal; }
+/* a city on its country's page: one panel, never split across columns; its name and number of shops on top, its
+   shops as rows inside (the city page's own list stays cards) */
+vf-grid[flow="columns"] > section:has(> h2) { break-inside: avoid; margin-block-end: var(--space-m); padding: 0; border: var(--hairline) solid var(--color-line); border-radius: var(--radius); background: var(--color-surface); overflow: hidden; }
+vf-grid[flow="columns"] > section > h2 { display: flex; align-items: baseline; gap: var(--space-s); margin: 0; padding: var(--space-s) var(--space-m); background: var(--color-chip); }
+vf-grid[flow="columns"] > section > h2 > a { color: inherit; }
+vf-grid[flow="columns"] > section > h2 > data { margin-inline-start: auto; }
+vf-grid[flow="columns"] > section:has(> h2) > ul > li { margin: 0; }
+vf-grid[flow="columns"] > section:has(> h2) > ul > li + li { border-block-start: var(--hairline) solid var(--color-line); }
+vf-grid[flow="columns"] > section:has(> h2) vf-shop-card { border: 0; border-radius: 0; background: none; }
 main > section > ul { list-style: none; margin: 0; padding: 0; display: grid; }
 
 /* a shop: its name, its records (or "listed") under it, the chevron beside both; listed but not searchable yet,
