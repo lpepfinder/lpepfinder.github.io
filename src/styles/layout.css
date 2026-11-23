@@ -3,8 +3,11 @@ vf-app { display: grid; grid-template-rows: auto 1fr auto; min-block-size: 100dv
 vf-app > * { min-inline-size: 0; }
 /* the whole width at every size (savoir radical-mobile-first): only running text keeps a measure, below */
 vf-app > :is(main, footer) { inline-size: 100%; padding-inline: var(--gutter); }
-/* lists use the full width, prose doesn't */
-vf-app[layout="prose"] > :is(main, footer) { max-inline-size: var(--width); }
+/* prose pages (about, privacy): their blocks side by side as the screen widens, each in the text's measure */
+vf-app[layout="prose"] main > article { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--prose-col)), 1fr)); gap: var(--space-m) var(--space-xl); align-items: start; }
+vf-app[layout="prose"] main > article > :is(h1, p) { margin: 0; }
+vf-app[layout="prose"] main > article > h1 { grid-column: 1 / -1; }
+vf-app[layout="prose"] main > article > section > :first-child { margin-block-start: 0; }
 main > :is(p, hgroup), main > article > p, hgroup p { max-inline-size: var(--measure); }
 
 main { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-m); align-content: start; padding-block: var(--space-m) var(--space-xl); }

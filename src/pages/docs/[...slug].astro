@@ -6,7 +6,8 @@ import { docs, docsHref } from '../../lib/docs.js';
 
 /**
  * The docs (docs/*.md, English): the topics in a column beside the page on wide screens, behind a
- * "Docs · <page>" menu on phones; the page's own text in the readable width.
+ * "Docs · <page>" menu on phones; the page's own text in the readable width, its code and tables as wide as
+ * the screen allows; on wide screens its sections ("On this page") in a third column, when it has two or more.
  */
 export function getStaticPaths() {
   return docs.map((doc) => ({ params: { slug: doc.slug || undefined }, props: { slug: doc.slug } }));
@@ -34,6 +35,12 @@ const here = (d) => (d.slug === doc.slug ? 'page' : undefined);
       {doc.description && doc.slug && <p>{doc.description}</p>}
       <doc.Content />
     </article>
+    {doc.sections.length > 1 && (
+      <aside aria-labelledby="docs-toc">
+        <h2 id="docs-toc">{t(lang, 'docsOnPage')}</h2>
+        <ul>{doc.sections.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ul>
+      </aside>
+    )}
   </vf-docs>
 </Base>
 <script>

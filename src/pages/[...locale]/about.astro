@@ -10,15 +10,21 @@ const ld = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: t(la
 <Base layout="prose" lang={lang} path="/about/" title={t(lang, 'aboutTitle')} description={t(lang, 'aboutBody')[0]} ld={ld}>
   <article>
     <h1>{t(lang, 'aboutTitle')}</h1>
-    {t(lang, 'aboutBody').map((p) => <p>{p}</p>)}
-    <h2>{t(lang, 'aboutDataTitle')}</h2>
-    <p>{t(lang, 'aboutData')}</p>
-    <h2>{t(lang, 'aboutSuggestTitle')}</h2>
-    <p>{t(lang, 'aboutSuggest')} <a href={localPath(lang, '/submit/')}>{t(lang, 'aboutSuggestAction')}</a></p>
-    <h2>{t(lang, 'aboutContactTitle')}</h2>
-    <ul>
-      <li><a href={`${config.repository}/issues`}>{t(lang, 'contactGithub')}</a></li>
-      <li><a href={config.repository}>{t(lang, 'footerGithub')}</a></li>
-    </ul>
+    <section>{t(lang, 'aboutBody').map((p) => <p>{p}</p>)}</section>
+    <section>
+      <h2>{t(lang, 'aboutDataTitle')}</h2>
+      <p>{t(lang, 'aboutData')}</p>
+    </section>
+    <section>
+      <h2>{t(lang, 'aboutSuggestTitle')}</h2>
+      <p>{t(lang, 'aboutSuggest')} <a href={localPath(lang, '/submit/')}>{t(lang, 'aboutSuggestAction')}</a></p>
+    </section>
+    <section>
+      <h2>{t(lang, 'aboutContactTitle')}</h2>
+      <ul>
+        <li><a href={`${config.repository}/issues`}>{t(lang, 'contactGithub')}</a></li>
+        <li><a href={config.repository}>{t(lang, 'footerGithub')}</a></li>
+      </ul>
+    </section>
   </article>
 </Base>

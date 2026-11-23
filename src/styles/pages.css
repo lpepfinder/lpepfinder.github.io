@@ -63,8 +63,10 @@ vf-shop-card span { color: var(--color-muted); font-size: var(--size-sm); font-v
 vf-shop-card span::before { content: var(--count-separator); }
 vf-shop-card[searchable="false"] a { font-weight: normal; }
 
-/* <vf-settings>: the Settings tab, settings of this browser then links, as an app screen */
-vf-settings { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-l); max-inline-size: var(--menu-w); }
+/* <vf-settings>: the Settings tab, settings of this browser then links, as an app screen; its groups side by side
+   as the screen widens */
+vf-settings { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--menu-min)), 1fr)); gap: var(--space-l) var(--space-xl); align-items: start; }
+vf-settings > :is(h1, p) { grid-column: 1 / -1; }
 vf-settings h1 { margin: 0; }
 vf-settings section { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-s); }
 vf-settings h2 { margin: 0; font-size: var(--size-sm); font-weight: var(--weight-semi); color: var(--color-muted); }

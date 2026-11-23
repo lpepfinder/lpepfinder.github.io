@@ -35,6 +35,7 @@
    * phone < 40rem · tablet 40–64rem · desktop ≥ 64rem (list + detail) · large ≥ 90rem (one-line rows) · ≥ 110rem filter rail too (the sidebar takes room).
    */
   --measure: 68ch;
+  --prose-col: 30rem;     /* about, privacy: a block of text is at least this wide, more blocks side by side */
   --row-h: 3.5rem;
   --source-min: 22rem;
   --source-card: 15rem;
@@ -43,7 +44,7 @@
   --profile-photo: 5.5rem;
   --profile-photo-wide: 8rem;
   --quote-w: 3px;
-  --menu-w: 44rem;        /* the More tab: a menu of rows, as wide as reads well (joblist) */
+  --menu-min: 24rem;      /* Settings: a group of rows is at least this wide, more groups side by side */
   --field-min: 10rem;
   --cover-row: 2.5rem;
   --cover-detail: 7.5rem;
