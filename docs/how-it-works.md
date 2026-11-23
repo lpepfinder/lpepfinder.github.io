@@ -26,8 +26,9 @@ data/shops/*.json ──▶ Refresh (daily)      ──▶ "data" release ──
 4. **Crawl** (`npm run crawl`): reads public catalogs (Shopify `products.json`, WooCommerce Store API),
    keeps in-stock records, one request at a time per shop. Output: `generated/products.ndjson.gz`.
 5. **Quality checks** (start of `npm run index`, code in `scripts/quality/`, settings in `data/config.json` `quality`):
-   shop test listings (`(testproduct)`), untitled listings and non-records (the product filter of `products.exclude`)
-   are left out of everything below. Wrong prices are removed but the record stays searchable without a price,
+   shop test listings (`(testproduct)`), untitled listings, non-records (the product filter of `products.exclude`,
+   and the shop's category for gear, merch or clothes, `products.excludeTypes`) and CDs and cassettes (vinyl only,
+   `products.leaveOutFormats`) are left out of everything below. Wrong prices are removed but the record stays searchable without a price,
    so it can't be the cheapest offer, a price drop or a low price, and the ledger forgets it: a price under €0.50
    or over €3,000 (converted with `data/rates.json`), and every price of a shop whose median is under €2 or over
    €500 (a wrong currency, e.g. dollars labelled yen). Report: `generated/quality-report.json` (counts per reason,

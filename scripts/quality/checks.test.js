@@ -53,3 +53,13 @@ test('shops whose median price is far off look like a wrong currency', () => {
   assert.equal(suspect.get('gear.com').reason, 'shop-price-high');
   assert.equal(checkDoc(doc('Artist – LP', 2500, { shop: 'jp.com' }), ctx({ currency: 'JPY', suspect })), 'shop-price-low');
 });
+
+test('vinyl only: a listing that names only a CD or a cassette goes, one that also names vinyl or no format stays', async () => {
+  const { formatsIn } = await import('../../src/lib/search/format.js');
+  const leaveOut = new Set(['cd', 'mc']);
+  const otherFormat = (text) => { const ids = formatsIn(text); return ids.length > 0 && ids.every((id) => leaveOut.has(id)); };
+  assert.equal(checkDoc(doc('Miles Davis - Kind of Blue (CD)'), ctx({ otherFormat })), 'other-format');
+  assert.equal(checkDoc({ ...doc('Miles Davis - Kind of Blue'), type: 'Cassette' }, ctx({ otherFormat })), 'other-format');
+  assert.equal(checkDoc(doc('Miles Davis - Kind of Blue LP + CD'), ctx({ otherFormat })), null);
+  assert.equal(checkDoc(doc('Miles Davis - Kind of Blue'), ctx({ otherFormat })), null);
+});

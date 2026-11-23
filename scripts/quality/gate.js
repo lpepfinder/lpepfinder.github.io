@@ -5,9 +5,9 @@ import { REASONS, checkDoc, priceEur, suspectShops } from './checks.js';
  * (price: null, priceFlag: reason, so the ledger forgets the price too) and keeps counts and samples for the report.
  * Suspect shops are found once, from the docs given here (today's catalog); filter() can then run on more
  * docs (the ledger's gone offers) with the same rules.
- * ctx: { rates, settings (config.quality), currencyOf(doc), isMusic(text, type) }
+ * ctx: { rates, settings (config.quality), currencyOf(doc), isMusic(text, type), otherFormat(text) }
  */
-export function qualityGate(docs, { rates, settings, currencyOf, isMusic }) {
+export function qualityGate(docs, { rates, settings, currencyOf, isMusic, otherFormat }) {
   const suspect = suspectShops(docs, { rates, settings, currencyOf });
   const testTitle = new RegExp(settings.testTitle, 'i');
   const counts = Object.fromEntries(Object.keys(REASONS).map((r) => [r, 0]));
@@ -24,7 +24,7 @@ export function qualityGate(docs, { rates, settings, currencyOf, isMusic }) {
   /** Docs that pass, with wrong prices removed in place. */
   const filter = (list) => list.filter((d) => {
     checked++;
-    const reason = checkDoc(d, { rates, settings, currency: currencyOf(d), suspect, testTitle, isMusic });
+    const reason = checkDoc(d, { rates, settings, currency: currencyOf(d), suspect, testTitle, isMusic, otherFormat });
     if (!reason) return true;
     flag(d, reason);
     if (REASONS[reason] === 'exclude') return false;

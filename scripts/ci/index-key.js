@@ -33,7 +33,7 @@ export const SECTIONS = ['products', 'search', 'ledger', 'quality', 'dig', 'newA
  * crawlers, and changing them must not rebuild it. A `description` never counts.
  */
 export const PICK = {
-  products: ['include', 'exclude', 'excludeTypes', 'keepTypes'],
+  products: ['include', 'exclude', 'excludeTypes', 'keepTypes', 'leaveOutFormats'],
   search: ['docsPerChunk', 'maxArtists'],
   newArrivals: ['days', 'pageItems', 'shopItems'],
   seo: ['artistMinRecords', 'artistMinShops', 'artistMaxPages', 'artistMaxRecordsPerPage', 'shopLatestRecords'],

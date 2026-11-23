@@ -29,7 +29,7 @@ On phones, the Filters button at the bottom of the results; on wide screens, the
 
 - **In stock only**
 - **Your country first**
-- **Format**: LP, 12", 7", 10", CD, cassette, as the shops name them
+- **Format**: LP, 2LP+, 12", 10", 7", EP, as the shops name them. Vinyl only: a listing that names only a CD or a cassette is left out (`products.leaveOutFormats` in `data/config.json`); one that names no format stays
 - **Prices in**: your currency, or each shop's own
 - **Show covers**: off saves data on slow connections
 

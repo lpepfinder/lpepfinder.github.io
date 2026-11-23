@@ -93,6 +93,7 @@
     "no-title": "タイトルなし",
     "test-listing": "テスト商品",
     "not-record": "レコードではない",
+    "other-format": "CDまたはカセット（レコードのみ）",
     "shop-price-low": "店舗の価格が低すぎる(通貨?)",
     "shop-price-high": "店舗の価格が高すぎる",
     "price-low": "価格が低すぎる",

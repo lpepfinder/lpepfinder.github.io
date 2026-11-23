@@ -12,6 +12,7 @@ export const REASONS = {
   'no-title': 'exclude',
   'test-listing': 'exclude',
   'not-record': 'exclude',
+  'other-format': 'exclude',
   'shop-price-low': 'no-price',
   'shop-price-high': 'no-price',
   'price-low': 'no-price',
@@ -56,14 +57,16 @@ export function suspectShops(docs, { rates, settings, currencyOf }) {
 
 /**
  * Reason a doc is flagged (a key of REASONS), or null when it is fine. Listing rules first, then prices.
- * ctx: { rates, settings, currency (the doc's), suspect (from suspectShops), testTitle (RegExp), isMusic(text, type) }
+ * ctx: { rates, settings, currency (the doc's), suspect (from suspectShops), testTitle (RegExp), isMusic(text, type),
+ *   otherFormat(text): true for a format the site leaves out (a CD, a cassette), optional }
  */
-export function checkDoc(doc, { rates, settings, currency, suspect, testTitle, isMusic }) {
+export function checkDoc(doc, { rates, settings, currency, suspect, testTitle, isMusic, otherFormat = () => false }) {
   const title = String(doc.title || '').trim();
   // no letter or digit at all: empty, or an encoding that lost every character ("???? - ?? ???")
   if (!/[\p{L}\p{N}]/u.test(title)) return 'no-title';
   if (testTitle.test(title)) return 'test-listing';
   if (!isMusic(`${title} ${doc.type || ''}`, doc.type)) return 'not-record';
+  if (otherFormat(`${title} ${doc.type || ''}`)) return 'other-format';
   if (doc.price == null) return null;
   if (suspect.has(doc.shop)) return suspect.get(doc.shop).reason;
   const eur = priceEur(doc.price, currency, rates);

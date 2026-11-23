@@ -12,6 +12,9 @@ const grades = facets.grades.map((g) => ({ ...g, codes: new RegExp(g.codes, 'u')
 
 export const FORMAT_IDS = formats.map((f) => f.id);
 
+/** Every format a text names ("LP + CD": ["cd", "lp"]), not only the first. */
+export const formatsIn = (text) => formats.filter((f) => f.re.test(String(text || ''))).map((f) => f.id);
+
 /** The grade written first ("VG+/NM": the record before the sleeve). */
 function first(s, kind) {
   let best = null;

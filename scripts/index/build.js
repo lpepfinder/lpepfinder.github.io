@@ -15,6 +15,7 @@ import { buildNewArrivals } from '../ledger/new-arrivals.js';
 import { buildDig } from '../ledger/dig.js';
 import { qualityGate } from '../quality/gate.js';
 import { isMusicProduct, isMusicType } from '../platforms/filter.js';
+import { formatsIn } from '../../src/lib/search/format.js';
 
 /**
  * Crawl output -> offer ledger, watchlist files in public/w, Dig crates in public/dig.json, static search index in public/search,
@@ -39,7 +40,11 @@ const loaded = await loadCatalog(productFiles);
 // forgets the price (priceFlag). Report in generated/quality-report.json, shown on /status/.
 const rates = readJson(path.join(DATA, 'rates.json')).rates;
 const currencyOf = (d) => d.currency || loaded.shops.get(d.shop)?.state.currency || null;
-const gate = qualityGate(loaded.docs, { rates, settings: config.quality, currencyOf, isMusic: (text, type) => isMusicProduct(text) && isMusicType(type) });
+// vinyl only (config.products.leaveOutFormats): a listing that names only formats left out (a CD, a cassette) goes;
+// one that also names a vinyl format ("LP + CD") or no format at all stays
+const leaveOut = new Set(config.products.leaveOutFormats);
+const otherFormat = (text) => { const ids = formatsIn(text); return ids.length > 0 && ids.every((id) => leaveOut.has(id)); };
+const gate = qualityGate(loaded.docs, { rates, settings: config.quality, currencyOf, isMusic: (text, type) => isMusicProduct(text) && isMusicType(type), otherFormat });
 const passed = new Set(gate.filter(loaded.docs));
 const catalog = {
   ...loaded,
